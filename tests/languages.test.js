@@ -231,3 +231,24 @@ test('every ear-training pair differs in exactly one sound', () => {
     }
   }
 });
+
+test('ar: Egyptian entries use Cairene stress, MSA keeps MSA stress', () => {
+  const eg = (tl) => analyzeTranslit(tl, undefined, 'Egyptian').respell;
+  assert.equal(eg('shanṭiti'), 'shan-TI-ti');
+  assert.equal(eg('mushkila'), 'mush-KI-la');
+  assert.equal(eg('madrasa'), 'mad-RA-sa');
+  assert.equal(eg('katabit'), 'KA-ta-bit');
+  assert.equal(eg('maʿlēsh'), "ma'-LAYSH");
+  assert.equal(analyzeTranslit('madrasa').respell, 'MAD-ra-sa', 'MSA');
+  const maalesh = ar.words.find((w) => w.tl === 'maʿlēsh');
+  assert.equal(ar.analyze(maalesh).respell, "ma'-LAYSH", 'dialect entries are analysed as Egyptian');
+});
+
+test('ar: Arabizi numbers count in typed transliteration', () => {
+  const w = ar.words.find((x) => x.tl === 'maʿlēsh');
+  for (const t of ['ma3lesh', 'maalesh', 'maʿlēsh']) {
+    assert.ok(ar.acceptedAnswers(w).some((a) => ar.normalize(a) === ar.normalize(t)), t);
+  }
+  assert.equal(ar.normalize('7abibi'), ar.normalize('ḥabibi'));
+  assert.equal(ar.normalize('٣ كيلو'), '٣كيلو', 'Arabic-script input is left alone');
+});

@@ -524,7 +524,7 @@ export const vocab = [
     ],
     "note": "Feminine. In the Gulf and the Levant people say بَاص (bāṣ).",
     "pair": {
-      "tr": "أُوتُوبِيس",
+      "tr": "أُتُوبِيس",
       "reg": "casual",
       "tl": "ʾotobīs",
       "dialect": "Egyptian"
@@ -1193,7 +1193,7 @@ export const vocab = [
     ],
     "note": "For the next step in a sequence.",
     "pair": {
-      "tr": "بَعْدَيْن",
+      "tr": "بَعْدِين",
       "reg": "casual",
       "en": "then; later",
       "tl": "baʿdēn",
@@ -1754,12 +1754,15 @@ export const vocab = [
     "tr": "مَا اسْمُكَ؟",
     "en": "What's your name? (to a man)",
     "cat": "p-smalltalk",
-    "tl": "mā ismuk",
+    "tl": "mā-smuk",
     "ex": [
       "— مَا اسْمُكَ؟ — اِسْمِي تُومْ.",
       "— What's your name? — My name is Tom."
     ],
     "note": "To a woman: مَا اسْمُكِ؟ (mā ismuki). In Egypt, to a woman: ismik ʾēh?",
+    "alt": [
+      "mā ismuk"
+    ],
     "pair": {
       "tr": "اِسْمَك إِيه؟",
       "reg": "casual",
@@ -1838,7 +1841,7 @@ export const vocab = [
     "pair": {
       "tr": "الْجَوّ حَرّ أَوِي النَّهَارْدَه.",
       "reg": "casual",
-      "tl": "il-gaww ḥarr ʾawi in-nahārda",
+      "tl": "il-gaww ḥarr ʾawi-n-nahārda",
       "dialect": "Egyptian"
     }
   },
@@ -2217,7 +2220,7 @@ export const vocab = [
     "tr": "اِمْشِ إِلَى الْأَمَامِ ثُمَّ انْعَطِفْ يَمِينًا.",
     "en": "Go straight ahead, then turn right.",
     "cat": "p-directions",
-    "tl": "imshi ʾilā-l-ʾamām thumma inʿaṭif yamīnan",
+    "tl": "imshi ʾilā-l-ʾamām thumma-nʿaṭif yamīnan",
     "note": "Left: يَسَارًا (yasāran) — in Egypt شِمَال (shimāl). ʿala ṭūl = straight on.",
     "alt": [
       "imshi ʾilā al-ʾamām thumma inʿaṭif yamīnan"
@@ -2287,7 +2290,7 @@ export const vocab = [
     "pair": {
       "tr": "وَدِّينِي الْعِنْوَان دَه لَوْ سَمَحْت.",
       "reg": "polite",
-      "tl": "waddīni il-ʿinwān da law samaḥt",
+      "tl": "waddīni-l-ʿinwān da law samaḥt",
       "dialect": "Egyptian"
     }
   },
@@ -2413,7 +2416,7 @@ export const vocab = [
     "pair": {
       "tr": "مَقْدَرْش النَّهَارْدَه، مَعْلِش.",
       "reg": "casual",
-      "tl": "maʾdarsh in-nahārda, maʿlish",
+      "tl": "maʾdarsh in-nahārda, maʿlēsh",
       "dialect": "Egyptian"
     }
   },
@@ -2542,7 +2545,7 @@ export const vocab = [
       "tr": "مَعْلِش، رَبِّنَا مَعَاك.",
       "reg": "casual",
       "en": "I'm so sorry, God be with you.",
-      "tl": "maʿlish, rabbina maʿāk",
+      "tl": "maʿlēsh, rabbina maʿāk",
       "dialect": "Egyptian"
     }
   },
@@ -2635,7 +2638,7 @@ export const vocab = [
       "tr": "مَعْلِش، مِش فَاهِم.",
       "reg": "casual",
       "en": "Sorry, I don't understand.",
-      "tl": "maʿlish, mish fāhim",
+      "tl": "maʿlēsh, mish fāhim",
       "dialect": "Egyptian"
     }
   },
@@ -2702,7 +2705,7 @@ export const vocab = [
     "pair": {
       "tr": "شَنْطِتِي اتْسَرَقِت.",
       "reg": "casual",
-      "tl": "shanṭiti itsaraʾit",
+      "tl": "shanṭiti-tsaraʾit",
       "dialect": "Egyptian"
     }
   },
@@ -2711,7 +2714,7 @@ export const vocab = [
     "en": "I've lost my passport.",
     "cat": "p-help",
     "tl": "faqadtu jawāz safarī",
-    "note": "بِتَاعِي (bitāʿi, “mine”) is how Egyptians usually say “my”: il-basbōr bitāʿi = my passport.",
+    "note": "بِتَاعِي (bitāʿi, “mine”) is a common way to say “my”, especially with loanwords: il-basbōr bitāʿi = my passport. Most nouns just take -i: ismi, shanṭiti.",
     "pair": {
       "tr": "الْبَاسْبُور بِتَاعِي ضَاع.",
       "reg": "casual",
@@ -3262,14 +3265,15 @@ export const vocab = [
     "tr": "مَعْلِش",
     "en": "sorry; never mind",
     "cat": "everyday",
-    "tl": "maʿlish",
+    "tl": "maʿlēsh",
     "dialect": "Egyptian",
-    "note": "For small mishaps — bumping someone, running late — and to comfort: maʿlish = it's OK, don't worry.",
+    "note": "For small mishaps — bumping someone, running late — and to comfort: maʿlēsh = it's OK, don't worry.",
     "reg": "casual",
     "alt": [
       "maalesh",
       "maʿlesh",
-      "malish"
+      "malish",
+      "maʿlish"
     ],
     "pair": {
       "tr": "عُذْرًا",
@@ -3485,10 +3489,10 @@ export const vocab = [
     "note": "Lit. “oh, white news!”: shock or dismay, hoping it turns out well. يَا خَبَر إِسْوِد (“black news”) is stronger.",
     "reg": "casual",
     "pair": {
-      "tr": "يَا لَلْهَوْلِ!",
+      "tr": "يَا إِلَهِي!",
       "reg": "formal",
-      "en": "How dreadful! / Good heavens!",
-      "tl": "yā lal-hawl"
+      "en": "Oh my God! / Good heavens!",
+      "tl": "yā ʾilāhī"
     }
   },
   {
@@ -3566,7 +3570,7 @@ export const vocab = [
     "reg": "casual",
     "pair": {
       "tr": "صَبَاحُ الْخَيْرِ",
-      "reg": "formal",
+      "reg": "neutral",
       "en": "Good morning.",
       "tl": "ṣabāḥ al-khayr"
     }

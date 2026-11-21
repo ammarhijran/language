@@ -14,8 +14,13 @@ import { makePack } from '../common.js';
 const TASHKEEL = /[ؐ-ًؚ-ٰٟۖ-ۭ]/g;
 
 /** Plain Arabic: no vowel marks or tatweel, alif/yā/tā-marbūṭa variants unified; Latin lowercased, ʾ/ʿ and apostrophes dropped. No spaces. */
+// Arabizi (chat Arabic) numbers for letters Latin lacks, accepted in typed
+// transliteration: 2 = ʾ, 3 = ʿ, 5 = kh, 6 = ṭ, 7 = ḥ, 8 = gh (ma3lesh, 7abibi).
+const ARABIZI = { 2: 'ʾ', 3: 'ʿ', 5: 'kh', 6: 'ṭ', 7: 'ḥ', 8: 'gh' };
+const arabizi = (s) => (/[a-z]/i.test(s) ? s.replace(/[235678]/g, (d) => ARABIZI[d]) : s);
+
 export function normalize(s) {
-  return s.normalize('NFC')
+  return arabizi(s.normalize('NFC'))
     .replace(TASHKEEL, '')
     .replace(/ـ/g, '')
     .replace(/[أإآٱ]/g, 'ا')
@@ -46,7 +51,7 @@ export default makePack({
   welcome: 'أَهْلًا وَسَهْلًا!',
   sampleWords: [['مَرْحَبًا', 'hello'], ['شُكْرًا', 'thank you'], ['صَبَاحُ الْخَيْرِ', 'good morning']],
   sampleSentence: 'مَرْحَبًا! هَيَّا نَتَعَلَّمُ الْعَرَبِيَّةَ.',
-  typingHint: 'Type in Arabic or Latin letters (e.g. shukran)…',
+  typingHint: 'Type in Arabic or Latin letters (e.g. shukran, ma3lesh)…',
   almostHint: 'So close! Just a letter or two off:',
   // Feedback: Arabic words (none addressed to “you”, so no gender) with an English gloss.
   praise: [['صَحِيح!', 'Correct.'], ['رَائِع!', 'Great.'], ['جَيِّد!', 'Good.'], ['جَمِيل!', 'Nice.']],
@@ -61,7 +66,7 @@ export default makePack({
   alphabet,
   soundTips,
   minimalPairs,
-  analyze: (word) => ({ ...analyzeTranslit(word.tl, word.s), chipLang: null, chipsSpeakable: false }),
+  analyze: (word) => ({ ...analyzeTranslit(word.tl, word.s, word.dialect), chipLang: null, chipsSpeakable: false }),
   reading: (w) => w.tl,
   // Arabic keyboards aren't on every phone: transliteration (with or without ḥ/ā marks) counts too.
   acceptedAnswers: (w) => [...new Set([w.tr, ...(w.alt || []), w.tl, asciiTranslit(w.tl)])],

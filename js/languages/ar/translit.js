@@ -60,6 +60,26 @@ function weight(syl) {
  * in two-syllable words). `first` is the earliest syllable that may carry it:
  * proclitics such as the article are never stressed (al-ʾAḥad, not ʾAL-aḥad).
  */
+/**
+ * Cairene (Egyptian) stress: a superheavy final syllable is stressed; else a
+ * heavy penult; else the penult or the antepenult, whichever comes an even
+ * number of light syllables after the nearest heavy syllable (or the start of
+ * the word): shan-ṬI-ti, mush-KI-la, mad-RA-sa, ša-ga-RA-tu-hu, KA-ta-bit.
+ */
+export function cairoStressIndex(syls, first = 0) {
+  const n = syls.length;
+  if (n < 2) return -1;
+  let si;
+  if (weight(syls[n - 1]) === 3) si = n - 1;
+  else if (weight(syls[n - 2]) >= 2) si = n - 2;
+  else {
+    let light = 0;
+    for (let i = n - 3; i >= 0 && weight(syls[i]) === 1; i--) light++;
+    si = light % 2 === 0 ? n - 2 : n - 3;
+  }
+  return Math.min(Math.max(si, first), n - 1);
+}
+
 export function stressIndex(syls, first = 0) {
   const n = syls.length;
   if (n < 2) return -1;
@@ -105,13 +125,15 @@ const respellOf = (syl, first) => syl.map((t, i) => {
  * @param {string} tl transliteration
  * @param {number|number[]} [stress] optional override (1-based; array per word)
  */
-export function analyzeTranslit(tl, stress) {
+/** Syllables, stress, IPA and respelling. `dialect: 'Egyptian'` uses Cairene stress. */
+export function analyzeTranslit(tl, stress, dialect) {
+  const stressAt = dialect === 'Egyptian' ? cairoStressIndex : stressIndex;
   const ws = tl.trim().split(/\s+/);
   const words = ws.map((w, wi) => {
     const syls = syllabify(tokenize(w));
     const override = Array.isArray(stress) ? stress[wi] : (ws.length === 1 ? stress : undefined);
     const si = override === 0 ? -1 : override ? override - 1
-      : stressIndex(syls, firstStemSyllable(syls, procliticLength(w)));
+      : stressAt(syls, firstStemSyllable(syls, procliticLength(w)));
     // Display each syllable in transliteration (keep the word's own letters).
     return {
       text: w,

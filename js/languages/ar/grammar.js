@@ -69,7 +69,7 @@ export const lessons = [
       },
       {
         "heading": "The article al- and sun letters",
-        "body": "Arabic has one word for “the”: **الـ (al-)**, written joined to the front of the noun. There is no word for “a/an” — a noun on its own is indefinite, and in careful Arabic it ends in **tanwīn**: كِتَابٌ (kitābun) = a book, الْكِتَابُ (al-kitābu) = the book.\n\nThe l of al- is pronounced only before the 14 **moon letters**. Before the 14 **sun letters** — the ones made with the tip of the tongue — the l is silent and the next consonant is doubled instead, so it carries a shadda: الشَّمْس is **ash-shams**, not al-shams. The l is still written.",
+        "body": "Arabic has one word for “the”: **الـ (al-)**, written joined to the front of the noun. There is no word for “a/an” — a noun on its own is indefinite, and in careful Arabic it usually ends in **tanwīn**: كِتَابٌ (kitābun) = a book, الْكِتَابُ (al-kitābu) = the book. Some words never take tanwīn: many names (أَحْمَدُ, سَارَةُ) and some plurals and adjectives, such as شَوَارِعُ (streets) and أَزْرَقُ (blue).\n\nThe l of al- is pronounced only before the 14 **moon letters**. Before the 14 **sun letters** — the ones made with the tip of the tongue — the l is silent and the next consonant is doubled instead, so it carries a shadda: الشَّمْس is **ash-shams**, not al-shams. The l is still written.",
         "table": {
           "head": [
             "Group",
@@ -1005,7 +1005,7 @@ export const lessons = [
         "q": "“What do you want?” — which word for “what” goes before the verb تُرِيدُ?",
         "options": [
           "مَاذَا",
-          "مَا",
+          "مَتَى",
           "مَنْ",
           "أَيْنَ"
         ],
@@ -1220,7 +1220,7 @@ export const lessons = [
       },
       {
         "heading": "Sound plurals: -ūn and -āt",
-        "body": "Words for male people (and mixed groups) often take **-ūna (ـُونَ)**, or **-īna (ـِينَ)** after prepositions and as objects: مُعَلِّم → **مُعَلِّمُونَ** (teachers). Feminine nouns, especially those in ة, usually take **-āt (ـَات)** in place of the ة: مُعَلِّمَة → **مُعَلِّمَات**, سَيَّارَة → **سَيَّارَات**.",
+        "body": "Words for male people (and mixed groups) often take **-ūna (ـُونَ)**, or **-īna (ـِينَ)** after prepositions and as objects: مُعَلِّم → **مُعَلِّمُونَ** (teachers). Words for female people, and many other feminine nouns in ة, take **-āt (ـَات)** in place of the ة: مُعَلِّمَة → **مُعَلِّمَات**, سَيَّارَة → **سَيَّارَات**. Not all of them do: مَدِينَة → مُدُن (cities), مَدْرَسَة → مَدَارِس (schools).",
         "table": {
           "head": [
             "Singular",
@@ -1360,7 +1360,7 @@ export const lessons = [
           "سَيَّارَتَانِ"
         ],
         "answer": 2,
-        "explain": "Feminine nouns in ة usually take -āt; سَيَّارَتَانِ is the dual."
+        "explain": "سَيَّارَة takes -āt, like many feminine nouns in ة; سَيَّارَتَانِ is the dual."
       },
       {
         "q": "Which is the plural of بَيْت (house)?",
@@ -2083,7 +2083,7 @@ export const lessons = [
       },
       {
         "heading": "Verbs: b- for now, ḥa- for later",
-        "body": "Egyptian verbs drop the MSA endings and often use i instead of a in the prefix (yiktib for yaktubu). For something happening now or regularly, add **b-**: **baktib**, I write / I’m writing. For the future, add **ḥa-** instead of sa-: **ḥaktib**, I’ll write — it is also said and written **ha-** (هـ). Without b- or ḥa-, the plain verb follows words like “want”: ʿāyiz ʾaktib, I want to write.",
+        "body": "Egyptian verbs drop the final short vowel of MSA, shorten -īna / -ūna to -i / -u (tiktibi, you write, to a woman; yiktibu, they write), and often use i instead of a in the prefix (yiktib for yaktubu). For something happening now or regularly, add **b-**: **baktib**, I write / I’m writing. For the future, add **ḥa-** instead of sa-: **ḥaktib**, I’ll write — it is also said and written **ha-** (هـ). Without b- or ḥa-, the plain verb follows words like “want”: ʿāyiz ʾaktib, I want to write.",
         "table": {
           "head": [
             "English",
