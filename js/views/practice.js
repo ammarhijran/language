@@ -2,6 +2,7 @@ import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
 import { learnedWords } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
+import { GROUPS } from '../components.js';
 
 const MODES = [
   { id: 'mixed', name: 'Mixed', desc: 'A bit of everything', icon: 'shuffle' },
@@ -20,9 +21,16 @@ function wordsFor(ctx, scope) {
   return ctx.lang.wordsIn(scope);
 }
 
-function typeFor(mode) {
+// Typing a whole sentence is tedious, so mixed rounds practise long phrases by
+// choice, recall and speaking instead (Spelling mode still types them on request).
+const isLong = (word) => word.tr.trim().split(/\s+/).length > 3 || word.tr.length > 24;
+
+function typeFor(mode, word) {
+  // Without speech recognition a speaking round would be all disabled buttons:
+  // fall back to flashcards (hear it, say it aloud, self-rate).
+  if (mode === 'speak' && !recognitionSupported()) return 'flashcard';
   if (mode !== 'mixed') return mode;
-  const pool = ['listen', 'meaning', 'produce', 'type', ...(recognitionSupported() ? ['speak'] : [])];
+  const pool = ['listen', 'meaning', 'produce', ...(isLong(word) ? [] : ['type']), ...(recognitionSupported() ? ['speak'] : [])];
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -36,7 +44,7 @@ export default function practice(ctx, mode, scope) {
       h('a', { class: 'btn primary wide', href: '#/practice' }, 'Choose a topic')));
   }
 
-  const items = shuffle(pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode) }));
+  const items = shuffle(pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word) }));
   let right = 0;
   let answered = 0;
 
@@ -91,6 +99,15 @@ function setup(ctx) {
     'aria-pressed': String(s.id === scope),
     onclick: (e) => { scope = s.id; select(scopeButtons, e.currentTarget); },
   }, s.name));
+  // Topic pills grouped like the Learn page (Words / Phrases / Talk like a local).
+  const pillFor = (id) => scopeButtons[scopes.findIndex((s) => s.id === id)];
+  const grouped = GROUPS.map((g) => ({ g, cats: ctx.lang.categories.filter((c) => (c.group || 'words') === g.id) }))
+    .filter(({ cats }) => cats.length);
+  const scopeRows = [h('div', { class: 'pill-row' }, pillFor('learned'), pillFor('all'))];
+  for (const { g, cats } of grouped) {
+    if (grouped.length > 1) scopeRows.push(h('h3', { class: 'kicker pill-group-title' }, g.title));
+    scopeRows.push(h('div', { class: 'pill-row' }, cats.map((c) => pillFor(c.id))));
+  }
 
   return h('div', { class: 'view' },
     h('h1', null, 'Practice'),
@@ -98,7 +115,7 @@ function setup(ctx) {
     h('h2', { class: 'section-title' }, 'Mode'),
     h('div', { class: 'choice-grid' }, modeButtons),
     h('h2', { class: 'section-title' }, 'Words'),
-    h('div', { class: 'pill-row' }, scopeButtons),
+    scopeRows,
     h('div', { class: 'actions sticky' },
       h('button', { type: 'button', class: 'btn primary wide', onclick: () => ctx.go(`/practice/${mode}/${scope}`) }, 'Start', icon('arrow', 18))),
   );
