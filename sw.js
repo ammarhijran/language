@@ -1,0 +1,64 @@
+// Offline support: network-first so updates show up immediately when online,
+// falling back to the cache when offline. Bump VERSION when the file list changes.
+const VERSION = 'lisan-v1';
+
+const ASSETS = [
+  './',
+  'index.html',
+  'manifest.webmanifest',
+  'css/styles.css',
+  'icons/icon.svg',
+  'icons/icon-192.png',
+  'icons/icon-512.png',
+  'js/app.js',
+  'js/compare.js',
+  'js/components.js',
+  'js/exercises.js',
+  'js/session.js',
+  'js/speech.js',
+  'js/srs.js',
+  'js/stats.js',
+  'js/store.js',
+  'js/ui.js',
+  'js/languages/index.js',
+  'js/languages/tr/index.js',
+  'js/languages/tr/phonetics.js',
+  'js/languages/tr/sounds.js',
+  'js/languages/tr/vocab.js',
+  'js/views/home.js',
+  'js/views/learn.js',
+  'js/views/practice.js',
+  'js/views/progress.js',
+  'js/views/pronounce.js',
+  'js/views/review.js',
+  'js/views/settings.js',
+  'js/views/word.js',
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(caches.open(VERSION).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim()),
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  if (request.method !== 'GET' || new URL(request.url).origin !== self.location.origin) return;
+  event.respondWith(
+    fetch(request)
+      .then((res) => {
+        if (res.ok) {
+          const copy = res.clone();
+          caches.open(VERSION).then((c) => c.put(request, copy));
+        }
+        return res;
+      })
+      .catch(() => caches.match(request).then((r) => r || caches.match('index.html'))),
+  );
+});

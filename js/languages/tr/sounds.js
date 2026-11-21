@@ -1,0 +1,108 @@
+// Turkish alphabet, pronunciation tips and minimal pairs for ear training.
+
+export const alphabet = [
+  { upper: 'A', lower: 'a', ipa: 'a', hint: 'like “a” in “father”, but short', ex: ['araba', 'car'] },
+  { upper: 'B', lower: 'b', ipa: 'b', hint: 'as in English', ex: ['balık', 'fish'] },
+  { upper: 'C', lower: 'c', ipa: 'dʒ', hint: 'like “j” in “jam” — never “k” or “s”', ex: ['cuma', 'Friday'], special: true },
+  { upper: 'Ç', lower: 'ç', ipa: 'tʃ', hint: 'like “ch” in “chair”', ex: ['çay', 'tea'], special: true },
+  { upper: 'D', lower: 'd', ipa: 'd', hint: 'as in English', ex: ['deniz', 'sea'] },
+  { upper: 'E', lower: 'e', ipa: 'e', hint: 'like “e” in “bed”', ex: ['ev', 'house'] },
+  { upper: 'F', lower: 'f', ipa: 'f', hint: 'as in English', ex: ['fincan', 'cup'] },
+  { upper: 'G', lower: 'g', ipa: 'ɡ', hint: 'always hard, as in “go”', ex: ['gül', 'rose'] },
+  { upper: 'Ğ', lower: 'ğ', ipa: 'ː', hint: '“soft g” — silent; lengthens the vowel before it', ex: ['dağ', 'mountain'], special: true },
+  { upper: 'H', lower: 'h', ipa: 'h', hint: 'always pronounced, even at the end of a word', ex: ['hava', 'weather'] },
+  { upper: 'I', lower: 'ı', ipa: 'ɯ', hint: 'dotless ı — like “e” in “roses”, lips spread', ex: ['ılık', 'lukewarm'], special: true },
+  { upper: 'İ', lower: 'i', ipa: 'i', hint: 'like “ee” in “see”, but short', ex: ['iki', 'two'] },
+  { upper: 'J', lower: 'j', ipa: 'ʒ', hint: 'like “s” in “measure”', ex: ['jeton', 'token'], special: true },
+  { upper: 'K', lower: 'k', ipa: 'k', hint: 'as in English', ex: ['kedi', 'cat'] },
+  { upper: 'L', lower: 'l', ipa: 'l', hint: 'as in English', ex: ['limon', 'lemon'] },
+  { upper: 'M', lower: 'm', ipa: 'm', hint: 'as in English', ex: ['masa', 'table'] },
+  { upper: 'N', lower: 'n', ipa: 'n', hint: 'as in English', ex: ['nar', 'pomegranate'] },
+  { upper: 'O', lower: 'o', ipa: 'o', hint: 'like “o” in “more”, short and round', ex: ['okul', 'school'] },
+  { upper: 'Ö', lower: 'ö', ipa: 'ø', hint: 'say “e” with rounded lips (German ö)', ex: ['ördek', 'duck'], special: true },
+  { upper: 'P', lower: 'p', ipa: 'p', hint: 'as in English', ex: ['para', 'money'] },
+  { upper: 'R', lower: 'r', ipa: 'ɾ', hint: 'a quick tap; softly hissed at word end', ex: ['renk', 'color'], special: true },
+  { upper: 'S', lower: 's', ipa: 's', hint: 'always “s”, never “z”', ex: ['su', 'water'] },
+  { upper: 'Ş', lower: 'ş', ipa: 'ʃ', hint: 'like “sh” in “shoe”', ex: ['şeker', 'sugar'], special: true },
+  { upper: 'T', lower: 't', ipa: 't', hint: 'as in English', ex: ['tuz', 'salt'] },
+  { upper: 'U', lower: 'u', ipa: 'u', hint: 'like “oo” in “food”, but short', ex: ['uçak', 'airplane'] },
+  { upper: 'Ü', lower: 'ü', ipa: 'y', hint: 'say “ee” with rounded lips (German ü)', ex: ['üzüm', 'grape'], special: true },
+  { upper: 'V', lower: 'v', ipa: 'v', hint: 'a soft “v”, sometimes close to “w”', ex: ['var', 'there is'] },
+  { upper: 'Y', lower: 'y', ipa: 'j', hint: 'like “y” in “yes” — always a consonant', ex: ['yol', 'road'] },
+  { upper: 'Z', lower: 'z', ipa: 'z', hint: 'as in English', ex: ['zaman', 'time'] },
+];
+
+export const soundTips = [
+  {
+    id: 'dotless-i',
+    title: 'ı — the dotless i',
+    ipa: 'ɯ',
+    body: 'Turkish has two different i’s, and they are separate letters. The dotless ı is short and relaxed, made toward the back of the mouth with your lips spread — close to the “e” in “roses” or the “a” in “about”. Don’t round your lips.',
+    examples: [['kız', 'girl'], ['altı', 'six'], ['kapı', 'door'], ['ılık', 'lukewarm']],
+  },
+  {
+    id: 'o-umlaut',
+    title: 'ö — a rounded “e”',
+    ipa: 'ø',
+    body: 'Say “e” as in “bed”, then round your lips as if for “o” without moving your tongue. It is the same sound as German ö or French “eu”.',
+    examples: [['göz', 'eye'], ['dört', 'four'], ['köpek', 'dog'], ['ördek', 'duck']],
+  },
+  {
+    id: 'u-umlaut',
+    title: 'ü — a rounded “ee”',
+    ipa: 'y',
+    body: 'Say “ee” as in “see”, then push your lips into a tight circle while keeping your tongue forward. Same as German ü or French “u”.',
+    examples: [['üç', 'three'], ['süt', 'milk'], ['güzel', 'beautiful'], ['üzüm', 'grape']],
+  },
+  {
+    id: 'soft-g',
+    title: 'ğ — the soft g',
+    ipa: 'ː',
+    body: 'ğ is never a “g” and never starts a word. After a, ı, o, u it simply makes the vowel before it longer (dağ ≈ “daa”) or glides two vowels together (ağaç ≈ “a-aç”). Between front vowels it can sound like a light “y” (değil ≈ “deyil”).',
+    examples: [['dağ', 'mountain'], ['yağmur', 'rain'], ['değil', 'not'], ['öğretmen', 'teacher']],
+  },
+  {
+    id: 'consonants',
+    title: 'c, ç, ş and j',
+    ipa: 'dʒ · tʃ · ʃ · ʒ',
+    body: 'Mostly a spelling trap: c is always “j” as in “jam”, ç is “ch” as in “chair”, ş is “sh” as in “shoe”, and j is the “s” in “measure”.',
+    examples: [['cuma', 'Friday'], ['çay', 'tea'], ['şeker', 'sugar'], ['jeton', 'token']],
+  },
+  {
+    id: 'r',
+    title: 'r — a quick tap',
+    ipa: 'ɾ',
+    body: 'Tap the tip of your tongue once behind your top teeth, like the “tt” in American “butter”. At the end of a word the r is often softened into a breathy hiss.',
+    examples: [['renk', 'color'], ['araba', 'car'], ['bir', 'one'], ['teşekkürler', 'thanks']],
+  },
+  {
+    id: 'double',
+    title: 'Double consonants',
+    ipa: 'Cː',
+    body: 'Doubled letters are held a little longer — and the length changes the meaning: eli (his/her hand) vs. elli (fifty).',
+    examples: [['elli', 'fifty'], ['anne', 'mother'], ['dikkat', 'attention'], ['teşekkür', 'thanks']],
+  },
+  {
+    id: 'stress',
+    title: 'Word stress',
+    body: 'Most words are stressed on the last syllable (ki-TAP), and the stress moves along as suffixes are added (ki-tap-LAR). Common exceptions: place names (is-TAN-bul, AN-ka-ra), many adverbs and question words (BU-gün, NA-sıl, NE-re-de), and the syllable just before a negative -me/-ma (GEL-me-di, “didn’t come”).',
+    examples: [['kitap', 'book'], ['kitaplar', 'books'], ['İstanbul', 'Istanbul'], ['nasıl', 'how']],
+  },
+  {
+    id: 'harmony',
+    title: 'Vowel harmony',
+    body: 'Suffixes change their vowels to match the word. Back vowels (a, ı, o, u) take back suffixes and front vowels (e, i, ö, ü) take front ones: ev → evler (houses), but okul → okullar (schools). Listening for this “music” helps you hear where words end.',
+    examples: [['evler', 'houses'], ['okullar', 'schools'], ['gözler', 'eyes'], ['kuşlar', 'birds']],
+  },
+];
+
+// Each pair: [wordA, meaningA, wordB, meaningB]
+export const minimalPairs = [
+  { contrast: 'ı / i', pairs: [['kır', 'countryside', 'kir', 'dirt'], ['dış', 'outside', 'diş', 'tooth'], ['kıl', 'body hair', 'kil', 'clay']] },
+  { contrast: 'o / ö', pairs: [['ol', 'be!', 'öl', 'die!'], ['on', 'ten', 'ön', 'front'], ['kor', 'ember', 'kör', 'blind']] },
+  { contrast: 'u / ü', pairs: [['kul', 'servant', 'kül', 'ash'], ['un', 'flour', 'ün', 'fame'], ['durum', 'situation', 'dürüm', 'wrap']] },
+  { contrast: 'c / ç', pairs: [['cam', 'glass', 'çam', 'pine'], ['acı', 'bitter; pain', 'açı', 'angle'], ['sac', 'sheet metal', 'saç', 'hair']] },
+  { contrast: 's / ş', pairs: [['kas', 'muscle', 'kaş', 'eyebrow'], ['sis', 'fog', 'şiş', 'skewer'], ['bas', 'press!', 'baş', 'head']] },
+  { contrast: 'k / g', pairs: [['kel', 'bald', 'gel', 'come!'], ['kül', 'ash', 'gül', 'rose']] },
+  { contrast: 'single / double', pairs: [['eli', 'his/her hand', 'elli', 'fifty'], ['katı', 'solid', 'kattı', 'added']] },
+];
