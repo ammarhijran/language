@@ -53,10 +53,8 @@ The `android/` and `ios/` folders are native projects that wrap the web app. The
 
 ### Getting a build
 
-Every push builds both apps on GitHub Actions (**Actions** tab):
-
-- **Android app**: download the `lisan-android-debug-apk` artifact, unzip it, and open `app-debug.apk` on an Android phone to install it. You may need to allow installs from unknown sources.
-- **iOS app**: this compiles the app for the iOS Simulator to prove it builds. A real iPhone needs Xcode (below).
+- **Android:** every push publishes an installable APK on the **[Android test build](https://github.com/ammarhijran/language/releases/tag/android-test-build)** release. Open that page on your phone, download the `.apk` and open it. You may need to allow installs from your browser or file manager. Test builds share one signing key, so each new one installs over the last and keeps your progress.
+- **iOS:** every push compiles the app for the iOS Simulator to prove it builds. To install on a real iPhone, use Xcode (below) or TestFlight (see [STORE.md](STORE.md)).
 
 ### Running on your phone yourself
 
@@ -72,18 +70,9 @@ npm run ios:open          # opens Xcode (Mac only) → pick your iPhone → Run
 
 Run `npm run cap:sync` again after changing anything in `js/`, `css/` or `index.html`.
 
-### Publishing
+### Publishing to the stores
 
-- **Google Play:** create an upload keystore (`keytool -genkey -v -keystore lisan.keystore -alias lisan -keyalg RSA -keysize 2048 -validity 10000`). Add these repository secrets:
-  - `ANDROID_KEYSTORE_BASE64` (output of `base64 -w0 lisan.keystore`)
-  - `ANDROID_KEYSTORE_PASSWORD`
-  - `ANDROID_KEY_ALIAS`
-  - `ANDROID_KEY_PASSWORD`
-
-  The Android workflow then also builds a signed `.aab` to upload in the Play Console. A Google Play developer account costs a one-time $25.
-- **App Store:** needs an Apple Developer Program membership ($99/year). In Xcode choose *Product → Archive*, then *Distribute App → App Store Connect*.
-- **App ID:** `app.lisan.turkish`, set in `capacitor.config.json`, `android/app/build.gradle` and the Xcode project. Change it before your first store upload, because it can't be changed afterwards.
-- **Icons and splash screens** are generated from `assets/` with `npx capacitor-assets generate`.
+See **[STORE.md](STORE.md)**. It's a step-by-step checklist for Google Play and the App Store. The listing text, screenshots, graphics, privacy policy, signing setup and the questionnaire answers are already prepared in `store/`.
 
 ## Browser support
 

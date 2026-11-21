@@ -3,3 +3,11 @@ _site/
 www/
 .DS_Store
 *.log
+
+# Signing secrets — never commit (the sideload key is intentionally public)
+*.keystore
+*.jks
+!android/app/sideload.keystore
+*.p8
+*.mobileprovision
+dist/

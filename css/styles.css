@@ -395,6 +395,7 @@ input[type="range"] { accent-color: var(--accent); width: 100%; }
 .pron .hint { margin: .6rem 0 0; font-size: .82rem; }
 .letter-notes { list-style: none; padding: 0; margin: .75rem 0 0; display: grid; gap: .35rem; font-size: .9rem; }
 .letter-notes li { display: flex; align-items: baseline; gap: .4rem; }
+.letter-notes .ipa { white-space: nowrap; }
 .letter-notes b {
   display: inline-grid; place-items: center; min-width: 26px; height: 26px; border-radius: 7px;
   background: var(--accent-soft); color: var(--accent); font-size: 1.05rem;

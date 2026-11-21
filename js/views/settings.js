@@ -92,6 +92,6 @@ export default function settings(ctx) {
         h('button', { type: 'button', class: 'btn', onclick: () => fileInput.click() }, 'Import progress'),
         h('button', { type: 'button', class: 'btn danger', onclick: reset }, 'Reset progress')),
       fileInput),
-    h('p', { class: 'hint center' }, 'Lisan · open-source language practice'),
+    h('p', { class: 'hint center' }, 'Lisan · ', h('a', { href: 'privacy.html' }, 'Privacy policy')),
   );
 }
