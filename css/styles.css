@@ -13,17 +13,32 @@
   --accent-soft: #fbe8eb;
   --good: #1d7a45;
   --good-soft: #e2f3e8;
-  --warn: #9a6200;
+  --warn: #8f5b00;
   --warn-soft: #fbf0d9;
   --bad: #c0392b;
   --bad-soft: #fde9e6;
-  --easy: #2563eb;
+  --easy: #1d4ed8;
   --easy-soft: #e5edfd;
   --st-new: #cfc6b8;
   --st-learning: #f0a040;
   --st-familiar: #5aa9e6;
   --st-mastered: #2e9d5b;
   --st-known: #8b6fd6;
+  /* Text on tinted chips and badges. The hues are for fills, tints and bars;
+     each -ink is a darker (light theme) or lighter (dark theme) shade that
+     keeps WCAG AA (4.5:1) on its own tint over any surface. */
+  --st-learning-ink: #8a4a00;
+  --st-familiar-ink: #1f5a8a;
+  --st-known-ink: #5b3fa8;
+  --st-mastered-ink: #176136;
+  --xp: #f5a524;
+  --xp-ink: #8a4306;
+  --reg-casual: #0ea5e9;
+  --reg-casual-ink: #075985;
+  --reg-slang: #a855f7;
+  --reg-slang-ink: #6b21a8;
+  --reg-proper: #10b981;
+  --reg-proper-ink: #065f46;
   --radius: 16px;
   --radius-sm: 10px;
   --shadow: 0 1px 2px rgb(40 30 20 / 5%), 0 6px 20px rgb(40 30 20 / 6%);
@@ -54,6 +69,14 @@
     --easy: #7aa7ff;
     --easy-soft: #18243d;
     --st-new: #4a433a;
+    --st-learning-ink: #f4bb73;
+    --st-familiar-ink: #93c5ea;
+    --st-known-ink: #bba7ec;
+    --st-mastered-ink: #7cc99a;
+    --xp-ink: #f7b267;
+    --reg-casual-ink: #7dd3fc;
+    --reg-slang-ink: #d8b4fe;
+    --reg-proper-ink: #6ee7b7;
     --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 6px 20px rgb(0 0 0 / 25%);
     color-scheme: dark;
   }
@@ -85,6 +108,9 @@ button, input, select { font: inherit; color: inherit; }
 .hint { color: var(--muted); font-size: .9rem; }
 
 :focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 60%, transparent); outline-offset: 2px; }
+/* Headings and kickers get focus programmatically after navigation (so screen
+   readers announce the new screen); they aren't controls, so no focus ring. */
+[tabindex="-1"]:focus, [tabindex="-1"]:focus-visible { outline: none; }
 
 .skip-link {
   position: absolute; left: -999px; top: 8px; z-index: 100;
@@ -101,7 +127,7 @@ button, input, select { font: inherit; color: inherit; }
 [lang="ja"] { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", var(--font); }
 .reading { color: var(--muted); font-size: 1rem; margin: .2rem 0 0; letter-spacing: .01em; }
 .reading.small { font-size: .85rem; margin: 0; }
-.option-label { display: flex; flex-direction: column; gap: .1rem; }
+.option-label { display: flex; flex-direction: column; gap: .1rem; min-width: 0; overflow-wrap: anywhere; }
 .option-reading { color: var(--muted); font-weight: 500; font-size: .82rem; }
 
 /* ---------- Shell ---------- */
@@ -188,6 +214,9 @@ main { max-width: 760px; margin: 0 auto; padding: 8px 16px 24px; outline: none; 
 .btn.primary:hover { background: var(--accent-hover); }
 .btn.ghost { background: transparent; border-color: transparent; color: var(--muted); }
 .btn.danger { color: var(--bad); }
+/* Settings → Delete all my data: set apart from the everyday options. */
+.card.danger-zone { border-color: color-mix(in srgb, var(--bad) 45%, var(--border)); }
+.card.danger-zone .card-title { color: var(--bad); }
 .btn.small { min-height: 34px; padding: .3rem .7rem; font-size: .85rem; border-radius: 10px; }
 .btn.wide { width: 100%; }
 .btn.recording { color: var(--bad); border-color: var(--bad); animation: pulse 1.2s infinite; }
@@ -246,15 +275,18 @@ main { max-width: 760px; margin: 0 auto; padding: 8px 16px 24px; outline: none; 
   display: inline-block; padding: .1rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 700;
   background: var(--surface-2); color: var(--muted); white-space: nowrap;
 }
-.badge.learning { background: color-mix(in srgb, var(--st-learning) 22%, transparent); color: color-mix(in srgb, var(--st-learning) 70%, var(--text)); }
-.badge.familiar { background: color-mix(in srgb, var(--st-familiar) 22%, transparent); color: color-mix(in srgb, var(--st-familiar) 65%, var(--text)); }
-.badge.known { background: color-mix(in srgb, var(--st-known) 22%, transparent); color: color-mix(in srgb, var(--st-known) 70%, var(--text)); }
-.badge.mastered { background: color-mix(in srgb, var(--st-mastered) 22%, transparent); color: color-mix(in srgb, var(--st-mastered) 70%, var(--text)); }
+.badge.learning { background: color-mix(in srgb, var(--st-learning) 22%, transparent); color: var(--st-learning-ink); }
+.badge.familiar { background: color-mix(in srgb, var(--st-familiar) 22%, transparent); color: var(--st-familiar-ink); }
+.badge.known { background: color-mix(in srgb, var(--st-known) 22%, transparent); color: var(--st-known-ink); }
+.badge.mastered { background: color-mix(in srgb, var(--st-mastered) 22%, transparent); color: var(--st-mastered-ink); }
 
 .select, .search, .num, .answer-input {
   min-height: 44px; padding: .5rem .75rem; border: 1px solid var(--border); border-radius: 12px;
   background: var(--surface); width: 100%;
 }
+/* The browser's default placeholder grey is only ~3.7:1 on the dark surfaces
+   (and ~4:1 on the sync code box in light mode); --muted keeps AA in both themes. */
+::placeholder { color: var(--muted); opacity: 1; }
 .num { width: 5rem; }
 .field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .9rem; font-weight: 600; font-size: .9rem; }
 .field.inline { flex-direction: row; align-items: center; gap: .75rem; font-weight: 500; }
@@ -310,14 +342,22 @@ body.bare { padding-bottom: 24px; }
 .cta small { opacity: .85; }
 .cta-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: rgb(255 255 255 / 18%); }
 
-.quick { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+/* minmax(0, 1fr): equal columns that may shrink below their longest word,
+   so "Pronunciation" can never widen its column past the screen. */
+.quick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
 .quick-link {
   display: flex; align-items: center; gap: .75rem; padding: .85rem; text-decoration: none; color: var(--text);
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
 }
 .quick-link .icon { color: var(--accent); }
-.quick-link span { display: flex; flex-direction: column; }
+.quick-link span { display: flex; flex-direction: column; min-width: 0; }
+.quick-link b { overflow-wrap: anywhere; hyphens: auto; }
 .quick-link small { color: var(--muted); font-size: .78rem; line-height: 1.3; }
+/* On phones a half-width tile is too narrow for the icon and a long title side by
+   side, so the icon goes on top and the title gets the tile's full width. */
+@media (max-width: 400px) {
+  .quick .quick-link { flex-direction: column; align-items: flex-start; gap: .4rem; padding: .75rem; }
+}
 
 .wotd-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .wotd-word { font: 700 1.9rem var(--font-display); color: var(--text); text-decoration: none; }
@@ -366,8 +406,11 @@ body.bare { padding-bottom: 24px; }
 .big-play:active { transform: scale(.96); }
 
 .options { display: grid; gap: .6rem; }
-@media (min-width: 560px) { .options { grid-template-columns: 1fr 1fr; } }
-.options.two { grid-template-columns: 1fr 1fr; }
+@media (min-width: 560px) { .options { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.options.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Ear-quiz answers side by side in a narrow window (key hints shown): tighter
+   padding keeps a 5-kana word or "grandmother" on one line at 360-375px. */
+@media (max-width: 400px) { .options.two .option { gap: .5rem; padding: .7rem .6rem; } }
 .option {
   display: flex; align-items: center; gap: .75rem; min-height: 56px; padding: .7rem .9rem;
   text-align: left; background: var(--surface); border: 2px solid var(--border); border-radius: 14px; cursor: pointer;
@@ -558,15 +601,30 @@ body.bare { padding-bottom: 24px; }
 
 .pair-group { margin-top: .75rem; }
 .pair-group h2 { font-size: 1.05rem; }
-.pair { display: flex; align-items: center; gap: .5rem; margin-top: .5rem; }
-.pair .vs { color: var(--muted); font-size: .8rem; }
+.pair { display: flex; align-items: stretch; gap: .5rem; margin-top: .5rem; }
+.pair .vs { align-self: center; flex-shrink: 0; color: var(--muted); font-size: .8rem; }
+/* The two words share the row equally (flex-basis 0, min-width 0) whatever their
+   length; each shows its word above its meaning, wrapping inside the button
+   rather than pushing the row (and the page) wider than the screen. */
 .pair-btn {
-  flex: 1; display: flex; align-items: center; gap: .5rem; padding: .6rem .8rem; border-radius: 12px;
+  flex: 1 1 0; min-width: 0;
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; align-content: start; column-gap: .5rem;
+  padding: .6rem .8rem; border-radius: 12px;
   border: 1px solid var(--border); background: var(--surface-2); cursor: pointer; text-align: left;
 }
-.pair-btn .icon { color: var(--accent); }
-.pair-btn b { font-size: 1.1rem; }
-.pair-btn small { color: var(--muted); }
+.pair-btn .icon { grid-row: span 2; color: var(--accent); }
+.pair-btn b, .pair-btn small { justify-self: start; max-width: 100%; overflow-wrap: anywhere; }
+.pair-btn b { font-size: 1.1rem; line-height: 1.3; }
+.pair-btn small { color: var(--muted); line-height: 1.3; hyphens: auto; }
+/* On phones the word gets the button's full width (5-kana words, Arabic with
+   vowel marks) and the speaker icon moves down next to the meaning. */
+@media (max-width: 400px) {
+  .pair { gap: .35rem; }
+  .pair-btn { padding: .55rem .6rem; column-gap: .35rem; grid-template-areas: "word word" "icon meaning"; }
+  .pair-btn .icon { grid-area: icon; }
+  .pair-btn b { grid-area: word; }
+  .pair-btn small { grid-area: meaning; }
+}
 
 .drill-card { margin-top: 1rem; }
 
@@ -577,7 +635,10 @@ body.bare { padding-bottom: 24px; }
 .known-list { list-style: none; padding: 0; margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .known-list li { display: flex; align-items: center; gap: .5rem; padding: .15rem .5rem .15rem .9rem; border-top: 1px solid var(--border); }
 .known-list li:first-child { border-top: 0; }
-.known-list li.busy { opacity: .7; }
+/* Words already in progress can't be ticked. Only the checkbox is greyed: the word,
+   its meaning and the status badge stay at full contrast so they remain readable. */
+.known-list li.busy .known-row { cursor: default; }
+.known-list li.busy .known-row input { opacity: .5; }
 .known-row { flex: 1; display: flex; align-items: center; gap: .8rem; min-height: 52px; cursor: pointer; min-width: 0; }
 .known-row input { width: 22px; height: 22px; accent-color: var(--accent); flex-shrink: 0; }
 .known-text { display: flex; flex-direction: column; min-width: 0; }
@@ -634,18 +695,18 @@ body.bare { padding-bottom: 24px; }
   background: var(--accent); border: 2px solid var(--bg);
 }
 .meter.done .meter-fill, .meter .done { background: var(--good); }
-.xp-meter .meter-fill { background: linear-gradient(90deg, #f5a524, #f97316); }
+.xp-meter .meter-fill { background: linear-gradient(90deg, var(--xp), #f97316); }
 
 /* Session XP chip and combo */
 .session-xp, .session-combo {
   font-size: .8rem; font-weight: 700; padding: .15rem .5rem; border-radius: 999px; white-space: nowrap;
 }
-.session-xp { background: color-mix(in srgb, #f5a524 20%, transparent); color: color-mix(in srgb, #b45309 85%, var(--text)); }
+.session-xp { background: color-mix(in srgb, var(--xp) 20%, transparent); color: var(--xp-ink); }
 .session-xp.pop { animation: pop .35s ease; }
 .session-combo { background: var(--accent-soft); color: var(--accent); }
 .session-rewards {
   display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem .9rem; margin: 0 auto 1rem; max-width: 420px;
-  padding: .6rem .9rem; border-radius: 999px; background: color-mix(in srgb, #f5a524 14%, var(--surface)); font-size: .9rem;
+  padding: .6rem .9rem; border-radius: 999px; background: color-mix(in srgb, var(--xp) 14%, var(--surface)); font-size: .9rem;
 }
 @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.25); } 100% { transform: scale(1); } }
 
@@ -694,10 +755,10 @@ body.bare { padding-bottom: 24px; }
 .badge-tile .badge-icon { font-size: 1.9rem; filter: grayscale(1); opacity: .45; }
 .badge-tile b { font-size: .92rem; }
 .badge-tile small { color: var(--muted); font-size: .78rem; line-height: 1.3; }
-.badge-tile.unlocked { border-color: color-mix(in srgb, #f5a524 55%, var(--border)); background: color-mix(in srgb, #f5a524 9%, var(--surface)); }
+.badge-tile.unlocked { border-color: color-mix(in srgb, var(--xp) 55%, var(--border)); background: color-mix(in srgb, var(--xp) 9%, var(--surface)); }
 .badge-tile.unlocked .badge-icon { filter: none; opacity: 1; }
-.badge-tile.fresh { box-shadow: 0 0 0 3px color-mix(in srgb, #f5a524 55%, transparent); }
-.badge-tile.fresh .badge-date { color: #b45309; font-weight: 800; }
+.badge-tile.fresh { box-shadow: 0 0 0 3px color-mix(in srgb, var(--xp) 55%, transparent); }
+.badge-tile.fresh .badge-date { color: var(--xp-ink); font-weight: 800; }
 .badge-progress { display: flex; align-items: center; gap: .4rem; margin-top: auto; padding-top: .3rem; }
 .badge-progress .meter { flex: 1; height: 5px; }
 
@@ -716,7 +777,7 @@ body.bare { padding-bottom: 24px; }
 .celebrate-card h2 { font-size: 1.5rem; }
 .celebrate-xp {
   display: inline-flex; align-items: center; gap: .3rem; padding: .3rem .8rem; border-radius: 999px; font-weight: 800;
-  background: color-mix(in srgb, #f5a524 22%, transparent); color: color-mix(in srgb, #b45309 85%, var(--text));
+  background: color-mix(in srgb, var(--xp) 22%, transparent); color: var(--xp-ink);
 }
 .celebrate .actions { margin-top: 1rem; }
 .confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
@@ -764,15 +825,15 @@ body.bare { padding-bottom: 24px; }
 .sync-done .hint { margin: .4rem 0; }
 
 /* ---------- Register: everyday vs proper ---------- */
-.badge.reg-casual { background: color-mix(in srgb, #0ea5e9 18%, transparent); color: color-mix(in srgb, #0369a1 80%, var(--text)); }
-.badge.reg-slang { background: color-mix(in srgb, #a855f7 18%, transparent); color: color-mix(in srgb, #7e22ce 80%, var(--text)); }
-.badge.reg-polite, .badge.reg-formal { background: color-mix(in srgb, #10b981 16%, transparent); color: color-mix(in srgb, #047857 80%, var(--text)); }
+.badge.reg-casual { background: color-mix(in srgb, var(--reg-casual) 18%, transparent); color: var(--reg-casual-ink); }
+.badge.reg-slang { background: color-mix(in srgb, var(--reg-slang) 18%, transparent); color: var(--reg-slang-ink); }
+.badge.reg-polite, .badge.reg-formal { background: color-mix(in srgb, var(--reg-proper) 16%, transparent); color: var(--reg-proper-ink); }
 .hero-en .badge { vertical-align: middle; font-size: .72rem; }
 .register { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: 0 0 1rem; }
 .register.compact { margin: .6rem 0 0; }
 .reg-side { border-radius: 14px; padding: .6rem .75rem; min-width: 0; }
-.reg-side.everyday { background: color-mix(in srgb, #0ea5e9 10%, var(--surface)); border: 1px solid color-mix(in srgb, #0ea5e9 30%, var(--border)); }
-.reg-side.proper { background: color-mix(in srgb, #10b981 9%, var(--surface)); border: 1px solid color-mix(in srgb, #10b981 28%, var(--border)); }
+.reg-side.everyday { background: color-mix(in srgb, var(--reg-casual) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--reg-casual) 30%, var(--border)); }
+.reg-side.proper { background: color-mix(in srgb, var(--reg-proper) 9%, var(--surface)); border: 1px solid color-mix(in srgb, var(--reg-proper) 28%, var(--border)); }
 .reg-side .kicker { margin-bottom: .2rem; font-size: .68rem; }
 .reg-side p { margin: 0; }
 .reg-text { display: flex; align-items: flex-start; gap: .2rem; }

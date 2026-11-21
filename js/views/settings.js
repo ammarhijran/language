@@ -116,7 +116,7 @@ export default function settings(ctx) {
         h('button', { type: 'button', class: 'btn danger', onclick: reset }, 'Reset progress')),
       h('p', { class: 'hint' }, `Reset clears only your ${lang.name} words and daily history; XP, achievements and other languages stay.`),
       fileInput),
-    h('section', { class: 'card form', 'aria-labelledby': 'delete-all-title' },
+    h('section', { class: 'card form danger-zone', 'aria-labelledby': 'delete-all-title' },
       h('h2', { class: 'card-title', id: 'delete-all-title' }, 'Delete all my data'),
       h('p', { class: 'hint' }, 'Removes everything Lisan has stored on this device: all languages, XP, achievements, goals, settings, the device id and the sync log — including the copy the app keeps in the phone’s own storage. Backups or sync codes you saved elsewhere aren’t touched.'),
       h('button', { type: 'button', class: 'btn danger', onclick: deleteAll }, 'Delete all my data')),
