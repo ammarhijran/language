@@ -14,6 +14,7 @@ import settingsView from './views/settings.js';
 import wordView from './views/word.js';
 import welcome from './views/welcome.js';
 import known from './views/known.js';
+import language from './views/language.js';
 
 const lang = languages[store.getSettings().lang] || languages[defaultLanguage];
 
@@ -28,6 +29,7 @@ const ROUTES = {
   word: wordView,
   welcome,
   known,
+  language,
 };
 
 const TABS = [
@@ -37,7 +39,7 @@ const TABS = [
   { id: 'speak', label: 'Speak', icon: 'mic' },
   { id: 'progress', label: 'Progress', icon: 'chart' },
 ];
-const TAB_OF = { practice: '', word: 'progress', settings: 'progress', known: 'learn' };
+const TAB_OF = { practice: '', word: 'progress', settings: 'progress', known: 'learn', language: '' };
 
 let cleanups = [];
 
@@ -48,7 +50,7 @@ const ctx = {
   get settings() { return store.getSettings(); },
   say(text, { slow = false } = {}) {
     const s = store.getSettings();
-    return speech.speak(text, { lang: lang.speechLang, rate: slow ? Math.min(0.6, s.rate * 0.7) : s.rate, voiceURI: s.voiceURI });
+    return speech.speak(text, { lang: lang.speechLang, rate: slow ? Math.min(0.6, s.rate * 0.7) : s.rate, voiceURI: s.voices?.[lang.code] ?? '' });
   },
   go(path) { location.hash = path; },
   onCleanup(fn) { cleanups.push(fn); },
@@ -70,7 +72,7 @@ function shell() {
     h('header', { class: 'topbar' },
       h('a', { href: '#/', class: 'brand', 'aria-label': 'Lisan home' },
         h('img', { src: 'icons/icon.svg', alt: '', width: 28, height: 28 }), 'Lisan'),
-      h('span', { class: 'lang-pill', title: lang.name }, h('span', { 'aria-hidden': 'true' }, lang.flag), ' ', lang.nativeName),
+      h('a', { class: 'lang-pill', href: '#/language', title: `Learning ${lang.name} — change language` }, h('span', { 'aria-hidden': 'true' }, lang.flag), ' ', h('span', { lang: lang.code }, lang.nativeName)),
       h('a', { href: '#/settings', class: 'icon-btn', 'aria-label': 'Settings' }, icon('settings'))),
     h('main', { id: 'view', tabindex: '-1' }),
     tabbar,
@@ -114,7 +116,7 @@ function render() {
     badge.hidden = due === 0;
     badge.textContent = due > 99 ? '99+' : String(due);
   }
-  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', known: 'Already learned', word: lang.byId(params[0])?.tr }[name];
+  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', known: 'Already learned', language: 'Languages', word: lang.byId(params[0])?.tr }[name];
   document.title = title ? `${title} · Lisan ${lang.name}` : `Lisan · ${lang.name}`;
   window.scrollTo(0, 0);
 }

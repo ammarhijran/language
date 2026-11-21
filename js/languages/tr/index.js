@@ -2,6 +2,7 @@
 import { categories, vocab } from './vocab.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyze, lower } from './phonetics.js';
+import { makePack } from '../common.js';
 
 const DIACRITICS = { ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u', â: 'a', î: 'i', û: 'u' };
 
@@ -52,48 +53,40 @@ export function normalizeSpoken(s) {
   return normalize(normalize(joined).replace(/\d+/g, (d) => ` ${numberToWords(Number(d))} `));
 }
 
-const slug = (tr) => normalize(tr).replace(/\s+/g, '-');
-
-const words = vocab.map((w, index) => ({ ...w, id: w.id ?? slug(w.tr), index }));
-const byId = new Map(words.map((w) => [w.id, w]));
-const letterInfo = new Map(alphabet.map((l) => [l.lower, l]));
-
-/** Hints for the "surprising" letters that appear in a word. */
-function letterNotes(text) {
-  const seen = new Set();
-  const notes = [];
-  for (const ch of normalize(text)) {
-    const l = letterInfo.get(ch === 'â' ? 'a' : ch);
-    if (l?.special && l.lower !== 'r' && !seen.has(ch)) {
-      seen.add(ch);
-      notes.push({ letter: l.lower, ipa: l.ipa, hint: l.hint });
-    }
-  }
-  return notes;
-}
-
-export default {
+export default makePack({
   code: 'tr',
   name: 'Turkish',
   nativeName: 'Türkçe',
   flag: '🇹🇷',
   speechLang: 'tr-TR',
   greeting: 'Merhaba',
+  welcome: 'Hoş geldin!',
+  sampleWords: [['Merhaba', 'hello'], ['Teşekkürler', 'thanks'], ['Günaydın', 'good morning']],
+  sampleSentence: 'Merhaba! Türkçe öğrenmeye hazır mısın?',
   specialChars: ['ç', 'ğ', 'ı', 'ö', 'ş', 'ü'],
+  alphabetIntro: 'Türkçe has 29 letters and every letter is always pronounced the same way. Tap a letter to hear an example word. Highlighted letters are the ones English speakers usually find surprising.',
   categories,
-  words,
-  byId: (id) => byId.get(id),
-  wordsIn: (cat) => words.filter((w) => w.cat === cat),
+  vocab,
   alphabet,
   soundTips,
   minimalPairs,
   analyze: (word) => analyze(word.tr, word.s),
-  analyzeText: (text) => analyze(text, 0),
-  letterNotes,
-  letterHint: (ch) => letterInfo.get(ch),
   normalize,
   stripDiacritics,
   normalizeSpoken,
+  // â is a, and r is too common to flag on every word.
+  letterNotes(word) {
+    const seen = new Set();
+    const notes = [];
+    for (const ch of normalize(word.tr)) {
+      const l = alphabet.find((x) => x.lower === (ch === 'â' ? 'a' : ch));
+      if (l?.special && l.lower !== 'r' && !seen.has(ch)) {
+        seen.add(ch);
+        notes.push({ letter: l.lower, ipa: l.ipa, hint: l.hint });
+      }
+    }
+    return notes;
+  },
   voiceHelp: {
     ios: 'Open Settings → Accessibility → Spoken Content → Voices → Turkish and download a voice (e.g. Yelda).',
     android: 'Open Settings → search “Text-to-speech” → Speech Services by Google → Install voice data → Turkish.',
@@ -101,4 +94,4 @@ export default {
     windows: 'Open Settings → Time & language → Speech → Manage voices → Add voices → Turkish. Microsoft Edge also has free online Turkish voices.',
     other: 'Install a Turkish text-to-speech voice for your operating system, or try Microsoft Edge, which includes free online Turkish voices.',
   },
-};
+});

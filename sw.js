@@ -1,6 +1,6 @@
 // Offline support: network-first so updates show up immediately when online,
 // falling back to the cache when offline. Bump VERSION when the file list changes.
-const VERSION = 'lisan-v5';
+const VERSION = 'lisan-v6';
 
 const ASSETS = [
   './',
@@ -23,6 +23,20 @@ const ASSETS = [
   'js/store.js',
   'js/ui.js',
   'js/languages/index.js',
+  'js/languages/common.js',
+  'js/languages/uk/index.js',
+  'js/languages/uk/phonetics.js',
+  'js/languages/uk/sounds.js',
+  'js/languages/uk/vocab.js',
+  'js/languages/ja/index.js',
+  'js/languages/ja/kana.js',
+  'js/languages/ja/sounds.js',
+  'js/languages/ja/vocab.js',
+  'js/languages/ar/index.js',
+  'js/languages/ar/translit.js',
+  'js/languages/ar/sounds.js',
+  'js/languages/ar/vocab.js',
+  'js/views/language.js',
   'js/languages/tr/index.js',
   'js/languages/tr/phonetics.js',
   'js/languages/tr/sounds.js',

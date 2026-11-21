@@ -20,36 +20,45 @@ export function audioControls(ctx, text) {
   );
 }
 
-/** Syllables with stress, IPA, respelling and notes on tricky letters. */
+/** Syllables (or morae) with stress, IPA, respelling and notes on tricky letters. */
 export function pronunciationPanel(ctx, word, { compact = false } = {}) {
-  const a = ctx.lang.analyze(word);
-  const syllableRow = h('div', { class: 'syllables', lang: ctx.lang.code },
+  const { lang } = ctx;
+  const a = lang.analyze(word);
+  // Chips are normally in the language's own script and can be spoken one by
+  // one. Some packs (Arabic) show them in transliteration instead.
+  const chipLang = a.chipLang === undefined ? lang.code : a.chipLang;
+  const speakable = a.chipsSpeakable !== false;
+  const syllableRow = h('div', { class: 'syllables', lang: chipLang || null },
     a.words.map((w, wi) => [
       wi > 0 ? h('span', { class: 'syl-gap' }) : null,
       w.syllables.map((s, i) => h('button', {
         type: 'button',
         class: `syl${i === w.stressIndex ? ' stressed' : ''}`,
-        title: i === w.stressIndex ? 'Stressed syllable — tap to hear it' : 'Tap to hear this syllable',
-        onclick: () => ctx.say(s.text, { slow: true }),
+        title: i === w.stressIndex ? 'Stressed syllable' : (speakable ? 'Tap to hear this part' : 'Tap to hear the word slowly'),
+        onclick: () => ctx.say(speakable ? s.text : word.tr, { slow: true }),
       }, s.text)),
     ]),
   );
 
-  const notes = ctx.lang.letterNotes(word.tr);
+  const notes = lang.letterNotes(word);
   return h('div', { class: `pron${compact ? ' compact' : ''}` },
     syllableRow,
     h('dl', { class: 'pron-facts' },
       h('div', null, h('dt', null, 'Say it like'), h('dd', { class: 'respell' }, a.respell)),
       h('div', null, h('dt', null, 'IPA'), h('dd', { class: 'ipa' }, `/${a.ipa}/`)),
     ),
-    a.stressMarked && !compact
-      ? h('p', { class: 'hint' }, 'Highlighted syllable = stress. Tap any syllable to hear it slowly.')
-      : null,
+    !compact ? h('p', { class: 'hint' }, lang.pronHint(a)) : null,
     !compact && notes.length
       ? h('ul', { class: 'letter-notes' }, notes.map((n) =>
-        h('li', null, h('b', { lang: ctx.lang.code }, n.letter), h('span', { class: 'ipa' }, `/${n.ipa}/`), ' ', n.hint)))
+        h('li', null, h('b', { lang: lang.code }, n.letter), h('span', { class: 'ipa' }, `/${n.ipa}/`), ' ', n.hint)))
       : null,
   );
+}
+
+/** Secondary line under a word: kana reading, transliteration… (null when the pack has none). */
+export function readingLine(ctx, word, cls = 'reading') {
+  const r = ctx.lang.reading(word);
+  return r ? h('p', { class: cls }, r) : null;
 }
 
 export function exampleBlock(ctx, word) {
@@ -107,7 +116,10 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
       status.textContent = speech.RECOGNITION_ERRORS[res.error] || `Something went wrong (${res.error}).`;
       return;
     }
-    const scored = scoreSpoken(target, res.alternatives, lang);
+    // Some languages have several valid written forms (kanji and kana): score against each.
+    const scored = lang.spokenTargets(word)
+      .map((t) => scoreSpoken(t, res.alternatives, lang))
+      .reduce((a, b) => (b.score > a.score ? b : a));
     attempts++;
     best = Math.max(best, scored.score);
     status.textContent = attempts > 1 ? `Attempt ${attempts} · best ${Math.round(best * 100)}%` : '';
@@ -127,7 +139,7 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
         h('div', { class: 'score-ring', style: { '--pct': pct } }, h('span', null, `${pct}%`)),
         h('div', null,
           h('p', { class: 'score-title' }, fb.title),
-          h('p', { class: 'heard' }, 'Heard: ', h('q', { lang: lang.code }, scored.raw || '…')),
+          h('p', { class: 'heard' }, 'Heard: “', h('bdi', { lang: lang.code }, scored.raw || '…'), '”'),
         ),
       ),
       h('p', { class: 'diff', lang: lang.code, 'aria-label': 'Target with letters to work on highlighted' },

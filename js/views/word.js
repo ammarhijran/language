@@ -1,5 +1,5 @@
 import { h, icon } from '../ui.js';
-import { audioControls, pronunciationPanel, speakPractice, exampleBlock } from '../components.js';
+import { audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine } from '../components.js';
 import { status, STATUS_LABEL, markKnown } from '../srs.js';
 
 export default function word(ctx, id) {
@@ -22,6 +22,7 @@ export default function word(ctx, id) {
         h('a', { href: `#/learn/${cat.id}`, class: 'muted small' }, `${cat.emoji} ${cat.name}`)),
       h('div', { class: 'word-hero' },
         h('h1', { class: 'hero-tr', lang: lang.code }, w.tr),
+        readingLine(ctx, w),
         h('p', { class: 'hero-en' }, w.en)),
       audioControls(ctx, w.tr),
       pronunciationPanel(ctx, w),

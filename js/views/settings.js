@@ -2,6 +2,7 @@ import { h, icon, set } from '../ui.js';
 import * as speech from '../speech.js';
 import { voiceBanner } from '../components.js';
 import { GOALS } from './welcome.js';
+import { languageCards } from './language.js';
 
 export default function settings(ctx) {
   const { lang, store } = ctx;
@@ -9,13 +10,13 @@ export default function settings(ctx) {
 
   const voiceSelect = h('select', {
     class: 'select', id: 'voice',
-    onchange: (e) => { store.updateSettings({ voiceURI: e.target.value }); ctx.say(lang.greeting); },
+    onchange: (e) => { store.updateSettings({ voices: { ...s.voices, [lang.code]: e.target.value } }); ctx.say(lang.greeting); },
   });
   const fillVoices = () => {
     const voices = speech.voicesFor(lang.speechLang);
     set(voiceSelect, 
       h('option', { value: '' }, voices.length ? 'Automatic' : `No ${lang.name} voices found`),
-      voices.map((v) => h('option', { value: v.voiceURI, selected: v.voiceURI === s.voiceURI }, `${v.name} (${v.lang})${v.localService ? '' : ' · online'}`)));
+      voices.map((v) => h('option', { value: v.voiceURI, selected: v.voiceURI === s.voices?.[lang.code] }, `${v.name} (${v.lang})${v.localService ? '' : ' · online'}`)));
   };
   fillVoices();
   ctx.onCleanup(speech.onVoicesChanged(fillVoices));
@@ -24,7 +25,7 @@ export default function settings(ctx) {
   const rate = h('input', {
     type: 'range', id: 'rate', min: '0.5', max: '1.2', step: '0.05', value: String(s.rate),
     oninput: (e) => { rateOut.textContent = `${Number(e.target.value).toFixed(2)}×`; },
-    onchange: (e) => { store.updateSettings({ rate: Number(e.target.value) }); ctx.say('Merhaba, nasılsın?'); },
+    onchange: (e) => { store.updateSettings({ rate: Number(e.target.value) }); ctx.say(lang.sampleSentence); },
   });
 
   const number = (key, min, max) => h('input', {
@@ -73,11 +74,14 @@ export default function settings(ctx) {
     h('h1', null, 'Settings'),
     voiceBanner(ctx),
     h('section', { class: 'card form' },
+      h('h2', { class: 'card-title' }, 'Language'),
+      languageCards(ctx, { path: '/settings' })),
+    h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'Audio'),
       h('label', { class: 'field', for: 'voice' }, h('span', null, `${lang.name} voice`), voiceSelect),
       h('label', { class: 'field', for: 'rate' }, h('span', null, 'Speaking speed ', rateOut), rate),
       h('label', { class: 'field inline' }, autoplay, h('span', null, 'Play words automatically')),
-      h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say('Merhaba, nasılsın?') }, icon('volume', 16), 'Test voice'),
+      h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(lang.sampleSentence) }, icon('volume', 16), 'Test voice'),
       h('p', { class: 'hint' }, 'Speech recognition: ', speech.recognitionSupported()
         ? 'available ✓ (it may send your audio to an online service — Google, Apple or your browser maker — to transcribe it).'
         : 'not available in this browser — try Chrome, Edge or Safari to get pronunciation scores.')),

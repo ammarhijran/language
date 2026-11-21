@@ -1,5 +1,5 @@
 import { h, icon, shuffle, pick, bindKeys, set } from '../ui.js';
-import { playButton, pronunciationPanel, speakPractice, voiceBanner, exampleBlock } from '../components.js';
+import { playButton, pronunciationPanel, speakPractice, voiceBanner, exampleBlock, readingLine } from '../components.js';
 import { learnedWords } from '../stats.js';
 
 const TABS = [
@@ -24,14 +24,14 @@ export default function pronounce(ctx, tab = 'alphabet', arg) {
 function alphabet(ctx) {
   const { lang } = ctx;
   return h('section', null,
-    h('p', { class: 'muted' }, `${lang.nativeName} has ${lang.alphabet.length} letters and every letter is always pronounced the same way. Tap a letter to hear an example word. Highlighted letters are the ones English speakers usually find surprising.`),
+    h('p', { class: 'muted' }, lang.alphabetIntro),
     h('div', { class: 'letter-grid' }, lang.alphabet.map((l) =>
       h('button', {
         type: 'button', class: `letter${l.special ? ' special' : ''}`,
         onclick: () => ctx.say(l.ex[0]),
         'aria-label': `${l.upper}: ${l.hint}. Example ${l.ex[0]}, ${l.ex[1]}`,
       },
-        h('span', { class: 'letter-big', lang: lang.code }, l.upper, h('small', null, l.lower)),
+        h('span', { class: 'letter-big' }, h('span', { lang: lang.code }, l.upper), h('small', { lang: l.lowerIsName ? null : lang.code }, l.lower)),
         h('span', { class: 'ipa' }, `/${l.ipa}/`),
         h('span', { class: 'letter-hint' }, l.hint),
         h('span', { class: 'letter-ex' }, h('b', { lang: lang.code }, l.ex[0]), ` ${l.ex[1]}`),
@@ -161,6 +161,7 @@ function drill(ctx, scope) {
       h('p', { class: 'kicker' }, `${i + 1} / ${words.length}`),
       h('div', { class: 'word-hero' },
         h('h2', { class: 'hero-tr', lang: lang.code }, w.tr, ' ', playButton(ctx, w.tr), playButton(ctx, w.tr, { slow: true })),
+        readingLine(ctx, w),
         h('p', { class: 'hero-en' }, w.en)),
       pronunciationPanel(ctx, w),
       speakPractice(ctx, w),

@@ -1,7 +1,7 @@
 {
-  "name": "Lisan — Turkish vocabulary & pronunciation",
+  "name": "Lisan — vocabulary & pronunciation",
   "short_name": "Lisan",
-  "description": "Learn Turkish words and how to say them.",
+  "description": "Learn words in Turkish, Ukrainian, Japanese and Arabic — and how to say them.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

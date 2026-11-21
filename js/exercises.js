@@ -1,7 +1,7 @@
 // Exercise types. Each takes (ctx, word, onDone, meta) and returns an element.
 // onDone receives { correct, rating } (rating uses the SRS scale) or { skipped: true }.
 import { h, icon, bindKeys, shuffle, pick, set } from './ui.js';
-import { playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock } from './components.js';
+import { playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine } from './components.js';
 import { alignDiff } from './compare.js';
 import { AGAIN, HARD, GOOD, EASY } from './srs.js';
 
@@ -36,6 +36,7 @@ function reveal(ctx, word, correct, extra) {
       playButton(ctx, word.tr),
       h('div', null,
         h('p', null, h('span', { class: 'tr', lang: ctx.lang.code }, word.tr), h('span', { class: 'en' }, ` — ${word.en}`)),
+        readingLine(ctx, word, 'reading small'),
         h('p', { class: 'respell small' }, a.respell),
       ),
     ),
@@ -47,7 +48,7 @@ function continueButton(onClick, label = 'Continue') {
   return h('button', { type: 'button', class: 'btn primary wide continue', onclick: onClick }, label, icon('arrow', 18));
 }
 
-function choice(ctx, word, onDone, { kicker, prompt, label, optionLang }) {
+function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render }) {
   const opts = pickOptions(ctx.lang, word, label);
   const feedback = h('div', { class: 'feedback', 'aria-live': 'polite' });
   const actions = h('div', { class: 'actions' });
@@ -57,7 +58,7 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang }) {
   const buttons = opts.map((w, i) =>
     h('button', { type: 'button', class: 'option', lang: optionLang, onclick: () => answer(i) },
       h('span', { class: 'kbd', 'aria-hidden': 'true' }, String(i + 1)),
-      h('span', { class: 'option-label' }, label(w))));
+      render ? render(w) : h('span', { class: 'option-label' }, label(w))));
 
   const finish = once(() => { unbind(); onDone({ correct, rating: correct ? GOOD : AGAIN }); });
 
@@ -104,14 +105,19 @@ export function listen(ctx, word, onDone) {
 export function meaning(ctx, word, onDone) {
   if (ctx.settings.autoplay) setTimeout(() => ctx.say(word.tr), 300);
   const prompt = h('div', { class: 'prompt' },
-    h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word.tr)));
+    h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word.tr)),
+    readingLine(ctx, word));
   return choice(ctx, word, onDone, { kicker: 'What does this mean?', prompt, label: (w) => w.en });
 }
 
 export function produce(ctx, word, onDone) {
   const prompt = h('div', { class: 'prompt' }, h('p', { class: 'prompt-word en' }, word.en));
   return choice(ctx, word, onDone, {
-    kicker: `Choose the ${ctx.lang.name}`, prompt, label: (w) => w.tr, optionLang: ctx.lang.code,
+    kicker: `Choose the ${ctx.lang.name}`, prompt, label: (w) => w.tr,
+    // Show the reading (kana / transliteration) under the script for beginners.
+    render: (w) => h('span', { class: 'option-label' },
+      h('span', { lang: ctx.lang.code }, w.tr),
+      ctx.lang.reading(w) ? h('small', { class: 'option-reading' }, ctx.lang.reading(w)) : null),
   });
 }
 
@@ -120,7 +126,7 @@ export function type(ctx, word, onDone) {
   const input = h('input', {
     class: 'answer-input', type: 'text', lang: lang.code, autocomplete: 'off', autocapitalize: 'off',
     autocorrect: 'off', spellcheck: 'false', enterkeyhint: 'done', 'aria-label': `Your answer in ${lang.name}`,
-    placeholder: `Type in ${lang.name}…`,
+    placeholder: lang.typingHint, dir: 'auto',
   });
   const feedback = h('div', { class: 'feedback', 'aria-live': 'polite' });
   const submit = h('button', { type: 'submit', class: 'btn primary wide' }, 'Check');
@@ -134,7 +140,7 @@ export function type(ctx, word, onDone) {
     input.setSelectionRange(s + c.length, s + c.length);
   }
 
-  const chars = h('div', { class: 'char-row', 'aria-label': 'Special letters' },
+  const chars = h('div', { class: 'char-row', 'aria-label': 'Special letters', hidden: !lang.specialChars.length },
     lang.specialChars.map((c) => h('button', { type: 'button', class: 'char', lang: lang.code, onclick: () => insert(c) }, c)));
 
   const finish = once(() => onDone(result));
@@ -142,18 +148,22 @@ export function type(ctx, word, onDone) {
   function check() {
     const v = input.value;
     if (!v.trim()) { input.focus(); return; }
-    const accepted = [word.tr, ...(word.alt || [])];
+    // Accepted forms include romanisations (rōmaji, transliteration) for scripts
+    // that are hard to type on a phone keyboard.
+    const accepted = lang.acceptedAnswers(word);
     const n = lang.normalize(v);
     let rating;
     let extra = null;
+    const close = accepted.find((a) => lang.stripDiacritics(a) === lang.stripDiacritics(v));
     if (accepted.some((a) => lang.normalize(a) === n)) {
       rating = GOOD;
-    } else if (accepted.some((a) => lang.stripDiacritics(a) === lang.stripDiacritics(v))) {
+    } else if (close) {
       rating = HARD;
-      const diff = alignDiff(lang.normalize(word.tr), n);
+      const diff = alignDiff(lang.normalize(close), n);
+      const latin = /^[\p{Script=Latin}\s'ʾʿ’-]+$/u.test(close);
       extra = h('div', null,
-        h('p', { class: 'hint' }, 'So close! Only the special letters were off:'),
-        h('p', { class: 'diff', lang: lang.code }, diff.map((d) => h('span', { class: d.ok ? 'ok' : 'miss' }, d.ch))));
+        h('p', { class: 'hint' }, lang.almostHint),
+        h('p', { class: 'diff', lang: latin ? null : lang.code }, diff.map((d) => h('span', { class: d.ok ? 'ok' : 'miss' }, d.ch))));
     } else {
       rating = AGAIN;
       extra = h('p', { class: 'hint' }, 'You wrote: ', h('q', { lang: lang.code }, v));
@@ -204,6 +214,7 @@ export function speak(ctx, word, onDone) {
     h('p', { class: 'kicker' }, 'Say it out loud'),
     h('div', { class: 'prompt' },
       h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word.tr), playButton(ctx, word.tr, { slow: true })),
+      readingLine(ctx, word),
       h('p', { class: 'prompt-sub' }, word.en)),
     pronunciationPanel(ctx, word, { compact: true }),
     practice,
@@ -227,6 +238,7 @@ export function flashcard(ctx, word, onDone) {
     back.hidden = false;
     set(back, 
       h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word.tr)),
+      readingLine(ctx, word),
       pronunciationPanel(ctx, word, { compact: true }),
     );
     ctx.say(word.tr);
@@ -264,6 +276,7 @@ export function intro(ctx, word, onDone, meta = {}) {
     h('p', { class: 'kicker' }, `New word ${meta.index + 1} of ${meta.total}`),
     h('div', { class: 'word-hero' },
       h('h2', { class: 'hero-tr', lang: ctx.lang.code }, word.tr),
+      readingLine(ctx, word),
       h('p', { class: 'hero-en' }, word.en),
     ),
     audioControls(ctx, word.tr),

@@ -24,12 +24,10 @@ export default function progress(ctx, catFilter) {
   const list = h('ul', { class: 'word-list' });
 
   function renderList() {
-    const q = lang.stripDiacritics(query);
     const rows = lang.words.filter((w) => {
       if (cat !== 'all' && w.cat !== cat) return false;
       if (filter !== 'all' && status(cards[w.id]) !== filter) return false;
-      if (!q) return true;
-      return lang.stripDiacritics(w.tr).includes(q) || w.en.toLowerCase().includes(query.toLowerCase());
+      return lang.matches(w, query);
     });
     set(list, ...(rows.length ? rows.map((w) => {
       const st = status(cards[w.id]);

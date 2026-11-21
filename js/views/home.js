@@ -1,5 +1,5 @@
 import { h, icon } from '../ui.js';
-import { categoryCard, voiceBanner, playButton } from '../components.js';
+import { categoryCard, voiceBanner, playButton, readingLine } from '../components.js';
 import { computeStats, nextCategory, wordOfTheDay } from '../stats.js';
 
 export default function home(ctx) {
@@ -57,6 +57,7 @@ export default function home(ctx) {
       h('div', { class: 'wotd-row' },
         h('div', null,
           h('a', { class: 'wotd-word', href: `#/word/${encodeURIComponent(wotd.id)}`, lang: lang.code }, wotd.tr),
+          readingLine(ctx, wotd),
           h('p', { class: 'muted' }, wotd.en),
           h('p', { class: 'respell small' }, a.respell, ' · ', h('span', { class: 'ipa' }, `/${a.ipa}/`))),
         playButton(ctx, wotd.tr, { cls: 'big' }),
