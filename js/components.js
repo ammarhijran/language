@@ -97,7 +97,7 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
     if (session) { session.stop(); return; }
     mic.classList.add('live');
     mic.setAttribute('aria-label', 'Stop listening');
-    status.textContent = 'Listening… speak now';
+    status.textContent = speech.manualStop() ? 'Listening… tap the mic again when you’re done' : 'Listening… speak now';
     session = speech.listen({ lang: lang.speechLang });
     const res = await session.result;
     session = null;
@@ -204,10 +204,13 @@ export function voiceBanner(ctx) {
     const has = speech.voicesFor(ctx.lang.speechLang).length > 0;
     el.hidden = has;
     if (!has) {
-      set(el, 
+      set(el,
         h('b', null, `No ${ctx.lang.name} voice found. `),
         'Audio may sound wrong until you install one. ',
         ctx.lang.voiceHelp[platform()] || ctx.lang.voiceHelp.other,
+        speech.canInstallVoices()
+          ? h('div', null, h('button', { type: 'button', class: 'btn small', onclick: () => speech.installVoices() }, 'Install voice data'))
+          : null,
       );
     }
   };

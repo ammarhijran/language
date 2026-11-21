@@ -1,0 +1,20 @@
+{
+  "appId": "app.lisan.turkish",
+  "appName": "Lisan",
+  "webDir": "www",
+  "backgroundColor": "#faf7f2",
+  "android": {
+    "allowMixedContent": false
+  },
+  "ios": {
+    "contentInset": "never"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 600,
+      "launchAutoHide": true,
+      "backgroundColor": "#c8102e",
+      "showSpinner": false
+    }
+  }
+}

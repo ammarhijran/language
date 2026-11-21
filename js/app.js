@@ -3,6 +3,7 @@ import * as store from './store.js';
 import * as speech from './speech.js';
 import { h, icon, toast, set } from './ui.js';
 import { dueWords } from './stats.js';
+import { isNative } from './native.js';
 import home from './views/home.js';
 import learn from './views/learn.js';
 import review from './views/review.js';
@@ -113,10 +114,12 @@ function render() {
   window.scrollTo(0, 0);
 }
 
+await store.init();
 shell();
 window.addEventListener('hashchange', render);
 render();
 
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+// Offline caching for the website. The native apps already ship their files.
+if (!isNative() && 'serviceWorker' in navigator && location.protocol !== 'file:') {
   window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 }

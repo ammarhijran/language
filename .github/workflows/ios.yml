@@ -1,0 +1,45 @@
+name: iOS app
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+      - name: Copy web app into the iOS project and install pods
+        run: npm run build && npx cap sync ios
+
+      # Compiles for the iOS Simulator without code signing, to prove the
+      # project builds. Installing on a real iPhone needs an Apple ID in Xcode
+      # (see README → Running on your phone).
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild \
+            -workspace ios/App/App.xcworkspace \
+            -scheme App \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package simulator app
+        run: cd build/Build/Products/Debug-iphonesimulator && zip -qr "$GITHUB_WORKSPACE/Lisan-simulator.zip" App.app
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lisan-ios-simulator-app
+          path: Lisan-simulator.zip

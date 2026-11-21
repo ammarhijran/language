@@ -1,6 +1,11 @@
-// Progress + settings persistence (localStorage). Everything stays on-device.
+// Progress + settings persistence. Everything stays on-device.
+// Browser: localStorage. Android/iOS apps: localStorage plus a mirror in
+// native storage (Capacitor Preferences), because the OS may clear WebView
+// storage when the device runs low on space.
+import { hasPlugin, plugin } from './native.js';
 
 const KEY = 'lisan:v1';
+const prefs = hasPlugin('Preferences') ? plugin('Preferences') : null;
 
 const DEFAULTS = {
   lang: 'tr',
@@ -25,9 +30,26 @@ function load() {
 }
 
 function save() {
+  const json = JSON.stringify(state);
   try {
-    localStorage.setItem(KEY, JSON.stringify(state));
+    localStorage.setItem(KEY, json);
   } catch { /* storage full or unavailable */ }
+  prefs?.set({ key: KEY, value: json }).catch(() => {});
+}
+
+/** In the native apps, restore from native storage if the WebView's copy was lost. */
+export async function init() {
+  if (!prefs) return;
+  try {
+    const hasLocal = !!localStorage.getItem(KEY);
+    const { value } = await prefs.get({ key: KEY });
+    if (!hasLocal && value) {
+      localStorage.setItem(KEY, value);
+      state = load();
+    } else if (hasLocal && !value) {
+      save();
+    }
+  } catch { /* keep whatever we have */ }
 }
 
 function prog(lang) {

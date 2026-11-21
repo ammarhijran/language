@@ -2,7 +2,7 @@
 
 A language-learning web app focused on **vocabulary** and **pronunciation**. The first language is **Turkish 🇹🇷**.
 
-It runs entirely in the browser: no account and no build step. It works offline and can be installed to your phone's home screen as a PWA. Your progress stays on your device.
+It runs as a website (works offline, installable as a PWA) and as native **Android** and **iOS** apps built from the same code with [Capacitor](https://capacitorjs.com). No account is needed and your progress stays on your device.
 
 ## Features
 
@@ -32,13 +32,58 @@ It runs entirely in the browser: no account and no build step. It works offline 
 ## Running it
 
 ```bash
-npm start        # serves the app at http://localhost:8000 (no dependencies to install)
-npm test         # unit tests (Node 20+)
+npm start        # serves the website at http://localhost:8000 (no install needed)
+npm test         # unit tests (Node 22+)
+npm run build    # copies the web app into www/ (used by the native apps)
 ```
 
 Any static file server works too, e.g. `python3 -m http.server`.
 
 **Deploying:** `.github/workflows/pages.yml` publishes the app to GitHub Pages on every push to `main`. Turn it on once under **Settings → Pages → Source: GitHub Actions**.
+
+## Android & iOS apps
+
+The `android/` and `ios/` folders are native projects that wrap the web app. They use the same screens and content, but swap the browser speech APIs, which phone WebViews don't provide, for native ones:
+
+| | Website | Android & iOS apps |
+| --- | --- | --- |
+| Audio | Web Speech API | Native text-to-speech (`@capacitor-community/text-to-speech`) |
+| Speaking scores | Web Speech API | Native speech recognition (`@capacitor-community/speech-recognition`) |
+| Progress storage | localStorage | localStorage, mirrored to native storage (`@capacitor/preferences`) |
+
+### Getting a build
+
+Every push builds both apps on GitHub Actions (**Actions** tab):
+
+- **Android app**: download the `lisan-android-debug-apk` artifact, unzip it, and open `app-debug.apk` on an Android phone to install it. You may need to allow installs from unknown sources.
+- **iOS app**: this compiles the app for the iOS Simulator to prove it builds. A real iPhone needs Xcode (below).
+
+### Running on your phone yourself
+
+```bash
+npm install
+npm run cap:sync          # copies the web app into android/ and ios/
+npm run android:open      # opens Android Studio → press Run with your phone plugged in
+npm run ios:open          # opens Xcode (Mac only) → pick your iPhone → Run
+```
+
+- **Android:** needs Android Studio and JDK 21.
+- **iOS:** needs a Mac with Xcode and CocoaPods. In Xcode, open *Signing & Capabilities* and select your Apple ID as the team. A free Apple ID can install on your own iPhone, but the app expires after 7 days.
+
+Run `npm run cap:sync` again after changing anything in `js/`, `css/` or `index.html`.
+
+### Publishing
+
+- **Google Play:** create an upload keystore (`keytool -genkey -v -keystore lisan.keystore -alias lisan -keyalg RSA -keysize 2048 -validity 10000`). Add these repository secrets:
+  - `ANDROID_KEYSTORE_BASE64` (output of `base64 -w0 lisan.keystore`)
+  - `ANDROID_KEYSTORE_PASSWORD`
+  - `ANDROID_KEY_ALIAS`
+  - `ANDROID_KEY_PASSWORD`
+
+  The Android workflow then also builds a signed `.aab` to upload in the Play Console. A Google Play developer account costs a one-time $25.
+- **App Store:** needs an Apple Developer Program membership ($99/year). In Xcode choose *Product → Archive*, then *Distribute App → App Store Connect*.
+- **App ID:** `app.lisan.turkish`, set in `capacitor.config.json`, `android/app/build.gradle` and the Xcode project. Change it before your first store upload, because it can't be changed afterwards.
+- **Icons and splash screens** are generated from `assets/` with `npx capacitor-assets generate`.
 
 ## Browser support
 
@@ -60,7 +105,10 @@ js/components.js               pronunciation panel, speak-and-score, recorder
 js/srs.js                      spaced-repetition scheduler
 js/compare.js                  scoring for typed and spoken answers
 js/speech.js                   text-to-speech, recognition, recording
-js/store.js                    on-device persistence (localStorage), export/import
+js/store.js                    on-device persistence, export/import
+js/native.js                   access to native plugins inside the Android/iOS apps
+android/, ios/                 native app projects (Capacitor)
+assets/                        source images for app icons and splash screens
 js/languages/tr/               Turkish pack: vocab, alphabet/sounds, phonetics
 ```
 

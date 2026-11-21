@@ -1,0 +1,60 @@
+name: Android app
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HAS_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - run: npm ci
+      - run: npm test
+      - name: Copy web app into the Android project
+        run: npm run build && npx cap sync android
+
+      - name: Build debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lisan-android-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      # Signed release bundle for Google Play — only runs when the signing
+      # secrets are configured (see README → Publishing).
+      - name: Build signed release bundle
+        if: env.HAS_KEYSTORE == 'true'
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          LISAN_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          LISAN_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          LISAN_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        working-directory: android
+        run: |
+          echo "$KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/release.keystore"
+          LISAN_KEYSTORE_PATH="$RUNNER_TEMP/release.keystore" ./gradlew bundleRelease assembleRelease --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        if: env.HAS_KEYSTORE == 'true'
+        with:
+          name: lisan-android-release
+          path: |
+            android/app/build/outputs/bundle/release/*.aab
+            android/app/build/outputs/apk/release/*.apk

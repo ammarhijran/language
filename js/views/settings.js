@@ -78,7 +78,7 @@ export default function settings(ctx) {
       h('label', { class: 'field inline' }, autoplay, h('span', null, 'Play words automatically')),
       h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say('Merhaba, nasılsın?') }, icon('volume', 16), 'Test voice'),
       h('p', { class: 'hint' }, 'Speech recognition: ', speech.recognitionSupported()
-        ? 'available ✓ (in most browsers it sends audio to an online service to transcribe it).'
+        ? 'available ✓ (it may send your audio to an online service — Google, Apple or your browser maker — to transcribe it).'
         : 'not available in this browser — try Chrome, Edge or Safari to get pronunciation scores.')),
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'Lessons'),
