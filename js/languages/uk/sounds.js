@@ -74,7 +74,7 @@ export const soundTips = [
     id: 'v-w',
     title: 'в that sounds like “w”',
     ipa: 'w',
-    body: 'After a vowel, before a consonant or at the end of a word, в is pronounced like a short English “w” (forming a diphthong): вовк (wolf) ≈ vowk, Київ ≈ KY-yiw. At the start of a word before a consonant it is a short “w” too: вчора (yesterday) ≈ WCHOH-rah. Before a vowel it stays “v”: вода.',
+    body: 'When в follows a vowel and comes before a consonant or at the end of a word, it is pronounced like a short English “w” (forming a diphthong): вовк (wolf) ≈ vowk, Київ ≈ KY-yiw. At the start of a word before a consonant it is a short “w” too: вчора (yesterday) ≈ WCHOH-rah. Before a vowel it stays “v”: вода.',
     examples: [['вовк', 'wolf'], ['Київ', 'Kyiv'], ['вчора', 'yesterday'], ['вода', 'water']],
   },
   {

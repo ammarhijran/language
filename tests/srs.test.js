@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { newCard, review, markKnown, isDue, status, AGAIN, HARD, GOOD, EASY, startOfDay, KNOWN_INTERVAL } from '../js/srs.js';
+import { newCard, review, markKnown, isDue, missedToday, status, AGAIN, HARD, GOOD, EASY, startOfDay, KNOWN_INTERVAL } from '../js/srs.js';
 
 const NOW = new Date(2026, 0, 10, 15, 0).getTime();
 
@@ -100,12 +100,38 @@ test('a retry reschedules exactly like a normal answer, apart from ease', () => 
   assert.equal(hard.due, startOfDay(NOW, 1));
 });
 
-test('the first miss in a later session still costs ease', () => {
+test('the first miss on a later day still costs ease', () => {
   let c = review(MATURE, AGAIN, NOW);
   c = review(c, AGAIN, NOW + 1, { retry: true });
   const tomorrow = startOfDay(NOW, 1) + 10 * 60 * 60 * 1000;
+  assert.ok(!missedToday(c, tomorrow));
   c = review(c, AGAIN, tomorrow);
   assert.ok(Math.abs(c.ease - 2.1) < 1e-9);
+});
+
+test('missedToday is true only for a word missed earlier the same day', () => {
+  // Never answered, passed, or marked as learned: not a miss.
+  assert.equal(missedToday(undefined, NOW), false);
+  assert.equal(missedToday(newCard(NOW), NOW), false);
+  assert.equal(missedToday(review(newCard(NOW), GOOD, NOW), NOW), false);
+  assert.equal(missedToday(markKnown(NOW), NOW), false);
+  // Missed at 15:00: still a miss at 23:59 that day, not after midnight.
+  const missed = review(MATURE, AGAIN, NOW);
+  assert.equal(missedToday(missed, NOW), true);
+  assert.equal(missedToday(missed, startOfDay(NOW, 1) - 1), true);
+  assert.equal(missedToday(missed, startOfDay(NOW, 1)), false);
+  // Passed on a re-ask: no longer a miss.
+  assert.equal(missedToday(review(missed, GOOD, NOW + 1, { retry: true }), NOW + 2), false);
+});
+
+test('a fresh session the same day does not charge the lapse twice', () => {
+  // "Keep reviewing" after a bad session: review.js passes retry from missedToday.
+  let c = review(MATURE, AGAIN, NOW);
+  c = review(c, AGAIN, NOW + 1, { retry: true });
+  const later = NOW + 2 * 60 * 60 * 1000;
+  c = review(c, AGAIN, later, { retry: missedToday(c, later) });
+  assert.equal(c.ease, 2.3);
+  assert.equal(c.lapses, 1);
 });
 
 test('retrying a missed already-learned word keeps it a normal learning card', () => {
@@ -145,6 +171,9 @@ test('due dates land on local midnight across US DST changes', () => {
       spring: local(spring.due), dueJustAfterMidnight: srs.isDue(spring, at(2026, 2, 9, 0, 30)),
       known: local(srs.markKnown(at(2026, 9, 20, 10)).due),
       sameDay: local(srs.review(srs.newCard(0), srs.GOOD, at(2026, 10, 1, 20)).due),
+      // Missed at 00:30 on the 25-hour day: still "today" at 23:30, not at 00:00 next day.
+      missedLate: srs.missedToday(srs.review(srs.newCard(0), srs.AGAIN, at(2026, 10, 1, 0, 30)), at(2026, 10, 1, 23, 30)),
+      missedNextDay: srs.missedToday(srs.review(srs.newCard(0), srs.AGAIN, at(2026, 10, 1, 0, 30)), at(2026, 10, 2)),
     };`);
   assert.ok(r.offsetChanged, 'tz data has US DST');
   assert.deepEqual(r.fall, [2026, 11, 2, 0, 0]);
@@ -153,6 +182,8 @@ test('due dates land on local midnight across US DST changes', () => {
   assert.equal(r.dueJustAfterMidnight, true);
   assert.deepEqual(r.known, [2026, 11, 19, 0, 0]); // markKnown: Oct 20 + 30 days
   assert.deepEqual(r.sameDay, [2026, 11, 2, 0, 0]); // reviewed on the 25-hour day itself
+  assert.equal(r.missedLate, true);
+  assert.equal(r.missedNextDay, false);
 });
 
 test('due dates land on local midnight across EU DST changes', () => {

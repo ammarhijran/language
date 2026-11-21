@@ -45,9 +45,10 @@ export function markKnown(now = Date.now()) {
  * Return a new card state after answering with `rating`.
  *
  * Pass `{ retry: true }` when the word was already rated earlier in the same
- * session (a re-ask after a miss). The card is rescheduled as usual, but ease
- * and lapses stay put: SM-2 and Anki charge a lapse once, and the same-day
- * relearning drills that follow it don't lower ease again.
+ * session (a re-ask after a miss), or was missed earlier today (missedToday).
+ * The card is rescheduled as usual, but ease and lapses stay put: SM-2 and
+ * Anki charge a lapse once, and the same-day relearning drills that follow it
+ * don't lower ease again.
  */
 export function review(card, rating, now = Date.now(), { retry = false } = {}) {
   const c = { ...card, last: now };
