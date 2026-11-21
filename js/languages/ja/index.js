@@ -46,6 +46,9 @@ export default makePack({
   sampleSentence: 'こんにちは!一緒に日本語を勉強しましょう。',
   typingHint: 'Type in Japanese or rōmaji…',
   almostHint: 'Almost! Check the long vowels and double consonants:',
+  // Feedback: Japanese words with an English gloss.
+  praise: [['正解！', 'Correct.'], ['すごい！', 'Great.'], ['よくできました！', 'Well done.'], ['いいね！', 'Nice.']],
+  scoreTitles: { excellent: ['すばらしい！', 'Excellent.'], close: ['とてもいい！', 'Very good.'] },
   alphabetIntro: 'Japanese is written with hiragana (below), katakana for foreign words (shown beside each one) and kanji. Every kana is one beat and always sounds the same. Tap a kana to hear an example word.',
   pronHint: () => 'Each box is one beat (mora). Give every beat the same length — a long vowel like ō counts as two. Tap a beat to hear it.',
   categories: [...baseCategories, ...moreCategories],

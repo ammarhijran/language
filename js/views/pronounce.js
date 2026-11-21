@@ -1,5 +1,5 @@
 import { h, icon, shuffle, pick, bindKeys, set } from '../ui.js';
-import { playButton, pronunciationPanel, speakPractice, voiceBanner, exampleBlock, readingLine } from '../components.js';
+import { playButton, pronunciationPanel, speakPractice, voiceBanner, exampleBlock, readingLine, cleanupScope, sayLater } from '../components.js';
 import { learnedWords } from '../stats.js';
 
 const TABS = [
@@ -9,9 +9,9 @@ const TABS = [
   { id: 'drill', name: 'Speaking' },
 ];
 
-export default function pronounce(ctx, tab = 'alphabet', arg) {
+export default function pronounce(ctx, tab = 'alphabet', ...args) {
   if (!TABS.some((t) => t.id === tab)) tab = 'alphabet';
-  const body = { alphabet, sounds, ear, drill }[tab](ctx, arg);
+  const body = { alphabet, sounds, ear, drill }[tab](ctx, ...args);
   return h('div', { class: 'view' },
     h('h1', null, 'Pronunciation'),
     voiceBanner(ctx),
@@ -78,9 +78,12 @@ function ear(ctx) {
     let score = 0;
     let unbind = () => {};
     ctx.onCleanup(() => unbind());
+    // Each round's delayed autoplay is dropped when the next round starts.
+    const roundScope = cleanupScope(ctx);
 
     function round() {
       unbind();
+      roundScope.cleanup();
       if (i >= rounds.length) {
         ctx.store.logActivity(lang.code, { practiced: rounds.length });
         ctx.game.earQuiz({ lang: lang.code, correct: score, total: rounds.length });
@@ -132,7 +135,7 @@ function ear(ctx) {
         h('div', { class: 'options two' }, buttons),
         feedback,
         h('div', { class: 'actions' }, nextBtn)));
-      setTimeout(() => ctx.say(target), 300);
+      sayLater(roundScope.ctx, target);
     }
     round();
   }
@@ -141,38 +144,57 @@ function ear(ctx) {
   return wrap;
 }
 
-function drill(ctx, scope) {
+/** Link to the speaking drill for exactly these words (e.g. the lesson just finished). */
+export function lessonDrillHref(words) {
+  return `#/speak/drill/lesson/${words.map((w) => encodeURIComponent(w.id)).join('/')}`;
+}
+
+/**
+ * Speaking drill. `scope` is 'learned', a category id, or 'lesson' followed
+ * by the ids of the words to drill (see lessonDrillHref).
+ */
+function drill(ctx, scope, ...ids) {
   const { lang } = ctx;
   const learned = learnedWords(ctx);
-  const scopeId = scope || (learned.length >= 5 ? 'learned' : lang.categories[0].id);
-  const pool = scopeId === 'learned' ? learned : lang.wordsIn(scopeId);
-  const words = shuffle(pool.length ? pool : lang.wordsIn(lang.categories[0].id));
+  const lesson = scope === 'lesson' ? ids.map((id) => lang.byId(id)).filter(Boolean) : [];
+  const scopeId = lesson.length ? 'lesson'
+    : (scope && scope !== 'lesson' ? scope : (learned.length >= 5 ? 'learned' : lang.categories[0].id));
+  const pool = scopeId === 'lesson' ? lesson : scopeId === 'learned' ? learned : lang.wordsIn(scopeId);
+  // A lesson's words come in the order they were taught; other lists are shuffled.
+  const words = scopeId === 'lesson' ? lesson : shuffle(pool.length ? pool : lang.wordsIn(lang.categories[0].id));
   let i = 0;
   const stage = h('div');
+  // Each card gets its own cleanup scope, so Next/Previous stop the previous
+  // card's recognition, recording and pending autoplay.
+  const card = cleanupScope(ctx);
 
   const select = h('select', {
     class: 'select', 'aria-label': 'Words to drill',
     onchange: (e) => ctx.go(`/speak/drill/${e.target.value}`),
   },
+    lesson.length ? h('option', { value: 'lesson', selected: true }, `This lesson’s words (${lesson.length})`) : null,
     h('option', { value: 'learned', disabled: learned.length < 1, selected: scopeId === 'learned' }, `Words I’ve learned (${learned.length})`),
     lang.categories.map((c) => h('option', { value: c.id, selected: scopeId === c.id }, `${c.emoji} ${c.name}`)));
 
   function show() {
+    card.cleanup();
+    ctx.speech.cancelSpeech();
+    const c = card.ctx;
     const w = words[i];
     set(stage, h('div', { class: 'card drill-card' },
       h('p', { class: 'kicker' }, `${i + 1} / ${words.length}`),
       h('div', { class: 'word-hero' },
-        h('h2', { class: 'hero-tr', lang: lang.code }, w.tr, ' ', playButton(ctx, w.tr), playButton(ctx, w.tr, { slow: true })),
-        readingLine(ctx, w),
+        h('h2', { class: 'hero-tr', lang: lang.code }, w.tr, ' ', playButton(c, w.tr), playButton(c, w.tr, { slow: true })),
+        readingLine(c, w),
         h('p', { class: 'hero-en' }, w.en)),
-      pronunciationPanel(ctx, w),
-      speakPractice(ctx, w),
-      exampleBlock(ctx, w),
+      pronunciationPanel(c, w),
+      speakPractice(c, w),
+      exampleBlock(c, w),
       h('div', { class: 'actions split' },
         h('button', { type: 'button', class: 'btn', disabled: i === 0, onclick: () => { i--; show(); } }, icon('back', 18), 'Previous'),
         h('button', { type: 'button', class: 'btn primary', onclick: () => { i = (i + 1) % words.length; show(); } }, 'Next', icon('arrow', 18))),
     ));
-    if (ctx.settings.autoplay) setTimeout(() => ctx.say(w.tr), 300);
+    if (ctx.settings.autoplay) sayLater(c, w.tr);
   }
 
   show();

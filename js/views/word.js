@@ -1,5 +1,5 @@
 import { h, icon } from '../ui.js';
-import { audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge } from '../components.js';
+import { audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge, sayLater } from '../components.js';
 import { status, STATUS_LABEL, markKnown } from '../srs.js';
 
 export default function word(ctx, id) {
@@ -12,7 +12,7 @@ export default function word(ctx, id) {
   const card = store.getCard(lang.code, w.id);
   const st = status(card);
   const cat = lang.categories.find((c) => c.id === w.cat);
-  if (ctx.settings.autoplay) setTimeout(() => ctx.say(w.tr), 300);
+  if (ctx.settings.autoplay) sayLater(ctx, w.tr);
 
   return h('div', { class: 'view' },
     h('a', { href: '#/progress', class: 'back-link' }, icon('back', 16), 'Word list'),

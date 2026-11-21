@@ -70,11 +70,46 @@ export function exampleBlock(ctx, word) {
   );
 }
 
-function feedbackFor(score) {
-  if (score >= 0.95) return { cls: 'good', title: 'Mükemmel! Excellent.' };
-  if (score >= 0.8) return { cls: 'good', title: 'Çok iyi! Very close.' };
+/**
+ * A feedback line from the language pack: plain English, or [native, gloss].
+ * The native words are isolated and tagged so they get the right font and
+ * direction (an Arabic “!” stays at the end of its word).
+ */
+export function praiseLine(lang, line) {
+  if (!Array.isArray(line)) return line;
+  const [native, gloss] = line;
+  return [h('bdi', { lang: lang.code }, native), ' ', gloss];
+}
+
+function feedbackFor(score, lang) {
+  if (score >= 0.95) return { cls: 'good', title: lang.scoreTitles.excellent };
+  if (score >= 0.8) return { cls: 'good', title: lang.scoreTitles.close };
   if (score >= 0.55) return { cls: 'warn', title: 'Almost — focus on the highlighted letters.' };
   return { cls: 'bad', title: 'Not quite yet. Listen once more and try again.' };
+}
+
+/** The target as written, with the letters to work on marked (diff from lang.diffAsWritten). */
+export function diffLine(diff, attrs = {}) {
+  return h('p', { class: 'diff', ...attrs }, diff.map((d) => h('span', { class: d.ok ? 'ok' : 'miss' }, d.ch)));
+}
+
+/**
+ * A child cleanup scope for content that is replaced inside a screen (one
+ * card at a time): hand `scope.ctx` to its components and call
+ * `scope.cleanup()` before showing the next card. It also runs when the
+ * screen itself goes away.
+ */
+export function cleanupScope(ctx) {
+  let fns = [];
+  const cleanup = () => { const run = fns; fns = []; run.forEach((f) => f()); };
+  ctx.onCleanup(cleanup);
+  return { ctx: Object.create(ctx, { onCleanup: { value: (fn) => fns.push(fn) } }), cleanup };
+}
+
+/** Speak `text` after a short pause, unless the card or screen has gone by then. */
+export function sayLater(ctx, text, ms = 300) {
+  const t = setTimeout(() => ctx.say(text), ms);
+  ctx.onCleanup(() => clearTimeout(t));
 }
 
 /**
@@ -89,6 +124,7 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
   let best = 0;
   let attempts = 0;
   let session = null;
+  let disposed = false;
 
   const status = h('p', { class: 'speak-status', 'aria-live': 'polite' },
     canRecognize ? 'Tap the mic, then say it out loud.' : speech.RECOGNITION_ERRORS.unsupported);
@@ -103,6 +139,7 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
   }, icon('mic', 30));
 
   async function toggle() {
+    if (disposed) return;
     if (session) { session.stop(); return; }
     mic.classList.add('live');
     mic.setAttribute('aria-label', 'Stop listening');
@@ -110,6 +147,8 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
     session = speech.listen({ lang: lang.speechLang });
     const res = await session.result;
     session = null;
+    // The card or screen went away while listening: don't score or reward the old word.
+    if (disposed) return;
     mic.classList.remove('live');
     mic.setAttribute('aria-label', 'Speak now');
     if (!res.ok) {
@@ -118,7 +157,7 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
     }
     // Some languages have several valid written forms (kanji and kana): score against each.
     const scored = lang.spokenTargets(word)
-      .map((t) => scoreSpoken(t, res.alternatives, lang))
+      .map((t) => ({ ...scoreSpoken(t, res.alternatives, lang), written: t }))
       .reduce((a, b) => (b.score > a.score ? b : a));
     attempts++;
     best = Math.max(best, scored.score);
@@ -129,9 +168,12 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
   }
 
   function renderResult(scored) {
-    const fb = feedbackFor(scored.score);
+    const fb = feedbackFor(scored.score, lang);
     const pct = Math.round(scored.score * 100);
-    const missed = new Set(scored.diff.filter((d) => !d.ok).map((d) => d.ch));
+    // Show the target as written (katakana stays katakana, Arabic keeps its
+    // spaces and spelling); tips are looked up by the normalised letters.
+    const diff = lang.diffAsWritten(scored.written, scored.heard);
+    const missed = new Set(diff.filter((d) => !d.ok).flatMap((d) => [...d.key]));
     const tips = [...missed].map((ch) => lang.letterHint(ch)).filter((l) => l?.special);
     result.hidden = false;
     result.className = `speak-result ${fb.cls}`;
@@ -139,12 +181,11 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
       h('div', { class: 'score-row' },
         h('div', { class: 'score-ring', style: { '--pct': pct } }, h('span', null, `${pct}%`)),
         h('div', null,
-          h('p', { class: 'score-title' }, fb.title),
+          h('p', { class: 'score-title' }, praiseLine(lang, fb.title)),
           h('p', { class: 'heard' }, 'Heard: “', h('bdi', { lang: lang.code }, scored.raw || '…'), '”'),
         ),
       ),
-      h('p', { class: 'diff', lang: lang.code, 'aria-label': 'Target with letters to work on highlighted' },
-        scored.diff.map((d) => h('span', { class: d.ok ? 'ok' : 'miss' }, d.ch))),
+      diffLine(diff, { lang: lang.code, 'aria-label': 'Target with letters to work on highlighted' }),
       tips.length
         ? h('ul', { class: 'letter-notes' }, tips.map((l) =>
           h('li', null, h('b', { lang: lang.code }, l.lower), h('span', { class: 'ipa' }, `/${l.ipa}/`), ' ', l.hint)))
@@ -155,7 +196,7 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
     );
   }
 
-  ctx.onCleanup(() => session?.stop());
+  ctx.onCleanup(() => { disposed = true; session?.stop(); });
 
   return h('div', { class: 'speak' },
     h('div', { class: 'speak-main' },
@@ -172,32 +213,53 @@ export function recorder(ctx, text) {
   const wrap = h('div', { class: 'recorder' });
   let rec = null;
   let url = null;
-  ctx.onCleanup(() => { rec?.stop(); if (url) URL.revokeObjectURL(url); });
+  let audio = null;
+  let disposed = false;
+  // When the card or screen goes away: stop recording and playback, free the
+  // recording, and make any pending start() bail out instead of playing.
+  ctx.onCleanup(() => {
+    disposed = true;
+    rec?.stop();
+    audio?.pause();
+    if (url) URL.revokeObjectURL(url);
+    url = null;
+  });
+
+  function playMine() {
+    audio?.pause();
+    audio = new Audio(url);
+    audio.play().catch(() => {});
+  }
 
   function idle() {
     set(wrap, 
       h('button', { type: 'button', class: 'btn small', onclick: start }, icon('record', 14), 'Record myself'),
       url ? h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(text) }, icon('volume', 14), 'Native') : null,
-      url ? h('button', { type: 'button', class: 'btn small', onclick: () => new Audio(url).play() }, icon('play', 14), 'Mine') : null,
+      url ? h('button', { type: 'button', class: 'btn small', onclick: playMine }, icon('play', 14), 'Mine') : null,
     );
   }
 
   async function start() {
+    let r;
     try {
-      rec = await speech.startRecording({ maxMs: 4000 });
+      r = await speech.startRecording({ maxMs: 4000 });
     } catch {
-      ctx.toast('Microphone unavailable — check your browser permissions.');
+      if (!disposed) ctx.toast('Microphone unavailable — check your browser permissions.');
       return;
     }
-    set(wrap, h('button', { type: 'button', class: 'btn small recording', onclick: () => rec.stop() }, icon('stop', 14), 'Stop'));
-    const newUrl = await rec.stopped;
+    // Left while the browser was asking for the microphone: stop straight away.
+    if (disposed) { r.stop().then((u) => URL.revokeObjectURL(u)); return; }
+    rec = r;
+    set(wrap, h('button', { type: 'button', class: 'btn small recording', onclick: () => r.stop() }, icon('stop', 14), 'Stop'));
+    const newUrl = await r.stopped;
     rec = null;
+    if (disposed) { URL.revokeObjectURL(newUrl); return; }
     if (url) URL.revokeObjectURL(url);
     url = newUrl;
     idle();
     // Play native then the learner's attempt for an immediate comparison.
     await ctx.say(text);
-    new Audio(url).play().catch(() => {});
+    if (!disposed) playMine();
   }
 
   idle();

@@ -1,11 +1,12 @@
 // Exercise types. Each takes (ctx, word, onDone, meta) and returns an element.
 // onDone receives { correct, rating } (rating uses the SRS scale) or { skipped: true }.
 import { h, icon, bindKeys, shuffle, pick, set } from './ui.js';
-import { playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge } from './components.js';
-import { alignDiff } from './compare.js';
+import {
+  playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge,
+  praiseLine, diffLine, sayLater,
+} from './components.js';
+import { similarity } from './compare.js';
 import { AGAIN, HARD, GOOD, EASY } from './srs.js';
-
-const PRAISE = ['Doğru! Correct.', 'Harika! Great.', 'Aferin! Well done.', 'Süper! Nice.'];
 
 function once(fn) {
   let called = false;
@@ -31,7 +32,7 @@ export function pickOptions(lang, word, label, n = 4) {
 function reveal(ctx, word, correct, extra) {
   const a = ctx.lang.analyze(word);
   return h('div', { class: `reveal ${correct ? 'good' : 'bad'}` },
-    h('p', { class: 'verdict' }, icon(correct ? 'check' : 'x', 18), correct ? pick(PRAISE) : 'Not quite — here’s the answer:'),
+    h('p', { class: 'verdict' }, icon(correct ? 'check' : 'x', 18), correct ? praiseLine(ctx.lang, pick(ctx.lang.praise)) : 'Not quite — here’s the answer:'),
     h('div', { class: 'reveal-word' },
       playButton(ctx, word.tr),
       h('div', null,
@@ -95,7 +96,7 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render }
 }
 
 export function listen(ctx, word, onDone) {
-  setTimeout(() => ctx.say(word.tr), 300);
+  sayLater(ctx, word.tr);
   const prompt = h('div', { class: 'prompt listen-prompt' },
     h('button', { type: 'button', class: 'big-play', 'aria-label': 'Play the word again', onclick: () => ctx.say(word.tr) }, icon('volume', 40)),
     h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(word.tr, { slow: true }) }, icon('slow', 14), 'Slowly'),
@@ -104,7 +105,7 @@ export function listen(ctx, word, onDone) {
 }
 
 export function meaning(ctx, word, onDone) {
-  if (ctx.settings.autoplay) setTimeout(() => ctx.say(word.tr), 300);
+  if (ctx.settings.autoplay) sayLater(ctx, word.tr);
   const prompt = h('div', { class: 'prompt' },
     h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word.tr)),
     readingLine(ctx, word));
@@ -155,16 +156,21 @@ export function type(ctx, word, onDone) {
     const n = lang.normalize(v);
     let rating;
     let extra = null;
-    const close = accepted.find((a) => lang.stripDiacritics(a) === lang.stripDiacritics(v));
+    // Kana and rōmaji forms can both be close: show the one nearest to what was
+    // typed, so “kohi” is marked against “koohii”, not as an all-wrong コーヒー.
+    const close = accepted
+      .filter((a) => lang.stripDiacritics(a) === lang.stripDiacritics(v))
+      .sort((a, b) => similarity(lang.normalize(b), n) - similarity(lang.normalize(a), n))[0];
     if (accepted.some((a) => lang.normalize(a) === n)) {
       rating = GOOD;
     } else if (close) {
       rating = HARD;
-      const diff = alignDiff(lang.normalize(close), n);
+      // The accepted answer as written (its own script, spaces and marks), letters to fix marked.
+      const diff = lang.diffAsWritten(close, n);
       const latin = /^[\p{Script=Latin}\s'ʾʿ’-]+$/u.test(close);
       extra = h('div', null,
         h('p', { class: 'hint' }, lang.almostHint),
-        h('p', { class: 'diff', lang: latin ? null : lang.code }, diff.map((d) => h('span', { class: d.ok ? 'ok' : 'miss' }, d.ch))));
+        diffLine(diff, { lang: latin ? null : lang.code }));
     } else {
       rating = AGAIN;
       extra = h('p', { class: 'hint' }, 'You wrote: ', h('q', { lang: lang.code }, v));
@@ -209,7 +215,7 @@ export function speak(ctx, word, onDone) {
     onOverride: () => finish({ correct: true, rating: GOOD }),
   });
 
-  if (ctx.settings.autoplay) setTimeout(() => ctx.say(word.tr), 300);
+  if (ctx.settings.autoplay) sayLater(ctx, word.tr);
 
   return h('div', { class: 'exercise' },
     h('p', { class: 'kicker' }, 'Say it out loud'),
@@ -268,7 +274,7 @@ export function flashcard(ctx, word, onDone) {
 
 /** Teaching card used when a word is first introduced. */
 export function intro(ctx, word, onDone, meta = {}) {
-  if (ctx.settings.autoplay) setTimeout(() => ctx.say(word.tr), 300);
+  if (ctx.settings.autoplay) sayLater(ctx, word.tr);
   const finish = once(() => { unbind(); onDone({ intro: true }); });
   const unbind = bindKeys({ Enter: finish });
   ctx.onCleanup(unbind);

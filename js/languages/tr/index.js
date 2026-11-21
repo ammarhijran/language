@@ -66,6 +66,9 @@ export default makePack({
   sampleWords: [['Merhaba', 'hello'], ['Teşekkürler', 'thanks'], ['Günaydın', 'good morning']],
   sampleSentence: 'Merhaba! Türkçe öğrenmeye hazır mısın?',
   specialChars: ['ç', 'ğ', 'ı', 'ö', 'ş', 'ü'],
+  // Feedback: Turkish words with an English gloss.
+  praise: [['Doğru!', 'Correct.'], ['Harika!', 'Great.'], ['Aferin!', 'Well done.'], ['Süper!', 'Nice.']],
+  scoreTitles: { excellent: ['Mükemmel!', 'Excellent.'], close: ['Çok iyi!', 'Very good.'] },
   alphabetIntro: 'Türkçe has 29 letters and every letter is always pronounced the same way. Tap a letter to hear an example word. Highlighted letters are the ones English speakers usually find surprising.',
   categories: [...baseCategories, ...moreCategories],
   vocab: [...baseVocab, ...moreVocab],

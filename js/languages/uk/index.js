@@ -37,6 +37,9 @@ export default makePack({
   specialChars: ['і', 'ї', 'є', 'ґ', 'и', 'щ', 'ь', '’'],
   typingHint: 'Type in Ukrainian (or Latin letters)…',
   almostHint: 'So close! Just a letter or two off:',
+  // Feedback: Ukrainian words with an English gloss.
+  praise: [['Правильно!', 'Correct.'], ['Чудово!', 'Great.'], ['Молодець!', 'Well done.'], ['Супер!', 'Nice.']],
+  scoreTitles: { excellent: ['Відмінно!', 'Excellent.'], close: ['Дуже добре!', 'Very good.'] },
   alphabetIntro: 'Ukrainian uses the Cyrillic alphabet — 33 letters, read almost exactly as they are written. Tap a letter to hear an example word. Highlighted letters are the ones English speakers usually find surprising.',
   pronHint: (a) => (a.stressMarked
     ? 'Highlighted syllable = stress. Ukrainian stress can fall on any syllable, so learn it with the word. Tap a syllable to hear it.'

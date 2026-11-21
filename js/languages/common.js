@@ -13,7 +13,11 @@
 // Optional (defaults below):
 //   dir, welcome, sampleWords, sampleSentence, alphabetIntro, pronHint, typingHint,
 //   specialChars, stripDiacritics, normalizeSpoken, reading(word),
-//   acceptedAnswers(word), spokenTargets(word), noteSource(word), voiceHelp
+//   acceptedAnswers(word), spokenTargets(word), noteSource(word), voiceHelp,
+//   praise, scoreTitles          — feedback lines: an English string, or [native, English gloss]
+//   displayUnits(text)           — see writtenUnits() below
+
+import { alignDiff } from '../compare.js';
 
 const DIGITS = /[٠-٩۰-۹０-９]/g;
 
@@ -25,6 +29,39 @@ export function asciiDigits(s) {
     if (c >= 0x06F0) return String(c - 0x06F0);
     return String(c - 0x0660);
   });
+}
+
+// One unit per letter as the learner sees it: a base character plus any
+// combining marks after it (Arabic vowel signs, a Ukrainian stress accent).
+const UNIT = /\P{M}\p{M}*|\p{M}+/gu;
+
+/**
+ * Split `text` as written into display units, each with its share of
+ * normalize(text) as `key`: a letter keeps its script and marks (コ → key こ,
+ * سَّ → key س), spaces and punctuation are kept for display but only count as a
+ * space where the pack's normalize() keeps spaces. Joining the keys gives
+ * normalize(text), so diffs can be aligned on keys and shown as written.
+ */
+export function writtenUnits(text, normalize) {
+  const space = normalize('a b') === 'a b' ? ' ' : '';
+  const units = (text.normalize('NFC').match(UNIT) || []).map((ch) => {
+    const key = normalize(ch);
+    // A space or a word-splitting mark (comma, dash…) normalises to one space.
+    return { ch, key: key || (normalize(`a${ch}a`) === 'a a' ? space : '') };
+  });
+  // Like normalize(): never two spaces in a row, none at either end.
+  let afterSpace = true;
+  for (const u of units) {
+    if (u.key !== ' ') {
+      if (u.key) afterSpace = false;
+    } else if (afterSpace) {
+      u.key = '';
+    } else {
+      afterSpace = true;
+    }
+  }
+  for (let i = units.length - 1; i >= 0 && (!units[i].key || units[i].key === ' '); i--) units[i].key = '';
+  return units;
 }
 
 export function makePack(def) {
@@ -61,6 +98,10 @@ export function makePack(def) {
     acceptedAnswers: (w) => [w.tr, ...(w.alt || [])],
     spokenTargets: (w) => [w.tr],
     noteSource: (w) => w.tr,
+    // Feedback in English unless the pack has native words for it.
+    praise: ['Correct!', 'Great!', 'Well done!', 'Nice!'],
+    scoreTitles: { excellent: 'Excellent!', close: 'Very close!' },
+    displayUnits: (text) => writtenUnits(text, normalize),
     ...def,
     normalize,
     stripDiacritics,
@@ -84,6 +125,21 @@ export function makePack(def) {
     }
     return notes;
   });
+
+  /**
+   * Which letters of `text` (as written) were matched by `heard` (already
+   * normalised): aligned on the normalised letters, reported per display unit
+   * as { ch, key, ok } so the learner sees the word in its own script.
+   */
+  pack.diffAsWritten = (text, heard) => {
+    const units = pack.displayUnits(text);
+    const diff = alignDiff(units.map((u) => u.key).join(''), heard);
+    let i = 0;
+    return units.map(({ ch, key }) => {
+      const part = diff.slice(i, (i += [...key].length));
+      return { ch, key, ok: part.every((d) => d.ok) };
+    });
+  };
 
   /** Text used by the word-list search: the word, its readings and romanisations. */
   for (const w of words) {

@@ -21,6 +21,8 @@ export default function welcome(ctx) {
     'aria-pressed': String(g.value === goal),
     onclick: (e) => {
       goal = g.value;
+      // Saved straight away: choosing a language reloads the page.
+      store.updateSettings({ dailyGoal: goal });
       goalButtons.forEach((b) => { b.classList.toggle('selected', b === e.currentTarget); b.setAttribute('aria-pressed', String(b === e.currentTarget)); });
     },
   }, h('b', null, g.name), h('small', null, `${g.value} exercises · ${g.time}`)));

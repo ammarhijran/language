@@ -2,6 +2,8 @@ import { h, icon, shuffle } from '../ui.js';
 import { categoryCard, categorySections, grammarLink } from '../components.js';
 import { runSession } from '../session.js';
 import { newCard, review, markKnown, GOOD, AGAIN } from '../srs.js';
+import { recognitionSupported } from '../speech.js';
+import { lessonDrillHref } from './pronounce.js';
 
 export default function learn(ctx, catId) {
   const { lang, store } = ctx;
@@ -64,12 +66,23 @@ export default function learn(ctx, catId) {
           remaining
             ? h('button', { type: 'button', class: 'btn primary wide', onclick: () => ctx.rerender() }, `Next ${Math.min(remaining, ctx.settings.lessonSize)} words`, icon('arrow', 18))
             : h('a', { class: 'btn primary wide', href: '#/learn' }, 'Choose another topic'),
-          h('a', { class: 'btn wide', href: `#/practice/speak/${cat.id}` }, icon('mic', 18), 'Practise saying them'),
+          sayThemLink(batch),
           h('a', { class: 'btn ghost wide', href: '#/' }, 'Back home'),
         ),
       );
     },
   }));
+}
+
+/**
+ * After a lesson: drill saying exactly the words it taught. Without speech
+ * recognition the drill still works for listening and recording yourself,
+ * so the link says that instead of promising a score.
+ */
+function sayThemLink(words) {
+  const scored = recognitionSupported();
+  return h('a', { class: 'btn wide', href: lessonDrillHref(words) },
+    icon(scored ? 'mic' : 'volume', 18), scored ? 'Practise saying them' : 'Listen and repeat them');
 }
 
 function picker(ctx) {

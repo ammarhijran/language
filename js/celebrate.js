@@ -74,15 +74,31 @@ function show(batch, done) {
   const c = content(r);
   const extraXp = more.reduce((sum, x) => sum + (content(x).xp || 0), 0);
   const prevFocus = document.activeElement;
+  let closed = false;
   const close = (path) => {
+    if (closed) return;
+    closed = true;
     document.removeEventListener('keydown', onKey, true);
     overlay.classList.add('leaving');
     setTimeout(() => { overlay.remove(); prevFocus?.focus?.({ preventScroll: true }); done(); }, 180);
     if (path) location.hash = path;
   };
+  // Tab and Shift+Tab cycle through the dialog's buttons (wrapping around).
+  const moveFocus = (step) => {
+    const buttons = [...overlay.querySelectorAll('button')];
+    const at = buttons.indexOf(document.activeElement);
+    const next = at < 0 ? (step > 0 ? 0 : buttons.length - 1) : (at + step + buttons.length) % buttons.length;
+    buttons[next]?.focus();
+  };
+  // The dialog is modal: keys never reach the page's shortcuts underneath.
+  // Enter or Space on a focused button activates that button as usual; Enter
+  // anywhere else means “Continue”.
   const onKey = (e) => {
-    if (e.key === 'Escape' || e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); close(); }
-    if (e.key === 'Tab') { e.preventDefault(); overlay.querySelector('button')?.focus(); }
+    e.stopPropagation();
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key === 'Tab') { e.preventDefault(); moveFocus(e.shiftKey ? -1 : 1); return; }
+    const onButton = document.activeElement?.closest?.('button') && overlay.contains(document.activeElement);
+    if (e.key === 'Enter' && !onButton) { e.preventDefault(); close(); }
   };
   const confetti = h('div', { class: 'confetti', 'aria-hidden': 'true' },
     Array.from({ length: 28 }, (_, i) => h('i', { style: { '--x': `${(i * 37) % 100}%`, '--d': `${(i % 7) * 0.08}s`, '--h': `${(i * 47) % 360}` } })));
