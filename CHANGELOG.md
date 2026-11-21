@@ -18,7 +18,7 @@
   - Lessons earn XP and sync between devices.
   - New achievements: First Rules, Grammar Geek, Grammarian, Rule Master and Talk Like a Local.
 - **Egyptian Arabic sounds like Cairo:** dialect entries are stressed by Cairene rules (*mush-KI-la*, *maʿ-LĒSH*), and typed answers accept Arabizi numbers (*ma3lesh*, *5alas*, *7abibi*).
-- **Independent content audit:** after the native-level edit, separate reviewers checked every new entry and lesson in each language again (form & pronunciation, usage & register, grammar), and every finding was re-checked before it was applied (Turkish 19, Japanese 6, Ukrainian 9, Arabic 15 fixes).
+- **Independent content audit:** after the native-level edit, separate reviewers checked every new entry and lesson in each language again (form & pronunciation, usage & register, grammar), and every finding was re-checked before it was applied (Turkish 18, Japanese 6, Ukrainian 9, Arabic 15 fixes).
 - **Delete all my data** in Settings erases every language, XP, achievements, settings and sync history on the device.
 - **Android back button** goes to the previous screen (and closes a celebration first) instead of leaving the app.
 - **Sync between devices without storing any user data.**
