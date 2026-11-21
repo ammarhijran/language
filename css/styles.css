@@ -744,3 +744,21 @@ body.bare { padding-bottom: 24px; }
   .session-head .xp-unit { display: none; }
   .session-count { min-width: 0; }
 }
+
+/* ---------- Sync ---------- */
+.sync .how .steps { margin: 0 0 .75rem; padding-left: 1.3rem; display: grid; gap: .45rem; }
+.privacy-note { margin: 0; padding: .6rem .8rem; border-radius: var(--radius-sm); background: var(--good-soft); font-size: .9rem; }
+.pass-row { display: flex; gap: .4rem; align-items: center; }
+.pass-row .select { flex: 1; }
+.code-box {
+  width: 100%; min-height: 96px; padding: .6rem .75rem; border: 1px solid var(--border); border-radius: 12px;
+  background: var(--surface-2); color: var(--text); font: .78rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  word-break: break-all; resize: vertical; margin-bottom: .5rem;
+}
+.sync-out { margin-top: .75rem; }
+.sync-error { color: var(--bad); font-weight: 600; margin: .5rem 0 0; }
+.sync-summary { margin-top: .75rem; box-shadow: none; }
+.sync-langs { list-style: none; padding: 0; margin: 0 0 .75rem; display: grid; gap: .4rem; }
+.sync-langs li { display: flex; justify-content: space-between; gap: .5rem; flex-wrap: wrap; }
+.sync-done { margin-top: .75rem; background: var(--good-soft); border-color: color-mix(in srgb, var(--good) 35%, transparent); }
+.sync-done .hint { margin: .4rem 0; }

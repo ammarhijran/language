@@ -140,7 +140,7 @@ export default function journey(ctx) {
   document.querySelector('.trophy .dot')?.setAttribute('hidden', '');
 
   const daysLeft = 7 - ((new Date().getDay() + 6) % 7);
-  const xpBy = ctx.game.state().xpBy;
+  const xpBy = ctx.game.xpByLang();
 
   return h('div', { class: 'view journey' },
     h('h1', null, 'Journey'),

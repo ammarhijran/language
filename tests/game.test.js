@@ -32,7 +32,7 @@ test('answers earn XP with combo bonus, and level-ups are announced', () => {
   for (let i = 0; i < 8; i++) game.answer({ lang: 'tr', rating: GOOD, combo: 1, now: noon });
   assert.ok(kinds().includes('level'), 'crossing 100 XP is a level-up');
   assert.equal(game.level().level, 2);
-  assert.equal(game.state().xpBy.tr, game.totalXp());
+  assert.equal(game.xpByLang().tr, game.totalXp());
 });
 
 test('achievements unlock once, from real progress', () => {
@@ -105,8 +105,8 @@ test('speaking counts once per word per day; XP only outside sessions', () => {
   assert.equal(game.spoke({ lang: 'tr', wordId: 'kedi', score: 0.95 }), 8);
   assert.equal(game.spoke({ lang: 'tr', wordId: 'kedi', score: 1 }), 0, 'same word again today');
   assert.equal(game.spoke({ lang: 'tr', wordId: 'su', score: 1, inSession: true }), 0);
-  assert.equal(game.state().c.speakGreat, 2);
-  assert.equal(game.state().c.speakPerfect, 1);
+  assert.equal(game.counters().speakGreat, 2);
+  assert.equal(game.counters().speakPerfect, 1);
 });
 
 test('ear quiz: perfect score bonus and Golden Ear', () => {

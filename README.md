@@ -40,6 +40,20 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Celebrations** for level-ups, badges and goals. They wait until a session ends, and rewards that arrive together share one card.
 - Everything is on the **Journey** page (the 🏆 in the top bar). Game features can be switched off in Settings; the daily goal, streaks and personal goals stay.
 
+### Sync between devices — without accounts or servers
+Lisan has no backend. To copy progress to another phone, tablet or computer, go to **Settings → Sync between devices**:
+1. **Create a sync code** on one device. Add a passphrase to encrypt it end to end (PBKDF2-SHA-256 → AES-GCM-256, in the browser).
+2. **Move it yourself:** Copy, Share… (AirDrop, Nearby Share, messages) or Save as file to your own iCloud Drive or Google Drive.
+3. **Paste it or open the file** on the other device. Check the preview, then merge.
+
+Merging never overwrites:
+- **Words:** the most recently reviewed copy of each word wins.
+- **Daily logs:** each count takes the larger value.
+- **Achievements:** combined.
+- **XP and counters:** kept per device (a G-counter CRDT) and added up, so syncing in any order or repeatedly never double-counts.
+
+A typical code is under 1 kB. Even every word in all four languages fits in about 20 kB.
+
 ### Pronunciation
 - **Native-voice audio** at normal and slow speed, using your device's Turkish text-to-speech voice.
 - **Breakdown for every word:**
@@ -119,6 +133,7 @@ js/exercises.js, session.js    exercise types and the session runner
 js/components.js               pronunciation panel, speak-and-score, recorder
 js/srs.js                      spaced-repetition scheduler
 js/game.js, celebrate.js       XP, levels, achievements, challenges, goals · reward overlays
+js/sync.js                     sync codes: compress, encrypt, merge (no server)
 js/compare.js                  scoring for typed and spoken answers
 js/speech.js                   text-to-speech, recognition, recording
 js/store.js                    on-device persistence, export/import

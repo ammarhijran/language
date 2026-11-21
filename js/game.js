@@ -125,12 +125,28 @@ export function challengesForWeek(key) {
 const COUNTERS = ['lessons', 'answers', 'correct', 'sessions', 'flawless', 'speakGreat', 'speakPerfect', 'earQuizzes', 'earPerfect',
   'goalsMet', 'challenges', 'bestCombo', 'bestStreak', 'early', 'night', 'personalGoals'];
 
+// Counters where the best value counts, rather than the sum across devices.
+const BEST = new Set(['bestCombo', 'bestStreak']);
+
+/*
+ * XP and counters are kept per device (s.dev[deviceId]) and added up when read.
+ * That makes merging progress from another device safe: each device's numbers
+ * only ever grow, so a merge takes the larger value per device (a "G-counter").
+ */
 function g() {
   const s = store.getGame();
-  s.xp ??= 0;
-  s.xpBy ??= {};
-  s.c ??= {};
-  for (const k of COUNTERS) s.c[k] ??= 0;
+  const me = store.deviceId();
+  s.dev ??= {};
+  if (s.xp !== undefined || s.c || s.xpBy) {
+    // Data from before per-device counters: it all belongs to this device.
+    s.dev[me] = { xp: (s.xp || 0), xpBy: { ...(s.xpBy || {}) }, c: { ...(s.c || {}) } };
+    delete s.xp; delete s.xpBy; delete s.c;
+  }
+  const own = (s.dev[me] ??= {});
+  own.xp ??= 0;
+  own.xpBy ??= {};
+  own.c ??= {};
+  for (const k of COUNTERS) own.c[k] ??= 0;
   s.letters ??= {};
   s.unlocked ??= {};
   s.unseen ??= [];
@@ -138,12 +154,41 @@ function g() {
   s.spoken ??= { day: '', ids: [] };
   const wk = weekKey();
   if (!s.week || s.week.key !== wk) s.week = { key: wk, picks: challengesForWeek(wk), p: {}, done: {}, goalDays: [] };
+  if (Object.values(s.week.p).some((v) => typeof v === 'number')) s.week.p = { [me]: s.week.p }; // old format
+  s.week.p[me] ??= {};
   return s;
 }
 
+const own = () => g().dev[store.deviceId()];
+const c = () => own().c;
+
 export const state = () => g();
-export const totalXp = () => g().xp;
-export const level = () => levelFromXp(g().xp);
+export const totalXp = () => Object.values(g().dev).reduce((sum, d) => sum + (d.xp || 0), 0);
+export const level = () => levelFromXp(totalXp());
+
+/** XP earned per language, summed over devices. */
+export function xpByLang() {
+  const out = {};
+  for (const d of Object.values(g().dev)) for (const [k, v] of Object.entries(d.xpBy || {})) out[k] = (out[k] || 0) + v;
+  return out;
+}
+
+/** Counters summed over devices (best-of counters take the maximum). */
+export function counters() {
+  const devs = Object.values(g().dev);
+  const out = {};
+  for (const k of COUNTERS) {
+    const vals = devs.map((d) => d.c?.[k] || 0);
+    out[k] = BEST.has(k) ? Math.max(0, ...vals) : vals.reduce((a, b) => a + b, 0);
+  }
+  return out;
+}
+
+/** This week's progress on a challenge metric, over all devices. */
+function weekValue(metric) {
+  const vals = Object.values(g().week.p).map((p) => p?.[metric] || 0);
+  return metric === 'combo' ? Math.max(0, ...vals) : vals.reduce((a, b) => a + b, 0);
+}
 
 // ---------- Rewards ----------
 
@@ -158,19 +203,20 @@ function emit(reward) {
 
 function addXp(lang, amount, reason) {
   if (!amount) return 0;
-  const s = g();
-  const before = levelFromXp(s.xp).level;
-  s.xp += amount;
-  s.xpBy[lang] = (s.xpBy[lang] || 0) + amount;
-  s.week.p.xp = (s.week.p.xp || 0) + amount;
+  const me = own();
+  const before = level().level;
+  me.xp += amount;
+  me.xpBy[lang] = (me.xpBy[lang] || 0) + amount;
+  bumpWeek('xp', amount);
   emit({ kind: 'xp', amount, reason, lang });
-  const after = levelFromXp(s.xp);
+  const after = level();
   if (after.level > before) emit({ kind: 'level', level: after.level, title: after.title });
   return amount;
 }
 
-const bumpWeek = (key, by = 1) => { const s = g(); s.week.p[key] = (s.week.p[key] || 0) + by; };
-const maxWeek = (key, v) => { const s = g(); s.week.p[key] = Math.max(s.week.p[key] || 0, v); };
+const weekOwn = () => g().week.p[store.deviceId()];
+function bumpWeek(key, by = 1) { const p = weekOwn(); p[key] = (p[key] || 0) + by; }
+function maxWeek(key, v) { const p = weekOwn(); p[key] = Math.max(p[key] || 0, v); }
 
 // ---------- Metrics & evaluation ----------
 
@@ -192,8 +238,9 @@ export function metrics() {
     streakNow = Math.max(streakNow, store.streak(code));
     if ((s.letters[code] || []).length >= L.alphabet.length) alphabet++;
   }
-  s.c.bestStreak = Math.max(s.c.bestStreak, streakNow);
-  return { ...s.c, words, mastered, langs, topics, topicsInLang, streak: s.c.bestStreak, level: levelFromXp(s.xp).level, alphabet };
+  c().bestStreak = Math.max(c().bestStreak, streakNow);
+  const all = counters();
+  return { ...all, words, mastered, langs, topics, topicsInLang, streak: all.bestStreak, level: level().level, alphabet };
 }
 
 export function achievementProgress() {
@@ -207,7 +254,7 @@ export function challengeProgress() {
   const goalDays = s.week.goalDays.length;
   return s.week.picks.map((id) => {
     const c = CHALLENGES.find((x) => x.id === id);
-    const raw = c.metric === 'goalDays' ? goalDays : (s.week.p[c.metric] || 0);
+    const raw = c.metric === 'goalDays' ? goalDays : weekValue(c.metric);
     return { ...c, value: Math.min(raw, c.target), done: !!s.week.done[id] };
   });
 }
@@ -217,11 +264,11 @@ function evaluate(lang = 'tr') {
   const s = g();
   for (let pass = 0; pass < 4; pass++) {
     let changed = false;
-    for (const c of challengeProgress()) {
-      if (!c.done && c.value >= c.target) {
-        s.week.done[c.id] = true;
-        s.c.challenges++;
-        emit({ kind: 'challenge', challenge: c, xp: XP.challenge });
+    for (const ch of challengeProgress()) {
+      if (!ch.done && ch.value >= ch.target) {
+        s.week.done[ch.id] = true;
+        c().challenges++;
+        emit({ kind: 'challenge', challenge: ch, xp: XP.challenge });
         addXp(lang, XP.challenge, 'challenge');
         changed = true;
       }
@@ -229,7 +276,7 @@ function evaluate(lang = 'tr') {
     for (const [code, goal] of Object.entries(s.goals)) {
       if (goal && !goal.doneAt && personalGoal(code).learned >= goal.words) {
         goal.doneAt = Date.now();
-        s.c.personalGoals++;
+        c().personalGoals++;
         emit({ kind: 'personal-goal', lang: code, words: goal.words, xp: XP.personalGoal });
         addXp(code, XP.personalGoal, 'personal goal');
         changed = true;
@@ -255,14 +302,14 @@ function evaluate(lang = 'tr') {
 export function answer({ lang, rating, combo = 0, now = new Date() }) {
   const s = g();
   const correct = rating !== AGAIN;
-  s.c.answers++;
-  if (correct) s.c.correct++;
-  s.c.bestCombo = Math.max(s.c.bestCombo, combo);
+  c().answers++;
+  if (correct) c().correct++;
+  c().bestCombo = Math.max(c().bestCombo, combo);
   bumpWeek('answers');
   maxWeek('combo', combo);
   const hour = now.getHours();
-  if (hour < 8 && hour >= 4) s.c.early++;
-  if (hour >= 22 || hour < 4) s.c.night++;
+  if (hour < 8 && hour >= 4) c().early++;
+  if (hour >= 22 || hour < 4) c().night++;
   let xp = rating === AGAIN ? XP.again : rating === HARD ? XP.hard : XP.correct;
   if (correct && combo >= 5) xp += XP.combo;
   addXp(lang, xp, 'answer');
@@ -274,11 +321,11 @@ export function answer({ lang, rating, combo = 0, now = new Date() }) {
 export function sessionEnd({ lang, answered, firstTryCorrect }) {
   const s = g();
   if (answered < 1) return 0;
-  s.c.sessions++;
+  c().sessions++;
   let xp = 0;
   if (answered >= 5) xp += addXp(lang, XP.session, 'session');
   if (answered >= 10 && firstTryCorrect === answered) {
-    s.c.flawless++;
+    c().flawless++;
     bumpWeek('flawless');
     emit({ kind: 'flawless', answered });
     xp += addXp(lang, XP.flawless, 'flawless');
@@ -290,7 +337,7 @@ export function sessionEnd({ lang, answered, firstTryCorrect }) {
 export function learned({ lang, count }) {
   const s = g();
   if (!count) return 0;
-  s.c.lessons++;
+  c().lessons++;
   bumpWeek('learned', count);
   const xp = addXp(lang, XP.learned * count, 'learned');
   evaluate(lang);
@@ -309,8 +356,8 @@ export function spoke({ lang, wordId, score, inSession = false }) {
   const key = `${lang}:${wordId}`;
   if (s.spoken.ids.includes(key)) return 0;
   s.spoken.ids.push(key);
-  if (score >= 0.9) s.c.speakGreat++;
-  if (score >= 0.995) s.c.speakPerfect++;
+  if (score >= 0.9) c().speakGreat++;
+  if (score >= 0.995) c().speakPerfect++;
   if (score >= 0.8) bumpWeek('speak80');
   const xp = inSession ? 0 : addXp(lang, score >= 0.9 ? XP.speakGreat : score >= 0.7 ? XP.speakGood : XP.speakTry, 'speak');
   evaluate(lang);
@@ -319,11 +366,11 @@ export function spoke({ lang, wordId, score, inSession = false }) {
 
 export function earQuiz({ lang, correct, total }) {
   const s = g();
-  s.c.earQuizzes++;
+  c().earQuizzes++;
   bumpWeek('ear');
   let xp = addXp(lang, XP.earCorrect * correct, 'ear');
   if (total >= 10 && correct === total) {
-    s.c.earPerfect++;
+    c().earPerfect++;
     xp += addXp(lang, XP.earPerfect, 'ear-perfect');
   }
   evaluate(lang);
@@ -340,7 +387,7 @@ export function letterTapped(lang, letter) {
 
 export function goalMet(lang) {
   const s = g();
-  s.c.goalsMet++;
+  c().goalsMet++;
   const today = store.dayKey();
   if (!s.week.goalDays.includes(today)) s.week.goalDays.push(today);
   emit({ kind: 'goal', lang, xp: XP.dailyGoal });
@@ -403,6 +450,11 @@ export function personalGoal(lang, now = new Date()) {
     perDayNeeded = Math.ceil(remaining / daysLeft);
   }
   return { goal, learned: learnedCount, remaining, rate, eta, perDayNeeded, pct: Math.min(100, Math.round((learnedCount / goal.words) * 100)) };
+}
+
+/** Re-check achievements, challenges and goals — e.g. after merging progress from another device. */
+export function refresh(lang = 'tr') {
+  evaluate(lang);
 }
 
 // ---------- Seen state for the trophy badge ----------

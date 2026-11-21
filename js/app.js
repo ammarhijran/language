@@ -14,6 +14,7 @@ import settingsView from './views/settings.js';
 import wordView from './views/word.js';
 import welcome from './views/welcome.js';
 import journey from './views/journey.js';
+import syncView from './views/sync.js';
 import * as game from './game.js';
 import { initCelebrations } from './celebrate.js';
 import known from './views/known.js';
@@ -34,6 +35,7 @@ const ROUTES = {
   known,
   language,
   journey,
+  sync: syncView,
 };
 
 const TABS = [
@@ -43,7 +45,7 @@ const TABS = [
   { id: 'speak', label: 'Speak', icon: 'mic' },
   { id: 'progress', label: 'Progress', icon: 'chart' },
 ];
-const TAB_OF = { practice: '', word: 'progress', settings: 'progress', known: 'learn', language: '', journey: '' };
+const TAB_OF = { practice: '', word: 'progress', settings: 'progress', known: 'learn', language: '', journey: '', sync: 'progress' };
 
 let cleanups = [];
 
@@ -128,7 +130,7 @@ function render() {
     badge.hidden = due === 0;
     badge.textContent = due > 99 ? '99+' : String(due);
   }
-  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', known: 'Already learned', language: 'Languages', journey: 'Journey', word: lang.byId(params[0])?.tr }[name];
+  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', known: 'Already learned', language: 'Languages', journey: 'Journey', sync: 'Sync', word: lang.byId(params[0])?.tr }[name];
   document.title = title ? `${title} · Lisan ${lang.name}` : `Lisan · ${lang.name}`;
   window.scrollTo(0, 0);
 }

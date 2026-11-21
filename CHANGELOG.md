@@ -3,6 +3,16 @@
 ## Unreleased
 
 ### Added
+- **Sync between devices without storing any user data.**
+  - **How it works:** a sync code (or file) is created on one device, carried by the learner (copy & paste, share sheet, or their own cloud drive) and merged on the other. There's no account, and Lisan never uploads anything.
+  - **Encryption:** with a passphrase, the code is end-to-end encrypted (PBKDF2-SHA-256 210k iterations → AES-GCM-256).
+  - **Merging:** a preview shows exactly what will change, and the merge never overwrites anything.
+    - Each word keeps its most recent review, and day logs take the larger counts.
+    - Achievements, letters and challenge progress are combined.
+    - XP and counters are kept per device and added up, so nothing is double-counted.
+  - **After a merge:** achievements earned by the combined progress unlock, and the app offers to send a code back for a two-way sync.
+  - **Phone apps:** Share and Save as file use the system share sheet (`@capacitor/share`, `@capacitor/filesystem`).
+  - **Where to find it:** Settings, and "I already use Lisan on another device" on the welcome screen.
 - **Game mechanics, achievements and goals:**
   - **XP for every answer.** Combo bonuses for runs of right answers, plus bonuses for new words, finished and flawless sessions, the daily goal, speaking drills and ear training. Repeating the same word for points is capped at once per word per day.
   - **Levels and titles** (Beginner → Polyglot). The level card appears on the home screen and the Journey page.

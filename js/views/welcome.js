@@ -82,6 +82,7 @@ export default function welcome(ctx) {
       h('button', { type: 'button', class: 'btn primary wide', onclick: () => finish(`/learn/${lang.categories[0].id}`) },
         'Start my first lesson', icon('arrow', 18)),
       h('button', { type: 'button', class: 'btn ghost wide', onclick: () => finish('/') }, 'Look around first'),
+      h('button', { type: 'button', class: 'btn ghost wide', onclick: () => finish('/sync') }, 'I already use Lisan on another device'),
     ),
   );
 }

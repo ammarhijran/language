@@ -55,6 +55,26 @@ export async function init() {
   } catch { /* keep whatever we have */ }
 }
 
+/**
+ * A random id for this installation. Kept outside the synced/exported data on
+ * purpose: when progress is merged from another device, each device's XP and
+ * counters stay separate and are added up, so nothing is counted twice.
+ */
+let memDeviceId = null;
+export function deviceId() {
+  try {
+    let id = localStorage.getItem('lisan:device');
+    if (!id) {
+      id = Math.random().toString(36).slice(2, 10);
+      localStorage.setItem('lisan:device', id);
+    }
+    return id;
+  } catch {
+    memDeviceId ??= Math.random().toString(36).slice(2, 10);
+    return memDeviceId;
+  }
+}
+
 /** Game state (XP, achievements, challenges…) — owned by game.js. */
 export const getGame = () => state.game;
 export const persist = () => save();
@@ -148,6 +168,28 @@ export function importData(text) {
 export function resetProgress(lang) {
   delete state.progress[lang];
   save();
+}
+
+/** Everything that sync carries between devices (no settings — those stay per device). */
+export const syncData = () => ({ progress: state.progress, game: state.game });
+
+/** Replace progress and game state with a merged version (see sync.js). */
+export function applySync({ progress, game }) {
+  state.progress = progress;
+  state.game = game;
+  if (Object.values(progress).some((p) => Object.keys(p.cards || {}).length)) state.settings.onboarded = true;
+  save();
+}
+
+/** A short, device-only log of syncs (never synced or exported itself). */
+export function syncLog(entry) {
+  let log = [];
+  try { log = JSON.parse(localStorage.getItem('lisan:synclog') || '[]'); } catch { /* ignore */ }
+  if (entry) {
+    log = [{ ...entry, at: Date.now() }, ...log].slice(0, 10);
+    try { localStorage.setItem('lisan:synclog', JSON.stringify(log)); } catch { /* ignore */ }
+  }
+  return log;
 }
 
 /** Tests only: start from a clean in-memory state. */
