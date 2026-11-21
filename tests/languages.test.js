@@ -138,10 +138,13 @@ test('ar: Modern Standard forms and elision in the pack', () => {
       assert.ok(!(/[aiuāīū]$/.test(parts[i - 1]) && /^a(?:l|th|dh|sh|[tdrzsnṣḍṭẓ])-/.test(parts[i])), `${w.tl}: elide the article’s a`);
     }
     // MSA syllables never start with two consonants (a sign of a stray space, as in "maʿa s-salāma").
-    // Egyptian Arabic does allow them (kwayyis, shwayya), so dialect entries are exempt.
-    if (w.dialect) continue;
+    // Egyptian Arabic only adds consonant + w/y onsets (kwayyis, shwayya); anything else is still an error.
     for (const word of parts) {
-      for (const syl of arSyllabify(tokenize(word))) assert.ok(syl.findIndex(isArVowel) <= 1, `${w.tl}: ${syl.join('')}`);
+      for (const syl of arSyllabify(tokenize(word))) {
+        const v = syl.findIndex(isArVowel);
+        const egyptianGlide = w.dialect === 'Egyptian' && v === 2 && /^[wy]$/.test(syl[1]);
+        assert.ok(v <= 1 || egyptianGlide, `${w.tl}: ${syl.join('')}`);
+      }
     }
   }
 });
