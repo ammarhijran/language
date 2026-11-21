@@ -7,7 +7,7 @@
 	<false/>
 	<key>NSPrivacyTrackingDomains</key>
 	<array/>
-	<!-- Lisan collects no data: progress is stored only on the device. -->
+	<!-- Lisan collects no data: progress is kept on the device and never sent to the developer. -->
 	<key>NSPrivacyCollectedDataTypes</key>
 	<array/>
 	<key>NSPrivacyAccessedAPITypes</key>
@@ -20,6 +20,18 @@
 			<key>NSPrivacyAccessedAPITypeReasons</key>
 			<array>
 				<string>CA92.1</string>
+			</array>
+		</dict>
+		<!-- @capacitor/filesystem (used to save sync-code files for sharing) reads
+		     file creation and modification dates of files inside the app's own
+		     container (reason C617.1). Its native library ships no privacy
+		     manifest of its own, so the app must declare it. -->
+		<dict>
+			<key>NSPrivacyAccessedAPIType</key>
+			<string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+			<key>NSPrivacyAccessedAPITypeReasons</key>
+			<array>
+				<string>C617.1</string>
 			</array>
 		</dict>
 	</array>

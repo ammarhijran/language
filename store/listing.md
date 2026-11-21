@@ -38,7 +38,7 @@ turkish,türkçe,learn,vocabulary,pronunciation,flashcards,speak,words,language,
 ```
 
 ## Full description (App Store & Google Play)
-_1534 / 4000 characters_
+_1585 / 4000 characters_
 
 ```
 Learn Turkish words — and learn to say them properly.
@@ -69,7 +69,7 @@ TRACK YOUR PROGRESS
 • Practice mode for extra rounds on any topic
 
 PRIVATE BY DESIGN
-No account. No ads. No tracking. Your progress stays on your device, and you can export it any time.
+No account. No ads. No tracking. Lisan saves your progress on your device and never sends it to us or to any server we run. You can export it any time.
 
 Merhaba! Let's start.
 ```

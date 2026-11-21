@@ -3,7 +3,7 @@ import * as store from './store.js';
 import * as speech from './speech.js';
 import { h, icon, toast, set } from './ui.js';
 import { dueWords } from './stats.js';
-import { isNative } from './native.js';
+import { isNative, onBackButton, backAction, leaveApp } from './native.js';
 import home from './views/home.js';
 import learn from './views/learn.js';
 import review from './views/review.js';
@@ -20,6 +20,10 @@ import * as game from './game.js';
 import { initCelebrations } from './celebrate.js';
 import known from './views/known.js';
 import language from './views/language.js';
+
+// In the apps, progress (and with it the chosen language) may first have to be
+// restored from native storage, so wait for that before anything reads settings.
+await store.init();
 
 const lang = languages[store.getSettings().lang] || languages[defaultLanguage];
 
@@ -50,6 +54,7 @@ const TABS = [
 const TAB_OF = { practice: '', word: 'progress', settings: 'progress', known: 'learn', language: '', journey: '', sync: 'progress', grammar: 'learn' };
 
 let cleanups = [];
+let lastView = null; // the route name rendered last; null before the first render
 
 const ctx = {
   lang,
@@ -86,8 +91,87 @@ function shell() {
       h('a', { href: '#/journey', class: 'icon-btn trophy', 'aria-label': 'Journey: level, goals and achievements' }, icon('trophy'), h('i', { class: 'dot', hidden: true })),
       h('a', { href: '#/settings', class: 'icon-btn', 'aria-label': 'Settings' }, icon('settings'))),
     h('main', { id: 'view', tabindex: '-1' }),
+    // Tells screen readers which screen they're on when no heading is read out.
+    h('p', { id: 'announcer', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true', style: VISUALLY_HIDDEN }),
     tabbar,
   );
+  keepFocusInView(document.getElementById('view'));
+}
+
+const VISUALLY_HIDDEN = {
+  position: 'absolute', width: '1px', height: '1px', margin: '-1px', padding: '0',
+  overflow: 'hidden', clipPath: 'inset(50%)', whiteSpace: 'nowrap', border: '0',
+};
+
+let announceTimer;
+function announce(text) {
+  const el = document.getElementById('announcer');
+  if (!el) return;
+  // Clear first so the same text (e.g. opening Review twice) is read again.
+  el.textContent = '';
+  clearTimeout(announceTimer);
+  if (text) announceTimer = setTimeout(() => { el.textContent = text; }, 100);
+}
+
+/** Focus an element without scrolling; headings get tabindex=-1 so they can take focus. */
+function focusQuietly(el) {
+  if (!el.matches('a[href], button, input, select, textarea, [tabindex]')) el.setAttribute('tabindex', '-1');
+  el.focus({ preventScroll: true });
+}
+
+// A control's identity, to find it again after the same screen re-renders
+// (e.g. the daily-goal menu on Journey): tag, label and position among
+// controls with the same tag and label.
+const CONTROLS = 'a[href], button, input, select, textarea';
+const controlLabel = (el) => el.getAttribute('aria-label') || el.getAttribute('name') || el.textContent.trim();
+function controlKey(main, el) {
+  if (!el?.matches?.(CONTROLS) || !main.contains(el)) return null;
+  const label = controlLabel(el);
+  const same = [...main.querySelectorAll(el.tagName)].filter((c) => controlLabel(c) === label);
+  return { tag: el.tagName, label, index: same.indexOf(el) };
+}
+function findControl(main, key) {
+  if (!key) return null;
+  return [...main.querySelectorAll(key.tag)].filter((c) => controlLabel(c) === key.label)[key.index] || null;
+}
+
+/**
+ * After the view is replaced, focus would fall back to <body>: keyboard users
+ * lose their place and screen readers say nothing about the new screen. Put
+ * focus back on the same control when the same screen re-rendered and still
+ * has it, otherwise on the new screen's main heading (or the view itself), and
+ * announce the screen's name when no h1 is there to be read out.
+ */
+function focusView(main, { restoreKey, title }) {
+  const same = findControl(main, restoreKey);
+  if (same) { same.focus({ preventScroll: true }); return; }
+  const target = main.querySelector('h1') || main.querySelector('h2, .kicker') || main;
+  focusQuietly(target);
+  announce(target.tagName === 'H1' ? '' : title);
+}
+
+/**
+ * Content replaced inside the view (the next exercise of a session, a
+ * lesson's summary, the next ear-training pair…) can take the focused button
+ * with it. When that happens, focus the heading of the content that replaced
+ * it. Exercises that focus their own input (typing) do so a moment later and
+ * win. Nothing happens if focus is still somewhere, or the new content has no
+ * heading (browsers then continue Tab from where the old element was).
+ */
+function keepFocusInView(main) {
+  let last = null;
+  document.addEventListener('focusin', (e) => { last = e.target; });
+  new MutationObserver((records) => {
+    const active = document.activeElement;
+    if (!last || last.isConnected || (active && active !== document.body)) return;
+    const lost = last;
+    last = null;
+    const rec = records.find((r) => [...r.removedNodes].some((n) => n === lost || n.contains?.(lost)));
+    const box = rec?.target;
+    if (!box?.isConnected || !main.contains(box) || box === main) return;
+    const heading = box.querySelector('h1, h2, h3, .kicker');
+    if (heading) focusQuietly(heading);
+  }).observe(main, { childList: true, subtree: true });
 }
 
 function parse() {
@@ -97,12 +181,15 @@ function parse() {
 }
 
 function render() {
+  const main = document.getElementById('view');
+  const { name, params } = parse();
+  // The same screen again (rerender(), a sub-tab, a menu that changes the
+  // address): remember the focused control to put focus back on it.
+  const restoreKey = name === lastView ? controlKey(main, document.activeElement) : null;
   cleanups.forEach((fn) => { try { fn(); } catch { /* ignore */ } });
   cleanups = [];
   speech.cancelSpeech();
 
-  const { name, params } = parse();
-  const main = document.getElementById('view');
   let el;
   try {
     el = ROUTES[name](ctx, ...params);
@@ -135,9 +222,22 @@ function render() {
   const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', known: 'Already learned', language: 'Languages', journey: 'Journey', sync: 'Sync', grammar: 'Grammar', word: lang.byId(params[0])?.tr }[name];
   document.title = title ? `${title} · Lisan ${lang.name}` : `Lisan · ${lang.name}`;
   window.scrollTo(0, 0);
+  // On first load the browser (or screen reader) starts at the top by itself.
+  if (lastView !== null) focusView(main, { restoreKey, title: title || 'Lisan' });
+  lastView = name;
 }
 
-await store.init();
+// Android's back button / gesture: close an open dialog first, otherwise go
+// back a screen; only the home screen (or the welcome screen) leaves the app.
+function onBack({ canGoBack }) {
+  const dialog = document.querySelector('[role="dialog"][aria-modal="true"]:not(.leaving)');
+  const { name } = parse();
+  const action = backAction({ dialogOpen: !!dialog, atRoot: name === '' || name === 'welcome', canGoBack });
+  if (action === 'close-dialog') dialog.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+  else if (action === 'back') history.back();
+  else if (action === 'home') location.hash = '#/';
+  else { speech.cancelSpeech(); leaveApp(); }
+}
 
 // First launch: show the welcome screen. People who already have progress
 // (e.g. from before onboarding existed, or an import) skip it.
@@ -155,6 +255,7 @@ game.onReward((r) => {
 
 shell();
 window.addEventListener('hashchange', render);
+onBackButton(onBack);
 render();
 
 // Offline caching for the website. The native apps already ship their files.

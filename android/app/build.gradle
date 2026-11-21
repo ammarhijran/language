@@ -5,6 +5,8 @@ apply plugin: 'com.android.application'
 def packageJson = new groovy.json.JsonSlurper().parse(file('../../package.json'))
 def appVersionName = packageJson.version
 def appVersionCode = (System.getenv("LISAN_VERSION_CODE") ?: "1").toInteger()
+// Path to the private Google Play upload key (see STORE.md); unset for test builds.
+def uploadKeystore = System.getenv("LISAN_KEYSTORE_PATH")
 
 android {
     namespace = "app.lisan.turkish"
@@ -28,7 +30,7 @@ android {
     //    new APK installs over the old one and keeps your progress.
     //  - "upload": your private Google Play upload key, read from environment
     //    variables (GitHub secrets) so it never lives in the repo. See STORE.md.
-    def uploadKeystore = System.getenv("LISAN_KEYSTORE_PATH")
+    //    Play bundles (bundleRelease) refuse to build without it: see below.
     signingConfigs {
         sideload {
             storeFile file('sideload.keystore')
@@ -50,10 +52,29 @@ android {
             signingConfig signingConfigs.sideload
         }
         release {
+            // Installable APKs (assembleRelease) fall back to the sideload key.
             signingConfig uploadKeystore ? signingConfigs.upload : signingConfigs.sideload
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+// A Play Store bundle must never be signed with the public sideload key:
+// whoever uploads first sets the app's upload key, and that key is in this
+// repo for anyone to use. So when a release bundle is requested without
+// LISAN_KEYSTORE_PATH, stop before anything is built instead of falling back.
+// Installable APKs (assembleRelease) are not affected, and neither is Android
+// Studio's "Generate Signed App Bundle", which passes the key you pick as
+// android.injected.signing.* properties that replace the signing config.
+def ideSigning = project.hasProperty('android.injected.signing.store.file')
+gradle.taskGraph.whenReady { graph ->
+    def bundleTasks = ['bundleRelease', 'signReleaseBundle'].collect { "${project.path}:${it}" }
+    if (!uploadKeystore && !ideSigning && bundleTasks.any { graph.hasTask(it) }) {
+        throw new GradleException(
+            "A Play Store bundle needs your private upload key, but LISAN_KEYSTORE_PATH is not set. " +
+            "Set LISAN_KEYSTORE_PATH, LISAN_KEYSTORE_PASSWORD, LISAN_KEY_ALIAS and LISAN_KEY_PASSWORD (see STORE.md → Upload key), " +
+            "or run assembleRelease for an installable test APK signed with the sideload key.")
     }
 }
 

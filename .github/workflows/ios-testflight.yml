@@ -47,8 +47,13 @@ jobs:
           mkdir -p "$RUNNER_TEMP/keys"
           printf '%s' "$KEY_P8" > "$RUNNER_TEMP/keys/AuthKey_${KEY_ID}.p8"
 
+      # The version shown in the App Store (MARKETING_VERSION) comes from
+      # package.json, like on Android; the Xcode project's 1.0.0 is only a
+      # fallback for local builds. The build number is the run number.
       - name: Archive
         run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Archiving version $VERSION ($BUILD_NUMBER)"
           xcodebuild archive \
             -workspace ios/App/App.xcworkspace \
             -scheme App \
@@ -61,7 +66,14 @@ jobs:
             -authenticationKeyIssuerID "$ISSUER_ID" \
             DEVELOPMENT_TEAM="$TEAM_ID" \
             CODE_SIGN_STYLE=Automatic \
+            MARKETING_VERSION="$VERSION" \
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER"
+          # Stop here, before uploading, if the archive didn't pick the version up.
+          ARCHIVED=$(/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleShortVersionString' "$RUNNER_TEMP/Lisan.xcarchive/Info.plist")
+          if [ "$ARCHIVED" != "$VERSION" ]; then
+            echo "::error::The archive has version $ARCHIVED, expected $VERSION from package.json."
+            exit 1
+          fi
 
       - name: Upload to App Store Connect
         run: |

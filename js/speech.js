@@ -31,11 +31,54 @@ let voicesLoaded = false;
 const voiceListeners = new Set();
 const notifyVoices = () => voiceListeners.forEach((fn) => fn());
 
+// Native voice list. Android connects to its text-to-speech engine in the
+// background, so a request made at start-up can fail or come back empty:
+// retry with backoff before reporting "no voice". The list is fetched again
+// whenever the app comes back to the foreground, e.g. after the learner
+// installed voice data from the banner or the system settings.
+const VOICE_RETRY_MS = [300, 700, 1500, 3000];
+const VOICE_LOOKUP_MS = 1500; // longest a word waits for the fresh list before speaking
+const sameVoices = (a, b) => a.length === b.length && a.every((v, i) => v.voiceURI === b[i].voiceURI);
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+let voiceFetch = null;
+let voiceLoad = null;
+
+/** One request for the engine's current voices. Resolves to the list, or null if it failed. */
+function fetchNativeVoices() {
+  voiceFetch ??= TTS.getSupportedVoices()
+    .then((r) => (Array.isArray(r?.voices) ? r.voices : []), () => null)
+    .then((voices) => {
+      voiceFetch = null;
+      if (voices && !sameVoices(voices, nativeVoices)) {
+        nativeVoices = voices;
+        if (voicesLoaded) notifyVoices();
+      }
+      return voices;
+    });
+  return voiceFetch;
+}
+
+/** Fetch the voice list, retrying while the engine is still starting up. */
+function refreshVoices() {
+  voiceLoad ??= (async () => {
+    for (let attempt = 0; ; attempt++) {
+      const voices = await fetchNativeVoices();
+      if (voices?.length || attempt >= VOICE_RETRY_MS.length) break;
+      await sleep(VOICE_RETRY_MS[attempt]);
+    }
+    voiceLoad = null;
+    if (!voicesLoaded) { voicesLoaded = true; notifyVoices(); }
+  })();
+  return voiceLoad;
+}
+
 if (NATIVE) {
-  TTS.getSupportedVoices()
-    .then((r) => { nativeVoices = r?.voices || []; })
-    .catch(() => {})
-    .finally(() => { voicesLoaded = true; notifyVoices(); });
+  refreshVoices();
+  if (typeof document !== 'undefined') {
+    const onForeground = () => { if (document.visibilityState !== 'hidden') refreshVoices(); };
+    document.addEventListener('visibilitychange', onForeground);
+    document.addEventListener('resume', onForeground); // Capacitor's "app came back" event
+  }
   if (nativeRecognition) {
     STT.available().then((r) => { nativeRecognition = !!r?.available; notifyVoices(); }).catch(() => {});
   }
@@ -82,21 +125,35 @@ function pickVoice(lang, voiceURI) {
 export const canInstallVoices = () => NATIVE && nativePlatform() === 'android' && hasPlugin('TextToSpeech');
 export const installVoices = () => TTS.openInstall().catch(() => {});
 
+// Bumped by cancelSpeech(), so a native speak() still waiting for the voice
+// list doesn't start talking after the learner has moved on.
+let speechGen = 0;
+
+async function speakNative(text, { lang, rate, voiceURI }) {
+  if (!ttsSupported()) return false;
+  const gen = speechGen;
+  // The plugin picks the voice by its index in the engine's *current* list,
+  // which changes when voice data is installed or removed. Look the voice up
+  // in a fresh copy so the index can't point at a voice for another language.
+  // (If the request fails or doesn't answer quickly, the last list we got is
+  // the best guess: a stuck request must never silence every word.)
+  await Promise.race([fetchNativeVoices(), sleep(VOICE_LOOKUP_MS)]);
+  if (gen !== speechGen) return false;
+  const v = pickVoice(lang, voiceURI);
+  const index = v ? nativeVoices.indexOf(v) : -1;
+  return TTS.speak({
+    text,
+    lang,
+    rate,
+    // "playback" so audio is heard even with the iPhone's silent switch on.
+    category: 'playback',
+    queueStrategy: 0,
+    ...(index >= 0 ? { voice: index } : {}),
+  }).then(() => true, () => false);
+}
+
 export function speak(text, { lang, rate = 0.9, voiceURI } = {}) {
-  if (NATIVE) {
-    if (!ttsSupported()) return Promise.resolve(false);
-    const v = pickVoice(lang, voiceURI);
-    const index = v ? nativeVoices.indexOf(v) : -1;
-    return TTS.speak({
-      text,
-      lang,
-      rate,
-      // "playback" so audio is heard even with the iPhone's silent switch on.
-      category: 'playback',
-      queueStrategy: 0,
-      ...(index >= 0 ? { voice: index } : {}),
-    }).then(() => true, () => false);
-  }
+  if (NATIVE) return speakNative(text, { lang, rate, voiceURI });
 
   return new Promise((resolve) => {
     if (!ttsSupported()) return resolve(false);
@@ -117,6 +174,7 @@ export function speak(text, { lang, rate = 0.9, voiceURI } = {}) {
 }
 
 export function cancelSpeech() {
+  speechGen++;
   if (NATIVE) TTS.stop().catch(() => {});
   else if (synth) synth.cancel();
 }
@@ -136,22 +194,27 @@ function nativeError(err) {
 
 function listenNative({ lang, maxAlternatives, timeout }) {
   let stopped = false;
+  let timer;
   const result = (async () => {
     try {
       let perm = await STT.checkPermissions();
       if (perm?.speechRecognition !== 'granted') perm = await STT.requestPermissions();
       if (perm?.speechRecognition !== 'granted') return { ok: false, error: 'not-allowed' };
+      speechGen++; // a word still waiting to be spoken mustn't play over the recording
       await TTS.stop().catch(() => {});
       // iOS keeps listening until told to stop, so cap the attempt's length.
       const limit = manualStop() ? Math.min(timeout, 4000) : timeout;
-      const timer = setTimeout(() => STT.stop().catch(() => {}), limit);
+      timer = setTimeout(() => STT.stop().catch(() => {}), limit);
       const r = await STT.start({ language: lang, maxResults: maxAlternatives, partialResults: false, popup: false });
-      clearTimeout(timer);
       const matches = (r?.matches || []).filter(Boolean);
       if (!matches.length) return { ok: false, error: stopped && !manualStop() ? 'aborted' : 'no-speech' };
       return { ok: true, alternatives: matches.map((transcript) => ({ transcript, confidence: null })) };
     } catch (err) {
       return { ok: false, error: nativeError(err) };
+    } finally {
+      // Also when start() fails (e.g. "no speech" after a silence): a timer
+      // left running would stop the learner's next attempt part-way through.
+      clearTimeout(timer);
     }
   })();
   return { result, stop: () => { stopped = true; STT.stop().catch(() => {}); } };

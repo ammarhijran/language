@@ -59,6 +59,8 @@ bash scripts/create-upload-key.sh
 
 From then on, every push also produces `lisan-play-store-bundle` (an `.aab` file) under the **Android app** run in the Actions tab. That's the file you upload to Play.
 
+To build the bundle on your own computer, set the same four values as `LISAN_KEYSTORE_PATH` (the path to the `.keystore` file), `LISAN_KEYSTORE_PASSWORD`, `LISAN_KEY_ALIAS` and `LISAN_KEY_PASSWORD`, then run `./gradlew bundleRelease` in `android/`. Without `LISAN_KEYSTORE_PATH` the build stops with an error rather than signing the bundle with the public sideload key, which must never become your Play upload key. Installable test APKs (`./gradlew assembleRelease`) still build without it. Android Studio's **Build → Generate Signed App Bundle** also works without these variables: pick your upload `.keystore` there, never `android/app/sideload.keystore`.
+
 ### 2.3 Create the app in Play Console
 1. **Create app:**
    - App name: `Lisan: Learn Turkish Words`
@@ -81,10 +83,13 @@ From then on, every push also produces `lisan-play-store-bundle` (an `.aab` file
    | App access | All functionality is available without special access |
    | Content rating | Run the questionnaire with category Education and answer **No** to everything. Result: Everyone / PEGI 3 |
    | Target audience | **13 and over** is simplest. Including under-13s opts you into the Families policy, which needs extra review. |
-   | Data safety | Collects data: **No**. Shares data: **No**. See note below. |
+   | Data safety | Collects data: **No**. Shares data: **No**. See the note below. |
    | Government / financial / health apps | No / none / no |
 
-   > **Data safety note:** Lisan sends nothing to you or any server. Progress stays on the device. Speech is turned into text by Android's own speech-recognition service, and the app only keeps the resulting text in memory to score it. That's why "No data collected" is accurate. If you'd rather be conservative, you can declare *Audio → Voice or sound recordings*, processed ephemerally, not shared, for app functionality.
+   > **Data safety note:** Lisan never sends progress or anything else to you or to any server you run; it saves progress on the device. That's why "No data collected" is accurate. Things to know when you answer:
+   > - **Device backups.** The app allows Android's own backup (`android:allowBackup="true"`), so Android may copy Lisan's data into the user's Google account backup and restore it when the app is reinstalled. Android does this under the user's account; you never receive the data. The privacy policy says so.
+   > - **Deleting data.** *Settings → Reset progress* clears only the current language's words and daily history. *Settings → Delete all my data* erases everything Lisan stored on that device. There's no data on your side to delete.
+   > - **Speech.** Speech is turned into text by Android's own speech-recognition service, and the app only keeps the resulting text in memory to score it. If you'd rather be conservative, you can declare *Audio → Voice or sound recordings*, processed ephemerally, not shared, for app functionality.
 4. **Testing → Internal testing:**
    1. Create a release and upload the `.aab`.
    2. Accept **Play App Signing** when asked. Google keeps the final signing key and your upload key can be reset if lost.
@@ -148,7 +153,7 @@ In App Store Connect, go to **Apps → + → New App**:
 Then fill in these App-level pages:
 - **App Privacy:**
   1. Privacy policy URL.
-  2. *Data collection*: "No, we do not collect data from this app". The bundled `PrivacyInfo.xcprivacy` matches this.
+  2. *Data collection*: "No, we do not collect data from this app". Lisan sends nothing to you; the user's own iCloud or computer backup of the phone can include the app's data, which the privacy policy explains. The bundled `PrivacyInfo.xcprivacy` matches this, and also declares the "required reason" APIs the plugins use (UserDefaults for saved progress, file timestamps for sync files). Without those declarations App Store Connect rejects the upload (ITMS-91053).
 - **Age Rating:** answer *None* / *No* throughout. The result is 4+.
 - **Pricing and Availability:** Free, all countries (or your choice).
 - **Export compliance:** already answered. `ITSAppUsesNonExemptEncryption = NO` is in `Info.plist`, so Apple won't ask on every upload.
@@ -160,8 +165,8 @@ Then fill in these App-level pages:
 ---
 
 ## 4. Shipping updates
-1. Bump the version: `npm version patch`, `minor` or `major`. Both apps read the version name from `package.json`.
+1. Bump the version: `npm version patch`, `minor` or `major`. Android builds and the **iOS → TestFlight** workflow read the version name from `package.json`. Once a version is approved, App Store Connect only accepts higher versions.
 2. Push.
    - **Android:** the build number is the Actions run number, so it always increases. Download the new `.aab` and upload it to a new Play release.
-   - **iOS:** run **iOS → TestFlight** again, or Archive in Xcode after raising *Build* in the target's General tab.
+   - **iOS:** run **iOS → TestFlight** again; it sets the version from `package.json` and the build number from the run number. If you Archive in Xcode instead, first set *Version* to the `package.json` version and raise *Build* in the App target's General tab, because the Xcode project itself stays at 1.0.0.
 3. If you changed anything visible, regenerate screenshots: `node scripts/store-screenshots.cjs`.
