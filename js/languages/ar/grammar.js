@@ -1,2 +1,2226 @@
-// Grammar lessons for this language (generated from the content workflow).
-export const lessons = [];
+// Grammar lessons (explanations, tables, examples, quiz). Written by an author
+// and checked by a native-level editor in the content workflow; edit freely.
+export const lessons = [
+  {
+    "id": "vowels-and-the-article",
+    "title": "Vowel marks & the article al-",
+    "level": "A1",
+    "summary": "How Arabic letters join, what the little vowel marks mean, and how “the” (al-) changes before sun letters.",
+    "sections": [
+      {
+        "heading": "Letters that join",
+        "body": "Arabic is written and read **right to left**, and the letters of a word are joined, like handwriting. Most letters connect on both sides, but six — **ا د ذ ر ز و** — never join to the letter after them, which leaves small gaps inside words: in **وَرْدَة** (warda, rose) no two letters are joined at all. A letter can have up to four shapes (alone, at the start, in the middle, at the end of a word), but its core shape stays recognisable.\n\nIn newspapers, signs and text messages the short vowels are left out — readers simply know the words. Lisan shows them everywhere so you can pronounce everything you read."
+      },
+      {
+        "heading": "Short vowels and other marks",
+        "body": "Short vowels are small marks written above or below a consonant. Long vowels are written with full letters: **ا** (ā), **ي** (ī) and **و** (ū).",
+        "table": {
+          "head": [
+            "Mark",
+            "Name",
+            "Sound",
+            "Example word"
+          ],
+          "rows": [
+            [
+              "بَ",
+              "**fatḥa** (stroke above)",
+              "ba",
+              "قَلَم — qalam, pen"
+            ],
+            [
+              "بِ",
+              "**kasra** (stroke below)",
+              "bi",
+              "بِنْت — bint, girl"
+            ],
+            [
+              "بُ",
+              "**ḍamma** (little و above)",
+              "bu",
+              "خُبْز — khubz, bread"
+            ],
+            [
+              "بْ",
+              "**sukūn** (small circle)",
+              "b with no vowel",
+              "شَمْس — shams, sun"
+            ],
+            [
+              "بَّ",
+              "**shadda** (small w shape)",
+              "bba: the consonant is doubled",
+              "سُكَّر — sukkar, sugar"
+            ],
+            [
+              "بٌ بًا بٍ",
+              "**tanwīn** (doubled vowel mark)",
+              "bun, ban, bin",
+              "شُكْرًا — shukran, thanks"
+            ],
+            [
+              "بَا بِي بُو",
+              "**long vowels**",
+              "bā, bī, bū",
+              "كَبِير — kabīr, big"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "The article al- and sun letters",
+        "body": "Arabic has one word for “the”: **الـ (al-)**, written joined to the front of the noun. There is no word for “a/an” — a noun on its own is indefinite, and in careful Arabic it ends in **tanwīn**: كِتَابٌ (kitābun) = a book, الْكِتَابُ (al-kitābu) = the book.\n\nThe l of al- is pronounced only before the 14 **moon letters**. Before the 14 **sun letters** — the ones made with the tip of the tongue — the l is silent and the next consonant is doubled instead, so it carries a shadda: الشَّمْس is **ash-shams**, not al-shams. The l is still written.",
+        "table": {
+          "head": [
+            "Group",
+            "Letters",
+            "Example"
+          ],
+          "rows": [
+            [
+              "**Moon letters** (l is pronounced)",
+              "ا ب ج ح خ ع غ ف ق ك م ه و ي",
+              "الْقَمَر — al-qamar, the moon"
+            ],
+            [
+              "**Sun letters** (l assimilates)",
+              "ت ث د ذ ر ز س ش ص ض ط ظ ل ن",
+              "الشَّمْس — ash-shams, the sun"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "الْقَمَرُ جَمِيلٌ.",
+            "en": "The moon is beautiful.",
+            "tl": "al-qamaru jamīl",
+            "note": "ق is a moon letter, so the l of al- is pronounced."
+          },
+          {
+            "tr": "الشَّمْسُ حَارَّةٌ.",
+            "en": "The sun is hot.",
+            "tl": "ash-shamsu ḥārra",
+            "note": "ش is a sun letter: the l is written but you say ash-shams."
+          },
+          {
+            "tr": "السَّيَّارَةُ جَدِيدَةٌ.",
+            "en": "The car is new.",
+            "tl": "as-sayyāratu jadīda",
+            "note": "Another sun letter: al- + sayyāra = as-sayyāra."
+          }
+        ]
+      },
+      {
+        "heading": "Linking words together",
+        "body": "Two things happen when words are linked in a sentence. First, the **a of al- drops after a vowel**: فِي + الْبَيْت is said **fī l-bayt** (sounds like “fil-bayt”). Second, nouns carry short **case endings** (-u, -a, -i, or -un, -an, -in with tanwīn) that change with their role in the sentence.\n\nLisan’s transliterations pronounce these endings inside a sentence and drop them on the last word, which is how Arabic is read aloud (the **pausal form**). In everyday speech they are dropped altogether, so you don’t need to master them yet.",
+        "examples": [
+          {
+            "tr": "الْكِتَابُ فِي الْبَيْتِ.",
+            "en": "The book is in the house.",
+            "tl": "al-kitābu fī l-bayt",
+            "note": "After fī the a of al- drops: fī l-bayt. The final -i of al-bayti is not pronounced at the end."
+          },
+          {
+            "tr": "الْمِفْتَاحُ عَلَى الطَّاوِلَةِ.",
+            "en": "The key is on the table.",
+            "tl": "al-miftāḥu ʿalā ṭ-ṭāwila",
+            "note": "Both rules at once: the a drops after ʿalā, and ط is a sun letter."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Which of these letters never joins to the letter after it?",
+        "options": [
+          "ب",
+          "م",
+          "د",
+          "س"
+        ],
+        "answer": 2,
+        "explain": "د is one of the six non-joining letters: ا د ذ ر ز و."
+      },
+      {
+        "q": "Which mark doubles a consonant?",
+        "options": [
+          "shadda",
+          "sukūn",
+          "fatḥa",
+          "kasra"
+        ],
+        "answer": 0,
+        "explain": "Shadda (ّ) doubles the letter it sits on, as in سُكَّر (sukkar)."
+      },
+      {
+        "q": "How is الشَّمْس (the sun) pronounced?",
+        "options": [
+          "al-shams",
+          "al-sams",
+          "il-shams",
+          "ash-shams"
+        ],
+        "answer": 3,
+        "explain": "ش is a sun letter, so the l of al- assimilates: ash-shams."
+      },
+      {
+        "q": "What does the tanwīn ending of كِتَابٌ (kitābun) tell you?",
+        "options": [
+          "The noun is plural.",
+          "The noun is indefinite: “a book”.",
+          "The noun is feminine.",
+          "The word is a verb."
+        ],
+        "answer": 1,
+        "explain": "Tanwīn marks an indefinite noun; with al- it disappears: الْكِتَابُ, the book."
+      }
+    ]
+  },
+  {
+    "id": "gender-and-adjectives",
+    "title": "Masculine, feminine & adjectives",
+    "level": "A1",
+    "summary": "Every noun is masculine or feminine, and adjectives come after the noun, copying its gender and its “the”.",
+    "sections": [
+      {
+        "heading": "Spotting feminine nouns",
+        "body": "Arabic nouns are either **masculine** or **feminine** — there is no neuter “it”. Most feminine nouns end in **ة (tā marbūṭa)**, a “tied t” that is pronounced -a at the end of a phrase: مَدْرَسَة (madrasa, school), سَيَّارَة (sayyāra, car).\n\nA few feminine nouns have no ة: words for female people (أُمّ, mother; بِنْت, girl), most countries and cities (مِصْر, Egypt), and some everyday words such as شَمْس (sun), يَد (hand) and عَيْن (eye). Many words for people, and most adjectives, form the feminine just by adding ة:",
+        "table": {
+          "head": [
+            "Masculine",
+            "Feminine",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "طَالِب — ṭālib",
+              "طَالِبَة — ṭāliba",
+              "student"
+            ],
+            [
+              "مُعَلِّم — muʿallim",
+              "مُعَلِّمَة — muʿallima",
+              "teacher"
+            ],
+            [
+              "صَدِيق — ṣadīq",
+              "صَدِيقَة — ṣadīqa",
+              "friend"
+            ],
+            [
+              "كَبِير — kabīr",
+              "كَبِيرَة — kabīra",
+              "big"
+            ],
+            [
+              "جَدِيد — jadīd",
+              "جَدِيدَة — jadīda",
+              "new"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Adjectives follow the noun",
+        "body": "An adjective comes **after** its noun and **agrees** with it: a feminine noun takes a feminine adjective (add ة). It also copies the article: if the noun has al-, so does the adjective. **بَيْتٌ كَبِيرٌ** = a big house; **الْبَيْتُ الْكَبِيرُ** = the big house.\n\nIf only the noun has al-, you get a full sentence instead: الْبَيْتُ كَبِيرٌ = “the house is big” (more on this in the next lesson).",
+        "examples": [
+          {
+            "tr": "هَذَا بَيْتٌ كَبِيرٌ.",
+            "en": "This is a big house.",
+            "tl": "hādhā baytun kabīr",
+            "note": "No article on either word: “a big house”."
+          },
+          {
+            "tr": "الْبَيْتُ الْكَبِيرُ قَدِيمٌ.",
+            "en": "The big house is old.",
+            "tl": "al-baytu l-kabīru qadīm",
+            "note": "al- on both noun and adjective = “the big house”."
+          },
+          {
+            "tr": "هَذِهِ سَيَّارَةٌ جَدِيدَةٌ.",
+            "en": "This is a new car.",
+            "tl": "hādhihi sayyāratun jadīda",
+            "note": "سَيَّارَة is feminine, so the adjective is too: jadīda."
+          },
+          {
+            "tr": "سَارَةُ طَالِبَةٌ ذَكِيَّةٌ.",
+            "en": "Sara is a clever student.",
+            "tl": "sāratu ṭālibatun dhakiyya",
+            "note": "A female student, so both words end in ة."
+          },
+          {
+            "tr": "أَسْكُنُ فِي مَدِينَةٍ صَغِيرَةٍ.",
+            "en": "I live in a small town.",
+            "tl": "ʾaskunu fī madīnatin ṣaghīra",
+            "note": "The case ending changes after fī (-in), but the agreement stays the same."
+          }
+        ]
+      },
+      {
+        "heading": "Where are you from? Adjectives in -ī",
+        "body": "Adjectives of nationality and origin end in **-ī (ـِيّ)** for a man and **-iyya (ـِيَّة)** for a woman: عَرَبِيّ / عَرَبِيَّة (Arab, Arabic), مِصْرِيّ / مِصْرِيَّة (Egyptian), أَمْرِيكِيّ / أَمْرِيكِيَّة (American). The word for a language is feminine: **اللُّغَةُ الْعَرَبِيَّةُ** (the Arabic language), or simply الْعَرَبِيَّة.",
+        "examples": [
+          {
+            "tr": "أَنَا أَمْرِيكِيٌّ.",
+            "en": "I’m American. (man speaking)",
+            "tl": "ʾanā ʾamrīkī",
+            "note": "A woman says أَنَا أَمْرِيكِيَّةٌ (ʾanā ʾamrīkiyya)."
+          },
+          {
+            "tr": "هِيَ مِصْرِيَّةٌ.",
+            "en": "She is Egyptian.",
+            "tl": "hiya miṣriyya",
+            "note": "-iyya is the feminine of -ī."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Which of these nouns is feminine?",
+        "options": [
+          "كِتَاب",
+          "قَلَم",
+          "بَيْت",
+          "مَدْرَسَة"
+        ],
+        "answer": 3,
+        "explain": "مَدْرَسَة ends in ة (tā marbūṭa), the usual feminine ending."
+      },
+      {
+        "q": "How do you say “the new car”?",
+        "options": [
+          "سَيَّارَةٌ جَدِيدَةٌ",
+          "السَّيَّارَةُ الْجَدِيدَةُ",
+          "السَّيَّارَةُ جَدِيدَةٌ",
+          "الْجَدِيدَةُ السَّيَّارَةُ"
+        ],
+        "answer": 1,
+        "explain": "The adjective comes after the noun and copies both its gender and its al-."
+      },
+      {
+        "q": "What does السَّيَّارَةُ جَدِيدَةٌ mean?",
+        "options": [
+          "The car is new.",
+          "the new car",
+          "a new car",
+          "new cars"
+        ],
+        "answer": 0,
+        "explain": "Only the noun has al-, so this is a full sentence: “The car is new.”"
+      },
+      {
+        "q": "A woman from Egypt says “I’m Egyptian.” Which is right?",
+        "options": [
+          "أَنَا مِصْرِيٌّ",
+          "أَنَا مِصْرُ",
+          "أَنَا مِصْرِيَّةٌ",
+          "أَنَا الْمِصْرِيُّ"
+        ],
+        "answer": 2,
+        "explain": "A woman uses the feminine form in -iyya: miṣriyya."
+      }
+    ]
+  },
+  {
+    "id": "pronouns-and-sentences",
+    "title": "Pronouns & sentences without “is”",
+    "level": "A1",
+    "summary": "Learn the words for I, you, he and she, and build sentences like “I am a student” — Arabic needs no “am / is / are” in the present.",
+    "sections": [
+      {
+        "heading": "Personal pronouns",
+        "body": "Arabic “you” changes with the person you talk to: **أَنْتَ (ʾanta)** to a man, **أَنْتِ (ʾanti)** to a woman, **أَنْتُمْ (ʾantum)** to a group. There is no separate “it”: a thing is **هُوَ (he)** or **هِيَ (she)** according to its gender. Arabic also has forms for exactly two people (the **dual**) and for groups of women; you’ll mostly meet these in writing.",
+        "table": {
+          "head": [
+            "English",
+            "Arabic",
+            "Transliteration"
+          ],
+          "rows": [
+            [
+              "I",
+              "أَنَا",
+              "ʾanā"
+            ],
+            [
+              "you (man)",
+              "أَنْتَ",
+              "ʾanta"
+            ],
+            [
+              "you (woman)",
+              "أَنْتِ",
+              "ʾanti"
+            ],
+            [
+              "he / it",
+              "هُوَ",
+              "huwa"
+            ],
+            [
+              "she / it",
+              "هِيَ",
+              "hiya"
+            ],
+            [
+              "we",
+              "نَحْنُ",
+              "naḥnu"
+            ],
+            [
+              "you (plural)",
+              "أَنْتُمْ",
+              "ʾantum"
+            ],
+            [
+              "they",
+              "هُمْ",
+              "hum"
+            ],
+            [
+              "you two",
+              "أَنْتُمَا",
+              "ʾantumā"
+            ],
+            [
+              "they two",
+              "هُمَا",
+              "humā"
+            ],
+            [
+              "you (women)",
+              "أَنْتُنَّ",
+              "ʾantunna"
+            ],
+            [
+              "they (women)",
+              "هُنَّ",
+              "hunna"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "No “is” in the present",
+        "body": "To say “X is Y” in the present, just put the two side by side: **أَنَا طَالِبٌ** = “I (am) a student”. This is a **nominal sentence** — a sentence with no verb. The subject usually comes first and is definite (a pronoun, a name or a noun with al-); the description after it has **no al-**. That is the whole difference between الْبَيْتُ كَبِيرٌ (the house is big) and الْبَيْتُ الْكَبِيرُ (the big house). The description still agrees in gender: الْغُرْفَةُ كَبِيرَةٌ.\n\nThe past does need a verb — كَانَ (was) — which you’ll meet in the past tense lesson.",
+        "examples": [
+          {
+            "tr": "أَنَا طَالِبٌ فِي الْجَامِعَةِ.",
+            "en": "I’m a student at the university. (man speaking)",
+            "tl": "ʾanā ṭālibun fī l-jāmiʿa",
+            "note": "No word for “am”: I + student."
+          },
+          {
+            "tr": "هِيَ طَبِيبَةٌ.",
+            "en": "She is a doctor.",
+            "tl": "hiya ṭabība",
+            "note": "ṭabīb + ة for a woman."
+          },
+          {
+            "tr": "هَلْ أَنْتِ مُعَلِّمَةٌ؟",
+            "en": "Are you a teacher? (to a woman)",
+            "tl": "hal ʾanti muʿallima",
+            "note": "ʾanti for a woman; هَلْ turns a statement into a yes/no question."
+          },
+          {
+            "tr": "الْغُرْفَةُ كَبِيرَةٌ.",
+            "en": "The room is big.",
+            "tl": "al-ghurfatu kabīra",
+            "note": "Subject with al-, description without: a full sentence."
+          },
+          {
+            "tr": "نَحْنُ مِنْ لُبْنَانَ.",
+            "en": "We are from Lebanon.",
+            "tl": "naḥnu min lubnān",
+            "note": "Again no verb: we + from Lebanon."
+          }
+        ]
+      },
+      {
+        "heading": "This and that",
+        "body": "**هَذَا (hādhā)** “this” goes with masculine nouns and **هَذِهِ (hādhihi)** with feminine ones; “that” is **ذَلِكَ (dhālika)** / **تِلْكَ (tilka)**. Like any subject they need no “is”: هَذَا كِتَابٌ = this is a book. Put a noun with al- straight after them to say “this book”, “that man”. Note that هَذَا, هَذِهِ and ذَلِكَ contain a long ā that is not written with an alif.",
+        "examples": [
+          {
+            "tr": "هَذِهِ أُمِّي.",
+            "en": "This is my mother.",
+            "tl": "hādhihi ʾummī",
+            "note": "أُمّ is feminine, so هَذِهِ."
+          },
+          {
+            "tr": "ذَلِكَ الرَّجُلُ مُهَنْدِسٌ.",
+            "en": "That man is an engineer.",
+            "tl": "dhālika r-rajulu muhandis",
+            "note": "ذَلِكَ + noun with al- = “that man”."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "You’re asking a woman “Are you a student?” Which “you” do you use?",
+        "options": [
+          "أَنْتَ",
+          "أَنْتِ",
+          "أَنْتُمْ",
+          "هِيَ"
+        ],
+        "answer": 1,
+        "explain": "أَنْتِ (ʾanti) is “you” to one woman; أَنْتَ (ʾanta) is to a man."
+      },
+      {
+        "q": "How do you say “The book is new”?",
+        "options": [
+          "الْكِتَابُ الْجَدِيدُ",
+          "جَدِيدٌ كِتَابٌ",
+          "كِتَابٌ جَدِيدٌ",
+          "الْكِتَابُ جَدِيدٌ"
+        ],
+        "answer": 3,
+        "explain": "The subject has al-, the description doesn’t, and no word for “is” is needed."
+      },
+      {
+        "q": "Talking about a car (سَيَّارَة), which pronoun means “it”?",
+        "options": [
+          "هِيَ",
+          "هُوَ",
+          "هُمْ",
+          "أَنْتَ"
+        ],
+        "answer": 0,
+        "explain": "Things are “he” or “she” by gender, and سَيَّارَة is feminine."
+      },
+      {
+        "q": "Which word means “this” with a feminine noun?",
+        "options": [
+          "هَذَا",
+          "ذَلِكَ",
+          "هَذِهِ",
+          "هُوَ"
+        ],
+        "answer": 2,
+        "explain": "هَذِهِ (hādhihi) goes with feminine nouns: هَذِهِ سَيَّارَةٌ."
+      }
+    ]
+  },
+  {
+    "id": "attached-pronouns",
+    "title": "My, your, his: attached pronouns",
+    "level": "A1",
+    "summary": "“My”, “your” and “his” are endings glued to the noun — and the same endings on a preposition give you “I have”.",
+    "sections": [
+      {
+        "heading": "Possessive endings",
+        "body": "Instead of a separate word for “my”, Arabic adds an ending to the noun: كِتَاب (book) → **كِتَابِي** (kitābī, my book). A noun with an ending counts as definite, so it **never takes al-**. Like “you”, “your” has different endings for a man (**-ka**) and a woman (**-ki**).\n\nIn careful Arabic a short vowel (usually u) comes before the ending: kitābu-ka. At the end of a sentence -ka and -hu shorten to -k and -h: kitābuk, kitābuh. After an i sound, -hu and -hum become -hi and -him: فِي بَيْتِهِ (fī baytih, in his house).",
+        "table": {
+          "head": [
+            "English",
+            "Ending",
+            "Example",
+            "Transliteration"
+          ],
+          "rows": [
+            [
+              "my",
+              "ـِي",
+              "كِتَابِي",
+              "kitābī"
+            ],
+            [
+              "your (man)",
+              "ـكَ",
+              "كِتَابُكَ",
+              "kitābuka"
+            ],
+            [
+              "your (woman)",
+              "ـكِ",
+              "كِتَابُكِ",
+              "kitābuki"
+            ],
+            [
+              "his",
+              "ـهُ",
+              "كِتَابُهُ",
+              "kitābuhu"
+            ],
+            [
+              "her",
+              "ـهَا",
+              "كِتَابُهَا",
+              "kitābuhā"
+            ],
+            [
+              "our",
+              "ـنَا",
+              "كِتَابُنَا",
+              "kitābunā"
+            ],
+            [
+              "your (plural)",
+              "ـكُمْ",
+              "كِتَابُكُمْ",
+              "kitābukum"
+            ],
+            [
+              "their",
+              "ـهُمْ",
+              "كِتَابُهُمْ",
+              "kitābuhum"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "ة turns into t",
+        "body": "When a noun ends in **ة**, it is pronounced **t** before an ending and written as an ordinary **ت**: سَيَّارَة (sayyāra) → **سَيَّارَتِي** (sayyāratī, my car); مَدْرَسَة (madrasa) → **مَدْرَسَتُهُمْ** (madrasatuhum, their school).",
+        "examples": [
+          {
+            "tr": "اِسْمِي أَحْمَدُ.",
+            "en": "My name is Ahmed.",
+            "tl": "ismī ʾaḥmad",
+            "note": "ism (name) + -ī (my)."
+          },
+          {
+            "tr": "مَا اسْمُكَ؟",
+            "en": "What’s your name? (to a man)",
+            "tl": "mā smuk",
+            "note": "To a woman: مَا اسْمُكِ؟ (mā smuki). The i of ism drops after a vowel."
+          },
+          {
+            "tr": "سَيَّارَتُهَا جَدِيدَةٌ.",
+            "en": "Her car is new.",
+            "tl": "sayyāratuhā jadīda",
+            "note": "sayyāra + -hā: the ة becomes ت."
+          },
+          {
+            "tr": "بَيْتُنَا قَرِيبٌ مِنَ الْبَحْرِ.",
+            "en": "Our house is near the sea.",
+            "tl": "baytunā qarībun mina l-baḥr",
+            "note": "bayt + -nā = our house."
+          }
+        ]
+      },
+      {
+        "heading": "“I have”: عِنْدِي",
+        "body": "Arabic has no verb “to have”. Instead it says “at me (there is)”: the preposition **عِنْدَ (ʿinda, at)** plus an ending — **عِنْدِي** (I have), **عِنْدَكَ / عِنْدَكِ** (you have), **عِنْدَهُ** (he has), **عِنْدَهَا** (she has), **عِنْدَنَا** (we have). The same endings attach to other prepositions: **لِي** (for me, mine), **مَعِي** (with me), **مِنْكَ** (from you).",
+        "examples": [
+          {
+            "tr": "عِنْدِي فِكْرَةٌ.",
+            "en": "I have an idea.",
+            "tl": "ʿindī fikra",
+            "note": "Literally “at me (is) an idea”."
+          },
+          {
+            "tr": "هَلْ عِنْدَكَ أَخٌ؟",
+            "en": "Do you have a brother? (to a man)",
+            "tl": "hal ʿindaka ʾakh",
+            "note": "ʿinda + -ka = you have."
+          },
+          {
+            "tr": "عِنْدَهَا قِطَّةٌ صَغِيرَةٌ.",
+            "en": "She has a small cat.",
+            "tl": "ʿindahā qiṭṭatun ṣaghīra",
+            "note": "ʿinda + -hā = she has."
+          },
+          {
+            "tr": "هَذَا الْكِتَابُ لِي.",
+            "en": "This book is mine.",
+            "tl": "hādhā l-kitābu lī",
+            "note": "li- (for, belonging to) + -ī."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "How do you say “my car”?",
+        "options": [
+          "سَيَّارَتِي",
+          "السَّيَّارَتِي",
+          "سَيَّارَةِي",
+          "سَيَّارَتُكَ"
+        ],
+        "answer": 0,
+        "explain": "ة becomes ت before an ending, and a noun with an ending never takes al-."
+      },
+      {
+        "q": "Which ending means “her”?",
+        "options": [
+          "ـهُ",
+          "ـكِ",
+          "ـهَا",
+          "ـهُمْ"
+        ],
+        "answer": 2,
+        "explain": "-hā means “her”; -hu means “his”."
+      },
+      {
+        "q": "You ask a woman “What’s your name?” Which is right?",
+        "options": [
+          "مَا اسْمُكَ؟",
+          "مَا اسْمِي؟",
+          "مَا اسْمُهُ؟",
+          "مَا اسْمُكِ؟"
+        ],
+        "answer": 3,
+        "explain": "-ki is “your” when you speak to a woman."
+      },
+      {
+        "q": "What does عِنْدَنَا بَيْتٌ كَبِيرٌ mean?",
+        "options": [
+          "our big house",
+          "We have a big house.",
+          "We are in a big house.",
+          "They have a big house."
+        ],
+        "answer": 1,
+        "explain": "عِنْدَ + نَا (us) = “we have”; Arabic has no verb “to have”."
+      }
+    ]
+  },
+  {
+    "id": "present-tense",
+    "title": "Present tense: verb prefixes",
+    "level": "A1",
+    "summary": "Present-tense verbs change mainly at the front — أَ for I, تَ for you, يَ for he, نَ for we — and سَـ makes the future.",
+    "sections": [
+      {
+        "heading": "The prefixes أ ت ي ن",
+        "body": "In the present tense the person is shown mainly by a **prefix**: **أَ (ʾa-)** I, **تَ (ta-)** you or she, **يَ (ya-)** he or they, **نَ (na-)** we. Three forms also add an ending: **-īna** for “you” to a woman and **-ūna** for plural “you” and “they”. Because the verb already shows who is acting, the pronoun is usually left out: أَكْتُبُ = I write. Note that “you (man)” and “she” look the same: تَكْتُبُ.",
+        "table": {
+          "head": [
+            "Person",
+            "Arabic",
+            "Transliteration"
+          ],
+          "rows": [
+            [
+              "I write",
+              "أَكْتُبُ",
+              "ʾaktubu"
+            ],
+            [
+              "you write (man)",
+              "تَكْتُبُ",
+              "taktubu"
+            ],
+            [
+              "you write (woman)",
+              "تَكْتُبِينَ",
+              "taktubīna"
+            ],
+            [
+              "he writes",
+              "يَكْتُبُ",
+              "yaktubu"
+            ],
+            [
+              "she writes",
+              "تَكْتُبُ",
+              "taktubu"
+            ],
+            [
+              "we write",
+              "نَكْتُبُ",
+              "naktubu"
+            ],
+            [
+              "you write (plural)",
+              "تَكْتُبُونَ",
+              "taktubūna"
+            ],
+            [
+              "they write",
+              "يَكْتُبُونَ",
+              "yaktubūna"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "The vowel inside varies",
+        "body": "The prefixes and endings are the same for every verb, but the vowel in the middle (u, a or i) varies and is best learned with each verb: يَكْتُبُ (yaktubu, he writes), يَذْهَبُ (yadhhabu, he goes), يَجْلِسُ (yajlisu, he sits). Some common verbs have **u** in the prefix instead of a: أُرِيدُ (ʾurīdu, I want), تُحِبُّ (tuḥibbu, you like), يُسَافِرُ (yusāfiru, he travels). One present form covers both “I write” and “I’m writing”.",
+        "examples": [
+          {
+            "tr": "أَشْرَبُ الْقَهْوَةَ كُلَّ صَبَاحٍ.",
+            "en": "I drink coffee every morning.",
+            "tl": "ʾashrabu l-qahwata kulla ṣabāḥ",
+            "note": "ʾa- = I. Arabic says “the coffee” for coffee in general."
+          },
+          {
+            "tr": "هَلْ تُحِبُّ الشَّايَ؟",
+            "en": "Do you like tea? (to a man)",
+            "tl": "hal tuḥibbu sh-shāy",
+            "note": "tu-, not ta-: one of the verbs with u in the prefix. To a woman: هَلْ تُحِبِّينَ الشَّايَ؟ (hal tuḥibbīna sh-shāy)."
+          },
+          {
+            "tr": "هِيَ تَعْمَلُ فِي مُسْتَشْفًى.",
+            "en": "She works in a hospital.",
+            "tl": "hiya taʿmalu fī mustashfā",
+            "note": "ta- also means “she”."
+          },
+          {
+            "tr": "نَسْكُنُ فِي الْقَاهِرَةِ.",
+            "en": "We live in Cairo.",
+            "tl": "naskunu fī l-qāhira",
+            "note": "na- = we."
+          },
+          {
+            "tr": "هَلْ تَتَكَلَّمِينَ الْعَرَبِيَّةَ؟",
+            "en": "Do you speak Arabic? (to a woman)",
+            "tl": "hal tatakallamīna l-ʿarabiyya",
+            "note": "ta- + -īna for a woman."
+          },
+          {
+            "tr": "يَدْرُسُونَ فِي الْجَامِعَةِ.",
+            "en": "They study at the university.",
+            "tl": "yadrusūna fī l-jāmiʿa",
+            "note": "ya- + -ūna = they."
+          }
+        ]
+      },
+      {
+        "heading": "The future with سَـ",
+        "body": "For the future, put **سَـ (sa-)** in front of the present tense, written joined to it: سَأَكْتُبُ (sa-ʾaktubu, I will write). The separate word **سَوْفَ (sawfa)** means the same and sounds a little more formal or emphatic.",
+        "examples": [
+          {
+            "tr": "سَنَزُورُ جَدَّتِي يَوْمَ الْجُمُعَةِ.",
+            "en": "We’ll visit my grandmother on Friday.",
+            "tl": "sa-nazūru jaddatī yawma l-jumuʿa",
+            "note": "sa- + nazūru (we visit)."
+          },
+          {
+            "tr": "سَوْفَ يَصِلُ الْقِطَارُ بَعْدَ سَاعَةٍ.",
+            "en": "The train will arrive in an hour.",
+            "tl": "sawfa yaṣilu l-qiṭāru baʿda sāʿa",
+            "note": "sawfa + present = will."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Which prefix means “we” in the present tense?",
+        "options": [
+          "أَ",
+          "تَ",
+          "يَ",
+          "نَ"
+        ],
+        "answer": 3,
+        "explain": "نَ (na-) = we: نَكْتُبُ, we write."
+      },
+      {
+        "q": "تَكْتُبُ can mean…",
+        "options": [
+          "I write / he writes",
+          "you (man) write / she writes",
+          "we write",
+          "they write"
+        ],
+        "answer": 1,
+        "explain": "The ta- prefix is shared by “you” (man) and “she”; context tells them apart."
+      },
+      {
+        "q": "How do you ask a woman “Do you speak Arabic?”",
+        "options": [
+          "هَلْ تَتَكَلَّمُ الْعَرَبِيَّةَ؟",
+          "هَلْ يَتَكَلَّمُ الْعَرَبِيَّةَ؟",
+          "هَلْ تَتَكَلَّمِينَ الْعَرَبِيَّةَ؟",
+          "هَلْ أَتَكَلَّمُ الْعَرَبِيَّةَ؟"
+        ],
+        "answer": 2,
+        "explain": "Speaking to a woman, the verb adds -īna: tatakallamīna."
+      },
+      {
+        "q": "What does سَأَذْهَبُ mean?",
+        "options": [
+          "I will go",
+          "I go",
+          "I went",
+          "Go!"
+        ],
+        "answer": 0,
+        "explain": "sa- in front of the present tense makes the future."
+      }
+    ]
+  },
+  {
+    "id": "questions",
+    "title": "Asking questions",
+    "level": "A1",
+    "summary": "Make yes/no questions with هَلْ and ask what, who, where, when, why, how and how many.",
+    "sections": [
+      {
+        "heading": "Yes/no questions with هَلْ",
+        "body": "To make a yes/no question, put **هَلْ (hal)** in front of a statement — nothing else changes. In speech, a rising voice alone also works. Answer with **نَعَمْ (naʿam, yes)** or **لَا (lā, no)**.",
+        "examples": [
+          {
+            "tr": "هَلْ أَنْتَ مِنْ مِصْرَ؟",
+            "en": "Are you from Egypt? (to a man)",
+            "tl": "hal ʾanta min miṣr",
+            "note": "hal + statement = yes/no question."
+          },
+          {
+            "tr": "هَلْ يُوجَدُ مَطْعَمٌ قَرِيبٌ مِنْ هُنَا؟",
+            "en": "Is there a restaurant near here?",
+            "tl": "hal yūjadu maṭʿamun qarībun min hunā",
+            "note": "يُوجَدُ (yūjadu) = there is."
+          }
+        ]
+      },
+      {
+        "heading": "Question words",
+        "body": "Question words go at the **start** of the sentence. Use **مَا** before nouns and pronouns (مَا هَذَا؟ what is this?) and **مَاذَا** before verbs. After **كَمْ (how many)** the noun is **singular** and ends in -an: كَمْ سَاعَةً؟ (how many hours?). To ask a price, say **بِكَمْ؟** (for how much?). **أَيّ (which)** is followed by a singular noun without al-.",
+        "table": {
+          "head": [
+            "English",
+            "Arabic",
+            "Transliteration"
+          ],
+          "rows": [
+            [
+              "what? (before a noun)",
+              "مَا",
+              "mā"
+            ],
+            [
+              "what? (before a verb)",
+              "مَاذَا",
+              "mādhā"
+            ],
+            [
+              "who?",
+              "مَنْ",
+              "man"
+            ],
+            [
+              "where?",
+              "أَيْنَ",
+              "ʾayna"
+            ],
+            [
+              "where from?",
+              "مِنْ أَيْنَ",
+              "min ʾayna"
+            ],
+            [
+              "when?",
+              "مَتَى",
+              "matā"
+            ],
+            [
+              "why?",
+              "لِمَاذَا",
+              "limādhā"
+            ],
+            [
+              "how?",
+              "كَيْفَ",
+              "kayfa"
+            ],
+            [
+              "how many? how much?",
+              "كَمْ",
+              "kam"
+            ],
+            [
+              "how much? (price)",
+              "بِكَمْ",
+              "bikam"
+            ],
+            [
+              "which?",
+              "أَيّ",
+              "ʾayy"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "مِنْ أَيْنَ أَنْتِ؟",
+            "en": "Where are you from? (to a woman)",
+            "tl": "min ʾayna ʾanti",
+            "note": "min (from) + ʾayna (where)."
+          },
+          {
+            "tr": "مَاذَا تَشْرَبُ؟",
+            "en": "What will you have to drink? (to a man)",
+            "tl": "mādhā tashrab",
+            "note": "mādhā before a verb."
+          },
+          {
+            "tr": "مَتَى يَبْدَأُ الدَّرْسُ؟",
+            "en": "When does the lesson start?",
+            "tl": "matā yabdaʾu d-dars",
+            "note": "After a question word the verb usually comes before its subject."
+          },
+          {
+            "tr": "لِمَاذَا تَدْرُسِينَ الْعَرَبِيَّةَ؟",
+            "en": "Why are you studying Arabic? (to a woman)",
+            "tl": "limādhā tadrusīna l-ʿarabiyya",
+            "note": "limādhā = why."
+          },
+          {
+            "tr": "كَمْ أَخًا عِنْدَكَ؟",
+            "en": "How many brothers do you have? (to a man)",
+            "tl": "kam ʾakhan ʿindak",
+            "note": "After kam: a singular noun ending in -an."
+          },
+          {
+            "tr": "كَمْ عُمْرُكَ؟",
+            "en": "How old are you? (to a man)",
+            "tl": "kam ʿumruk",
+            "note": "Literally “how much is your age?”"
+          },
+          {
+            "tr": "بِكَمْ هَذَا الْقَمِيصُ؟",
+            "en": "How much is this shirt?",
+            "tl": "bikam hādhā l-qamīṣ",
+            "note": "bikam = for how much."
+          },
+          {
+            "tr": "أَيَّ لَوْنٍ تُحِبُّ؟",
+            "en": "Which colour do you like? (to a man)",
+            "tl": "ʾayya lawnin tuḥibb",
+            "note": "ʾayy + singular noun = which."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Which word turns a statement into a yes/no question?",
+        "options": [
+          "مَنْ",
+          "هَلْ",
+          "كَمْ",
+          "مَا"
+        ],
+        "answer": 1,
+        "explain": "هَلْ goes at the start: هَلْ أَنْتَ طَالِبٌ؟ (Are you a student?)"
+      },
+      {
+        "q": "“What do you want?” — which word for “what” goes before the verb تُرِيدُ?",
+        "options": [
+          "مَاذَا",
+          "مَا",
+          "مَنْ",
+          "أَيْنَ"
+        ],
+        "answer": 0,
+        "explain": "Before a verb, “what” is مَاذَا: مَاذَا تُرِيدُ؟"
+      },
+      {
+        "q": "What does مَتَى mean?",
+        "options": [
+          "where",
+          "why",
+          "how",
+          "when"
+        ],
+        "answer": 3,
+        "explain": "مَتَى (matā) = when."
+      },
+      {
+        "q": "Which is correct for “How many books?”",
+        "options": [
+          "كَمْ كُتُبٌ؟",
+          "كَمْ الْكِتَابُ؟",
+          "كَمْ كِتَابًا؟",
+          "كَمْ كِتَابَانِ؟"
+        ],
+        "answer": 2,
+        "explain": "After كَمْ the noun is singular and ends in -an: kam kitāban?"
+      }
+    ]
+  },
+  {
+    "id": "idafa",
+    "title": "“The X of Y”: the iḍāfa",
+    "level": "A2",
+    "summary": "Put two nouns side by side to say “the door of the house” or “a cup of coffee” — the possessive construction called iḍāfa.",
+    "sections": [
+      {
+        "heading": "Two nouns side by side",
+        "body": "To say “the X of Y” or “Y’s X”, Arabic simply puts the two nouns together: **بَابُ الْبَيْتِ** (bābu l-bayt) = the door of the house. This is the **iḍāfa** (“addition”). The key rule: the **first noun never takes al-** (and no tanwīn). The second noun takes the genitive ending -i.\n\nIf the second noun is definite (with al-, a name, or a possessive ending), the whole phrase is definite: “**the** door of the house”. If it is indefinite, so is the phrase: فِنْجَانُ قَهْوَةٍ = a cup of coffee.",
+        "examples": [
+          {
+            "tr": "بَابُ الْبَيْتِ مَفْتُوحٌ.",
+            "en": "The door of the house is open.",
+            "tl": "bābu l-bayti maftūḥ",
+            "note": "No al- on bāb, even though it means “the door”."
+          },
+          {
+            "tr": "هَذَا كِتَابُ الْمُعَلِّمِ.",
+            "en": "This is the teacher’s book.",
+            "tl": "hādhā kitābu l-muʿallim",
+            "note": "book + the teacher = the teacher’s book."
+          },
+          {
+            "tr": "أُرِيدُ فِنْجَانَ قَهْوَةٍ، مِنْ فَضْلِكَ.",
+            "en": "I’d like a cup of coffee, please.",
+            "tl": "ʾurīdu finjāna qahwa min faḍlik",
+            "note": "An indefinite second noun gives “a cup of coffee”."
+          }
+        ]
+      },
+      {
+        "heading": "ة is pronounced t",
+        "body": "When the first noun ends in **ة**, you pronounce the **t**: مَدِينَة (madīna), but **مَدِينَةُ الرِّيَاضِ** (madīnatu r-riyāḍ, the city of Riyadh). The second noun can also carry a possessive ending: **بَابُ بَيْتِي** (bābu baytī, the door of my house).\n\nNothing can come between the two nouns, so an adjective describing the first noun goes **after the whole phrase**: سَيَّارَةُ أَبِي الْجَدِيدَةُ = my father’s new car.",
+        "examples": [
+          {
+            "tr": "مَدِينَةُ الرِّيَاضِ كَبِيرَةٌ جِدًّا.",
+            "en": "The city of Riyadh is very big.",
+            "tl": "madīnatu r-riyāḍi kabīratun jiddan",
+            "note": "madīna → madīnatu: the ة is pronounced t."
+          },
+          {
+            "tr": "جَامِعَةُ الْقَاهِرَةِ قَدِيمَةٌ.",
+            "en": "Cairo University is old.",
+            "tl": "jāmiʿatu l-qāhirati qadīma",
+            "note": "Arabic says “the university of Cairo”."
+          },
+          {
+            "tr": "بَابُ بَيْتِي أَزْرَقُ.",
+            "en": "The door of my house is blue.",
+            "tl": "bābu baytī ʾazraq",
+            "note": "The second noun has a possessive ending: baytī."
+          },
+          {
+            "tr": "سَيَّارَةُ أَبِي الْجَدِيدَةُ حَمْرَاءُ.",
+            "en": "My father’s new car is red.",
+            "tl": "sayyāratu ʾabī l-jadīdatu ḥamrāʾ",
+            "note": "The adjective follows the whole phrase and agrees with سَيَّارَة (feminine)."
+          }
+        ]
+      },
+      {
+        "heading": "Everyday iḍāfas",
+        "body": "Many everyday expressions are iḍāfas — including one you already know, صَبَاحُ الْخَيْرِ.",
+        "table": {
+          "head": [
+            "Arabic",
+            "Transliteration",
+            "Literally",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "صَبَاحُ الْخَيْرِ",
+              "ṣabāḥu l-khayr",
+              "morning of goodness",
+              "good morning"
+            ],
+            [
+              "غُرْفَةُ النَّوْمِ",
+              "ghurfatu n-nawm",
+              "room of sleep",
+              "bedroom"
+            ],
+            [
+              "يَوْمُ الْجُمُعَةِ",
+              "yawmu l-jumuʿa",
+              "day of the gathering",
+              "Friday"
+            ],
+            [
+              "رَقْمُ الْهَاتِفِ",
+              "raqmu l-hātif",
+              "number of the phone",
+              "phone number"
+            ],
+            [
+              "مَحَطَّةُ الْقِطَارِ",
+              "maḥaṭṭatu l-qiṭār",
+              "station of the train",
+              "train station"
+            ],
+            [
+              "عِيدُ مِيلَادِي",
+              "ʿīdu mīlādī",
+              "feast of my birth",
+              "my birthday"
+            ]
+          ]
+        }
+      }
+    ],
+    "quiz": [
+      {
+        "q": "How do you say “the door of the house”?",
+        "options": [
+          "الْبَابُ الْبَيْتِ",
+          "الْبَيْتُ بَابٌ",
+          "بَابُ الْبَيْتِ",
+          "بَابٌ بَيْتٌ"
+        ],
+        "answer": 2,
+        "explain": "The first noun of an iḍāfa never takes al-."
+      },
+      {
+        "q": "In مَدِينَةُ الرِّيَاضِ, how is the ة pronounced?",
+        "options": [
+          "It is silent.",
+          "as -a",
+          "as h",
+          "as t: madīnatu"
+        ],
+        "answer": 3,
+        "explain": "The first noun of an iḍāfa pronounces its ة as t."
+      },
+      {
+        "q": "What does فِنْجَانُ قَهْوَةٍ mean?",
+        "options": [
+          "the coffee’s cup",
+          "a cup of coffee",
+          "The coffee is in the cup.",
+          "coffee cups"
+        ],
+        "answer": 1,
+        "explain": "With an indefinite second noun the phrase is indefinite: “a cup of coffee”."
+      },
+      {
+        "q": "Which phrase means “my father’s car”?",
+        "options": [
+          "سَيَّارَةُ أَبِي",
+          "السَّيَّارَةُ أَبِي",
+          "أَبِي سَيَّارَةٌ",
+          "سَيَّارَتِي أَبٌ"
+        ],
+        "answer": 0,
+        "explain": "car + my father, with no al- on the first noun."
+      }
+    ]
+  },
+  {
+    "id": "dual-and-plurals",
+    "title": "Two and more: dual & plurals",
+    "level": "A2",
+    "summary": "Arabic has a special form for exactly two, regular plural endings for people and many feminine nouns, and “broken” plurals that change the inside of the word.",
+    "sections": [
+      {
+        "heading": "The dual: exactly two",
+        "body": "For exactly two of something, add **-āni (ـَانِ)** to the noun, or **-ayni (ـَيْنِ)** after a preposition and as an object. No word for “two” is needed: كِتَاب → **كِتَابَانِ** (kitābān, two books). A ة turns into t: سَيَّارَة → **سَيَّارَتَانِ** (sayyāratān, two cars). In everyday speech you’ll mostly hear the -ayn form.",
+        "examples": [
+          {
+            "tr": "عِنْدِي وَلَدَانِ.",
+            "en": "I have two sons.",
+            "tl": "ʿindī waladān",
+            "note": "walad + -āni = two boys / two sons."
+          },
+          {
+            "tr": "سَأَبْقَى فِي الْفُنْدُقِ لَيْلَتَيْنِ.",
+            "en": "I’ll stay at the hotel for two nights.",
+            "tl": "sa-ʾabqā fī l-funduqi laylatayn",
+            "note": "-ayni here because it is not the subject; layla → laylatayn."
+          }
+        ]
+      },
+      {
+        "heading": "Sound plurals: -ūn and -āt",
+        "body": "Words for male people (and mixed groups) often take **-ūna (ـُونَ)**, or **-īna (ـِينَ)** after prepositions and as objects: مُعَلِّم → **مُعَلِّمُونَ** (teachers). Feminine nouns, especially those in ة, usually take **-āt (ـَات)** in place of the ة: مُعَلِّمَة → **مُعَلِّمَات**, سَيَّارَة → **سَيَّارَات**.",
+        "table": {
+          "head": [
+            "Singular",
+            "Dual",
+            "Plural"
+          ],
+          "rows": [
+            [
+              "مُعَلِّم — muʿallim (male teacher)",
+              "مُعَلِّمَانِ — muʿallimān",
+              "مُعَلِّمُونَ — muʿallimūn"
+            ],
+            [
+              "مُهَنْدِس — muhandis (engineer)",
+              "مُهَنْدِسَانِ — muhandisān",
+              "مُهَنْدِسُونَ — muhandisūn"
+            ],
+            [
+              "مُعَلِّمَة — muʿallima (female teacher)",
+              "مُعَلِّمَتَانِ — muʿallimatān",
+              "مُعَلِّمَات — muʿallimāt"
+            ],
+            [
+              "سَيَّارَة — sayyāra (car)",
+              "سَيَّارَتَانِ — sayyāratān",
+              "سَيَّارَات — sayyārāt"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "الْمُعَلِّمُونَ فِي الْمَدْرَسَةِ.",
+            "en": "The teachers are at the school.",
+            "tl": "al-muʿallimūna fī l-madrasa",
+            "note": "Sound masculine plural: -ūna."
+          },
+          {
+            "tr": "الطَّالِبَاتُ فِي الْمَكْتَبَةِ.",
+            "en": "The (female) students are in the library.",
+            "tl": "aṭ-ṭālibātu fī l-maktaba",
+            "note": "Sound feminine plural: ṭāliba → ṭālibāt."
+          }
+        ]
+      },
+      {
+        "heading": "Broken plurals",
+        "body": "Most other nouns — including most words for things — have a **broken plural**: the root consonants stay, but the vowels around them change, a bit like English man → men. There are common patterns, but at first it’s best to learn each plural with its word.\n\nOne important rule: plurals of **things and animals** are treated as **feminine singular** — they take هِيَ, هَذِهِ and a feminine singular adjective: هَذِهِ الْكُتُبُ جَدِيدَةٌ. Plurals of people take plural agreement.",
+        "table": {
+          "head": [
+            "Singular",
+            "Plural",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "كِتَاب — kitāb",
+              "كُتُب — kutub",
+              "book → books"
+            ],
+            [
+              "بَيْت — bayt",
+              "بُيُوت — buyūt",
+              "house → houses"
+            ],
+            [
+              "وَلَد — walad",
+              "أَوْلَاد — ʾawlād",
+              "boy → boys, children"
+            ],
+            [
+              "رَجُل — rajul",
+              "رِجَال — rijāl",
+              "man → men"
+            ],
+            [
+              "قَلَم — qalam",
+              "أَقْلَام — ʾaqlām",
+              "pen → pens"
+            ],
+            [
+              "صَدِيق — ṣadīq",
+              "أَصْدِقَاء — ʾaṣdiqāʾ",
+              "friend → friends"
+            ],
+            [
+              "مَدِينَة — madīna",
+              "مُدُن — mudun",
+              "city → cities"
+            ],
+            [
+              "شَارِع — shāriʿ",
+              "شَوَارِع — shawāriʿ",
+              "street → streets"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "هَذِهِ الْكُتُبُ جَدِيدَةٌ.",
+            "en": "These books are new.",
+            "tl": "hādhihi l-kutubu jadīda",
+            "note": "Plural of things → هَذِهِ and a feminine singular adjective."
+          },
+          {
+            "tr": "فِي الْمَدِينَةِ شَوَارِعُ جَمِيلَةٌ.",
+            "en": "The city has beautiful streets.",
+            "tl": "fī l-madīnati shawāriʿu jamīla",
+            "note": "Literally “in the city (are) beautiful streets”: jamīla is feminine singular."
+          },
+          {
+            "tr": "عِنْدِي أَصْدِقَاءُ كَثِيرُونَ.",
+            "en": "I have a lot of friends.",
+            "tl": "ʿindī ʾaṣdiqāʾu kathīrūn",
+            "note": "Plural of people → plural adjective: kathīrūn."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "What does كِتَابَانِ mean?",
+        "options": [
+          "two books",
+          "books",
+          "the book",
+          "a book"
+        ],
+        "answer": 0,
+        "explain": "-āni is the dual ending: exactly two."
+      },
+      {
+        "q": "What is the plural of سَيَّارَة (car)?",
+        "options": [
+          "سَيَّارُونَ",
+          "أَسْيَار",
+          "سَيَّارَات",
+          "سَيَّارَتَانِ"
+        ],
+        "answer": 2,
+        "explain": "Feminine nouns in ة usually take -āt; سَيَّارَتَانِ is the dual."
+      },
+      {
+        "q": "Which is the plural of بَيْت (house)?",
+        "options": [
+          "بَيْتُونَ",
+          "بَيْتَات",
+          "بَيْتَانِ",
+          "بُيُوت"
+        ],
+        "answer": 3,
+        "explain": "بَيْت has a broken plural: بُيُوت (buyūt)."
+      },
+      {
+        "q": "Complete “These houses are big”: هَذِهِ الْبُيُوتُ ___",
+        "options": [
+          "كَبِيرٌ",
+          "كَبِيرَةٌ",
+          "كَبِيرُونَ",
+          "الْكَبِيرَةُ"
+        ],
+        "answer": 1,
+        "explain": "Plurals of things take a feminine singular adjective."
+      }
+    ]
+  },
+  {
+    "id": "past-tense",
+    "title": "Past tense: endings",
+    "level": "A2",
+    "summary": "The past tense works the other way round from the present: the person is shown by an ending added to the verb.",
+    "sections": [
+      {
+        "heading": "Past tense endings",
+        "body": "The basic past form is the **he** form, such as **كَتَبَ (kataba, he wrote)** — this is also how Arabic dictionaries list verbs. For the other persons you add an **ending**; there are no prefixes. Watch the small differences at the end: katabtu (I), katabta (you, man), katabti (you, woman). The alif at the end of كَتَبُوا (they wrote) is silent.",
+        "table": {
+          "head": [
+            "Person",
+            "Arabic",
+            "Transliteration"
+          ],
+          "rows": [
+            [
+              "I wrote",
+              "كَتَبْتُ",
+              "katabtu"
+            ],
+            [
+              "you wrote (man)",
+              "كَتَبْتَ",
+              "katabta"
+            ],
+            [
+              "you wrote (woman)",
+              "كَتَبْتِ",
+              "katabti"
+            ],
+            [
+              "he wrote",
+              "كَتَبَ",
+              "kataba"
+            ],
+            [
+              "she wrote",
+              "كَتَبَتْ",
+              "katabat"
+            ],
+            [
+              "we wrote",
+              "كَتَبْنَا",
+              "katabnā"
+            ],
+            [
+              "you wrote (plural)",
+              "كَتَبْتُمْ",
+              "katabtum"
+            ],
+            [
+              "they wrote",
+              "كَتَبُوا",
+              "katabū"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "ذَهَبْتُ إِلَى السُّوقِ أَمْسِ.",
+            "en": "I went to the market yesterday.",
+            "tl": "dhahabtu ʾilā s-sūqi ʾams",
+            "note": "dhahab + -tu = I went."
+          },
+          {
+            "tr": "هَلْ أَكَلْتِ الْفُطُورَ؟",
+            "en": "Have you had breakfast? (to a woman)",
+            "tl": "hal ʾakalti l-fuṭūr",
+            "note": "-ti = you (woman)."
+          },
+          {
+            "tr": "وَصَلَتْ أُخْتِي مِنَ الْمَطَارِ.",
+            "en": "My sister has arrived from the airport.",
+            "tl": "waṣalat ʾukhtī mina l-maṭār",
+            "note": "-at = she."
+          },
+          {
+            "tr": "دَرَسْنَا الْعَرَبِيَّةَ فِي الْجَامِعَةِ.",
+            "en": "We studied Arabic at university.",
+            "tl": "darasnā l-ʿarabiyyata fī l-jāmiʿa",
+            "note": "-nā = we."
+          }
+        ]
+      },
+      {
+        "heading": "Using the past",
+        "body": "The past tense covers “I wrote”, “I have written” and “I did write”. The verb often comes **first** in the sentence: ذَهَبَ أَحْمَدُ إِلَى السُّوقِ (Ahmed went to the market). When the verb comes before a plural subject, it stays **singular**: وَصَلَ الضُّيُوفُ (the guests have arrived).\n\nTo say “was / were”, use **كَانَ (kāna)**, which changes its vowel: **كُنْتُ** (I was), **كَانَ** (he was), **كَانَتْ** (she was), **كُنَّا** (we were). The description after it takes the ending -an: كُنْتُ مَرِيضًا (I was ill).",
+        "examples": [
+          {
+            "tr": "وَصَلَ الضُّيُوفُ.",
+            "en": "The guests have arrived.",
+            "tl": "waṣala ḍ-ḍuyūf",
+            "note": "Verb first, so it stays singular before a plural subject."
+          },
+          {
+            "tr": "كُنْتُ مَرِيضًا أَمْسِ.",
+            "en": "I was ill yesterday. (man speaking)",
+            "tl": "kuntu marīḍan ʾams",
+            "note": "A woman says كُنْتُ مَرِيضَةً أَمْسِ (kuntu marīḍatan ʾams)."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "What does كَتَبْنَا mean?",
+        "options": [
+          "we write",
+          "I wrote",
+          "they wrote",
+          "we wrote"
+        ],
+        "answer": 3,
+        "explain": "-nā on a past verb = we."
+      },
+      {
+        "q": "How do you say “she went”?",
+        "options": [
+          "ذَهَبَتْ",
+          "ذَهَبْتُ",
+          "ذَهَبَ",
+          "تَذْهَبُ"
+        ],
+        "answer": 0,
+        "explain": "-at = she in the past; تَذْهَبُ is the present."
+      },
+      {
+        "q": "Which verb means “was / were”?",
+        "options": [
+          "لَيْسَ",
+          "كَانَ",
+          "عِنْدَ",
+          "هَلْ"
+        ],
+        "answer": 1,
+        "explain": "كَانَ (kāna) = he was; كُنْتُ = I was."
+      },
+      {
+        "q": "Why is the verb singular in وَصَلَ الضُّيُوفُ (the guests have arrived)?",
+        "options": [
+          "Because guests count as things.",
+          "Because it is the future.",
+          "Because a verb that comes before its subject stays singular.",
+          "It’s a mistake."
+        ],
+        "answer": 2,
+        "explain": "In verb-first sentences the verb does not take the plural ending."
+      }
+    ]
+  },
+  {
+    "id": "negation",
+    "title": "Saying “not”: لا، لم، لن، ليس",
+    "level": "A2",
+    "summary": "Arabic has several words for “not” — which one you need depends on the tense and on whether the sentence has a verb.",
+    "sections": [
+      {
+        "heading": "Which “not” when?",
+        "body": "**لَا** negates the present: لَا أَعْرِفُ (I don’t know). For the past, standard Arabic uses **لَمْ** + the present form with its final vowel dropped: لَمْ أَذْهَبْ (I didn’t go); the endings -īna and -ūna lose their -na: لَمْ يَذْهَبُوا (they didn’t go). **مَا** + the past form means the same and is common in speech and stories. **لَنْ** + the present form ending in -a negates the future.",
+        "table": {
+          "head": [
+            "Word",
+            "Use it for",
+            "Example",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "**لَا** — lā",
+              "the present",
+              "لَا أَعْرِفُ",
+              "I don’t know"
+            ],
+            [
+              "**لَمْ** — lam",
+              "the past (+ present form, final vowel dropped)",
+              "لَمْ أَذْهَبْ",
+              "I didn’t go"
+            ],
+            [
+              "**مَا** — mā",
+              "the past (+ past form)",
+              "مَا ذَهَبْتُ",
+              "I didn’t go"
+            ],
+            [
+              "**لَنْ** — lan",
+              "the future (+ present form ending in -a)",
+              "لَنْ أَذْهَبَ",
+              "I won’t go"
+            ],
+            [
+              "**لَا** — lā",
+              "“don’t!” (+ present form, final vowel dropped)",
+              "لَا تَذْهَبْ",
+              "Don’t go! (to a man)"
+            ],
+            [
+              "**لَيْسَ** — laysa",
+              "sentences with no verb",
+              "لَيْسَ هُنَا",
+              "He isn’t here"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "لَا أَتَكَلَّمُ الْعَرَبِيَّةَ جَيِّدًا.",
+            "en": "I don’t speak Arabic well.",
+            "tl": "lā ʾatakallamu l-ʿarabiyyata jayyidan",
+            "note": "lā + present."
+          },
+          {
+            "tr": "لَمْ أَذْهَبْ إِلَى الْعَمَلِ أَمْسِ.",
+            "en": "I didn’t go to work yesterday.",
+            "tl": "lam ʾadhhab ʾilā l-ʿamali ʾams",
+            "note": "lam + ʾadhhab (no final vowel) = didn’t go."
+          },
+          {
+            "tr": "مَا رَأَيْتُهُ الْيَوْمَ.",
+            "en": "I haven’t seen him today.",
+            "tl": "mā raʾaytuhu l-yawm",
+            "note": "mā + past verb."
+          },
+          {
+            "tr": "لَنْ أَنْسَاكَ.",
+            "en": "I won’t forget you. (to a man)",
+            "tl": "lan ʾansāk",
+            "note": "lan = will not."
+          }
+        ]
+      },
+      {
+        "heading": "لَيْسَ — “is not”",
+        "body": "Sentences without a verb (“I am a student”) are negated with **لَيْسَ**. It means “is not” in the present, but it takes endings like a past-tense verb. A description after it usually takes the ending -an: لَسْتُ طَالِبًا (I’m not a student). In everyday speech many Arabs use a different word altogether — see the lesson on spoken Arabic.",
+        "table": {
+          "head": [
+            "Person",
+            "Arabic",
+            "Transliteration"
+          ],
+          "rows": [
+            [
+              "I am not",
+              "لَسْتُ",
+              "lastu"
+            ],
+            [
+              "you are not (man)",
+              "لَسْتَ",
+              "lasta"
+            ],
+            [
+              "you are not (woman)",
+              "لَسْتِ",
+              "lasti"
+            ],
+            [
+              "he is not",
+              "لَيْسَ",
+              "laysa"
+            ],
+            [
+              "she is not",
+              "لَيْسَتْ",
+              "laysat"
+            ],
+            [
+              "we are not",
+              "لَسْنَا",
+              "lasnā"
+            ],
+            [
+              "they are not",
+              "لَيْسُوا",
+              "laysū"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "هُوَ لَيْسَ فِي الْبَيْتِ.",
+            "en": "He isn’t at home.",
+            "tl": "huwa laysa fī l-bayt",
+            "note": "laysa negates a sentence without a verb."
+          },
+          {
+            "tr": "لَسْتُ مِنْ هُنَا.",
+            "en": "I’m not from here.",
+            "tl": "lastu min hunā",
+            "note": "lastu = I am not."
+          },
+          {
+            "tr": "هِيَ لَيْسَتْ مُعَلِّمَةً، هِيَ طَبِيبَةٌ.",
+            "en": "She isn’t a teacher, she’s a doctor.",
+            "tl": "hiya laysat muʿallima hiya ṭabība",
+            "note": "After laysa the description ends in -an (muʿallimatan), dropped here before the pause."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "How do you say “I don’t understand”?",
+        "options": [
+          "لَمْ أَفْهَمُ",
+          "لَا أَفْهَمُ",
+          "لَيْسَ أَفْهَمُ",
+          "لَنْ فَهِمْتُ"
+        ],
+        "answer": 1,
+        "explain": "لَا negates a present-tense verb."
+      },
+      {
+        "q": "Which word negates a sentence with no verb, like “He is not here”?",
+        "options": [
+          "لَا",
+          "لَمْ",
+          "لَنْ",
+          "لَيْسَ"
+        ],
+        "answer": 3,
+        "explain": "لَيْسَ means “is not”: لَيْسَ هُنَا."
+      },
+      {
+        "q": "What does لَمْ أَذْهَبْ mean?",
+        "options": [
+          "I don’t go",
+          "I won’t go",
+          "I didn’t go",
+          "Don’t go!"
+        ],
+        "answer": 2,
+        "explain": "لَمْ + present form with no final vowel refers to the past."
+      },
+      {
+        "q": "Which word means “will not”?",
+        "options": [
+          "لَنْ",
+          "مَا",
+          "لَيْسَ",
+          "لَا"
+        ],
+        "answer": 0,
+        "explain": "لَنْ + present form negates the future: لَنْ أَنْسَاكَ."
+      }
+    ]
+  },
+  {
+    "id": "polite-and-formal",
+    "title": "Polite & formal Arabic",
+    "level": "A2",
+    "summary": "Greetings, thanks and requests that fit the situation — and how Arabic shows respect without a special polite “you”.",
+    "sections": [
+      {
+        "heading": "Respect without a polite “you”",
+        "body": "Arabic has no formal “you” like French vous: **أَنْتَ / أَنْتِ** is used with everyone, from a child to a minister. Respect is shown in other ways: with titles such as **أُسْتَاذ** (ʾustādh, literally “professor”, a polite “sir”) and **السَّيِّد / السَّيِّدَة** (Mr / Mrs) before a name; with **حَضْرَتُكَ / حَضْرَتُكِ** (ḥaḍratuka / ḥaḍratuki, “your presence”), a very respectful “you”; and with more formal words. In formal letters and speeches the plural (أَنْتُمْ, ـكُمْ) is sometimes used to address one important person. The word **يَا** comes before the name or title of the person you are speaking to.",
+        "table": {
+          "head": [
+            "",
+            "More formal",
+            "Everyday"
+          ],
+          "rows": [
+            [
+              "hello",
+              "السَّلَامُ عَلَيْكُمْ — as-salāmu ʿalaykum",
+              "أَهْلًا — ʾahlan"
+            ],
+            [
+              "how are you?",
+              "كَيْفَ حَالُ حَضْرَتِكَ؟ — kayfa ḥālu ḥaḍratik",
+              "كَيْفَ الْحَالُ؟ — kayfa l-ḥāl"
+            ],
+            [
+              "I’d like…",
+              "أَوَدُّ… — ʾawaddu",
+              "أُرِيدُ… — ʾurīdu"
+            ],
+            [
+              "thank you",
+              "أَشْكُرُكَ جَزِيلَ الشُّكْرِ — ʾashkuruka jazīla sh-shukr",
+              "شُكْرًا — shukran"
+            ],
+            [
+              "sorry",
+              "أَعْتَذِرُ — ʾaʿtadhir (I apologise)",
+              "آسِف / آسِفَة — ʾāsif / ʾāsifa"
+            ],
+            [
+              "goodbye",
+              "إِلَى اللِّقَاءِ — ʾilā l-liqāʾ",
+              "مَعَ السَّلَامَةِ — maʿa s-salāma"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "كَيْفَ حَالُ حَضْرَتِكَ؟",
+            "en": "How are you, sir? (very respectful)",
+            "tl": "kayfa ḥālu ḥaḍratik",
+            "note": "ḥaḍratuka replaces a plain “you” with someone senior; to a woman: حَضْرَتِكِ."
+          },
+          {
+            "tr": "شُكْرًا يَا أُسْتَاذُ.",
+            "en": "Thank you, sir.",
+            "tl": "shukran yā ʾustādh",
+            "note": "يَا + title = addressing someone directly."
+          }
+        ]
+      },
+      {
+        "heading": "Polite requests",
+        "body": "Soften a request with **مِنْ فَضْلِكَ / مِنْ فَضْلِكِ** (please, to a man / woman) or **لَوْ سَمَحْتَ / لَوْ سَمَحْتِ** (“if you allow”, also used for “excuse me” to get attention). **هَلْ يُمْكِنُكَ أَنْ…؟** (could you…?) and **أَوَدُّ أَنْ…** (I would like to…) are more polite than a bare أُرِيدُ (I want). When offering something, inviting someone in or asking them to sit, say **تَفَضَّلْ** to a man and **تَفَضَّلِي** to a woman: “please, go ahead / here you are / come in”.",
+        "examples": [
+          {
+            "tr": "لَوْ سَمَحْتَ، أَيْنَ الْمَحَطَّةُ؟",
+            "en": "Excuse me, where is the station? (to a man)",
+            "tl": "law samaḥt ʾayna l-maḥaṭṭa",
+            "note": "To a woman: لَوْ سَمَحْتِ (law samaḥti)."
+          },
+          {
+            "tr": "هَلْ يُمْكِنُكَ أَنْ تُسَاعِدَنِي؟",
+            "en": "Could you help me? (to a man)",
+            "tl": "hal yumkinuka ʾan tusāʿidanī",
+            "note": "Literally “is it possible for you to help me?”"
+          },
+          {
+            "tr": "أَوَدُّ أَنْ أَحْجِزَ غُرْفَةً، مِنْ فَضْلِكَ.",
+            "en": "I would like to book a room, please.",
+            "tl": "ʾawaddu ʾan ʾaḥjiza ghurfa min faḍlik",
+            "note": "ʾawaddu ʾan… = I would like to…"
+          },
+          {
+            "tr": "تَفَضَّلِي، اِجْلِسِي.",
+            "en": "Please, have a seat. (to a woman)",
+            "tl": "tafaḍḍalī ijlisī",
+            "note": "To a man: تَفَضَّلْ، اِجْلِسْ (tafaḍḍal ijlis)."
+          }
+        ]
+      },
+      {
+        "heading": "Set phrases and their replies",
+        "body": "Social life in Arabic runs on fixed formulas, many with a fixed reply. Using them is the easiest way to sound polite. Phrases with **اللَّه** (God) are used by almost everyone, Muslim or Christian, religious or not.",
+        "table": {
+          "head": [
+            "Phrase",
+            "Meaning / when",
+            "Reply"
+          ],
+          "rows": [
+            [
+              "السَّلَامُ عَلَيْكُمْ — as-salāmu ʿalaykum",
+              "peace be upon you (greeting)",
+              "وَعَلَيْكُمُ السَّلَامُ — wa-ʿalaykumu s-salām"
+            ],
+            [
+              "صَبَاحُ الْخَيْرِ — ṣabāḥu l-khayr",
+              "good morning",
+              "صَبَاحُ النُّورِ — ṣabāḥu n-nūr"
+            ],
+            [
+              "شُكْرًا — shukran",
+              "thank you",
+              "عَفْوًا — ʿafwan"
+            ],
+            [
+              "تَشَرَّفْنَا — tasharrafnā",
+              "nice to meet you",
+              "الشَّرَفُ لِي — ash-sharafu lī (the honour is mine)"
+            ],
+            [
+              "مَعَ السَّلَامَةِ — maʿa s-salāma",
+              "goodbye",
+              "فِي أَمَانِ اللَّهِ — fī ʾamāni llāh"
+            ],
+            [
+              "إِنْ شَاءَ اللَّهُ — ʾin shāʾa llāh",
+              "God willing: said about any future plan",
+              "—"
+            ],
+            [
+              "الْحَمْدُ لِلَّهِ — al-ḥamdu lillāh",
+              "thank God: “I’m fine”, or after a meal",
+              "—"
+            ]
+          ]
+        }
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Does Arabic have a special polite “you”, like French vous?",
+        "options": [
+          "Yes: أَنْتِ",
+          "Yes: هُوَ",
+          "No — respect is shown with titles like حَضْرَتُكَ and polite phrases.",
+          "Only in writing"
+        ],
+        "answer": 2,
+        "explain": "أَنْتَ / أَنْتِ is used with everyone; titles and set phrases carry the politeness."
+      },
+      {
+        "q": "What is the reply to صَبَاحُ الْخَيْرِ?",
+        "options": [
+          "صَبَاحُ النُّورِ",
+          "مَعَ السَّلَامَةِ",
+          "عَفْوًا",
+          "إِنْ شَاءَ اللَّهُ"
+        ],
+        "answer": 0,
+        "explain": "“Morning of goodness” is answered with “morning of light”: صَبَاحُ النُّورِ."
+      },
+      {
+        "q": "Which is the most polite way to ask for a room at a hotel?",
+        "options": [
+          "أُرِيدُ غُرْفَةً.",
+          "أَوَدُّ أَنْ أَحْجِزَ غُرْفَةً، مِنْ فَضْلِكَ.",
+          "غُرْفَةً!",
+          "أَحْجِزُ غُرْفَةً."
+        ],
+        "answer": 1,
+        "explain": "أَوَدُّ أَنْ… (I would like to…) plus مِنْ فَضْلِكَ is the politest choice."
+      },
+      {
+        "q": "You invite a woman to come in. What do you say?",
+        "options": [
+          "تَفَضَّلْ",
+          "عَفْوًا",
+          "لَا، شُكْرًا",
+          "تَفَضَّلِي"
+        ],
+        "answer": 3,
+        "explain": "تَفَضَّلِي is the form for a woman; تَفَضَّلْ is for a man."
+      }
+    ]
+  },
+  {
+    "id": "msa-vs-egyptian",
+    "title": "Spoken Arabic: MSA vs Egyptian",
+    "level": "B1",
+    "summary": "What you hear on the street in Cairo differs from the written standard — here are the key differences, side by side.",
+    "sections": [
+      {
+        "heading": "Standard and spoken Arabic",
+        "body": "Arabs read, write and hear the news in **Modern Standard Arabic (MSA, fuṣḥā)** — the Arabic of this course. At home and on the street everyone speaks a local **dialect** (ʿāmmiyya). **Egyptian Arabic** is the most widely understood, thanks to Egyptian films, TV and music. Dialects drop the case endings, simplify the grammar and use some different everyday words — but MSA is understood everywhere.\n\nIn Cairo **ق** is usually a glottal stop (قَلْب qalb → **ʾalb**, heart), **ج** is a hard g (جَمِيل jamīl → **gamīl**, beautiful), and **ث** often becomes t (ثَلَاثَة thalātha → **talāta**, three). The article is pronounced **il-**: il-bēt, the house.",
+        "table": {
+          "head": [
+            "English",
+            "MSA",
+            "Egyptian"
+          ],
+          "rows": [
+            [
+              "I",
+              "أَنَا — ʾanā",
+              "أَنَا — ʾana"
+            ],
+            [
+              "you (man)",
+              "أَنْتَ — ʾanta",
+              "إِنْتَ — ʾinta"
+            ],
+            [
+              "you (woman)",
+              "أَنْتِ — ʾanti",
+              "إِنْتِي — ʾinti"
+            ],
+            [
+              "he",
+              "هُوَ — huwa",
+              "هُوَّ — huwwa"
+            ],
+            [
+              "she",
+              "هِيَ — hiya",
+              "هِيَّ — hiyya"
+            ],
+            [
+              "we",
+              "نَحْنُ — naḥnu",
+              "إِحْنَا — ʾiḥna"
+            ],
+            [
+              "you (plural)",
+              "أَنْتُمْ — ʾantum",
+              "إِنْتُوا — ʾintu"
+            ],
+            [
+              "they",
+              "هُمْ — hum",
+              "هُمَّ — humma"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "كَيْفَ الْحَالُ؟",
+            "en": "How are you? / How’s it going?",
+            "tl": "kayfa l-ḥāl",
+            "note": "MSA: literally “how is the state?”, so it suits anyone."
+          },
+          {
+            "tr": "إِزَّيّ الْحَالْ؟",
+            "en": "How are you? / How’s it going?",
+            "tl": "ʾizzayy il-ḥāl",
+            "note": "Egyptian. To one person: إِزَّيَّكْ؟ (ʾizzayyak) to a man, إِزَّيِّكْ؟ (ʾizzayyik) to a woman."
+          }
+        ]
+      },
+      {
+        "heading": "Question words — often at the end",
+        "body": "Egyptian question words are different, and they often sit at the **end** of the sentence, where the answer would go: “the station where?”, “you want what?”. Egyptians also say **عَايِز / عَايْزَة** (ʿāyiz / ʿayza, wanting, for a man / woman) instead of a verb for “want”.",
+        "table": {
+          "head": [
+            "English",
+            "MSA",
+            "Egyptian"
+          ],
+          "rows": [
+            [
+              "what?",
+              "مَاذَا / مَا — mādhā / mā",
+              "إِيه — ʾēh"
+            ],
+            [
+              "how?",
+              "كَيْفَ — kayfa",
+              "إِزَّاي — ʾizzāy"
+            ],
+            [
+              "where?",
+              "أَيْنَ — ʾayna",
+              "فِين — fēn"
+            ],
+            [
+              "when?",
+              "مَتَى — matā",
+              "إِمْتَى — ʾimta"
+            ],
+            [
+              "why?",
+              "لِمَاذَا — limādhā",
+              "لِيه — lēh"
+            ],
+            [
+              "who?",
+              "مَنْ — man",
+              "مِين — mīn"
+            ],
+            [
+              "how much? (price)",
+              "بِكَمْ — bikam",
+              "بِكَام — bikām"
+            ],
+            [
+              "now",
+              "الْآنَ — al-ʾān",
+              "دِلْوَقْتِي — dilwaʾti"
+            ],
+            [
+              "there is",
+              "يُوجَدُ — yūjad",
+              "فِيه — fīh"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "أَيْنَ الْمَحَطَّةُ؟",
+            "en": "Where is the station?",
+            "tl": "ʾayna l-maḥaṭṭa",
+            "note": "MSA: question word first."
+          },
+          {
+            "tr": "الْمَحَطَّة فِينْ؟",
+            "en": "Where is the station?",
+            "tl": "il-maḥaṭṭa fēn",
+            "note": "Egyptian: article il-, question word at the end."
+          },
+          {
+            "tr": "مَاذَا تُرِيدُ؟",
+            "en": "What do you want? (to a man)",
+            "tl": "mādhā turīd",
+            "note": "MSA."
+          },
+          {
+            "tr": "إِنْتَ عَايِزْ إِيهْ؟",
+            "en": "What do you want? (to a man)",
+            "tl": "ʾinta ʿāyiz ʾēh",
+            "note": "Egyptian: literally “you wanting what?”"
+          }
+        ]
+      },
+      {
+        "heading": "Verbs: b- for now, ḥa- for later",
+        "body": "Egyptian verbs drop the MSA endings and often use i instead of a in the prefix (yiktib for yaktubu). For something happening now or regularly, add **b-**: **baktib**, I write / I’m writing. For the future, add **ḥa-** instead of sa-: **ḥaktib**, I’ll write — it is also said and written **ha-** (هـ). Without b- or ḥa-, the plain verb follows words like “want”: ʿāyiz ʾaktib, I want to write.",
+        "table": {
+          "head": [
+            "English",
+            "MSA",
+            "Egyptian"
+          ],
+          "rows": [
+            [
+              "I write",
+              "أَكْتُبُ — ʾaktubu",
+              "بَكْتِبْ — baktib"
+            ],
+            [
+              "you write (man)",
+              "تَكْتُبُ — taktubu",
+              "بِتِكْتِبْ — bitiktib"
+            ],
+            [
+              "he writes",
+              "يَكْتُبُ — yaktubu",
+              "بِيِكْتِبْ — biyiktib"
+            ],
+            [
+              "we write",
+              "نَكْتُبُ — naktubu",
+              "بِنِكْتِبْ — biniktib"
+            ],
+            [
+              "I will write",
+              "سَأَكْتُبُ — sa-ʾaktubu",
+              "حَكْتِبْ — ḥaktib"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "أَعْمَلُ فِي بَنْكٍ.",
+            "en": "I work in a bank.",
+            "tl": "ʾaʿmalu fī bank",
+            "note": "MSA."
+          },
+          {
+            "tr": "بَشْتَغَلْ فِي بَنْكْ.",
+            "en": "I work in a bank.",
+            "tl": "bashtaghal fi bank",
+            "note": "Egyptian: b- + ʾashtaghal (I work)."
+          },
+          {
+            "tr": "سَأُسَافِرُ غَدًا.",
+            "en": "I’ll travel tomorrow.",
+            "tl": "sa-ʾusāfiru ghadan",
+            "note": "MSA."
+          },
+          {
+            "tr": "حَسَافِرْ بُكْرَة.",
+            "en": "I’ll travel tomorrow.",
+            "tl": "ḥasāfir bukra",
+            "note": "Egyptian: ḥa- = will; bukra = tomorrow."
+          }
+        ]
+      },
+      {
+        "heading": "“Not”: mish and ma-…-sh",
+        "body": "Egyptian replaces لَا، لَمْ، لَنْ and لَيْسَ with two patterns. **مِشْ (mish)** goes before adjectives, nouns, participles and the future: **mish fāhim** (I don’t understand — literally “not understanding”), **mish ḥaʾdar** (I won’t be able to). Ordinary present and past verbs are wrapped in **ma-…-sh**: **maʿrafsh** (I don’t know), **mafhimtish** (I didn’t understand).",
+        "examples": [
+          {
+            "tr": "لَا أَفْهَمُ السُّؤَالَ.",
+            "en": "I don’t understand the question.",
+            "tl": "lā ʾafhamu s-suʾāl",
+            "note": "MSA."
+          },
+          {
+            "tr": "مِشْ فَاهِمْ السُّؤَالْ.",
+            "en": "I don’t understand the question. (man speaking)",
+            "tl": "mish fāhim is-suʾāl",
+            "note": "Egyptian: mish + participle. A woman says مِشْ فَاهْمَة السُّؤَالْ (mish fahma s-suʾāl)."
+          },
+          {
+            "tr": "لَا أَعْرِفُ.",
+            "en": "I don’t know.",
+            "tl": "lā ʾaʿrif",
+            "note": "MSA."
+          },
+          {
+            "tr": "مَعْرَفْشْ.",
+            "en": "I don’t know.",
+            "tl": "maʿrafsh",
+            "note": "Egyptian: ma- + ʾaʿraf (I know) + -sh."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "How do Egyptians usually say “where?”",
+        "options": [
+          "أَيْنَ",
+          "فِين",
+          "إِمْتَى",
+          "لِيه"
+        ],
+        "answer": 1,
+        "explain": "Egyptian فِين (fēn) = MSA أَيْنَ (ʾayna)."
+      },
+      {
+        "q": "In Egyptian بِيِكْتِبْ (biyiktib), what does the b- show?",
+        "options": [
+          "the past",
+          "the future",
+          "a question",
+          "something happening now or regularly"
+        ],
+        "answer": 3,
+        "explain": "b- marks the ongoing or habitual present; ḥa- marks the future."
+      },
+      {
+        "q": "Which is Egyptian for “I don’t understand” (man speaking)?",
+        "options": [
+          "مِشْ فَاهِمْ",
+          "لَا أَفْهَمُ",
+          "لَمْ أَفْهَمْ",
+          "لَسْتُ فَاهِمًا"
+        ],
+        "answer": 0,
+        "explain": "Egyptian uses مِشْ (mish) before participles like fāhim."
+      },
+      {
+        "q": "How is قَلْب (heart) usually pronounced in Cairo?",
+        "options": [
+          "qalb",
+          "galb",
+          "ʾalb",
+          "kalb"
+        ],
+        "answer": 2,
+        "explain": "Cairenes pronounce ق as a glottal stop: ʾalb."
+      }
+    ]
+  }
+];
