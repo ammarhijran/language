@@ -85,8 +85,11 @@ function phones(word) {
     }
 
     let resp = RESPELL[c] ?? c;
-    // Avoid "ahh"-style doubling when an h follows the vowel.
-    if (VOWELS.has(c) && next === 'h' && resp.endsWith('h')) resp = resp.slice(0, -1);
+    // Avoid "ahh"-style doubling when an h closes the vowel's syllable (kah-ve,
+    // sa-bah). Before a vowel the h starts the next syllable (şe-hir), so the
+    // vowel keeps its own "eh"/"ah", or "she-" would read as English "shee".
+    const hClosesSyllable = next === 'h' && !VOWELS.has(chars[i + 2]);
+    if (VOWELS.has(c) && hClosesSyllable && resp.endsWith('h')) resp = resp.slice(0, -1);
     return [IPA[c] ?? c, resp];
   });
 }

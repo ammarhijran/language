@@ -161,7 +161,7 @@ const data = {
     ['çarşamba', 'Wednesday', { s: 2 }],
     ['perşembe', 'Thursday', { s: 2 }],
     ['cuma', 'Friday', { s: 1 }],
-    ['cumartesi', 'Saturday', { s: 3 }],
+    ['cumartesi', 'Saturday', { s: 2, note: 'From “cuma ertesi”, the day after Friday, so it is stressed like pazartesi: cu-MAR-te-si.' }],
     ['pazar', 'Sunday', { s: 1, note: 'Also means “market / bazaar” (then stressed pa-ZAR).' }],
     ['her gün', 'every day', { s: 0 }],
   ],

@@ -102,10 +102,13 @@ function phones(word) {
     }
     if (IPA_VOW[ch]) return [IPA_VOW[ch], RESP_VOW[ch]];
     if (ch === 'в') {
-      // At the end of a syllable (before a consonant or at the end) в sounds like w/u̯.
+      // Before a consonant or at the end, в sounds like w/u̯ — after a vowel
+      // (вовк, Київ) and also at the start of a word (вчора, вчитель). Before a
+      // vowel (вода, твій) it stays [ʋ].
       const nextReal = next === 'ь' ? c[i + 2] : next;
       const beforeApostrophe = next && /['’ʼ`]/.test(next);
-      if (prev && VOWELS.has(prev) && !beforeApostrophe && (!nextReal || !VOWELS.has(nextReal))) return ['w', 'w'];
+      const afterVowelOrStart = !prev || VOWELS.has(prev);
+      if (afterVowelOrStart && !beforeApostrophe && (!nextReal || !VOWELS.has(nextReal))) return ['w', 'w'];
       return ['ʋ', 'v'];
     }
     if (ch === 'д' && (next === 'ж' || next === 'з')) return ['d', 'd'];

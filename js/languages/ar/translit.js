@@ -55,13 +55,44 @@ function weight(syl) {
   return 1; // light
 }
 
-/** MSA stress: superheavy final; else heavy penult; else antepenult (or penult in two-syllable words). */
-export function stressIndex(syls) {
+/**
+ * MSA stress: superheavy final; else heavy penult; else antepenult (or penult
+ * in two-syllable words). `first` is the earliest syllable that may carry it:
+ * proclitics such as the article are never stressed (al-ʾAḥad, not ʾAL-aḥad).
+ */
+export function stressIndex(syls, first = 0) {
   const n = syls.length;
   if (n < 2) return -1;
-  if (weight(syls[n - 1]) === 3) return n - 1;
-  if (weight(syls[n - 2]) >= 2) return n - 2;
-  return n >= 3 ? n - 3 : n - 2;
+  let si;
+  if (weight(syls[n - 1]) === 3) si = n - 1;
+  else if (weight(syls[n - 2]) >= 2) si = n - 2;
+  else si = n >= 3 ? n - 3 : n - 2;
+  return Math.min(Math.max(si, first), n - 1);
+}
+
+// Hyphenated proclitics: the article in all its forms (al-, ash-, an-, il-,
+// a bare l- or s- after elision) and the one-letter prepositions/conjunctions.
+const PROCLITIC = /^(?:wa|fa|bi|li|ka|[aie]?(?:l|th|dh|sh|[tdrzsnṣḍṭẓ]))$/;
+
+/** How many sounds at the start of a word belong to hyphenated proclitics. */
+function procliticLength(word) {
+  const parts = word.toLowerCase().split(/[-‐]/);
+  let n = 0;
+  for (const part of parts.slice(0, -1)) {
+    if (!PROCLITIC.test(part)) break;
+    n += tokenize(part).length;
+  }
+  return n;
+}
+
+/** Index of the first syllable that is not made up only of proclitic sounds. */
+function firstStemSyllable(syls, procLen) {
+  let end = 0;
+  for (let i = 0; i < syls.length; i++) {
+    end += syls[i].length;
+    if (end > procLen) return i;
+  }
+  return 0;
 }
 
 const ipaOf = (syl) => syl.map((t) => IPA[t] ?? t).join('');
@@ -79,7 +110,8 @@ export function analyzeTranslit(tl, stress) {
   const words = ws.map((w, wi) => {
     const syls = syllabify(tokenize(w));
     const override = Array.isArray(stress) ? stress[wi] : (ws.length === 1 ? stress : undefined);
-    const si = override === 0 ? -1 : override ? override - 1 : stressIndex(syls);
+    const si = override === 0 ? -1 : override ? override - 1
+      : stressIndex(syls, firstStemSyllable(syls, procliticLength(w)));
     // Display each syllable in transliteration (keep the word's own letters).
     return {
       text: w,

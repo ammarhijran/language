@@ -110,7 +110,7 @@ export const soundTips = [
 ];
 
 export const minimalPairs = [
-  { contrast: 'short / long vowel', pairs: [['おばさん', 'aunt', 'おばあさん', 'grandmother'], ['おじさん', 'uncle', 'おじいさん', 'grandfather'], ['ゆき', 'snow', 'ゆうき', 'courage'], ['ここ', 'here', 'こうこう', 'high school']] },
+  { contrast: 'short / long vowel', pairs: [['おばさん', 'aunt', 'おばあさん', 'grandmother'], ['おじさん', 'uncle', 'おじいさん', 'grandfather'], ['ゆき', 'snow', 'ゆうき', 'courage'], ['とり', 'bird', 'とおり', 'street']] },
   { contrast: 'single / double consonant', pairs: [['きて', 'come!', 'きって', 'stamp'], ['いた', 'was there', 'いった', 'went'], ['さか', 'slope', 'さっか', 'writer']] },
   { contrast: 'pitch accent', pairs: [['雨', 'rain', '飴', 'candy'], ['橋', 'bridge', '箸', 'chopsticks']] },
   { contrast: 'つ / す', pairs: [['つき', 'moon', 'すき', 'liked']] },

@@ -3,7 +3,7 @@
 export const alphabet = [
   { upper: 'А', lower: 'а', ipa: 'ɑ', hint: 'like “a” in “father”', ex: ['автобус', 'bus'] },
   { upper: 'Б', lower: 'б', ipa: 'b', hint: 'as in English', ex: ['брат', 'brother'] },
-  { upper: 'В', lower: 'в', ipa: 'ʋ / w', hint: '“v”, but like “w” at the end of a syllable (вовк ≈ vowk)', ex: ['вода', 'water'], special: true, noNote: true },
+  { upper: 'В', lower: 'в', ipa: 'ʋ / w', hint: '“v”, but like “w” before a consonant or at the end (вовк ≈ vowk, вчора ≈ wchora)', ex: ['вода', 'water'], special: true, noNote: true },
   { upper: 'Г', lower: 'г', ipa: 'ɦ', hint: 'a voiced, breathy “h” — never “g”', ex: ['голова', 'head'], special: true },
   { upper: 'Ґ', lower: 'ґ', ipa: 'ɡ', hint: 'hard “g” as in “go” (a rare letter)', ex: ['ґанок', 'porch'], special: true },
   { upper: 'Д', lower: 'д', ipa: 'd', hint: 'as in English, tongue on the teeth', ex: ['дім', 'house'] },
@@ -72,10 +72,10 @@ export const soundTips = [
   },
   {
     id: 'v-w',
-    title: 'в at the end of a syllable',
+    title: 'в that sounds like “w”',
     ipa: 'w',
-    body: 'Before a consonant or at the end of a word, в is pronounced like a short English “w” (forming a diphthong): вовк (wolf) ≈ vowk, Київ ≈ KY-yiw.',
-    examples: [['вовк', 'wolf'], ['Київ', 'Kyiv'], ['любов', 'love'], ['вода', 'water']],
+    body: 'After a vowel, before a consonant or at the end of a word, в is pronounced like a short English “w” (forming a diphthong): вовк (wolf) ≈ vowk, Київ ≈ KY-yiw. At the start of a word before a consonant it is a short “w” too: вчора (yesterday) ≈ WCHOH-rah. Before a vowel it stays “v”: вода.',
+    examples: [['вовк', 'wolf'], ['Київ', 'Kyiv'], ['вчора', 'yesterday'], ['вода', 'water']],
   },
   {
     id: 'voiced',

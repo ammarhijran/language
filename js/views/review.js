@@ -1,6 +1,6 @@
 import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
-import { newCard, review as schedule, AGAIN, startOfDay, DAY } from '../srs.js';
+import { newCard, review as schedule, missedToday, AGAIN, startOfDay } from '../srs.js';
 import { dueWords, chooseReviewType, nextCategory } from '../stats.js';
 
 const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce' };
@@ -20,10 +20,16 @@ export default function review(ctx) {
     items,
     onResult(item, r) {
       if (r.skipped) return { ...item, type: 'flashcard' };
-      const card = store.getCard(lang.code, item.word.id) || newCard();
-      store.setCard(lang.code, item.word.id, schedule(card, r.rating));
+      const now = Date.now();
+      const card = store.getCard(lang.code, item.word.id) || newCard(now);
+      // Only a word's first rating may change its ease. The easier re-asks
+      // after a miss, and any session later the same day that brings the
+      // missed word back, just reschedule it.
+      const seen = firstTry.has(item.word.id);
+      const retry = seen || missedToday(card, now);
+      store.setCard(lang.code, item.word.id, schedule(card, r.rating, now, { retry }));
       store.logActivity(lang.code, { reviews: 1, correct: r.correct ? 1 : 0 });
-      if (!firstTry.has(item.word.id)) firstTry.set(item.word.id, r.correct);
+      if (!seen) firstTry.set(item.word.id, r.correct);
       if (r.rating === AGAIN) {
         const retries = (item.retries || 0) + 1;
         if (retries <= 2) return { word: item.word, type: EASIER[item.type] || 'meaning', retries };
@@ -33,7 +39,7 @@ export default function review(ctx) {
     onFinish() {
       const n = firstTry.size;
       const right = [...firstTry.values()].filter(Boolean).length;
-      const tomorrow = startOfDay(Date.now()) + 2 * DAY;
+      const tomorrow = startOfDay(Date.now(), 2); // end of tomorrow, by the calendar
       const comingUp = Object.values(store.getCards(lang.code)).filter((c) => c.due < tomorrow).length;
       return h('div', { class: 'summary' },
         h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, right === n ? '🏆' : '💪'),

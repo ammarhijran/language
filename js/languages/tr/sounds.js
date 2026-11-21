@@ -100,9 +100,9 @@ export const soundTips = [
 export const minimalPairs = [
   { contrast: 'ı / i', pairs: [['kır', 'countryside', 'kir', 'dirt'], ['dış', 'outside', 'diş', 'tooth'], ['kıl', 'body hair', 'kil', 'clay']] },
   { contrast: 'o / ö', pairs: [['ol', 'be!', 'öl', 'die!'], ['on', 'ten', 'ön', 'front'], ['kor', 'ember', 'kör', 'blind']] },
-  { contrast: 'u / ü', pairs: [['kul', 'servant', 'kül', 'ash'], ['un', 'flour', 'ün', 'fame'], ['durum', 'situation', 'dürüm', 'wrap']] },
+  { contrast: 'u / ü', pairs: [['kul', 'servant', 'kül', 'ash'], ['un', 'flour', 'ün', 'fame'], ['uç', 'tip, end', 'üç', 'three']] },
   { contrast: 'c / ç', pairs: [['cam', 'glass', 'çam', 'pine'], ['acı', 'bitter; pain', 'açı', 'angle'], ['sac', 'sheet metal', 'saç', 'hair']] },
-  { contrast: 's / ş', pairs: [['kas', 'muscle', 'kaş', 'eyebrow'], ['sis', 'fog', 'şiş', 'skewer'], ['bas', 'press!', 'baş', 'head']] },
+  { contrast: 's / ş', pairs: [['kas', 'muscle', 'kaş', 'eyebrow'], ['sen', 'you', 'şen', 'cheerful'], ['bas', 'press!', 'baş', 'head']] },
   { contrast: 'k / g', pairs: [['kel', 'bald', 'gel', 'come!'], ['kül', 'ash', 'gül', 'rose']] },
   { contrast: 'single / double', pairs: [['eli', 'his/her hand', 'elli', 'fifty'], ['katı', 'solid', 'kattı', 'added']] },
 ];

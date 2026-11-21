@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { newCard, review, markKnown, isDue, status, AGAIN, HARD, GOOD, EASY, DAY, startOfDay, KNOWN_INTERVAL } from '../js/srs.js';
+import { execFileSync } from 'node:child_process';
+import { newCard, review, markKnown, isDue, status, AGAIN, HARD, GOOD, EASY, startOfDay, KNOWN_INTERVAL } from '../js/srs.js';
 
 const NOW = new Date(2026, 0, 10, 15, 0).getTime();
 
@@ -15,7 +16,7 @@ test('good answers grow the interval', () => {
   let c = newCard(NOW);
   c = review(c, GOOD, NOW);
   assert.equal(c.interval, 1);
-  assert.equal(c.due, startOfDay(NOW) + DAY);
+  assert.equal(c.due, startOfDay(NOW, 1));
   assert.ok(!isDue(c, NOW));
   c = review(c, GOOD, NOW);
   assert.equal(c.interval, 3);
@@ -55,7 +56,8 @@ test('already learned words skip ahead and come back in about a month', () => {
   const c = markKnown(NOW);
   assert.equal(status(c), 'known');
   assert.ok(!isDue(c, NOW));
-  assert.ok(isDue(c, startOfDay(NOW) + KNOWN_INTERVAL * DAY));
+  assert.ok(isDue(c, startOfDay(NOW, KNOWN_INTERVAL)));
+  assert.ok(!isDue(c, startOfDay(NOW, KNOWN_INTERVAL) - 1));
   const ok = review(c, GOOD, NOW);
   assert.equal(status(ok), 'known');
   assert.ok(ok.interval > KNOWN_INTERVAL);
@@ -66,4 +68,132 @@ test('forgetting an already learned word turns it into a normal learning card', 
   assert.equal(c.known, false);
   assert.equal(status(c), 'learning');
   assert.ok(isDue(c, NOW));
+});
+
+// A word that was mature before this session, then missed.
+const MATURE = { ease: 2.5, interval: 30, reps: 5, lapses: 0, due: NOW, added: 0, last: 0 };
+
+test('in-session retries of a missed word do not lower ease again', () => {
+  let c = review(MATURE, AGAIN, NOW); // the real lapse
+  assert.equal(c.ease, 2.3);
+  assert.equal(c.lapses, 1);
+  c = review(c, AGAIN, NOW + 1, { retry: true }); // easier re-ask, missed again
+  c = review(c, AGAIN, NOW + 2, { retry: true }); // last re-ask, missed again
+  assert.equal(c.ease, 2.3);
+  assert.equal(c.lapses, 1);
+  assert.equal(c.reps, 0);
+  assert.equal(c.interval, 0);
+  assert.ok(isDue(c, NOW + 2));
+});
+
+test('a retry reschedules exactly like a normal answer, apart from ease', () => {
+  const lapsed = review(MATURE, AGAIN, NOW);
+  for (const rating of [AGAIN, HARD, GOOD, EASY]) {
+    const plain = review(lapsed, rating, NOW + 1);
+    const retry = review(lapsed, rating, NOW + 1, { retry: true });
+    // Same interval, reps and due date; ease and lapses as before the retry.
+    assert.deepEqual(retry, { ...plain, ease: lapsed.ease, lapses: lapsed.lapses }, `rating ${rating}`);
+  }
+  // A hard retry still gets the relearning interval of one day.
+  const hard = review(lapsed, HARD, NOW + 1, { retry: true });
+  assert.equal(hard.interval, 1);
+  assert.equal(hard.due, startOfDay(NOW, 1));
+});
+
+test('the first miss in a later session still costs ease', () => {
+  let c = review(MATURE, AGAIN, NOW);
+  c = review(c, AGAIN, NOW + 1, { retry: true });
+  const tomorrow = startOfDay(NOW, 1) + 10 * 60 * 60 * 1000;
+  c = review(c, AGAIN, tomorrow);
+  assert.ok(Math.abs(c.ease - 2.1) < 1e-9);
+});
+
+test('retrying a missed already-learned word keeps it a normal learning card', () => {
+  let c = review(markKnown(NOW), AGAIN, NOW);
+  assert.equal(c.ease, 2.3);
+  c = review(c, AGAIN, NOW + 1, { retry: true });
+  assert.equal(c.ease, 2.3);
+  assert.equal(c.known, false);
+  assert.equal(status(c), 'learning');
+});
+
+// The time zone is fixed when node starts, so DST cases run in a child process
+// with TZ set. `body` gets `srs`, `at(y, m, d, h, min)` (local time) and
+// `local(t)` → [year, month (1-12), day, hour, minute]; it returns JSON.
+function inZone(tz, body) {
+  const url = new URL('../js/srs.js', import.meta.url).href;
+  const code = `import * as srs from ${JSON.stringify(url)};
+const at = (...a) => new Date(...a).getTime();
+const local = (t) => { const d = new Date(t); return [d.getFullYear(), d.getMonth() + 1, d.getDate(), d.getHours(), d.getMinutes()]; };
+console.log(JSON.stringify((() => { ${body} })()));`;
+  const out = execFileSync(process.execPath, ['--input-type=module', '-e', code], {
+    env: { ...process.env, TZ: tz }, encoding: 'utf8',
+  });
+  return JSON.parse(out);
+}
+
+// Schedules a young card (reps 1) with GOOD at local time `t`: a 3-day interval.
+const THREE_DAYS = `const three = (t) => srs.review(srs.review(srs.newCard(t), srs.GOOD, t), srs.GOOD, t);`;
+
+test('due dates land on local midnight across US DST changes', () => {
+  const r = inZone('America/New_York', `${THREE_DAYS}
+    const fall = three(at(2026, 9, 30, 10)); // Oct 30 + 3 days, clocks go back Nov 1
+    const spring = three(at(2026, 2, 6, 10)); // Mar 6 + 3 days, clocks go forward Mar 8
+    return {
+      offsetChanged: new Date(at(2026, 9, 30)).getTimezoneOffset() !== new Date(at(2026, 10, 2)).getTimezoneOffset(),
+      fall: local(fall.due), dueEveningBefore: srs.isDue(fall, at(2026, 10, 1, 23, 30)),
+      spring: local(spring.due), dueJustAfterMidnight: srs.isDue(spring, at(2026, 2, 9, 0, 30)),
+      known: local(srs.markKnown(at(2026, 9, 20, 10)).due),
+      sameDay: local(srs.review(srs.newCard(0), srs.GOOD, at(2026, 10, 1, 20)).due),
+    };`);
+  assert.ok(r.offsetChanged, 'tz data has US DST');
+  assert.deepEqual(r.fall, [2026, 11, 2, 0, 0]);
+  assert.equal(r.dueEveningBefore, false);
+  assert.deepEqual(r.spring, [2026, 3, 9, 0, 0]);
+  assert.equal(r.dueJustAfterMidnight, true);
+  assert.deepEqual(r.known, [2026, 11, 19, 0, 0]); // markKnown: Oct 20 + 30 days
+  assert.deepEqual(r.sameDay, [2026, 11, 2, 0, 0]); // reviewed on the 25-hour day itself
+});
+
+test('due dates land on local midnight across EU DST changes', () => {
+  const r = inZone('Europe/Berlin', `${THREE_DAYS}
+    return {
+      fall: local(three(at(2026, 9, 23, 10)).due), // clocks go back Oct 25
+      spring: local(three(at(2026, 2, 27, 10)).due), // clocks go forward Mar 29
+      endOfTomorrow: local(srs.startOfDay(at(2026, 9, 24, 22), 2)),
+    };`);
+  assert.deepEqual(r.fall, [2026, 10, 26, 0, 0]);
+  assert.deepEqual(r.spring, [2026, 3, 30, 0, 0]);
+  assert.deepEqual(r.endOfTomorrow, [2026, 10, 26, 0, 0]);
+});
+
+test('startOfDay steps whole calendar days through every 2026 day', () => {
+  // Any n-day step from 10:00 on any day must end on local midnight exactly
+  // n calendar days away (back in time for negative n), whatever DST does.
+  const bad = inZone('America/New_York', `
+    const DAY = 86400000;
+    const bad = [];
+    for (let day = 0; day < 365; day++) {
+      const t = at(2026, 0, 1 + day, 10);
+      for (const n of [-13, -1, 1, 2, 3, 7, 30, 120]) {
+        const [y, m, d, hh, mm] = local(srs.startOfDay(t, n));
+        const s = new Date(t);
+        const steps = (Date.UTC(y, m - 1, d) - Date.UTC(s.getFullYear(), s.getMonth(), s.getDate())) / DAY;
+        if (steps !== n || hh || mm) bad.push([local(t), n, [y, m, d, hh, mm]]);
+      }
+    }
+    return bad;`);
+  assert.deepEqual(bad, []);
+});
+
+test('startOfDay copes with a day that has no 00:00 (DST at midnight)', () => {
+  // Brazil, 4 Nov 2018: clocks jumped from 00:00 straight to 01:00.
+  const r = inZone('America/Sao_Paulo', `return {
+    gapDay: local(srs.startOfDay(at(2018, 10, 4, 10))),
+    intoGapDay: local(srs.startOfDay(at(2018, 10, 3, 10), 1)),
+    outOfGapDay: local(srs.startOfDay(at(2018, 10, 4, 10), 1)),
+  };`);
+  assert.deepEqual(r.gapDay, [2018, 11, 4, 1, 0]); // the earliest time that day has
+  assert.deepEqual(r.intoGapDay, [2018, 11, 4, 1, 0]);
+  assert.deepEqual(r.outOfGapDay, [2018, 11, 5, 0, 0]);
 });
