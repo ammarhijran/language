@@ -1,5 +1,7 @@
 // Ukrainian language pack.
-import { categories, vocab } from './vocab.js';
+import { categories as baseCategories, vocab as baseVocab } from './vocab.js';
+import { categories as moreCategories, vocab as moreVocab } from './more.js';
+import { lessons } from './grammar.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyze, lower, transliterate } from './phonetics.js';
 import { makePack } from '../common.js';
@@ -39,8 +41,9 @@ export default makePack({
   pronHint: (a) => (a.stressMarked
     ? 'Highlighted syllable = stress. Ukrainian stress can fall on any syllable, so learn it with the word. Tap a syllable to hear it.'
     : 'Tap a syllable to hear it slowly.'),
-  categories,
-  vocab,
+  categories: [...baseCategories, ...moreCategories],
+  vocab: [...baseVocab, ...moreVocab],
+  grammar: lessons,
   alphabet,
   soundTips,
   minimalPairs,

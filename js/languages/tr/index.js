@@ -1,5 +1,7 @@
 // Turkish language pack.
-import { categories, vocab } from './vocab.js';
+import { categories as baseCategories, vocab as baseVocab } from './vocab.js';
+import { categories as moreCategories, vocab as moreVocab } from './more.js';
+import { lessons } from './grammar.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyze, lower } from './phonetics.js';
 import { makePack } from '../common.js';
@@ -65,8 +67,9 @@ export default makePack({
   sampleSentence: 'Merhaba! Türkçe öğrenmeye hazır mısın?',
   specialChars: ['ç', 'ğ', 'ı', 'ö', 'ş', 'ü'],
   alphabetIntro: 'Türkçe has 29 letters and every letter is always pronounced the same way. Tap a letter to hear an example word. Highlighted letters are the ones English speakers usually find surprising.',
-  categories,
-  vocab,
+  categories: [...baseCategories, ...moreCategories],
+  vocab: [...baseVocab, ...moreVocab],
+  grammar: lessons,
   alphabet,
   soundTips,
   minimalPairs,

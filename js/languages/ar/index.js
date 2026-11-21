@@ -4,7 +4,9 @@
 // reads) plus a transliteration (which drives syllables, stress and IPA). A
 // plain form without vowel marks is derived for matching answers and speech —
 // everyday Arabic, and speech recognisers, leave the short vowels out.
-import { categories, vocab } from './vocab.js';
+import { categories as baseCategories, vocab as baseVocab } from './vocab.js';
+import { categories as moreCategories, vocab as moreVocab } from './more.js';
+import { lessons } from './grammar.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyzeTranslit, asciiTranslit } from './translit.js';
 import { makePack } from '../common.js';
@@ -47,8 +49,9 @@ export default makePack({
   pronHint: (a) => (a.stressMarked
     ? 'Syllables are shown in transliteration; the highlighted one is stressed. Tap a syllable to hear the word slowly.'
     : 'Syllables are shown in transliteration. Tap one to hear the word slowly.'),
-  categories,
-  vocab,
+  categories: [...baseCategories, ...moreCategories],
+  vocab: [...baseVocab, ...moreVocab],
+  grammar: lessons,
   alphabet,
   soundTips,
   minimalPairs,

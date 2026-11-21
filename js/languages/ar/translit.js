@@ -3,17 +3,17 @@
 // English-friendly respelling.
 
 const DIGRAPHS = ['th', 'kh', 'dh', 'sh', 'gh'];
-const SINGLE = new Set([...'ʾʿbtjḥdrzsṣḍṭẓfqklmnhwy']);
-const VOWELS = new Set([...'aiuāīū']);
-const LONG = new Set([...'āīū']);
+const SINGLE = new Set([...'ʾʿbtjḥdrzsṣḍṭẓfqklmnhwygvp']); // g, v, p: Egyptian Arabic and loanwords
+const VOWELS = new Set([...'aiueoāīūēō']); // e, o, ē, ō: Egyptian Arabic
+const LONG = new Set([...'āīūēō']);
 
 const IPA = {
   ʾ: 'ʔ', ʿ: 'ʕ', b: 'b', t: 't', th: 'θ', j: 'd͡ʒ', ḥ: 'ħ', kh: 'x', d: 'd', dh: 'ð', r: 'r', z: 'z', s: 's',
   sh: 'ʃ', ṣ: 'sˤ', ḍ: 'dˤ', ṭ: 'tˤ', ẓ: 'ðˤ', gh: 'ɣ', f: 'f', q: 'q', k: 'k', l: 'l', m: 'm', n: 'n', h: 'h',
-  w: 'w', y: 'j', a: 'a', i: 'i', u: 'u', ā: 'aː', ī: 'iː', ū: 'uː',
+  w: 'w', y: 'j', g: 'ɡ', v: 'v', p: 'p', a: 'a', i: 'i', u: 'u', e: 'e', o: 'o', ā: 'aː', ī: 'iː', ū: 'uː', ē: 'eː', ō: 'oː',
 };
 const RESPELL = {
-  ʾ: "'", ʿ: "'", ḥ: 'h', ṣ: 's', ḍ: 'd', ṭ: 't', ẓ: 'z', ā: 'aa', ī: 'ee', ū: 'oo',
+  ʾ: "'", ʿ: "'", ḥ: 'h', ṣ: 's', ḍ: 'd', ṭ: 't', ẓ: 'z', ā: 'aa', ī: 'ee', ū: 'oo', e: 'e', o: 'o', ē: 'ay', ō: 'oh',
 };
 
 /** Split one transliterated word into sounds. */
@@ -92,6 +92,6 @@ export function analyzeTranslit(tl, stress) {
   return { words, ipa, respell, stressMarked: words.some((w) => w.stressIndex >= 0) };
 }
 
-const ASCII = { ḥ: 'h', ṣ: 's', ḍ: 'd', ṭ: 't', ẓ: 'z', ā: 'a', ī: 'i', ū: 'u' };
+const ASCII = { ḥ: 'h', ṣ: 's', ḍ: 'd', ṭ: 't', ẓ: 'z', ā: 'a', ī: 'i', ū: 'u', ē: 'e', ō: 'o' };
 /** Plain-ASCII version of a transliteration, as people type it: "ṣabāḥ al-khayr" → "sabah al-khayr". */
-export const asciiTranslit = (tl) => tl.replace(/[ḥṣḍṭẓāīū]/g, (c) => ASCII[c]).replace(/[ʾʿ'’]/g, '');
+export const asciiTranslit = (tl) => tl.replace(/[ḥṣḍṭẓāīūēō]/g, (c) => ASCII[c]).replace(/[ʾʿ'’]/g, '');

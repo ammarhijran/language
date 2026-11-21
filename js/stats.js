@@ -39,12 +39,15 @@ export function nextCategory(ctx) {
 }
 
 /** Exercise type for a review, based on how well the word is known. */
-export function chooseReviewType(card) {
+export function chooseReviewType(card, word) {
   const speak = recognitionSupported();
+  // Typing a whole sentence is tedious: phrases are practised by choice, recall and speaking.
+  const long = word && (word.tr.trim().split(/\s+/).length > 3 || word.tr.length > 24);
   let pool;
   if (card.reps <= 1) pool = ['listen', 'meaning', 'produce'];
   else if (card.reps <= 3) pool = ['produce', 'listen', 'flashcard', ...(speak ? ['speak'] : [])];
   else pool = ['type', 'flashcard', 'listen', ...(speak ? ['speak', 'speak'] : ['type'])];
+  if (long) pool = pool.filter((t) => t !== 'type').concat(['produce']);
   return pool[Math.floor(Math.random() * pool.length)];
 }
 

@@ -1,5 +1,5 @@
 import { h, icon } from '../ui.js';
-import { categoryCard, voiceBanner, playButton, readingLine } from '../components.js';
+import { categoryCard, voiceBanner, playButton, readingLine, categorySections, grammarLink } from '../components.js';
 import { computeStats, nextCategory, wordOfTheDay } from '../stats.js';
 import { levelCard, challengeList, repairBanner } from './journey.js';
 
@@ -74,8 +74,8 @@ export default function home(ctx) {
       ),
     ),
     h('section', null,
-      h('h2', { class: 'section-title' }, 'Topics'),
-      h('div', { class: 'cat-grid' }, lang.categories.map((c) => categoryCard(ctx, c)))),
+      grammarLink(ctx),
+      categorySections(ctx)),
   );
 }
 

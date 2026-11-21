@@ -12,7 +12,7 @@ export default function review(ctx) {
   if (!due.length) return empty(ctx);
 
   const items = shuffle(due.slice(0, ctx.settings.sessionSize))
-    .map(({ word, card }) => ({ word, type: chooseReviewType(card) }));
+    .map(({ word, card }) => ({ word, type: chooseReviewType(card, word) }));
   const firstTry = new Map();
 
   return h('div', { class: 'view' }, runSession(ctx, {

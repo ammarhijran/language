@@ -762,3 +762,59 @@ body.bare { padding-bottom: 24px; }
 .sync-langs li { display: flex; justify-content: space-between; gap: .5rem; flex-wrap: wrap; }
 .sync-done { margin-top: .75rem; background: var(--good-soft); border-color: color-mix(in srgb, var(--good) 35%, transparent); }
 .sync-done .hint { margin: .4rem 0; }
+
+/* ---------- Register: everyday vs proper ---------- */
+.badge.reg-casual { background: color-mix(in srgb, #0ea5e9 18%, transparent); color: color-mix(in srgb, #0369a1 80%, var(--text)); }
+.badge.reg-slang { background: color-mix(in srgb, #a855f7 18%, transparent); color: color-mix(in srgb, #7e22ce 80%, var(--text)); }
+.badge.reg-polite, .badge.reg-formal { background: color-mix(in srgb, #10b981 16%, transparent); color: color-mix(in srgb, #047857 80%, var(--text)); }
+.hero-en .badge { vertical-align: middle; font-size: .72rem; }
+.register { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: 0 0 1rem; }
+.register.compact { margin: .6rem 0 0; }
+.reg-side { border-radius: 14px; padding: .6rem .75rem; min-width: 0; }
+.reg-side.everyday { background: color-mix(in srgb, #0ea5e9 10%, var(--surface)); border: 1px solid color-mix(in srgb, #0ea5e9 30%, var(--border)); }
+.reg-side.proper { background: color-mix(in srgb, #10b981 9%, var(--surface)); border: 1px solid color-mix(in srgb, #10b981 28%, var(--border)); }
+.reg-side .kicker { margin-bottom: .2rem; font-size: .68rem; }
+.reg-side p { margin: 0; }
+.reg-text { display: flex; align-items: flex-start; gap: .2rem; }
+.reg-text .icon-btn { width: 32px; height: 32px; flex-shrink: 0; }
+.reg-text > span { display: flex; flex-direction: column; min-width: 0; padding-top: .3rem; }
+.reg-text b { font-size: 1.02rem; word-break: break-word; }
+@media (max-width: 360px) { .register { grid-template-columns: 1fr; } }
+
+/* ---------- Topic sections & grammar ---------- */
+.cat-section .section-title { margin-bottom: .1rem; }
+.cat-section .hint { margin: 0 0 .6rem; }
+.grammar-link { margin-top: 1rem; }
+.grammar-link > span:nth-child(2) { flex: 1; }
+.grammar-icon { font-size: 1.5rem; }
+.grammar-list { display: grid; gap: .5rem; }
+.grammar-card {
+  display: flex; align-items: center; gap: .8rem; padding: .8rem .9rem; border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--border); color: var(--text); text-decoration: none;
+}
+.grammar-card:hover { border-color: var(--accent); }
+.grammar-card.done { border-color: color-mix(in srgb, var(--good) 40%, var(--border)); }
+.grammar-num {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface-2); font-weight: 800;
+}
+.grammar-card.done .grammar-num { background: var(--good-soft); color: var(--good); }
+.grammar-text { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.grammar-text small { color: var(--muted); font-size: .82rem; line-height: 1.35; }
+.badge.level-A1 { background: var(--good-soft); color: var(--good); }
+.badge.level-A2 { background: var(--easy-soft); color: var(--easy); }
+.badge.level-B1 { background: var(--warn-soft); color: var(--warn); }
+.g-section p { margin: 0 0 .6rem; }
+.g-table-wrap { overflow-x: auto; margin: .4rem 0 .8rem; }
+.g-table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+.g-table th, .g-table td { border: 1px solid var(--border); padding: .4rem .55rem; text-align: left; vertical-align: top; }
+.g-table thead th { background: var(--surface-2); font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.g-table tbody th { font-weight: 700; background: color-mix(in srgb, var(--surface-2) 50%, var(--surface)); }
+.g-examples { list-style: none; padding: 0; margin: .4rem 0 0; display: grid; gap: .5rem; }
+.g-example { display: flex; gap: .3rem; align-items: flex-start; padding: .45rem .5rem; border-radius: 12px; background: var(--surface-2); }
+.g-example p { margin: 0 !important; }
+.g-note { font-size: .82rem; color: var(--muted); margin-top: .2rem !important; }
+.g-quiz .g-q { margin-bottom: 1rem; }
+.g-q-text { margin-bottom: .5rem; }
+.g-explain { margin: .5rem 0 0; font-size: .9rem; }
+.g-result { padding: 1rem 0 0; }

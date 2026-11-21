@@ -248,3 +248,69 @@ export function categoryCard(ctx, cat, { href } = {}) {
     ),
   );
 }
+
+// ---------- Register: polite / proper vs everyday ----------
+
+export const REG_LABEL = { formal: 'Formal', polite: 'Polite', neutral: 'Neutral', casual: 'Casual', slang: 'Slang' };
+const CASUAL = new Set(['casual', 'slang']);
+
+/** A small badge for an entry's register (nothing for neutral words). */
+export function regBadge(word) {
+  if (!word.reg || word.reg === 'neutral') return word.dialect ? h('span', { class: 'badge reg-casual' }, `🇪🇬 ${word.dialect}`) : null;
+  return h('span', { class: `badge reg-${word.reg}` }, REG_LABEL[word.reg] || word.reg, word.dialect ? ` · ${word.dialect}` : '');
+}
+
+/**
+ * Side-by-side comparison of an entry and its other-register counterpart:
+ * what people actually say day to day vs the proper / polite language.
+ */
+export function registerBlock(ctx, word, { compact = false } = {}) {
+  if (!word.pair) return null;
+  const { lang } = ctx;
+  const me = { ...word, reg: word.reg || 'neutral' };
+  const other = { ...word.pair, en: word.pair.en || word.en };
+  const everyday = CASUAL.has(me.reg) || (!CASUAL.has(other.reg) && me.reg !== 'formal' && other.reg === 'formal') ? me : other;
+  const proper = everyday === me ? other : me;
+  const side = (w, title, cls) => h('div', { class: `reg-side ${cls}` },
+    h('p', { class: 'kicker' }, title, w.dialect ? ` · ${w.dialect}` : ''),
+    h('p', { class: 'reg-text' },
+      playButton(ctx, w.tr),
+      h('span', null,
+        h('b', { lang: lang.code }, w.tr),
+        lang.reading(w) ? h('small', { class: 'reading small' }, lang.reading(w)) : null)),
+    !compact && w.en && w.en !== word.en ? h('p', { class: 'muted small' }, w.en) : null);
+  return h('div', { class: `register${compact ? ' compact' : ''}`, role: 'group', 'aria-label': 'Everyday speech compared with the proper form' },
+    side(everyday, '🗣️ What people say', 'everyday'),
+    side(proper, lang.code === 'ar' ? '📖 Standard Arabic' : '🎩 Proper / polite', 'proper'));
+}
+
+// ---------- Topic sections ----------
+
+export const GROUPS = [
+  { id: 'words', title: 'Words', hint: 'Everyday vocabulary, most common first' },
+  { id: 'phrases', title: 'Phrases', hint: 'Ready-to-use sentences for real situations' },
+  { id: 'talk', title: 'Talk like a local', hint: 'How people really speak — casual forms and slang, next to the proper version' },
+];
+
+/** Category cards grouped into Words / Phrases / Talk like a local. */
+export function categorySections(ctx, { headingTag = 'h2' } = {}) {
+  return GROUPS.map((g) => {
+    const cats = ctx.lang.categories.filter((c) => (c.group || 'words') === g.id);
+    if (!cats.length) return null;
+    return h('section', { class: 'cat-section' },
+      h(headingTag, { class: 'section-title' }, g.title),
+      h('p', { class: 'hint' }, g.hint),
+      h('div', { class: 'cat-grid' }, cats.map((c) => categoryCard(ctx, c))));
+  });
+}
+
+/** Link card to the grammar guide. */
+export function grammarLink(ctx) {
+  const lessons = ctx.lang.grammar || [];
+  if (!lessons.length) return null;
+  const done = lessons.filter((l) => ctx.game?.grammarBest(ctx.lang.code, l.id) != null).length;
+  return h('a', { class: 'quick-link grammar-link', href: '#/grammar' },
+    h('span', { class: 'grammar-icon', 'aria-hidden': 'true' }, '📖'),
+    h('span', null, h('b', null, `${ctx.lang.name} grammar`), h('small', null, `${lessons.length} short lessons with quizzes${done ? ` · ${done} done` : ''}`)),
+    icon('arrow'));
+}

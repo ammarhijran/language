@@ -1,5 +1,7 @@
 // Japanese language pack.
-import { categories, vocab } from './vocab.js';
+import { categories as baseCategories, vocab as baseVocab } from './vocab.js';
+import { categories as moreCategories, vocab as moreVocab } from './more.js';
+import { lessons } from './grammar.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyzeKana, romaji, toHiragana, hasKana, morae } from './kana.js';
 import { makePack } from '../common.js';
@@ -46,8 +48,9 @@ export default makePack({
   almostHint: 'Almost! Check the long vowels and double consonants:',
   alphabetIntro: 'Japanese is written with hiragana (below), katakana for foreign words (shown beside each one) and kanji. Every kana is one beat and always sounds the same. Tap a kana to hear an example word.',
   pronHint: () => 'Each box is one beat (mora). Give every beat the same length — a long vowel like ō counts as two. Tap a beat to hear it.',
-  categories,
-  vocab,
+  categories: [...baseCategories, ...moreCategories],
+  vocab: [...baseVocab, ...moreVocab],
+  grammar: lessons,
   alphabet,
   soundTips,
   minimalPairs,
@@ -76,6 +79,7 @@ export default makePack({
     return { words, ipa, respell, stressMarked: false };
   },
   reading(w) {
+    if (!w.kana) return null;
     const kana = plainKana(w);
     return normalize(w.tr) === normalize(kana) ? romanOf(w) : `${kana} · ${romanOf(w)}`;
   },

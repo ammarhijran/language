@@ -1,5 +1,5 @@
 import { h, icon, shuffle } from '../ui.js';
-import { categoryCard } from '../components.js';
+import { categoryCard, categorySections, grammarLink } from '../components.js';
 import { runSession } from '../session.js';
 import { newCard, review, markKnown, GOOD, AGAIN } from '../srs.js';
 
@@ -75,8 +75,9 @@ export default function learn(ctx, catId) {
 function picker(ctx) {
   return h('div', { class: 'view' },
     h('h1', null, 'Learn'),
-    h('p', { class: 'muted' }, `Pick a topic. Each lesson introduces ${ctx.settings.lessonSize} words with audio, syllables and pronunciation tips, then checks you remember them.`),
-    h('div', { class: 'cat-grid' }, ctx.lang.categories.map((c) => categoryCard(ctx, c))),
+    h('p', { class: 'muted' }, `Pick a topic. Each lesson introduces ${ctx.settings.lessonSize} words or phrases with audio and pronunciation tips, then checks you remember them.`),
+    grammarLink(ctx),
+    categorySections(ctx),
     h('a', { class: 'quick-link known-link', href: '#/known' },
       icon('check', 22),
       h('span', null, h('b', null, 'Already know some words?'), h('small', null, 'Mark them as already learned and lessons will skip them'))),

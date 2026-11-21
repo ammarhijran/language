@@ -167,6 +167,9 @@ export function mergeGame(local = {}, remote = {}) {
     const lg = out.goals[lang];
     if (rg && (!lg || (rg.set || 0) > (lg.set || 0))) out.goals[lang] = clone(rg);
   }
+  // grammar lessons: best score per lesson
+  out.grammar = clone(local.grammar) || {};
+  for (const [lang, lessons] of Object.entries(remote.grammar || {})) out.grammar[lang] = maxMap(out.grammar[lang], lessons);
   // weekly challenges: same week → merge progress; otherwise the newer week
   const lw = local.week;
   const rw = remote.week;

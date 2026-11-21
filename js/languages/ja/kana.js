@@ -60,7 +60,8 @@ function moraRomaji(m) {
  * Returns { text, morae: [{ kana, rom, long }] per word } so callers can align with morae.
  */
 export function romanize(kana, mode = 'hepburn') {
-  const words = kana.trim().split(/\s+/);
+  // A particle written as its own token is read differently: は → wa, へ → e.
+  const words = kana.trim().split(/\s+/).map((w) => (w === 'は' ? 'わ' : w === 'へ' ? 'え' : w));
   return words.map((word) => {
     const ms = morae(word);
     const out = [];

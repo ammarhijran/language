@@ -77,6 +77,12 @@ export const ACHIEVEMENTS = [
   A('ear-perfect', '👂', 'Golden Ear', 'Get 10/10 in an ear-training quiz', 'earPerfect', 1, 'Pronunciation'),
   A('alphabet', '🔤', 'Letter by Letter', 'Listen to every letter of an alphabet', 'alphabet', 1, 'Pronunciation'),
 
+  A('grammar-1', '📐', 'First Rules', 'Finish a grammar lesson', 'grammar', 1, 'Grammar'),
+  A('grammar-5', '🤓', 'Grammar Geek', 'Finish 5 grammar lessons', 'grammar', 5, 'Grammar'),
+  A('grammar-all', '🎓', 'Grammarian', 'Finish every grammar lesson in one language', 'grammarAll', 1, 'Grammar'),
+  A('grammar-perfect', '💯', 'Rule Master', 'Score 4/4 on 10 grammar quizzes', 'grammarPerfect', 10, 'Grammar'),
+  A('talk-local', '🗣️', 'Talk Like a Local', 'Learn 20 everyday or slang expressions', 'talkWords', 20, 'Learning'),
+
   A('combo-10', '⚡', 'Hot Streak', 'Get 10 answers right in a row', 'bestCombo', 10, 'Skill'),
   A('combo-25', '☄️', 'On Fire', 'Get 25 answers right in a row', 'bestCombo', 25, 'Skill'),
   A('flawless', '✨', 'Flawless', 'Finish a session of 10+ with every answer right first time', 'flawless', 1, 'Skill'),
@@ -152,6 +158,7 @@ function g() {
   s.unseen ??= [];
   s.goals ??= {};
   s.spoken ??= { day: '', ids: [] };
+  s.grammar ??= {}; // { lang: { lessonId: best score 0..1 } }
   const wk = weekKey();
   if (!s.week || s.week.key !== wk) s.week = { key: wk, picks: challengesForWeek(wk), p: {}, done: {}, goalDays: [] };
   if (Object.values(s.week.p).some((v) => typeof v === 'number')) s.week.p = { [me]: s.week.p }; // old format
@@ -224,6 +231,7 @@ function maxWeek(key, v) { const p = weekOwn(); p[key] = Math.max(p[key] || 0, v
 export function metrics() {
   const s = g();
   let words = 0; let mastered = 0; let langs = 0; let topics = 0; let topicsInLang = 0; let streakNow = 0; let alphabet = 0;
+  let grammar = 0; let grammarAll = 0; let grammarPerfect = 0; let talkWords = 0;
   for (const [code, L] of Object.entries(languages)) {
     const cards = store.getCards(code);
     const ids = Object.keys(cards);
@@ -237,10 +245,16 @@ export function metrics() {
     topicsInLang = Math.max(topicsInLang, done);
     streakNow = Math.max(streakNow, store.streak(code));
     if ((s.letters[code] || []).length >= L.alphabet.length) alphabet++;
+    const g = s.grammar[code] || {};
+    const doneIds = Object.keys(g).filter((id) => (L.grammar || []).some((l) => l.id === id));
+    grammar += doneIds.length;
+    grammarPerfect += doneIds.filter((id) => g[id] >= 1).length;
+    if (L.grammar?.length && doneIds.length >= L.grammar.length) grammarAll++;
+    talkWords += L.words.filter((w) => (w.reg === 'casual' || w.reg === 'slang') && cards[w.id] && !cards[w.id].known).length;
   }
   c().bestStreak = Math.max(c().bestStreak, streakNow);
   const all = counters();
-  return { ...all, words, mastered, langs, topics, topicsInLang, streak: all.bestStreak, level: level().level, alphabet };
+  return { ...all, words, mastered, langs, topics, topicsInLang, streak: all.bestStreak, level: level().level, alphabet, grammar, grammarAll, grammarPerfect, talkWords };
 }
 
 export function achievementProgress() {
@@ -372,6 +386,30 @@ export function earQuiz({ lang, correct, total }) {
   if (total >= 10 && correct === total) {
     c().earPerfect++;
     xp += addXp(lang, XP.earPerfect, 'ear-perfect');
+  }
+  evaluate(lang);
+  return xp;
+}
+
+export const grammarBest = (lang, id) => g().grammar[lang]?.[id] ?? null;
+
+/**
+ * A finished grammar quiz. XP: +30 the first time a lesson is completed, and
+ * +5 per right answer once per lesson per day.
+ */
+export function grammarDone({ lang, id, correct, total }) {
+  const s = g();
+  const map = (s.grammar[lang] ||= {});
+  const first = map[id] == null;
+  map[id] = Math.max(map[id] ?? 0, total ? correct / total : 0);
+  const today = store.dayKey();
+  if (s.spoken.day !== today) s.spoken = { day: today, ids: [] };
+  const key = `grammar:${lang}:${id}`;
+  let xp = 0;
+  if (first) xp += addXp(lang, 30, 'grammar');
+  if (!s.spoken.ids.includes(key)) {
+    s.spoken.ids.push(key);
+    xp += addXp(lang, 5 * correct, 'grammar');
   }
   evaluate(lang);
   return xp;

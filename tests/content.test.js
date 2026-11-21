@@ -8,12 +8,15 @@ import { languages } from '../js/languages/index.js';
 const root = fileURLToPath(new URL('..', import.meta.url));
 
 // Script each pack's written words must use.
+// (phrases may also contain punctuation and digits)
 const SCRIPT = {
-  tr: /^[A-Za-zÇĞİÖŞÜÂÎÛçğıöşüâîû' ]+$/,
-  uk: /^[\p{Script=Cyrillic}’' ]+$/u,
-  ja: /^[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}ー々 ]+$/u,
-  ar: /^[\p{Script=Arabic}\u064B-\u0652\u0670 ]+$/u,
+  tr: /^[A-Za-zÇĞİÖŞÜÂÎÛçğıöşüâîû'\p{P}\p{N} ]+$/u,
+  uk: /^[\p{Script=Cyrillic}’'\p{P}\p{N} ]+$/u,
+  ja: /^[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}ー々〜\p{P}\p{N}\p{Script=Latin} ]+$/u,
+  ar: /^[\p{Script=Arabic}\u064B-\u0652\u0670\p{P}\p{N} ]+$/u,
 };
+const REGS = new Set(['formal', 'polite', 'neutral', 'casual', 'slang']);
+const GROUPS = new Set(['words', 'phrases', 'talk']);
 
 for (const [code, lang] of Object.entries(languages)) {
   test(`${code}: pack has the required fields`, () => {
@@ -21,7 +24,12 @@ for (const [code, lang] of Object.entries(languages)) {
       assert.ok(lang[key], `${code}.${key}`);
     }
     assert.ok(lang.sampleWords.length >= 3);
-    assert.equal(lang.categories.length, 12);
+    assert.ok(lang.categories.length >= 12);
+    assert.equal(new Set(lang.categories.map((c) => c.id)).size, lang.categories.length, 'unique category ids');
+    for (const c of lang.categories) {
+      assert.ok(c.name && c.native && c.emoji, `category ${c.id} needs name, native and emoji`);
+      assert.ok(GROUPS.has(c.group || 'words'), `category ${c.id} has unknown group ${c.group}`);
+    }
   });
 
   test(`${code}: every word has a unique id, a category and text`, () => {
@@ -34,6 +42,14 @@ for (const [code, lang] of Object.entries(languages)) {
       assert.ok(w.tr.trim() && w.en.trim(), `${w.id} is missing text`);
       assert.match(w.tr, SCRIPT[code], `${w.tr} uses the wrong script`);
       if (w.ex) assert.equal(w.ex.length, 2, `${w.id} example needs [text, english]`);
+      if (w.reg) assert.ok(REGS.has(w.reg), `${w.id}: unknown register ${w.reg}`);
+      if (w.pair) {
+        assert.ok(w.pair.tr && REGS.has(w.pair.reg), `${w.id}: pair needs tr and a valid reg`);
+        if (code === 'ja') assert.ok(w.pair.kana, `${w.id}: ja pair needs kana`);
+        if (code === 'ar') assert.ok(w.pair.tl, `${w.id}: ar pair needs tl`);
+      }
+      if (code === 'ja') assert.ok(w.kana, `${w.id}: ja entries need kana`);
+      if (code === 'ar') assert.ok(w.tl, `${w.id}: ar entries need tl`);
     }
     assert.ok(lang.words.length >= 150, `expected a decent vocabulary, got ${lang.words.length}`);
   });
@@ -52,6 +68,29 @@ for (const [code, lang] of Object.entries(languages)) {
       const accepted = lang.acceptedAnswers(w).map(lang.normalize);
       assert.ok(accepted.includes(lang.normalize(w.tr)), w.tr);
       assert.ok(lang.spokenTargets(w).length >= 1);
+    }
+  });
+
+  test(`${code}: grammar lessons are well formed`, () => {
+    const lessons = lang.grammar || [];
+    assert.equal(new Set(lessons.map((l) => l.id)).size, lessons.length, 'unique lesson ids');
+    for (const l of lessons) {
+      assert.ok(l.id && l.title && l.summary && ['A1', 'A2', 'B1'].includes(l.level), `lesson ${l.id}`);
+      assert.ok(l.sections?.length >= 1, `${l.id}: sections`);
+      for (const s of l.sections) {
+        assert.ok(s.heading && typeof s.body === 'string', `${l.id}: section heading/body`);
+        if (s.table) assert.ok(s.table.head.length && s.table.rows.every((r) => Array.isArray(r)), `${l.id}: table`);
+        for (const ex of s.examples || []) {
+          assert.ok(ex.tr && ex.en, `${l.id}: example needs tr and en`);
+          if (code === 'ja') assert.ok(ex.kana, `${l.id}: ja example needs kana (${ex.tr})`);
+          if (code === 'ar') assert.ok(ex.tl, `${l.id}: ar example needs tl (${ex.tr})`);
+        }
+      }
+      for (const q of l.quiz || []) {
+        assert.equal(q.options.length, 4, `${l.id}: 4 options`);
+        assert.ok(Number.isInteger(q.answer) && q.answer >= 0 && q.answer < 4, `${l.id}: answer index`);
+        assert.equal(new Set(q.options).size, 4, `${l.id}: options must differ (${q.q})`);
+      }
     }
   });
 

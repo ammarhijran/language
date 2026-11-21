@@ -1,7 +1,7 @@
 // Exercise types. Each takes (ctx, word, onDone, meta) and returns an element.
 // onDone receives { correct, rating } (rating uses the SRS scale) or { skipped: true }.
 import { h, icon, bindKeys, shuffle, pick, set } from './ui.js';
-import { playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine } from './components.js';
+import { playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge } from './components.js';
 import { alignDiff } from './compare.js';
 import { AGAIN, HARD, GOOD, EASY } from './srs.js';
 
@@ -40,6 +40,7 @@ function reveal(ctx, word, correct, extra) {
         h('p', { class: 'respell small' }, a.respell),
       ),
     ),
+    registerBlock(ctx, word, { compact: true }),
     extra,
   );
 }
@@ -277,10 +278,11 @@ export function intro(ctx, word, onDone, meta = {}) {
     h('div', { class: 'word-hero' },
       h('h2', { class: 'hero-tr', lang: ctx.lang.code }, word.tr),
       readingLine(ctx, word),
-      h('p', { class: 'hero-en' }, word.en),
+      h('p', { class: 'hero-en' }, word.en, ' ', regBadge(word)),
     ),
     audioControls(ctx, word.tr),
     pronunciationPanel(ctx, word),
+    registerBlock(ctx, word),
     exampleBlock(ctx, word),
     word.note ? h('p', { class: 'note' }, word.note) : null,
     h('details', { class: 'try-speak' },
