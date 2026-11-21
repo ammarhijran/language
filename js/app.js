@@ -13,6 +13,7 @@ import progress from './views/progress.js';
 import settingsView from './views/settings.js';
 import wordView from './views/word.js';
 import welcome from './views/welcome.js';
+import known from './views/known.js';
 
 const lang = languages[store.getSettings().lang] || languages[defaultLanguage];
 
@@ -26,6 +27,7 @@ const ROUTES = {
   settings: settingsView,
   word: wordView,
   welcome,
+  known,
 };
 
 const TABS = [
@@ -35,7 +37,7 @@ const TABS = [
   { id: 'speak', label: 'Speak', icon: 'mic' },
   { id: 'progress', label: 'Progress', icon: 'chart' },
 ];
-const TAB_OF = { practice: '', word: 'progress', settings: 'progress' };
+const TAB_OF = { practice: '', word: 'progress', settings: 'progress', known: 'learn' };
 
 let cleanups = [];
 
@@ -112,7 +114,7 @@ function render() {
     badge.hidden = due === 0;
     badge.textContent = due > 99 ? '99+' : String(due);
   }
-  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', word: lang.byId(params[0])?.tr }[name];
+  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', known: 'Already learned', word: lang.byId(params[0])?.tr }[name];
   document.title = title ? `${title} · Lisan ${lang.name}` : `Lisan · ${lang.name}`;
   window.scrollTo(0, 0);
 }

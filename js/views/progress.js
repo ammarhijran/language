@@ -56,7 +56,10 @@ export default function progress(ctx, catFilter) {
   renderList();
 
   return h('div', { class: 'view' },
-    h('div', { class: 'title-row' }, h('h1', null, 'Progress'), h('a', { href: '#/settings', class: 'btn small' }, icon('settings', 16), 'Settings')),
+    h('div', { class: 'title-row' }, h('h1', null, 'Progress'),
+      h('div', { class: 'button-row' },
+        h('a', { href: '#/known', class: 'btn small' }, icon('check', 16), 'Already learned'),
+        h('a', { href: '#/settings', class: 'btn small' }, icon('settings', 16), 'Settings'))),
     h('div', { class: 'stat-row' },
       stat(s.streak, 'day streak'),
       stat(s.learned, 'words learned'),
@@ -71,8 +74,8 @@ export default function progress(ctx, catFilter) {
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, 'Mastery'),
       h('div', { class: 'stack-bar', role: 'img', 'aria-label': Object.entries(s.counts).map(([k, v]) => `${STATUS_LABEL[k]} ${v}`).join(', ') },
-        ['mastered', 'familiar', 'learning', 'new'].map((k) => h('span', { class: k, style: { flex: s.counts[k] } }))),
-      h('ul', { class: 'legend' }, ['mastered', 'familiar', 'learning', 'new'].map((k) =>
+        ['mastered', 'known', 'familiar', 'learning', 'new'].map((k) => h('span', { class: k, style: { flex: s.counts[k] } }))),
+      h('ul', { class: 'legend' }, ['mastered', 'known', 'familiar', 'learning', 'new'].map((k) =>
         h('li', null, h('i', { class: k }), `${STATUS_LABEL[k]} · ${s.counts[k]}`))),
       h('ul', { class: 'cat-progress-list' }, lang.categories.map((c) => {
         const ws = lang.wordsIn(c.id);

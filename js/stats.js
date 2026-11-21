@@ -19,7 +19,7 @@ export function learnedWords(ctx) {
 export function computeStats(ctx) {
   const { lang, store } = ctx;
   const cards = store.getCards(lang.code);
-  const counts = { new: 0, learning: 0, familiar: 0, mastered: 0 };
+  const counts = { new: 0, learning: 0, familiar: 0, mastered: 0, known: 0 };
   for (const w of lang.words) counts[status(cards[w.id])]++;
   const today = store.getDay(lang.code) || {};
   return {

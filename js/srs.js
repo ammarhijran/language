@@ -18,11 +18,25 @@ export function newCard(now = Date.now()) {
   return { ease: 2.5, interval: 0, reps: 0, lapses: 0, due: now, added: now, last: null };
 }
 
+/**
+ * A word the learner says they "already learned": skip the lessons and only
+ * check it again in about a month. Getting it wrong later turns it back into a
+ * normal learning card.
+ */
+export const KNOWN_INTERVAL = 30;
+export function markKnown(now = Date.now()) {
+  return {
+    ease: 2.5, interval: KNOWN_INTERVAL, reps: 3, lapses: 0,
+    due: startOfDay(now) + KNOWN_INTERVAL * DAY, added: now, last: now, known: true,
+  };
+}
+
 /** Return a new card state after answering with `rating`. */
 export function review(card, rating, now = Date.now()) {
   const c = { ...card, last: now };
 
   if (rating === AGAIN) {
+    c.known = false;
     if (c.reps > 0) c.lapses += 1;
     c.reps = 0;
     c.interval = 0;
@@ -55,9 +69,10 @@ export function review(card, rating, now = Date.now()) {
 
 export const isDue = (card, now = Date.now()) => !!card && card.due <= now;
 
-/** new → learning → familiar → mastered */
+/** new → learning → familiar → mastered, plus "known" (marked as already learned) */
 export function status(card) {
   if (!card) return 'new';
+  if (card.known) return 'known';
   if (card.reps === 0 || card.interval < 3) return 'learning';
   if (card.interval < 21) return 'familiar';
   return 'mastered';
@@ -68,4 +83,5 @@ export const STATUS_LABEL = {
   learning: 'Learning',
   familiar: 'Familiar',
   mastered: 'Mastered',
+  known: 'Already learned',
 };

@@ -1,7 +1,7 @@
 import { h, icon, shuffle } from '../ui.js';
 import { categoryCard } from '../components.js';
 import { runSession } from '../session.js';
-import { newCard, review, GOOD, AGAIN } from '../srs.js';
+import { newCard, review, markKnown, GOOD, AGAIN } from '../srs.js';
 
 export default function learn(ctx, catId) {
   const { lang, store } = ctx;
@@ -18,11 +18,18 @@ export default function learn(ctx, catId) {
     ...shuffle(batch).map((word, i) => ({ word, type: i % 2 ? 'produce' : 'listen' })),
   ];
 
+  const known = [];
+
   return h('div', { class: 'view' }, runSession(ctx, {
     label: `Lesson: ${cat.name}`,
     exitHref: '#/learn',
     items,
     onResult(item, r) {
+      if (r.known) {
+        store.setCard(lang.code, item.word.id, markKnown());
+        known.push(item.word);
+        return { drop: true };
+      }
       if (r.intro || r.rating !== AGAIN) return null;
       const retries = (item.retries || 0) + 1;
       return retries <= 2 ? { word: item.word, type: item.type === 'listen' ? 'meaning' : 'produce', retries } : null;
@@ -38,12 +45,20 @@ export default function learn(ctx, catId) {
       }
       if (added) store.logActivity(lang.code, { learned: added });
       const remaining = all.filter((w) => !store.getCard(lang.code, w.id)).length;
+      const learnedNow = batch.filter((w) => !known.includes(w));
+      const chips = (list) => h('ul', { class: 'word-chips' }, list.map((w) =>
+        h('li', null, h('a', { href: `#/word/${encodeURIComponent(w.id)}` }, h('b', { lang: lang.code }, w.tr), ' ', h('span', null, w.en)))));
       return h('div', { class: 'summary' },
-        h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, '🎉'),
+        h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, learnedNow.length ? '🎉' : '💪'),
         h('h2', null, 'Lesson complete!'),
-        h('p', { class: 'muted' }, `You learned ${batch.length} new word${batch.length === 1 ? '' : 's'}. They’ll come back for review tomorrow.`),
-        h('ul', { class: 'word-chips' }, batch.map((w) =>
-          h('li', null, h('a', { href: `#/word/${encodeURIComponent(w.id)}` }, h('b', { lang: lang.code }, w.tr), ' ', h('span', null, w.en))))),
+        learnedNow.length
+          ? h('p', { class: 'muted' }, `You learned ${learnedNow.length} new word${learnedNow.length === 1 ? '' : 's'}. They’ll come back for review tomorrow.`)
+          : null,
+        learnedNow.length ? chips(learnedNow) : null,
+        known.length
+          ? h('p', { class: 'muted' }, `Marked ${known.length} as already learned — they’ll only come back for a quick check in about a month.`)
+          : null,
+        known.length ? chips(known) : null,
         h('div', { class: 'actions stack' },
           remaining
             ? h('button', { type: 'button', class: 'btn primary wide', onclick: () => ctx.rerender() }, `Next ${Math.min(remaining, ctx.settings.lessonSize)} words`, icon('arrow', 18))
@@ -61,6 +76,9 @@ function picker(ctx) {
     h('h1', null, 'Learn'),
     h('p', { class: 'muted' }, `Pick a topic. Each lesson introduces ${ctx.settings.lessonSize} words with audio, syllables and pronunciation tips, then checks you remember them.`),
     h('div', { class: 'cat-grid' }, ctx.lang.categories.map((c) => categoryCard(ctx, c))),
+    h('a', { class: 'quick-link known-link', href: '#/known' },
+      icon('check', 22),
+      h('span', null, h('b', null, 'Already know some words?'), h('small', null, 'Mark them as already learned and lessons will skip them'))),
   );
 }
 
@@ -73,6 +91,7 @@ function finished(ctx, cat) {
       h('div', { class: 'actions stack' },
         h('a', { class: 'btn primary wide', href: `#/practice/mixed/${cat.id}` }, 'Practise this topic'),
         h('a', { class: 'btn wide', href: `#/progress/${cat.id}` }, 'See the word list'),
+        h('a', { class: 'btn wide', href: `#/known/${cat.id}` }, 'Edit “already learned” words'),
         h('a', { class: 'btn ghost wide', href: '#/learn' }, 'Choose another topic')),
     ),
   );

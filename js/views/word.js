@@ -1,6 +1,6 @@
 import { h, icon } from '../ui.js';
 import { audioControls, pronunciationPanel, speakPractice, exampleBlock } from '../components.js';
-import { status, STATUS_LABEL } from '../srs.js';
+import { status, STATUS_LABEL, markKnown } from '../srs.js';
 
 export default function word(ctx, id) {
   const { lang, store } = ctx;
@@ -27,6 +27,19 @@ export default function word(ctx, id) {
       pronunciationPanel(ctx, w),
       exampleBlock(ctx, w),
       w.note ? h('p', { class: 'note' }, w.note) : null,
+      st === 'new'
+        ? h('button', {
+          type: 'button', class: 'btn small',
+          onclick: () => { store.setCard(lang.code, w.id, markKnown()); ctx.toast('Marked as already learned'); ctx.rerender(); },
+        }, icon('check', 16), 'Already learned')
+        : null,
+      st === 'known'
+        ? h('p', { class: 'hint' }, 'You marked this as already learned. ',
+          h('button', {
+            type: 'button', class: 'link-btn',
+            onclick: () => { store.deleteCard(lang.code, w.id); ctx.toast('Moved back to new words'); ctx.rerender(); },
+          }, 'Undo — I want to learn it'))
+        : null,
       card ? h('p', { class: 'hint' }, card.due <= Date.now()
         ? 'Due for review now.'
         : `Next review: ${new Date(card.due).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}.`) : null,

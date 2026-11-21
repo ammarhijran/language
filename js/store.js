@@ -71,6 +71,10 @@ export function setCard(lang, id, card) {
   prog(lang).cards[id] = card;
   save();
 }
+export function deleteCard(lang, id) {
+  delete prog(lang).cards[id];
+  save();
+}
 
 export function dayKey(d = new Date()) {
   const m = String(d.getMonth() + 1).padStart(2, '0');

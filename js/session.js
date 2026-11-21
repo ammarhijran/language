@@ -6,14 +6,15 @@ import { EXERCISES } from './exercises.js';
  * @param ctx
  * @param {object} opts
  * @param {Array<{word, type, meta?}>} opts.items
- * @param {(item, result) => object|null} opts.onResult  may return an item to re-queue
+ * @param {(item, result) => object|null} opts.onResult  may return an item to re-queue,
+ *   or { drop: true } to remove the word's remaining items
  * @param {() => Node} opts.onFinish  rendered when the queue is empty
  */
 export function runSession(ctx, { items, onResult, onFinish, exitHref = '#/', label = 'Session' }) {
   const fill = h('div', { class: 'meter-fill' });
   const counter = h('span', { class: 'session-count' });
   const stage = h('div', { class: 'stage' });
-  const queue = [...items];
+  let queue = [...items];
   let done = 0;
   let localCleanups = [];
 
@@ -48,7 +49,8 @@ export function runSession(ctx, { items, onResult, onFinish, exitHref = '#/', la
     const render = EXERCISES[item.type] || EXERCISES.flashcard;
     const el = render(exCtx, item.word, (result) => {
       const again = onResult(item, result);
-      if (again) queue.push(again);
+      if (again?.drop) queue = queue.filter((q) => q.word.id !== item.word.id);
+      else if (again) queue.push(again);
       done++;
       next();
     }, item.meta);

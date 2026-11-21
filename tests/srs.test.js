@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { newCard, review, isDue, status, AGAIN, HARD, GOOD, EASY, DAY, startOfDay } from '../js/srs.js';
+import { newCard, review, markKnown, isDue, status, AGAIN, HARD, GOOD, EASY, DAY, startOfDay, KNOWN_INTERVAL } from '../js/srs.js';
 
 const NOW = new Date(2026, 0, 10, 15, 0).getTime();
 
@@ -49,4 +49,21 @@ test('interval is capped', () => {
   for (let i = 0; i < 30; i++) c = review(c, EASY, NOW);
   assert.equal(c.interval, 365);
   assert.equal(status(c), 'mastered');
+});
+
+test('already learned words skip ahead and come back in about a month', () => {
+  const c = markKnown(NOW);
+  assert.equal(status(c), 'known');
+  assert.ok(!isDue(c, NOW));
+  assert.ok(isDue(c, startOfDay(NOW) + KNOWN_INTERVAL * DAY));
+  const ok = review(c, GOOD, NOW);
+  assert.equal(status(ok), 'known');
+  assert.ok(ok.interval > KNOWN_INTERVAL);
+});
+
+test('forgetting an already learned word turns it into a normal learning card', () => {
+  const c = review(markKnown(NOW), AGAIN, NOW);
+  assert.equal(c.known, false);
+  assert.equal(status(c), 'learning');
+  assert.ok(isDue(c, NOW));
 });

@@ -9,6 +9,7 @@ It runs as a website (works offline, installable as a PWA) and as native **Andro
 ### Vocabulary
 - **306 Turkish words and phrases** in 12 topics: Essentials, Numbers, People & Family, Food & Drink, Time & Days, Colors & Descriptions, Places & Travel, Home & Things, Body & Health, Common Verbs, Questions & Little Words, Nature & Animals. Many have example sentences and usage notes.
 - **Lessons** introduce 5 words at a time (you can change this). Each word comes with audio, a pronunciation breakdown and an example, then a quick quiz checks you remember them.
+- **Already learned:** tick off words you already know, during a lesson, in bulk per topic, or on a word's page. Lessons skip them, and they come back once after about a month for a quick check.
 - **Spaced-repetition reviews** (an SM-2-style scheduler, like Anki) bring each word back just before you're likely to forget it.
 - **Exercises get harder as you learn:** listening → reading → choosing the Turkish → flashcards → typing → speaking. The typing exercise has buttons for ç ğ ı ö ş ü. If you only get a special letter wrong, you're told exactly which one.
 - **Practice mode** gives you free rounds on any topic, in any mode. It doesn't change your review schedule.

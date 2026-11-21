@@ -273,7 +273,12 @@ export function intro(ctx, word, onDone, meta = {}) {
     h('details', { class: 'try-speak' },
       h('summary', null, icon('mic', 16), 'Try saying it'),
       speakPractice(ctx, word)),
-    h('div', { class: 'actions' }, continueButton(finish, meta.index + 1 === meta.total ? 'Start quick check' : 'Next word')),
+    h('div', { class: 'actions split intro-actions' },
+      h('button', {
+        type: 'button', class: 'btn', title: 'Skip this word — it will only come back for a check in about a month',
+        onclick: () => { unbind(); onDone({ intro: true, known: true }); },
+      }, icon('check', 18), 'Already learned'),
+      continueButton(finish, meta.index + 1 === meta.total ? 'Start quick check' : 'Next word')),
   );
 }
 
