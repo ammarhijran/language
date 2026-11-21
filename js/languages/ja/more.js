@@ -122,6 +122,7 @@ export const vocab = [
     "en": "to think",
     "cat": "verbs2",
     "kana": "おもう",
+    "rom": "omou",
     "ex": [
       "明日は雨だと思います。",
       "I think it will rain tomorrow."
@@ -846,7 +847,8 @@ export const vocab = [
     "pair": {
       "tr": "そう思う",
       "reg": "casual",
-      "kana": "そう おもう"
+      "kana": "そう おもう",
+      "rom": "sō omou"
     }
   },
   {
@@ -1454,7 +1456,7 @@ export const vocab = [
       "後でメールを送ります。",
       "I’ll send you an email later."
     ],
-    "note": "メールする = to email. It can also mean a text message on a phone."
+    "note": "メールする = to email. For messaging friends, most people use LINE: LINEする (ラインする), or just 連絡する (to get in touch)."
   },
   {
     "tr": "パソコン",

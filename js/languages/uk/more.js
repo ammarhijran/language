@@ -255,7 +255,7 @@ export const vocab = [
     "tr": "приходити",
     "en": "to come; to arrive (on foot)",
     "cat": "verbs2",
-    "s": 3,
+    "s": 2,
     "ex": [
       "Приходь до нас у суботу!",
       "Come over on Saturday!"
@@ -3800,7 +3800,7 @@ export const vocab = [
     "en": "sure thing! obviously!",
     "cat": "slang",
     "s": [
-      1,
+      2,
       1
     ],
     "ex": [

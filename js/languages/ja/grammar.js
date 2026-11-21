@@ -197,7 +197,7 @@ export const lessons = [
     "sections": [
       {
         "heading": "Just add か",
-        "body": "To ask a polite question, put **か** at the end of the sentence. Nothing else moves, and your voice rises a little at the end. In writing, a か-question normally ends with 。 because か already shows it is a question; ？ is more common in casual messages.\n\nAnswer with **はい** (yes) or **いいえ** (no). Instead of repeating the whole sentence, people often say そうです (“that’s right”) or 違います (“that’s not right”).",
+        "body": "To ask a polite question, put **か** at the end of the sentence. Nothing else moves, and your voice rises a little at the end. In writing, a か-question normally ends with 。 because か already shows it is a question; ？ is more common in casual messages.\n\nAnswer with **はい** (yes) or **いいえ** (no). When the question ends in noun + ですか, people often say そうです (“that’s right”) or 違います (“that’s not right”) instead of repeating the whole sentence. For a verb question, repeat the verb: 行きますか → はい、行きます / いいえ、行きません.",
         "examples": [
           {
             "tr": "学生ですか。",
@@ -663,7 +663,7 @@ export const lessons = [
     "sections": [
       {
         "heading": "Little tags after words",
-        "body": "A **particle** comes right after a word and shows its job in the sentence, like the English words “to”, “at” or “with”, but placed after the noun. The verb always comes last, and because the particles carry the meaning, the other parts of the sentence can be ordered quite freely. Two particles are read differently from their usual kana: **を** is read **o** and **へ** is read **e**.",
+        "body": "A **particle** comes right after a word and shows its job in the sentence, like the English words “to”, “at” or “with”, but placed after the noun. The verb always comes last, and because the particles carry the meaning, the other parts of the sentence can be ordered quite freely. Watch two readings: the particle **へ** is read **e**, not “he”, and **を** (sometimes romanised “wo”) is pronounced **o**, the same sound as お.",
         "table": {
           "head": [
             "Particle",
@@ -1919,7 +1919,7 @@ export const lessons = [
       },
       {
         "heading": "Respectful and humble",
-        "body": "Beyond です / ます, keigo has two sides. **Respectful** language (尊敬語) raises the other person: use it for what a customer, boss or teacher does. **Humble** language (謙譲語) lowers yourself: use it for what you do for them. Never use respectful forms about yourself. Besides the special verbs in the table, there are regular patterns: **お + stem + になります** is respectful (お帰りになります), and **お + stem + します** is humble (お持ちします). Nouns get polite prefixes too: お名前, ご家族.",
+        "body": "Beyond です / ます, keigo has two sides. **Respectful** language (尊敬語) raises the other person: use it for what a customer, boss or teacher does. **Humble** language (謙譲語) lowers yourself: use it for your own actions when you speak to them (申します, 参ります, おります), and for what you do for them. Never use respectful forms about yourself. Besides the special verbs in the table, there are regular patterns: **お + stem + になります** is respectful (お帰りになります), and **お + stem + します** is humble, for something you do for the other person (お持ちします). Nouns get polite prefixes too: お名前, ご家族.",
         "examples": [
           {
             "tr": "こちらにお名前をお書きください。",

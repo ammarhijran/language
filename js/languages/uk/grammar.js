@@ -25,7 +25,7 @@ export const lessons = [
       },
       {
         "heading": "я, ю, є, ї and the apostrophe",
-        "body": "The letters **я, ю, є** have two jobs. After a consonant they soften it and add a vowel: **дякую** starts with a soft д + “a”. At the start of a word, after a vowel or after an apostrophe they give a real “y” sound: **яблуко** is “ya-bloo-ko”, **моя** is “mo-ya”. The letter **ї** is always “yi”.\n\nThe **apostrophe ’** comes before **я, ю, є, ї**: after **б, п, в, м, ф** (**п’ять**, **сім’я**), after **р** at the end of a syllable (**пір’я**, feathers) and after prefixes such as **з-** (**з’їсти**, to eat up). It means: keep the consonant hard and say a separate “y”. So **п’ять** is “p-yat”, with a hard п. When typing, ' and ’ are both fine.",
+        "body": "The letters **я, ю, є** have two jobs. After a consonant they soften it and add a vowel: **дякую** starts with a soft д + “a”. At the start of a word, after a vowel or after an apostrophe they give a real “y” sound: **яблуко** is “ya-bloo-ko”, **моя** is “mo-ya”. The letter **ї** is always “yi”.\n\nThe **apostrophe ’** comes before **я, ю, є, ї**: after **б, п, в, м, ф** (**п’ять**, **сім’я**; but not when a consonant other than **р** comes right before them in the same root: **свято**, **цвях**), after **р** at the end of a syllable (**пір’я**, feathers) and after prefixes such as **з-** (**з’їсти**, to eat up). It means: keep the consonant hard and say a separate “y”. So **п’ять** is “p-yat”, with a hard п. When typing, ' and ’ are both fine.",
         "table": {
           "head": [
             "Letter",
@@ -194,7 +194,7 @@ export const lessons = [
     "sections": [
       {
         "heading": "Look at the last letter",
-        "body": "Every noun is **masculine**, **feminine** or **neuter**. For things, gender is purely grammatical (a table is masculine, a window is neuter), but the dictionary form usually gives it away.\n\nA few nouns break the pattern: words for men are masculine whatever their ending (**тато**, **дядько**, uncle); nouns in **-ь** can be either gender, so learn them with the word; and nouns in **-ість** are always feminine (**радість**, joy). Gender also decides the pronoun: a phone is **він**, a book is **вона**, a window is **воно**.",
+        "body": "Every noun is **masculine**, **feminine** or **neuter**. For things, gender is purely grammatical (a table is masculine, a window is neuter), but the dictionary form usually gives it away.\n\nA few nouns break the pattern: words for men are masculine whatever their ending (**тато**, **дядько**, uncle); nouns in **-ь** can be either gender, so learn them with the word; and abstract nouns in **-ість** are feminine (**радість**, joy; but **гість**, guest, is masculine). Gender also decides the pronoun: a phone is **він**, a book is **вона**, a window is **воно**.",
         "table": {
           "head": [
             "Gender",
@@ -413,7 +413,7 @@ export const lessons = [
     "sections": [
       {
         "heading": "Three endings: -и, -і, -а",
-        "body": "Most masculine and feminine nouns take **-и** in the plural. For nouns ending in **-ь, -я, -й**, and for those whose stem ends in **ж, ч, ш, щ** (**ключ**, **груша**), the ending is **-і** (spelled **-ї** after a vowel). Neuter nouns take **-а**, or **-я** if they end in -е.",
+        "body": "Most masculine and feminine nouns take **-и** in the plural. For nouns ending in **-ь, -я, -й**, and for those whose stem ends in **ж, ч, ш, щ** (**ключ**, **груша**), the ending is **-і** (spelled **-ї** after a vowel). Neuter nouns take **-а**, or **-я** if they end in -е (but **-а** after ж, ч, ш, щ: **прізвище → прізвища**).",
         "table": {
           "head": [
             "Singular ends in",
@@ -1095,7 +1095,7 @@ export const lessons = [
     "sections": [
       {
         "heading": "Seven cases in a nutshell",
-        "body": "English shows who does what with word order and little words like “of”, “to” and “with”. Ukrainian changes the **ending** of the noun instead, and each set of endings is called a **case**. There are **seven**, and each answers its own question word, which is how Ukrainian children learn them.\n\nDon’t try to memorize every table now. The accusative (this lesson), the locative and instrumental, and the genitive (the next two lessons) cover most everyday sentences.",
+        "body": "English shows who does what with word order and little words like “of”, “to” and “with”. Ukrainian changes the **ending** of the noun instead, and each set of endings is called a **case**. There are **seven**. Six of them answer a question word (the vocative, used for calling someone, has none), which is how Ukrainian children learn them.\n\nDon’t try to memorize every table now. The accusative (this lesson), the locative and instrumental, and the genitive (the next two lessons) cover most everyday sentences.",
         "table": {
           "head": [
             "Case",
@@ -1572,7 +1572,7 @@ export const lessons = [
       },
       {
         "heading": "Немає + genitive",
-        "body": "To say you **don’t** have something, or that it isn’t there, swap **є** for **немає** and put the thing in the **genitive**. Feminine **-а** becomes **-и** and **-я** becomes **-і**; neuter **-о** becomes **-а**. Masculine nouns take **-а** (people, animals, many countable things and most city names: **брата**, **квитка**, **Львова**) or **-у** (substances, buildings and abstract ideas: **чаю**, **магазину**, **часу**); dictionaries show which.",
+        "body": "To say you **don’t** have something, or that it isn’t there, swap **є** for **немає** and put the thing in the **genitive**. Feminine **-а** becomes **-и** (**-і** after ж, ч, ш, щ: **груша → груші**) and **-я** becomes **-і**; neuter **-о** becomes **-а**. Masculine nouns take **-а** (people, animals, many countable things and most city names: **брата**, **квитка**, **Львова**) or **-у** (substances, buildings and abstract ideas: **чаю**, **магазину**, **часу**); dictionaries show which.",
         "table": {
           "head": [
             "Dictionary form",
@@ -2254,7 +2254,7 @@ export const lessons = [
       },
       {
         "heading": "Calling people: the vocative, пане and пані",
-        "body": "When you call someone by name, Ukrainian uses the **vocative** case, and it is very much alive in everyday speech. Feminine **-а** becomes **-о** and **-я** becomes **-ю**; masculine names usually take **-е** (**Іване**) or **-у / -ю** (**Олегу**, **Андрію**).\n\nPolite address is **пане** (to a man) or **пані** (to a woman) + first name in the vocative: **пане Іване**, **пані Олено**. Formal letters begin **Шановний пане…** or **Шановна пані…**.",
+        "body": "When you call someone by name, Ukrainian uses the **vocative** case, and it is very much alive in everyday speech. Feminine **-а** becomes **-о** and **-я** becomes **-ю** (but names in **-ія** take **-іє**: **Марія → Маріє**); masculine names usually take **-е** (**Іване**) or **-у / -ю** (**Олегу**, **Андрію**).\n\nPolite address is **пане** (to a man) or **пані** (to a woman) + first name in the vocative: **пане Іване**, **пані Олено**. Formal letters begin **Шановний пане…** or **Шановна пані…**.",
         "table": {
           "head": [
             "Name or word",
@@ -2361,7 +2361,7 @@ export const lessons = [
     "sections": [
       {
         "heading": "Sound-smoothing: у / в, і / й, з / із / зі",
-        "body": "Ukrainian dislikes piling up consonants or vowels, a quality called **милозвучність** (euphony). So several small words have two or three forms, chosen by the sounds around them: **у** or **в**, **і** or **й**, **з**, **із** or **зі**. Many common words follow suit: **вже / уже**, **вчора / учора**, **вдома / удома**, **іти / йти**.\n\nThe basic rule: after a **vowel**, use **в** and **й**; between **consonants**, use **у** and **і**. In speech this happens naturally; careful writers follow it, while casual texts often ignore it.",
+        "body": "Ukrainian dislikes piling up consonants or vowels, a quality called **милозвучність** (euphony). So several small words have two or three forms, chosen by the sounds around them: **у** or **в**, **і** or **й**, **з**, **із** or **зі**. Many common words follow suit: **вже / уже**, **вчора / учора**, **вдома / удома**, **іти / йти**.\n\nThe basic rule: after a **vowel**, use **в** and **й**; between **consonants**, use **у** and **і**. One exception: before **в, ф** and clusters such as **льв, св, хв**, always use **у**, even after a vowel: **Ми живемо у Львові**. In speech this happens naturally; careful writers follow it, while casual texts often ignore it.",
         "table": {
           "head": [
             "Rule",

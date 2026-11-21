@@ -561,13 +561,13 @@ export const vocab = [
   },
   {
     "tr": "üzgün",
-    "en": "sad; sorry",
+    "en": "sad; upset",
     "cat": "feelings",
     "ex": [
       "Neden üzgünsün?",
       "Why are you sad?"
     ],
-    "note": "Üzgünüm also = I'm sorry (to hear that)."
+    "note": "For “I'm sorry to hear that” say “Çok üzüldüm”; to apologise, “Özür dilerim”. “Üzgünüm” as “I'm sorry” sounds like dubbed films."
   },
   {
     "tr": "yorgun",
@@ -724,7 +724,8 @@ export const vocab = [
     "pair": {
       "tr": "haklısınız",
       "reg": "polite",
-      "en": "you're right (polite / plural)"
+      "en": "you're right (polite / plural)",
+      "s": 2
     }
   },
   {
@@ -1421,7 +1422,8 @@ export const vocab = [
     "pair": {
       "tr": "Nasılsın?",
       "reg": "casual",
-      "en": "How are you? (to a friend)"
+      "en": "How are you? (to a friend)",
+      "s": 1
     }
   },
   {
@@ -1465,7 +1467,8 @@ export const vocab = [
     "pair": {
       "tr": "Nerelisin?",
       "reg": "casual",
-      "en": "Where are you from?"
+      "en": "Where are you from?",
+      "s": 1
     }
   },
   {
@@ -1602,7 +1605,7 @@ export const vocab = [
     "reg": "polite",
     "pair": {
       "tr": "Bir çay alayım.",
-      "reg": "casual",
+      "reg": "neutral",
       "en": "I'll have a tea."
     }
   },
@@ -1638,7 +1641,7 @@ export const vocab = [
     "reg": "polite",
     "pair": {
       "tr": "Paket olsun.",
-      "reg": "casual",
+      "reg": "neutral",
       "en": "To go, please."
     }
   },
@@ -1905,7 +1908,7 @@ export const vocab = [
     "tr": "Bu akşam müsait misiniz?",
     "en": "Are you free this evening?",
     "cat": "p-plans",
-    "note": "“Müsait” (available) is the polite word; friends ask “Boş musun?” (Are you free?)",
+    "note": "“Müsait” (free, available) works with anyone, and friends text “Müsait misin?” all the time. “Boş musun?” (Are you free?) is another casual way to ask.",
     "reg": "polite",
     "pair": {
       "tr": "Bu akşam boş musun?",
@@ -1985,11 +1988,12 @@ export const vocab = [
     "tr": "Görüşmek üzere!",
     "en": "See you then! / Talk soon!",
     "cat": "p-plans",
-    "note": "Fits friends and colleagues alike. Friends also just say “Görüşürüz!” (See you!)",
+    "note": "Fits friends and colleagues alike. The shorter “Görüşürüz!” (See you!) is just as common, with anyone.",
     "pair": {
       "tr": "Görüşürüz!",
-      "reg": "casual",
-      "en": "See ya!"
+      "reg": "neutral",
+      "en": "See you!",
+      "s": 3
     }
   },
   {
@@ -2156,7 +2160,8 @@ export const vocab = [
     "pair": {
       "tr": "Efendim?",
       "reg": "polite",
-      "en": "Pardon?"
+      "en": "Pardon?",
+      "s": 2
     }
   },
   {
@@ -2329,6 +2334,7 @@ export const vocab = [
     "tr": "Buyurun.",
     "en": "Here you are. / Go ahead. / Come in.",
     "cat": "p-polite",
+    "s": 2,
     "note": "Said when handing something over, inviting someone in or to speak — and a shopkeeper's “How can I help?”",
     "reg": "polite",
     "pair": {
@@ -2353,7 +2359,8 @@ export const vocab = [
     "pair": {
       "tr": "Nasılsınız?",
       "reg": "polite",
-      "en": "How are you?"
+      "en": "How are you?",
+      "s": 1
     }
   },
   {
@@ -2425,7 +2432,7 @@ export const vocab = [
     "en": "Coming!",
     "cat": "everyday",
     "s": 2,
-    "note": "In fast speech -iyorum drops its r: geliyom, biliyom, yapıyom. Waiters call out the polite version to customers.",
+    "note": "In fast speech -iyorum shrinks to -iyom: geliyom, biliyom, yapıyom. Waiters call out the polite version to customers.",
     "reg": "casual",
     "pair": {
       "tr": "Hemen geliyorum, efendim.",
@@ -2476,7 +2483,8 @@ export const vocab = [
     "pair": {
       "tr": "Neredesiniz?",
       "reg": "polite",
-      "en": "Where are you? (polite)"
+      "en": "Where are you? (polite)",
+      "s": 1
     }
   },
   {
@@ -2579,6 +2587,7 @@ export const vocab = [
     "tr": "Napalım?",
     "en": "What can you do? / Oh well.",
     "cat": "everyday",
+    "s": 2,
     "ex": [
       "Otobüsü kaçırdık. Napalım, bir sonrakini bekleriz.",
       "We missed the bus. Oh well, we'll wait for the next one."
@@ -2735,7 +2744,8 @@ export const vocab = [
     "pair": {
       "tr": "Gerçekten.",
       "reg": "neutral",
-      "en": "Really."
+      "en": "Really.",
+      "s": 2
     }
   },
   {
@@ -2767,7 +2777,8 @@ export const vocab = [
     "pair": {
       "tr": "Harika!",
       "reg": "neutral",
-      "en": "Wonderful!"
+      "en": "Wonderful!",
+      "s": 1
     }
   },
   {

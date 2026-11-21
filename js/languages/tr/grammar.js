@@ -979,7 +979,7 @@ export const lessons = [
       },
       {
         "heading": "Hard consonants: d becomes t",
-        "body": "After the “hard” consonants **ç, f, h, k, p, s, ş, t**, the d of -de and -den turns into **t**: **sokakta** (in the street), **Paris'ten** (from Paris). Turks remember these letters with the phrase **FıSTıKÇı ŞaHaP** (“Şahap the pistachio seller”).\n\nWith -e / -a, which starts with a vowel, words ending in k soften instead: **sokak → sokağa** (to the street).",
+        "body": "After the “hard” consonants **ç, f, h, k, p, s, ş, t**, the d of -de and -den turns into **t**: **sokakta** (in the street), **Paris'ten** (from Paris). Turks remember these letters with the phrase **FıSTıKÇı ŞaHaP** (“Şahap the pistachio seller”).\n\nWith -e / -a, which starts with a vowel, many words ending in k soften instead, as with the possessive endings: **sokak → sokağa** (to the street). Most one-syllable words keep their k: **park → parka**.",
         "table": {
           "head": [
             "Word",
@@ -1669,7 +1669,7 @@ export const lessons = [
     "sections": [
       {
         "heading": "Building the future",
-        "body": "Add **-ecek** or **-acak** (two-way harmony) to the stem, then a personal ending. After a stem ending in a vowel, a **y** comes in: **bekle → bekleyecek**, **oku → okuyacak**. As with -iyor, **gitmek → gidecek** and **etmek → edecek**.\n\nWhen the ending that follows starts with a vowel, the final **k** softens to **ğ**: **geleceğim** (I will come), **geleceğiz** (we will come). The other forms keep their k: **geleceksin, gelecek**.",
+        "body": "Add **-ecek** or **-acak** (two-way harmony) to the stem, then a personal ending. After a stem ending in a vowel, a **y** comes in: **bekle → bekleyecek**, **oku → okuyacak**. As with -iyor, **gitmek → gidecek**, **etmek → edecek**, **de- → diyecek** (will say) and **ye- → yiyecek** (will eat).\n\nWhen the ending that follows starts with a vowel, the final **k** softens to **ğ**: **geleceğim** (I will come), **geleceğiz** (we will come). The other forms keep their k: **geleceksin, gelecek**.",
         "table": {
           "head": [
             "Person",
