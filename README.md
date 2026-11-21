@@ -2,22 +2,28 @@
 
 A language-learning app focused on **vocabulary** and **pronunciation** in four languages: **Turkish 🇹🇷, Ukrainian 🇺🇦, Japanese 🇯🇵 and Arabic 🇸🇦**.
 
-It runs as a website (works offline, installable as a PWA) and as native **Android** and **iOS** apps built from the same code with [Capacitor](https://capacitorjs.com). No account is needed and your progress stays on your device.
+It runs as a website (works offline, installable as a PWA) and as native **Android** and **iOS** apps built from the same code with [Capacitor](https://capacitorjs.com). No account is needed, and your progress is saved on your device and never sent to us.
 
 ## Features
 
 ### Languages
 | | Words | Pronunciation help | Typing accepts |
 | --- | --- | --- | --- |
-| 🇹🇷 Turkish | 306 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
-| 🇺🇦 Ukrainian | 188 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
-| 🇯🇵 Japanese | 174 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
-| 🇸🇦 Arabic (MSA) | 179 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
+| 🇹🇷 Turkish | 561 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
+| 🇺🇦 Ukrainian | 443 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
+| 🇯🇵 Japanese | 429 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
+| 🇸🇦 Arabic (MSA + Egyptian) | 434 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
 
 Each language has its own alphabet/kana chart, sound guides and minimal-pair ear training. Progress, streak and daily goal are kept separately for each language. Switch from the language pill in the top bar.
 
 ### Vocabulary
-- **Turkish: 306 words and phrases** in 12 topics (every language uses the same 12): Essentials, Numbers, People & Family, Food & Drink, Time & Days, Colors & Descriptions, Places & Travel, Home & Things, Body & Health, Common Verbs, Questions & Little Words, Nature & Animals. Many have example sentences and usage notes.
+- **28 topics per language, chosen by everyday frequency**, in three groups:
+  - **Words** (18 topics): Essentials, Numbers, People & Family, Food & Drink, Time & Days, Colors & Descriptions, Places & Travel, Home & Things, Body & Health, Common Verbs, Questions & Little Words, Nature & Animals, plus More Everyday Verbs, Daily Routine, Feelings & Opinions, Shopping & Money, Connecting Words and Work & Study.
+  - **Phrases** (8 topics, 80 ready-to-use sentences): Small Talk, Café & Restaurant, Shopping, Getting Around, Making Plans, Reactions, Problems & Help, Polite Requests.
+  - **Talk like a local** (2 topics, 45 entries): everyday spoken forms and slang — Turkish *naber, kanka, aynen*; Ukrainian *норм, класно*; Japanese *やばい, マジで, めっちゃ*; Egyptian Arabic *يلا، خلاص، معلش*.
+  Most entries have an example sentence and a usage note.
+- **Polite vs everyday speech, side by side.** Words and phrases carry a register (formal, polite, neutral, casual, slang) and, where people say it differently, the other version: *"What people say"* next to *"Proper / polite"* (in Arabic: the Egyptian everyday form next to Modern Standard Arabic). Both sides can be played.
+- **Grammar:** 12 short lessons per language (A1 → B1), each with explanations, tables, playable examples and a 4-question quiz — from Turkish vowel harmony, Ukrainian cases and Japanese particles to Arabic attached pronouns — and a final lesson on how the spoken language differs from the written one. Lessons earn XP and have their own achievements.
 - **Lessons** introduce 5 words at a time (you can change this). Each word comes with audio, a pronunciation breakdown and an example, then a quick quiz checks you remember them.
 - **Already learned:** tick off words you already know, during a lesson, in bulk per topic, or on a word's page. Lessons skip them, and they come back once after about a month for a quick check.
 - **Spaced-repetition reviews** (an SM-2-style scheduler, like Anki) bring each word back just before you're likely to forget it.
@@ -31,7 +37,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
   - A combo of 5+ right answers in a row adds a bonus.
   - Bonuses for new words, finished and flawless sessions, the daily goal, speaking drills and ear training.
   - Levels come with titles: Beginner → Explorer → Word Collector → … → Polyglot.
-- **34 achievements** in four groups: Learning, Habits, Pronunciation and Skill. Locked ones show "X of Y" progress.
+- **39 achievements** in five groups: Learning, Habits, Pronunciation, Skill and Grammar. Locked ones show "X of Y" progress.
 - **Goals**:
   - a daily goal
   - three weekly challenges, new every Monday, +100 XP each
@@ -42,15 +48,17 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 
 ### Sync between devices — without accounts or servers
 Lisan has no backend. To copy progress to another phone, tablet or computer, go to **Settings → Sync between devices**:
-1. **Create a sync code** on one device. Add a passphrase to encrypt it end to end (PBKDF2-SHA-256 → AES-GCM-256, in the browser).
+1. **Create a sync code** on one device. Add a passphrase (8+ characters) to encrypt it end to end (PBKDF2-SHA-256, 600k iterations → AES-GCM-256, in the browser).
 2. **Move it yourself:** Copy, Share… (AirDrop, Nearby Share, messages) or Save as file to your own iCloud Drive or Google Drive.
 3. **Paste it or open the file** on the other device. Check the preview, then merge.
 
 Merging never overwrites:
-- **Words:** the most recently reviewed copy of each word wins.
-- **Daily logs:** each count takes the larger value.
-- **Achievements:** combined.
-- **XP and counters:** kept per device (a G-counter CRDT) and added up, so syncing in any order or repeatedly never double-counts.
+- **Words:** the most recently reviewed copy of each word wins. Unmarking a word or removing a goal is kept as a tombstone, so it survives syncing.
+- **Daily activity, XP and counters:** kept per device (G-counter CRDTs) and added up, so practice on two devices on the same day counts fully, and syncing in any order or repeatedly never double-counts.
+- **Achievements:** combined. A reward is never paid twice.
+- **Reset progress** stays on the device where you use it; **Delete all my data** (Settings) erases everything on that device.
+
+Every code is checked before merging: malformed or absurd values are dropped, so a damaged or crafted code can't break the app.
 
 A typical code is under 1 kB. Even every word in all four languages fits in about 20 kB.
 
@@ -128,7 +136,7 @@ See **[STORE.md](STORE.md)**. It's a step-by-step checklist for Google Play and 
 ```
 index.html, css/styles.css     app shell & styles
 js/app.js                      router + app context
-js/views/                      home, learn, review, practice, pronounce, progress, settings, word
+js/views/                      home, learn, review, practice, pronounce, progress, grammar, journey, sync, settings, word…
 js/exercises.js, session.js    exercise types and the session runner
 js/components.js               pronunciation panel, speak-and-score, recorder
 js/srs.js                      spaced-repetition scheduler
@@ -141,7 +149,8 @@ js/native.js                   access to native plugins inside the Android/iOS a
 android/, ios/                 native app projects (Capacitor)
 assets/                        source images for app icons and splash screens
 js/languages/common.js         makePack(): shared defaults for language packs
-js/languages/tr/ uk/ ja/ ar/   language packs: vocab, alphabet/sounds, phonetics
+js/languages/tr/ uk/ ja/ ar/   language packs: vocab.js (core), more.js (everyday words, phrases, talk like a local),
+                               grammar.js (lessons), alphabet/sounds, phonetics
 ```
 
 ## Adding a language
@@ -149,7 +158,8 @@ js/languages/tr/ uk/ ja/ ar/   language packs: vocab, alphabet/sounds, phonetics
 Each language is a pack in `js/languages/<code>/`, built with `makePack()` from `js/languages/common.js`. The documentation is at the top of that file; register the pack in `js/languages/index.js`.
 
 A pack provides:
-- `categories` and `vocab`
+- `categories` (each in a `group`: words, phrases or talk) and `vocab` (with optional `reg` and `pair` for register comparisons)
+- `grammar`: lessons with sections, tables, examples and a quiz
 - `analyze(word)`, which returns syllables (or morae), stress, IPA and a respelling
 - `normalize` / `stripDiacritics` for checking answers
 - an alphabet, sound tips and minimal pairs

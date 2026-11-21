@@ -1,6 +1,6 @@
 // Offline support: network-first so updates show up immediately when online,
 // falling back to the cache when offline. Bump VERSION when the file list changes.
-const VERSION = 'lisan-v9';
+const VERSION = 'lisan-v10';
 
 const ASSETS = [
   './',

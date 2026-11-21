@@ -3,6 +3,22 @@
 ## Unreleased
 
 ### Added
+- **Much more everyday content, chosen by frequency — about 1,000 new entries across the four languages.** Each language goes from 12 to 28 topics, in three groups shown on Learn, Home and Practice:
+  - **Words** (+130 per language): More Everyday Verbs, Daily Routine, Feelings & Opinions, Shopping & Money, Connecting Words, Work & Study.
+  - **Phrases** (+80): Small Talk, Café & Restaurant, Shopping, Getting Around, Making Plans, Reactions, Problems & Help, Polite Requests.
+  - **Talk like a local** (+45): everyday spoken forms and slang.
+  - Totals: Turkish 561, Ukrainian 443, Japanese 429, Arabic 434 words and phrases.
+  - Every file was written by an author and then checked and corrected by a native-level editor (stress, readings, vowel marks, register labels, naturalness).
+- **Polite vs everyday speech.** Entries carry a register (formal · polite · neutral · casual · slang) and, where people say it differently, the counterpart: lessons and word pages show **"What people say"** next to **"Proper / polite"**, both playable. Examples:
+  - Turkish *Naber?* ↔ *Nasılsınız?*
+  - Ukrainian ти ↔ ви forms
+  - Japanese casual ↔ です/ます and keigo
+  - Arabic: everyday **Egyptian** next to **Modern Standard Arabic**. The Arabic transliteration gains e, o, ē, ō and g for Egyptian sounds.
+- **Grammar lessons:** 12 per language (A1–B1, 48 quiz questions each). Each lesson has short explanations, tables, playable examples with readings, and a 4-question quiz. The last lesson in every language covers how people really speak, e.g. *geliyom / napıyon*, colloquial Ukrainian, Japanese contractions, MSA vs Egyptian.
+  - Lessons earn XP and sync between devices.
+  - New achievements: First Rules, Grammar Geek, Grammarian, Rule Master and Talk Like a Local.
+- **Delete all my data** in Settings erases every language, XP, achievements, settings and sync history on the device.
+- **Android back button** goes to the previous screen (and closes a celebration first) instead of leaving the app.
 - **Sync between devices without storing any user data.**
   - **How it works:** a sync code (or file) is created on one device, carried by the learner (copy & paste, share sheet, or their own cloud drive) and merged on the other. There's no account, and Lisan never uploads anything.
   - **Encryption:** with a passphrase, the code is end-to-end encrypted (PBKDF2-SHA-256 210k iterations → AES-GCM-256).
@@ -39,6 +55,32 @@
 - **Daily goal** ring on the home screen, a "goal reached" celebration, and a daily-goal setting.
 
 ### Fixed
+- **Rewards paid twice:**
+  - Re-setting an already-reached personal goal no longer pays out again, and neither does syncing a goal completed on another device.
+  - Changing the daily goal can't earn it twice in one day, and lowering it still credits today.
+  - Ticking whole topics as "already learned" no longer unlocks Topic Master or Completionist.
+  - Speaking achievements count different words.
+- **Sync:**
+  - Unmarked words and removed goals no longer come back after syncing.
+  - Practice on two devices on the same day is added up, not undercounted.
+  - Reset progress stays on its own device.
+  - Damaged or crafted sync codes and backups are cleaned before merging, and can no longer freeze or break the app.
+  - Encrypted codes need an 8+ character passphrase and use 600k PBKDF2 iterations.
+- **Spaced repetition:** failing a word several times in one session lowers its ease only once, and due dates no longer shift around daylight-saving changes.
+- **Audio:** leaving a card stops its recording and speech recognition, so the old word no longer plays over the next screen.
+- **Language-specific text:**
+  - Praise words and speaking scores are now in each course's own language; before, every course used Turkish.
+  - "Letters to work on" shows letters as written: katakana stays katakana, and Arabic keeps its vowel marks.
+- **Keyboard and screen readers:** focus moves to each new screen's heading, and the celebration dialog can be used fully from the keyboard.
+- **Native apps:**
+  - The app reopens in the language you were learning.
+  - A failed speech-recognition start no longer cuts off the next attempt, and voices load reliably while the phone's speech engine starts.
+  - The iOS privacy manifest declares the file-timestamp reason that App Store Connect requires.
+- **Pronunciation data:** Turkish *cumartesi* stress, *şehir* respelling, Arabic stress never on the article, MSA *tadhkira*, Ukrainian в → w, and ear-training pairs that really differ in one sound.
+- **Layout:** small-screen overflow and colour contrast fixes.
+
+### Compatibility
+- Sync codes and backups from this version are only partly readable by the previous one. Update every device you sync.
 - CSS custom properties passed through the DOM helper (`style: { '--pct': … }`) were silently ignored, so the pronunciation score ring never showed its fill.
 
 ## 1.0.0 — 2026-11-21
