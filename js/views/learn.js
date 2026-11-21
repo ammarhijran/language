@@ -44,6 +44,7 @@ export default function learn(ctx, catId) {
         }
       }
       if (added) store.logActivity(lang.code, { learned: added });
+      if (added) ctx.game.learned({ lang: lang.code, count: added });
       const remaining = all.filter((w) => !store.getCard(lang.code, w.id)).length;
       const learnedNow = batch.filter((w) => !known.includes(w));
       const chips = (list) => h('ul', { class: 'word-chips' }, list.map((w) =>

@@ -37,6 +37,7 @@ export default function settings(ctx) {
     },
   });
 
+  const gameOn = h('input', { type: 'checkbox', checked: s.gameOn, onchange: (e) => { store.updateSettings({ gameOn: e.target.checked }); ctx.toast(e.target.checked ? 'Game features on' : 'Game features off'); } });
   const autoplay = h('input', { type: 'checkbox', checked: s.autoplay, onchange: (e) => store.updateSettings({ autoplay: e.target.checked }) });
 
   const fileInput = h('input', {
@@ -85,6 +86,10 @@ export default function settings(ctx) {
       h('p', { class: 'hint' }, 'Speech recognition: ', speech.recognitionSupported()
         ? 'available ✓ (it may send your audio to an online service — Google, Apple or your browser maker — to transcribe it).'
         : 'not available in this browser — try Chrome, Edge or Safari to get pronunciation scores.')),
+    h('section', { class: 'card form' },
+      h('h2', { class: 'card-title' }, 'Motivation'),
+      h('label', { class: 'field inline' }, gameOn, h('span', null, 'Game features — XP, levels, weekly challenges, achievements and celebrations')),
+      h('p', { class: 'hint' }, 'Daily goal, streaks and personal goals stay on either way.')),
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'Lessons'),
       h('label', { class: 'field' }, h('span', null, 'Daily goal'),

@@ -16,6 +16,7 @@ const DEFAULTS = {
   autoplay: true,
   dailyGoal: 20, // exercises per day (reviews + new words + practice)
   onboarded: false,
+  gameOn: true, // XP, levels, achievements, challenges and celebrations
 };
 
 let state = load();
@@ -25,10 +26,10 @@ function load() {
     const raw = localStorage.getItem(KEY);
     if (raw) {
       const s = JSON.parse(raw);
-      return { settings: { ...DEFAULTS, ...s.settings }, progress: s.progress || {} };
+      return { settings: { ...DEFAULTS, ...s.settings }, progress: s.progress || {}, game: s.game || {} };
     }
   } catch { /* private mode or corrupt data: start fresh */ }
-  return { settings: { ...DEFAULTS }, progress: {} };
+  return { settings: { ...DEFAULTS }, progress: {}, game: {} };
 }
 
 function save() {
@@ -53,6 +54,10 @@ export async function init() {
     }
   } catch { /* keep whatever we have */ }
 }
+
+/** Game state (XP, achievements, challenges…) — owned by game.js. */
+export const getGame = () => state.game;
+export const persist = () => save();
 
 function prog(lang) {
   if (!state.progress[lang]) state.progress[lang] = { cards: {}, days: {} };
@@ -93,9 +98,17 @@ export function logActivity(lang, delta) {
   for (const [key, v] of Object.entries(delta)) d[key] = (d[key] || 0) + v;
   save();
   const goal = state.settings.dailyGoal;
-  if (before < goal && dayTotal(d) >= goal && typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('lisan:goal-reached'));
+  if (typeof window !== 'undefined') {
+    if (before < goal && dayTotal(d) >= goal) window.dispatchEvent(new CustomEvent('lisan:goal-reached', { detail: { lang } }));
+    window.dispatchEvent(new CustomEvent('lisan:activity', { detail: { lang, total: dayTotal(d) } }));
   }
+}
+
+/** Mark a missed day as repaired so it keeps the streak alive. */
+export function repairDay(lang, key) {
+  const days = prog(lang).days;
+  days[key] = { ...(days[key] || {}), repaired: true };
+  save();
 }
 
 export const hasAnyProgress = () =>
@@ -104,7 +117,7 @@ export const hasAnyProgress = () =>
 export const getDays = (lang) => prog(lang).days;
 export const getDay = (lang, d = new Date()) => prog(lang).days[dayKey(d)];
 
-const isActive = (x) => !!x && (x.reviews || 0) + (x.learned || 0) + (x.practiced || 0) > 0;
+export const isActive = (x) => !!x && (x.repaired || (x.reviews || 0) + (x.learned || 0) + (x.practiced || 0) > 0);
 
 /** Consecutive active days ending today (or yesterday, if today has no activity yet). */
 export function streak(lang, now = new Date()) {
@@ -128,11 +141,16 @@ export function importData(text) {
   if (!d || typeof d !== 'object' || typeof d.progress !== 'object') {
     throw new Error('That file is not a Lisan backup.');
   }
-  state = { settings: { ...DEFAULTS, ...d.settings }, progress: d.progress };
+  state = { settings: { ...DEFAULTS, ...d.settings }, progress: d.progress, game: d.game || {} };
   save();
 }
 
 export function resetProgress(lang) {
   delete state.progress[lang];
   save();
+}
+
+/** Tests only: start from a clean in-memory state. */
+export function _resetAll() {
+  state = { settings: { ...DEFAULTS }, progress: {}, game: {} };
 }

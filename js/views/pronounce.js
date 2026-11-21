@@ -28,7 +28,7 @@ function alphabet(ctx) {
     h('div', { class: 'letter-grid' }, lang.alphabet.map((l) =>
       h('button', {
         type: 'button', class: `letter${l.special ? ' special' : ''}`,
-        onclick: () => ctx.say(l.ex[0]),
+        onclick: () => { ctx.say(l.ex[0]); ctx.game.letterTapped(lang.code, l.key ?? l.lower); },
         'aria-label': `${l.upper}: ${l.hint}. Example ${l.ex[0]}, ${l.ex[1]}`,
       },
         h('span', { class: 'letter-big' }, h('span', { lang: lang.code }, l.upper), h('small', { lang: l.lowerIsName ? null : lang.code }, l.lower)),
@@ -82,6 +82,8 @@ function ear(ctx) {
     function round() {
       unbind();
       if (i >= rounds.length) {
+        ctx.store.logActivity(lang.code, { practiced: rounds.length });
+        ctx.game.earQuiz({ lang: lang.code, correct: score, total: rounds.length });
         set(wrap, h('div', { class: 'summary' },
           h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, score >= 8 ? '🎧' : '👂'),
           h('h2', null, 'Ear training complete'),

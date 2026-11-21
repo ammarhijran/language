@@ -13,6 +13,9 @@ import progress from './views/progress.js';
 import settingsView from './views/settings.js';
 import wordView from './views/word.js';
 import welcome from './views/welcome.js';
+import journey from './views/journey.js';
+import * as game from './game.js';
+import { initCelebrations } from './celebrate.js';
 import known from './views/known.js';
 import language from './views/language.js';
 
@@ -30,6 +33,7 @@ const ROUTES = {
   welcome,
   known,
   language,
+  journey,
 };
 
 const TABS = [
@@ -39,7 +43,7 @@ const TABS = [
   { id: 'speak', label: 'Speak', icon: 'mic' },
   { id: 'progress', label: 'Progress', icon: 'chart' },
 ];
-const TAB_OF = { practice: '', word: 'progress', settings: 'progress', known: 'learn', language: '' };
+const TAB_OF = { practice: '', word: 'progress', settings: 'progress', known: 'learn', language: '', journey: '' };
 
 let cleanups = [];
 
@@ -56,6 +60,8 @@ const ctx = {
   onCleanup(fn) { cleanups.push(fn); },
   toast,
   rerender: () => render(),
+  game,
+  inSession: false,
 };
 
 function shell() {
@@ -73,6 +79,7 @@ function shell() {
       h('a', { href: '#/', class: 'brand', 'aria-label': 'Lisan home' },
         h('img', { src: 'icons/icon.svg', alt: '', width: 28, height: 28 }), 'Lisan'),
       h('a', { class: 'lang-pill', href: '#/language', title: `Learning ${lang.name} — change language` }, h('span', { 'aria-hidden': 'true' }, lang.flag), ' ', h('span', { lang: lang.code }, lang.nativeName)),
+      h('a', { href: '#/journey', class: 'icon-btn trophy', 'aria-label': 'Journey: level, goals and achievements' }, icon('trophy'), h('i', { class: 'dot', hidden: true })),
       h('a', { href: '#/settings', class: 'icon-btn', 'aria-label': 'Settings' }, icon('settings'))),
     h('main', { id: 'view', tabindex: '-1' }),
     tabbar,
@@ -110,13 +117,18 @@ function render() {
     a.classList.toggle('active', active);
     if (active) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
+  const trophy = document.querySelector('.trophy');
+  if (trophy) {
+    trophy.hidden = !ctx.settings.gameOn;
+    trophy.querySelector('.dot').hidden = game.unseenCount() === 0;
+  }
   const due = dueWords(ctx).length;
   const badge = document.querySelector('.tab-badge');
   if (badge) {
     badge.hidden = due === 0;
     badge.textContent = due > 99 ? '99+' : String(due);
   }
-  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', known: 'Already learned', language: 'Languages', word: lang.byId(params[0])?.tr }[name];
+  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', known: 'Already learned', language: 'Languages', journey: 'Journey', word: lang.byId(params[0])?.tr }[name];
   document.title = title ? `${title} · Lisan ${lang.name}` : `Lisan · ${lang.name}`;
   window.scrollTo(0, 0);
 }
@@ -129,7 +141,13 @@ if (!store.getSettings().onboarded) {
   if (store.hasAnyProgress()) store.updateSettings({ onboarded: true });
   else if (!location.hash || location.hash === '#/') history.replaceState(null, '', '#/welcome');
 }
-window.addEventListener('lisan:goal-reached', () => toast('🎉 Daily goal reached — harika!'));
+initCelebrations(ctx);
+window.addEventListener('lisan:goal-reached', (e) => game.goalMet(e.detail?.lang || lang.code));
+window.addEventListener('lisan:activity', (e) => game.checkRepair(e.detail?.lang || lang.code));
+// Refresh the trophy dot when something is unlocked.
+game.onReward((r) => {
+  if (r.kind === 'achievement') document.querySelector('.trophy .dot')?.removeAttribute('hidden');
+});
 
 shell();
 window.addEventListener('hashchange', render);

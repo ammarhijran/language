@@ -3,6 +3,16 @@
 ## Unreleased
 
 ### Added
+- **Game mechanics, achievements and goals:**
+  - **XP for every answer.** Combo bonuses for runs of right answers, plus bonuses for new words, finished and flawless sessions, the daily goal, speaking drills and ear training. Repeating the same word for points is capped at once per word per day.
+  - **Levels and titles** (Beginner → Polyglot). The level card appears on the home screen and the Journey page.
+  - **34 achievements** across words, mastery, topics, streaks, daily goals, challenges, pronunciation, ear training, the alphabet, combos, flawless sessions, levels and languages. Locked badges show progress, with accessible labels.
+  - **Weekly challenges:** 3 per week from a pool of 8, the same for everyone that week, each worth +100 XP.
+  - **Personal goals** per language, with an optional target date and a projection based on your last 14 days.
+  - **Streak repair:** after missing one day, doing double the daily goal saves the streak.
+  - **Celebrations:** confetti overlays that wait until a session ends and group simultaneous rewards on one card. They respect reduced-motion settings.
+  - **In sessions:** a live XP chip and combo flame, and a rewards line on the summary screen.
+  - **Journey page** (🏆 in the top bar, with a dot for new badges), plus a Settings switch to turn the game layer off.
 - **Three new languages: Ukrainian 🇺🇦, Japanese 🇯🇵 and Arabic 🇸🇦**, alongside Turkish. Each has its own vocabulary in the same 12 topics, pronunciation breakdowns, alphabet or kana chart, sound guides and ear-training pairs.
   - **Ukrainian:** 188 words. Stress is marked on every word, since Ukrainian stress is free. Soft consonants, ь and the apostrophe are handled. Answers can be typed in Latin transliteration.
   - **Japanese:** 174 words. A kana reading and Hepburn rōmaji appear under the kanji. Words are split into beats (morae), and long vowels, っ and ん are handled. Answers can be typed in kanji, kana or rōmaji. Speech is matched against both kanji and kana.

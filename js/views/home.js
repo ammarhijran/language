@@ -1,6 +1,7 @@
 import { h, icon } from '../ui.js';
 import { categoryCard, voiceBanner, playButton, readingLine } from '../components.js';
 import { computeStats, nextCategory, wordOfTheDay } from '../stats.js';
+import { levelCard, challengeList, repairBanner } from './journey.js';
 
 export default function home(ctx) {
   const { lang } = ctx;
@@ -35,7 +36,7 @@ export default function home(ctx) {
     h('section', { class: 'hello' },
       h('div', null,
         h('h1', null, h('span', { lang: lang.code }, `${lang.greeting}!`), ' 👋'),
-        h('p', { class: 'muted' }, `${lang.name} vocabulary & pronunciation`)),
+        h('p', { class: 'muted' }, done >= goal ? 'Daily goal met — nice work!' : done ? `${goal - done} more for today’s goal` : `Today’s goal: ${goal} exercises`)),
       h('a', {
         class: `goal-ring${done >= goal ? ' done' : ''}`, href: '#/settings', style: { '--pct': pct },
         title: 'Daily goal — change it in Settings',
@@ -47,11 +48,20 @@ export default function home(ctx) {
       stat(icon('book'), s.learned, `of ${s.total} learned`),
       stat(icon('repeat'), s.due, 'due now'),
     ),
+    repairBanner(ctx),
     cta,
+    ctx.settings.gameOn ? levelCard(ctx, { compact: true }) : null,
     h('div', { class: 'quick' },
       quick('#/practice', 'shuffle', 'Practice', 'Quizzes on any topic'),
       quick('#/speak', 'mic', 'Pronunciation', 'Sounds, ear training, speaking'),
     ),
+    ctx.settings.gameOn
+      ? h('section', { class: 'card' },
+        h('div', { class: 'title-row' },
+          h('h2', { class: 'card-title' }, '⚔️ This week'),
+          h('a', { href: '#/journey', class: 'small' }, 'All goals')),
+        challengeList(ctx, { compact: true }))
+      : null,
     h('section', { class: 'card wotd' },
       h('p', { class: 'kicker' }, 'Word of the day'),
       h('div', { class: 'wotd-row' },

@@ -25,6 +25,21 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Practice mode** gives you free rounds on any topic, in any mode. It doesn't change your review schedule.
 - **Progress:** streak, a 14-day activity chart, mastery per topic, and a searchable word list.
 
+### Game mechanics, achievements and goals
+- **XP and levels**:
+  - Every answer earns XP: 10 for right, 6 for "almost", 2 for trying.
+  - A combo of 5+ right answers in a row adds a bonus.
+  - Bonuses for new words, finished and flawless sessions, the daily goal, speaking drills and ear training.
+  - Levels come with titles: Beginner → Explorer → Word Collector → … → Polyglot.
+- **34 achievements** in four groups: Learning, Habits, Pronunciation and Skill. Locked ones show "X of Y" progress.
+- **Goals**:
+  - a daily goal
+  - three weekly challenges, new every Monday, +100 XP each
+  - a personal goal per language ("learn 100 words by …") with a projection from your recent pace
+- **Streak repair:** missed a day? Do double your daily goal today to save the streak.
+- **Celebrations** for level-ups, badges and goals. They wait until a session ends, and rewards that arrive together share one card.
+- Everything is on the **Journey** page (the 🏆 in the top bar). Game features can be switched off in Settings; the daily goal, streaks and personal goals stay.
+
 ### Pronunciation
 - **Native-voice audio** at normal and slow speed, using your device's Turkish text-to-speech voice.
 - **Breakdown for every word:**
@@ -103,6 +118,7 @@ js/views/                      home, learn, review, practice, pronounce, progres
 js/exercises.js, session.js    exercise types and the session runner
 js/components.js               pronunciation panel, speak-and-score, recorder
 js/srs.js                      spaced-repetition scheduler
+js/game.js, celebrate.js       XP, levels, achievements, challenges, goals · reward overlays
 js/compare.js                  scoring for typed and spoken answers
 js/speech.js                   text-to-speech, recognition, recording
 js/store.js                    on-device persistence, export/import

@@ -124,6 +124,7 @@ export function speakPractice(ctx, word, { onResult, onOverride } = {}) {
     best = Math.max(best, scored.score);
     status.textContent = attempts > 1 ? `Attempt ${attempts} · best ${Math.round(best * 100)}%` : '';
     renderResult(scored);
+    ctx.game?.spoke({ lang: lang.code, wordId: word.id, score: scored.score, inSession: !!ctx.inSession });
     onResult?.({ score: scored.score, best, attempts });
   }
 
