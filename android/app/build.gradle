@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+// Version name comes from package.json; the version code (which must increase
+// with every Play Store upload) from LISAN_VERSION_CODE, set by CI.
+def packageJson = new groovy.json.JsonSlurper().parse(file('../../package.json'))
+def appVersionName = packageJson.version
+def appVersionCode = (System.getenv("LISAN_VERSION_CODE") ?: "1").toInteger()
+
 android {
     namespace = "app.lisan.turkish"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -7,8 +13,8 @@ android {
         applicationId "app.lisan.turkish"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode appVersionCode
+        versionName appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -16,13 +22,23 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
-    // Release signing is read from environment variables so no secrets live in
-    // the repo. See "Publishing" in the README.
-    def keystorePath = System.getenv("LISAN_KEYSTORE_PATH")
+    // Two signing keys:
+    //  - "sideload": a non-secret key committed to the repo, used for test
+    //    builds you install directly. Every build has the same signature, so a
+    //    new APK installs over the old one and keeps your progress.
+    //  - "upload": your private Google Play upload key, read from environment
+    //    variables (GitHub secrets) so it never lives in the repo. See STORE.md.
+    def uploadKeystore = System.getenv("LISAN_KEYSTORE_PATH")
     signingConfigs {
-        release {
-            if (keystorePath) {
-                storeFile file(keystorePath)
+        sideload {
+            storeFile file('sideload.keystore')
+            storePassword 'lisan-sideload'
+            keyAlias 'lisan-sideload'
+            keyPassword 'lisan-sideload'
+        }
+        upload {
+            if (uploadKeystore) {
+                storeFile file(uploadKeystore)
                 storePassword System.getenv("LISAN_KEYSTORE_PASSWORD")
                 keyAlias System.getenv("LISAN_KEY_ALIAS")
                 keyPassword System.getenv("LISAN_KEY_PASSWORD")
@@ -30,8 +46,11 @@ android {
         }
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.sideload
+        }
         release {
-            if (keystorePath) signingConfig signingConfigs.release
+            signingConfig uploadKeystore ? signingConfigs.upload : signingConfigs.sideload
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

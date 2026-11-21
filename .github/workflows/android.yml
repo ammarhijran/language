@@ -5,11 +5,16 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write # to publish the test APK as a GitHub Release
+
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HAS_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+      HAS_UPLOAD_KEY: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+      # Must increase with every Play Store upload.
+      LISAN_VERSION_CODE: ${{ github.run_number }}
     steps:
       - uses: actions/checkout@v4
 
@@ -28,19 +33,48 @@ jobs:
       - name: Copy web app into the Android project
         run: npm run build && npx cap sync android
 
-      - name: Build debug APK
+      # Installable APK signed with the repo's non-secret "sideload" key, so
+      # each new build installs over the previous one on your phone.
+      - name: Build installable APK
         working-directory: android
-        run: ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: Name the APK
+        id: apk
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          NAME="Lisan-${VERSION}-build${LISAN_VERSION_CODE}.apk"
+          cp android/app/build/outputs/apk/release/app-release.apk "$NAME"
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: lisan-android-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: lisan-android-apk
+          path: ${{ steps.apk.outputs.name }}
 
-      # Signed release bundle for Google Play — only runs when the signing
-      # secrets are configured (see README → Publishing).
-      - name: Build signed release bundle
-        if: env.HAS_KEYSTORE == 'true'
+      # Keep one always-current "Android test build" release with the APK
+      # attached, so it can be downloaded straight from a phone.
+      - name: Publish test build release
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          APK: ${{ steps.apk.outputs.name }}
+          VERSION: ${{ steps.apk.outputs.version }}
+        run: |
+          gh release delete android-test-build --cleanup-tag --yes 2>/dev/null || true
+          gh release create android-test-build "$APK" \
+            --target "$GITHUB_SHA" \
+            --prerelease \
+            --title "Lisan for Android — test build ${VERSION} (${LISAN_VERSION_CODE})" \
+            --notes "Install on Android: download **${APK}** below on your phone and open it. You may need to allow installs from your browser or file manager.
+
+          Built from \`${GITHUB_REF_NAME}\` at ${GITHUB_SHA::7}. New test builds install over this one and keep your progress."
+
+      # Google Play bundle, signed with your private upload key — only when the
+      # signing secrets are configured (see STORE.md).
+      - name: Build Play Store bundle
+        if: env.HAS_UPLOAD_KEY == 'true'
         env:
           KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           LISAN_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
@@ -48,13 +82,11 @@ jobs:
           LISAN_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         working-directory: android
         run: |
-          echo "$KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/release.keystore"
-          LISAN_KEYSTORE_PATH="$RUNNER_TEMP/release.keystore" ./gradlew bundleRelease assembleRelease --no-daemon
+          echo "$KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/upload.keystore"
+          LISAN_KEYSTORE_PATH="$RUNNER_TEMP/upload.keystore" ./gradlew bundleRelease --no-daemon
 
       - uses: actions/upload-artifact@v4
-        if: env.HAS_KEYSTORE == 'true'
+        if: env.HAS_UPLOAD_KEY == 'true'
         with:
-          name: lisan-android-release
-          path: |
-            android/app/build/outputs/bundle/release/*.aab
-            android/app/build/outputs/apk/release/*.apk
+          name: lisan-play-store-bundle
+          path: android/app/build/outputs/bundle/release/*.aab
