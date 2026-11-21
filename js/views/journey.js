@@ -46,8 +46,11 @@ function personalGoalCard(ctx) {
   function render(editing = false) {
     const p = ctx.game.personalGoal(lang.code);
     if (!p.goal || editing) {
-      let words = p.goal?.words || Math.min(50, total);
-      const choices = [25, 50, 100, 200].filter((n) => n < total).concat([total]);
+      // Only sizes still ahead of the learner (a goal pays once, when it is reached),
+      // and never the size of a goal that is already done.
+      const choices = [25, 50, 100, 200].filter((n) => n < total && n > p.learned).concat([total]);
+      const current = p.goal && !p.goal.doneAt && choices.includes(p.goal.words) ? p.goal.words : null;
+      let words = current ?? choices.find((n) => n >= Math.min(50, total)) ?? total;
       const pills = choices.map((n) => h('button', {
         type: 'button', class: `pill${n === words ? ' selected' : ''}`,
         onclick: (e) => { words = n; pills.forEach((b) => b.classList.toggle('selected', b === e.currentTarget)); },

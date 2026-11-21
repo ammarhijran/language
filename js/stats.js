@@ -21,7 +21,7 @@ export function computeStats(ctx) {
   const cards = store.getCards(lang.code);
   const counts = { new: 0, learning: 0, familiar: 0, mastered: 0, known: 0 };
   for (const w of lang.words) counts[status(cards[w.id])]++;
-  const today = store.getDay(lang.code) || {};
+  const today = store.getDay(lang.code); // summed over devices
   return {
     total: lang.words.length,
     learned: lang.words.length - counts.new,

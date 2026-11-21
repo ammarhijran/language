@@ -7,14 +7,12 @@ export default function progress(ctx, catFilter) {
   const { lang, store } = ctx;
   const s = computeStats(ctx);
   const cards = store.getCards(lang.code);
-  const days = store.getDays(lang.code);
 
-  // Last 14 days of activity.
+  // Last 14 days of activity (summed over synced devices).
   const today = new Date();
   const history = Array.from({ length: 14 }, (_, k) => {
     const d = new Date(today.getTime() - (13 - k) * DAY);
-    const rec = days[store.dayKey(d)] || {};
-    return { d, n: (rec.reviews || 0) + (rec.learned || 0) + (rec.practiced || 0) };
+    return { d, n: store.dayTotal(store.getDay(lang.code, d)) };
   });
   const maxN = Math.max(5, ...history.map((x) => x.n));
 

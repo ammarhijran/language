@@ -2,7 +2,7 @@
 // one) is created on one device, carried to the other by the learner, and
 // merged there. See js/sync.js for the format and merge rules.
 import { h, icon, set } from '../ui.js';
-import { encode, decode, isEncrypted, mergeAll, SyncError } from '../sync.js';
+import { encode, decode, isEncrypted, mergeAll, passphraseOk, MIN_PASSPHRASE, SyncError } from '../sync.js';
 import { languages } from '../languages/index.js';
 import { levelFromXp } from '../game.js';
 import { hasPlugin, plugin } from '../native.js';
@@ -43,8 +43,8 @@ async function copy(text, fallbackEl) {
 const sumXp = (game) => Object.values(game?.dev || {}).reduce((s, d) => s + (d.xp || 0), 0);
 const cancelled = (e) => /cancel|abort/i.test(`${e?.name} ${e?.message}`);
 
-function passField(id, label) {
-  const input = h('input', { id, type: 'password', class: 'select', autocomplete: 'new-password', placeholder: 'Optional', spellcheck: 'false' });
+function passField(id, label, placeholder = 'Optional') {
+  const input = h('input', { id, type: 'password', class: 'select', autocomplete: 'new-password', placeholder, spellcheck: 'false' });
   const toggle = h('button', {
     type: 'button', class: 'btn small ghost', 'aria-pressed': 'false',
     onclick: () => { const show = input.type === 'password'; input.type = show ? 'text' : 'password'; toggle.textContent = show ? 'Hide' : 'Show'; toggle.setAttribute('aria-pressed', String(show)); },
@@ -56,15 +56,36 @@ export default function sync(ctx) {
   const { store } = ctx;
 
   // ---------- Send ----------
-  const sendPass = passField('send-pass', 'Passphrase');
+  const sendPass = passField('send-pass', 'Passphrase', `Optional — at least ${MIN_PASSPHRASE} characters`);
+  const passHint = h('p', { class: 'hint', id: 'send-pass-hint', 'aria-live': 'polite' });
+  sendPass.input.setAttribute('aria-describedby', 'send-pass-hint');
   const sendOut = h('div', { class: 'sync-out', hidden: true });
   const createBtn = h('button', { type: 'button', class: 'btn primary wide', onclick: create }, icon('repeat', 18), 'Create sync code');
 
+  // A short passphrase is easy to guess offline, so it can't make a code "encrypted".
+  const HINT = `A passphrase encrypts the code so a chat app or cloud drive can’t read it. Use at least ${MIN_PASSPHRASE} characters — a few unrelated words work well — and the same one on the other device.`;
+  function showPassHint(error = false) {
+    const p = sendPass.input.value;
+    const left = MIN_PASSPHRASE - [...p.trim()].length;
+    passHint.classList.toggle('sync-error', error);
+    set(passHint, p && left > 0
+      ? `${error ? 'Too short to encrypt with. ' : ''}${left} more character${left === 1 ? '' : 's'} needed for a passphrase (or leave it empty for an unencrypted code).`
+      : HINT);
+  }
+  sendPass.input.addEventListener('input', () => showPassHint());
+  showPassHint();
+
   async function create() {
+    const passphrase = sendPass.input.value;
+    const weak = !!passphrase && !passphraseOk(passphrase);
+    showPassHint(weak);
+    if (weak) {
+      sendPass.input.focus();
+      return;
+    }
     createBtn.disabled = true;
     set(createBtn, 'Packing your progress…');
     try {
-      const passphrase = sendPass.input.value;
       const code = await encode({ device: store.deviceId(), at: Date.now(), ...store.syncData() }, { passphrase });
       const box = h('textarea', { class: 'code-box', readonly: true, rows: 4, 'aria-label': 'Your sync code', onfocus: (e) => e.target.select() }, code);
       const status = h('p', { class: 'hint', 'aria-live': 'polite' },
@@ -85,6 +106,8 @@ export default function sync(ctx) {
       sendOut.hidden = false;
       store.syncLog({ kind: 'sent', encrypted: !!passphrase });
       refreshLog();
+    } catch (e) {
+      ctx.toast(e?.message || 'Couldn’t create a sync code.');
     } finally {
       createBtn.disabled = false;
       set(createBtn, icon('repeat', 18), 'Create a new code');
@@ -120,35 +143,52 @@ export default function sync(ctx) {
       set(preview, h('p', { class: 'sync-error' }, e.message || 'Couldn’t read that code.'));
       return;
     }
-    const local = store.syncData();
-    const merged = mergeAll(local, payload);
+    let local;
+    let merged;
+    try {
+      local = store.syncData();
+      merged = mergeAll(local, payload, { device: store.deviceId() });
+    } catch {
+      set(preview, h('p', { class: 'sync-error' }, 'Couldn’t read that code.'));
+      return;
+    }
     const sameDevice = payload.device === store.deviceId();
     const lvBefore = levelFromXp(sumXp(local.game)).level;
     const lvAfter = levelFromXp(sumXp(merged.game)).level;
-    const rows = merged.summary.langs.filter((l) => languages[l.code] && l.remoteWords > 0);
-    const nothing = rows.every((l) => !l.added && !l.updated) && sumXp(merged.game) === sumXp(local.game);
+    const rows = merged.summary.langs.filter((l) => languages[l.code] && (l.remoteWords > 0 || l.added || l.updated || l.removed));
+    const nothing = !merged.summary.changed;
+    // Words from before "Reset progress" on this device are left out on purpose: say so.
+    const skipped = rows.some((l) => l.skipped);
     set(preview,
       h('div', { class: 'card sync-summary' },
         h('p', { class: 'kicker' }, sameDevice ? 'Code from this device' : 'Code from another device', payload.at ? ` · created ${when(payload.at)}` : ''),
         rows.length
           ? h('ul', { class: 'sync-langs' }, rows.map((l) => h('li', null,
             h('span', null, languages[l.code].flag, ' ', languages[l.code].name),
-            h('span', { class: 'muted small' }, `${l.remoteWords} words · `, h('b', null, `${l.added} new`), ` · ${l.updated} updated`))))
+            h('span', { class: 'muted small' }, `${l.remoteWords} words · `, h('b', null, `${l.added} new`), ` · ${l.updated} updated`,
+              l.removed ? ` · ${l.removed} removed` : '', l.skipped ? ` · ${l.skipped} from before your reset left out` : ''))))
           : h('p', { class: 'hint' }, 'No words in this code yet.'),
         lvAfter > lvBefore ? h('p', null, `⭐ You’ll go from level ${lvBefore} to level ${lvAfter}.`) : null,
-        nothing ? h('p', { class: 'hint' }, 'Nothing new — this device already has everything in this code.') : null,
+        nothing ? h('p', { class: 'hint' }, skipped
+          ? 'Nothing new — the rest of this code is from before you reset progress on this device.'
+          : 'Nothing new — this device already has everything in this code.') : null,
         h('div', { class: 'button-row' },
           h('button', {
             type: 'button', class: 'btn primary', disabled: nothing,
             onclick: () => {
               store.applySync(merged);
-              ctx.game.refresh(ctx.lang.code); // combined progress may unlock achievements
+              try {
+                ctx.game.refresh(ctx.lang.code); // combined progress may unlock achievements
+              } catch (e) {
+                console.error(e); // the merge itself is saved; rewards are re-checked on the next answer
+              }
               store.syncLog({ kind: 'merged', from: payload.device });
               const added = rows.reduce((s, l) => s + l.added, 0);
               const updated = rows.reduce((s, l) => s + l.updated, 0);
+              const removed = rows.reduce((s, l) => s + l.removed, 0);
               paste.value = '';
               set(preview, h('div', { class: 'banner sync-done' },
-                h('b', null, '✅ Merged! '), `${added} new and ${updated} updated words. `,
+                h('b', null, '✅ Merged! '), `${added} new and ${updated} updated words${removed ? `, ${removed} removed` : ''}. `,
                 h('p', { class: 'hint' }, 'To finish a two-way sync, send this device’s progress back:'),
                 h('button', { type: 'button', class: 'btn small primary', onclick: () => { sendPass.input.value = recvPass.input.value; create(); sendCard.scrollIntoView({ behavior: 'smooth' }); } }, 'Create a code for the other device')));
               refreshLog();
@@ -169,7 +209,7 @@ export default function sync(ctx) {
     h('h2', { class: 'card-title' }, '⬆️ Send this device’s progress'),
     h('p', { class: 'hint' }, 'Creates a code containing your words, review schedule, streaks, XP and achievements (not your settings).'),
     sendPass.el,
-    h('p', { class: 'hint' }, 'A passphrase encrypts the code so a chat app or cloud drive can’t read it. Use the same one on the other device.'),
+    passHint,
     createBtn,
     sendOut);
 

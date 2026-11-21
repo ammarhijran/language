@@ -71,6 +71,14 @@ export default function settings(ctx) {
     ctx.go('/');
   }
 
+  // Everything, every language, then a fresh start on the welcome screen.
+  async function deleteAll() {
+    if (!confirm('Delete ALL your Lisan data on this device — every language’s words and streaks, XP, achievements, goals, settings and sync history? This can’t be undone.')) return;
+    await store.deleteAllData();
+    history.replaceState(null, '', '#/welcome');
+    location.reload();
+  }
+
   return h('div', { class: 'view' },
     h('h1', null, 'Settings'),
     voiceBanner(ctx),
@@ -106,7 +114,12 @@ export default function settings(ctx) {
         h('button', { type: 'button', class: 'btn', onclick: exportProgress }, 'Export progress'),
         h('button', { type: 'button', class: 'btn', onclick: () => fileInput.click() }, 'Import progress'),
         h('button', { type: 'button', class: 'btn danger', onclick: reset }, 'Reset progress')),
+      h('p', { class: 'hint' }, `Reset clears only your ${lang.name} words and daily history; XP, achievements and other languages stay.`),
       fileInput),
+    h('section', { class: 'card form', 'aria-labelledby': 'delete-all-title' },
+      h('h2', { class: 'card-title', id: 'delete-all-title' }, 'Delete all my data'),
+      h('p', { class: 'hint' }, 'Removes everything Lisan has stored on this device: all languages, XP, achievements, goals, settings, the device id and the sync log — including the copy the app keeps in the phone’s own storage. Backups or sync codes you saved elsewhere aren’t touched.'),
+      h('button', { type: 'button', class: 'btn danger', onclick: deleteAll }, 'Delete all my data')),
     h('p', { class: 'hint center' }, 'Lisan · ', h('a', { href: 'privacy.html' }, 'Privacy policy')),
   );
 }

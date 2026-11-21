@@ -35,9 +35,17 @@ export const titleFor = (level) => TITLES.filter(([n]) => level >= n).pop()[1];
 /** True when reaching `level` earns a new title. */
 export const newTitleAt = (level) => TITLES.some(([n]) => n === level);
 
-export function levelFromXp(xp) {
-  let level = 1;
-  while (xp >= xpForLevel(level + 1)) level++;
+/**
+ * The level for an XP total, in constant time (XP can come from a sync code,
+ * so a loop over levels could be made to run forever). Anything that isn't a
+ * finite, non-negative number counts as 0 XP.
+ */
+export function levelFromXp(raw) {
+  const xp = Number.isFinite(raw) && raw > 0 ? Math.min(raw, Number.MAX_SAFE_INTEGER) : 0;
+  // Solve 40m² + 60m = xp for m = level - 1, then fix floating-point rounding.
+  let level = Math.floor((-60 + Math.sqrt(3600 + 160 * xp)) / 80) + 1;
+  for (let i = 0; i < 3 && level > 1 && xpForLevel(level) > xp; i++) level--;
+  for (let i = 0; i < 3 && xpForLevel(level + 1) <= xp; i++) level++;
   const base = xpForLevel(level);
   const next = xpForLevel(level + 1);
   return { level, title: titleFor(level), total: xp, into: xp - base, need: next - base, next };
@@ -157,11 +165,15 @@ function g() {
   s.unlocked ??= {};
   s.unseen ??= [];
   s.goals ??= {};
-  s.spoken ??= { day: '', ids: [] };
+  s.spoken ??= { day: '', ids: [], best: {} }; // today's once-a-day keys and best speaking scores
+  s.spoken.best ??= {};
+  s.said ??= { great: [], perfect: [] }; // 'lang:wordId' ever said with 90%+ / 100%
   s.grammar ??= {}; // { lang: { lessonId: best score 0..1 } }
   const wk = weekKey();
   if (!s.week || s.week.key !== wk) s.week = { key: wk, picks: challengesForWeek(wk), p: {}, done: {}, goalDays: [] };
   if (Object.values(s.week.p).some((v) => typeof v === 'number')) s.week.p = { [me]: s.week.p }; // old format
+  // A week from a sync code must name three real challenges.
+  if (s.week.picks?.length !== 3 || !s.week.picks.every((id) => CHALLENGES.some((x) => x.id === id))) s.week.picks = challengesForWeek(s.week.key);
   s.week.p[me] ??= {};
   return s;
 }
@@ -189,6 +201,13 @@ export function counters() {
     out[k] = BEST.has(k) ? Math.max(0, ...vals) : vals.reduce((a, b) => a + b, 0);
   }
   return out;
+}
+
+/** Today's speaking/grammar bookkeeping (it starts again each day). */
+function spokenToday(s) {
+  const day = store.dayKey();
+  if (s.spoken.day !== day) s.spoken = { day, ids: [], best: {} };
+  return s.spoken;
 }
 
 /** This week's progress on a challenge metric, over all devices. */
@@ -240,7 +259,7 @@ export function metrics() {
       if (!cards[id].known) words++;
       if (status(cards[id]) === 'mastered') mastered++;
     }
-    const done = L.categories.filter((c) => L.wordsIn(c.id).every((w) => cards[w.id])).length;
+    const done = L.categories.filter((c) => topicLearned(L.wordsIn(c.id), cards)).length;
     topics += done;
     topicsInLang = Math.max(topicsInLang, done);
     streakNow = Math.max(streakNow, store.streak(code));
@@ -254,7 +273,20 @@ export function metrics() {
   }
   c().bestStreak = Math.max(c().bestStreak, streakNow);
   const all = counters();
-  return { ...all, words, mastered, langs, topics, topicsInLang, streak: all.bestStreak, level: level().level, alphabet, grammar, grammarAll, grammarPerfect, talkWords };
+  // "Different words": the sets of words said well. Counts from older builds
+  // (one per word per day) are kept as a floor so progress never goes back.
+  const speakGreat = Math.max(all.speakGreat, s.said.great.length);
+  const speakPerfect = Math.max(all.speakPerfect, s.said.perfect.length);
+  return { ...all, speakGreat, speakPerfect, words, mastered, langs, topics, topicsInLang, streak: all.bestStreak, level: level().level, alphabet, grammar, grammarAll, grammarPerfect, talkWords };
+}
+
+/**
+ * A topic is learned when every word in it has a card and at least one of
+ * them was learned in lessons: words ticked as "already learned" fill gaps,
+ * but ticking a whole topic isn't learning it.
+ */
+function topicLearned(words, cards) {
+  return words.every((w) => cards[w.id]) && words.some((w) => !cards[w.id].known);
 }
 
 export function achievementProgress() {
@@ -288,7 +320,7 @@ function evaluate(lang = 'tr') {
       }
     }
     for (const [code, goal] of Object.entries(s.goals)) {
-      if (goal && !goal.doneAt && personalGoal(code).learned >= goal.words) {
+      if (goal && !goal.removed && !goal.doneAt && learnedCount(code) >= goal.words) {
         goal.doneAt = Date.now();
         c().personalGoals++;
         emit({ kind: 'personal-goal', lang: code, words: goal.words, xp: XP.personalGoal });
@@ -358,22 +390,29 @@ export function learned({ lang, count }) {
   return xp;
 }
 
+const speakXp = (score) => (score >= 0.9 ? XP.speakGreat : score >= 0.7 ? XP.speakGood : XP.speakTry);
+const addOnce = (list, key) => { if (!list.includes(key)) list.push(key); };
+
 /**
- * A scored pronunciation attempt. Counts once per word per day (so repeating
- * one word doesn't farm points). XP only outside sessions — inside, the
- * exercise's own answer already earns it.
+ * A scored pronunciation attempt. Each word counts with its best score of the
+ * day: a retry earns only what it adds (moving up an XP tier, or crossing 80%
+ * for the weekly challenge for the first time today), so repeating one word
+ * doesn't farm points but improving it is rewarded. The "different words"
+ * achievements use the sets of words ever said with 90%+ and 100%. XP only
+ * outside sessions — inside, the exercise's own answer already earns it.
  */
 export function spoke({ lang, wordId, score, inSession = false }) {
   const s = g();
-  const today = store.dayKey();
-  if (s.spoken.day !== today) s.spoken = { day: today, ids: [] };
+  if (!Number.isFinite(score)) return 0;
+  const today = spokenToday(s);
   const key = `${lang}:${wordId}`;
-  if (s.spoken.ids.includes(key)) return 0;
-  s.spoken.ids.push(key);
-  if (score >= 0.9) c().speakGreat++;
-  if (score >= 0.995) c().speakPerfect++;
-  if (score >= 0.8) bumpWeek('speak80');
-  const xp = inSession ? 0 : addXp(lang, score >= 0.9 ? XP.speakGreat : score >= 0.7 ? XP.speakGood : XP.speakTry, 'speak');
+  const prev = today.best[key];
+  if (prev !== undefined && score <= prev) return 0; // no better than earlier today
+  today.best[key] = score;
+  if (score >= 0.8 && !(prev >= 0.8)) bumpWeek('speak80');
+  if (score >= 0.9) addOnce(s.said.great, key);
+  if (score >= 0.995) addOnce(s.said.perfect, key);
+  const xp = inSession ? 0 : addXp(lang, speakXp(score) - (prev === undefined ? 0 : speakXp(prev)), 'speak');
   evaluate(lang);
   return xp;
 }
@@ -402,13 +441,12 @@ export function grammarDone({ lang, id, correct, total }) {
   const map = (s.grammar[lang] ||= {});
   const first = map[id] == null;
   map[id] = Math.max(map[id] ?? 0, total ? correct / total : 0);
-  const today = store.dayKey();
-  if (s.spoken.day !== today) s.spoken = { day: today, ids: [] };
+  const today = spokenToday(s);
   const key = `grammar:${lang}:${id}`;
   let xp = 0;
   if (first) xp += addXp(lang, 30, 'grammar');
-  if (!s.spoken.ids.includes(key)) {
-    s.spoken.ids.push(key);
+  if (!today.ids.includes(key)) {
+    today.ids.push(key);
     xp += addXp(lang, 5 * correct, 'grammar');
   }
   evaluate(lang);
@@ -440,13 +478,13 @@ export function goalMet(lang) {
  * learner can save the streak by doing twice the daily goal.
  */
 export function repairOffer(lang, now = new Date()) {
-  const days = store.getDays(lang);
-  const day = (offset) => { const d = new Date(now); d.setDate(d.getDate() - offset); return store.dayKey(d); };
-  if (store.isActive(days[day(1)]) || !store.isActive(days[day(2)])) return null;
+  const date = (offset) => { const d = new Date(now); d.setDate(d.getDate() - offset); return d; };
+  const active = (offset) => store.isActive(store.getDay(lang, date(offset)));
+  if (active(1) || !active(2)) return null;
   let lost = 0;
-  for (let i = 2; store.isActive(days[day(i)]); i++) lost++;
+  for (let i = 2; active(i); i++) lost++;
   const target = store.getSettings().dailyGoal * 2;
-  return { target, done: store.dayTotal(days[day(0)]), lost, missedKey: day(1) };
+  return { target, done: store.dayTotal(store.getDay(lang, date(0))), lost, missedKey: store.dayKey(date(1)) };
 }
 
 export function checkRepair(lang, now = new Date()) {
@@ -460,34 +498,48 @@ export function checkRepair(lang, now = new Date()) {
 
 // ---------- Personal goals ----------
 
+/** Words learned in lessons (not ticked as already learned). */
+const learnedCount = (lang) => Object.values(store.getCards(lang)).filter((c) => !c.known).length;
+
+/**
+ * Set (or with `null`, remove) a personal goal. Every change gets a newer
+ * `set` stamp, and a removal is kept as { removed, set }, so the latest
+ * choice wins when syncing. A goal is rewarded once, when it is reached: one
+ * that is already reached when it is set is recorded as done without a reward.
+ */
 export function setPersonalGoal(lang, goal) {
   const s = g();
-  s.goals[lang] = goal ? { words: goal.words, by: goal.by || null, set: Date.now(), doneAt: null } : null;
+  const set = Math.max(Date.now(), (s.goals[lang]?.set || 0) + 1);
+  if (!goal) {
+    s.goals[lang] = { removed: true, set };
+  } else {
+    const words = Math.max(1, Math.round(goal.words));
+    s.goals[lang] = { words, by: goal.by || null, set, doneAt: learnedCount(lang) >= words ? set : null };
+  }
   evaluate(lang);
 }
 
 /** Progress and a projection based on the last 14 days. */
 export function personalGoal(lang, now = new Date()) {
-  const goal = g().goals[lang] || null;
-  const cards = store.getCards(lang);
-  const learnedCount = Object.values(cards).filter((c) => !c.known).length;
-  if (!goal) return { goal: null, learned: learnedCount };
-  const days = store.getDays(lang);
+  const raw = g().goals[lang];
+  const goal = raw && !raw.removed ? raw : null;
+  const learned = learnedCount(lang);
+  if (!goal) return { goal: null, learned };
   let recent = 0;
   for (let i = 0; i < 14; i++) {
     const d = new Date(now);
     d.setDate(d.getDate() - i);
-    recent += days[store.dayKey(d)]?.learned || 0;
+    recent += store.getDay(lang, d).learned;
   }
   const rate = recent / 14; // words per day
-  const remaining = Math.max(0, goal.words - learnedCount);
+  const remaining = Math.max(0, goal.words - learned);
   const eta = remaining === 0 ? now : rate > 0 ? new Date(now.getTime() + Math.ceil(remaining / rate) * DAY) : null;
   let perDayNeeded = null;
   if (goal.by && remaining > 0) {
     const daysLeft = Math.max(1, Math.ceil((new Date(`${goal.by}T23:59:59`) - now) / DAY));
     perDayNeeded = Math.ceil(remaining / daysLeft);
   }
-  return { goal, learned: learnedCount, remaining, rate, eta, perDayNeeded, pct: Math.min(100, Math.round((learnedCount / goal.words) * 100)) };
+  return { goal, learned, remaining, rate, eta, perDayNeeded, pct: Math.min(100, Math.round((learned / goal.words) * 100)) };
 }
 
 /** Re-check achievements, challenges and goals — e.g. after merging progress from another device. */
