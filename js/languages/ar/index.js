@@ -13,7 +13,7 @@ import { makePack } from '../common.js';
 
 const TASHKEEL = /[ؐ-ًؚ-ٰٟۖ-ۭ]/g;
 
-/** Plain Arabic: no vowel marks or tatweel, alif/yā/tā-marbūṭa variants unified; Latin lowercased. No spaces. */
+/** Plain Arabic: no vowel marks or tatweel, alif/yā/tā-marbūṭa variants unified; Latin lowercased, ʾ/ʿ and apostrophes dropped. No spaces. */
 export function normalize(s) {
   return s.normalize('NFC')
     .replace(TASHKEEL, '')
@@ -24,6 +24,9 @@ export function normalize(s) {
     .replace(/ؤ/g, 'و')
     .replace(/ئ/g, 'ي')
     .toLowerCase()
+    // Hamza ʾ and ʿayn ʿ are hard to type and the plain-ASCII forms leave them
+    // out, so typed apostrophes (or none) both count.
+    .replace(/[ʾʿ'’‘`ʼʻ]/g, '')
     .replace(/[\s\-‐.,!?؟،؛:;"“”()«»]/g, '');
 }
 

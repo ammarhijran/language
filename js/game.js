@@ -5,6 +5,17 @@ import * as store from './store.js';
 import { languages } from './languages/index.js';
 import { status, AGAIN, HARD, DAY } from './srs.js';
 
+// Topics in the biggest course: 'every topic' scales with the content, and a
+// complete smaller course counts as complete (see metrics()).
+/** Same time of day, n calendar days later (24 h steps drift across DST changes). */
+function addDays(date, n) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + n);
+  return d;
+}
+
+const ALL_TOPICS = Math.max(...Object.values(languages).map((L) => L.categories.length));
+
 // ---------- XP ----------
 
 export const XP = {
@@ -64,7 +75,7 @@ export const ACHIEVEMENTS = [
   A('mastered-10', '🔒', 'Locked In', 'Master 10 words (reviewed until they stick for 3+ weeks)', 'mastered', 10, 'Learning'),
   A('mastered-50', '🧠', 'Long-Term Memory', 'Master 50 words', 'mastered', 50, 'Learning'),
   A('topic-1', '🗂️', 'Topic Master', 'Learn every word in a topic', 'topics', 1, 'Learning'),
-  A('topics-all', '🏛️', 'Completionist', 'Learn every topic in one language', 'topicsInLang', 12, 'Learning'),
+  A('topics-all', '🏛️', 'Completionist', 'Learn every topic in one language', 'topicsInLang', ALL_TOPICS, 'Learning'),
   A('personal-goal', '🎯', 'Mission Complete', 'Reach a personal word goal', 'personalGoals', 1, 'Learning'),
 
   A('streak-3', '🔥', 'On a Roll', 'Keep a 3-day streak', 'streak', 3, 'Habits'),
@@ -261,7 +272,7 @@ export function metrics() {
     }
     const done = L.categories.filter((c) => topicLearned(L.wordsIn(c.id), cards)).length;
     topics += done;
-    topicsInLang = Math.max(topicsInLang, done);
+    topicsInLang = Math.max(topicsInLang, done === L.categories.length ? ALL_TOPICS : done);
     streakNow = Math.max(streakNow, store.streak(code));
     if ((s.letters[code] || []).length >= L.alphabet.length) alphabet++;
     const g = s.grammar[code] || {};
@@ -533,7 +544,7 @@ export function personalGoal(lang, now = new Date()) {
   }
   const rate = recent / 14; // words per day
   const remaining = Math.max(0, goal.words - learned);
-  const eta = remaining === 0 ? now : rate > 0 ? new Date(now.getTime() + Math.ceil(remaining / rate) * DAY) : null;
+  const eta = remaining === 0 ? now : rate > 0 ? addDays(now, Math.ceil(remaining / rate)) : null;
   let perDayNeeded = null;
   if (goal.by && remaining > 0) {
     const daysLeft = Math.max(1, Math.ceil((new Date(`${goal.by}T23:59:59`) - now) / DAY));

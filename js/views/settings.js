@@ -109,7 +109,7 @@ export default function settings(ctx) {
       h('h2', { class: 'card-title' }, 'Your data'),
       h('a', { class: 'btn primary', href: '#/sync' }, icon('repeat', 16), 'Sync between devices'),
       h('p', { class: 'hint' }, 'Copy your progress to another phone, tablet or computer — no account or server needed.'),
-      h('p', { class: 'hint' }, 'Progress is saved only in this browser. Export a backup to move it to another device.'),
+      h('p', { class: 'hint' }, 'Progress is saved on this device and never sent to us. Export a backup, or use Sync, to move it to another device.'),
       h('div', { class: 'button-row' },
         h('button', { type: 'button', class: 'btn', onclick: exportProgress }, 'Export progress'),
         h('button', { type: 'button', class: 'btn', onclick: () => fileInput.click() }, 'Import progress'),

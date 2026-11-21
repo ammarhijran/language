@@ -1,6 +1,6 @@
 import { h, icon, meter, set } from '../ui.js';
 import { computeStats } from '../stats.js';
-import { status, STATUS_LABEL, DAY } from '../srs.js';
+import { status, STATUS_LABEL } from '../srs.js';
 import { playButton } from '../components.js';
 
 export default function progress(ctx, catFilter) {
@@ -11,7 +11,8 @@ export default function progress(ctx, catFilter) {
   // Last 14 days of activity (summed over synced devices).
   const today = new Date();
   const history = Array.from({ length: 14 }, (_, k) => {
-    const d = new Date(today.getTime() - (13 - k) * DAY);
+    const d = new Date(today);
+    d.setDate(d.getDate() - (13 - k)); // calendar days: 24 h steps can skip a day across DST
     return { d, n: store.dayTotal(store.getDay(lang.code, d)) };
   });
   const maxN = Math.max(5, ...history.map((x) => x.n));
