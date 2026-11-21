@@ -14,6 +14,8 @@ const DEFAULTS = {
   lessonSize: 5,
   sessionSize: 25,
   autoplay: true,
+  dailyGoal: 20, // exercises per day (reviews + new words + practice)
+  onboarded: false,
 };
 
 let state = load();
@@ -76,13 +78,24 @@ export function dayKey(d = new Date()) {
   return `${d.getFullYear()}-${m}-${day}`;
 }
 
+/** Everything that counts toward the daily goal. */
+export const dayTotal = (d) => (d?.reviews || 0) + (d?.learned || 0) + (d?.practiced || 0);
+
 export function logActivity(lang, delta) {
   const days = prog(lang).days;
   const k = dayKey();
   const d = days[k] || (days[k] = { reviews: 0, learned: 0, practiced: 0, correct: 0 });
+  const before = dayTotal(d);
   for (const [key, v] of Object.entries(delta)) d[key] = (d[key] || 0) + v;
   save();
+  const goal = state.settings.dailyGoal;
+  if (before < goal && dayTotal(d) >= goal && typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('lisan:goal-reached'));
+  }
 }
+
+export const hasAnyProgress = () =>
+  Object.values(state.progress).some((p) => Object.keys(p.cards || {}).length > 0);
 
 export const getDays = (lang) => prog(lang).days;
 export const getDay = (lang, d = new Date()) => prog(lang).days[dayKey(d)];

@@ -1,6 +1,7 @@
 import { h, icon, set } from '../ui.js';
 import * as speech from '../speech.js';
 import { voiceBanner } from '../components.js';
+import { GOALS } from './welcome.js';
 
 export default function settings(ctx) {
   const { lang, store } = ctx;
@@ -82,6 +83,9 @@ export default function settings(ctx) {
         : 'not available in this browser — try Chrome, Edge or Safari to get pronunciation scores.')),
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'Lessons'),
+      h('label', { class: 'field' }, h('span', null, 'Daily goal'),
+        h('select', { class: 'select', onchange: (e) => store.updateSettings({ dailyGoal: Number(e.target.value) }) },
+          GOALS.map((g) => h('option', { value: String(g.value), selected: g.value === s.dailyGoal }, `${g.name} — ${g.value} exercises (${g.time})`)))),
       h('label', { class: 'field inline' }, number('lessonSize', 3, 15), h('span', null, 'New words per lesson')),
       h('label', { class: 'field inline' }, number('sessionSize', 5, 100), h('span', null, 'Max words per review session'))),
     h('section', { class: 'card form' },

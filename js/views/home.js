@@ -27,10 +27,20 @@ export default function home(ctx) {
       icon('arrow'));
   }
 
+  const goal = ctx.settings.dailyGoal;
+  const done = ctx.store.dayTotal(s.today);
+  const pct = Math.min(100, Math.round((done / goal) * 100));
+
   return h('div', { class: 'view home' },
     h('section', { class: 'hello' },
-      h('h1', null, h('span', { lang: lang.code }, `${lang.greeting}!`), ' 👋'),
-      h('p', { class: 'muted' }, `${lang.name} vocabulary & pronunciation`)),
+      h('div', null,
+        h('h1', null, h('span', { lang: lang.code }, `${lang.greeting}!`), ' 👋'),
+        h('p', { class: 'muted' }, `${lang.name} vocabulary & pronunciation`)),
+      h('a', {
+        class: `goal-ring${done >= goal ? ' done' : ''}`, href: '#/settings', style: { '--pct': pct },
+        title: 'Daily goal — change it in Settings',
+        'aria-label': `Daily goal: ${Math.min(done, goal)} of ${goal} exercises done today`,
+      }, h('span', null, done >= goal ? icon('check', 22) : h('b', null, String(done)), h('small', null, done >= goal ? 'goal met' : `of ${goal} today`)))),
     voiceBanner(ctx),
     h('div', { class: 'stat-row' },
       stat(icon('flame'), s.streak, s.streak === 1 ? 'day streak' : 'day streak'),

@@ -12,6 +12,7 @@ import pronounce from './views/pronounce.js';
 import progress from './views/progress.js';
 import settingsView from './views/settings.js';
 import wordView from './views/word.js';
+import welcome from './views/welcome.js';
 
 const lang = languages[store.getSettings().lang] || languages[defaultLanguage];
 
@@ -24,6 +25,7 @@ const ROUTES = {
   progress,
   settings: settingsView,
   word: wordView,
+  welcome,
 };
 
 const TABS = [
@@ -96,6 +98,7 @@ function render() {
       h('a', { class: 'btn primary', href: '#/' }, 'Back home')));
   }
   set(main, el);
+  document.body.classList.toggle('bare', name === 'welcome');
 
   const tab = TAB_OF[name] ?? name;
   document.querySelectorAll('.tabbar a').forEach((a) => {
@@ -109,12 +112,21 @@ function render() {
     badge.hidden = due === 0;
     badge.textContent = due > 99 ? '99+' : String(due);
   }
-  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', word: lang.byId(params[0])?.tr }[name];
+  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', word: lang.byId(params[0])?.tr }[name];
   document.title = title ? `${title} · Lisan ${lang.name}` : `Lisan · ${lang.name}`;
   window.scrollTo(0, 0);
 }
 
 await store.init();
+
+// First launch: show the welcome screen. People who already have progress
+// (e.g. from before onboarding existed, or an import) skip it.
+if (!store.getSettings().onboarded) {
+  if (store.hasAnyProgress()) store.updateSettings({ onboarded: true });
+  else if (!location.hash || location.hash === '#/') history.replaceState(null, '', '#/welcome');
+}
+window.addEventListener('lisan:goal-reached', () => toast('🎉 Daily goal reached — harika!'));
+
 shell();
 window.addEventListener('hashchange', render);
 render();
