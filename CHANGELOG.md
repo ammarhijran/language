@@ -117,6 +117,7 @@
 - **Daily goal** ring on the home screen, a "goal reached" celebration, and a daily-goal setting.
 
 ### Fixed
+- **Screen stays on while audio plays by itself** (hands-free listening, Play all and shadowing in Read & Listen) in the Android and iOS apps too: the browser’s wake lock used so far does not exist inside an Android app, so the phone would dim and lock mid-round. The apps now use the keep-awake plugin (no permission needed); the website keeps using the wake lock.
 - **Export progress in the Android and iOS apps:** it used a browser download, which an app’s WebView cannot do; it now goes through the share sheet (save to Files or Drive, or send it to yourself), like the sync file already did.
 - **Turkish numbers in speaking exercises:** when the phone’s speech recogniser answers with digits (“3” for *üç*, “40” for *kırk*), the answer now counts as right, as it already did in the other languages.
 - **Ukrainian stress:** мене / тебе after a preposition are stressed on the first syllable (у ме́не, в те́бе, як на ме́не) — corrected in 12 phrases.

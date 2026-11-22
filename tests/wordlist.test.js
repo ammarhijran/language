@@ -8,7 +8,7 @@ globalThis.window = {
   Capacitor: {
     isNativePlatform: () => true,
     getPlatform: () => 'android',
-    PluginHeaders: [{ name: 'Filesystem' }, { name: 'Share' }],
+    PluginHeaders: [{ name: 'Filesystem' }, { name: 'Share' }, { name: 'KeepAwake' }],
     nativePromise: (plugin, method, options) => {
       calls.push({ plugin, method, options });
       return Promise.resolve(plugin === 'Filesystem' ? { uri: 'file:///cache/' + options.path } : {});
@@ -16,7 +16,7 @@ globalThis.window = {
   },
 };
 
-const { saveTextFile } = await import('../js/native.js');
+const { saveTextFile, keepScreenOn } = await import('../js/native.js');
 const { wordsCsv } = await import('../js/wordlist.js');
 const { languages } = await import('./all-languages.js');
 
@@ -54,4 +54,16 @@ test('the word list: only started words, in course order, with readings and safe
   const ar = languages.ar;
   const w = ar.words[0];
   assert.ok(wordsCsv(ar, { [w.id]: cards[a.id] }).text.includes(`${w.tr},${w.tl},`));
+});
+
+test('keeping the screen on uses the KeepAwake plugin in the apps and never throws', async () => {
+  calls.length = 0;
+  await keepScreenOn(true);
+  await keepScreenOn(false);
+  assert.deepEqual(calls.map((c) => `${c.plugin}.${c.method}`), ['KeepAwake.keepAwake', 'KeepAwake.allowSleep']);
+  // a plugin that fails must not break playback
+  const real = window.Capacitor.nativePromise;
+  window.Capacitor.nativePromise = () => Promise.reject(new Error('no activity'));
+  await assert.doesNotReject(keepScreenOn(true));
+  window.Capacitor.nativePromise = real;
 });

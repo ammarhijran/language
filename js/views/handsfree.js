@@ -3,6 +3,7 @@ import { h, icon, set, shuffle } from '../ui.js';
 import * as speech from '../speech.js';
 import { readingLine, backLink } from '../components.js';
 import { createHandsFree } from '../handsfree.js';
+import { keepScreenOn } from '../native.js';
 
 const COUNT = 20;
 const PREFS_KEY = 'lisan:handsfree';
@@ -22,15 +23,8 @@ export default function handsFree(ctx, pool) {
   const items = shuffle(pool).slice(0, COUNT);
   const prefs = loadPrefs();
   const heard = new Set();
-  let lock = null;
-
-  // Keep the screen on while it plays (where the browser can).
-  const keepAwake = async (on) => {
-    try {
-      if (on && !lock && navigator.wakeLock) lock = await navigator.wakeLock.request('screen');
-      if (!on && lock) { const l = lock; lock = null; await l.release(); }
-    } catch { lock = null; }
-  };
+  // Keep the screen on while it plays (the apps' KeepAwake plugin, or the browser's wake lock).
+  const keepAwake = (on) => keepScreenOn(on);
 
   const count = h('p', { class: 'kicker' });
   const word = h('p', { class: 'hero-tr', lang: lang.code, dir: lang.dir === 'rtl' ? 'rtl' : null });

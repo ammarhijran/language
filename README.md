@@ -131,6 +131,8 @@ The `android/` and `ios/` folders are native projects that wrap the web app. The
 | Audio | Web Speech API | Native text-to-speech (`@capacitor-community/text-to-speech`) |
 | Speaking scores | Web Speech API | Native speech recognition (`@capacitor-community/speech-recognition`) |
 | Progress storage | localStorage | localStorage, mirrored to native storage (`@capacitor/preferences`) |
+| Keeping the screen on while audio plays | Screen Wake Lock API | `@capacitor-community/keep-awake` |
+| Saving a backup or word list | download | share sheet (`@capacitor/filesystem` + `@capacitor/share`) |
 
 ### Getting a build
 

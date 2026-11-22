@@ -58,6 +58,24 @@ export async function saveTextFile(name, text, { type = 'text/plain', dialogTitl
   return undefined;
 }
 
+let webLock = null;
+/**
+ * Keep the screen on while something plays by itself (hands-free listening,
+ * Play all, shadowing): the KeepAwake plugin in the apps, the Screen Wake
+ * Lock API on the web. It never throws — at worst the screen dims as usual.
+ */
+export async function keepScreenOn(on) {
+  try {
+    if (hasPlugin('KeepAwake')) {
+      await (on ? plugin('KeepAwake').keepAwake() : plugin('KeepAwake').allowSleep());
+      return;
+    }
+    const nav = typeof navigator !== 'undefined' ? navigator : null;
+    if (on && !webLock && nav?.wakeLock) webLock = await nav.wakeLock.request('screen');
+    if (!on && webLock) { const lock = webLock; webLock = null; await lock.release(); }
+  } catch { webLock = null; }
+}
+
 const App = plugin('App');
 
 /**

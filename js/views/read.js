@@ -9,6 +9,7 @@ import { h, icon, set, bindKeys, meter } from '../ui.js';
 import { voiceBanner, diffLine, praiseLine, cleanupScope, backLink, readingText } from '../components.js';
 import { rich } from './grammar.js';
 import * as speech from '../speech.js';
+import { keepScreenOn } from '../native.js';
 import { newCard } from '../srs.js';
 import {
   KINDS, LEVELS, REGISTERS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
@@ -548,11 +549,11 @@ function readerView(ctx, texts, text) {
     count: n,
     say: (i) => ctx.say(sayable(ctx, text, text.lines[i]), { slow: p.slow }),
     onLine: (i) => highlight(i),
-    onState: (playing) => paintPlay(playing),
+    onState: (playing) => { paintPlay(playing); keepScreenOn(playing); },
     onEnd: () => { live.textContent = 'End of the text.'; },
     onFail: () => ctx.toast('Audio isn’t available — check that a voice is installed for this language.'),
   });
-  ctx.onCleanup(() => player.stop());
+  ctx.onCleanup(() => { player.stop(); keepScreenOn(false); });
 
   function highlight(i) {
     rows[current]?.classList.remove('current');
@@ -948,11 +949,11 @@ function shadowMode(ctx, text) {
       list.rows[i].classList.add('current');
       bringIntoView(list.rows[i], card);
     },
-    onState: (playing) => paint(playing),
+    onState: (playing) => { paint(playing); keepScreenOn(playing); },
     onEnd: () => roundDone(),
     onFail: () => ctx.toast('Audio isn’t available — check that a voice is installed for this language.'),
   });
-  ctx.onCleanup(() => player.stop());
+  ctx.onCleanup(() => { player.stop(); keepScreenOn(false); });
   ctx.onCleanup(bindKeys({ ' ': () => { if (playBtn.isConnected) playBtn.click(); } }));
 
   function paint(playing = false) {
