@@ -276,7 +276,9 @@ button.gloss:hover { background: var(--action-soft); }
 }
 
 /* My texts */
-.read-own { margin-top: var(--sp-5); }
+.read-own-link .read-emoji { font-size: var(--fs-xl); }
+/* an English placeholder in a right-to-left field */
+.own-body:placeholder-shown { direction: ltr; }
 .read-own .section-title { margin: 0; }
 .read-own > * + * { margin-top: var(--sp-2); }
 .own-body {

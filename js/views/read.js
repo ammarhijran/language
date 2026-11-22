@@ -176,6 +176,15 @@ function ownSection(ctx, own) {
       : h('p', { class: 'hint' }, `Paste your own ${ctx.lang.name} — a self-introduction, a speech, a message your teacher corrected — and practise it line by line: listen, repeat, shadow and record.`));
 }
 
+/** At the top of the list: the learner's texts when there are some, else one line that leads to adding one. */
+function ownTop(ctx, own) {
+  if (own.length) return ownSection(ctx, own);
+  return h('a', { class: 'quick-link read-own-link', href: href('new') },
+    h('span', { class: 'read-emoji', 'aria-hidden': 'true' }, '✍️'),
+    h('span', null, h('b', null, 'Practise your own text'), h('small', null, 'Paste a speech or an introduction and rehearse it with the voice')),
+    icon('arrow', 18));
+}
+
 function textCard(ctx, t) {
   const { lang } = ctx;
   const best = ctx.game.textBest(lang.code, t.id);
@@ -214,7 +223,7 @@ function listView(ctx, texts, own = []) {
     backLink(ctx, '#/learn/g/read', 'Learn'),
     h('h1', null, 'Read & Listen'),
   ];
-  if (!all.length) return [...head, emptyState(ctx), ownSection(ctx, own)];
+  if (!all.length) return [...head, ownTop(ctx, own), emptyState(ctx)];
 
   const done = all.filter((t) => ctx.game.textBest(lang.code, t.id) != null).length;
   const listEl = h('div', { class: 'read-list' });
@@ -254,12 +263,12 @@ function listView(ctx, texts, own = []) {
     h('div', { class: 'read-progress' },
       meter(done, all.length, done === all.length ? 'done' : ''),
       h('span', { class: 'muted small' }, `${done} of ${all.length} done`)),
+    ownTop(ctx, own),
     h('div', { class: 'read-filters' },
       h('div', { class: 'pill-row', role: 'group', 'aria-label': 'Level' }, levelBtns),
       h('div', { class: 'pill-row', role: 'group', 'aria-label': 'Kind of text' }, kindBtns)),
     status,
     listEl,
-    ownSection(ctx, own),
   ];
 }
 
