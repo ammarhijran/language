@@ -266,3 +266,22 @@ test('fast lowercase/uppercase match the locale-aware versions on every pack str
   }
   for (const s of strings(uk)) assert.equal(s.toLowerCase(), s.toLocaleLowerCase('uk-UA'), s);
 });
+
+test('reading aids: prompts can hide rōmaji or the transliteration, fullReading never does', () => {
+  const mizu = ja.words.find((w) => w.tr === '水');
+  const kana = ja.words.find((w) => w.tr === 'ありがとう');
+  const shukran = ar.words.find((w) => w.tl === 'shukran');
+  try {
+    assert.equal(ja.reading(mizu), 'みず · mizu');
+    ja.readingAid = 'script';
+    assert.equal(ja.reading(mizu), 'みず');
+    assert.equal(ja.reading(kana), null, 'a kana word has nothing left to show');
+    assert.equal(ja.fullReading(mizu), 'みず · mizu');
+    ja.readingAid = 'off';
+    assert.equal(ja.reading(mizu), null);
+    ar.readingAid = 'off';
+    assert.equal(ar.reading(shukran), null);
+    assert.equal(ar.fullReading(shukran), 'shukran');
+    assert.ok(ja.matches(mizu, 'mizu') && ar.matches(shukran, 'shukran'), 'search still finds romanisations');
+  } finally { ja.readingAid = 'full'; ar.readingAid = 'full'; }
+});

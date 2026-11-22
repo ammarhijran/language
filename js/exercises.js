@@ -128,7 +128,7 @@ function reveal(ctx, word, correct, extra) {
       playButton(ctx, word),
       h('div', null,
         h('p', null, h('span', { class: 'tr', lang: ctx.lang.code }, word.tr), h('span', { class: 'en' }, ` — ${word.en}`)),
-        readingLine(ctx, word, 'reading small'),
+        readingLine(ctx, word, 'reading small', { full: true }),
         h('p', { class: 'respell small' }, a.respell),
       ),
     ),
@@ -403,7 +403,7 @@ export function flashcard(ctx, word, onDone) {
     back.hidden = false;
     set(back,
       h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word)),
-      readingLine(ctx, word),
+      readingLine(ctx, word, 'reading', { full: true }),
       pronunciationPanel(ctx, word, { compact: true }),
     );
     ctx.say(word, { auto: true });
@@ -443,7 +443,7 @@ export function intro(ctx, word, onDone, meta = {}) {
     h('p', { class: 'kicker' }, `New word ${meta.index + 1} of ${meta.total}`),
     h('div', { class: 'word-hero' },
       h('h2', { class: 'hero-tr', lang: ctx.lang.code }, word.tr),
-      readingLine(ctx, word),
+      readingLine(ctx, word, 'reading', { full: true }),
       h('p', { class: 'hero-en' }, word.en, ' ', regBadge(word)),
     ),
     audioControls(ctx, word),

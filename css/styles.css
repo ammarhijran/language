@@ -142,6 +142,9 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; }
+/* Settings → Text size: everything is sized in rem, so the whole app scales. */
+html[data-text-size="l"] { font-size: 112.5%; }
+html[data-text-size="xl"] { font-size: 125%; }
 
 body {
   margin: 0;
@@ -352,7 +355,7 @@ body.bare .update-prompt { bottom: calc(env(safe-area-inset-bottom) + 64px); }
 .card-title { font-size: var(--fs-lg); margin-bottom: var(--sp-3); }
 .section-title { font-size: var(--fs-lg); margin: var(--sp-5) 0 var(--sp-2); }
 .kicker { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; }
-.title-row { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); }
+.title-row { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2) var(--sp-4); flex-wrap: wrap; }
 .title-row h1 { margin: 0; }
 .title-row > a.small { display: inline-flex; align-items: center; min-height: var(--tap); }
 .back-link {

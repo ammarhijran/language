@@ -228,6 +228,20 @@ export function makePack(def) {
     });
   };
 
+  // Reading aids can be reduced once a learner is ready to read the script:
+  // readingAid 'full' (default), 'script' (Japanese: kana without rōmaji) or
+  // 'off'. reading() is what prompts and lists show; fullReading() is always
+  // complete (new-word cards, answers, the word page, search).
+  const fullReading = pack.reading;
+  pack.fullReading = fullReading;
+  pack.readingAid = 'full';
+  pack.reading = (w) => {
+    if (pack.readingAid === 'full') return fullReading(w);
+    if (pack.readingAid === 'off') return null;
+    const parts = String(fullReading(w) || '').split(' · ');
+    return parts.length > 1 ? parts[0] : null;
+  };
+
   /** Text used by the word-list search: the word, its readings and romanisations.
    * Built on the first search, not at startup (it is the costliest part of a pack). */
   let keysBuilt = false;
@@ -235,7 +249,7 @@ export function makePack(def) {
     if (keysBuilt) return;
     keysBuilt = true;
     for (const w of words) {
-      const forms = [w.tr, ...pack.acceptedAnswers(w), pack.reading(w) || ''];
+      const forms = [w.tr, ...pack.acceptedAnswers(w), pack.fullReading(w) || ''];
       w.searchKey = [...new Set(forms.flatMap((f) => [normalize(f), stripDiacritics(f)]))].join(' ');
     }
   };

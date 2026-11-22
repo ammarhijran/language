@@ -32,6 +32,9 @@ const DEFAULTS = {
   gameOn: true, // XP, levels, achievements, challenges and celebrations
   reminder: false, // daily study reminder (Android / iOS apps)
   reminderTime: '19:00',
+  aidJa: 'full', // Japanese readings: 'full' (kana · rōmaji), 'script' (kana only), 'off'
+  aidAr: 'full', // Arabic transliteration: 'full' or 'off'
+  textSize: 'm', // 'm', 'l' or 'xl'
 };
 
 // Allowed ranges for numeric settings (the same limits the Settings view uses).

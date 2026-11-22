@@ -288,6 +288,8 @@ test('every font size in the stylesheets comes from the type scale', () => {
   for (const [name, css] of Object.entries(SHEETS)) {
     for (const { sels, body } of parse(css)) {
       if (sels.includes(':root')) continue;
+      // The root size is the base of the whole rem scale (Settings → Text size).
+      if (sels.every((x) => /^html\[data-text-size="\w+"\]$/.test(x))) continue;
       for (const m of body.matchAll(/(?:^|;)\s*font-size\s*:\s*([^;]+)/g)) {
         assert.ok(sizeOk(m[1].trim()), `${name}.css ${sels.join(', ')}: font-size ${m[1].trim()}`);
       }

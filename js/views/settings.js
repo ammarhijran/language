@@ -114,6 +114,26 @@ export default function settings(ctx) {
       ]
       : h('p', { class: 'hint' }, 'Daily reminders are available in the Lisan app for Android and iOS. A website can’t reliably notify you while it is closed.'));
 
+  // Display: text size for everyone; reading aids for scripts that have them.
+  const pick = (key, options) => h('select', {
+    class: 'select', id: `set-${key}`,
+    onchange: (e) => { store.updateSettings({ [key]: e.target.value }); ctx.applyDisplaySettings?.(); },
+  }, options.map(([value, label]) => h('option', { value, selected: (s[key] || options[0][0]) === value }, label)));
+  const aidField = lang.code === 'ja'
+    ? [h('label', { class: 'field', for: 'set-aidJa' }, h('span', null, 'Readings under Japanese'),
+      pick('aidJa', [['full', 'Kana and rōmaji'], ['script', 'Kana only'], ['off', 'Hidden']])),
+    h('p', { class: 'hint' }, 'New words, answers and word pages always show the full reading. Hide rōmaji once you can read kana — it is the fastest way to stop depending on it.')]
+    : lang.code === 'ar'
+      ? [h('label', { class: 'field', for: 'set-aidAr' }, h('span', null, 'Transliteration under Arabic'),
+        pick('aidAr', [['full', 'Shown'], ['off', 'Hidden']])),
+      h('p', { class: 'hint' }, 'New words, answers and word pages always show the transliteration. Hide it elsewhere once you can read the script.')]
+      : null;
+  const displayCard = h('section', { class: 'card form' },
+    h('h2', { class: 'card-title' }, 'Display'),
+    h('label', { class: 'field', for: 'set-textSize' }, h('span', null, 'Text size'),
+      pick('textSize', [['m', 'Normal'], ['l', 'Large'], ['xl', 'Extra large']])),
+    aidField);
+
   return h('div', { class: 'view' },
     h('h1', null, 'Settings'),
     storageBanner(ctx),
@@ -134,6 +154,7 @@ export default function settings(ctx) {
       h('h2', { class: 'card-title' }, 'Motivation'),
       h('label', { class: 'field inline' }, gameOn, h('span', null, 'Game features — XP, levels, weekly challenges, achievements and celebrations')),
       h('p', { class: 'hint' }, 'Daily goal, streaks and personal goals stay on either way.')),
+    displayCard,
     reminderCard,
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'Lessons'),

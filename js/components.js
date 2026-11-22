@@ -72,8 +72,9 @@ export function pronunciationPanel(ctx, word, { compact = false } = {}) {
 }
 
 /** Secondary line under a word: kana reading, transliteration… (null when the pack has none). */
-export function readingLine(ctx, word, cls = 'reading') {
-  return readingText(ctx.lang.reading(word), cls);
+/** `full`: always the complete reading (new words, answers), whatever the reading-aid setting. */
+export function readingLine(ctx, word, cls = 'reading', { full = false } = {}) {
+  return readingText(full ? ctx.lang.fullReading(word) : ctx.lang.reading(word), cls);
 }
 
 /**

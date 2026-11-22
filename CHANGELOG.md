@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Display settings** (Settings → Display): text size Normal / Large / Extra large for the whole app, and reading aids — Japanese can show kana and rōmaji, kana only, or no reading; Arabic can hide the transliteration. New words, answers and word pages always show the full reading, and search still matches rōmaji and transliterations.
 - **Tricky words:** Practice offers a round on the words you keep forgetting in reviews (most-forgotten first), once there are a few.
 - **Lessons:** a word you needed a second try for in the lesson's quick check starts on a slower schedule than the ones you knew straight away.
 - **Store listing** rewritten for four languages and the current features (the app name there is a suggestion).

@@ -26,7 +26,7 @@ export default function word(ctx, id) {
         favButton(ctx, w)),
       h('div', { class: 'word-hero' },
         h('h1', { class: 'hero-tr', lang: lang.code }, w.tr),
-        readingLine(ctx, w),
+        readingLine(ctx, w, 'reading', { full: true }),
         h('p', { class: 'hero-en' }, w.en, ' ', regBadge(w))),
       audioControls(ctx, w),
       pronunciationPanel(ctx, w),

@@ -37,6 +37,15 @@ await store.init();
 // Only the language being learned is loaded (the others' names and counts are in languages/meta.js).
 const lang = await loadLanguage(store.getSettings().lang);
 
+// Settings that change how everything is shown: reading aids and text size.
+function applyDisplaySettings() {
+  const s = store.getSettings();
+  const aid = { ja: s.aidJa, ar: s.aidAr }[lang.code];
+  lang.readingAid = ['full', 'script', 'off'].includes(aid) ? aid : 'full';
+  document.documentElement.dataset.textSize = ['l', 'xl'].includes(s.textSize) ? s.textSize : 'm';
+}
+applyDisplaySettings();
+
 const ROUTES = {
   '': home,
   learn,
@@ -380,6 +389,7 @@ function planReminders() {
   });
 }
 ctx.planReminders = planReminders;
+ctx.applyDisplaySettings = applyDisplaySettings;
 
 // Achievements such as "learn a topic in every language" need numbers from
 // the other languages' packs. They are remembered per device; load a pack only

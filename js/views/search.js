@@ -52,7 +52,7 @@ function keysOf(lang, entry, withAnswers) {
     // A pack's own form lists may expect fields an other-register pair lacks.
     try { forms.push(...lang.acceptedAnswers(entry)); } catch { /* the headword is enough */ }
   }
-  const reading = lang.reading(entry);
+  const reading = lang.fullReading(entry);
   if (reading) forms.push(...String(reading).split(' · '));
   const keys = new Set();
   const starts = new Set();
