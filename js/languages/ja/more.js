@@ -305,6 +305,118 @@ export const categories = [
     "emoji": "😊",
     "group": "phrases",
     "stage": 2
+  },
+  {
+    "id": "animals",
+    "name": "Animals",
+    "native": "動物",
+    "emoji": "🐾",
+    "group": "words",
+    "stage": 3
+  },
+  {
+    "id": "school",
+    "name": "School & Study",
+    "native": "学校と勉強",
+    "emoji": "🎒",
+    "group": "words",
+    "stage": 3
+  },
+  {
+    "id": "money",
+    "name": "Money & Bank",
+    "native": "お金と銀行",
+    "emoji": "💴",
+    "group": "words",
+    "stage": 3
+  },
+  {
+    "id": "restaurant",
+    "name": "Eating Out",
+    "native": "外食",
+    "emoji": "🍽️",
+    "group": "words",
+    "stage": 3
+  },
+  {
+    "id": "sports",
+    "name": "Sports & Fitness",
+    "native": "スポーツと運動",
+    "emoji": "⚽",
+    "group": "words",
+    "stage": 3
+  },
+  {
+    "id": "culture",
+    "name": "Arts & Entertainment",
+    "native": "芸術とエンタメ",
+    "emoji": "🎭",
+    "group": "words",
+    "stage": 3
+  },
+  {
+    "id": "character",
+    "name": "Personality & People",
+    "native": "性格と人柄",
+    "emoji": "👥",
+    "group": "words",
+    "stage": 3
+  },
+  {
+    "id": "verbs3",
+    "name": "More Useful Verbs",
+    "native": "もっと便利な動詞",
+    "emoji": "🧩",
+    "group": "words",
+    "stage": 3
+  },
+  {
+    "id": "p-restaurant",
+    "name": "At a Restaurant",
+    "native": "レストランで",
+    "emoji": "🥢",
+    "group": "phrases",
+    "stage": 3
+  },
+  {
+    "id": "p-housing",
+    "name": "Renting & Home",
+    "native": "部屋探しと住まい",
+    "emoji": "🔑",
+    "group": "phrases",
+    "stage": 3
+  },
+  {
+    "id": "p-bank",
+    "name": "Bank, Post & Paperwork",
+    "native": "銀行・郵便局・手続き",
+    "emoji": "🏦",
+    "group": "phrases",
+    "stage": 3
+  },
+  {
+    "id": "p-airport",
+    "name": "Airport & Border",
+    "native": "空港と入国審査",
+    "emoji": "🛂",
+    "group": "phrases",
+    "stage": 3
+  },
+  {
+    "id": "p-complaints",
+    "name": "Problems & Complaints",
+    "native": "トラブルと苦情",
+    "emoji": "⚠️",
+    "group": "phrases",
+    "stage": 3
+  },
+  {
+    "id": "p-feelings",
+    "name": "Feelings & Support",
+    "native": "気持ちと励まし",
+    "emoji": "💗",
+    "group": "phrases",
+    "stage": 3
   }
 ];
 
@@ -8207,6 +8319,2667 @@ export const vocab = [
       "tr": "元気でね！",
       "reg": "casual",
       "kana": "げんき で ね"
+    }
+  },
+  {
+    "tr": "動物",
+    "en": "animal",
+    "cat": "animals",
+    "kana": "どうぶつ",
+    "ex": [
+      "子供の時から動物が大好きです。",
+      "I’ve loved animals since I was a child."
+    ],
+    "note": "A zoo is a 動物園 (どうぶつえん). The vet’s is a 動物病院 (どうぶつびょういん), literally an “animal hospital”."
+  },
+  {
+    "tr": "ペット",
+    "en": "pet",
+    "cat": "animals",
+    "kana": "ペット",
+    "ex": [
+      "何かペットを飼っていますか。",
+      "Do you have any pets?"
+    ],
+    "note": "Many rented flats don’t allow pets. In listings look for ペット可 (ペットか, pets allowed)."
+  },
+  {
+    "tr": "飼う",
+    "en": "to keep (a pet); to have (an animal)",
+    "cat": "animals",
+    "kana": "かう",
+    "ex": [
+      "家で猫を二匹飼っています。",
+      "I have two cats at home."
+    ],
+    "note": "Same sound as 買う (to buy). Small animals are counted with 匹: 一匹 (いっぴき), 二匹 (にひき), 三匹 (さんびき)."
+  },
+  {
+    "tr": "うさぎ",
+    "en": "rabbit",
+    "cat": "animals",
+    "kana": "うさぎ",
+    "ex": [
+      "うさぎは耳が長いです。",
+      "Rabbits have long ears."
+    ],
+    "note": "Often written ウサギ. Traditionally counted with 羽 (わ), like birds, though 匹 is common today.",
+    "alt": [
+      "ウサギ",
+      "兎"
+    ]
+  },
+  {
+    "tr": "馬",
+    "en": "horse",
+    "cat": "animals",
+    "kana": "うま",
+    "ex": [
+      "北海道で初めて馬に乗りました。",
+      "I rode a horse for the first time in Hokkaido."
+    ],
+    "note": "Big animals are counted with 頭 (とう): 馬が三頭います. Horse riding is 乗馬 (じょうば)."
+  },
+  {
+    "tr": "牛",
+    "en": "cow; cattle",
+    "cat": "animals",
+    "kana": "うし",
+    "ex": [
+      "牛が草を食べています。",
+      "The cows are eating grass."
+    ],
+    "note": "In compounds it is read ぎゅう: 牛肉 (ぎゅうにく, beef), 牛乳 (ぎゅうにゅう, milk)."
+  },
+  {
+    "tr": "豚",
+    "en": "pig",
+    "cat": "animals",
+    "kana": "ぶた",
+    "ex": [
+      "豚は頭がいい動物です。",
+      "Pigs are clever animals."
+    ],
+    "note": "Pork is 豚肉 (ぶたにく). In dish names 豚 is often read とん: とんかつ (pork cutlet), 豚汁 (とんじる, pork miso soup)."
+  },
+  {
+    "tr": "鶏",
+    "en": "chicken (the bird)",
+    "cat": "animals",
+    "kana": "にわとり",
+    "ex": [
+      "祖父は庭で鶏を飼っています。",
+      "My grandfather keeps chickens in his garden."
+    ],
+    "note": "The live bird; the meat is 鶏肉 (とりにく). Birds are counted with 羽 (わ): 一羽 (いちわ), 二羽 (にわ).",
+    "alt": [
+      "ニワトリ"
+    ]
+  },
+  {
+    "tr": "猿",
+    "en": "monkey",
+    "cat": "animals",
+    "kana": "さる",
+    "ex": [
+      "山で猿を見ました。",
+      "I saw a monkey in the mountains."
+    ],
+    "note": "Japan’s wild monkeys are famous for bathing in hot springs in winter. Proverb: 猿も木から落ちる — even monkeys fall from trees (anyone can make a mistake).",
+    "alt": [
+      "サル"
+    ]
+  },
+  {
+    "tr": "熊",
+    "en": "bear",
+    "cat": "animals",
+    "kana": "くま",
+    "ex": [
+      "この山には熊がいます。",
+      "There are bears on this mountain."
+    ],
+    "note": "Often written クマ. Hikers in bear country carry a small bell so that bears hear them coming.",
+    "alt": [
+      "クマ"
+    ]
+  },
+  {
+    "tr": "象",
+    "en": "elephant",
+    "cat": "animals",
+    "kana": "ぞう",
+    "ex": [
+      "象は鼻が長いです。",
+      "Elephants have long trunks."
+    ],
+    "note": "A famous grammar example: 象は (as for elephants) 鼻が長い (the nose is long). An elephant’s trunk is simply its 鼻 (nose).",
+    "alt": [
+      "ゾウ"
+    ]
+  },
+  {
+    "tr": "ライオン",
+    "en": "lion",
+    "cat": "animals",
+    "kana": "ライオン",
+    "ex": [
+      "動物園でライオンを見ました。",
+      "I saw a lion at the zoo."
+    ],
+    "note": "Many zoo animals have katakana names: トラ (tiger), キリン (giraffe), パンダ (panda), ペンギン (penguin)."
+  },
+  {
+    "tr": "鹿",
+    "en": "deer",
+    "cat": "animals",
+    "kana": "しか",
+    "ex": [
+      "奈良公園には鹿がたくさんいます。",
+      "There are lots of deer in Nara Park."
+    ],
+    "note": "The tame deer in Nara bow to visitors to get 鹿せんべい (しかせんべい, deer crackers).",
+    "alt": [
+      "シカ"
+    ]
+  },
+  {
+    "tr": "虫",
+    "en": "insect; bug",
+    "cat": "animals",
+    "kana": "むし",
+    "ex": [
+      "私は虫が苦手です。",
+      "I can’t stand bugs."
+    ],
+    "note": "Covers insects, bugs and worms. A cavity is a 虫歯 (むしば), literally a “bug tooth”."
+  },
+  {
+    "tr": "蚊",
+    "en": "mosquito",
+    "cat": "animals",
+    "kana": "か",
+    "ex": [
+      "足を蚊に刺されました。",
+      "I got bitten on the leg by a mosquito."
+    ],
+    "note": "刺される (さされる) = to be bitten or stung. Itchy is かゆい."
+  },
+  {
+    "tr": "しっぽ",
+    "en": "tail",
+    "cat": "animals",
+    "kana": "しっぽ",
+    "ex": [
+      "犬がしっぽを振っています。",
+      "The dog is wagging its tail."
+    ],
+    "note": "振る (ふる) = to wag, to wave — the same verb as in 手を振る (to wave your hand).",
+    "alt": [
+      "尻尾"
+    ]
+  },
+  {
+    "tr": "えさ",
+    "en": "(animal) food; feed",
+    "cat": "animals",
+    "kana": "えさ",
+    "ex": [
+      "毎朝、犬にえさをやります。",
+      "I feed the dog every morning."
+    ],
+    "note": "To feed an animal is えさをやる (many owners say あげる). On signs: えさをやらないでください (please do not feed the animals).",
+    "alt": [
+      "餌",
+      "エサ"
+    ]
+  },
+  {
+    "tr": "鳴く",
+    "en": "to bark; to meow; to sing (of animals)",
+    "cat": "animals",
+    "kana": "なく",
+    "ex": [
+      "朝早く、鳥が鳴いています。",
+      "The birds are singing early in the morning."
+    ],
+    "note": "Any animal’s cry. Dogs go ワンワン, cats ニャー, crows カーカー. A person crying is 泣く — same sound, different kanji."
+  },
+  {
+    "tr": "教室",
+    "en": "classroom",
+    "cat": "school",
+    "kana": "きょうしつ",
+    "ex": [
+      "教室は三階にあります。",
+      "The classroom is on the third floor."
+    ],
+    "note": "Also a class you attend for a hobby: 料理教室 (cooking class), 英会話教室 (English conversation school). 三階 is read さんがい."
+  },
+  {
+    "tr": "高校",
+    "en": "high school",
+    "cat": "school",
+    "kana": "こうこう",
+    "ex": [
+      "高校で三年間フランス語を勉強しました。",
+      "I studied French for three years at high school."
+    ],
+    "note": "Short for 高等学校. The ladder: 小学校 (しょうがっこう, 6 years), 中学校 (ちゅうがっこう, 3 years), 高校 (3 years), then 大学."
+  },
+  {
+    "tr": "テスト",
+    "en": "test",
+    "cat": "school",
+    "kana": "テスト",
+    "ex": [
+      "明日、漢字のテストがあります。",
+      "I have a kanji test tomorrow."
+    ],
+    "note": "A class test or quiz. 試験 sounds bigger and more official: entrance exams, licences, the JLPT (日本語能力試験)."
+  },
+  {
+    "tr": "成績",
+    "en": "grades; results (at school)",
+    "cat": "school",
+    "kana": "せいせき",
+    "ex": [
+      "弟は学校の成績がいいです。",
+      "My younger brother gets good grades at school."
+    ],
+    "note": "成績がいい / 悪い = good / bad grades. Grades go up (上がる, あがる) or down (下がる, さがる)."
+  },
+  {
+    "tr": "点",
+    "en": "point; mark (score)",
+    "cat": "school",
+    "kana": "てん",
+    "ex": [
+      "テストで九十点を取りました。",
+      "I got 90 points on the test."
+    ],
+    "note": "点を取る = to score. Full marks are 百点 (ひゃくてん) or 満点 (まんてん). 何点でしたか = What did you get?"
+  },
+  {
+    "tr": "合格する",
+    "en": "to pass (an exam)",
+    "cat": "school",
+    "kana": "ごうかく する",
+    "ex": [
+      "兄は大学の試験に合格しました。",
+      "My older brother passed the university exam."
+    ],
+    "note": "Takes に: 試験に合格する. To fail is 落ちる (おちる), literally “to fall”.",
+    "pair": {
+      "tr": "受かる",
+      "reg": "neutral",
+      "en": "to pass (everyday word)",
+      "kana": "うかる"
+    }
+  },
+  {
+    "tr": "ノート",
+    "en": "notebook",
+    "cat": "school",
+    "kana": "ノート",
+    "ex": [
+      "新しい言葉をノートに書きます。",
+      "I write new words in my notebook."
+    ],
+    "note": "A false friend: ノート is a notebook, never a note. A short note is メモ; a laptop is ノートパソコン."
+  },
+  {
+    "tr": "教科書",
+    "en": "textbook",
+    "cat": "school",
+    "kana": "きょうかしょ",
+    "ex": [
+      "教科書の十ページを開いてください。",
+      "Please open your textbooks at page 10."
+    ],
+    "note": "Books are opened with 開く (ひらく) and closed with 閉じる (とじる); doors and windows use 開ける / 閉める."
+  },
+  {
+    "tr": "辞書",
+    "en": "dictionary",
+    "cat": "school",
+    "kana": "じしょ",
+    "ex": [
+      "テストで辞書を使ってもいいですか。",
+      "May we use a dictionary in the test?"
+    ],
+    "note": "To look a word up: 辞書を引く (ひく) or 辞書で調べる. Most people now use a dictionary app: 辞書アプリ."
+  },
+  {
+    "tr": "鉛筆",
+    "en": "pencil",
+    "cat": "school",
+    "kana": "えんぴつ",
+    "ex": [
+      "鉛筆で名前を書いてください。",
+      "Please write your name in pencil."
+    ],
+    "note": "Eraser: 消しゴム (けしゴム). Mechanical pencil: シャーペン. Counted with 本: 一本 (いっぽん), 二本 (にほん)."
+  },
+  {
+    "tr": "漢字",
+    "en": "kanji (Chinese characters)",
+    "cat": "school",
+    "kana": "かんじ",
+    "ex": [
+      "この漢字の読み方が分かりません。",
+      "I don’t know how to read this kanji."
+    ],
+    "note": "Children learn about 1,000 kanji in primary school; around 2,100 are in everyday use. The two phonetic scripts are ひらがな and カタカナ."
+  },
+  {
+    "tr": "文法",
+    "en": "grammar",
+    "cat": "school",
+    "kana": "ぶんぽう",
+    "ex": [
+      "日本語の文法は英語と違います。",
+      "Japanese grammar is different from English."
+    ],
+    "note": "A sentence is a 文 (ぶん); a longer piece of writing is 文章 (ぶんしょう)."
+  },
+  {
+    "tr": "単語",
+    "en": "word; vocabulary item",
+    "cat": "school",
+    "kana": "たんご",
+    "ex": [
+      "知らない単語がたくさんあります。",
+      "There are lots of words I don’t know."
+    ],
+    "note": "A single vocabulary word. 言葉 is broader: a word, a phrase, or language itself. Flashcards are 単語カード."
+  },
+  {
+    "tr": "答え",
+    "en": "answer",
+    "cat": "school",
+    "kana": "こたえ",
+    "ex": [
+      "この問題の答えは何ですか。",
+      "What’s the answer to this question?"
+    ],
+    "note": "The verb is 答える (to answer): 質問に答える. A test question is a 問題 (もんだい); the right answer is 正解 (せいかい)."
+  },
+  {
+    "tr": "説明する",
+    "en": "to explain",
+    "cat": "school",
+    "kana": "せつめい する",
+    "ex": [
+      "もう一度説明してもらえますか。",
+      "Could you explain it once more?"
+    ],
+    "note": "The noun is 説明: 先生の説明は分かりやすいです (the teacher’s explanations are easy to follow). An instruction manual is a 説明書 (せつめいしょ)."
+  },
+  {
+    "tr": "繰り返す",
+    "en": "to repeat",
+    "cat": "school",
+    "kana": "くりかえす",
+    "ex": [
+      "私の後に繰り返してください。",
+      "Please repeat after me."
+    ],
+    "note": "In class you’ll hear 繰り返してください (repeat, please) and もう一度 (once more). Also for mistakes: 同じ間違いを繰り返す."
+  },
+  {
+    "tr": "練習する",
+    "en": "to practise",
+    "cat": "school",
+    "kana": "れんしゅう する",
+    "ex": [
+      "毎日、日本語の会話を練習しています。",
+      "I practise Japanese conversation every day."
+    ],
+    "note": "練習 is also the noun: ピアノの練習 (piano practice), 練習問題 (れんしゅうもんだい, practice exercises)."
+  },
+  {
+    "tr": "卒業する",
+    "en": "to graduate",
+    "cat": "school",
+    "kana": "そつぎょう する",
+    "ex": [
+      "来年の三月に大学を卒業します。",
+      "I graduate from university next March."
+    ],
+    "note": "Takes を: 大学を卒業する. Starting at a school is 入学する (にゅうがく する). The 入学式 (entrance ceremony) is in April, the 卒業式 (graduation) in March."
+  },
+  {
+    "tr": "口座",
+    "en": "(bank) account",
+    "cat": "money",
+    "kana": "こうざ",
+    "ex": [
+      "銀行で口座を作りました。",
+      "I opened an account at the bank."
+    ],
+    "note": "To open one: 口座を作る or 口座を開く (ひらく). Only for banks — an online account is アカウント."
+  },
+  {
+    "tr": "給料",
+    "en": "salary; pay",
+    "cat": "money",
+    "kana": "きゅうりょう",
+    "ex": [
+      "給料は毎月二十五日に入ります。",
+      "My salary comes in on the 25th of every month."
+    ],
+    "note": "Payday is 給料日 (きゅうりょうび) — the 25th at many companies. A bonus is ボーナス; hourly pay for part-time work is 時給 (じきゅう)."
+  },
+  {
+    "tr": "貯金する",
+    "en": "to save money",
+    "cat": "money",
+    "kana": "ちょきん する",
+    "ex": [
+      "旅行のために貯金しています。",
+      "I’m saving up for a trip."
+    ],
+    "note": "貯金 is also “savings”: 貯金が全然ありません (I have no savings at all). A piggy bank is a 貯金箱 (ちょきんばこ)."
+  },
+  {
+    "tr": "小銭",
+    "en": "small change; coins",
+    "cat": "money",
+    "kana": "こぜに",
+    "ex": [
+      "すみません、小銭がありません。",
+      "Sorry, I don’t have any small change."
+    ],
+    "note": "The coins in your pocket. The change a shop hands back is お釣り. A coin purse is a 小銭入れ (こぜにいれ)."
+  },
+  {
+    "tr": "お札",
+    "en": "banknote; bill",
+    "cat": "money",
+    "kana": "おさつ",
+    "ex": [
+      "一万円のお札しかありません。",
+      "I only have a 10,000-yen note."
+    ],
+    "note": "Notes come in 千円, 五千円 and 一万円: 千円札 (せんえんさつ), 一万円札 (いちまんえんさつ). Coins are 硬貨 (こうか).",
+    "alt": [
+      "札"
+    ]
+  },
+  {
+    "tr": "両替する",
+    "en": "to change money",
+    "cat": "money",
+    "kana": "りょうがえ する",
+    "ex": [
+      "ドルを円に両替したいです。",
+      "I’d like to change dollars into yen."
+    ],
+    "note": "For foreign currency, and also for breaking a big note: 千円札に両替できますか. An exchange counter is a 両替所 (りょうがえじょ)."
+  },
+  {
+    "tr": "下ろす",
+    "en": "to withdraw (money)",
+    "cat": "money",
+    "kana": "おろす",
+    "ex": [
+      "コンビニのATMでお金を下ろしました。",
+      "I took out some money at the convenience-store ATM."
+    ],
+    "note": "お金を下ろす is the everyday phrase. ATM screens say お引き出し (おひきだし, withdrawal) and お預け入れ (おあずけいれ, deposit).",
+    "alt": [
+      "おろす"
+    ]
+  },
+  {
+    "tr": "振り込む",
+    "en": "to pay by bank transfer",
+    "cat": "money",
+    "kana": "ふりこむ",
+    "ex": [
+      "家賃は毎月、大家さんの口座に振り込みます。",
+      "I pay the rent into my landlord’s account every month."
+    ],
+    "note": "A bank transfer (振り込み) is the usual way to pay rent and many bills — cheques aren’t used. There is usually a fee (手数料)."
+  },
+  {
+    "tr": "手数料",
+    "en": "fee; handling charge",
+    "cat": "money",
+    "kana": "てすうりょう",
+    "ex": [
+      "このATMは手数料がかかります。",
+      "This ATM charges a fee."
+    ],
+    "note": "かかる = to cost, to take. ATM fees are often higher at night and at weekends. No fee: 手数料無料 (てすうりょうむりょう)."
+  },
+  {
+    "tr": "料金",
+    "en": "charge; fee; fare",
+    "cat": "money",
+    "kana": "りょうきん",
+    "ex": [
+      "来月からバスの料金が上がります。",
+      "Bus fares are going up from next month."
+    ],
+    "note": "The price of a service: 電話料金 (phone charges), 入場料金 (admission). The price of goods is 値段. Household bills often end in 代 (だい): 電気代 (electricity bill)."
+  },
+  {
+    "tr": "請求書",
+    "en": "bill; invoice",
+    "cat": "money",
+    "kana": "せいきゅうしょ",
+    "ex": [
+      "電気の請求書が届きました。",
+      "The electricity bill has arrived."
+    ],
+    "note": "A bill that is sent to you. In a restaurant the bill is お会計. A formal receipt, e.g. for expenses, is a 領収書 (りょうしゅうしょ)."
+  },
+  {
+    "tr": "無料",
+    "en": "free (of charge)",
+    "cat": "money",
+    "kana": "むりょう",
+    "ex": [
+      "六歳までの子供は無料です。",
+      "Children up to the age of six are free."
+    ],
+    "note": "The opposite is 有料 (ゆうりょう, you have to pay). Don’t use 自由 here — that is “free” as in freedom.",
+    "pair": {
+      "tr": "ただ",
+      "reg": "casual",
+      "en": "free (everyday word)",
+      "kana": "ただ"
+    }
+  },
+  {
+    "tr": "節約する",
+    "en": "to economise; to save (money, time)",
+    "cat": "money",
+    "kana": "せつやく する",
+    "ex": [
+      "お金を節約するために、お弁当を作ります。",
+      "I make a packed lunch to save money."
+    ],
+    "note": "Spending less. Putting money aside is 貯金する. Also 時間を節約する (to save time), 電気を節約する (to save electricity)."
+  },
+  {
+    "tr": "税金",
+    "en": "tax",
+    "cat": "money",
+    "kana": "ぜいきん",
+    "ex": [
+      "給料から税金が引かれます。",
+      "Tax is taken out of my salary."
+    ],
+    "note": "Sales tax is 消費税 (しょうひぜい): 10%, or 8% on most food and drink to take home. Tax-free shopping for tourists is 免税 (めんぜい)."
+  },
+  {
+    "tr": "暗証番号",
+    "en": "PIN (number)",
+    "cat": "money",
+    "kana": "あんしょうばんごう",
+    "ex": [
+      "暗証番号を入力してください。",
+      "Please enter your PIN."
+    ],
+    "note": "The four-digit code for a bank card. 入力する = to enter, to key in. An online password is パスワード."
+  },
+  {
+    "tr": "電子マネー",
+    "en": "e-money; electronic payment",
+    "cat": "money",
+    "kana": "でんしマネー",
+    "ex": [
+      "この店は電子マネーが使えますか。",
+      "Can I use e-money in this shop?"
+    ],
+    "note": "Prepaid transport cards and phone payments. At the till, name the method + で: カードで, 現金で. Cashless payment in general is キャッシュレス."
+  },
+  {
+    "tr": "支払い",
+    "en": "payment",
+    "cat": "money",
+    "kana": "しはらい",
+    "ex": [
+      "支払いはカードでお願いします。",
+      "I’d like to pay by card, please."
+    ],
+    "note": "Staff add お: お支払いはどうなさいますか (How would you like to pay?). With a credit card you may hear 一括でよろしいですか (いっかつ, in one payment?) — just say はい.",
+    "pair": {
+      "tr": "お支払い",
+      "reg": "polite",
+      "en": "payment (polite; said by staff)",
+      "kana": "おしはらい"
+    }
+  },
+  {
+    "tr": "足りる",
+    "en": "to be enough",
+    "cat": "money",
+    "kana": "たりる",
+    "ex": [
+      "千円で足りますか。",
+      "Is 1,000 yen enough?"
+    ],
+    "note": "An る-verb: 足ります, 足りない. お金が足りません = I don’t have enough money. 百円足りない = I’m 100 yen short."
+  },
+  {
+    "tr": "レストラン",
+    "en": "restaurant",
+    "cat": "restaurant",
+    "kana": "レストラン",
+    "ex": [
+      "駅の近くにいいレストランがあります。",
+      "There’s a nice restaurant near the station."
+    ],
+    "note": "Mostly for Western-style places. Japanese ones are often 〜屋 (や): 寿司屋, ラーメン屋. A cheap diner is a 食堂 (しょくどう); a pub with food is an 居酒屋 (いざかや)."
+  },
+  {
+    "tr": "メニュー",
+    "en": "menu",
+    "cat": "restaurant",
+    "kana": "メニュー",
+    "ex": [
+      "メニューを見せてください。",
+      "Could I see the menu, please?"
+    ],
+    "note": "Many places have photo menus, a tablet for ordering, or a ticket machine at the door: you buy a 食券 (しょっけん, meal ticket) first."
+  },
+  {
+    "tr": "注文する",
+    "en": "to order",
+    "cat": "restaurant",
+    "kana": "ちゅうもん する",
+    "ex": [
+      "カレーとサラダを注文しました。",
+      "I ordered curry and a salad."
+    ],
+    "note": "Staff ask ご注文はお決まりですか (Have you decided?). Also for ordering online: ネットで注文する.",
+    "pair": {
+      "tr": "頼む",
+      "reg": "neutral",
+      "en": "to order; to ask for (everyday word)",
+      "kana": "たのむ"
+    }
+  },
+  {
+    "tr": "席",
+    "en": "seat; table (in a restaurant)",
+    "cat": "restaurant",
+    "kana": "せき",
+    "ex": [
+      "七時に二人で席を予約しました。",
+      "I booked a table for two at seven."
+    ],
+    "note": "You book a “seat”, not a table: 席を予約する. カウンター席 = at the counter, テーブル席 = at a table, 個室 (こしつ) = a private room."
+  },
+  {
+    "tr": "定食",
+    "en": "set meal",
+    "cat": "restaurant",
+    "kana": "ていしょく",
+    "ex": [
+      "昼ご飯は魚の定食にします。",
+      "I’ll have the fish set meal for lunch."
+    ],
+    "note": "A main dish with rice, miso soup and pickles on one tray — cheap and filling. The daily special is the 日替わり定食 (ひがわりていしょく)."
+  },
+  {
+    "tr": "前菜",
+    "en": "starter; appetiser",
+    "cat": "restaurant",
+    "kana": "ぜんさい",
+    "ex": [
+      "前菜にサラダを頼みました。",
+      "I ordered a salad as a starter."
+    ],
+    "note": "A word from Western-style menus. In an izakaya a small dish called お通し (おとおし) arrives without being ordered — it works as a cover charge."
+  },
+  {
+    "tr": "デザート",
+    "en": "dessert",
+    "cat": "restaurant",
+    "kana": "デザート",
+    "ex": [
+      "デザートは何にしますか。",
+      "What will you have for dessert?"
+    ],
+    "note": "Too full? People say 甘いものは別腹 (べつばら): “there’s a separate stomach for sweet things”."
+  },
+  {
+    "tr": "飲み物",
+    "en": "drink; beverage",
+    "cat": "restaurant",
+    "kana": "のみもの",
+    "ex": [
+      "飲み物は何がいいですか。",
+      "What would you like to drink?"
+    ],
+    "note": "All-you-can-drink is 飲み放題 (のみほうだい); all-you-can-eat is 食べ放題 (たべほうだい).",
+    "pair": {
+      "tr": "お飲み物",
+      "reg": "polite",
+      "en": "drink (polite; said by staff)",
+      "kana": "おのみもの"
+    }
+  },
+  {
+    "tr": "大盛り",
+    "en": "large portion",
+    "cat": "restaurant",
+    "kana": "おおもり",
+    "ex": [
+      "ご飯を大盛りにしてください。",
+      "A large portion of rice, please."
+    ],
+    "note": "A regular portion is 並 (なみ) or 普通 (ふつう). Want less? ご飯は少なめでお願いします (a small helping of rice, please)."
+  },
+  {
+    "tr": "おかわり",
+    "en": "second helping; refill",
+    "cat": "restaurant",
+    "kana": "おかわり",
+    "ex": [
+      "ご飯のおかわりをお願いします。",
+      "Another helping of rice, please."
+    ],
+    "note": "Look for おかわり自由 (おかわりじゆう) or おかわり無料: free refills of rice, soup or coffee.",
+    "alt": [
+      "お代わり"
+    ]
+  },
+  {
+    "tr": "フォーク",
+    "en": "fork",
+    "cat": "restaurant",
+    "kana": "フォーク",
+    "ex": [
+      "すみません、フォークをもらえますか。",
+      "Excuse me, could I have a fork?"
+    ],
+    "note": "It’s perfectly fine to ask for one if chopsticks are a struggle."
+  },
+  {
+    "tr": "ナイフ",
+    "en": "knife (table knife)",
+    "cat": "restaurant",
+    "kana": "ナイフ",
+    "ex": [
+      "ナイフとフォークでステーキを食べます。",
+      "I eat steak with a knife and fork."
+    ],
+    "note": "A table or pocket knife; a kitchen knife is a 包丁. The tool you eat with takes で."
+  },
+  {
+    "tr": "スプーン",
+    "en": "spoon",
+    "cat": "restaurant",
+    "kana": "スプーン",
+    "ex": [
+      "カレーはスプーンで食べます。",
+      "You eat curry with a spoon."
+    ],
+    "note": "Japanese curry rice is eaten with a spoon. Miso soup comes without one — lift the bowl and drink. The spoon served with ramen is a れんげ."
+  },
+  {
+    "tr": "おしぼり",
+    "en": "wet hand towel",
+    "cat": "restaurant",
+    "kana": "おしぼり",
+    "ex": [
+      "おしぼりをもう一つもらえますか。",
+      "Could I have another wet towel?"
+    ],
+    "note": "The damp towel you’re given when you sit down — hot in winter, cool in summer. It’s for your hands. A paper napkin is a 紙ナプキン (かみナプキン).",
+    "alt": [
+      "お絞り"
+    ]
+  },
+  {
+    "tr": "チップ",
+    "en": "tip (for service)",
+    "cat": "restaurant",
+    "kana": "チップ",
+    "ex": [
+      "日本ではチップは要りません。",
+      "You don’t need to tip in Japan."
+    ],
+    "note": "There is no tipping in Japan: leave money on the table and staff may run after you to give it back. Some places add a サービス料 (サービスりょう, service charge)."
+  },
+  {
+    "tr": "禁煙",
+    "en": "non-smoking; no smoking",
+    "cat": "restaurant",
+    "kana": "きんえん",
+    "ex": [
+      "この店は全席禁煙です。",
+      "This restaurant is entirely non-smoking."
+    ],
+    "note": "Smoking is 喫煙 (きつえん). Since 2020 most restaurants are non-smoking inside, sometimes with a separate 喫煙室 (smoking room). 禁煙する = to give up smoking."
+  },
+  {
+    "tr": "割り勘",
+    "en": "splitting the bill",
+    "cat": "restaurant",
+    "kana": "わりかん",
+    "ex": [
+      "今日は割り勘にしましょう。",
+      "Let’s split the bill today."
+    ],
+    "note": "Dividing the bill equally — normal among friends. To treat someone: おごる (casual) or ごちそうする. Paying separately is 別々 (べつべつ).",
+    "alt": [
+      "割勘"
+    ]
+  },
+  {
+    "tr": "満席",
+    "en": "full (no free tables or seats)",
+    "cat": "restaurant",
+    "kana": "まんせき",
+    "ex": [
+      "金曜日の夜はいつも満席です。",
+      "It’s always full on Friday evenings."
+    ],
+    "note": "At the door you’ll hear ただいま満席です (we’re full at the moment). Ask どのくらい待ちますか (how long is the wait?). Also used for a full flight or train."
+  },
+  {
+    "tr": "試合",
+    "en": "match; game",
+    "cat": "sports",
+    "kana": "しあい",
+    "ex": [
+      "今晩、サッカーの試合を見ます。",
+      "I’m watching a football match tonight."
+    ],
+    "note": "試合に出る = to play in a match. For video games and board games use ゲーム, not 試合."
+  },
+  {
+    "tr": "チーム",
+    "en": "team",
+    "cat": "sports",
+    "kana": "チーム",
+    "ex": [
+      "どのチームが好きですか。",
+      "Which team do you like?"
+    ],
+    "note": "Used at work too: チームで働く (to work as a team). Teamwork is チームワーク."
+  },
+  {
+    "tr": "選手",
+    "en": "player; athlete",
+    "cat": "sports",
+    "kana": "せんしゅ",
+    "ex": [
+      "好きなサッカー選手は誰ですか。",
+      "Who’s your favourite football player?"
+    ],
+    "note": "Also a title after a surname in place of さん: 田中選手. A professional is プロ: プロの選手."
+  },
+  {
+    "tr": "勝つ",
+    "en": "to win",
+    "cat": "sports",
+    "kana": "かつ",
+    "ex": [
+      "昨日の試合は日本が勝ちました。",
+      "Japan won yesterday’s match."
+    ],
+    "note": "To beat someone takes に: ブラジルに勝つ. Scores use 対 (たい): 二対一 (にたいいち) で勝ちました = we won 2–1."
+  },
+  {
+    "tr": "負ける",
+    "en": "to lose (a game)",
+    "cat": "sports",
+    "kana": "まける",
+    "ex": [
+      "私たちのチームは二対一で負けました。",
+      "Our team lost 2–1."
+    ],
+    "note": "Only for games, fights and bets — to lose a thing is なくす. A draw is 引き分け (ひきわけ). To cheer someone on: 負けるな！ (don’t give in!)."
+  },
+  {
+    "tr": "応援する",
+    "en": "to cheer for; to support",
+    "cat": "sports",
+    "kana": "おうえん する",
+    "ex": [
+      "どのチームを応援していますか。",
+      "Which team do you support?"
+    ],
+    "note": "For teams, athletes, or a friend facing a challenge. At matches a cheering squad, the 応援団 (おうえんだん), leads the songs and drums."
+  },
+  {
+    "tr": "ジム",
+    "en": "gym",
+    "cat": "sports",
+    "kana": "ジム",
+    "ex": [
+      "週に二回ジムに通っています。",
+      "I go to the gym twice a week."
+    ],
+    "note": "通う (かよう) = to go somewhere regularly. A school sports hall is a 体育館 (たいいくかん)."
+  },
+  {
+    "tr": "筋トレ",
+    "en": "strength training; workout",
+    "cat": "sports",
+    "kana": "きんトレ",
+    "ex": [
+      "毎朝、家で筋トレをしています。",
+      "I do a strength workout at home every morning."
+    ],
+    "note": "Short for 筋力トレーニング, and the word everyone uses. Muscle is 筋肉 (きんにく); aching muscles the next day are 筋肉痛 (きんにくつう)."
+  },
+  {
+    "tr": "テニス",
+    "en": "tennis",
+    "cat": "sports",
+    "kana": "テニス",
+    "ex": [
+      "日曜日に友達とテニスをします。",
+      "I’m playing tennis with a friend on Sunday."
+    ],
+    "note": "Sports take をする, not a word for “play”: テニスをする, サッカーをする, ゴルフをする. Table tennis is 卓球 (たっきゅう)."
+  },
+  {
+    "tr": "水泳",
+    "en": "swimming (as a sport)",
+    "cat": "sports",
+    "kana": "すいえい",
+    "ex": [
+      "子供の時、水泳を習っていました。",
+      "I took swimming lessons as a child."
+    ],
+    "note": "The sport or the lessons; the verb is 泳ぐ. A pool is プール; a swimsuit is 水着 (みずぎ)."
+  },
+  {
+    "tr": "相撲",
+    "en": "sumo",
+    "cat": "sports",
+    "kana": "すもう",
+    "ex": [
+      "一度、相撲を見に行きたいです。",
+      "I’d like to go and see sumo one day."
+    ],
+    "note": "Japan’s traditional wrestling. The wrestlers are 力士 (りきし), or fondly お相撲さん. There are six big tournaments a year, each fifteen days long."
+  },
+  {
+    "tr": "ジョギング",
+    "en": "jogging",
+    "cat": "sports",
+    "kana": "ジョギング",
+    "ex": [
+      "毎朝、川のそばでジョギングをします。",
+      "I go jogging by the river every morning."
+    ],
+    "note": "More serious running is ランニング. A marathon is マラソン."
+  },
+  {
+    "tr": "ボール",
+    "en": "ball",
+    "cat": "sports",
+    "kana": "ボール",
+    "ex": [
+      "ボールを投げてください。",
+      "Please throw the ball."
+    ],
+    "note": "投げる (なげる) = to throw, 蹴る (ける) = to kick, 打つ (うつ) = to hit, 取る (とる) = to catch."
+  },
+  {
+    "tr": "健康",
+    "en": "health; healthy",
+    "cat": "sports",
+    "kana": "けんこう",
+    "ex": [
+      "健康のために、毎日歩いています。",
+      "I walk every day for my health."
+    ],
+    "note": "A noun and a な-adjective: 健康な体 (a healthy body). Good for your health: 健康にいい. A yearly check-up is a 健康診断 (けんこうしんだん)."
+  },
+  {
+    "tr": "体",
+    "en": "body",
+    "cat": "sports",
+    "kana": "からだ",
+    "ex": [
+      "野菜は体にいいです。",
+      "Vegetables are good for you."
+    ],
+    "note": "体にいい / 悪い = good / bad for you. 体が硬い (かたい) = stiff, not flexible. When parting: 体に気をつけて (look after yourself)."
+  },
+  {
+    "tr": "ストレッチ",
+    "en": "stretching",
+    "cat": "sports",
+    "kana": "ストレッチ",
+    "ex": [
+      "運動の前にストレッチをします。",
+      "I stretch before exercising."
+    ],
+    "note": "A warm-up in general is 準備運動 (じゅんびうんどう). Most Japanese know the ラジオ体操 (ラジオたいそう) radio exercise routine from school."
+  },
+  {
+    "tr": "優勝する",
+    "en": "to win (a tournament, a championship)",
+    "cat": "sports",
+    "kana": "ゆうしょう する",
+    "ex": [
+      "私たちのチームが大会で優勝しました。",
+      "Our team won the tournament."
+    ],
+    "note": "To come first overall; winning a single match is 勝つ. A tournament or competition is a 大会 (たいかい). Second place: 準優勝 (じゅんゆうしょう)."
+  },
+  {
+    "tr": "汗",
+    "en": "sweat",
+    "cat": "sports",
+    "kana": "あせ",
+    "ex": [
+      "たくさん走って、汗をかきました。",
+      "I ran a lot and worked up a sweat."
+    ],
+    "note": "To sweat is 汗をかく. After exercise people say いい汗をかきました (that was a good workout)."
+  },
+  {
+    "tr": "歌",
+    "en": "song",
+    "cat": "culture",
+    "kana": "うた",
+    "ex": [
+      "この歌は日本でとても有名です。",
+      "This song is very famous in Japan."
+    ],
+    "note": "The verb is 歌う. Good at singing: 歌がうまい or 歌が上手. The lyrics are the 歌詞 (かし)."
+  },
+  {
+    "tr": "曲",
+    "en": "piece of music; track; song",
+    "cat": "culture",
+    "kana": "きょく",
+    "ex": [
+      "この曲の名前を知っていますか。",
+      "Do you know the name of this track?"
+    ],
+    "note": "Any piece of music, with or without singing. Also the counter: 一曲 (いっきょく), 二曲 (にきょく). At karaoke: 曲を入れる (to put a song in the queue)."
+  },
+  {
+    "tr": "歌手",
+    "en": "singer",
+    "cat": "culture",
+    "kana": "かしゅ",
+    "ex": [
+      "好きな歌手は誰ですか。",
+      "Who’s your favourite singer?"
+    ],
+    "note": "A pop idol is an アイドル and a band is a バンド; musicians in general are often called アーティスト."
+  },
+  {
+    "tr": "俳優",
+    "en": "actor",
+    "cat": "culture",
+    "kana": "はいゆう",
+    "ex": [
+      "あの俳優はたくさんの映画に出ています。",
+      "That actor is in a lot of films."
+    ],
+    "note": "映画に出る = to appear in a film. An actress is also called a 女優 (じょゆう); a voice actor is a 声優 (せいゆう)."
+  },
+  {
+    "tr": "小説",
+    "en": "novel",
+    "cat": "culture",
+    "kana": "しょうせつ",
+    "ex": [
+      "寝る前に小説を読みます。",
+      "I read a novel before going to sleep."
+    ],
+    "note": "A novelist is a 小説家 (しょうせつか); a writer in general is a 作家 (さっか)."
+  },
+  {
+    "tr": "絵",
+    "en": "picture; painting; drawing",
+    "cat": "culture",
+    "kana": "え",
+    "ex": [
+      "この絵は誰が描きましたか。",
+      "Who painted this picture?"
+    ],
+    "note": "絵がうまい = good at drawing. A picture book is an 絵本 (えほん); an emoji is literally a “picture character”, 絵文字 (えもじ)."
+  },
+  {
+    "tr": "博物館",
+    "en": "museum",
+    "cat": "culture",
+    "kana": "はくぶつかん",
+    "ex": [
+      "博物館は月曜日が休みです。",
+      "The museum is closed on Mondays."
+    ],
+    "note": "For history, science and culture; an art museum is a 美術館. Many museums in Japan close on Mondays. The admission fee is 入場料 (にゅうじょうりょう)."
+  },
+  {
+    "tr": "展覧会",
+    "en": "exhibition",
+    "cat": "culture",
+    "kana": "てんらんかい",
+    "ex": [
+      "週末、写真の展覧会に行きました。",
+      "I went to a photography exhibition at the weekend."
+    ],
+    "note": "In titles it shrinks to 〜展 (てん): 写真展 (しゃしんてん, photo exhibition), 絵画展 (かいがてん, painting exhibition)."
+  },
+  {
+    "tr": "チケット",
+    "en": "ticket (for an event)",
+    "cat": "culture",
+    "kana": "チケット",
+    "ex": [
+      "コンサートのチケットを二枚買いました。",
+      "I bought two tickets for the concert."
+    ],
+    "note": "For concerts, films, museums and flights; a train ticket is a 切符. Sold out is 売り切れ (うりきれ). Tickets sold on the day: 当日券 (とうじつけん)."
+  },
+  {
+    "tr": "劇場",
+    "en": "theatre",
+    "cat": "culture",
+    "kana": "げきじょう",
+    "ex": [
+      "劇場の前で会いましょう。",
+      "Let’s meet in front of the theatre."
+    ],
+    "note": "A play is a 劇 (げき) or 芝居 (しばい); a musical is a ミュージカル. Traditional theatre: 歌舞伎 (かぶき) and 能 (のう)."
+  },
+  {
+    "tr": "番組",
+    "en": "(TV or radio) programme; show",
+    "cat": "culture",
+    "kana": "ばんぐみ",
+    "ex": [
+      "この番組を毎週見ています。",
+      "I watch this programme every week."
+    ],
+    "note": "A news programme is a ニュース番組. Variety shows (バラエティー番組), full of comedians and on-screen captions, fill the evening schedule."
+  },
+  {
+    "tr": "ドラマ",
+    "en": "TV drama; series",
+    "cat": "culture",
+    "kana": "ドラマ",
+    "ex": [
+      "日本語の勉強のために、ドラマを見ています。",
+      "I watch dramas to study Japanese."
+    ],
+    "note": "Any TV series with a story, usually about ten episodes long. Episode 1 is 第一話 (だいいちわ); the final episode is the 最終回 (さいしゅうかい)."
+  },
+  {
+    "tr": "アニメ",
+    "en": "anime; animation; cartoon",
+    "cat": "culture",
+    "kana": "アニメ",
+    "ex": [
+      "子供の時、よくアニメを見ました。",
+      "I often watched cartoons as a child."
+    ],
+    "note": "Short for アニメーション. In Japanese it means any animation, from any country — not only the Japanese style."
+  },
+  {
+    "tr": "字幕",
+    "en": "subtitles",
+    "cat": "culture",
+    "kana": "じまく",
+    "ex": [
+      "日本語の字幕で映画を見ます。",
+      "I watch films with Japanese subtitles."
+    ],
+    "note": "A dubbed version is 吹き替え (ふきかえ). Cinemas label foreign films 字幕 or 吹替 — check before you book."
+  },
+  {
+    "tr": "祭り",
+    "en": "festival",
+    "cat": "culture",
+    "kana": "まつり",
+    "ex": [
+      "夏に町の祭りがあります。",
+      "There’s a town festival in the summer."
+    ],
+    "note": "Usually お祭り in speech. Summer festivals mean food stalls (屋台, やたい), yukata and often fireworks (花火, はなび).",
+    "alt": [
+      "お祭り"
+    ]
+  },
+  {
+    "tr": "有名",
+    "en": "famous",
+    "cat": "culture",
+    "kana": "ゆうめい",
+    "ex": [
+      "この町は温泉で有名です。",
+      "This town is famous for its hot springs."
+    ],
+    "note": "A な-adjective: 有名な歌手 (a famous singer). 〜で有名 = famous for ~. A celebrity is a 有名人 (ゆうめいじん)."
+  },
+  {
+    "tr": "人気",
+    "en": "popularity; popular",
+    "cat": "culture",
+    "kana": "にんき",
+    "ex": [
+      "このアニメは世界中で人気があります。",
+      "This anime is popular all over the world."
+    ],
+    "note": "人気がある = to be popular. Before a noun: 人気の店 (a popular shop). Hugely popular: 大人気 (だいにんき)."
+  },
+  {
+    "tr": "感動する",
+    "en": "to be moved; to be touched",
+    "cat": "culture",
+    "kana": "かんどう する",
+    "ex": [
+      "この映画にとても感動しました。",
+      "I was very moved by this film."
+    ],
+    "note": "What moves you takes に. 感動的 (かんどうてき) = moving: 感動的な話 (a moving story)."
+  },
+  {
+    "tr": "性格",
+    "en": "personality; character",
+    "cat": "character",
+    "kana": "せいかく",
+    "ex": [
+      "姉と私は性格が全然違います。",
+      "My older sister and I have completely different personalities."
+    ],
+    "note": "性格がいい = good-natured; 性格が悪い = mean. To ask what someone is like: どんな人ですか。"
+  },
+  {
+    "tr": "人",
+    "en": "person; people",
+    "cat": "character",
+    "kana": "ひと",
+    "ex": [
+      "あの人は誰ですか。",
+      "Who is that person?"
+    ],
+    "note": "No plural needed: 人が多い = there are a lot of people. Counting: 一人 (ひとり), 二人 (ふたり), 三人 (さんにん). Also “other people”: 人の物 (someone else’s things).",
+    "pair": {
+      "tr": "方",
+      "reg": "polite",
+      "en": "person (respectful)",
+      "kana": "かた"
+    }
+  },
+  {
+    "tr": "優しい",
+    "en": "kind; gentle",
+    "cat": "character",
+    "kana": "やさしい",
+    "ex": [
+      "彼女は誰にでも優しいです。",
+      "She’s kind to everyone."
+    ],
+    "note": "A warm, gentle nature — a favourite compliment. Kind to someone: 〜に優しい. It sounds the same as 易しい (easy, simple)."
+  },
+  {
+    "tr": "親切",
+    "en": "kind; helpful",
+    "cat": "character",
+    "kana": "しんせつ",
+    "ex": [
+      "駅員さんはとても親切でした。",
+      "The station staff were very helpful."
+    ],
+    "note": "A な-adjective for helpful actions: 親切な人. To thank a stranger: ご親切にありがとうございます. 優しい is more about someone’s gentle nature."
+  },
+  {
+    "tr": "明るい",
+    "en": "cheerful; bright",
+    "cat": "character",
+    "kana": "あかるい",
+    "ex": [
+      "彼は明るくて、友達が多いです。",
+      "He’s cheerful and has lots of friends."
+    ],
+    "note": "Literally “bright” — a room, a colour, a personality. The opposite, 暗い (くらい), means dark and, of a person, gloomy."
+  },
+  {
+    "tr": "真面目",
+    "en": "serious; earnest; conscientious",
+    "cat": "character",
+    "kana": "まじめ",
+    "ex": [
+      "弟はとても真面目な学生です。",
+      "My younger brother is a very conscientious student."
+    ],
+    "note": "Often written まじめ. A な-adjective, usually praise: reliable, hard-working, plays by the rules. 真面目に勉強する = to study seriously.",
+    "alt": [
+      "まじめ"
+    ]
+  },
+  {
+    "tr": "正直",
+    "en": "honest",
+    "cat": "character",
+    "kana": "しょうじき",
+    "ex": [
+      "彼は正直な人です。",
+      "He’s an honest person."
+    ],
+    "note": "A な-adjective. Also opens a frank opinion: 正直に言うと… (to be honest…). A lie is a 嘘 (うそ): 嘘をつく = to tell a lie."
+  },
+  {
+    "tr": "元気",
+    "en": "lively; energetic; well",
+    "cat": "character",
+    "kana": "げんき",
+    "ex": [
+      "祖母は九十歳ですが、とても元気です。",
+      "My grandmother is ninety, but she’s full of energy."
+    ],
+    "note": "Healthy and full of life: 元気な子供 (a lively child). 元気がない = to seem down or unwell. 元気を出して = cheer up."
+  },
+  {
+    "tr": "おとなしい",
+    "en": "quiet; well-behaved",
+    "cat": "character",
+    "kana": "おとなしい",
+    "ex": [
+      "うちの犬はとてもおとなしいです。",
+      "Our dog is very quiet and gentle."
+    ],
+    "note": "Calm and quiet — said of people, children and pets. Usually positive, though it can hint that someone doesn’t speak up.",
+    "alt": [
+      "大人しい"
+    ]
+  },
+  {
+    "tr": "人見知り",
+    "en": "shy (with strangers)",
+    "cat": "character",
+    "kana": "ひとみしり",
+    "ex": [
+      "私は人見知りなので、パーティーは苦手です。",
+      "I’m shy with new people, so I’m not good at parties."
+    ],
+    "note": "Shy around people you don’t know. As a verb: 人見知りする (small children do it a lot). Bashful in general: 恥ずかしがり屋 (はずかしがりや)."
+  },
+  {
+    "tr": "頑固",
+    "en": "stubborn",
+    "cat": "character",
+    "kana": "がんこ",
+    "ex": [
+      "祖父は頑固で、人の話を聞きません。",
+      "My grandfather is stubborn and doesn’t listen to anyone."
+    ],
+    "note": "A な-adjective: 頑固な人. Also for things that won’t budge: 頑固な汚れ (よごれ) = a stubborn stain."
+  },
+  {
+    "tr": "わがまま",
+    "en": "selfish; spoilt",
+    "cat": "character",
+    "kana": "わがまま",
+    "ex": [
+      "わがままを言わないでください。",
+      "Please don’t be so selfish."
+    ],
+    "note": "Wanting everything your own way. A noun and a な-adjective: わがままな子供 (a spoilt child). わがままを言う = to make selfish demands.",
+    "alt": [
+      "我がまま"
+    ]
+  },
+  {
+    "tr": "怠け者",
+    "en": "lazy person",
+    "cat": "character",
+    "kana": "なまけもの",
+    "ex": [
+      "兄は怠け者で、掃除を全然しません。",
+      "My older brother is lazy and never cleans."
+    ],
+    "note": "Japanese says “is a lazy person” rather than “is lazy”. It is also the animal, a sloth (ナマケモノ). To skip class or slack off: サボる."
+  },
+  {
+    "tr": "丁寧",
+    "en": "polite; careful",
+    "cat": "character",
+    "kana": "ていねい",
+    "ex": [
+      "店員さんが丁寧に説明してくれました。",
+      "The shop assistant explained it politely and carefully."
+    ],
+    "note": "Both polite and careful: 丁寧な人, 丁寧な字 (neat handwriting). The です/ます style is called 丁寧語 (ていねいご)."
+  },
+  {
+    "tr": "失礼",
+    "en": "rude; impolite",
+    "cat": "character",
+    "kana": "しつれい",
+    "ex": [
+      "食事中にスマホを見るのは失礼です。",
+      "It’s rude to look at your phone during a meal."
+    ],
+    "note": "A な-adjective: 失礼な人 (a rude person). You know it from 失礼します (excuse me) and 失礼しました (I’m sorry) — literally “I’m being / I was rude”."
+  },
+  {
+    "tr": "気が短い",
+    "en": "short-tempered; impatient",
+    "cat": "character",
+    "kana": "き が みじかい",
+    "ex": [
+      "父は気が短くて、すぐ怒ります。",
+      "My father is short-tempered and gets angry easily."
+    ],
+    "note": "Literally “short spirit”. Patient is 気が長い (long spirit) or 我慢強い (がまんづよい)."
+  },
+  {
+    "tr": "気前がいい",
+    "en": "generous (with money)",
+    "cat": "character",
+    "kana": "きまえ が いい",
+    "ex": [
+      "おじは気前がよくて、いつもごちそうしてくれます。",
+      "My uncle is generous and always treats us."
+    ],
+    "note": "Happy to spend on other people. The opposite is ケチ (stingy). いい changes to よ-: 気前がよくて, 気前がよかった."
+  },
+  {
+    "tr": "頭がいい",
+    "en": "smart; clever",
+    "cat": "character",
+    "kana": "あたま が いい",
+    "ex": [
+      "妹は頭がよくて、成績もいいです。",
+      "My younger sister is smart, and her grades are good too."
+    ],
+    "note": "Literally “the head is good”. Before a noun: 頭のいい人. Another word is 賢い (かしこい, bright; wise). Careful: スマート usually means slim or stylish, not clever."
+  },
+  {
+    "tr": "試す",
+    "en": "to try (out); to test",
+    "cat": "verbs3",
+    "kana": "ためす",
+    "ex": [
+      "新しいアプリを試してみました。",
+      "I tried out a new app."
+    ],
+    "note": "To test something out. For “try doing”, add 〜てみる to any verb: 食べてみる (try eating it), 着てみる (try it on)."
+  },
+  {
+    "tr": "選ぶ",
+    "en": "to choose",
+    "cat": "verbs3",
+    "kana": "えらぶ",
+    "ex": [
+      "好きな色を選んでください。",
+      "Please choose a colour you like."
+    ],
+    "note": "Choosing from a set: この中から選ぶ (choose from these). When you settle on one, say 〜にします: コーヒーにします (I’ll have coffee)."
+  },
+  {
+    "tr": "決める",
+    "en": "to decide",
+    "cat": "verbs3",
+    "kana": "きめる",
+    "ex": [
+      "旅行の日を決めましょう。",
+      "Let’s decide the dates for the trip."
+    ],
+    "note": "You decide: 決める. Something gets decided: 決まる (きまる). Decided to do: verb + ことにしました — 行くことにしました (I’ve decided to go)."
+  },
+  {
+    "tr": "変える",
+    "en": "to change (something)",
+    "cat": "verbs3",
+    "kana": "かえる",
+    "ex": [
+      "予約の時間を変えたいんですが。",
+      "I’d like to change the time of my booking."
+    ],
+    "note": "You change something: 変える. Something changes by itself: 変わる (かわる). Swapping one thing for another is written 替える. All sound like 帰る (to go home)."
+  },
+  {
+    "tr": "覚える",
+    "en": "to memorise; to learn; to remember",
+    "cat": "verbs3",
+    "kana": "おぼえる",
+    "ex": [
+      "毎日、新しい言葉を五つ覚えます。",
+      "I learn five new words every day."
+    ],
+    "note": "覚える is the act of committing something to memory. “I remember” is 覚えています; “I don’t remember” is 覚えていません."
+  },
+  {
+    "tr": "思い出す",
+    "en": "to recall; to remember (suddenly)",
+    "cat": "verbs3",
+    "kana": "おもいだす",
+    "ex": [
+      "あの人の名前が思い出せません。",
+      "I can’t remember that person’s name."
+    ],
+    "note": "Something comes back to you — a name, a face, a memory. A memory is an 思い出 (おもいで): 旅行のいい思い出."
+  },
+  {
+    "tr": "借りる",
+    "en": "to borrow; to rent",
+    "cat": "verbs3",
+    "kana": "かりる",
+    "ex": [
+      "図書館で本を三冊借りました。",
+      "I borrowed three books from the library."
+    ],
+    "note": "An る-verb: 借ります, 借りて. From someone: 友達に (or から) 借りる. Also renting: 部屋を借りる, 車を借りる."
+  },
+  {
+    "tr": "貸す",
+    "en": "to lend",
+    "cat": "verbs3",
+    "kana": "かす",
+    "ex": [
+      "友達に傘を貸しました。",
+      "I lent my umbrella to a friend."
+    ],
+    "note": "To ask to borrow something, say “lend me”: ペンを貸してください. Using someone’s toilet or phone is 借りる: トイレを借りてもいいですか。"
+  },
+  {
+    "tr": "返す",
+    "en": "to give back; to return (something)",
+    "cat": "verbs3",
+    "kana": "かえす",
+    "ex": [
+      "明日、借りた本を返します。",
+      "I’ll return the book I borrowed tomorrow."
+    ],
+    "note": "Returning a thing is 返す; a person going back is 帰る. To repay money: お金を返す. A reply is a 返事."
+  },
+  {
+    "tr": "受け取る",
+    "en": "to receive; to pick up",
+    "cat": "verbs3",
+    "kana": "うけとる",
+    "ex": [
+      "昨日、荷物を受け取りました。",
+      "I received the parcel yesterday."
+    ],
+    "note": "Taking something into your hands: parcels, tickets, change. Being given a present by someone is もらう."
+  },
+  {
+    "tr": "約束する",
+    "en": "to promise; to arrange (to meet)",
+    "cat": "verbs3",
+    "kana": "やくそく する",
+    "ex": [
+      "もう遅れないと約束します。",
+      "I promise I won’t be late again."
+    ],
+    "note": "約束 is also an arrangement to meet: 今日は約束があります (I have plans today). Keep a promise: 約束を守る (まもる). Break one: 約束を破る (やぶる)."
+  },
+  {
+    "tr": "期待する",
+    "en": "to expect; to hope for",
+    "cat": "verbs3",
+    "kana": "きたい する",
+    "ex": [
+      "あまり期待しないでください。",
+      "Please don’t expect too much."
+    ],
+    "note": "Having high hopes of something. For a simple “I hope…”, use 〜といいですね: 晴れるといいですね (I hope it’s sunny)."
+  },
+  {
+    "tr": "賛成する",
+    "en": "to agree (with an idea)",
+    "cat": "verbs3",
+    "kana": "さんせい する",
+    "ex": [
+      "みんながその案に賛成しました。",
+      "Everyone agreed with that plan."
+    ],
+    "note": "Takes に. The opposite is 反対する (はんたい する, to oppose). In conversation you’d just say 賛成です, or 私もそう思います."
+  },
+  {
+    "tr": "手伝う",
+    "en": "to help (with a task)",
+    "cat": "verbs3",
+    "kana": "てつだう",
+    "ex": [
+      "週末、友達の引っ越しを手伝います。",
+      "I’m helping a friend move house at the weekend."
+    ],
+    "note": "Lending a hand with work or chores. Saving someone in trouble is 助ける (たすける). Offer help with 手伝いましょうか (Shall I help?)."
+  },
+  {
+    "tr": "探す",
+    "en": "to look for",
+    "cat": "verbs3",
+    "kana": "さがす",
+    "ex": [
+      "今、新しい仕事を探しています。",
+      "I’m looking for a new job at the moment."
+    ],
+    "note": "To find is 見つける (みつける); “it’s turned up” is 見つかる: 鍵が見つかりました (I’ve found my keys)."
+  },
+  {
+    "tr": "届く",
+    "en": "to arrive; to be delivered",
+    "cat": "verbs3",
+    "kana": "とどく",
+    "ex": [
+      "注文した本が今日届きました。",
+      "The book I ordered arrived today."
+    ],
+    "note": "For things: parcels, letters, messages. People arrive with 着く (つく). To deliver something is 届ける (とどける)."
+  },
+  {
+    "tr": "続ける",
+    "en": "to continue; to keep (doing)",
+    "cat": "verbs3",
+    "kana": "つづける",
+    "ex": [
+      "これからも日本語の勉強を続けたいです。",
+      "I want to keep studying Japanese."
+    ],
+    "note": "You continue something: 続ける. Something goes on: 続く (つづく) — 雨が続いています. Keep on doing: verb stem + 続ける, e.g. 歩き続ける."
+  },
+  {
+    "tr": "やめる",
+    "en": "to stop; to quit; to give up",
+    "cat": "verbs3",
+    "kana": "やめる",
+    "ex": [
+      "父は去年、たばこをやめました。",
+      "My father gave up smoking last year."
+    ],
+    "note": "Written 辞める for quitting a job or school: 会社を辞める. やめてください = please stop it. Rain stopping by itself is 止む.",
+    "alt": [
+      "止める",
+      "辞める"
+    ]
+  },
+  {
+    "tr": "予約をお願いしたいんですが。",
+    "en": "I’d like to make a reservation.",
+    "cat": "p-restaurant",
+    "kana": "よやく を おねがい したい ん です が",
+    "ex": [
+      "「明日の夜七時に、二人で予約をお願いしたいんですが。」「かしこまりました。お名前をお願いします。」",
+      "“I’d like to book a table for two at seven tomorrow evening.” “Certainly. May I have your name?”"
+    ],
+    "note": "〜たいんですが trails off politely and lets the other person take over. On the phone you’ll be asked 何名様ですか (how many people?) and for your name.",
+    "reg": "polite",
+    "pair": {
+      "tr": "予約したいんだけど。",
+      "reg": "casual",
+      "kana": "よやく したい ん だ けど"
+    }
+  },
+  {
+    "tr": "何名様ですか。",
+    "en": "How many people? (you will hear)",
+    "cat": "p-restaurant",
+    "kana": "なんめいさま です か",
+    "ex": [
+      "「いらっしゃいませ。何名様ですか。」「三人です。」",
+      "“Welcome! How many people?” “Three.”"
+    ],
+    "note": "The first question at any restaurant door. Answer with a plain number — 一人です, 二人です, 三人です — and never use 〜名様 about yourself.",
+    "reg": "formal",
+    "pair": {
+      "tr": "何人？",
+      "reg": "casual",
+      "kana": "なんにん"
+    }
+  },
+  {
+    "tr": "予約していないんですが、入れますか。",
+    "en": "We don’t have a reservation — can we get a table?",
+    "cat": "p-restaurant",
+    "kana": "よやく して いない ん です が はいれます か",
+    "note": "入れる (はいれる) = can get in. If the place is full you’ll hear 満席です; you can ask 何時ごろ空きますか (around what time will a table be free?).",
+    "reg": "polite",
+    "pair": {
+      "tr": "予約してないけど、入れるかな。",
+      "reg": "casual",
+      "en": "We haven’t booked — I wonder if we can get in.",
+      "kana": "よやく してない けど はいれる かな"
+    }
+  },
+  {
+    "tr": "どのくらい待ちますか。",
+    "en": "How long is the wait?",
+    "cat": "p-restaurant",
+    "kana": "どのくらい まちます か",
+    "note": "A typical answer: 三十分ほどです (about thirty minutes). At busy places you write your name and the number of people on a list by the door.",
+    "reg": "polite",
+    "pair": {
+      "tr": "どのくらい待つ？",
+      "reg": "casual",
+      "kana": "どのくらい まつ"
+    }
+  },
+  {
+    "tr": "これは何が入っていますか。",
+    "en": "What’s in this?",
+    "cat": "p-restaurant",
+    "kana": "これ は なに が はいって います か",
+    "note": "Point at the menu and ask. For allergies be direct: 卵は入っていますか (does it contain egg?). 小麦 (こむぎ) = wheat, 乳製品 (にゅうせいひん) = dairy, そば = buckwheat.",
+    "reg": "polite",
+    "pair": {
+      "tr": "これ、何が入ってるの？",
+      "reg": "casual",
+      "kana": "これ なに が はいってる の"
+    }
+  },
+  {
+    "tr": "卵抜きでお願いできますか。",
+    "en": "Could I have it without egg?",
+    "cat": "p-restaurant",
+    "kana": "たまごぬき で おねがい できます か",
+    "ex": [
+      "「このサラダ、卵抜きでお願いできますか。」「はい、できますよ。」",
+      "“Could I have this salad without egg?” “Yes, we can do that.”"
+    ],
+    "note": "〜抜き (ぬき) = without: わさび抜き (no wasabi), 氷抜き (こおりぬき, no ice), ネギ抜き (no spring onion).",
+    "reg": "polite"
+  },
+  {
+    "tr": "ベジタリアンなんですが、食べられるものはありますか。",
+    "en": "I’m vegetarian — is there anything I can eat?",
+    "cat": "p-restaurant",
+    "kana": "ベジタリアン なん です が たべられる もの は あります か",
+    "note": "Vegetarian food isn’t a given: fish stock (だし) is in many soups and sauces. To be sure, ask 肉や魚のだしは入っていますか。",
+    "reg": "polite",
+    "pair": {
+      "tr": "ベジタリアンなんだけど、食べられるものある？",
+      "reg": "casual",
+      "kana": "ベジタリアン なん だ けど たべられる もの ある"
+    }
+  },
+  {
+    "tr": "同じものをお願いします。",
+    "en": "I’ll have the same, please.",
+    "cat": "p-restaurant",
+    "kana": "おなじ もの を おねがい します",
+    "note": "Handy when a friend has just ordered. For another round of the same drink: 同じものをもう一つ (one more of the same).",
+    "reg": "polite",
+    "pair": {
+      "tr": "同じのにする。",
+      "reg": "casual",
+      "en": "I’ll have the same.",
+      "kana": "おなじ の に する"
+    }
+  },
+  {
+    "tr": "以上でお願いします。",
+    "en": "That’s all, thank you. (finishing an order)",
+    "cat": "p-restaurant",
+    "kana": "いじょう で おねがい します",
+    "ex": [
+      "「ご注文は以上でよろしいですか。」「はい、以上でお願いします。」",
+      "“Will that be all?” “Yes, that’s all, thank you.”"
+    ],
+    "note": "以上 = “the above” — it closes your order. If you want to start small and order more later, begin with とりあえず (for now…).",
+    "reg": "polite"
+  },
+  {
+    "tr": "ラストオーダーは何時ですか。",
+    "en": "What time is last orders?",
+    "cat": "p-restaurant",
+    "kana": "ラストオーダー は なんじ です か",
+    "note": "Kitchens often stop taking orders 30 to 60 minutes before closing. Staff come round and say ラストオーダーのお時間です.",
+    "reg": "polite",
+    "pair": {
+      "tr": "ラストオーダー、何時？",
+      "reg": "casual",
+      "kana": "ラストオーダー なんじ"
+    }
+  },
+  {
+    "tr": "お会計は別々でお願いします。",
+    "en": "We’d like to pay separately, please.",
+    "cat": "p-restaurant",
+    "kana": "おかいけい は べつべつ で おねがい します",
+    "note": "Say it at the till — in most places you pay there, not at the table. All together is 一緒で (いっしょ で).",
+    "reg": "polite",
+    "pair": {
+      "tr": "別々で払おう。",
+      "reg": "casual",
+      "en": "Let’s pay separately.",
+      "kana": "べつべつ で はらおう"
+    }
+  },
+  {
+    "tr": "また来ます。",
+    "en": "I’ll come again. (a compliment as you leave)",
+    "cat": "p-restaurant",
+    "kana": "また きます",
+    "note": "After ごちそうさまでした, this is the warmest thing you can say in a small restaurant. Put とてもおいしかったです in front of it.",
+    "reg": "polite",
+    "pair": {
+      "tr": "また来ようね。",
+      "reg": "casual",
+      "en": "Let’s come here again.",
+      "kana": "また こよう ね"
+    }
+  },
+  {
+    "tr": "部屋を探しているんですが。",
+    "en": "I’m looking for a flat (to rent).",
+    "cat": "p-housing",
+    "kana": "へや を さがして いる ん です が",
+    "note": "Your opening line at an estate agent’s (不動産屋, ふどうさんや). 部屋 here means a flat. They’ll ask about your budget (ご予算) and which station you want to be near.",
+    "reg": "polite",
+    "pair": {
+      "tr": "部屋を探してるんだ。",
+      "reg": "casual",
+      "kana": "へや を さがしてる ん だ"
+    }
+  },
+  {
+    "tr": "この部屋を見せてもらえますか。",
+    "en": "Could I view this flat?",
+    "cat": "p-housing",
+    "kana": "この へや を みせて もらえます か",
+    "note": "A viewing is a 内見 (ないけん): 内見できますか also works. Layouts are coded: 1K = one room plus kitchen, 2LDK = two rooms plus a living-dining-kitchen.",
+    "reg": "polite",
+    "pair": {
+      "tr": "この部屋、見てみたいな。",
+      "reg": "casual",
+      "en": "I’d like to have a look at this flat.",
+      "kana": "この へや みて みたい な"
+    }
+  },
+  {
+    "tr": "家賃はいくらですか。",
+    "en": "How much is the rent?",
+    "cat": "p-housing",
+    "kana": "やちん は いくら です か",
+    "ex": [
+      "「家賃はいくらですか。」「月七万円で、管理費が五千円です。」",
+      "“How much is the rent?” “70,000 yen a month, plus a 5,000-yen service charge.”"
+    ],
+    "note": "Ask about the up-front costs too: 敷金 (しききん, deposit), 礼金 (れいきん, “key money” — a non-refundable payment to the landlord) and 管理費 (かんりひ, monthly service charge).",
+    "reg": "polite",
+    "pair": {
+      "tr": "家賃、いくら？",
+      "reg": "casual",
+      "kana": "やちん いくら"
+    }
+  },
+  {
+    "tr": "光熱費は込みですか。",
+    "en": "Are utilities included?",
+    "cat": "p-housing",
+    "kana": "こうねつひ は こみ です か",
+    "note": "光熱費 = electricity and gas; water is 水道代 (すいどうだい). 込み (こみ) = included, 別 (べつ) = extra. In an ordinary flat you pay them yourself; share houses often include them.",
+    "reg": "polite",
+    "pair": {
+      "tr": "光熱費、込み？",
+      "reg": "casual",
+      "kana": "こうねつひ こみ"
+    }
+  },
+  {
+    "tr": "駅から歩いて何分ですか。",
+    "en": "How many minutes’ walk is it from the station?",
+    "cat": "p-housing",
+    "kana": "えき から あるいて なんぷん です か",
+    "note": "Listings say 駅から徒歩5分 (とほ ごふん, five minutes on foot). The figure assumes 80 metres a minute — real life is usually slower.",
+    "reg": "polite",
+    "pair": {
+      "tr": "駅から歩いて何分？",
+      "reg": "casual",
+      "kana": "えき から あるいて なんぷん"
+    }
+  },
+  {
+    "tr": "いつから入居できますか。",
+    "en": "When can I move in?",
+    "cat": "p-housing",
+    "kana": "いつ から にゅうきょ できます か",
+    "note": "入居 = moving into a rented home. A place you can move into straight away is listed as 即入居可 (そくにゅうきょか).",
+    "reg": "polite",
+    "pair": {
+      "tr": "いつから住めるの？",
+      "reg": "casual",
+      "kana": "いつ から すめる の"
+    }
+  },
+  {
+    "tr": "保証人は必要ですか。",
+    "en": "Do I need a guarantor?",
+    "cat": "p-housing",
+    "kana": "ほしょうにん は ひつよう です か",
+    "ex": [
+      "「保証人は必要ですか。」「いいえ、保証会社を利用していただきます。」",
+      "“Do I need a guarantor?” “No, we ask you to use a guarantee company.”"
+    ],
+    "note": "Many landlords want a guarantor (保証人). Without one you normally pay a guarantee company, a 保証会社 (ほしょうがいしゃ), instead. The contract itself is the 契約 (けいやく).",
+    "reg": "polite"
+  },
+  {
+    "tr": "洗濯機が壊れてしまいました。",
+    "en": "The washing machine has broken down.",
+    "cat": "p-housing",
+    "kana": "せんたくき が こわれて しまいました",
+    "note": "〜てしまいました adds “unfortunately”. If the appliance came with the flat, call the landlord (大家さん, おおやさん) or the management company (管理会社, かんりがいしゃ) first.",
+    "reg": "polite",
+    "pair": {
+      "tr": "洗濯機、壊れちゃった。",
+      "reg": "casual",
+      "kana": "せんたくき こわれちゃった"
+    }
+  },
+  {
+    "tr": "修理に来てもらえますか。",
+    "en": "Could you send someone to fix it?",
+    "cat": "p-housing",
+    "kana": "しゅうり に きて もらえます か",
+    "ex": [
+      "「お風呂のお湯が出ないんです。修理に来てもらえますか。」「分かりました。明日の午前中に伺います。」",
+      "“There’s no hot water in the bath. Could you send someone to fix it?” “Understood. We’ll come tomorrow morning.”"
+    ],
+    "note": "修理 = repair. Say what’s wrong first: エアコンから水が落ちてきます (water is dripping from the air conditioner), 水が止まりません (the water won’t stop).",
+    "reg": "polite",
+    "pair": {
+      "tr": "修理に来ていただけますか。",
+      "reg": "formal",
+      "kana": "しゅうり に きて いただけます か"
+    }
+  },
+  {
+    "tr": "Wi-Fiはどうやってつなぎますか。",
+    "en": "How do I connect to the Wi-Fi?",
+    "cat": "p-housing",
+    "kana": "ワイファイ は どうやって つなぎます か",
+    "note": "つなぐ = to connect. The network name and password are often on a sticker on the router (ルーター). If it stops working: Wi-Fiがつながりません。",
+    "reg": "polite",
+    "pair": {
+      "tr": "Wi-Fi、どうやってつなぐの？",
+      "reg": "casual",
+      "kana": "ワイファイ どうやって つなぐ の"
+    }
+  },
+  {
+    "tr": "ゴミはいつ出せばいいですか。",
+    "en": "When should I put the rubbish out?",
+    "cat": "p-housing",
+    "kana": "ゴミ は いつ だせば いい です か",
+    "ex": [
+      "「燃えるゴミはいつ出せばいいですか。」「月曜日と木曜日の朝ですよ。」",
+      "“When should I put out the burnable rubbish?” “Monday and Thursday mornings.”"
+    ],
+    "note": "Each type has its own day: 燃えるゴミ (もえるゴミ, burnable), 燃えないゴミ (non-burnable), 資源ゴミ (しげんゴミ, recyclables). Getting it wrong annoys the neighbours, so do ask.",
+    "reg": "polite",
+    "pair": {
+      "tr": "ゴミ、いつ出せばいい？",
+      "reg": "casual",
+      "kana": "ゴミ いつ だせば いい"
+    }
+  },
+  {
+    "tr": "隣に引っ越してきたアレックスです。",
+    "en": "I’m Alex — I’ve just moved in next door.",
+    "cat": "p-housing",
+    "kana": "となり に ひっこして きた アレックス です",
+    "ex": [
+      "「はじめまして。隣に引っ越してきたアレックスです。」「ご丁寧にどうも。こちらこそ、よろしくお願いします。」",
+      "“How do you do? I’m Alex — I’ve just moved in next door.” “How kind of you to call. Nice to meet you too.”"
+    ],
+    "note": "The classic greeting to new neighbours, traditionally with a small gift such as sweets or a towel. Finish with これからよろしくお願いします。",
+    "reg": "polite"
+  },
+  {
+    "tr": "口座を開きたいんですが。",
+    "en": "I’d like to open an account.",
+    "cat": "p-bank",
+    "kana": "こうざ を ひらきたい ん です が",
+    "note": "Bring your residence card (在留カード, ざいりゅうカード) and passport. Some banks also want a personal seal (印鑑, いんかん), or ask that you have lived in Japan for six months.",
+    "reg": "polite",
+    "pair": {
+      "tr": "口座を作りたいんだけど。",
+      "reg": "casual",
+      "kana": "こうざ を つくりたい ん だ けど"
+    }
+  },
+  {
+    "tr": "この荷物をアメリカに送りたいんですが。",
+    "en": "I’d like to send this parcel to the US.",
+    "cat": "p-bank",
+    "kana": "この にもつ を アメリカ に おくりたい ん です が",
+    "ex": [
+      "「この荷物をアメリカに送りたいんですが。」「航空便ですか、船便ですか。」",
+      "“I’d like to send this parcel to the US.” “By air or by sea?”"
+    ],
+    "note": "You’ll be asked how: 航空便 (こうくうびん, airmail) is fast, 船便 (ふなびん, sea mail) is cheap and slow. And what’s inside: 中身は何ですか。",
+    "reg": "polite",
+    "pair": {
+      "tr": "これ、アメリカに送りたいんだけど。",
+      "reg": "casual",
+      "kana": "これ アメリカ に おくりたい ん だ けど"
+    }
+  },
+  {
+    "tr": "何日ぐらいで届きますか。",
+    "en": "About how many days will it take to arrive?",
+    "cat": "p-bank",
+    "kana": "なんにち ぐらい で とどきます か",
+    "note": "届く = to arrive, to be delivered. Answers sound like 一週間ぐらいです (about a week) or 明日届きます (it will arrive tomorrow).",
+    "reg": "polite",
+    "pair": {
+      "tr": "何日ぐらいで届く？",
+      "reg": "casual",
+      "kana": "なんにち ぐらい で とどく"
+    }
+  },
+  {
+    "tr": "速達でお願いします。",
+    "en": "By express mail, please.",
+    "cat": "p-bank",
+    "kana": "そくたつ で おねがい します",
+    "note": "Other services: 書留 (かきとめ, registered mail), 普通郵便 (ふつうゆうびん, ordinary post). A stamp is a 切手 (きって); an envelope is a 封筒 (ふうとう).",
+    "reg": "polite"
+  },
+  {
+    "tr": "この用紙の書き方を教えてください。",
+    "en": "Could you show me how to fill in this form?",
+    "cat": "p-bank",
+    "kana": "この ようし の かきかた を おしえて ください",
+    "note": "用紙 = a form; an application form is a 申込書 (もうしこみしょ). フリガナ on a form means: write the reading of your name in katakana.",
+    "reg": "polite",
+    "pair": {
+      "tr": "これ、どうやって書くの？",
+      "reg": "casual",
+      "en": "How do I fill this in?",
+      "kana": "これ どうやって かく の"
+    }
+  },
+  {
+    "tr": "どこにサインすればいいですか。",
+    "en": "Where do I sign?",
+    "cat": "p-bank",
+    "kana": "どこ に サイン すれば いい です か",
+    "ex": [
+      "「どこにサインすればいいですか。」「こちらにお願いします。」",
+      "“Where do I sign?” “Here, please.”"
+    ],
+    "note": "Japanese paperwork traditionally uses a name seal (はんこ) rather than a signature. Ask サインでもいいですか (is a signature OK?) — these days it often is.",
+    "reg": "polite",
+    "pair": {
+      "tr": "どこにサインすればいい？",
+      "reg": "casual",
+      "kana": "どこ に サイン すれば いい"
+    }
+  },
+  {
+    "tr": "ドルを円に両替したいんですが。",
+    "en": "I’d like to change dollars into yen.",
+    "cat": "p-bank",
+    "kana": "ドル を えん に りょうがえ したい ん です が",
+    "note": "AをBに両替する = to change A into B. The exchange rate is the レート: 今日のレートはいくらですか (what’s today’s rate?).",
+    "reg": "polite",
+    "pair": {
+      "tr": "ドルを円に替えたいんだけど。",
+      "reg": "casual",
+      "kana": "ドル を えん に かえたい ん だ けど"
+    }
+  },
+  {
+    "tr": "予約が必要ですか。",
+    "en": "Do I need an appointment?",
+    "cat": "p-bank",
+    "kana": "よやく が ひつよう です か",
+    "ex": [
+      "「口座を作りたいんですが、予約が必要ですか。」「いいえ、番号札を取ってお待ちください。」",
+      "“I’d like to open an account — do I need an appointment?” “No, please take a number and wait.”"
+    ],
+    "note": "予約 covers both appointments and bookings. To open an account, many banks ask you to book a visit online first: 来店予約 (らいてんよやく).",
+    "reg": "polite",
+    "pair": {
+      "tr": "予約、要る？",
+      "reg": "casual",
+      "kana": "よやく いる"
+    }
+  },
+  {
+    "tr": "番号札を取ってお待ちください。",
+    "en": "Please take a number and wait. (you will hear)",
+    "cat": "p-bank",
+    "kana": "ばんごうふだ を とって おまち ください",
+    "note": "Banks, post offices and city halls all use a ticket machine. When your number is called — 〜番の方 (ばんのかた) — or shown on the screen, go to that counter (窓口, まどぐち).",
+    "reg": "formal"
+  },
+  {
+    "tr": "住所を変更したいんですが。",
+    "en": "I’d like to change my address.",
+    "cat": "p-bank",
+    "kana": "じゅうしょ を へんこう したい ん です が",
+    "note": "After a move, register your new address at the city or ward office (市役所, 区役所) within 14 days, then update your bank and other accounts.",
+    "reg": "polite",
+    "pair": {
+      "tr": "住所を変えたいんだけど。",
+      "reg": "casual",
+      "kana": "じゅうしょ を かえたい ん だ けど"
+    }
+  },
+  {
+    "tr": "振り込みはこのATMでできますか。",
+    "en": "Can I make a transfer at this ATM?",
+    "cat": "p-bank",
+    "kana": "ふりこみ は この エーティーエム で できます か",
+    "note": "振り込み = a bank transfer. ATM menus: お振込み (transfer), お引き出し (withdrawal), お預け入れ (deposit), 残高照会 (ざんだかしょうかい, balance).",
+    "reg": "polite",
+    "pair": {
+      "tr": "振り込み、このATMでできる？",
+      "reg": "casual",
+      "kana": "ふりこみ この エーティーエム で できる"
+    }
+  },
+  {
+    "tr": "すみません、書き間違えました。",
+    "en": "Sorry, I’ve made a mistake (on the form).",
+    "cat": "p-bank",
+    "kana": "すみません かきまちがえました",
+    "note": "Don’t scribble a mistake out on an official form — ask for a fresh one: 新しい用紙をもらえますか。",
+    "reg": "polite",
+    "pair": {
+      "tr": "あ、書き間違えた。",
+      "reg": "casual",
+      "en": "Oops, I wrote it wrong.",
+      "kana": "あ かきまちがえた"
+    }
+  },
+  {
+    "tr": "国際線のチェックインカウンターはどこですか。",
+    "en": "Where’s the check-in counter for international flights?",
+    "cat": "p-airport",
+    "kana": "こくさいせん の チェックイン カウンター は どこ です か",
+    "note": "国際線 = international flights; 国内線 (こくないせん) = domestic. Big airports have separate terminals: 第一ターミナル (だいいちターミナル), 第二ターミナル.",
+    "reg": "polite",
+    "pair": {
+      "tr": "国際線のカウンター、どこ？",
+      "reg": "casual",
+      "kana": "こくさいせん の カウンター どこ"
+    }
+  },
+  {
+    "tr": "預ける荷物は一つです。",
+    "en": "I have one bag to check in.",
+    "cat": "p-airport",
+    "kana": "あずける にもつ は ひとつ です",
+    "ex": [
+      "「お預けのお荷物はございますか。」「はい、預ける荷物は一つです。」",
+      "“Do you have any bags to check in?” “Yes, I have one.”"
+    ],
+    "note": "預ける = to check in, to leave with someone. Hand luggage is 手荷物 (てにもつ). If your bag is too heavy you’ll hear 重量オーバーです (じゅうりょうオーバー).",
+    "reg": "polite"
+  },
+  {
+    "tr": "これは機内に持ち込めますか。",
+    "en": "Can I take this on board?",
+    "cat": "p-airport",
+    "kana": "これ は きない に もちこめます か",
+    "note": "機内 = inside the plane; 持ち込む = to bring in. Liquids are 液体 (えきたい). A carry-on bag is 機内持ち込み (きないもちこみ) luggage.",
+    "reg": "polite",
+    "pair": {
+      "tr": "これ、機内に持ち込める？",
+      "reg": "casual",
+      "kana": "これ きない に もちこめる"
+    }
+  },
+  {
+    "tr": "席を隣同士にしてもらえますか。",
+    "en": "Could we have seats next to each other?",
+    "cat": "p-airport",
+    "kana": "せき を となりどうし に して もらえます か",
+    "note": "隣同士 = side by side. Seat types: 窓側 (まどがわ, window), 通路側 (つうろがわ, aisle). Even politer: 〜にしていただけますか。",
+    "reg": "polite"
+  },
+  {
+    "tr": "搭乗は何時からですか。",
+    "en": "What time does boarding start?",
+    "cat": "p-airport",
+    "kana": "とうじょう は なんじ から です か",
+    "note": "搭乗 = boarding. A boarding pass is a 搭乗券 (とうじょうけん); the gate is the 搭乗口. Announcements say ご搭乗を開始いたします (we are now boarding).",
+    "reg": "polite",
+    "pair": {
+      "tr": "搭乗、何時から？",
+      "reg": "casual",
+      "kana": "とうじょう なんじ から"
+    }
+  },
+  {
+    "tr": "この便は遅れていますか。",
+    "en": "Is this flight delayed?",
+    "cat": "p-airport",
+    "kana": "この びん は おくれて います か",
+    "ex": [
+      "「この便は遅れていますか。」「はい、三十分ほど遅れております。」",
+      "“Is this flight delayed?” “Yes, it’s running about thirty minutes late.”"
+    ],
+    "note": "便 (びん) = flight; flight 123 is 123便. On the boards: 定刻 (ていこく, on time), 遅延 (ちえん, delayed), 欠航 (けっこう, cancelled).",
+    "reg": "polite",
+    "pair": {
+      "tr": "この便、遅れてる？",
+      "reg": "casual",
+      "kana": "この びん おくれてる"
+    }
+  },
+  {
+    "tr": "乗り継ぎに間に合いますか。",
+    "en": "Will I make my connection?",
+    "cat": "p-airport",
+    "kana": "のりつぎ に まにあいます か",
+    "note": "乗り継ぎ = a connection; 間に合う = to be in time. If you miss it: 乗り継ぎ便に乗れませんでした (I missed my connecting flight).",
+    "reg": "polite",
+    "pair": {
+      "tr": "乗り継ぎ、間に合うかな。",
+      "reg": "casual",
+      "en": "I wonder if I’ll make my connection.",
+      "kana": "のりつぎ まにあう かな"
+    }
+  },
+  {
+    "tr": "入国の目的は何ですか。",
+    "en": "What is the purpose of your visit? (you will hear)",
+    "cat": "p-airport",
+    "kana": "にゅうこく の もくてき は なん です か",
+    "ex": [
+      "「入国の目的は何ですか。」「観光です。」",
+      "“What is the purpose of your visit?” “Sightseeing.”"
+    ],
+    "note": "A standard question at passport control (入国審査, にゅうこくしんさ). Short answers are best: 観光です (sightseeing), 仕事です (business), 留学です (りゅうがく, study).",
+    "reg": "polite"
+  },
+  {
+    "tr": "観光で来ました。",
+    "en": "I’m here on holiday. (for sightseeing)",
+    "cat": "p-airport",
+    "kana": "かんこう で きました",
+    "note": "Purpose + で来ました: 仕事で来ました (I’m here on business), 留学で来ました (I’m here to study). To see a friend: 友達に会いに来ました。",
+    "reg": "polite",
+    "pair": {
+      "tr": "観光で来たんだ。",
+      "reg": "casual",
+      "kana": "かんこう で きた ん だ"
+    }
+  },
+  {
+    "tr": "どのくらい滞在しますか。",
+    "en": "How long will you be staying? (you will hear)",
+    "cat": "p-airport",
+    "kana": "どのくらい たいざい します か",
+    "ex": [
+      "「どのくらい滞在しますか。」「二週間です。」",
+      "“How long will you be staying?” “Two weeks.”"
+    ],
+    "note": "滞在 = a stay. Answer with a length of time: 五日間です (いつかかん, five days), 二週間です (two weeks), 一か月です (いっかげつ, one month).",
+    "reg": "polite",
+    "pair": {
+      "tr": "どのくらいいるの？",
+      "reg": "casual",
+      "en": "How long are you here for?",
+      "kana": "どのくらい いる の"
+    }
+  },
+  {
+    "tr": "申告するものはありません。",
+    "en": "I have nothing to declare.",
+    "cat": "p-airport",
+    "kana": "しんこく する もの は ありません",
+    "note": "At customs (税関, ぜいかん) the officer asks 申告するものはありますか。 They may also want to look inside: かばんを開けてください (please open your bag).",
+    "reg": "polite"
+  },
+  {
+    "tr": "スーツケースが出てきません。",
+    "en": "My suitcase hasn’t come out.",
+    "cat": "p-airport",
+    "kana": "スーツケース が でて きません",
+    "note": "Tell the staff by the carousel and show the baggage tag you were given at check-in. If the case is damaged: スーツケースが壊れています。",
+    "reg": "polite",
+    "pair": {
+      "tr": "スーツケースが出てこない！",
+      "reg": "casual",
+      "kana": "スーツケース が でて こない"
+    }
+  },
+  {
+    "tr": "すみません、これは頼んでいません。",
+    "en": "Excuse me, I didn’t order this.",
+    "cat": "p-complaints",
+    "kana": "すみません これ は たのんで いません",
+    "note": "頼む = to order, to ask for. Then say what you did order: ビールを頼んだんですが (I ordered a beer…).",
+    "reg": "polite",
+    "pair": {
+      "tr": "これ、頼んでないよ。",
+      "reg": "casual",
+      "kana": "これ たのんでない よ"
+    }
+  },
+  {
+    "tr": "注文した料理がまだ来ないんですが。",
+    "en": "The food I ordered still hasn’t come.",
+    "cat": "p-complaints",
+    "kana": "ちゅうもん した りょうり が まだ こない ん です が",
+    "ex": [
+      "「すみません、注文した料理がまだ来ないんですが。」「申し訳ございません。すぐに確認いたします。」",
+      "“Excuse me, the food I ordered still hasn’t come.” “I’m very sorry. I’ll check right away.”"
+    ],
+    "note": "Ending on 〜んですが states the problem and leaves the request unsaid — the polite way to complain. 三十分前に注文しました = I ordered thirty minutes ago.",
+    "reg": "polite",
+    "pair": {
+      "tr": "料理、まだ来ないね。",
+      "reg": "casual",
+      "en": "The food still hasn’t come, has it?",
+      "kana": "りょうり まだ こない ね"
+    }
+  },
+  {
+    "tr": "これ、壊れているみたいです。",
+    "en": "This seems to be broken.",
+    "cat": "p-complaints",
+    "kana": "これ こわれて いる みたい です",
+    "note": "みたいです (it seems) keeps a complaint from sounding like an accusation. Other faults: 汚れています (よごれて, it’s dirty), 割れています (われて, it’s cracked).",
+    "reg": "polite",
+    "pair": {
+      "tr": "これ、壊れてるみたい。",
+      "reg": "casual",
+      "kana": "これ こわれてる みたい"
+    }
+  },
+  {
+    "tr": "昨日買ったばかりなのに、動きません。",
+    "en": "I only bought it yesterday, but it doesn’t work.",
+    "cat": "p-complaints",
+    "kana": "きのう かった ばかり なのに うごきません",
+    "note": "〜たばかり = only just did. なのに (even though) carries your frustration. For electronics also: 電源が入りません (でんげん が はいりません, it won’t switch on).",
+    "reg": "polite",
+    "pair": {
+      "tr": "昨日買ったばかりなのに、動かない。",
+      "reg": "casual",
+      "kana": "きのう かった ばかり なのに うごかない"
+    }
+  },
+  {
+    "tr": "返品したいんですが。",
+    "en": "I’d like to return this.",
+    "cat": "p-complaints",
+    "kana": "へんぴん したい ん です が",
+    "note": "Returns aren’t automatic in Japan: keep the receipt (レシート) and the packaging. To swap it instead: 交換してもらえますか (こうかん, could you exchange it?).",
+    "reg": "polite",
+    "pair": {
+      "tr": "返品したいんだけど。",
+      "reg": "casual",
+      "kana": "へんぴん したい ん だ けど"
+    }
+  },
+  {
+    "tr": "返金してもらえますか。",
+    "en": "Could I get a refund?",
+    "cat": "p-complaints",
+    "kana": "へんきん して もらえます か",
+    "ex": [
+      "「返金してもらえますか。」「はい。レシートはお持ちですか。」",
+      "“Could I get a refund?” “Yes. Do you have the receipt?”"
+    ],
+    "note": "返金 = a refund (money back); 返品 = returning the goods. Firmer and more formal: 返金していただけますか。",
+    "reg": "polite",
+    "pair": {
+      "tr": "返金してもらえる？",
+      "reg": "casual",
+      "kana": "へんきん して もらえる"
+    }
+  },
+  {
+    "tr": "お会計が間違っているようです。",
+    "en": "I think there’s a mistake in the bill.",
+    "cat": "p-complaints",
+    "kana": "おかいけい が まちがって いる よう です",
+    "note": "〜ようです (it appears) is politer than a flat 間違っています. Point at the line and say これは注文していません (we didn’t order this).",
+    "reg": "polite",
+    "pair": {
+      "tr": "お会計、間違ってない？",
+      "reg": "casual",
+      "en": "Isn’t the bill wrong?",
+      "kana": "おかいけい まちがってない"
+    }
+  },
+  {
+    "tr": "お釣りが足りないんですが。",
+    "en": "I think you’ve given me too little change.",
+    "cat": "p-complaints",
+    "kana": "おつり が たりない ん です が",
+    "note": "足りない = not enough. Say what you paid: 一万円出しました (I gave you 10,000 yen). Mistakes are rare — staff usually count the change out in front of you.",
+    "reg": "polite",
+    "pair": {
+      "tr": "お釣り、足りないよ。",
+      "reg": "casual",
+      "kana": "おつり たりない よ"
+    }
+  },
+  {
+    "tr": "すみません、もう少し静かにしていただけますか。",
+    "en": "Excuse me, could you keep it down a little?",
+    "cat": "p-complaints",
+    "kana": "すみません もう すこし しずか に して いただけます か",
+    "note": "〜ていただけますか is a very polite request — firm without being rude. To hotel staff or a landlord: 隣の部屋がうるさいんですが (the room next door is noisy…).",
+    "reg": "polite",
+    "pair": {
+      "tr": "ちょっと静かにしてくれる？",
+      "reg": "casual",
+      "kana": "ちょっと しずか に して くれる"
+    }
+  },
+  {
+    "tr": "責任者の方とお話しできますか。",
+    "en": "May I speak to the person in charge?",
+    "cat": "p-complaints",
+    "kana": "せきにんしゃ の かた と おはなし できます か",
+    "note": "責任者 = the person in charge. In a shop or restaurant that is the 店長 (てんちょう, manager). Keep your voice calm: a quiet, polite complaint carries more weight.",
+    "reg": "formal"
+  },
+  {
+    "tr": "それは困ります。",
+    "en": "That’s a problem for me. / I can’t accept that.",
+    "cat": "p-complaints",
+    "kana": "それ は こまります",
+    "ex": [
+      "「申し訳ございませんが、修理に一週間かかります。」「それは困ります。明日使うんです。」",
+      "“I’m afraid the repair will take a week.” “That’s a problem. I need it tomorrow.”"
+    ],
+    "note": "Polite but firm: 困ります tells the other side that their answer isn’t good enough, without a single rude word.",
+    "reg": "polite",
+    "pair": {
+      "tr": "それは困るよ。",
+      "reg": "casual",
+      "kana": "それ は こまる よ"
+    }
+  },
+  {
+    "tr": "なんとかなりませんか。",
+    "en": "Isn’t there anything you can do?",
+    "cat": "p-complaints",
+    "kana": "なんとか なりません か",
+    "note": "A last polite push when you’ve been told no: “can’t it be managed somehow?” Stronger still: そこをなんとかお願いします (I know, but please…).",
+    "reg": "polite",
+    "alt": [
+      "何とかなりませんか。"
+    ],
+    "pair": {
+      "tr": "なんとかならない？",
+      "reg": "casual",
+      "kana": "なんとか ならない"
+    }
+  },
+  {
+    "tr": "ちょっと心配です。",
+    "en": "I’m a bit worried.",
+    "cat": "p-feelings",
+    "kana": "ちょっと しんぱい です",
+    "ex": [
+      "「元気がないですね。どうしたんですか。」「明日の面接がちょっと心配です。」",
+      "“You seem down. What’s the matter?” “I’m a bit worried about tomorrow’s interview.”"
+    ],
+    "note": "Say what about with が: 試験が心配です. About a person: 〜のことが心配です — 母のことが心配です (I’m worried about my mother).",
+    "reg": "polite",
+    "pair": {
+      "tr": "ちょっと心配なんだ。",
+      "reg": "casual",
+      "kana": "ちょっと しんぱい なん だ"
+    }
+  },
+  {
+    "tr": "会いたいです。",
+    "en": "I miss you. (I want to see you)",
+    "cat": "p-feelings",
+    "kana": "あいたい です",
+    "note": "Japanese has no direct “I miss you”. Say 会いたい (I want to see you), or 〜がいなくて寂しい (it’s lonely without ~).",
+    "reg": "polite",
+    "pair": {
+      "tr": "会いたいな。",
+      "reg": "casual",
+      "kana": "あいたい な"
+    }
+  },
+  {
+    "tr": "みんなに会えなくて寂しいです。",
+    "en": "I miss everyone.",
+    "cat": "p-feelings",
+    "kana": "みんな に あえなくて さびしい です",
+    "note": "〜なくて寂しい = I’m lonely because I can’t ~. Homesick is ホームシック: ホームシックになりました (I got homesick).",
+    "reg": "polite",
+    "pair": {
+      "tr": "みんなに会えなくて寂しい。",
+      "reg": "casual",
+      "kana": "みんな に あえなくて さびしい"
+    }
+  },
+  {
+    "tr": "本当によく頑張りましたね。",
+    "en": "You did really well. (I’m proud of you)",
+    "cat": "p-feelings",
+    "kana": "ほんとう に よく がんばりました ね",
+    "ex": [
+      "「やっと試験に合格しました。」「おめでとうございます。本当によく頑張りましたね。」",
+      "“I’ve finally passed the exam.” “Congratulations! You really worked hard.”"
+    ],
+    "note": "Japanese praises the effort rather than saying “I’m proud of you”; the literal 誇りに思います (ほこり に おもいます) sounds like a speech. Don’t say this to a boss — it judges from above.",
+    "reg": "polite",
+    "pair": {
+      "tr": "本当によく頑張ったね！",
+      "reg": "casual",
+      "kana": "ほんとう に よく がんばった ね"
+    }
+  },
+  {
+    "tr": "何かあったんですか。",
+    "en": "Has something happened?",
+    "cat": "p-feelings",
+    "kana": "なに か あった ん です か",
+    "note": "A gentle way in when someone looks upset. 〜んですか shows that you’ve noticed and you care; a plain 何かありましたか sounds more like a routine question.",
+    "reg": "polite",
+    "pair": {
+      "tr": "何かあったの？",
+      "reg": "casual",
+      "kana": "なに か あった の"
+    }
+  },
+  {
+    "tr": "話ならいつでも聞きますよ。",
+    "en": "I’m always here to listen.",
+    "cat": "p-feelings",
+    "kana": "はなし なら いつでも ききます よ",
+    "note": "Often the kindest offer is to listen, not to advise. If they’d rather not talk now: 話したくなったら、言ってください (tell me when you feel like talking).",
+    "reg": "polite",
+    "pair": {
+      "tr": "話ならいつでも聞くよ。",
+      "reg": "casual",
+      "kana": "はなし なら いつでも きく よ"
+    }
+  },
+  {
+    "tr": "気持ちはよく分かります。",
+    "en": "I know just how you feel.",
+    "cat": "p-feelings",
+    "kana": "きもち は よく わかります",
+    "note": "Shows sympathy. Another good line is つらかったですね (that must have been hard) — acknowledging the feeling is often all that’s needed.",
+    "reg": "polite",
+    "pair": {
+      "tr": "気持ち、よく分かるよ。",
+      "reg": "casual",
+      "kana": "きもち よく わかる よ"
+    }
+  },
+  {
+    "tr": "元気を出してください。",
+    "en": "Cheer up.",
+    "cat": "p-feelings",
+    "kana": "げんき を だして ください",
+    "note": "For everyday disappointments — a failed test, a bad day. For real grief it is too light; say 大変でしたね, or just stay and listen.",
+    "reg": "polite",
+    "pair": {
+      "tr": "元気出して！",
+      "reg": "casual",
+      "kana": "げんき だして"
+    }
+  },
+  {
+    "tr": "何かできることがあったら、言ってください。",
+    "en": "If there’s anything I can do, please tell me.",
+    "cat": "p-feelings",
+    "kana": "なに か できる こと が あったら いって ください",
+    "note": "An open offer of help. People often answer 大丈夫です out of politeness, so a concrete offer — 買い物に行きましょうか (shall I do the shopping?) — is easier to accept.",
+    "reg": "polite",
+    "pair": {
+      "tr": "何かあったら言ってね。",
+      "reg": "casual",
+      "en": "Let me know if you need anything.",
+      "kana": "なに か あったら いって ね"
+    }
+  },
+  {
+    "tr": "本当に申し訳ありませんでした。",
+    "en": "I’m truly sorry. (for what I did)",
+    "cat": "p-feelings",
+    "kana": "ほんとう に もうしわけ ありません でした",
+    "note": "A sincere apology: the past でした owns up to something already done. Follow it with a promise — これから気をつけます (I’ll be more careful from now on) — not an excuse.",
+    "reg": "formal",
+    "pair": {
+      "tr": "本当にごめんね。",
+      "reg": "casual",
+      "kana": "ほんとう に ごめん ね"
+    }
+  },
+  {
+    "tr": "もう気にしていませんよ。",
+    "en": "It’s all right — I’m not upset any more.",
+    "cat": "p-feelings",
+    "kana": "もう き に して いません よ",
+    "ex": [
+      "「昨日は本当にすみませんでした。」「いいえ、もう気にしていませんよ。」",
+      "“I’m really sorry about yesterday.” “That’s all right — I’m not upset any more.”"
+    ],
+    "note": "Accepts an apology and closes the matter. Also 大丈夫ですよ, or more generously こちらこそ、すみませんでした (I’m sorry too).",
+    "reg": "polite",
+    "pair": {
+      "tr": "もう気にしてないよ。",
+      "reg": "casual",
+      "kana": "もう き に してない よ"
+    }
+  },
+  {
+    "tr": "自分のことのように嬉しいです。",
+    "en": "I’m as happy as if it were my own good news.",
+    "cat": "p-feelings",
+    "kana": "じぶん の こと の よう に うれしい です",
+    "note": "A warm line after おめでとうございます for a wedding, a baby or a new job: you share the joy as if it were your own.",
+    "reg": "polite",
+    "pair": {
+      "tr": "自分のことみたいに嬉しい！",
+      "reg": "casual",
+      "kana": "じぶん の こと みたい に うれしい"
     }
   }
 ];

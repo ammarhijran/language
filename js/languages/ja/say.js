@@ -64,6 +64,7 @@ export const say = {
   "朝食は何時からですか": { tr: "朝食はなんじからですか。", pair: "朝ご飯、なんじから？" },
   "終電は何時ですか": { tr: "終電はなんじですか。", pair: "終電、なんじ？" },
   "明日はお休みをいただきます": "あしたはお休みをいただきます。",
+  "人": { pair: "かた" },
 };
 
 // Sentences that belong to no word (grammar examples), keyed by the text as written.
