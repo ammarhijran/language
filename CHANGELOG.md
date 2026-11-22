@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Hands-free listening** (Practice → Hands-free): a round of up to 20 words or phrases that plays by itself — each one is spoken, you get time to repeat it, you hear it again and then its meaning in English. Pause, skip back and forth, choose how long the pause is; the screen stays on where the browser allows it.
 - **Learn:** long topic lists are grouped under “Start here”, “Everyday life” and “Going further”.
 - **Store screenshots and feature graphic** retaken for the current app: home, a Japanese lesson card, the pronunciation score, the Arabic phrasebook, the Ukrainian reader and progress.
 - **About the lessons** (Settings): says plainly that the content was written and checked with AI help and automated tests and has not been reviewed by native speakers yet. The README and the content files’ headers now describe this accurately.

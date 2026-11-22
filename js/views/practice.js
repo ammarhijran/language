@@ -4,6 +4,7 @@ import { learnedWords, dueWords, trickyWords } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
 import { GROUPS } from '../components.js';
 import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
+import handsFree from './handsfree.js';
 
 const MODES = [
   { id: 'mixed', name: 'Mixed', desc: 'A bit of everything', icon: 'shuffle' },
@@ -13,6 +14,7 @@ const MODES = [
   { id: 'meaning', name: 'Reading', desc: 'See it, pick the meaning', icon: 'search' },
   { id: 'flashcard', name: 'Flashcards', desc: 'Recall and self-rate', icon: 'repeat' },
   { id: 'build', name: 'Sentences', desc: 'Put the words in order', icon: 'tiles' },
+  { id: 'handsfree', name: 'Hands-free', desc: 'Listen and repeat, no tapping', icon: 'volume' },
 ];
 
 const ROUND = 10;
@@ -43,6 +45,7 @@ export default function practice(ctx, mode, scope) {
   if (mode === 'build') return sentenceRound(ctx, scope);
   const pool = wordsFor(ctx, scope);
   if (pool.length < 4) return notEnough('Not enough words yet', 'Learn a lesson first, or pick a topic to practise from.');
+  if (mode === 'handsfree') return handsFree(ctx, pool);
 
   const items = shuffle(pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word) }));
   let right = 0;

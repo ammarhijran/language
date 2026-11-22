@@ -198,3 +198,11 @@ body.in-session .session-head {
   }
   .session-meter .meter-fill { transition: none !important; }
 }
+
+/* Practice → Hands-free listening */
+.hf-card { text-align: center; }
+.hf-card .word-hero { margin: var(--sp-2) 0; min-height: 8.5rem; display: flex; flex-direction: column; justify-content: center; }
+.hf-step { margin: 0; font-weight: 700; color: var(--action); min-height: 1.5em; }
+.hf-controls { display: flex; align-items: center; justify-content: center; gap: var(--sp-4); }
+.hf-play { min-width: 9.5rem; justify-content: center; }
+.hf-pause { display: inline-block; width: 14px; height: 16px; border-left: 5px solid currentColor; border-right: 5px solid currentColor; box-sizing: border-box; }
