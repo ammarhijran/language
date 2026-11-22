@@ -1,6 +1,6 @@
-// Read & Listen: graded dialogues, stories, everyday texts and short speeches.
+// Read & Listen: graded dialogues, stories, everyday texts, speeches, tongue twisters and proverbs.
 // Each text: { id, kind, level, title, titleNative, summary, dialect?, register?,
-//   lines: [{ speaker?, tr, en }], glossary: [{ tr, en }],
+//   lines: [{ speaker?, tr, en, note? }], glossary: [{ tr, en }],
 //   questions: [{ q, options[4], answer, explain }] }.
 // Written and proofread with AI assistance; not yet reviewed by native speakers. Edit freely.
 // Loaded on demand (not at startup).
@@ -3837,6 +3837,290 @@ export const texts = [
         ],
         "answer": 3,
         "explain": "«Цього дня хлопці й дівчата обливають одне одного водою.»"
+      }
+    ]
+  },
+  {
+    "id": "uk-tongue-twisters",
+    "kind": "twister",
+    "level": "B1",
+    "title": "Tongue Twisters",
+    "titleNative": "Скоромовки",
+    "summary": "Eight Ukrainian folk tongue twisters. Say each one slowly first, then faster — every one trains particular sounds.",
+    "lines": [
+      {
+        "tr": "Хитру сороку спіймати морока, а на сорок сорок — сорок морок.",
+        "en": "Catching one sly magpie is a bother, and forty magpies are forty bothers.",
+        "note": "Trains the rolled р. Watch the stress: соро́ка “magpie” and соро́к “of magpies”, but со́рок “forty”."
+      },
+      {
+        "tr": "Ходить квочка коло кілочка, водить діток коло квіток.",
+        "en": "A mother hen walks round a little peg and leads her chicks round the flowers.",
+        "note": "Trains к with в and л: квочка, кілочка, квіток."
+      },
+      {
+        "tr": "Бабин біб розцвів у дощ, буде бабі біб у борщ.",
+        "en": "Granny’s beans came into flower in the rain; granny will have beans for her borscht.",
+        "note": "Trains б, and щ (shch) at the end of дощ and борщ."
+      },
+      {
+        "tr": "Босий хлопець сіно косить, роса росить ноги босі.",
+        "en": "A barefoot boy is mowing hay, and the dew wets his bare feet.",
+        "note": "Trains с, and the clear о — in Ukrainian an unstressed о still sounds like о."
+      },
+      {
+        "tr": "Ти, малий, скажи малому, хай малий малому скаже, хай малий теля прив’яже.",
+        "en": "You, little one, tell the little one to tell the little one to tie up the calf.",
+        "note": "Trains л and the endings -ий and -ому."
+      },
+      {
+        "tr": "Проворонила ворона вороненя.",
+        "en": "The crow lost her chick by not paying attention.",
+        "note": "A pun: ворона is “a crow”, and проворонити means “to miss something through carelessness”. Trains р, в and н."
+      },
+      {
+        "tr": "Прийшов Прокіп — кипів окріп, пішов Прокіп — кипить окріп. Як при Прокопі кипів окріп, так і без Прокопа кипить окріп.",
+        "en": "Prokip came and the water was boiling; Prokip left and the water is boiling. Just as it boiled with Prokip there, it boils without Prokip.",
+        "note": "Trains п, к and р. Notice the vowel change in the name: Прокіп, but Прокопі and Прокопа."
+      },
+      {
+        "tr": "Пиляв Пилип поліна з лип, притупив пилку Пилип.",
+        "en": "Pylyp was sawing linden logs; Pylyp blunted his saw.",
+        "note": "Trains п and л with the vowel и, a sound between the i of “bit” and the e of “the”."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "морока",
+        "en": "a bother, a hassle"
+      },
+      {
+        "tr": "квочка",
+        "en": "a mother hen"
+      },
+      {
+        "tr": "біб",
+        "en": "broad beans"
+      },
+      {
+        "tr": "борщ",
+        "en": "borscht (beetroot soup)"
+      },
+      {
+        "tr": "сіно",
+        "en": "hay"
+      },
+      {
+        "tr": "роса",
+        "en": "dew"
+      },
+      {
+        "tr": "теля",
+        "en": "calf"
+      },
+      {
+        "tr": "ворона",
+        "en": "crow"
+      },
+      {
+        "tr": "окріп",
+        "en": "boiling water"
+      }
+    ],
+    "questions": [
+      {
+        "q": "What is the barefoot boy doing?",
+        "options": [
+          "Mowing hay",
+          "Leading chicks",
+          "Sawing logs",
+          "Boiling water"
+        ],
+        "answer": 0,
+        "explain": "«сіно косить» — he is mowing hay."
+      },
+      {
+        "q": "What will granny put in her borscht?",
+        "options": [
+          "Dew",
+          "Hay",
+          "Beans",
+          "Flowers"
+        ],
+        "answer": 2,
+        "explain": "«буде бабі біб у борщ» — granny will have beans for her borscht."
+      },
+      {
+        "q": "What does «со́рок» mean, with the stress on the first syllable?",
+        "options": [
+          "Magpie",
+          "A bother",
+          "Sly",
+          "Forty"
+        ],
+        "answer": 3,
+        "explain": "«со́рок» is forty; «соро́ка» is a magpie and «соро́к» means “of magpies”."
+      },
+      {
+        "q": "What happens to the water after Prokip leaves?",
+        "options": [
+          "It goes cold",
+          "It keeps boiling",
+          "It is poured away",
+          "It freezes"
+        ],
+        "answer": 1,
+        "explain": "«пішов Прокіп — кипить окріп»: he left, and the water is still boiling."
+      }
+    ]
+  },
+  {
+    "id": "uk-proverbs",
+    "kind": "saying",
+    "level": "A2",
+    "title": "Proverbs You Will Hear",
+    "titleNative": "Прислів’я",
+    "summary": "Twelve proverbs people really use in Ukraine. The translation is word for word; the note under it says what people mean.",
+    "lines": [
+      {
+        "tr": "Вік живи — вік учись.",
+        "en": "Live a lifetime, learn a lifetime.",
+        "note": "You never stop learning."
+      },
+      {
+        "tr": "Без труда нема плода.",
+        "en": "Without work there is no fruit.",
+        "note": "No pain, no gain."
+      },
+      {
+        "tr": "Друзі пізнаються в біді.",
+        "en": "Friends are recognised in trouble.",
+        "note": "A friend in need is a friend indeed."
+      },
+      {
+        "tr": "Тихіше їдеш — далі будеш.",
+        "en": "The more quietly you go, the further you will get.",
+        "note": "Slow and steady wins the race."
+      },
+      {
+        "tr": "Не все те золото, що блищить.",
+        "en": "Not everything that shines is gold.",
+        "note": "All that glitters is not gold."
+      },
+      {
+        "tr": "Краще пізно, ніж ніколи.",
+        "en": "Better late than never.",
+        "note": "The same as in English."
+      },
+      {
+        "tr": "Що посієш, те й пожнеш.",
+        "en": "What you sow is what you will reap.",
+        "note": "You reap what you sow."
+      },
+      {
+        "tr": "Яблуко від яблуні недалеко падає.",
+        "en": "The apple falls not far from the apple tree.",
+        "note": "Children take after their parents."
+      },
+      {
+        "tr": "Сім разів відміряй, а раз відріж.",
+        "en": "Measure seven times and cut once.",
+        "note": "Think carefully before you act."
+      },
+      {
+        "tr": "Вовків боятися — в ліс не ходити.",
+        "en": "If you are afraid of wolves, don’t go into the forest.",
+        "note": "Nothing ventured, nothing gained."
+      },
+      {
+        "tr": "Не кажи «гоп», поки не перескочиш.",
+        "en": "Don’t say “hop” until you have jumped over.",
+        "note": "Don’t celebrate too early."
+      },
+      {
+        "tr": "Слово не горобець: вилетить — не спіймаєш.",
+        "en": "A word is not a sparrow: once it flies out, you won’t catch it.",
+        "note": "Think before you speak — you can’t take your words back."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "вік",
+        "en": "a lifetime; an age, a century"
+      },
+      {
+        "tr": "біді",
+        "en": "trouble (from біда)"
+      },
+      {
+        "tr": "золото",
+        "en": "gold"
+      },
+      {
+        "tr": "пізно",
+        "en": "late"
+      },
+      {
+        "tr": "яблуко",
+        "en": "apple"
+      },
+      {
+        "tr": "вовків",
+        "en": "wolves (the form of вовки after “to fear”)"
+      },
+      {
+        "tr": "ліс",
+        "en": "forest"
+      },
+      {
+        "tr": "горобець",
+        "en": "sparrow"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Which proverb tells you to think carefully before you act?",
+        "options": [
+          "Краще пізно, ніж ніколи.",
+          "Сім разів відміряй, а раз відріж.",
+          "Без труда нема плода.",
+          "Вік живи — вік учись."
+        ],
+        "answer": 1,
+        "explain": "Measure seven times and cut once."
+      },
+      {
+        "q": "What does «Яблуко від яблуні недалеко падає» say about people?",
+        "options": [
+          "Children are like their parents",
+          "Apples are good for you",
+          "Neighbours should share",
+          "People should stay at home"
+        ],
+        "answer": 0,
+        "explain": "The apple falls not far from the tree: children take after their parents."
+      },
+      {
+        "q": "Someone is celebrating before the result is known. Which proverb fits?",
+        "options": [
+          "Друзі пізнаються в біді.",
+          "Що посієш, те й пожнеш.",
+          "Не все те золото, що блищить.",
+          "Не кажи «гоп», поки не перескочиш."
+        ],
+        "answer": 3,
+        "explain": "Don’t say “hop” until you have jumped over."
+      },
+      {
+        "q": "In «Слово не горобець», what is a word compared to?",
+        "options": [
+          "A wolf",
+          "An apple",
+          "A sparrow",
+          "Gold"
+        ],
+        "answer": 2,
+        "explain": "«горобець» is a sparrow: once a word has flown out, you can’t catch it."
       }
     ]
   }

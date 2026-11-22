@@ -8,7 +8,7 @@ import * as store from '../js/store.js';
 import * as game from '../js/game.js';
 import { sanitize, mergeGame, mergeAll } from '../js/sync.js';
 import {
-  KINDS, LEVELS, REGISTERS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
+  KINDS, LEVELS, REGISTERS, canPractise, practiceModes, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, markGlossary, glossaryForms, glossaryFound, glossaryMissing, findWord, fadeLine,
   createPlayer, listenTimeout, scoreLine, verdict, clock, recordLimit,
 } from '../js/reader.js';
@@ -507,5 +507,33 @@ test('word pages: the texts a course word appears in, with the line it is first 
     }
     assert.ok(linked >= 150, `${code}: ${linked} words are linked to a text`);
     assert.deepEqual(textsWithWord(lang, texts, 'no-such-word'), []);
+  }
+});
+
+test('proverbs and tongue twisters: practised line by line, with a note under every line', () => {
+  assert.deepEqual(practiceModes({ kind: 'speech' }), ['repeat', 'shadow', 'record']);
+  assert.deepEqual(practiceModes({ kind: 'twister' }), ['repeat', 'shadow']);
+  assert.deepEqual(practiceModes({ kind: 'saying' }), ['repeat', 'shadow']);
+  assert.deepEqual(practiceModes({ kind: 'dialogue' }), []);
+  assert.equal(canPractise({ kind: 'story' }), false);
+  assert.equal(canPractise(null), false);
+  for (const [code, texts] of Object.entries(ALL)) {
+    const lang = languages[code];
+    // Speak → Sounds and the Phrasebook link to these by id.
+    for (const [id, kind] of [[`${code}-tongue-twisters`, 'twister'], [`${code}-proverbs`, 'saying']]) {
+      const t = texts.find((x) => x.id === id);
+      assert.equal(t?.kind, kind, id);
+      for (const l of t.lines) {
+        assert.ok(nonEmpty(l.note), `${id}: note for ${l.tr}`);
+        assert.ok(!l.speaker, `${id}: no speakers`);
+        // What the voice is given instead of the text is the same sentence: its
+        // kana reading, or the text with only some of its kanji spelled out.
+        if (l.say) {
+          const compact = (x) => x.replace(/[\s、。]/g, '');
+          if (/\p{Script=Han}/u.test(l.say)) assert.ok([...l.say].every((ch) => !/\p{Script=Han}/u.test(ch) || l.tr.includes(ch)), `${id}: say for ${l.tr}`);
+          else assert.equal(compact(l.say), compact(l.kana), `${id}: say for ${l.tr}`);
+        }
+      }
+    }
   }
 });

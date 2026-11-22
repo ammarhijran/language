@@ -87,6 +87,7 @@ async function walk(browser, lang, pack, texts) {
   for (const t of texts) await open(`read/${enc(t.id)}`, { wait: 140 });
   const speech = texts.filter((t) => t.kind === 'speech').sort((a, b) => b.lines.length - a.lines.length)[0];
   if (speech) for (const m of ['repeat', 'shadow', 'record']) await open(`read/${enc(speech.id)}/practice/${m}`, { wait: 300 });
+  for (const t of texts.filter((x) => x.kind === 'twister' || x.kind === 'saying')) await open(`read/${enc(t.id)}/practice/repeat`, { wait: 300 });
   const dialogue = texts.find((t) => t.kind === 'dialogue');
   if (dialogue) await open(`read/${enc(dialogue.id)}/roleplay/0`, { wait: 300 });
 

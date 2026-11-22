@@ -134,5 +134,9 @@ export default function phrases(ctx, chipArg, queryArg = '') {
     h('div', { class: 'list-head' }, heading, h('div', { class: 'button-row' }, pairBtn, showBtn)),
     note,
     list,
+    h('a', { class: 'quick-link', href: `#/read/${lang.code}-proverbs` },
+      h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🪶'),
+      h('span', null, h('b', null, 'Proverbs'), h('small', null, 'Sayings people really use, with what they mean')),
+      icon('arrow', 18)),
   );
 }

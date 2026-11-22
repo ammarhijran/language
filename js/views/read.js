@@ -1,7 +1,7 @@
-// Read & Listen: graded dialogues, stories, everyday texts and short speeches.
+// Read & Listen: graded dialogues, stories, everyday texts, speeches, proverbs and tongue twisters.
 //   #/read                         the list, with level and kind filters
 //   #/read/<id>                    the reader: player bar, lines, glossary, questions
-//   #/read/<id>/practice/<mode>    speeches: repeat line by line, shadow, record
+//   #/read/<id>/practice/<mode>    speeches: repeat line by line, shadow, record (proverbs, twisters: repeat, shadow)
 //   #/read/<id>/roleplay/<n>       dialogues: play one of the speakers
 // Texts load on demand (js/reader.js), so the first visit renders a short
 // loading state and fills in; later visits render straight away.
@@ -12,7 +12,7 @@ import * as speech from '../speech.js';
 import { keepScreenOn } from '../native.js';
 import { newCard } from '../srs.js';
 import {
-  KINDS, LEVELS, REGISTERS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
+  KINDS, LEVELS, REGISTERS, canPractise, practiceModes, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, findWord, fadeLine, SHADOW_ROUNDS, createPlayer, listenTimeout,
   scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead, ownTextFor, splitIntoLines, OWN_LINES_MAX, markAll, extraGlossary,
 } from '../reader.js';
@@ -25,6 +25,7 @@ const MODES = [
   { id: 'shadow', emoji: '👥', title: 'Shadowing', short: 'Shadow', hint: 'Speak along with the voice while the text fades out over three rounds.' },
   { id: 'record', emoji: '🎙️', title: 'Record the speech', short: 'Record', hint: 'Give the whole speech, then compare it with the model.' },
 ];
+const modesOf = (text) => MODES.filter((m) => practiceModes(text).includes(m.id));
 const TRANSLATION = { show: 'Shown', tap: 'On tap', hide: 'Hidden' };
 
 // Icons the shared set doesn't have.
@@ -147,6 +148,8 @@ function lineBody(ctx, text, line, { glossary = null, extra = [], onGloss } = {}
     h('p', { class: 'read-tr', ...textAttrs(lang) }, parts),
     readingText(reading, 'reading small read-reading'),
     h('p', { class: 'read-en' }, line.en),
+    // Proverbs and tongue twisters: what it means, or which sounds it trains.
+    line.note ? h('p', { class: 'read-note' }, line.note) : null,
   ];
 }
 
@@ -260,7 +263,7 @@ function listView(ctx, texts, own = []) {
 
   return [
     ...head,
-    h('p', { class: 'muted' }, `${all.length} graded texts with audio line by line: dialogues, short stories, everyday texts and speeches. Tap words for their meaning, then check you understood.`),
+    h('p', { class: 'muted' }, `${all.length} graded texts with audio line by line: dialogues, stories, everyday texts, speeches, proverbs and tongue twisters. Tap words for their meaning, then check you understood.`),
     h('div', { class: 'read-progress' },
       meter(done, all.length, done === all.length ? 'done' : ''),
       h('span', { class: 'muted small' }, `${done} of ${all.length} done`)),
@@ -419,7 +422,7 @@ function textQuiz(ctx, texts, text) {
       xp ? h('p', { class: 'muted' }, `+${xp} XP`) : h('p', { class: 'hint' }, 'XP for a text is counted once a day — your best score is kept.'),
       h('div', { class: 'actions stack' },
         next ? h('a', { class: 'btn primary wide', href: href(next.id) }, `Next: ${next.title}`, icon('arrow', 18)) : null,
-        text.kind === 'speech' ? h('a', { class: 'btn wide', href: href(text.id, 'practice', 'repeat') }, '🎤 Practise this speech') : null,
+        canPractise(text) ? h('a', { class: 'btn wide', href: href(text.id, 'practice', 'repeat') }, text.kind === 'speech' ? '🎤 Practise this speech' : '🎤 Practise saying them') : null,
         canRolePlay(text) ? h('a', { class: 'btn wide', href: href(text.id, 'roleplay') }, '🎭 Role-play this dialogue') : null,
         h('button', { type: 'button', class: 'btn wide', onclick: () => { set(wrap, ...questions()); wrap.querySelector('.option')?.focus(); } }, 'Answer the questions again'),
         h('a', { class: 'btn ghost wide', href: '#/read' }, 'All texts')));
@@ -473,10 +476,10 @@ function textQuiz(ctx, texts, text) {
 // ---------- Reader ----------
 
 function practiceCard(text) {
-  if (text.kind === 'speech') {
+  if (canPractise(text)) {
     return h('section', { class: 'card read-practice' },
-      h('h2', { class: 'card-title' }, '🎤 Practise this speech'),
-      h('div', { class: 'read-modes' }, MODES.map((m) => h('a', { class: 'read-mode', href: href(text.id, 'practice', m.id) },
+      h('h2', { class: 'card-title' }, text.kind === 'speech' ? '🎤 Practise this speech' : '🎤 Practise saying them'),
+      h('div', { class: 'read-modes' }, modesOf(text).map((m) => h('a', { class: 'read-mode', href: href(text.id, 'practice', m.id) },
         h('span', { 'aria-hidden': 'true' }, m.emoji), h('span', null, h('b', null, m.title), h('small', null, m.hint))))));
   }
   if (canRolePlay(text)) {
@@ -836,7 +839,7 @@ function practiceSummary(ctx, text, { emoji, title, lines, mode, practiced, agai
 }
 
 function modeTabs(text, active) {
-  return h('nav', { class: 'tabs read-tabs', 'aria-label': 'Practice mode' }, MODES.map((m) => h('a', {
+  return h('nav', { class: 'tabs read-tabs', 'aria-label': 'Practice mode' }, modesOf(text).map((m) => h('a', {
     href: href(text.id, 'practice', m.id), class: m.id === active ? 'active' : null, 'aria-current': m.id === active ? 'page' : null,
   }, h('span', { 'aria-hidden': 'true' }, `${m.emoji} `), label(m.title, m.short))));
 }
@@ -978,8 +981,10 @@ function shadowMode(ctx, text) {
       title: 'Three rounds of shadowing!',
       mode: 'shadow',
       practiced: 3,
-      lines: ['From the full text to none at all — the speech is getting into your ears and mouth.'],
-      again: h('a', { class: 'btn primary wide', href: href(text.id, 'practice', 'record') }, 'Next: record the whole speech', icon('arrow', 18)),
+      lines: [`From the full text to none at all — ${text.kind === 'speech' ? 'the speech is' : 'they are'} getting into your ears and mouth.`],
+      again: practiceModes(text).includes('record')
+        ? h('a', { class: 'btn primary wide', href: href(text.id, 'practice', 'record') }, 'Next: record the whole speech', icon('arrow', 18))
+        : h('a', { class: 'btn primary wide', href: href(text.id, 'practice', 'repeat') }, 'Listen & repeat again', icon('arrow', 18)),
     }));
     list.el.remove();
   }
@@ -1203,8 +1208,8 @@ function rolePlay(ctx, texts, text, who) {
 // ---------- Route ----------
 
 function practiceView(ctx, texts, text, mode) {
-  if (text.kind !== 'speech') return readerView(ctx, texts, text);
-  const m = MODES.find((x) => x.id === mode) || MODES[0];
+  if (!canPractise(text)) return readerView(ctx, texts, text);
+  const m = modesOf(text).find((x) => x.id === mode) || MODES[0];
   queueMicrotask(() => { document.title = `${m.title} · ${text.title} · Lisan`; });
   const body = m.id === 'shadow' ? shadowMode(ctx, text) : m.id === 'record' ? recordMode(ctx, text) : repeatMode(ctx, text);
   return [...practiceHead(ctx, text, m.title), modeTabs(text, m.id), voiceBanner(ctx), body];

@@ -1,6 +1,6 @@
-// Read & Listen: graded dialogues, stories, everyday texts and short speeches.
+// Read & Listen: graded dialogues, stories, everyday texts, speeches, tongue twisters and proverbs.
 // Each text: { id, kind, level, title, titleNative, summary, dialect?, register?,
-//   lines: [{ speaker?, tr, en, kana }], glossary: [{ tr, en, kana }],
+//   lines: [{ speaker?, tr, en, kana, note?, say? }], glossary: [{ tr, en, kana }],
 //   questions: [{ q, options[4], answer, explain }] }.
 // Written and proofread with AI assistance; not yet reviewed by native speakers. Edit freely.
 // Loaded on demand (not at startup).
@@ -4495,6 +4495,360 @@ export const texts = [
         ],
         "answer": 3,
         "explain": "「おもちを食べすぎて、三日間で二キロも太ってしまいました。」"
+      }
+    ]
+  },
+  {
+    "id": "ja-tongue-twisters",
+    "kind": "twister",
+    "level": "B1",
+    "title": "Tongue Twisters",
+    "titleNative": "早口言葉",
+    "summary": "Nine classic Japanese tongue twisters (hayakuchi kotoba). Say each one slowly first, then three times fast.",
+    "lines": [
+      {
+        "tr": "生麦生米生卵。",
+        "en": "Raw wheat, raw rice, raw egg.",
+        "kana": "なまむぎ なまごめ なまたまご",
+        "note": "Trains m and g between vowels. Notice that 米 (kome) becomes ごめ after 生.",
+        "say": "なまむぎ、なまごめ、なまたまご。"
+      },
+      {
+        "tr": "隣の客はよく柿食う客だ。",
+        "en": "The guest next door is a guest who eats a lot of persimmons.",
+        "kana": "となり の きゃく は よく かき くう きゃく だ",
+        "note": "Trains きゃ against か and く.",
+        "say": "隣の客はよくかきくう客だ。"
+      },
+      {
+        "tr": "赤巻紙、青巻紙、黄巻紙。",
+        "en": "Red rolled paper, blue rolled paper, yellow rolled paper.",
+        "kana": "あかまきがみ あおまきがみ きまきがみ",
+        "note": "Trains k, m and g. 紙 (kami) becomes がみ at the end of a longer word.",
+        "say": "あかまきがみ、あおまきがみ、きまきがみ。"
+      },
+      {
+        "tr": "東京特許許可局。",
+        "en": "The Tokyo Patent Licensing Office.",
+        "kana": "とうきょう とっきょ きょかきょく",
+        "note": "Trains きょ and the small っ. The office is made up — it exists only in this tongue twister.",
+        "say": "東京とっきょきょかきょく。"
+      },
+      {
+        "tr": "すもももももももものうち。",
+        "en": "Plums and peaches are both kinds of peach.",
+        "kana": "すもも も もも も もも の うち",
+        "note": "Nothing but も: read it as sumomo mo / momo mo / momo no uchi.",
+        "say": "すももも、ももも、もものうち。"
+      },
+      {
+        "tr": "坊主が屏風に上手に坊主の絵を描いた。",
+        "en": "The monk skilfully painted a picture of a monk on the folding screen.",
+        "kana": "ぼうず が びょうぶ に じょうず に ぼうず の え を かいた",
+        "note": "Trains the long vowels in ぼう, びょう and じょう.",
+        "say": "坊主がびょうぶにじょうずに坊主のえをかいた。"
+      },
+      {
+        "tr": "庭には二羽鶏がいる。",
+        "en": "There are two chickens in the garden.",
+        "kana": "にわ に は にわ にわとり が いる",
+        "note": "にわ four times: 庭 “garden”, the particles に は (said “ni wa”), 二羽 “two birds” and 鶏 “chicken”.",
+        "say": "にわにはにわ、にわとりがいる。"
+      },
+      {
+        "tr": "この釘は引き抜きにくい釘だ。",
+        "en": "This nail is a nail that is hard to pull out.",
+        "kana": "この くぎ は ひきぬきにくい くぎ だ",
+        "note": "Trains k and g with the vowels i and u: kugi, hikinuki-nikui."
+      },
+      {
+        "tr": "かえるぴょこぴょこ三ぴょこぴょこ、合わせてぴょこぴょこ六ぴょこぴょこ。",
+        "en": "Frogs go hop-hop, three hop-hops; together that makes hop-hop, six hop-hops.",
+        "kana": "かえる ぴょこぴょこ みぴょこぴょこ あわせて ぴょこぴょこ むぴょこぴょこ",
+        "note": "Trains ぴょ. Here 三 and 六 are read み and む, the old Japanese way of counting.",
+        "say": "かえるぴょこぴょこ、みぴょこぴょこ、あわせてぴょこぴょこ、むぴょこぴょこ。"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "生卵",
+        "en": "raw egg",
+        "kana": "なまたまご"
+      },
+      {
+        "tr": "隣",
+        "en": "next door",
+        "kana": "となり"
+      },
+      {
+        "tr": "客",
+        "en": "guest; customer",
+        "kana": "きゃく"
+      },
+      {
+        "tr": "柿",
+        "en": "persimmon",
+        "kana": "かき"
+      },
+      {
+        "tr": "坊主",
+        "en": "a Buddhist monk (informal)",
+        "kana": "ぼうず"
+      },
+      {
+        "tr": "上手に",
+        "en": "skilfully",
+        "kana": "じょうずに"
+      },
+      {
+        "tr": "庭",
+        "en": "garden",
+        "kana": "にわ"
+      },
+      {
+        "tr": "鶏",
+        "en": "chicken",
+        "kana": "にわとり"
+      },
+      {
+        "tr": "釘",
+        "en": "nail",
+        "kana": "くぎ"
+      }
+    ],
+    "questions": [
+      {
+        "q": "What does the guest next door eat a lot of?",
+        "options": [
+          "Raw eggs",
+          "Persimmons",
+          "Peaches",
+          "Rice"
+        ],
+        "answer": 1,
+        "explain": "«よく柿食う客» — a guest who often eats persimmons (柿, かき)."
+      },
+      {
+        "q": "Where did the monk paint his picture?",
+        "options": [
+          "On rolled paper",
+          "In the garden",
+          "On a folding screen",
+          "On a nail"
+        ],
+        "answer": 2,
+        "explain": "«屏風に» — on a folding screen (びょうぶ)."
+      },
+      {
+        "q": "How many chickens are in the garden?",
+        "options": [
+          "Two",
+          "Three",
+          "Six",
+          "None"
+        ],
+        "answer": 0,
+        "explain": "«二羽» (にわ) is “two birds”: 羽 is the counter for birds."
+      },
+      {
+        "q": "What is special about 東京特許許可局?",
+        "options": [
+          "It is the oldest office in Tokyo",
+          "It is where tongue twisters are registered",
+          "It is in Kyoto, not Tokyo",
+          "It is not a real office — it was made up for the tongue twister"
+        ],
+        "answer": 3,
+        "explain": "There is no such office; the name was put together because きょ and っ are hard to say in a row."
+      }
+    ]
+  },
+  {
+    "id": "ja-proverbs",
+    "kind": "saying",
+    "level": "A2",
+    "title": "Proverbs You Will Hear",
+    "titleNative": "ことわざ",
+    "summary": "Thirteen proverbs and four-character sayings that Japanese people really use. The translation is word for word; the note under it says what people mean.",
+    "lines": [
+      {
+        "tr": "猿も木から落ちる。",
+        "en": "Even monkeys fall from trees.",
+        "kana": "さる も き から おちる",
+        "note": "Even experts make mistakes."
+      },
+      {
+        "tr": "七転び八起き。",
+        "en": "Fall seven times, get up eight.",
+        "kana": "ななころび やおき",
+        "note": "Never give up, however many times you fail.",
+        "say": "ななころびやおき。"
+      },
+      {
+        "tr": "花より団子。",
+        "en": "Dumplings rather than flowers.",
+        "kana": "はな より だんご",
+        "note": "Practical things matter more than pretty ones — said of someone who goes to see the cherry blossom for the food."
+      },
+      {
+        "tr": "急がば回れ。",
+        "en": "If you are in a hurry, go the long way round.",
+        "kana": "いそがば まわれ",
+        "note": "More haste, less speed: the safe way is quicker in the end."
+      },
+      {
+        "tr": "石の上にも三年。",
+        "en": "Three years, even on a stone.",
+        "kana": "いし の うえ に も さんねん",
+        "note": "Sit on a cold stone for three years and it gets warm: patience pays off."
+      },
+      {
+        "tr": "ちりも積もれば山となる。",
+        "en": "Even dust, if it piles up, becomes a mountain.",
+        "kana": "ちり も つもれば やま と なる",
+        "note": "Small efforts add up."
+      },
+      {
+        "tr": "十人十色。",
+        "en": "Ten people, ten colours.",
+        "kana": "じゅうにん といろ",
+        "note": "Everyone has their own tastes and opinions.",
+        "say": "じゅうにんといろ。"
+      },
+      {
+        "tr": "一石二鳥。",
+        "en": "One stone, two birds.",
+        "kana": "いっせき にちょう",
+        "note": "To kill two birds with one stone.",
+        "say": "いっせきにちょう。"
+      },
+      {
+        "tr": "郷に入っては郷に従え。",
+        "en": "When you enter a village, follow the village.",
+        "kana": "ごう に いって は ごう に したがえ",
+        "note": "When in Rome, do as the Romans do.",
+        "say": "ごうにいってはごうにしたがえ。"
+      },
+      {
+        "tr": "百聞は一見にしかず。",
+        "en": "Hearing about it a hundred times is not as good as seeing it once.",
+        "kana": "ひゃくぶん は いっけん に しかず",
+        "note": "Seeing is believing.",
+        "say": "ひゃくぶんはいっけんにしかず。"
+      },
+      {
+        "tr": "出る杭は打たれる。",
+        "en": "The stake that sticks out gets hammered down.",
+        "kana": "でる くい は うたれる",
+        "note": "People who stand out get criticised — often quoted about fitting in with the group.",
+        "say": "でるくいはうたれる。"
+      },
+      {
+        "tr": "笑う門には福来る。",
+        "en": "Good fortune comes to the gate of those who laugh.",
+        "kana": "わらう かど に は ふく きたる",
+        "note": "A cheerful home attracts good luck.",
+        "say": "わらうかどにはふくきたる。"
+      },
+      {
+        "tr": "継続は力なり。",
+        "en": "Keeping going is strength.",
+        "kana": "けいぞく は ちから なり",
+        "note": "Steady practice is what makes you good — a favourite of teachers and language learners.",
+        "say": "けいぞくはちからなり。"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "猿",
+        "en": "monkey",
+        "kana": "さる"
+      },
+      {
+        "tr": "団子",
+        "en": "sweet rice dumplings",
+        "kana": "だんご"
+      },
+      {
+        "tr": "急がば",
+        "en": "if you hurry (an old form of 急げば)",
+        "kana": "いそがば"
+      },
+      {
+        "tr": "石",
+        "en": "stone",
+        "kana": "いし"
+      },
+      {
+        "tr": "山",
+        "en": "mountain",
+        "kana": "やま"
+      },
+      {
+        "tr": "十人",
+        "en": "ten people",
+        "kana": "じゅうにん"
+      },
+      {
+        "tr": "郷",
+        "en": "a village; one’s home district",
+        "kana": "ごう"
+      },
+      {
+        "tr": "杭",
+        "en": "a stake, a post",
+        "kana": "くい"
+      },
+      {
+        "tr": "福",
+        "en": "good fortune",
+        "kana": "ふく"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Which proverb means “even experts make mistakes”?",
+        "options": [
+          "花より団子。",
+          "急がば回れ。",
+          "猿も木から落ちる。",
+          "一石二鳥。"
+        ],
+        "answer": 2,
+        "explain": "Even monkeys fall from trees."
+      },
+      {
+        "q": "What does 花より団子 say about a person?",
+        "options": [
+          "They prefer practical things, like food, to beautiful ones",
+          "They love flowers more than anything",
+          "They never share their food",
+          "They are always late"
+        ],
+        "answer": 0,
+        "explain": "Dumplings rather than flowers: substance over looks."
+      },
+      {
+        "q": "A friend wants to give up after failing an exam twice. Which proverb would encourage them?",
+        "options": [
+          "十人十色。",
+          "七転び八起き。",
+          "出る杭は打たれる。",
+          "百聞は一見にしかず。"
+        ],
+        "answer": 1,
+        "explain": "Fall seven times, get up eight."
+      },
+      {
+        "q": "What happens to 出る杭, the stake that sticks out?",
+        "options": [
+          "It becomes a mountain",
+          "It brings good fortune",
+          "It falls from a tree",
+          "It gets hammered down"
+        ],
+        "answer": 3,
+        "explain": "«打たれる» — it gets hit: people who stand out are criticised."
       }
     ]
   }

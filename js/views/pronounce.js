@@ -119,7 +119,12 @@ function sounds(ctx) {
       h('div', { class: 'chip-row' }, t.examples.map(([w, en]) =>
         h('button', { type: 'button', class: 'chip', onclick: () => ctx.say(w, { slow: true }) },
           icon('volume', 14), h('b', { lang: lang.code }, w), h('span', null, en)))),
-    )));
+    )),
+    // The sounds put together at speed (a text in Read & Listen).
+    h('a', { class: 'quick-link', href: `#/read/${lang.code}-tongue-twisters` },
+      h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '👅'),
+      h('span', null, h('b', null, 'Tongue twisters'), h('small', null, 'Put the sounds together: listen, repeat, speed up')),
+      icon('arrow', 18)));
 }
 
 function ear(ctx) {

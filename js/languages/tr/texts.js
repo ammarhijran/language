@@ -1,6 +1,6 @@
-// Read & Listen: graded dialogues, stories, everyday texts and short speeches.
+// Read & Listen: graded dialogues, stories, everyday texts, speeches, tongue twisters and proverbs.
 // Each text: { id, kind, level, title, titleNative, summary, dialect?, register?,
-//   lines: [{ speaker?, tr, en }], glossary: [{ tr, en }],
+//   lines: [{ speaker?, tr, en, note? }], glossary: [{ tr, en }],
 //   questions: [{ q, options[4], answer, explain }] }.
 // Written and proofread with AI assistance; not yet reviewed by native speakers. Edit freely.
 // Loaded on demand (not at startup).
@@ -3880,6 +3880,286 @@ export const texts = [
         ],
         "answer": 3,
         "explain": "“Birçok insan bayramı ailesiyle geçirmek için memleketine gider.”"
+      }
+    ]
+  },
+  {
+    "id": "tr-tongue-twisters",
+    "kind": "twister",
+    "level": "B1",
+    "title": "Tongue Twisters",
+    "titleNative": "Tekerlemeler",
+    "summary": "Eight classic Turkish tongue twisters. Say each one slowly first, then faster — every one trains a particular pair of sounds.",
+    "lines": [
+      {
+        "tr": "Bir berber bir berbere gel beraber bir berber dükkânı açalım demiş.",
+        "en": "One barber said to another barber: come, let’s open a barber’s shop together.",
+        "note": "Trains b and r, and the switch between berber and beraber."
+      },
+      {
+        "tr": "Şu köşe yaz köşesi, şu köşe kış köşesi, ortada su şişesi.",
+        "en": "This corner is the summer corner, that corner is the winter corner, and in the middle is a water bottle.",
+        "note": "Trains ş (sh) against s, and the vowel ö."
+      },
+      {
+        "tr": "Kartal kalkar dal sarkar, dal sarkar kartal kalkar.",
+        "en": "The eagle takes off and the branch droops; the branch droops and the eagle takes off.",
+        "note": "Trains r right before l and k."
+      },
+      {
+        "tr": "Üç tunç tas has hoşaf.",
+        "en": "Three bronze bowls of pure fruit compote.",
+        "note": "Short but hard: ç, s and ş one after another."
+      },
+      {
+        "tr": "Bu yoğurdu sarımsaklasak da mı saklasak, sarımsaklamasak da mı saklasak?",
+        "en": "Should we put garlic in this yoghurt before we store it, or store it without garlic?",
+        "note": "Trains long words built from endings, and the soft ğ in yoğurt."
+      },
+      {
+        "tr": "Kırk küp, kırkının da kulpu kırık küp.",
+        "en": "Forty jars, and all forty are jars with a broken handle.",
+        "note": "Trains k with the vowels ı, u and ü."
+      },
+      {
+        "tr": "Değirmene girdi köpek, değirmenci çaldı kötek; hem kepek yedi köpek, hem kötek yedi köpek.",
+        "en": "A dog got into the mill and the miller gave it a beating; the dog ate the bran and got the beating as well.",
+        "note": "Trains ö against e: köpek (dog), kepek (bran), kötek (a beating)."
+      },
+      {
+        "tr": "Hakkı, Hakkı’nın hakkını yemiş; Hakkı da Hakkı’dan hakkını istemiş.",
+        "en": "Hakkı cheated Hakkı out of his due, so Hakkı asked Hakkı for what was his.",
+        "note": "A pun: Hakkı is a man’s name, and hak means “a right, what you are owed”. Trains the double k and the vowel ı."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "berber",
+        "en": "barber"
+      },
+      {
+        "tr": "berber dükkânı",
+        "en": "a barber’s shop"
+      },
+      {
+        "tr": "köşe",
+        "en": "corner"
+      },
+      {
+        "tr": "kartal",
+        "en": "eagle"
+      },
+      {
+        "tr": "dal",
+        "en": "branch"
+      },
+      {
+        "tr": "küp",
+        "en": "a large clay jar"
+      },
+      {
+        "tr": "değirmenci",
+        "en": "miller"
+      },
+      {
+        "tr": "köpek",
+        "en": "dog"
+      }
+    ],
+    "questions": [
+      {
+        "q": "What do the two barbers want to do?",
+        "options": [
+          "Close their shop",
+          "Open a barber’s shop together",
+          "Go on holiday together",
+          "Learn a new trade"
+        ],
+        "answer": 1,
+        "explain": "«gel beraber bir berber dükkânı açalım» — “come, let’s open a barber’s shop together”."
+      },
+      {
+        "q": "What stands in the middle, between the summer corner and the winter corner?",
+        "options": [
+          "A water bottle",
+          "A bronze bowl",
+          "A clay jar",
+          "A branch"
+        ],
+        "answer": 0,
+        "explain": "«ortada su şişesi» — “in the middle, a water bottle”."
+      },
+      {
+        "q": "What is wrong with the forty jars?",
+        "options": [
+          "They are empty",
+          "They are too small",
+          "They are full of garlic",
+          "Their handles are broken"
+        ],
+        "answer": 3,
+        "explain": "«kulpu kırık küp» is a jar with a broken handle."
+      },
+      {
+        "q": "In the last twister, what does «hak» mean?",
+        "options": [
+          "A kind of bread",
+          "A beating",
+          "A right — what someone is owed",
+          "A shop"
+        ],
+        "answer": 2,
+        "explain": "Hakkı is a name, but «birinin hakkını yemek» means to cheat someone of what they are owed."
+      }
+    ]
+  },
+  {
+    "id": "tr-proverbs",
+    "kind": "saying",
+    "level": "A2",
+    "title": "Proverbs You Will Hear",
+    "titleNative": "Atasözleri",
+    "summary": "Twelve proverbs people really use in Turkey. The translation is word for word; the note under it says what people mean.",
+    "lines": [
+      {
+        "tr": "Damlaya damlaya göl olur.",
+        "en": "Drop by drop, a lake forms.",
+        "note": "Small amounts add up — said about saving money or learning a little every day."
+      },
+      {
+        "tr": "Bir elin nesi var, iki elin sesi var.",
+        "en": "What does one hand have? Two hands have a sound.",
+        "note": "People achieve more together: it takes two hands to clap."
+      },
+      {
+        "tr": "Ağaç yaşken eğilir.",
+        "en": "A tree is bent while it is young.",
+        "note": "Habits and manners are learned early in life."
+      },
+      {
+        "tr": "Acele işe şeytan karışır.",
+        "en": "The devil gets mixed up in hurried work.",
+        "note": "Haste makes waste."
+      },
+      {
+        "tr": "Bugünün işini yarına bırakma.",
+        "en": "Don’t leave today’s work for tomorrow.",
+        "note": "Don’t put things off."
+      },
+      {
+        "tr": "Tatlı dil yılanı deliğinden çıkarır.",
+        "en": "A sweet tongue brings the snake out of its hole.",
+        "note": "Kind words get you further than harsh ones."
+      },
+      {
+        "tr": "Dost kara günde belli olur.",
+        "en": "A friend becomes clear on a dark day.",
+        "note": "A friend in need is a friend indeed."
+      },
+      {
+        "tr": "Bir fincan kahvenin kırk yıl hatırı vardır.",
+        "en": "A cup of coffee is remembered for forty years.",
+        "note": "A small kindness is not forgotten — often said when offering or accepting a coffee."
+      },
+      {
+        "tr": "Üzüm üzüme baka baka kararır.",
+        "en": "Grapes darken by looking at one another.",
+        "note": "You become like the people you spend your time with."
+      },
+      {
+        "tr": "Ne ekersen onu biçersin.",
+        "en": "Whatever you sow, that is what you reap.",
+        "note": "You reap what you sow."
+      },
+      {
+        "tr": "Gülü seven dikenine katlanır.",
+        "en": "Whoever loves the rose puts up with its thorn.",
+        "note": "If you love someone or something, you accept the difficult parts too."
+      },
+      {
+        "tr": "Sakla samanı, gelir zamanı.",
+        "en": "Keep the straw; its time will come.",
+        "note": "Don’t throw things away — they will be useful one day."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "göl",
+        "en": "lake"
+      },
+      {
+        "tr": "ağaç",
+        "en": "tree"
+      },
+      {
+        "tr": "şeytan",
+        "en": "the devil"
+      },
+      {
+        "tr": "tatlı dil",
+        "en": "a sweet tongue: kind words"
+      },
+      {
+        "tr": "dost",
+        "en": "a close friend"
+      },
+      {
+        "tr": "kara gün",
+        "en": "a dark day: hard times"
+      },
+      {
+        "tr": "üzüm",
+        "en": "grapes"
+      },
+      {
+        "tr": "samanı",
+        "en": "the straw (saman + -ı)"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Your friend saves a little money every month. Which proverb encourages them?",
+        "options": [
+          "Acele işe şeytan karışır.",
+          "Gülü seven dikenine katlanır.",
+          "Damlaya damlaya göl olur.",
+          "Dost kara günde belli olur."
+        ],
+        "answer": 2,
+        "explain": "Drop by drop, a lake forms: small amounts add up."
+      },
+      {
+        "q": "Someone is rushing a job and making mistakes. Which proverb fits?",
+        "options": [
+          "Acele işe şeytan karışır.",
+          "Ağaç yaşken eğilir.",
+          "Üzüm üzüme baka baka kararır.",
+          "Sakla samanı, gelir zamanı."
+        ],
+        "answer": 0,
+        "explain": "The devil gets mixed up in hurried work — haste makes waste."
+      },
+      {
+        "q": "What does «Dost kara günde belli olur» mean?",
+        "options": [
+          "Friends should meet every day",
+          "Old friends are the best friends",
+          "A friend will lend you money",
+          "You find out who your real friends are in hard times"
+        ],
+        "answer": 3,
+        "explain": "«kara gün» is a dark day: hard times show who your friends are."
+      },
+      {
+        "q": "When do people say «Bir fincan kahvenin kırk yıl hatırı vardır»?",
+        "options": [
+          "When the coffee is too expensive",
+          "When offering or accepting a coffee, to say that a small kindness matters",
+          "When someone drinks too much coffee",
+          "When a café is closed"
+        ],
+        "answer": 1,
+        "explain": "One cup of coffee is remembered for forty years: a small kindness is not forgotten."
       }
     ]
   }

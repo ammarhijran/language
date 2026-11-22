@@ -132,6 +132,8 @@
 .read-reading { margin-top: .1rem !important; overflow-wrap: anywhere; }
 .read-en { margin-top: .15rem !important; color: var(--muted); font-size: var(--fs-sm); overflow-wrap: anywhere; }
 .read-en:focus { outline: none; }
+/* Under a proverb or a tongue twister: what it means, or the sounds it trains. */
+.read-note { margin-top: .2rem !important; padding-inline-start: .55rem; border-inline-start: 2px solid var(--border); color: var(--muted); font-size: var(--fs-sm); overflow-wrap: anywhere; }
 
 /* Glossary words inside a line: dotted underline, a button for tap and keyboard. */
 button.gloss {
@@ -146,8 +148,9 @@ button.gloss-course { text-decoration-color: color-mix(in srgb, var(--muted) 60%
 
 /* Translation: shown, tap to show, hidden. Reading line on or off. */
 .read-reveal { display: none; margin-top: .1rem; }
-.read-lines.tr-hide .read-en { display: none; }
-.read-lines.tr-tap .read-line:not(.revealed) .read-en { display: none; }
+.read-lines.tr-hide .read-en, .read-lines.tr-hide .read-note { display: none; }
+.read-lines.tr-tap .read-line:not(.revealed) .read-en,
+.read-lines.tr-tap .read-line:not(.revealed) .read-note { display: none; }
 .read-lines.tr-tap .read-line:not(.revealed) .read-reveal { display: inline-block; }
 .read-lines.no-reading .read-reading { display: none; }
 
@@ -156,6 +159,7 @@ button.gloss-course { text-decoration-color: color-mix(in srgb, var(--muted) 60%
 .read-lines.listen-first .read-tr,
 .read-lines.listen-first .read-reading,
 .read-lines.listen-first .read-en,
+.read-lines.listen-first .read-note,
 .read-lines.listen-first .read-reveal { display: none; }
 .read-lines.listen-first .read-mask, .read-mask.on { display: block; }
 .read-line.current .read-mask { background: color-mix(in srgb, var(--hl) 30%, var(--surface-2)); }

@@ -13,7 +13,14 @@ export const KINDS = {
   story: { emoji: '📖', label: 'Stories', one: 'Story' },
   everyday: { emoji: '🧾', label: 'Everyday', one: 'Everyday text' },
   speech: { emoji: '🎤', label: 'Speeches', one: 'Speech' },
+  twister: { emoji: '👅', label: 'Tongue twisters', one: 'Tongue twisters' },
+  saying: { emoji: '🪶', label: 'Proverbs', one: 'Proverbs' },
 };
+
+/** Texts made for saying aloud: line-by-line practice (repeat, shadow) is offered for them. */
+export const canPractise = (text) => ['speech', 'twister', 'saying'].includes(text?.kind);
+/** Recording "the whole thing" only makes sense for a speech. */
+export const practiceModes = (text) => (text?.kind === 'speech' ? ['repeat', 'shadow', 'record'] : canPractise(text) ? ['repeat', 'shadow'] : []);
 
 export const REGISTERS = {
   casual: { label: 'Casual', cls: 'reg-casual' },
@@ -52,12 +59,12 @@ export function loadTexts(code) {
 /** The "Read & Listen" card on the Learn screen; the text count fills in once loaded. */
 export function readLink(ctx) {
   const { lang } = ctx;
-  const small = h('small', null, 'Dialogues, stories and short speeches');
+  const small = h('small', null, 'Dialogues, stories, speeches and proverbs');
   const fill = (texts) => {
     ctx.game.registerTexts?.(lang.code, texts.map((t) => t.id));
     const done = texts.filter((t) => ctx.game.textBest(lang.code, t.id) != null).length;
     small.textContent = texts.length
-      ? `${texts.length} texts · dialogues, stories and speeches${done ? ` · ${done} done` : ''}`
+      ? `${texts.length} texts · dialogues, stories, speeches, proverbs${done ? ` · ${done} done` : ''}`
       : 'Coming soon: dialogues, stories and speeches';
   };
   const cached = cachedTexts(lang.code);
