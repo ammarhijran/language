@@ -1,4 +1,4 @@
-import { languages, defaultLanguage } from './languages/index.js';
+import { loadLanguage } from './languages/index.js';
 import * as store from './store.js';
 import * as speech from './speech.js';
 import { h, icon, toast, set } from './ui.js';
@@ -34,7 +34,8 @@ import me from './views/me.js';
 // restored from native storage, so wait for that before anything reads settings.
 await store.init();
 
-const lang = languages[store.getSettings().lang] || languages[defaultLanguage];
+// Only the language being learned is loaded (the others' names and counts are in languages/meta.js).
+const lang = await loadLanguage(store.getSettings().lang);
 
 const ROUTES = {
   '': home,
@@ -379,6 +380,20 @@ function planReminders() {
   });
 }
 ctx.planReminders = planReminders;
+
+// Achievements such as "learn a topic in every language" need numbers from
+// the other languages' packs. They are remembered per device; load a pack only
+// when its numbers are missing (first run after an update, a sync, an import).
+async function summariseLanguages({ fresh = false } = {}) {
+  if (fresh) game.forgetSummaries();
+  const codes = game.languagesToSummarise();
+  if (!codes.length) return;
+  try {
+    await Promise.all(codes.map(loadLanguage));
+    game.refresh(lang.code);
+  } catch (e) { console.error(e); }
+}
+ctx.summariseLanguages = summariseLanguages;
 window.addEventListener('lisan:goal-reached', planReminders);
 onReminderTap((route) => ctx.go(route));
 window.addEventListener('lisan:activity', (e) => game.checkRepair(e.detail?.lang || lang.code));
@@ -395,3 +410,4 @@ render();
 // register the service worker (offline files, update prompt).
 bootDone(ctx);
 planReminders();
+(window.requestIdleCallback || ((fn) => setTimeout(fn, 2000)))(() => summariseLanguages());

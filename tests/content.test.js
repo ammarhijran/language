@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { languages } from '../js/languages/index.js';
+import { languages } from './all-languages.js';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 
@@ -138,4 +138,11 @@ test('every Japanese and Arabic example sentence has a reading', async () => {
     for (const ch of toH(kana.replace(/ /g, ''))) if (ch === want[i]) i++;
     assert.equal(i, want.length, `ja reading misses kana of “${sentence}”: ${kana}`);
   }
+});
+
+test('languages/meta.js matches the packs (run: node scripts/lang-meta.mjs)', async () => {
+  const { meta } = await import('../js/languages/index.js');
+  const { metaOf } = await import('../scripts/lang-meta.mjs');
+  assert.deepEqual(Object.keys(meta), Object.keys(languages));
+  for (const L of Object.values(languages)) assert.deepEqual(meta[L.code], metaOf(L), `${L.code}: meta.js is out of date`);
 });

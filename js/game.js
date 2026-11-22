@@ -2,7 +2,7 @@
 // and personal goals. Pure logic on top of store.js; the UI listens for
 // rewards with onReward() and decides how to celebrate them.
 import * as store from './store.js';
-import { languages } from './languages/index.js';
+import { meta, loaded } from './languages/index.js';
 import { status, AGAIN, HARD, DAY } from './srs.js';
 
 // Topics in the biggest course: 'every topic' scales with the content, and a
@@ -14,7 +14,47 @@ function addDays(date, n) {
   return d;
 }
 
-const ALL_TOPICS = Math.max(...Object.values(languages).map((L) => L.categories.length));
+const ALL_TOPICS = Math.max(...Object.values(meta).map((m) => m.topics));
+
+// What achievements need from a language's pack: topics learned and everyday
+// / slang words learned. Only the language being learned is loaded, so these
+// are computed while a pack is loaded and remembered on the device for the
+// others (a language's progress only changes while it is the active one, or
+// through a sync / import, after which the packs involved are loaded).
+const SUM_KEY = 'lisan:langsum';
+let sums = null;
+function readSums() {
+  if (sums) return sums;
+  try { sums = JSON.parse(localStorage.getItem(SUM_KEY) || '{}') || {}; } catch { sums = {}; }
+  return sums;
+}
+function packSummary(code, cards) {
+  const L = loaded(code);
+  const all = readSums();
+  if (!L) {
+    const s = all[code];
+    return s && Number.isFinite(s.topics) ? s : { topics: 0, complete: false, talk: 0 };
+  }
+  const topics = L.categories.filter((c) => topicLearned(L.wordsIn(c.id), cards)).length;
+  const talk = L.words.filter((w) => (w.reg === 'casual' || w.reg === 'slang') && cards[w.id] && !cards[w.id].known).length;
+  const sum = { topics, complete: topics === L.categories.length, talk };
+  const old = all[code];
+  if (!old || old.topics !== sum.topics || old.complete !== sum.complete || old.talk !== sum.talk) {
+    all[code] = sum;
+    try { localStorage.setItem(SUM_KEY, JSON.stringify(all)); } catch { /* derived data: recomputed when the pack loads */ }
+  }
+  return sum;
+}
+/** Forget the remembered numbers (after a sync or import changed other languages). */
+export function forgetSummaries() {
+  sums = {};
+  try { localStorage.removeItem(SUM_KEY); } catch { /* nothing stored */ }
+}
+/** Languages with progress whose pack-based numbers aren't known on this device yet. */
+export function languagesToSummarise() {
+  const all = readSums();
+  return Object.keys(meta).filter((code) => !loaded(code) && !all[code] && Object.keys(store.getCards(code)).length > 0);
+}
 
 // ---------- XP ----------
 
@@ -272,7 +312,7 @@ export function metrics() {
   const s = g();
   let words = 0; let mastered = 0; let langs = 0; let topics = 0; let topicsInLang = 0; let streakNow = 0; let alphabet = 0;
   let grammar = 0; let grammarAll = 0; let grammarPerfect = 0; let talkWords = 0; let texts = 0; let textsAll = 0;
-  for (const [code, L] of Object.entries(languages)) {
+  for (const [code, M] of Object.entries(meta)) {
     const cards = store.getCards(code);
     const ids = Object.keys(cards);
     if (ids.some((id) => !cards[id].known)) langs++;
@@ -280,17 +320,17 @@ export function metrics() {
       if (!cards[id].known) words++;
       if (status(cards[id]) === 'mastered') mastered++;
     }
-    const done = L.categories.filter((c) => topicLearned(L.wordsIn(c.id), cards)).length;
-    topics += done;
-    topicsInLang = Math.max(topicsInLang, done === L.categories.length ? ALL_TOPICS : done);
+    const sum = packSummary(code, cards);
+    topics += sum.topics;
+    topicsInLang = Math.max(topicsInLang, sum.complete ? ALL_TOPICS : sum.topics);
     streakNow = Math.max(streakNow, store.streak(code));
-    if ((s.letters[code] || []).length >= L.alphabet.length) alphabet++;
+    if ((s.letters[code] || []).length >= M.alphabet) alphabet++;
     const g = s.grammar[code] || {};
-    const doneIds = Object.keys(g).filter((id) => (L.grammar || []).some((l) => l.id === id));
+    const doneIds = Object.keys(g).filter((id) => M.grammar.includes(id));
     grammar += doneIds.length;
     grammarPerfect += doneIds.filter((id) => g[id] >= 1).length;
-    if (L.grammar?.length && doneIds.length >= L.grammar.length) grammarAll++;
-    talkWords += L.words.filter((w) => (w.reg === 'casual' || w.reg === 'slang') && cards[w.id] && !cards[w.id].known).length;
+    if (M.grammar.length && doneIds.length >= M.grammar.length) grammarAll++;
+    talkWords += sum.talk;
     const t = textsDone(s, code);
     texts += t.length;
     if (textIds[code]?.size && t.length >= textIds[code].size) textsAll++;

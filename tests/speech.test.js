@@ -30,7 +30,7 @@ const setNavigator = (value) => Object.defineProperty(globalThis, 'navigator', {
 setNavigator({ userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/130', onLine: true });
 
 const speech = await import('../js/speech.js');
-const { languages } = await import('../js/languages/index.js');
+const { languages } = await import('./all-languages.js');
 const { pauseBetweenWords } = await import('../js/languages/common.js');
 const { alignReading, readAmbiguous, pausedJapanese } = await import('../js/languages/ja/kana.js');
 const { spokenArabic, pausalWord, egyptianRespell, alignTranslit } = await import('../js/languages/ar/translit.js');

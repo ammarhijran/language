@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Only your language is loaded:** the app starts with just the pack being learned (the others load on demand — language switch, a sync that brings their progress). First render on a slow phone CPU 628 → 493 ms, 22 fewer files, about a third less memory; the website also preloads its modules instead of discovering them one level at a time.
 - **Daily reminder** in the Android and iOS apps (Settings → Daily reminder): a local notification at the time you choose that says what is waiting, skips today once your goal is met, and stops by itself after two weeks without opening the app. No exact-alarm permission is used; nothing leaves the device.
 - **Design pass:**
   - Arabic and Japanese render in proper Naskh / Japanese fonts at readable sizes, Arabic examples line up with their transliteration, and Japanese readings never leave a dangling "·".

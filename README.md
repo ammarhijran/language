@@ -178,7 +178,7 @@ js/languages/tr/ uk/ ja/ ar/   language packs: vocab.js (core), more.js (everyda
 
 ## Adding a language
 
-Each language is a pack in `js/languages/<code>/`, built with `makePack()` from `js/languages/common.js`. The documentation is at the top of that file; register the pack in `js/languages/index.js`.
+Each language is a pack in `js/languages/<code>/`, built with `makePack()` from `js/languages/common.js` (documented at the top of that file). The app loads only the pack being learned; names, flags and counts for the others come from the generated `js/languages/meta.js`. To add a language: create its folder, add it to `tests/all-languages.js`, and run `node scripts/lang-meta.mjs`.
 
 A pack provides:
 - `categories` (each in a `group`: words, phrases or talk) and `vocab` (with optional `reg` and `pair` for register comparisons)

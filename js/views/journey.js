@@ -1,6 +1,6 @@
 // Journey: level & XP, goals (daily, weekly challenges, personal), achievements.
 import { h, icon, meter, set } from '../ui.js';
-import { languages } from '../languages/index.js';
+import { meta } from '../languages/index.js';
 import { GOALS } from './welcome.js';
 import { bottomSheet } from '../components.js';
 
@@ -185,7 +185,7 @@ export default function journey(ctx) {
     on ? levelCard(ctx) : h('div', { class: 'banner' }, 'Game features (XP, levels, challenges and achievements) are turned off. ', h('a', { href: '#/settings' }, 'Turn them on in Settings.')),
     on && Object.keys(xpBy).length > 1
       ? h('div', { class: 'chip-row' }, Object.entries(xpBy).map(([code, xp]) =>
-        h('span', { class: 'chip static' }, languages[code]?.flag, ' ', h('b', null, xp.toLocaleString()), ' XP')))
+        h('span', { class: 'chip static' }, meta[code]?.flag, ' ', h('b', null, xp.toLocaleString()), ' XP')))
       : null,
     h('h2', { class: 'section-title' }, 'Goals'),
     dailyGoalCard(ctx),

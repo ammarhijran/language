@@ -7,7 +7,7 @@
 import { h, icon, set } from '../ui.js';
 import * as speech from '../speech.js';
 import { voiceBanner } from '../components.js';
-import { languages } from '../languages/index.js';
+import { meta } from '../languages/index.js';
 import { switchLanguage } from './language.js';
 
 export const GOALS = [
@@ -48,7 +48,7 @@ export default function welcome(ctx, stepArg) {
   if (step === 0) {
     // Choosing a card only selects it; Continue switches the course (the app
     // reloads into the new language's pack) and moves on.
-    const cards = Object.values(languages).map((l) => h('button', {
+    const cards = Object.values(meta).map((l) => h('button', {
       type: 'button', class: `lang-card${l.code === chosen ? ' selected' : ''}`, 'aria-pressed': String(l.code === chosen),
       onclick: (e) => {
         chosen = l.code;
@@ -57,7 +57,7 @@ export default function welcome(ctx, stepArg) {
     },
       h('span', { class: 'lang-flag', 'aria-hidden': 'true' }, l.flag),
       h('span', { class: 'lang-names' }, h('b', null, l.name), h('span', { lang: l.code }, l.nativeName)),
-      h('small', { class: 'muted' }, `${l.words.length} words & phrases`),
+      h('small', { class: 'muted' }, `${l.words} words & phrases`),
       icon('check', 18)));
     body = [
       h('section', { class: 'welcome-hero' },

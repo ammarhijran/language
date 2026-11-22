@@ -17,6 +17,21 @@
   <link rel="stylesheet" href="css/read.css">
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/session.css">
+  <!-- Start fetching the pack of the language being learned right away,
+       instead of after app.js has loaded (it is the biggest download). -->
+  <script>
+    try {
+      var l = (JSON.parse(localStorage.getItem('lisan:v1') || '{}').settings || {}).lang;
+      if (!/^(tr|uk|ja|ar)$/.test(l)) l = 'tr';
+      ['index', 'vocab', 'more', 'grammar', 'examples', 'sounds'].forEach(function (f) {
+        var k = document.createElement('link');
+        k.rel = 'modulepreload';
+        k.href = 'js/languages/' + l + '/' + f + '.js';
+        document.head.appendChild(k);
+      });
+    } catch (e) { /* storage blocked: the app loads the pack itself */ }
+  </script>
+  <!-- modulepreload:app (filled in by scripts/build-web.js) -->
   <script type="module" src="js/app.js"></script>
   <!-- Loading screen: painted as soon as the page arrives, before the app's
        modules. Its colours are the light/dark tokens of css/styles.css

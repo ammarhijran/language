@@ -95,7 +95,7 @@ globalThis.window = globalThis;
 globalThis.scrollTo = () => {};
 Object.defineProperty(globalThis, 'navigator', { configurable: true, value: { userAgent: 'node' } });
 
-const { languages } = await import('../js/languages/index.js');
+const { languages } = await import('./all-languages.js');
 const { runSession, sessionBack } = await import('../js/session.js');
 const { mergedText, langChanges } = await import('../js/views/sync.js');
 const { rankEntries, scoreEntry, foldEgyptian } = await import('../js/views/search.js');

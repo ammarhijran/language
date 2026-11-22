@@ -48,6 +48,7 @@ export default function settings(ctx) {
       if (!file) return;
       try {
         store.importData(await file.text());
+        ctx.summariseLanguages?.({ fresh: true });
         ctx.toast('Progress imported.');
         ctx.rerender();
       } catch (err) {

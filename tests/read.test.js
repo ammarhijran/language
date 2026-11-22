@@ -3,7 +3,7 @@
 // text progress is sanitized and merged by sync.
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { languages } from '../js/languages/index.js';
+import { languages } from './all-languages.js';
 import * as store from '../js/store.js';
 import * as game from '../js/game.js';
 import { sanitize, mergeGame, mergeAll } from '../js/sync.js';

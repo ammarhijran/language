@@ -4,7 +4,7 @@ import { inflateRawSync } from 'node:zlib';
 import { encode, decode, extractCode, isEncrypted, mergeAll, mergeGame, sanitize, passphraseOk, SyncError, OLD_DEV } from '../js/sync.js';
 import { levelFromXp } from '../js/game.js';
 import { newCard, review, markKnown, GOOD } from '../js/srs.js';
-import { languages } from '../js/languages/index.js';
+import { languages } from './all-languages.js';
 
 const T0 = new Date(2026, 10, 10).getTime();
 const DAY = 86400000;

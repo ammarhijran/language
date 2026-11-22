@@ -96,7 +96,7 @@ const revokeUrl = URL.revokeObjectURL.bind(URL);
 URL.createObjectURL = (b) => { urls.made++; return createUrl(b); };
 URL.revokeObjectURL = (u) => { urls.revoked++; revokeUrl(u); };
 
-const { languages } = await import('../js/languages/index.js');
+const { languages } = await import('./all-languages.js');
 const { makePack, writtenUnits } = await import('../js/languages/common.js');
 const { recorder, speakPractice, praiseLine, cleanupScope, sayLater, pronunciationPanel, exampleBlock, playButton, registerBlock } = await import('../js/components.js');
 const { tr, uk, ja, ar } = languages;

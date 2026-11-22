@@ -3,7 +3,7 @@
 // language has plenty of sentences to practise.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { languages } from '../js/languages/index.js';
+import { languages } from './all-languages.js';
 import {
   tokenize, checkOrder, makeSentence, phraseSentence, sentencesFor, tileKey, tileTexts, acceptedOrders, MIN_TOKENS, MAX_TOKENS, MIN_SENTENCES,
 } from '../js/sentences.js';

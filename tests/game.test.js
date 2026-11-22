@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import * as store from '../js/store.js';
 import * as game from '../js/game.js';
 import { newCard, review, markKnown, GOOD, HARD, AGAIN, DAY } from '../js/srs.js';
-import { languages } from '../js/languages/index.js';
+import { languages } from './all-languages.js';
 import { mergeAll } from '../js/sync.js';
 
 let rewards = [];

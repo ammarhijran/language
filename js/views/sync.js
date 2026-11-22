@@ -3,7 +3,7 @@
 // merged there. See js/sync.js for the format and merge rules.
 import { h, icon, set } from '../ui.js';
 import { encode, decode, isEncrypted, mergeAll, passphraseOk, MIN_PASSPHRASE, SyncError } from '../sync.js';
-import { languages } from '../languages/index.js';
+import { meta } from '../languages/index.js';
 import { levelFromXp } from '../game.js';
 import { hasPlugin, plugin } from '../native.js';
 import { backLink } from '../components.js';
@@ -189,7 +189,7 @@ export default function sync(ctx) {
     const sameDevice = payload.device === store.deviceId();
     const lvBefore = levelFromXp(sumXp(local.game)).level;
     const lvAfter = levelFromXp(sumXp(merged.game)).level;
-    const rows = merged.summary.langs.filter((l) => languages[l.code] && (l.remoteWords > 0 || l.added || l.updated || l.removed || l.savedAdded || l.savedRemoved));
+    const rows = merged.summary.langs.filter((l) => meta[l.code] && (l.remoteWords > 0 || l.added || l.updated || l.removed || l.savedAdded || l.savedRemoved));
     const nothing = !merged.summary.changed;
     // Words from before "Reset progress" on this device are left out on purpose: say so.
     const skipped = rows.some((l) => l.skipped);
@@ -198,7 +198,7 @@ export default function sync(ctx) {
         h('p', { class: 'kicker' }, sameDevice ? 'Code from this device' : 'Code from another device', payload.at ? ` · created ${when(payload.at)}` : ''),
         rows.length
           ? h('ul', { class: 'sync-langs' }, rows.map((l) => h('li', null,
-            h('span', null, languages[l.code].flag, ' ', languages[l.code].name),
+            h('span', null, meta[l.code].flag, ' ', meta[l.code].name),
             h('span', { class: 'muted small' }, langChanges(l)))))
           : h('p', { class: 'hint' }, 'No words in this code yet.'),
         lvAfter > lvBefore ? h('p', null, `⭐ You’ll go from level ${lvBefore} to level ${lvAfter}.`) : null,
@@ -215,6 +215,8 @@ export default function sync(ctx) {
               } catch (e) {
                 console.error(e); // the merge itself is saved; rewards are re-checked on the next answer
               }
+              // Other languages' topic counts need their packs: load them and check again.
+              ctx.summariseLanguages?.({ fresh: true });
               store.syncLog({ kind: 'merged', from: payload.device });
               paste.value = '';
               set(preview, h('div', { class: 'banner sync-done' },

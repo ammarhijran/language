@@ -1,6 +1,6 @@
 // Choose which language to learn. Progress is kept separately per language.
 import { h, icon } from '../ui.js';
-import { languages } from '../languages/index.js';
+import { meta } from '../languages/index.js';
 
 export function switchLanguage(ctx, code, path = '/') {
   if (code === ctx.lang.code) { ctx.go(path); return; }
@@ -11,9 +11,9 @@ export function switchLanguage(ctx, code, path = '/') {
 }
 
 export function languageCards(ctx, { path = '/' } = {}) {
-  return h('div', { class: 'lang-grid' }, Object.values(languages).map((l) => {
-    const cards = ctx.store.getCards(l.code);
-    const learned = l.words.filter((w) => cards[w.id]).length;
+  return h('div', { class: 'lang-grid' }, Object.values(meta).map((l) => {
+    // Counted from the saved cards: the other languages' packs aren't loaded.
+    const learned = Math.min(l.words, Object.keys(ctx.store.getCards(l.code)).length);
     const current = l.code === ctx.lang.code;
     return h('button', {
       type: 'button', class: `lang-card${current ? ' selected' : ''}`, 'aria-pressed': String(current),
@@ -23,7 +23,7 @@ export function languageCards(ctx, { path = '/' } = {}) {
       h('span', { class: 'lang-names' },
         h('b', null, l.name),
         h('span', { lang: l.code }, l.nativeName)),
-      h('small', { class: 'muted' }, learned ? `${learned}/${l.words.length} learned` : `${l.words.length} words`),
+      h('small', { class: 'muted' }, learned ? `${learned}/${l.words} learned` : `${l.words} words`),
       current ? icon('check', 18) : null);
   }));
 }

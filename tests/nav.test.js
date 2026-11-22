@@ -3,7 +3,7 @@
 // search ranking.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { languages } from '../js/languages/index.js';
+import { languages } from './all-languages.js';
 import { learningPath, nextTopics, nextCategory, topicCounts } from '../js/stats.js';
 import { sanitize, mergeAll } from '../js/sync.js';
 import * as store from '../js/store.js';

@@ -74,6 +74,7 @@ const ASSETS = [
   'js/views/word.js',
   // Languages
   'js/languages/index.js',
+  'js/languages/meta.js',
   'js/languages/common.js',
   'js/languages/tr/index.js',
   'js/languages/tr/phonetics.js',

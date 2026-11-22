@@ -122,7 +122,7 @@ function press(key, target = document.activeElement) {
   return e;
 }
 
-const { languages } = await import('../js/languages/index.js');
+const { languages } = await import('./all-languages.js');
 const { runSession, FOCUS_CLASS } = await import('../js/session.js');
 const { EXERCISES, buzzWrong } = await import('../js/exercises.js');
 const { GOOD, AGAIN } = await import('../js/srs.js');
