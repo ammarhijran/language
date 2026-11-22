@@ -417,6 +417,14 @@ export const categories = [
     "emoji": "💗",
     "group": "phrases",
     "stage": 3
+  },
+  {
+    "id": "p-handy",
+    "name": "Handy Extras",
+    "native": "İşe Yarar İfadeler",
+    "emoji": "🧰",
+    "group": "phrases",
+    "stage": 3
   }
 ];
 
@@ -9225,5 +9233,124 @@ export const vocab = [
       "— I've got a job interview tomorrow and I'm a bit nervous. — Don't worry, it'll go really well."
     ],
     "note": "Gergin = tense; on edge (lit. stretched tight). Stresliyim = I'm stressed; heyecanlıyım = I'm excited (or nervous)."
+  },
+  {
+    "tr": "Saat kaç?",
+    "en": "What time is it?",
+    "cat": "p-handy",
+    "ex": [
+      "— Affedersiniz, saat kaç? — Dörde on var.",
+      "— Excuse me, what time is it? — It’s ten to four."
+    ],
+    "note": "Answers: Saat üç (three o’clock), üç buçuk (half past three), üçü çeyrek geçiyor (quarter past three)."
+  },
+  {
+    "tr": "Bir eczane arıyorum.",
+    "en": "I’m looking for a pharmacy.",
+    "cat": "p-handy",
+    "note": "… arıyorum = I’m looking for …: Bir bankamatik arıyorum (a cash machine), Bu adresi arıyorum (this address)."
+  },
+  {
+    "tr": "Tabii ki.",
+    "en": "Of course.",
+    "cat": "p-handy",
+    "note": "Often just “Tabii.” To a customer or an older person: “Tabii efendim.”",
+    "pair": {
+      "tr": "Elbette.",
+      "reg": "polite",
+      "en": "Certainly."
+    }
+  },
+  {
+    "tr": "Bir dakika, lütfen.",
+    "en": "Just a moment, please.",
+    "cat": "p-handy",
+    "note": "Literally “one minute”. On the phone: “Bir dakika, hemen bakıyorum.”",
+    "reg": "polite",
+    "pair": {
+      "tr": "Bir saniye!",
+      "reg": "casual",
+      "en": "One second!"
+    }
+  },
+  {
+    "tr": "Türkçe öğreniyorum.",
+    "en": "I’m learning Turkish.",
+    "cat": "p-handy",
+    "ex": [
+      "— Türkçeniz çok güzel! — Teşekkürler, Türkçe öğreniyorum.",
+      "— Your Turkish is very good! — Thanks, I’m learning Turkish."
+    ],
+    "note": "A good way to ask for patience. Add: “Biraz yavaş konuşur musunuz?” (Could you speak a little slowly?)"
+  },
+  {
+    "tr": "Bu çok pahalı.",
+    "en": "That’s too expensive.",
+    "cat": "p-handy",
+    "note": "Pahalı = expensive, ucuz = cheap. In a bazaar a little bargaining is expected; in shops with price tags it is not.",
+    "pair": {
+      "tr": "Biraz indirim yapar mısınız?",
+      "reg": "polite",
+      "en": "Could you give me a little discount?"
+    }
+  },
+  {
+    "tr": "Doktora ihtiyacım var.",
+    "en": "I need a doctor.",
+    "cat": "p-handy",
+    "note": "…-e ihtiyacım var = I need …: Yardıma ihtiyacım var (I need help). The emergency number is 112."
+  },
+  {
+    "tr": "Bana yardım edebilir misiniz?",
+    "en": "Could you help me?",
+    "cat": "p-handy",
+    "note": "Start with “Affedersiniz” to stop someone in the street.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Bana yardım eder misin?",
+      "reg": "casual",
+      "en": "Will you help me?"
+    }
+  },
+  {
+    "tr": "Bu ne?",
+    "en": "What is this?",
+    "cat": "p-handy",
+    "note": "For food on display or anything you can point at. “Bunun adı ne?” = What is this called?",
+    "pair": {
+      "tr": "Bu nedir?",
+      "reg": "polite"
+    }
+  },
+  {
+    "tr": "Burada durur musunuz?",
+    "en": "Could you stop here?",
+    "cat": "p-handy",
+    "note": "For a taxi. In a shared minibus (dolmuş) people call out the pair.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Müsait bir yerde inebilir miyim?",
+      "reg": "polite",
+      "en": "Can I get off at a convenient spot?"
+    }
+  },
+  {
+    "tr": "Bir taksi çağırır mısınız?",
+    "en": "Could you call a taxi?",
+    "cat": "p-handy",
+    "note": "Useful at a hotel or restaurant. Taxis are yellow and use a meter (taksimetre).",
+    "reg": "polite"
+  },
+  {
+    "tr": "Kaç yaşındasınız?",
+    "en": "How old are you? (polite)",
+    "cat": "p-handy",
+    "note": "Answer: Otuz yaşındayım (I’m thirty). Asking someone’s age is not rude in Turkey.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Kaç yaşındasın?",
+      "reg": "casual",
+      "en": "How old are you?"
+    }
   }
 ];

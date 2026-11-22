@@ -417,6 +417,14 @@ export const categories = [
     "emoji": "💗",
     "group": "phrases",
     "stage": 3
+  },
+  {
+    "id": "p-handy",
+    "name": "Handy Extras",
+    "native": "عِبَارَات مُفِيدَة",
+    "emoji": "🧰",
+    "group": "phrases",
+    "stage": 3
   }
 ];
 
@@ -12261,6 +12269,129 @@ export const vocab = [
       "reg": "casual",
       "en": "Hang in there! / Stay strong!",
       "tl": "shidd ḥēlak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كَمِ السَّاعَةُ الْآنَ؟",
+    "en": "What time is it now?",
+    "cat": "p-handy",
+    "tl": "kami-s-sāʿa-l-ʾān",
+    "note": "Answer: السَّاعَةُ الثَّالِثَةُ (as-sāʿa ath-thālitha), three o’clock. In Egypt: is-sāʿa talāta.",
+    "alt": [
+      "kami-s-sāʿa al-ʾān"
+    ],
+    "pair": {
+      "tr": "السَّاعَة كَام؟",
+      "reg": "casual",
+      "tl": "is-sāʿa kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَبْحَثُ عَنْ صَيْدَلِيَّةٍ.",
+    "en": "I’m looking for a pharmacy.",
+    "cat": "p-handy",
+    "tl": "ʾabḥath ʿan ṣaydaliyya",
+    "note": "أَبْحَثُ عَنْ … = I’m looking for …: a cash machine is صَرَّاف آلِيّ (ṣarrāf ʾālī).",
+    "pair": {
+      "tr": "بَادَوَّر عَلَى صَيْدَلِيَّة.",
+      "reg": "casual",
+      "tl": "badawwar ʿala ṣaydaliyya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بِالطَّبْعِ.",
+    "en": "Of course.",
+    "cat": "p-handy",
+    "tl": "bi-ṭ-ṭabʿ",
+    "note": "In everyday speech everywhere people say طَبْعًا (ṭabʿan).",
+    "pair": {
+      "tr": "طَبْعًا!",
+      "reg": "casual",
+      "tl": "ṭabʿan"
+    }
+  },
+  {
+    "tr": "لَحْظَةً مِنْ فَضْلِكَ.",
+    "en": "Just a moment, please.",
+    "cat": "p-handy",
+    "tl": "laḥẓa min faḍlik",
+    "note": "To a woman: مِنْ فَضْلِكِ (min faḍliki). لَحْظَة = a moment.",
+    "reg": "polite",
+    "pair": {
+      "tr": "ثَانْيَة وَاحْدَة.",
+      "reg": "casual",
+      "en": "One second.",
+      "tl": "sanya waḥda",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَذَا غَالٍ جِدًّا.",
+    "en": "That’s too expensive.",
+    "cat": "p-handy",
+    "tl": "hādhā ghālī jiddan",
+    "note": "غَالٍ = expensive, رَخِيص (rakhīṣ) = cheap. In markets a little bargaining is expected.",
+    "pair": {
+      "tr": "دَه غَالِي أَوِي.",
+      "reg": "casual",
+      "tl": "da ghāli ʾawi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا هَذَا؟",
+    "en": "What is this?",
+    "cat": "p-handy",
+    "tl": "mā hādhā",
+    "note": "For anything you can point at. For a feminine thing: مَا هَذِهِ؟ (mā hādhihi).",
+    "pair": {
+      "tr": "إِيه دَه؟",
+      "reg": "casual",
+      "tl": "ʾēh da",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "قِفْ هُنَا مِنْ فَضْلِكَ.",
+    "en": "Stop here, please.",
+    "cat": "p-handy",
+    "tl": "qif hunā min faḍlik",
+    "note": "For a taxi. The Egyptian phrase means “on the side, please” — every driver knows it.",
+    "reg": "polite",
+    "pair": {
+      "tr": "عَلَى جَنْب لَوْ سَمَحْت.",
+      "reg": "casual",
+      "en": "Pull over here, please.",
+      "tl": "ʿala gamb law samaḥt",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَحْتَاجُ إِلَى تَاكْسِي.",
+    "en": "I need a taxi.",
+    "cat": "p-handy",
+    "tl": "ʾaḥtāj ʾilā tāksī",
+    "note": "A formal word for taxi is سَيَّارَةُ أُجْرَةٍ (sayyārat ʾujra). In the Egyptian form a woman says عَايْزَة (ʿayza).",
+    "pair": {
+      "tr": "عَايِز تَاكْسِي.",
+      "reg": "casual",
+      "tl": "ʿāyiz taksi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ هَذَا بَعِيدٌ؟",
+    "en": "Is it far?",
+    "cat": "p-handy",
+    "tl": "hal hādhā baʿīd",
+    "note": "بَعِيد = far, قَرِيب (qarīb) = near. Useful before deciding to walk.",
+    "pair": {
+      "tr": "دَه بِعِيد؟",
+      "reg": "casual",
+      "tl": "da biʿīd",
       "dialect": "Egyptian"
     }
   }

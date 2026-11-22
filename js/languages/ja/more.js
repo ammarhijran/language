@@ -417,6 +417,14 @@ export const categories = [
     "emoji": "💗",
     "group": "phrases",
     "stage": 3
+  },
+  {
+    "id": "p-handy",
+    "name": "Handy Extras",
+    "native": "便利なひとこと",
+    "emoji": "🧰",
+    "group": "phrases",
+    "stage": 3
   }
 ];
 
@@ -10994,5 +11002,140 @@ export const vocab = [
       "reg": "casual",
       "kana": "じぶん の こと みたい に うれしい"
     }
+  },
+  {
+    "tr": "今、何時ですか。",
+    "en": "What time is it now?",
+    "cat": "p-handy",
+    "kana": "いま なんじ です か",
+    "ex": [
+      "「すみません、今、何時ですか。」「四時十分前です。」",
+      "“Excuse me, what time is it?” “Ten to four.”"
+    ],
+    "note": "Answers: 三時です (さんじ, three o’clock), 三時半です (さんじはん, half past three).",
+    "reg": "polite",
+    "pair": {
+      "tr": "今、何時？",
+      "reg": "casual",
+      "kana": "いま なんじ"
+    }
+  },
+  {
+    "tr": "薬局を探しています。",
+    "en": "I’m looking for a pharmacy.",
+    "cat": "p-handy",
+    "kana": "やっきょく を さがして います",
+    "note": "〜を探しています = I’m looking for …: ATMを探しています, この住所を探しています (じゅうしょ, this address).",
+    "reg": "polite"
+  },
+  {
+    "tr": "もちろんです。",
+    "en": "Of course.",
+    "cat": "p-handy",
+    "kana": "もちろん です",
+    "note": "A warm yes to a request. With friends just もちろん！",
+    "reg": "polite",
+    "pair": {
+      "tr": "もちろん！",
+      "reg": "casual",
+      "kana": "もちろん"
+    }
+  },
+  {
+    "tr": "日本語を勉強しています。",
+    "en": "I’m studying Japanese.",
+    "cat": "p-handy",
+    "kana": "にほんご を べんきょう して います",
+    "ex": [
+      "「日本語がお上手ですね。」「いえ、まだ勉強しています。」",
+      "“Your Japanese is very good.” “Oh no, I’m still studying.”"
+    ],
+    "note": "A good way to ask for patience. Add: ゆっくり話してください (please speak slowly).",
+    "reg": "polite"
+  },
+  {
+    "tr": "ちょっと高いですね。",
+    "en": "That’s a bit expensive, isn’t it?",
+    "cat": "p-handy",
+    "kana": "ちょっと たかい です ね",
+    "note": "Japanese softens it: “a bit expensive” means “too expensive”. Prices in shops are fixed; bargaining is rare.",
+    "reg": "polite"
+  },
+  {
+    "tr": "医者に診てもらいたいんですが。",
+    "en": "I need a doctor. (I’d like to be seen by one)",
+    "cat": "p-handy",
+    "kana": "いしゃ に みて もらいたい ん です が",
+    "note": "For an emergency call 119 and say 救急車をお願いします (きゅうきゅうしゃ, an ambulance please).",
+    "reg": "polite"
+  },
+  {
+    "tr": "英語を話せますか。",
+    "en": "Do you speak English?",
+    "cat": "p-handy",
+    "kana": "えいご を はなせます か",
+    "note": "Softer: 英語は分かりますか (do you understand English?). Many people read English better than they speak it — writing it down helps.",
+    "reg": "polite"
+  },
+  {
+    "tr": "手伝ってもらえますか。",
+    "en": "Can you help me?",
+    "cat": "p-handy",
+    "kana": "てつだって もらえます か",
+    "note": "For a hand with something. In real trouble shout 助けて！ (たすけて, help!).",
+    "reg": "polite",
+    "pair": {
+      "tr": "手伝ってくれる？",
+      "reg": "casual",
+      "kana": "てつだって くれる"
+    }
+  },
+  {
+    "tr": "知りません。",
+    "en": "I don’t know.",
+    "cat": "p-handy",
+    "kana": "しりません",
+    "note": "For facts you don’t know. 分かりません is softer and also covers “I’m not sure”.",
+    "reg": "polite",
+    "pair": {
+      "tr": "知らない。",
+      "reg": "casual",
+      "kana": "しらない"
+    }
+  },
+  {
+    "tr": "問題ありません。",
+    "en": "No problem.",
+    "cat": "p-handy",
+    "kana": "もんだい ありません",
+    "note": "In everyday talk 大丈夫です (だいじょうぶです, it’s fine) is more common.",
+    "reg": "polite",
+    "pair": {
+      "tr": "大丈夫だよ。",
+      "reg": "casual",
+      "en": "It’s fine.",
+      "kana": "だいじょうぶ だ よ"
+    }
+  },
+  {
+    "tr": "これは何ですか。",
+    "en": "What is this?",
+    "cat": "p-handy",
+    "kana": "これ は なん です か",
+    "note": "For food on a menu or anything you can point at. Far from you both: あれは何ですか。",
+    "reg": "polite",
+    "pair": {
+      "tr": "これ、何？",
+      "reg": "casual",
+      "kana": "これ なに"
+    }
+  },
+  {
+    "tr": "タクシーを呼んでもらえますか。",
+    "en": "Could you call a taxi for me?",
+    "cat": "p-handy",
+    "kana": "タクシー を よんで もらえます か",
+    "note": "Useful at a hotel or restaurant. A taxi rank is タクシー乗り場 (のりば).",
+    "reg": "polite"
   }
 ];

@@ -417,6 +417,14 @@ export const categories = [
     "emoji": "💛",
     "group": "phrases",
     "stage": 3
+  },
+  {
+    "id": "p-handy",
+    "name": "Handy Extras",
+    "native": "Корисні фрази",
+    "emoji": "🧰",
+    "group": "phrases",
+    "stage": 3
   }
 ];
 
@@ -12685,5 +12693,113 @@ export const vocab = [
         3
       ]
     }
+  },
+  {
+    "tr": "Котра година?",
+    "en": "What time is it?",
+    "cat": "p-handy",
+    "s": [
+      2,
+      2
+    ],
+    "ex": [
+      "— Перепрошую, котра година? — За десять четверта.",
+      "— Excuse me, what time is it? — Ten to four."
+    ],
+    "note": "Also: Котра зараз година? Answers: третя (година) = three o’clock, пів на четверту = half past three."
+  },
+  {
+    "tr": "Я шукаю аптеку.",
+    "en": "I’m looking for a pharmacy.",
+    "cat": "p-handy",
+    "s": [
+      0,
+      2,
+      2
+    ],
+    "note": "Я шукаю + accusative: Я шукаю банкомат (a cash machine), Я шукаю цю адресу (this address)."
+  },
+  {
+    "tr": "Хвилинку, будь ласка.",
+    "en": "Just a moment, please.",
+    "cat": "p-handy",
+    "s": [
+      2,
+      0,
+      1
+    ],
+    "note": "Хвилинка = a little minute. Even shorter: Секунду!",
+    "reg": "polite",
+    "pair": {
+      "tr": "Секунду!",
+      "reg": "casual",
+      "en": "One second!",
+      "s": 2
+    }
+  },
+  {
+    "tr": "Що це?",
+    "en": "What is this?",
+    "cat": "p-handy",
+    "s": [
+      0,
+      0
+    ],
+    "note": "For anything you can point at. Як це називається? = What is this called?"
+  },
+  {
+    "tr": "Як це називається?",
+    "en": "What is this called?",
+    "cat": "p-handy",
+    "s": [
+      0,
+      0,
+      3
+    ],
+    "note": "Називатися = to be called (of things). For a person’s name use Як вас звати?"
+  },
+  {
+    "tr": "Можна сфотографувати?",
+    "en": "May I take a photo?",
+    "cat": "p-handy",
+    "s": [
+      1,
+      5
+    ],
+    "note": "Можна + infinitive = may I …? Of a person: Можна вас сфотографувати?",
+    "reg": "polite"
+  },
+  {
+    "tr": "Де можна купити квиток?",
+    "en": "Where can I buy a ticket?",
+    "cat": "p-handy",
+    "s": [
+      0,
+      1,
+      2,
+      2
+    ],
+    "note": "Де можна + infinitive = where can one …? Де можна поїсти? (Where can I get something to eat?)"
+  },
+  {
+    "tr": "Я поспішаю.",
+    "en": "I’m in a hurry.",
+    "cat": "p-handy",
+    "s": [
+      0,
+      3
+    ],
+    "note": "Поспішати = to hurry. Не поспішайте! = Take your time!"
+  },
+  {
+    "tr": "Мені потрібне таксі.",
+    "en": "I need a taxi.",
+    "cat": "p-handy",
+    "s": [
+      2,
+      2,
+      2
+    ],
+    "note": "Таксі is neuter and never changes its ending. Most people order one in an app; викликати таксі = to call a taxi."
   }
 ];

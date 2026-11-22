@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Handy Extras:** a new phrase topic with 9–12 everyday phrases per language that were missing — “What time is it?”, “I’m looking for a pharmacy”, “Of course”, “Just a moment”, “What is this?”, “I need a taxi”, and in Japanese “Do you speak English?”, “Can you help me?”, “I don’t know”, “No problem”. 1,038–1,171 entries per language in 67 topics now.
 - **Trip essentials** (Phrasebook → 🎒 Trip essentials, the first thing a new learner sees there): the 37–41 phrases to learn first for a trip, gathered from all topics in the order you need them, with Practise and Listen hands-free.
 - **“Where is the toilet?”** is now a phrase of its own in every language (with its polite or everyday counterpart).
 - **“I speak as a woman”** (Settings → Display, Ukrainian and Arabic): first-person phrases that change with the speaker — Я згоден → Я згодна, Я хотів би → Я хотіла б, آسِف → آسِفَة, عَايِز → عَايْزَة — are shown, spoken and checked in the form a woman says (24 Ukrainian and 26 Arabic entries, including their everyday / Egyptian forms). The other form still counts as a right answer, and progress is unaffected.
