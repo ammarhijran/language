@@ -7,6 +7,7 @@ import { voiceBanner, playButton, readingLine, glyph } from '../components.js';
 import { computeStats, nextTopics, topicCounts, wordOfTheDay, learnedWords } from '../stats.js';
 import { challengeList, repairBanner } from './journey.js';
 import { newsToShow } from '../news.js';
+import { tripKit } from '../kit.js';
 
 export default function home(ctx) {
   const { lang } = ctx;
@@ -46,6 +47,16 @@ export default function home(ctx) {
   // Sentences from the words learned once there are enough, else from every phrase.
   const buildScope = learnedWords(ctx).length >= 20 ? 'learned' : 'all';
 
+  // For someone near the start: the trip essentials as a crash course.
+  const kit = tripKit(lang);
+  const kitLearned = kit.filter((w) => ctx.store.getCard(lang.code, w.id)).length;
+  const kitRow = kit.length && kitLearned < kit.length && Object.keys(ctx.store.getCards(lang.code)).length < 80
+    ? h('a', { class: 'up-next kit-row', href: '#/learn/kit' },
+      h('span', { class: 'kicker' }, 'Trip soon?'),
+      h('span', { class: 'up-next-name' }, `🎒 Essentials · ${kitLearned}/${kit.length}`),
+      icon('arrow', 18))
+    : null;
+
   // What's new: once, for people who were already using the app.
   const news = newsToShow(ctx.store);
   const newsCard = news ? h('section', { class: 'card news', 'aria-labelledby': 'news-title' },
@@ -82,6 +93,7 @@ export default function home(ctx) {
         h('span', { class: 'up-next-name' }, after.verb === 'Continue' ? 'Continue ' : '', lessonLabel(after.cat)),
         icon('arrow', 18))
       : null,
+    kitRow,
     h('div', { class: 'shortcuts' },
       shortcut('#/phrases', glyph('chat', 22), 'Phrasebook', saved ? `★ ${saved} saved` : 'Ready-made phrases'),
       talk ? shortcut('#/learn/g/talk', h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🗣️'), 'Talk like a local', 'Slang & everyday speech') : null,

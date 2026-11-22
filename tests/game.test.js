@@ -278,3 +278,24 @@ test('every achievement has a reachable metric', () => {
   for (const a of game.ACHIEVEMENTS) assert.ok(a.metric in m, `${a.id}: unknown metric ${a.metric}`);
   assert.equal(new Set(game.ACHIEVEMENTS.map((a) => a.id)).size, game.ACHIEVEMENTS.length);
 });
+
+test('new counters: hands-free rounds, dictation, own texts and the trip kit unlock their achievements', () => {
+  store._resetAll();
+  for (const a of ['handsfree-5', 'dictation-20', 'own-text', 'trip-kit']) assert.ok(game.ACHIEVEMENTS.some((x) => x.id === a), a);
+  const m0 = game.metrics();
+  for (const k of ['handsFree', 'dictations', 'ownTextPractice', 'kitDone']) assert.equal(m0[k], 0, k);
+
+  for (let i = 0; i < 5; i++) game.count({ lang: 'tr', key: 'handsFree' });
+  for (let i = 0; i < 20; i++) game.count({ lang: 'tr', key: 'dictations' });
+  game.count({ lang: 'tr', key: 'kitDone', once: true });
+  game.count({ lang: 'tr', key: 'kitDone', once: true });
+  game.textPractised({ lang: 'tr', id: 'my-abc', mode: 'repeat', own: true });
+  game.count({ lang: 'tr', key: 'not-a-counter' });
+  const m = game.metrics();
+  assert.deepEqual([m.handsFree, m.dictations, m.kitDone, m.ownTextPractice], [5, 20, 1, 1]);
+  assert.equal('not-a-counter' in m, false);
+  for (const a of game.ACHIEVEMENTS.filter((x) => ['handsfree-5', 'dictation-20', 'own-text', 'trip-kit'].includes(x.id))) {
+    assert.ok(m[a.metric] >= a.target, `${a.id} is reached`);
+  }
+  store._resetAll();
+});

@@ -138,23 +138,27 @@ export const ACHIEVEMENTS = [
   A('speak-perfect', '💎', 'Native-Like', 'Score 100% on 25 words', 'speakPerfect', 25, 'Pronunciation'),
   A('ear-perfect', '👂', 'Golden Ear', 'Get 10/10 in an ear-training quiz', 'earPerfect', 1, 'Pronunciation'),
   A('alphabet', '🔤', 'Letter by Letter', 'Listen to every letter of an alphabet', 'alphabet', 1, 'Pronunciation'),
+  A('handsfree-5', '🎧', 'Easy Listening', 'Finish 5 hands-free listening rounds', 'handsFree', 5, 'Pronunciation'),
 
   A('grammar-1', '📐', 'First Rules', 'Finish a grammar lesson', 'grammar', 1, 'Grammar'),
   A('grammar-5', '🤓', 'Grammar Geek', 'Finish 5 grammar lessons', 'grammar', 5, 'Grammar'),
   A('grammar-all', '🎓', 'Grammarian', 'Finish every grammar lesson in one language', 'grammarAll', 1, 'Grammar'),
   A('grammar-perfect', '💯', 'Rule Master', 'Score 4/4 on 10 grammar quizzes', 'grammarPerfect', 10, 'Grammar'),
   A('talk-local', '🗣️', 'Talk Like a Local', 'Learn 20 everyday or slang expressions', 'talkWords', 20, 'Learning'),
+  A('trip-kit', '🎒', 'Ready to Travel', 'Learn all the trip essentials of a language', 'kitDone', 1, 'Learning'),
 
   A('text-1', '📜', 'First Read', 'Finish a text in Read & Listen', 'texts', 1, 'Reading'),
   A('texts-5', '🔖', 'Bookworm', 'Finish 5 texts in Read & Listen', 'texts', 5, 'Reading'),
   A('texts-all', '🎖️', 'Well Read', 'Finish every text in one language', 'textsAll', 1, 'Reading'),
   A('speech-1', '🎤', 'Public Speaker', 'Practise a speech: repeat it, shadow it or record it', 'speechPractice', 1, 'Reading'),
   A('roleplay-1', '🎭', 'On Stage', 'Play a part in a dialogue', 'rolePlays', 1, 'Reading'),
+  A('own-text', '✍️', 'In My Own Words', 'Practise a text of your own: repeat it, shadow it or record it', 'ownTextPractice', 1, 'Reading'),
 
   A('combo-10', '⚡', 'Hot Streak', 'Get 10 answers right in a row', 'bestCombo', 10, 'Skill'),
   A('combo-25', '☄️', 'On Fire', 'Get 25 answers right in a row', 'bestCombo', 25, 'Skill'),
   A('flawless', '✨', 'Flawless', 'Finish a session of 10+ with every answer right first time', 'flawless', 1, 'Skill'),
   A('reviews-500', '🔁', 'Spaced Out', 'Answer 500 exercises', 'answers', 500, 'Skill'),
+  A('dictation-20', '👂', 'Sharp Ears', 'Build 20 sentences by ear in Dictation', 'dictations', 20, 'Skill'),
   A('level-5', '⭐', 'Rising Star', 'Reach level 5', 'level', 5, 'Skill'),
   A('level-10', '🌟', 'Language Lover', 'Reach level 10', 'level', 10, 'Skill'),
   A('polyglot-2', '🌍', 'Bilingual Brain', 'Learn words in 2 languages', 'langs', 2, 'Skill'),
@@ -197,7 +201,8 @@ export function challengesForWeek(key) {
 // ---------- State ----------
 
 const COUNTERS = ['lessons', 'answers', 'correct', 'sessions', 'flawless', 'speakGreat', 'speakPerfect', 'earQuizzes', 'earPerfect',
-  'goalsMet', 'challenges', 'bestCombo', 'bestStreak', 'early', 'night', 'personalGoals', 'speechPractice', 'rolePlays'];
+  'goalsMet', 'challenges', 'bestCombo', 'bestStreak', 'early', 'night', 'personalGoals', 'speechPractice', 'rolePlays',
+  'handsFree', 'dictations', 'ownTextPractice', 'kitDone'];
 
 // Counters where the best value counts, rather than the sum across devices.
 const BEST = new Set(['bestCombo', 'bestStreak']);
@@ -566,10 +571,11 @@ export function textDone({ lang, id, correct, total }) {
  * role-play ('roleplay'). Counts towards the achievements every time; XP
  * once per text and mode per day.
  */
-export function textPractised({ lang, id, mode }) {
+export function textPractised({ lang, id, mode, own = false }) {
   const s = g();
   if (mode === 'roleplay') c().rolePlays++;
   else c().speechPractice++;
+  if (own) c().ownTextPractice++;
   const today = spokenToday(s);
   const key = `practice:${lang}:${id}:${mode}`;
   let xp = 0;
@@ -579,6 +585,18 @@ export function textPractised({ lang, id, mode }) {
   }
   evaluate(lang);
   return xp;
+}
+
+/**
+ * Count something an achievement is measured by: 'handsFree' (a finished
+ * hands-free round), 'dictations' (a sentence built by ear), or — with
+ * `once` — 'kitDone' (the trip essentials of a language are all learned).
+ */
+export function count({ lang, key, by = 1, once = false }) {
+  if (!COUNTERS.includes(key)) return;
+  if (once && c()[key] > 0) return;
+  c()[key] += by;
+  evaluate(lang);
 }
 
 export function letterTapped(lang, letter) {

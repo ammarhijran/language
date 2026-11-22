@@ -39,7 +39,10 @@ export default function learn(ctx, catId, section) {
 
   const all = kit?.length ? kit : lang.wordsIn(cat.id);
   const unseen = all.filter((w) => !store.getCard(lang.code, w.id));
-  if (!unseen.length) return finished(ctx, cat, topicHref);
+  if (!unseen.length) {
+    if (cat.virtual) ctx.game.count?.({ lang: lang.code, key: 'kitDone', once: true });
+    return finished(ctx, cat, topicHref);
+  }
 
   // "Continue" on Home picks up this topic next time.
   if (!cat.virtual) store.setLastCat(lang.code, cat.id);
@@ -101,6 +104,7 @@ export default function learn(ctx, catId, section) {
       const added = introduced.size;
       if (added) ctx.game.learned({ lang: lang.code, count: added });
       const remaining = all.filter((w) => !store.getCard(lang.code, w.id)).length;
+      if (cat.virtual && !remaining) ctx.game.count?.({ lang: lang.code, key: 'kitDone', once: true });
       const upNext = remaining ? null : nextTopics(ctx, { count: 1 }).next[0];
       const learnedNow = batch.filter((w) => !known.includes(w));
       const chips = (list) => h('ul', { class: 'word-chips' }, list.map((w) =>

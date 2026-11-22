@@ -120,6 +120,7 @@ function sentenceRound(ctx, scope = 'learned', byEar = false) {
       answered++;
       if (r.correct) right++;
       ctx.store.logActivity(lang.code, { practiced: 1 });
+      if (byEar && r.correct) ctx.game.count?.({ lang: lang.code, key: 'dictations' });
       return null;
     },
     onFinish: () => summary(ctx, right, answered,

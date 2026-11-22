@@ -332,7 +332,7 @@ test('practice: XP once per text and mode per day; speech and role-play achievem
 
 test('Reading achievements all have known metrics', () => {
   const reading = game.ACHIEVEMENTS.filter((a) => a.group === 'Reading');
-  assert.deepEqual(reading.map((a) => a.id), ['text-1', 'texts-5', 'texts-all', 'speech-1', 'roleplay-1']);
+  assert.deepEqual(reading.map((a) => a.id), ['text-1', 'texts-5', 'texts-all', 'speech-1', 'roleplay-1', 'own-text']);
   const m = game.metrics();
   for (const a of reading) assert.ok(a.metric in m, a.id);
 });

@@ -818,7 +818,7 @@ function speakLine(ctx, line, { onAttempt, entry = line } = {}) {
 function practiceSummary(ctx, text, { emoji, title, lines, mode, practiced, again }) {
   const { lang } = ctx;
   if (practiced) ctx.store.logActivity(lang.code, { practiced });
-  const xp = ctx.game.textPractised({ lang: lang.code, id: text.id, mode });
+  const xp = ctx.game.textPractised({ lang: lang.code, id: text.id, mode, own: !!text.own });
   const heading = h('h2', { tabindex: '-1' }, title);
   const box = h('div', { class: 'summary read-summary-box' },
     h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, emoji),
@@ -1030,7 +1030,7 @@ function recordMode(ctx, text) {
     onRecorded: () => {
       if (rewarded) return;
       rewarded = true;
-      const xp = ctx.game.textPractised({ lang: lang.code, id: text.id, mode: 'record' });
+      const xp = ctx.game.textPractised({ lang: lang.code, id: text.id, mode: 'record', own: !!text.own });
       ctx.store.logActivity(lang.code, { practiced: 1 });
       set(summary, h('p', { class: 'read-best' }, icon('check', 16), 'Speech recorded.', xp ? ` +${xp} XP` : ''));
       ctx.flushRewards?.();

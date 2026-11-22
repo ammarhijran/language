@@ -65,6 +65,8 @@ export default function handsFree(ctx, pool) {
     onFail: () => { step.textContent = speech.noVoiceMessage(lang); },
     onEnd: () => {
       keepAwake(false);
+      // A round counts once most of it was really played (not skipped through).
+      if (heard.size >= Math.min(10, items.length)) ctx.game.count?.({ lang: lang.code, key: 'handsFree' });
       set(view,
         h('div', { class: 'summary' },
           h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, '🎧'),
