@@ -3397,5 +3397,447 @@ export const texts = [
         "explain": "«Нам потрібна людина вже з першого числа наступного місяця.» Two weeks is the notice he must give; the end of the week is when they will call."
       }
     ]
+  },
+  {
+    "id": "uk-farewell-speech",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Farewell Speech at Work",
+    "titleNative": "Прощальна промова",
+    "summary": "On their last day at the office, someone thanks their colleagues for three years together. It is written without gendered forms, so any speaker can adapt it.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "Дорогі колеги, дозвольте сказати кілька слів.",
+        "en": "Dear colleagues, allow me to say a few words."
+      },
+      {
+        "tr": "Як ви вже знаєте, сьогодні мій останній робочий день у цьому офісі.",
+        "en": "As you already know, today is my last working day in this office."
+      },
+      {
+        "tr": "Мій перший день тут був рівно три роки тому.",
+        "en": "My first day here was exactly three years ago."
+      },
+      {
+        "tr": "Тоді мені було трохи страшно: нове місто, нові люди й нова мова.",
+        "en": "I was a little scared then: a new city, new people and a new language."
+      },
+      {
+        "tr": "На першій нараді мені вдалося зрозуміти хіба що половину.",
+        "en": "At the first meeting I managed to understand half at most."
+      },
+      {
+        "tr": "Але ви завжди терпляче мені допомагали.",
+        "en": "But you always helped me patiently."
+      },
+      {
+        "tr": "Ніхто не сміявся з моїх помилок — ви просто підказували, як сказати правильно.",
+        "en": "Nobody laughed at my mistakes — you simply told me how to say it correctly."
+      },
+      {
+        "tr": "Завдяки вам моя українська стала набагато кращою.",
+        "en": "Thanks to you, my Ukrainian has become much better."
+      },
+      {
+        "tr": "Тут мене навчили не лише працювати, а й того, що найкращі ідеї народжуються за кавою.",
+        "en": "Here I was taught not only how to work, but also that the best ideas are born over coffee."
+      },
+      {
+        "tr": "Мені бракуватиме наших спільних обідів і п’ятничних розмов на кухні.",
+        "en": "I’ll miss our shared lunches and our Friday chats in the kitchen."
+      },
+      {
+        "tr": "Разом ми закінчили не один складний проєкт.",
+        "en": "Together we have finished more than one difficult project."
+      },
+      {
+        "tr": "Бували важкі дні, але ми завжди підтримували одне одного.",
+        "en": "There were hard days, but we always supported each other."
+      },
+      {
+        "tr": "Окремо хочу подякувати пані Олені за довіру.",
+        "en": "I’d especially like to thank Ms Olena for her trust."
+      },
+      {
+        "tr": "Я дуже ціную кожну можливість, яку ви мені дали.",
+        "en": "I really appreciate every opportunity you gave me."
+      },
+      {
+        "tr": "З наступного місяця на мене чекає нова робота у Львові.",
+        "en": "From next month a new job awaits me in Lviv."
+      },
+      {
+        "tr": "Мені цікаво, що буде далі, але прощатися з вами дуже непросто.",
+        "en": "I’m curious about what comes next, but saying goodbye to you is really not easy."
+      },
+      {
+        "tr": "Це не прощання, а лише «до зустрічі».",
+        "en": "This isn’t goodbye, just “see you again”."
+      },
+      {
+        "tr": "Якщо будете у Львові, обов’язково пишіть — кава з мене!",
+        "en": "If you’re ever in Lviv, be sure to write — the coffee is on me!"
+      },
+      {
+        "tr": "Працювати з вами було для мене великою радістю.",
+        "en": "Working with you has been a great joy for me."
+      },
+      {
+        "tr": "Бажаю вам успіхів, натхнення і цікавих проєктів.",
+        "en": "I wish you success, inspiration and interesting projects."
+      },
+      {
+        "tr": "Щиро дякую вам за все!",
+        "en": "My sincere thanks to you for everything!"
+      },
+      {
+        "tr": "Бувайте здорові й до нових зустрічей!",
+        "en": "Stay well, and until we meet again!"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "дозвольте",
+        "en": "allow (me) — a polite way to begin"
+      },
+      {
+        "tr": "останній робочий день",
+        "en": "last working day"
+      },
+      {
+        "tr": "рівно",
+        "en": "exactly"
+      },
+      {
+        "tr": "страшно",
+        "en": "scary (мені було страшно = I was scared)"
+      },
+      {
+        "tr": "нараді",
+        "en": "meeting (нарада), here: at the meeting"
+      },
+      {
+        "tr": "вдалося",
+        "en": "managed (мені вдалося = I managed to)"
+      },
+      {
+        "tr": "терпляче",
+        "en": "patiently"
+      },
+      {
+        "tr": "підказували",
+        "en": "prompted, gave a hint (підказувати)"
+      },
+      {
+        "tr": "Завдяки вам",
+        "en": "thanks to you"
+      },
+      {
+        "tr": "народжуються",
+        "en": "are born (народжуватися)"
+      },
+      {
+        "tr": "бракуватиме",
+        "en": "will be lacking (мені бракуватиме = I will miss)"
+      },
+      {
+        "tr": "підтримували",
+        "en": "supported (підтримувати)"
+      },
+      {
+        "tr": "довіру",
+        "en": "trust (довіра)"
+      },
+      {
+        "tr": "ціную",
+        "en": "I appreciate (цінувати)"
+      },
+      {
+        "tr": "прощатися",
+        "en": "to say goodbye"
+      },
+      {
+        "tr": "обов’язково",
+        "en": "definitely; be sure to"
+      },
+      {
+        "tr": "кава з мене",
+        "en": "the coffee is on me"
+      },
+      {
+        "tr": "натхнення",
+        "en": "inspiration"
+      }
+    ],
+    "questions": [
+      {
+        "q": "When was the speaker’s first day at the office?",
+        "options": [
+          "A month ago",
+          "A year ago",
+          "Three years ago",
+          "Ten years ago"
+        ],
+        "answer": 2,
+        "explain": "«Мій перший день тут був рівно три роки тому.»"
+      },
+      {
+        "q": "How did the colleagues react to the speaker’s mistakes?",
+        "options": [
+          "They laughed at them",
+          "They patiently suggested the right way to say it",
+          "They ignored them",
+          "They wrote them down"
+        ],
+        "answer": 1,
+        "explain": "«Ніхто не сміявся з моїх помилок — ви просто підказували, як сказати правильно.»"
+      },
+      {
+        "q": "What will the speaker miss?",
+        "options": [
+          "The shared lunches and the Friday chats in the kitchen",
+          "The office building",
+          "The long meetings",
+          "The business trips"
+        ],
+        "answer": 0,
+        "explain": "«Мені бракуватиме наших спільних обідів і п’ятничних розмов на кухні.»"
+      },
+      {
+        "q": "Where is the new job?",
+        "options": [
+          "In Kyiv",
+          "In Odesa",
+          "In Kharkiv",
+          "In Lviv"
+        ],
+        "answer": 3,
+        "explain": "«…на мене чекає нова робота у Львові.»"
+      }
+    ]
+  },
+  {
+    "id": "uk-easter-presentation",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Short Presentation: Easter in Ukraine",
+    "titleNative": "Коротка доповідь: Великдень в Україні",
+    "summary": "A learner gives a short class presentation about Easter in Ukraine: paska bread, decorated eggs, the blessed basket and the Easter greeting. It suits any speaker.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "Добрий день, друзі!",
+        "en": "Good afternoon, friends!"
+      },
+      {
+        "tr": "Сьогодні я розповім вам про одне з найбільших українських свят — Великдень.",
+        "en": "Today I’m going to tell you about one of the biggest Ukrainian holidays — Easter."
+      },
+      {
+        "tr": "Його святкують навесні, завжди в неділю, але дата щороку інша.",
+        "en": "It is celebrated in spring, always on a Sunday, but the date is different every year."
+      },
+      {
+        "tr": "Перед святом триває Великий піст, коли багато людей не їдять м’яса.",
+        "en": "Before the holiday comes Great Lent, when many people don’t eat meat."
+      },
+      {
+        "tr": "У четвер перед святом, який називають Чистим, у домівках прибирають.",
+        "en": "On the Thursday before the holiday, known as Clean Thursday, people clean their homes."
+      },
+      {
+        "tr": "Удома печуть паски — високий солодкий хліб із родзинками.",
+        "en": "At home people bake paska — a tall sweet bread with raisins."
+      },
+      {
+        "tr": "А ще українці розписують яйця.",
+        "en": "Ukrainians also decorate eggs."
+      },
+      {
+        "tr": "Яйце, пофарбоване в один колір, називається крашанка.",
+        "en": "An egg dyed a single colour is called a krashanka."
+      },
+      {
+        "tr": "Писанка — це яйце з тонкими візерунками, намальованими воском.",
+        "en": "A pysanka is an egg with fine patterns drawn in wax."
+      },
+      {
+        "tr": "Кожен візерунок щось означає: сонце, воду, життя або добробут.",
+        "en": "Every pattern means something: the sun, water, life or prosperity."
+      },
+      {
+        "tr": "У суботу ввечері або в неділю зранку люди несуть до церкви кошики.",
+        "en": "On Saturday evening or Sunday morning people carry baskets to church."
+      },
+      {
+        "tr": "У кошик кладуть паску, яйця, ковбасу, сир і масло.",
+        "en": "Into the basket go the paska, eggs, sausage, cheese and butter."
+      },
+      {
+        "tr": "Після служби священник освячує їх.",
+        "en": "After the service the priest blesses them."
+      },
+      {
+        "tr": "Цього дня люди вітаються словами «Христос воскрес!».",
+        "en": "On this day people greet each other with the words “Christ is risen!”"
+      },
+      {
+        "tr": "У відповідь кажуть: «Воістину воскрес!».",
+        "en": "The reply is: “He is risen indeed!”"
+      },
+      {
+        "tr": "Потім уся родина збирається за святковим сніданком.",
+        "en": "Then the whole family gathers for a festive breakfast."
+      },
+      {
+        "tr": "Діти люблять «битися» яйцями: чиє яйце не розбилося, той переміг.",
+        "en": "Children love to “fight” with eggs: the one whose egg doesn’t crack is the winner."
+      },
+      {
+        "tr": "На заході України понеділок після свята називають обливаним.",
+        "en": "In western Ukraine the Monday after the holiday is called Wet Monday."
+      },
+      {
+        "tr": "Цього дня хлопці й дівчата обливають одне одного водою.",
+        "en": "On this day boys and girls pour water over each other."
+      },
+      {
+        "tr": "Торік мене запросили на свято друзі зі Львова.",
+        "en": "Last year friends from Lviv invited me for the holiday."
+      },
+      {
+        "tr": "Їхня бабуся вчила мене розписувати яйце, але в мене вийшло щось схоже на картоплю.",
+        "en": "Their grandmother was teaching me to decorate an egg, but what I ended up with looked more like a potato."
+      },
+      {
+        "tr": "Якщо ви будете в Україні навесні, обов’язково скуштуйте паску.",
+        "en": "If you are in Ukraine in spring, be sure to try paska."
+      },
+      {
+        "tr": "Дякую за увагу!",
+        "en": "Thank you for your attention!"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "Великдень",
+        "en": "Easter"
+      },
+      {
+        "tr": "святкують",
+        "en": "(they) celebrate (святкувати)"
+      },
+      {
+        "tr": "щороку",
+        "en": "every year"
+      },
+      {
+        "tr": "Великий піст",
+        "en": "Great Lent"
+      },
+      {
+        "tr": "прибирають",
+        "en": "(they) tidy up, clean (прибирати)"
+      },
+      {
+        "tr": "родзинками",
+        "en": "raisins (родзинки), here: with raisins"
+      },
+      {
+        "tr": "розписують",
+        "en": "(they) decorate with patterns (розписувати)"
+      },
+      {
+        "tr": "крашанка",
+        "en": "an egg dyed one colour"
+      },
+      {
+        "tr": "Писанка",
+        "en": "an egg decorated with wax patterns"
+      },
+      {
+        "tr": "візерунками",
+        "en": "patterns (візерунок), here: with patterns"
+      },
+      {
+        "tr": "воском",
+        "en": "with wax (віск)"
+      },
+      {
+        "tr": "добробут",
+        "en": "prosperity, well-being"
+      },
+      {
+        "tr": "кошики",
+        "en": "baskets (кошик)"
+      },
+      {
+        "tr": "освячує",
+        "en": "blesses (освячувати)"
+      },
+      {
+        "tr": "Воістину",
+        "en": "truly, indeed (used in this greeting)"
+      },
+      {
+        "tr": "святковим сніданком",
+        "en": "festive breakfast, here after «за»: at the festive breakfast"
+      },
+      {
+        "tr": "переміг",
+        "en": "won (перемогти = to win)"
+      },
+      {
+        "tr": "скуштуйте",
+        "en": "try, taste (скуштувати), polite or plural"
+      }
+    ],
+    "questions": [
+      {
+        "q": "On which day of the week is Easter celebrated?",
+        "options": [
+          "Friday",
+          "Saturday",
+          "Sunday",
+          "Monday"
+        ],
+        "answer": 2,
+        "explain": "«Його святкують навесні, завжди в неділю…»"
+      },
+      {
+        "q": "What is a pysanka?",
+        "options": [
+          "A sweet bread with raisins",
+          "An egg with fine patterns drawn in wax",
+          "A basket taken to church",
+          "An Easter greeting"
+        ],
+        "answer": 1,
+        "explain": "«Писанка — це яйце з тонкими візерунками, намальованими воском.»"
+      },
+      {
+        "q": "What do people answer to «Христос воскрес!»?",
+        "options": [
+          "«Воістину воскрес!»",
+          "«Дякую!»",
+          "«Будьмо!»",
+          "«На здоров’я!»"
+        ],
+        "answer": 0,
+        "explain": "«У відповідь кажуть: “Воістину воскрес!”»"
+      },
+      {
+        "q": "What happens on Wet Monday in western Ukraine?",
+        "options": [
+          "Families bake paska",
+          "People take baskets to church",
+          "Children fight with eggs",
+          "Boys and girls pour water over each other"
+        ],
+        "answer": 3,
+        "explain": "«Цього дня хлопці й дівчата обливають одне одного водою.»"
+      }
+    ]
   }
 ];

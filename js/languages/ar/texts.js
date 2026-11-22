@@ -3980,5 +3980,513 @@ export const texts = [
         "explain": "سَنَتَّصِلُ بِكَ خِلَالَ أُسْبُوعٍ لِنُخْبِرَكَ بِالنَّتِيجَةِ — we will contact you within a week to tell you the result."
       }
     ]
+  },
+  {
+    "id": "ar-farewell-speech",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Farewell Speech at Work",
+    "titleNative": "كَلِمَةُ وَدَاعٍ",
+    "summary": "On their last day at the office, someone thanks their colleagues for three years together. It uses only first-person verbs about the speaker, so it suits a man or a woman as it stands.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "زُمَلَائِي الْأَعِزَّاءَ، اِسْمَحُوا لِي بِكَلِمَةٍ قَصِيرَةٍ.",
+        "en": "Dear colleagues, allow me a few short words.",
+        "tl": "zumalāʾī-l-ʾaʿizzāʾa-smaḥū lī bi-kalimatin qaṣīra"
+      },
+      {
+        "tr": "كَمَا تَعْرِفُونَ، الْيَوْمُ هُوَ آخِرُ يَوْمٍ لِي فِي هَذَا الْمَكْتَبِ.",
+        "en": "As you know, today is my last day in this office.",
+        "tl": "kamā taʿrifūna-l-yawmu huwa ʾākhiru yawmin lī fī hādhā-l-maktab"
+      },
+      {
+        "tr": "قَبْلَ أَنْ أَذْهَبَ، أُرِيدُ أَنْ أَقُولَ لَكُمْ شَيْئًا مِنَ الْقَلْبِ.",
+        "en": "Before I go, I want to tell you something from the heart.",
+        "tl": "qabla ʾan ʾadhhaba ʾurīdu ʾan ʾaqūla lakum shayʾan mina-l-qalb"
+      },
+      {
+        "tr": "وَصَلْتُ إِلَى هُنَا قَبْلَ ثَلَاثِ سَنَوَاتٍ، وَلَمْ أَكُنْ أَعْرِفُ أَحَدًا.",
+        "en": "I arrived here three years ago, and I didn’t know anyone.",
+        "tl": "waṣaltu ʾilā hunā qabla thalāthi sanawātin wa-lam ʾakun ʾaʿrifu ʾaḥad"
+      },
+      {
+        "tr": "وَكَانَتْ لُغَتِي الْعَرَبِيَّةُ ضَعِيفَةً فِي ذَلِكَ الْوَقْتِ.",
+        "en": "And my Arabic was weak at that time.",
+        "tl": "wa-kānat lughatī-l-ʿarabiyyatu ḍaʿīfatan fī dhālika-l-waqt"
+      },
+      {
+        "tr": "فِي أَوَّلِ اجْتِمَاعٍ، لَمْ أَفْهَمْ إِلَّا نِصْفَ الْكَلَامِ.",
+        "en": "In the first meeting, I understood only half of what was said.",
+        "tl": "fī ʾawwali-jtimāʿin lam ʾafham ʾillā niṣfa-l-kalām"
+      },
+      {
+        "tr": "لَكِنَّكُمْ سَاعَدْتُمُونِي دَائِمًا بِصَبْرٍ كَبِيرٍ.",
+        "en": "But you always helped me with great patience.",
+        "tl": "lākinnakum sāʿadtumūnī dāʾiman bi-ṣabrin kabīr"
+      },
+      {
+        "tr": "لَمْ يَضْحَكْ أَحَدٌ مِنْ أَخْطَائِي، بَلْ عَلَّمْتُمُونِي الصَّوَابَ بِلُطْفٍ.",
+        "en": "Nobody laughed at my mistakes; instead, you kindly taught me what was right.",
+        "tl": "lam yaḍḥak ʾaḥadun min ʾakhṭāʾī bal ʿallamtumūnī-ṣ-ṣawāba bi-luṭf"
+      },
+      {
+        "tr": "تَعَلَّمْتُ هُنَا أَشْيَاءَ كَثِيرَةً عَنِ الْعَمَلِ وَعَنِ الْحَيَاةِ أَيْضًا.",
+        "en": "I learned many things here about work, and about life too.",
+        "tl": "taʿallamtu hunā ʾashyāʾa kathīratan ʿani-l-ʿamali wa-ʿani-l-ḥayāti ʾayḍan"
+      },
+      {
+        "tr": "لَنْ أَنْسَى اسْتِرَاحَةَ الشَّايِ وَأَحَادِيثَنَا الطَّوِيلَةَ فِي الْمَطْبَخِ.",
+        "en": "I won’t forget the tea break and our long chats in the kitchen.",
+        "tl": "lan ʾansā-stirāḥata-sh-shāyi wa-ʾaḥādīthanā-ṭ-ṭawīlata fī-l-maṭbakh"
+      },
+      {
+        "tr": "أَنْجَزْنَا مَعًا مَشَارِيعَ صَعْبَةً، وَعَمِلْنَا أَحْيَانًا حَتَّى اللَّيْلِ.",
+        "en": "Together we completed difficult projects, and sometimes we worked into the night.",
+        "tl": "ʾanjaznā maʿan mashārīʿa ṣaʿbatan wa-ʿamilnā ʾaḥyānan ḥattā-l-layl"
+      },
+      {
+        "tr": "تَعِبْنَا كَثِيرًا، لَكِنَّنَا كُنَّا دَائِمًا فَرِيقًا وَاحِدًا.",
+        "en": "We got very tired, but we were always one team.",
+        "tl": "taʿibnā kathīran lākinnanā kunnā dāʾiman farīqan wāḥid"
+      },
+      {
+        "tr": "أَشْكُرُ مُدِيرَتَنَا السَّيِّدَةَ نَادِيَةَ عَلَى ثِقَتِهَا بِي.",
+        "en": "I thank our manager, Ms Nadia, for her trust in me.",
+        "tl": "ʾashkuru mudīratanā-s-sayyidata nādiyata ʿalā thiqatihā bī"
+      },
+      {
+        "tr": "وَأَشْكُرُكُمْ جَمِيعًا عَلَى كُلِّ فُرْصَةٍ أَعْطَيْتُمُونِي إِيَّاهَا.",
+        "en": "And I thank you all for every opportunity you gave me.",
+        "tl": "wa-ʾashkurukum jamīʿan ʿalā kulli furṣatin ʾaʿṭaytumūnī ʾiyyāhā"
+      },
+      {
+        "tr": "فِي الشَّهْرِ الْقَادِمِ سَأَبْدَأُ عَمَلًا جَدِيدًا فِي الْإِسْكَنْدَرِيَّةِ.",
+        "en": "Next month I will start a new job in Alexandria.",
+        "tl": "fī-sh-shahri-l-qādimi sa-ʾabdaʾu ʿamalan jadīdan fī-l-ʾiskandariyya"
+      },
+      {
+        "tr": "أَشْعُرُ بِالْحَمَاسِ، لَكِنَّ الْوَدَاعَ لَيْسَ سَهْلًا أَبَدًا.",
+        "en": "I feel excited, but saying goodbye is never easy.",
+        "tl": "ʾashʿuru bi-l-ḥamāsi lākinna-l-wadāʿa laysa sahlan ʾabadan"
+      },
+      {
+        "tr": "هَذَا لَيْسَ وَدَاعًا، بَلْ إِلَى اللِّقَاءِ.",
+        "en": "This is not a farewell, but “until we meet again”.",
+        "tl": "hādhā laysa wadāʿan bal ʾilā-l-liqāʾ"
+      },
+      {
+        "tr": "إِذَا زُرْتُمُ الْإِسْكَنْدَرِيَّةَ، فَبَيْتِي بَيْتُكُمْ.",
+        "en": "If you visit Alexandria, my home is your home.",
+        "tl": "ʾidhā zurtumu-l-ʾiskandariyyata fa-baytī baytukum"
+      },
+      {
+        "tr": "كَانَ الْعَمَلُ مَعَكُمْ شَرَفًا لِي.",
+        "en": "Working with you has been an honour for me.",
+        "tl": "kāna-l-ʿamalu maʿakum sharafan lī"
+      },
+      {
+        "tr": "أَتَمَنَّى لَكُمْ كُلَّ التَّوْفِيقِ وَالنَّجَاحِ.",
+        "en": "I wish you all the very best and every success.",
+        "tl": "ʾatamannā lakum kulla-t-tawfīqi wa-n-najāḥ"
+      },
+      {
+        "tr": "شُكْرًا لَكُمْ مِنْ كُلِّ قَلْبِي.",
+        "en": "Thank you with all my heart.",
+        "tl": "shukran lakum min kulli qalbī"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "اِسْمَحُوا لِي",
+        "en": "allow me (to a group)",
+        "tl": "ismaḥū lī"
+      },
+      {
+        "tr": "آخِرُ يَوْمٍ",
+        "en": "the last day",
+        "tl": "ʾākhir yawm"
+      },
+      {
+        "tr": "اجْتِمَاعٍ",
+        "en": "a meeting (اِجْتِمَاع)",
+        "tl": "ijtimāʿ"
+      },
+      {
+        "tr": "نِصْفَ الْكَلَامِ",
+        "en": "half of what was said",
+        "tl": "niṣf al-kalām"
+      },
+      {
+        "tr": "بِصَبْرٍ",
+        "en": "with patience (صَبْر)",
+        "tl": "bi-ṣabr"
+      },
+      {
+        "tr": "أَخْطَائِي",
+        "en": "my mistakes (singular خَطَأ)",
+        "tl": "ʾakhṭāʾī"
+      },
+      {
+        "tr": "الصَّوَابَ",
+        "en": "what is right, the correct thing",
+        "tl": "aṣ-ṣawāb"
+      },
+      {
+        "tr": "اسْتِرَاحَةَ الشَّايِ",
+        "en": "the tea break",
+        "tl": "istirāḥat ash-shāy"
+      },
+      {
+        "tr": "أَنْجَزْنَا",
+        "en": "we completed, we got done",
+        "tl": "ʾanjaznā"
+      },
+      {
+        "tr": "مَشَارِيعَ",
+        "en": "projects (singular مَشْرُوع)",
+        "tl": "mashārīʿ"
+      },
+      {
+        "tr": "فَرِيقًا وَاحِدًا",
+        "en": "one team",
+        "tl": "farīq wāḥid"
+      },
+      {
+        "tr": "ثِقَتِهَا",
+        "en": "her trust (ثِقَة)",
+        "tl": "thiqatihā"
+      },
+      {
+        "tr": "فُرْصَةٍ",
+        "en": "an opportunity, a chance",
+        "tl": "furṣa"
+      },
+      {
+        "tr": "الْوَدَاعَ",
+        "en": "saying goodbye, farewell",
+        "tl": "al-wadāʿ"
+      },
+      {
+        "tr": "إِلَى اللِّقَاءِ",
+        "en": "until we meet again; goodbye",
+        "tl": "ʾilā-l-liqāʾ"
+      },
+      {
+        "tr": "شَرَفًا",
+        "en": "an honour",
+        "tl": "sharaf"
+      },
+      {
+        "tr": "التَّوْفِيقِ",
+        "en": "success, good fortune (a common good wish)",
+        "tl": "at-tawfīq"
+      }
+    ],
+    "questions": [
+      {
+        "q": "How long ago did the speaker arrive at this office?",
+        "options": [
+          "One year ago",
+          "Three years ago",
+          "Five years ago",
+          "Ten years ago"
+        ],
+        "answer": 1,
+        "explain": "«وَصَلْتُ إِلَى هُنَا قَبْلَ ثَلَاثِ سَنَوَاتٍ»."
+      },
+      {
+        "q": "What happened in the first meeting?",
+        "options": [
+          "The speaker gave a talk",
+          "The speaker arrived late",
+          "The speaker understood only half of what was said",
+          "The meeting was cancelled"
+        ],
+        "answer": 2,
+        "explain": "«لَمْ أَفْهَمْ إِلَّا نِصْفَ الْكَلَامِ»."
+      },
+      {
+        "q": "Who does the speaker thank by name?",
+        "options": [
+          "The manager, Ms Nadia",
+          "A neighbour",
+          "A teacher of Arabic",
+          "The office driver"
+        ],
+        "answer": 0,
+        "explain": "«أَشْكُرُ مُدِيرَتَنَا السَّيِّدَةَ نَادِيَةَ عَلَى ثِقَتِهَا بِي»."
+      },
+      {
+        "q": "Where is the new job?",
+        "options": [
+          "In Cairo",
+          "In Amman",
+          "In Dubai",
+          "In Alexandria"
+        ],
+        "answer": 3,
+        "explain": "«سَأَبْدَأُ عَمَلًا جَدِيدًا فِي الْإِسْكَنْدَرِيَّةِ»."
+      }
+    ]
+  },
+  {
+    "id": "ar-eid-presentation",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Short Presentation: Eid al-Fitr",
+    "titleNative": "عَرْضٌ قَصِيرٌ: عِيدُ الْفِطْرِ",
+    "summary": "A learner gives a short class presentation about Eid al-Fitr: the preparations, the Eid cookies, visits, greetings and the children’s gift of money. It suits any speaker.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "مَرْحَبًا بِكُمْ جَمِيعًا.",
+        "en": "Hello, everyone.",
+        "tl": "marḥaban bikum jamīʿan"
+      },
+      {
+        "tr": "الْيَوْمَ سَأُحَدِّثُكُمْ عَنْ عِيدِ الْفِطْرِ فِي الْعَالَمِ الْعَرَبِيِّ.",
+        "en": "Today I am going to talk to you about Eid al-Fitr in the Arab world.",
+        "tl": "al-yawma sa-ʾuḥaddithukum ʿan ʿīdi-l-fiṭri fī-l-ʿālami-l-ʿarabī"
+      },
+      {
+        "tr": "يَأْتِي هَذَا الْعِيدُ بَعْدَ شَهْرِ رَمَضَانَ مُبَاشَرَةً.",
+        "en": "This festival comes straight after the month of Ramadan.",
+        "tl": "yaʾtī hādhā-l-ʿīdu baʿda shahri ramaḍāna mubāsharatan"
+      },
+      {
+        "tr": "وَيَسْتَمِرُّ ثَلَاثَةَ أَيَّامٍ فِي أَغْلَبِ الْبِلَادِ.",
+        "en": "And it lasts three days in most countries.",
+        "tl": "wa-yastamirru thalāthata ʾayyāmin fī ʾaghlabi-l-bilād"
+      },
+      {
+        "tr": "قَبْلَ الْعِيدِ، تُنَظِّفُ الْعَائِلَاتُ بُيُوتَهَا وَتَشْتَرِي مَلَابِسَ جَدِيدَةً.",
+        "en": "Before Eid, families clean their homes and buy new clothes.",
+        "tl": "qabla-l-ʿīdi tunaẓẓifu-l-ʿāʾilātu buyūtahā wa-tashtarī malābisa jadīda"
+      },
+      {
+        "tr": "وَيُعْطِي النَّاسُ الْفُقَرَاءَ طَعَامًا أَوْ مَالًا.",
+        "en": "And people give food or money to the poor.",
+        "tl": "wa-yuʿṭī-n-nāsu-l-fuqarāʾa ṭaʿāman ʾaw māl"
+      },
+      {
+        "tr": "فِي مِصْرَ، تَصْنَعُ عَائِلَاتٌ كَثِيرَةٌ كَعْكَ الْعِيدِ فِي الْبَيْتِ.",
+        "en": "In Egypt, many families make Eid cookies at home.",
+        "tl": "fī miṣra taṣnaʿu ʿāʾilātun kathīratun kaʿka-l-ʿīdi fī-l-bayt"
+      },
+      {
+        "tr": "وَهُوَ كَعْكٌ صَغِيرٌ عَلَيْهِ سُكَّرٌ نَاعِمٌ.",
+        "en": "They are small cookies with powdered sugar on top.",
+        "tl": "wa-huwa kaʿkun ṣaghīrun ʿalayhi sukkarun nāʿim"
+      },
+      {
+        "tr": "فِي صَبَاحِ الْعِيدِ، يَذْهَبُ كَثِيرٌ مِنَ النَّاسِ إِلَى صَلَاةِ الْعِيدِ.",
+        "en": "On the morning of Eid, many people go to the Eid prayer.",
+        "tl": "fī ṣabāḥi-l-ʿīdi yadhhabu kathīrun mina-n-nāsi ʾilā ṣalāti-l-ʿīd"
+      },
+      {
+        "tr": "بَعْدَ ذَلِكَ يَبْدَأُ يَوْمٌ طَوِيلٌ مِنَ الزِّيَارَاتِ.",
+        "en": "After that, a long day of visits begins.",
+        "tl": "baʿda dhālika yabdaʾu yawmun ṭawīlun mina-z-ziyārāt"
+      },
+      {
+        "tr": "يَزُورُ النَّاسُ أَقَارِبَهُمْ وَجِيرَانَهُمْ وَأَصْدِقَاءَهُمْ.",
+        "en": "People visit their relatives, their neighbours and their friends.",
+        "tl": "yazūru-n-nāsu ʾaqāribahum wa-jīrānahum wa-ʾaṣdiqāʾahum"
+      },
+      {
+        "tr": "يَقُولُ الْجَمِيعُ: «عِيدٌ مُبَارَكٌ!»",
+        "en": "Everyone says: “Blessed Eid!”",
+        "tl": "yaqūlu-l-jamīʿ ʿīdun mubārak"
+      },
+      {
+        "tr": "وَهُنَاكَ تَهْنِئَةٌ أُخْرَى مَشْهُورَةٌ: «كُلُّ عَامٍ وَأَنْتُمْ بِخَيْرٍ.»",
+        "en": "There is another well-known greeting too: “May you be well every year.”",
+        "tl": "wa-hunāka tahniʾatun ʾukhrā mashhūra kullu ʿāmin wa-ʾantum bi-khayr"
+      },
+      {
+        "tr": "يُحِبُّ الْأَطْفَالُ الْعِيدَ كَثِيرًا، لِأَنَّ الْكِبَارَ يُعْطُونَهُمُ «الْعِيدِيَّةَ».",
+        "en": "Children love Eid very much, because the grown-ups give them the “ʿīdiyya”.",
+        "tl": "yuḥibbu-l-ʾaṭfālu-l-ʿīda kathīran liʾanna-l-kibāra yuʿṭūnahumu-l-ʿīdiyya"
+      },
+      {
+        "tr": "وَهِيَ مَالٌ قَلِيلٌ يَشْتَرِي بِهِ الطِّفْلُ مَا يُرِيدُ.",
+        "en": "It is a little money with which the child buys whatever they like.",
+        "tl": "wa-hiya mālun qalīlun yashtarī bihi-ṭ-ṭiflu mā yurīd"
+      },
+      {
+        "tr": "فِي الْمَسَاءِ، تَمْتَلِئُ الشَّوَارِعُ وَالْحَدَائِقُ بِالنَّاسِ.",
+        "en": "In the evening, the streets and parks fill with people.",
+        "tl": "fī-l-masāʾi tamtaliʾu-sh-shawāriʿu wa-l-ḥadāʾiqu bi-n-nās"
+      },
+      {
+        "tr": "فِي الْعَامِ الْمَاضِي دَعَانِي صَدِيقٌ مِصْرِيٌّ إِلَى بَيْتِ عَائِلَتِهِ.",
+        "en": "Last year an Egyptian friend invited me to his family’s home.",
+        "tl": "fī-l-ʿāmi-l-māḍī daʿānī ṣadīqun miṣriyyun ʾilā bayti ʿāʾilatih"
+      },
+      {
+        "tr": "أَكَلْتُ كَعْكًا كَثِيرًا جِدًّا، وَشَرِبْتُ شَايًا أَكْثَرَ!",
+        "en": "I ate far too many cookies, and drank even more tea!",
+        "tl": "ʾakaltu kaʿkan kathīran jiddan wa-sharibtu shāyan ʾakthar"
+      },
+      {
+        "tr": "وَأَعْطَتْنِي جَدَّتُهُ عِيدِيَّةً صَغِيرَةً، فَضَحِكَ الْجَمِيعُ.",
+        "en": "And his grandmother gave me a small ʿīdiyya, and everybody laughed.",
+        "tl": "wa-ʾaʿṭatnī jaddatuhu ʿīdiyyatan ṣaghīratan fa-ḍaḥika-l-jamīʿ"
+      },
+      {
+        "tr": "أَجْمَلُ مَا فِي الْعِيدِ أَنَّ الْعَائِلَةَ كُلَّهَا تَجْتَمِعُ.",
+        "en": "The most beautiful thing about Eid is that the whole family gets together.",
+        "tl": "ʾajmalu mā fī-l-ʿīdi ʾanna-l-ʿāʾilata kullahā tajtamiʿ"
+      },
+      {
+        "tr": "إِذَا كُنْتُمْ فِي بَلَدٍ عَرَبِيٍّ فِي الْعِيدِ، فَقُولُوا لِكُلِّ مَنْ تُقَابِلُونَهُ: «عِيدٌ مُبَارَكٌ!»",
+        "en": "If you are in an Arab country at Eid, say to everyone you meet: “Blessed Eid!”",
+        "tl": "ʾidhā kuntum fī baladin ʿarabiyyin fī-l-ʿīdi fa-qūlū li-kulli man tuqābilūnah ʿīdun mubārak"
+      },
+      {
+        "tr": "شُكْرًا لِحُسْنِ اسْتِمَاعِكُمْ.",
+        "en": "Thank you for listening.",
+        "tl": "shukran li-ḥusni-stimāʿikum"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "عِيدِ الْفِطْرِ",
+        "en": "Eid al-Fitr, the festival that ends Ramadan",
+        "tl": "ʿīd al-fiṭr"
+      },
+      {
+        "tr": "مُبَاشَرَةً",
+        "en": "directly, straight away",
+        "tl": "mubāsharatan"
+      },
+      {
+        "tr": "يَسْتَمِرُّ",
+        "en": "it lasts, it continues",
+        "tl": "yastamirr"
+      },
+      {
+        "tr": "أَغْلَبِ الْبِلَادِ",
+        "en": "most countries",
+        "tl": "ʾaghlab al-bilād"
+      },
+      {
+        "tr": "مَلَابِسَ جَدِيدَةً",
+        "en": "new clothes",
+        "tl": "malābis jadīda"
+      },
+      {
+        "tr": "الْفُقَرَاءَ",
+        "en": "the poor (singular فَقِير)",
+        "tl": "al-fuqarāʾ"
+      },
+      {
+        "tr": "كَعْكَ الْعِيدِ",
+        "en": "Eid cookies",
+        "tl": "kaʿk al-ʿīd"
+      },
+      {
+        "tr": "نَاعِمٌ",
+        "en": "fine, soft",
+        "tl": "nāʿim"
+      },
+      {
+        "tr": "صَلَاةِ الْعِيدِ",
+        "en": "the Eid prayer",
+        "tl": "ṣalāt al-ʿīd"
+      },
+      {
+        "tr": "الزِّيَارَاتِ",
+        "en": "visits (singular زِيَارَة)",
+        "tl": "az-ziyārāt"
+      },
+      {
+        "tr": "أَقَارِبَهُمْ",
+        "en": "their relatives",
+        "tl": "ʾaqāribahum"
+      },
+      {
+        "tr": "عِيدٌ مُبَارَكٌ",
+        "en": "Blessed Eid! — the usual greeting",
+        "tl": "ʿīd mubārak"
+      },
+      {
+        "tr": "تَهْنِئَةٌ",
+        "en": "a greeting, congratulations",
+        "tl": "tahniʾa"
+      },
+      {
+        "tr": "كُلُّ عَامٍ وَأَنْتُمْ بِخَيْرٍ",
+        "en": "May you be well every year — said at every festival",
+        "tl": "kull ʿām wa-ʾantum bi-khayr"
+      },
+      {
+        "tr": "الْعِيدِيَّةَ",
+        "en": "the gift of money that children get at Eid",
+        "tl": "al-ʿīdiyya"
+      },
+      {
+        "tr": "تَمْتَلِئُ",
+        "en": "fills up (with)",
+        "tl": "tamtaliʾ"
+      },
+      {
+        "tr": "دَعَانِي",
+        "en": "he invited me",
+        "tl": "daʿānī"
+      },
+      {
+        "tr": "تَجْتَمِعُ",
+        "en": "gets together, gathers",
+        "tl": "tajtamiʿ"
+      }
+    ],
+    "questions": [
+      {
+        "q": "When does Eid al-Fitr come?",
+        "options": [
+          "In the middle of Ramadan",
+          "Straight after the month of Ramadan",
+          "At the start of the school year",
+          "On the first day of spring"
+        ],
+        "answer": 1,
+        "explain": "«يَأْتِي هَذَا الْعِيدُ بَعْدَ شَهْرِ رَمَضَانَ مُبَاشَرَةً»."
+      },
+      {
+        "q": "What is the ʿīdiyya?",
+        "options": [
+          "A kind of cookie",
+          "The morning prayer",
+          "A little money that children are given",
+          "A visit to the neighbours"
+        ],
+        "answer": 2,
+        "explain": "«وَهِيَ مَالٌ قَلِيلٌ يَشْتَرِي بِهِ الطِّفْلُ مَا يُرِيدُ»."
+      },
+      {
+        "q": "What do many families in Egypt make at home?",
+        "options": [
+          "Eid cookies",
+          "New clothes",
+          "Lanterns",
+          "Bread for the neighbours"
+        ],
+        "answer": 0,
+        "explain": "«تَصْنَعُ عَائِلَاتٌ كَثِيرَةٌ كَعْكَ الْعِيدِ فِي الْبَيْتِ»."
+      },
+      {
+        "q": "What made everybody laugh?",
+        "options": [
+          "The speaker forgot the greeting",
+          "The speaker spilled the tea",
+          "The speaker got lost",
+          "The friend’s grandmother gave the speaker a small ʿīdiyya"
+        ],
+        "answer": 3,
+        "explain": "«وَأَعْطَتْنِي جَدَّتُهُ عِيدِيَّةً صَغِيرَةً، فَضَحِكَ الْجَمِيعُ»."
+      }
+    ]
   }
 ];

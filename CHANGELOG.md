@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Two more long speeches per language:** a farewell speech to colleagues, and a short class presentation about a holiday — Ramazan Bayramı, Ukrainian Easter, the Japanese New Year and Eid al-Fitr — each with glossary and questions, and practised like the other speeches (listen & repeat, shadowing, recording). 22 texts per language, 6 of them speeches.
 - **More words to tap in every text:** besides a text’s own glossary, any other word or phrase of the course in it can be tapped for its meaning, audio and “Add to reviews” (a quieter underline; whole words only). About three times as many tappable words per text.
 - **Word pages:** other words of the course inside the example sentence link to their own pages.
 - **My texts** (Read & Listen → My texts): type or paste your own text — a self-introduction, a speech, something your teacher corrected — and practise it like the built-in speeches: the voice reads it line by line (one sentence per line), with listen & repeat scoring, shadowing and recording. Words and phrases of the course that appear in your text are underlined: tap one for its meaning, to hear it, or to add it to your reviews (whole words only — inflected forms are not guessed). Up to 30 texts per language, kept on the device and in backup files (not in sync codes).

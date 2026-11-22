@@ -3979,5 +3979,523 @@ export const texts = [
         "explain": "エプロンはこちらで用意しますので、白いシャツだけ持ってきてください — only a white shirt."
       }
     ]
+  },
+  {
+    "id": "ja-farewell-speech",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Farewell Speech at Work",
+    "titleNative": "送別会でのあいさつ",
+    "summary": "At a farewell party, someone leaving the company after three years thanks their colleagues in polite, humble Japanese.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "皆さん、本日は私のために集まってくださり、ありがとうございます。",
+        "en": "Thank you all for gathering here for me today.",
+        "kana": "みなさん ほんじつ は わたし の ため に あつまって くださり ありがとう ございます"
+      },
+      {
+        "tr": "今月いっぱいで、この会社を辞めることになりました。",
+        "en": "I will be leaving this company at the end of this month.",
+        "kana": "こんげつ いっぱい で この かいしゃ を やめる こと に なりました"
+      },
+      {
+        "tr": "入社したのは三年前の春です。",
+        "en": "I joined the company in the spring three years ago.",
+        "kana": "にゅうしゃ した の は さんねん まえ の はる です"
+      },
+      {
+        "tr": "最初は日本語も仕事も分からないことばかりでした。",
+        "en": "At first there was so much I didn’t understand, in Japanese and in the job.",
+        "kana": "さいしょ は にほんご も しごと も わからない こと ばかり でした"
+      },
+      {
+        "tr": "初めての会議では、話の半分も分かりませんでした。",
+        "en": "In my first meeting I didn’t understand even half of what was said.",
+        "kana": "はじめて の かいぎ で は はなし の はんぶん も わかりません でした"
+      },
+      {
+        "tr": "それでも、皆さんはいつも親切に教えてくださいました。",
+        "en": "Even so, you always taught me kindly.",
+        "kana": "それでも みなさん は いつも しんせつ に おしえて くださいました"
+      },
+      {
+        "tr": "私が間違えても、だれも笑いませんでした。",
+        "en": "Even when I made mistakes, nobody laughed.",
+        "kana": "わたし が まちがえて も だれ も わらいません でした"
+      },
+      {
+        "tr": "おかげで、少しずつ自信が持てるようになりました。",
+        "en": "Thanks to you, little by little I came to feel confident.",
+        "kana": "おかげ で すこし ずつ じしん が もてる よう に なりました"
+      },
+      {
+        "tr": "仕事だけでなく、日本の文化もたくさん学びました。",
+        "en": "I learned not only about the work, but a great deal about Japanese culture too.",
+        "kana": "しごと だけ で なく にほん の ぶんか も たくさん まなびました"
+      },
+      {
+        "tr": "昼休みに一緒に食べたお弁当の味は、一生忘れません。",
+        "en": "I will never forget the taste of the lunch boxes we ate together at lunchtime.",
+        "kana": "ひるやすみ に いっしょ に たべた おべんとう の あじ は いっしょう わすれません"
+      },
+      {
+        "tr": "忙しい時期には、夜遅くまで一緒に頑張りましたね。",
+        "en": "In the busy periods we worked hard together until late at night, didn’t we?",
+        "kana": "いそがしい じき に は よる おそく まで いっしょ に がんばりました ね"
+      },
+      {
+        "tr": "大変なこともありましたが、今ではいい思い出です。",
+        "en": "There were hard times too, but now they are good memories.",
+        "kana": "たいへん な こと も ありました が いま で は いい おもいで です"
+      },
+      {
+        "tr": "特に、田中部長には大変お世話になりました。",
+        "en": "In particular, I am deeply indebted to Mr Tanaka, our department manager.",
+        "kana": "とくに たなか ぶちょう に は たいへん おせわ に なりました"
+      },
+      {
+        "tr": "いつも温かく見守ってくださり、心から感謝しております。",
+        "en": "Thank you from the bottom of my heart for always watching over me so warmly.",
+        "kana": "いつも あたたかく みまもって くださり こころ から かんしゃ して おります"
+      },
+      {
+        "tr": "来月からは、大阪で新しい仕事を始めます。",
+        "en": "From next month I will be starting a new job in Osaka.",
+        "kana": "らいげつ から は おおさか で あたらしい しごと を はじめます"
+      },
+      {
+        "tr": "不安もありますが、ここで学んだことを生かして頑張ります。",
+        "en": "I do feel some anxiety, but I will do my best, making use of what I learned here.",
+        "kana": "ふあん も あります が ここ で まなんだ こと を いかして がんばります"
+      },
+      {
+        "tr": "皆さんと離れるのは、本当に寂しいです。",
+        "en": "I am truly sad to be parting from you all.",
+        "kana": "みなさん と はなれる の は ほんとう に さびしい です"
+      },
+      {
+        "tr": "大阪にいらっしゃるときは、ぜひご連絡ください。",
+        "en": "When you come to Osaka, please do get in touch.",
+        "kana": "おおさか に いらっしゃる とき は ぜひ ごれんらく ください"
+      },
+      {
+        "tr": "おいしいたこ焼きの店をご案内します。",
+        "en": "I will take you to a place with delicious takoyaki.",
+        "kana": "おいしい たこやき の みせ を ごあんない します"
+      },
+      {
+        "tr": "最後になりますが、皆さんのご健康とご活躍をお祈りしております。",
+        "en": "Finally, I wish you all good health and every success.",
+        "kana": "さいご に なります が みなさん の ごけんこう と ごかつやく を おいのり して おります"
+      },
+      {
+        "tr": "三年間、本当にお世話になりました。",
+        "en": "Thank you so much for everything over these three years.",
+        "kana": "さんねんかん ほんとう に おせわ に なりました"
+      },
+      {
+        "tr": "どうもありがとうございました。",
+        "en": "Thank you very much.",
+        "kana": "どうも ありがとう ございました"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "集まってくださり",
+        "en": "(thank you) for gathering — くださる is respectful “do for me”",
+        "kana": "あつまって くださり"
+      },
+      {
+        "tr": "辞めることになりました",
+        "en": "it has been decided that I will leave (a soft way to announce it)",
+        "kana": "やめる こと に なりました"
+      },
+      {
+        "tr": "入社",
+        "en": "joining a company",
+        "kana": "にゅうしゃ"
+      },
+      {
+        "tr": "会議",
+        "en": "meeting",
+        "kana": "かいぎ"
+      },
+      {
+        "tr": "半分",
+        "en": "half",
+        "kana": "はんぶん"
+      },
+      {
+        "tr": "親切に",
+        "en": "kindly",
+        "kana": "しんせつ に"
+      },
+      {
+        "tr": "おかげで",
+        "en": "thanks to (you)",
+        "kana": "おかげ で"
+      },
+      {
+        "tr": "自信",
+        "en": "confidence",
+        "kana": "じしん"
+      },
+      {
+        "tr": "昼休み",
+        "en": "lunch break",
+        "kana": "ひるやすみ"
+      },
+      {
+        "tr": "一生",
+        "en": "all one’s life",
+        "kana": "いっしょう"
+      },
+      {
+        "tr": "思い出",
+        "en": "a memory",
+        "kana": "おもいで"
+      },
+      {
+        "tr": "お世話になりました",
+        "en": "thank you for all you have done for me (a set phrase)",
+        "kana": "おせわ に なりました"
+      },
+      {
+        "tr": "見守って",
+        "en": "watching over (見守る)",
+        "kana": "みまもって"
+      },
+      {
+        "tr": "感謝しております",
+        "en": "I am grateful (humble form of 感謝しています)",
+        "kana": "かんしゃ して おります"
+      },
+      {
+        "tr": "不安",
+        "en": "anxiety, worry",
+        "kana": "ふあん"
+      },
+      {
+        "tr": "生かして",
+        "en": "making use of (生かす)",
+        "kana": "いかして"
+      },
+      {
+        "tr": "寂しい",
+        "en": "lonely; sad to part",
+        "kana": "さびしい"
+      },
+      {
+        "tr": "ご活躍",
+        "en": "(your) success and activity — a respectful word",
+        "kana": "ごかつやく"
+      }
+    ],
+    "questions": [
+      {
+        "q": "When did the speaker join the company?",
+        "options": [
+          "Last month",
+          "In the spring three years ago",
+          "In the autumn five years ago",
+          "Ten years ago"
+        ],
+        "answer": 1,
+        "explain": "「入社したのは三年前の春です。」"
+      },
+      {
+        "q": "What does the speaker say about the first meeting?",
+        "options": [
+          "It was cancelled",
+          "They gave a presentation",
+          "They understood less than half of it",
+          "They arrived late"
+        ],
+        "answer": 2,
+        "explain": "「初めての会議では、話の半分も分かりませんでした。」"
+      },
+      {
+        "q": "Who does the speaker thank in particular?",
+        "options": [
+          "Mr Tanaka, the department manager",
+          "The company president",
+          "A friend from university",
+          "The customers"
+        ],
+        "answer": 0,
+        "explain": "「特に、田中部長には大変お世話になりました。」"
+      },
+      {
+        "q": "Where will the speaker work from next month?",
+        "options": [
+          "Tokyo",
+          "Kyoto",
+          "Nagoya",
+          "Osaka"
+        ],
+        "answer": 3,
+        "explain": "「来月からは、大阪で新しい仕事を始めます。」"
+      }
+    ]
+  },
+  {
+    "id": "ja-new-year-presentation",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Short Presentation: New Year in Japan",
+    "titleNative": "発表：日本のお正月",
+    "summary": "A learner gives a short class presentation about the Japanese New Year: the big clean, soba on New Year’s Eve, the first shrine visit, special food and gifts for children.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "皆さん、こんにちは。",
+        "en": "Hello, everyone.",
+        "kana": "みなさん こんにち は"
+      },
+      {
+        "tr": "今日は、日本のお正月についてお話しします。",
+        "en": "Today I am going to talk about New Year in Japan.",
+        "kana": "きょう は にほん の おしょうがつ に ついて おはなし します"
+      },
+      {
+        "tr": "お正月は、日本で一番大切な行事だと言われています。",
+        "en": "New Year is said to be the most important occasion of the year in Japan.",
+        "kana": "おしょうがつ は にほん で いちばん たいせつ な ぎょうじ だ と いわれて います"
+      },
+      {
+        "tr": "十二月の終わりになると、家じゅうをきれいにする大掃除をします。",
+        "en": "At the end of December people give the whole house a big clean.",
+        "kana": "じゅうにがつ の おわり に なる と いえじゅう を きれい に する おおそうじ を します"
+      },
+      {
+        "tr": "十二月三十一日は大みそかと言います。",
+        "en": "December 31st is called Ōmisoka.",
+        "kana": "じゅうにがつ さんじゅういちにち は おおみそか と いいます"
+      },
+      {
+        "tr": "この日の夜には、年越しそばを食べる習慣があります。",
+        "en": "On the evening of this day it is the custom to eat toshikoshi soba noodles.",
+        "kana": "この ひ の よる に は としこしそば を たべる しゅうかん が あります"
+      },
+      {
+        "tr": "そばのように細く長く生きられるように、という意味だそうです。",
+        "en": "I am told it means “may we live long, like the long thin noodles”.",
+        "kana": "そば の よう に ほそく ながく いきられる よう に と いう いみ だ そう です"
+      },
+      {
+        "tr": "夜の十二時ごろ、お寺では鐘を百八回鳴らします。",
+        "en": "Around midnight, temples ring their bells 108 times.",
+        "kana": "よる の じゅうにじ ごろ おてら で は かね を ひゃくはっかい ならします"
+      },
+      {
+        "tr": "年が明けると、「明けましておめでとうございます」とあいさつします。",
+        "en": "When the new year begins, people greet each other with “Akemashite omedetō gozaimasu”.",
+        "kana": "とし が あける と あけまして おめでとう ございます と あいさつ します"
+      },
+      {
+        "tr": "一月一日から三日までは、多くの会社や店が休みです。",
+        "en": "From January 1st to 3rd many companies and shops are closed.",
+        "kana": "いちがつ ついたち から みっか まで は おおく の かいしゃ や みせ が やすみ です"
+      },
+      {
+        "tr": "多くの人が神社やお寺へ初もうでに行きます。",
+        "en": "Many people go to a shrine or temple for their first visit of the year.",
+        "kana": "おおく の ひと が じんじゃ や おてら へ はつもうで に いきます"
+      },
+      {
+        "tr": "そこで、新しい一年の健康や幸せをお願いします。",
+        "en": "There they pray for health and happiness in the new year.",
+        "kana": "そこ で あたらしい いちねん の けんこう や しあわせ を おねがい します"
+      },
+      {
+        "tr": "お正月には、おせち料理という特別な料理を食べます。",
+        "en": "At New Year people eat special dishes called osechi.",
+        "kana": "おしょうがつ に は おせちりょうり と いう とくべつ な りょうり を たべます"
+      },
+      {
+        "tr": "おせち料理の一つ一つに、意味があります。",
+        "en": "Each of the osechi dishes has a meaning.",
+        "kana": "おせちりょうり の ひとつ ひとつ に いみ が あります"
+      },
+      {
+        "tr": "たとえば、黒豆は「まめに働けるように」という願いを表しています。",
+        "en": "For example, black beans express the wish “to be able to work diligently”.",
+        "kana": "たとえば くろまめ は まめ に はたらける よう に と いう ねがい を あらわして います"
+      },
+      {
+        "tr": "おもちが入ったスープ、お雑煮も欠かせません。",
+        "en": "Ozōni, a soup with rice cakes in it, is another must.",
+        "kana": "おもち が はいった スープ おぞうに も かかせません"
+      },
+      {
+        "tr": "子どもたちは、お年玉というお金をもらいます。",
+        "en": "Children receive money called otoshidama.",
+        "kana": "こども たち は おとしだま と いう おかね を もらいます"
+      },
+      {
+        "tr": "私も去年、友達の家でお正月を過ごしました。",
+        "en": "Last year I spent New Year at a friend’s home too.",
+        "kana": "わたし も きょねん ともだち の いえ で おしょうがつ を すごしました"
+      },
+      {
+        "tr": "おもちを食べすぎて、三日間で二キロも太ってしまいました。",
+        "en": "I ate too many rice cakes and put on two whole kilos in three days.",
+        "kana": "おもち を たべすぎて みっかかん で にキロ も ふとって しまいました"
+      },
+      {
+        "tr": "でも、家族みんなでゆっくり過ごす時間は、とてもすてきでした。",
+        "en": "But the time spent relaxing with the whole family was really lovely.",
+        "kana": "でも かぞく みんな で ゆっくり すごす じかん は とても すてき でした"
+      },
+      {
+        "tr": "皆さんも、機会があればぜひ日本のお正月を体験してみてください。",
+        "en": "If you get the chance, please do experience a Japanese New Year for yourselves.",
+        "kana": "みなさん も きかい が あれば ぜひ にほん の おしょうがつ を たいけん して みて ください"
+      },
+      {
+        "tr": "ご清聴ありがとうございました。",
+        "en": "Thank you for listening.",
+        "kana": "ごせいちょう ありがとう ございました"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "お正月",
+        "en": "New Year (the holiday)",
+        "kana": "おしょうがつ"
+      },
+      {
+        "tr": "行事",
+        "en": "an annual event or occasion",
+        "kana": "ぎょうじ"
+      },
+      {
+        "tr": "大掃除",
+        "en": "the big end-of-year clean",
+        "kana": "おおそうじ"
+      },
+      {
+        "tr": "大みそか",
+        "en": "New Year’s Eve",
+        "kana": "おおみそか"
+      },
+      {
+        "tr": "年越しそば",
+        "en": "soba noodles eaten on New Year’s Eve",
+        "kana": "としこしそば"
+      },
+      {
+        "tr": "習慣",
+        "en": "custom, habit",
+        "kana": "しゅうかん"
+      },
+      {
+        "tr": "鐘",
+        "en": "bell (of a temple)",
+        "kana": "かね"
+      },
+      {
+        "tr": "年が明ける",
+        "en": "the new year begins",
+        "kana": "とし が あける"
+      },
+      {
+        "tr": "神社",
+        "en": "Shinto shrine",
+        "kana": "じんじゃ"
+      },
+      {
+        "tr": "初もうで",
+        "en": "the first shrine or temple visit of the year",
+        "kana": "はつもうで"
+      },
+      {
+        "tr": "幸せ",
+        "en": "happiness",
+        "kana": "しあわせ"
+      },
+      {
+        "tr": "おせち料理",
+        "en": "traditional New Year dishes",
+        "kana": "おせちりょうり"
+      },
+      {
+        "tr": "願い",
+        "en": "a wish",
+        "kana": "ねがい"
+      },
+      {
+        "tr": "欠かせません",
+        "en": "cannot be left out (欠かせない)",
+        "kana": "かかせません"
+      },
+      {
+        "tr": "お年玉",
+        "en": "New Year’s gift of money for children",
+        "kana": "おとしだま"
+      },
+      {
+        "tr": "過ごしました",
+        "en": "spent (time) (過ごす)",
+        "kana": "すごしました"
+      },
+      {
+        "tr": "太ってしまいました",
+        "en": "ended up putting on weight (太る)",
+        "kana": "ふとって しまいました"
+      },
+      {
+        "tr": "体験して",
+        "en": "experiencing (体験する)",
+        "kana": "たいけん して"
+      }
+    ],
+    "questions": [
+      {
+        "q": "What do people eat on the evening of December 31st?",
+        "options": [
+          "Osechi dishes",
+          "Toshikoshi soba noodles",
+          "Ozōni soup",
+          "Black beans"
+        ],
+        "answer": 1,
+        "explain": "「この日の夜には、年越しそばを食べる習慣があります。」"
+      },
+      {
+        "q": "How many times do temples ring their bells around midnight?",
+        "options": [
+          "12 times",
+          "100 times",
+          "108 times",
+          "365 times"
+        ],
+        "answer": 2,
+        "explain": "「お寺では鐘を百八回鳴らします。」"
+      },
+      {
+        "q": "What is otoshidama?",
+        "options": [
+          "Money that children receive at New Year",
+          "A soup with rice cakes",
+          "The first shrine visit of the year",
+          "A New Year greeting card"
+        ],
+        "answer": 0,
+        "explain": "「子どもたちは、お年玉というお金をもらいます。」"
+      },
+      {
+        "q": "What happened to the speaker last New Year?",
+        "options": [
+          "They got lost on the way to a shrine",
+          "They forgot the greeting",
+          "They slept through midnight",
+          "They ate too many rice cakes and gained two kilos"
+        ],
+        "answer": 3,
+        "explain": "「おもちを食べすぎて、三日間で二キロも太ってしまいました。」"
+      }
+    ]
   }
 ];

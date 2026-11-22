@@ -3448,5 +3448,439 @@ export const texts = [
         "explain": "Deniz has to give a month's notice: 'en erken bir ay sonra başlayabilirim'."
       }
     ]
+  },
+  {
+    "id": "tr-farewell-speech",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Farewell Speech at Work",
+    "titleNative": "Veda Konuşması",
+    "summary": "On their last day at the office, someone thanks their colleagues for three years together. It has no gendered wording, so anyone can adapt it.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "Sevgili arkadaşlar, bir dakikanızı rica edebilir miyim?",
+        "en": "Dear friends, may I have a minute of your time?"
+      },
+      {
+        "tr": "Bildiğiniz gibi bugün bu ofisteki son günüm.",
+        "en": "As you know, today is my last day in this office."
+      },
+      {
+        "tr": "Gitmeden önce hepinize birkaç şey söylemek istiyorum.",
+        "en": "Before I go, I’d like to say a few things to all of you."
+      },
+      {
+        "tr": "Buraya üç yıl önce geldiğimde kimseyi tanımıyordum.",
+        "en": "When I came here three years ago, I didn’t know anyone."
+      },
+      {
+        "tr": "Türkçem de o zamanlar pek iyi değildi.",
+        "en": "My Turkish wasn’t very good back then either."
+      },
+      {
+        "tr": "İlk toplantıda söylenenlerin yarısını bile anlamamıştım.",
+        "en": "In the first meeting I didn’t understand even half of what was said."
+      },
+      {
+        "tr": "Ama siz bana hep sabırla yardım ettiniz.",
+        "en": "But you always helped me patiently."
+      },
+      {
+        "tr": "Hatalarıma gülmediniz, doğrusunu nazikçe gösterdiniz.",
+        "en": "You didn’t laugh at my mistakes; you kindly showed me the right way."
+      },
+      {
+        "tr": "Burada sadece işimi değil, çay molasının ne kadar önemli olduğunu da öğrendim.",
+        "en": "Here I learned not only my job, but also how important the tea break is."
+      },
+      {
+        "tr": "Sabah simitlerini ve cuma günkü uzun öğle yemeklerimizi çok özleyeceğim.",
+        "en": "I’m going to miss the morning simits and our long Friday lunches very much."
+      },
+      {
+        "tr": "Birlikte zor projeler bitirdik, geç saatlere kadar çalıştık.",
+        "en": "Together we finished difficult projects and worked until late."
+      },
+      {
+        "tr": "Bazen yorulduk ama birbirimize hep destek olduk.",
+        "en": "Sometimes we got tired, but we always supported each other."
+      },
+      {
+        "tr": "Müdürümüze bana güvendiği için özellikle teşekkür etmek istiyorum.",
+        "en": "I’d especially like to thank our manager for trusting me."
+      },
+      {
+        "tr": "Bana verdiğiniz her fırsat için minnettarım.",
+        "en": "I’m grateful for every opportunity you gave me."
+      },
+      {
+        "tr": "Önümüzdeki ay İzmir'de yeni bir işe başlıyorum.",
+        "en": "Next month I’m starting a new job in Izmir."
+      },
+      {
+        "tr": "Heyecanlıyım ama buradan ayrılmak hiç kolay değil.",
+        "en": "I’m excited, but leaving here isn’t easy at all."
+      },
+      {
+        "tr": "Bu bir veda değil; sizi mutlaka ziyarete geleceğim.",
+        "en": "This isn’t goodbye; I’ll definitely come to visit you."
+      },
+      {
+        "tr": "İzmir'e yolu düşen olursa kapım her zaman açık.",
+        "en": "If any of you happens to be in Izmir, my door is always open."
+      },
+      {
+        "tr": "Sizinle çalışmak benim için büyük bir zevkti.",
+        "en": "Working with you was a great pleasure for me."
+      },
+      {
+        "tr": "Hakkınızı helal edin.",
+        "en": "Please forgive me anything I may owe you. (a traditional farewell)"
+      },
+      {
+        "tr": "Her şey için çok teşekkür ederim.",
+        "en": "Thank you very much for everything."
+      },
+      {
+        "tr": "Hoşça kalın, kendinize iyi bakın!",
+        "en": "Goodbye, and take care of yourselves!"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "rica edebilir miyim",
+        "en": "may I ask for (rica etmek = to request)"
+      },
+      {
+        "tr": "son günüm",
+        "en": "my last day"
+      },
+      {
+        "tr": "Gitmeden önce",
+        "en": "before I go (-meden önce = before doing)"
+      },
+      {
+        "tr": "tanımıyordum",
+        "en": "I didn’t know (tanımak = to know a person)"
+      },
+      {
+        "tr": "toplantıda",
+        "en": "in the meeting (toplantı)"
+      },
+      {
+        "tr": "sabırla",
+        "en": "patiently (sabır = patience)"
+      },
+      {
+        "tr": "nazikçe",
+        "en": "kindly, politely"
+      },
+      {
+        "tr": "çay molasının",
+        "en": "of the tea break (mola = break)"
+      },
+      {
+        "tr": "özleyeceğim",
+        "en": "I will miss (özlemek)"
+      },
+      {
+        "tr": "destek olduk",
+        "en": "we supported (destek olmak)"
+      },
+      {
+        "tr": "güvendiği için",
+        "en": "for trusting; because he or she trusted (güvenmek)"
+      },
+      {
+        "tr": "minnettarım",
+        "en": "I’m grateful"
+      },
+      {
+        "tr": "ayrılmak",
+        "en": "to leave; to part"
+      },
+      {
+        "tr": "veda",
+        "en": "farewell"
+      },
+      {
+        "tr": "yolu düşen olursa",
+        "en": "if anyone happens to pass by (yolu düşmek = to happen to be somewhere)"
+      },
+      {
+        "tr": "zevkti",
+        "en": "was a pleasure (zevk)"
+      },
+      {
+        "tr": "Hakkınızı helal edin",
+        "en": "said when parting for a long time: forgive me anything I owe you"
+      }
+    ],
+    "questions": [
+      {
+        "q": "How long has the speaker worked in this office?",
+        "options": [
+          "One year",
+          "Three years",
+          "Five years",
+          "Ten years"
+        ],
+        "answer": 1,
+        "explain": "“Buraya üç yıl önce geldiğimde…” — when I came here three years ago."
+      },
+      {
+        "q": "What happened in the speaker’s first meeting?",
+        "options": [
+          "They gave a long presentation",
+          "They arrived late",
+          "They understood less than half of it",
+          "They met the manager’s family"
+        ],
+        "answer": 2,
+        "explain": "“…söylenenlerin yarısını bile anlamamıştım” — I didn’t understand even half of what was said."
+      },
+      {
+        "q": "What will the speaker miss?",
+        "options": [
+          "The morning simits and the long Friday lunches",
+          "The view from the office",
+          "The business trips",
+          "The company car"
+        ],
+        "answer": 0,
+        "explain": "“Sabah simitlerini ve cuma günkü uzun öğle yemeklerimizi çok özleyeceğim.”"
+      },
+      {
+        "q": "Where is the new job?",
+        "options": [
+          "In Ankara",
+          "In Istanbul",
+          "In Antalya",
+          "In Izmir"
+        ],
+        "answer": 3,
+        "explain": "“Önümüzdeki ay İzmir’de yeni bir işe başlıyorum.”"
+      }
+    ]
+  },
+  {
+    "id": "tr-bayram-presentation",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Short Presentation: Bayram",
+    "titleNative": "Kısa Bir Sunum: Ramazan Bayramı",
+    "summary": "A learner gives a short class presentation about the Ramadan Feast in Turkey: the preparations, visiting elders, sweets and good wishes.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "Merhaba arkadaşlar, bugün size Türkiye'deki bayramlardan birini anlatacağım.",
+        "en": "Hello friends, today I’m going to tell you about one of the holidays in Turkey."
+      },
+      {
+        "tr": "Konum Ramazan Bayramı; birçok kişi ona Şeker Bayramı da der.",
+        "en": "My topic is the Ramadan Feast; many people also call it the Sugar Feast."
+      },
+      {
+        "tr": "Bu bayram, Ramazan ayının bitiminde kutlanır ve üç gün sürer.",
+        "en": "This holiday is celebrated at the end of the month of Ramadan and lasts three days."
+      },
+      {
+        "tr": "Hazırlıklar günler öncesinden başlar.",
+        "en": "The preparations begin days in advance."
+      },
+      {
+        "tr": "Evler baştan aşağı temizlenir, tatlılar hazırlanır.",
+        "en": "Homes are cleaned from top to bottom and sweets are prepared."
+      },
+      {
+        "tr": "Çocuklara yeni kıyafetler alınır; bunlara “bayramlık” denir.",
+        "en": "New clothes are bought for the children; these are called “bayramlık”."
+      },
+      {
+        "tr": "Bayram sabahı herkes erkenden kalkar ve en güzel kıyafetlerini giyer.",
+        "en": "On the morning of the holiday everyone gets up early and puts on their best clothes."
+      },
+      {
+        "tr": "Önce aile büyükleri ziyaret edilir.",
+        "en": "First, the elders of the family are visited."
+      },
+      {
+        "tr": "Gençler büyüklerin elini öpüp alnına koyar.",
+        "en": "Young people kiss the elders’ hand and touch it to their forehead."
+      },
+      {
+        "tr": "Bu, saygı göstermenin geleneksel bir yoludur.",
+        "en": "This is a traditional way of showing respect."
+      },
+      {
+        "tr": "Büyükler de çocuklara şeker ya da harçlık verir.",
+        "en": "The elders, in turn, give the children sweets or pocket money."
+      },
+      {
+        "tr": "Misafirlere önce kolonya, sonra baklava ve Türk kahvesi ikram edilir.",
+        "en": "Guests are offered cologne first, then baklava and Turkish coffee."
+      },
+      {
+        "tr": "Bayramda herkes birbirine “İyi bayramlar!” der.",
+        "en": "During the holiday everyone says “İyi bayramlar!” (Happy holiday!) to each other."
+      },
+      {
+        "tr": "Daha resmî bir dilek de var: “Bayramınız mübarek olsun.”",
+        "en": "There is a more formal wish too: “May your holiday be blessed.”"
+      },
+      {
+        "tr": "Uzakta yaşayan akrabalar telefonla aranır.",
+        "en": "Relatives who live far away are phoned."
+      },
+      {
+        "tr": "Birçok insan bayramı ailesiyle geçirmek için memleketine gider.",
+        "en": "Many people travel to their hometown to spend the holiday with their family."
+      },
+      {
+        "tr": "Bu yüzden bayramdan önce yollar ve otogarlar çok kalabalık olur.",
+        "en": "That is why the roads and bus stations get very crowded before the holiday."
+      },
+      {
+        "tr": "Bayramın en güzel yanlarından biri de küslerin barışmasıdır.",
+        "en": "One of the nicest things about the holiday is that people who have fallen out make up."
+      },
+      {
+        "tr": "Geçen yıl ben de bir arkadaşımın ailesiyle bayramı kutladım.",
+        "en": "Last year I celebrated the holiday with a friend’s family too."
+      },
+      {
+        "tr": "O kadar çok baklava ikram ettiler ki “hayır” demeyi öğrenmem gerekti!",
+        "en": "They offered me so much baklava that I had to learn how to say “no”!"
+      },
+      {
+        "tr": "Bir gün siz de bir bayram sofrasına davet edilirseniz mutlaka gidin.",
+        "en": "If one day you too are invited to a holiday table, be sure to go."
+      },
+      {
+        "tr": "Dinlediğiniz için teşekkür ederim; sorularınız varsa memnuniyetle cevaplarım.",
+        "en": "Thank you for listening; if you have any questions, I’ll gladly answer them."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "anlatacağım",
+        "en": "I’m going to tell (anlatmak)"
+      },
+      {
+        "tr": "bitiminde",
+        "en": "at the end of (bitim = end)"
+      },
+      {
+        "tr": "kutlanır",
+        "en": "is celebrated (kutlamak = to celebrate)"
+      },
+      {
+        "tr": "Hazırlıklar",
+        "en": "preparations (hazırlık)"
+      },
+      {
+        "tr": "baştan aşağı",
+        "en": "from top to bottom"
+      },
+      {
+        "tr": "bayramlık",
+        "en": "new clothes bought for the holiday"
+      },
+      {
+        "tr": "erkenden",
+        "en": "early (in the morning)"
+      },
+      {
+        "tr": "aile büyükleri",
+        "en": "the elders of the family"
+      },
+      {
+        "tr": "elini öpüp",
+        "en": "kissing the hand (el öpmek, a sign of respect to elders)"
+      },
+      {
+        "tr": "saygı",
+        "en": "respect"
+      },
+      {
+        "tr": "harçlık",
+        "en": "pocket money"
+      },
+      {
+        "tr": "ikram edilir",
+        "en": "is offered (ikram etmek = to offer food or drink to a guest)"
+      },
+      {
+        "tr": "kolonya",
+        "en": "cologne (poured on guests’ hands to freshen them)"
+      },
+      {
+        "tr": "mübarek olsun",
+        "en": "may it be blessed"
+      },
+      {
+        "tr": "akrabalar",
+        "en": "relatives (akraba)"
+      },
+      {
+        "tr": "memleketine",
+        "en": "to their hometown (memleket)"
+      },
+      {
+        "tr": "otogarlar",
+        "en": "bus stations (otogar)"
+      },
+      {
+        "tr": "küslerin barışmasıdır",
+        "en": "is the making-up of people who had fallen out (küs = not on speaking terms; barışmak = to make peace)"
+      }
+    ],
+    "questions": [
+      {
+        "q": "How long does the holiday last?",
+        "options": [
+          "One day",
+          "Three days",
+          "A week",
+          "A month"
+        ],
+        "answer": 1,
+        "explain": "“…Ramazan ayının bitiminde kutlanır ve üç gün sürer.”"
+      },
+      {
+        "q": "What is a “bayramlık”?",
+        "options": [
+          "Money given to children",
+          "A dessert made for guests",
+          "New clothes bought for the holiday",
+          "A holiday greeting"
+        ],
+        "answer": 2,
+        "explain": "“Çocuklara yeni kıyafetler alınır; bunlara ‘bayramlık’ denir.”"
+      },
+      {
+        "q": "How do young people show respect to their elders?",
+        "options": [
+          "They kiss the elder’s hand and touch it to their forehead",
+          "They bring them flowers",
+          "They cook for them",
+          "They sing for them"
+        ],
+        "answer": 0,
+        "explain": "“Gençler büyüklerin elini öpüp alnına koyar.”"
+      },
+      {
+        "q": "Why are the roads so crowded before the holiday?",
+        "options": [
+          "The shops have sales",
+          "Schools organise trips",
+          "There are street concerts",
+          "Many people travel to their hometown"
+        ],
+        "answer": 3,
+        "explain": "“Birçok insan bayramı ailesiyle geçirmek için memleketine gider.”"
+      }
+    ]
   }
 ];
