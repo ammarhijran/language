@@ -4,6 +4,8 @@ import { voiceBanner } from '../components.js';
 import { GOALS } from './welcome.js';
 import { languageCards } from './language.js';
 import { remindersSupported, askPermission, parseTime, DEFAULT_TIME } from '../reminders.js';
+import { saveTextFile } from '../native.js';
+import { wordsCsv } from '../wordlist.js';
 
 export default function settings(ctx) {
   const { lang, store } = ctx;
@@ -88,13 +90,17 @@ export default function settings(ctx) {
     },
   });
 
+  // In the apps a file goes through the share sheet (a WebView cannot download); on the web it is a download.
+  const cancelled = (e) => /cancel|abort/i.test(String(e?.message || e));
   function exportProgress() {
-    const blob = new Blob([store.exportData()], { type: 'application/json' });
-    const a = h('a', { href: URL.createObjectURL(blob), download: `lisan-progress-${store.dayKey()}.json` });
-    document.body.append(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    saveTextFile(`lisan-progress-${store.dayKey()}.json`, store.exportData(), { type: 'application/json', dialogTitle: 'Save your Lisan backup' })
+      .catch((e) => { if (!cancelled(e)) ctx.toast('Couldn’t save the file.'); });
+  }
+  function exportWords() {
+    const { count, text } = wordsCsv(lang, store.getCards(lang.code));
+    if (!count) { ctx.toast('Learn a few words first — then there is a list to export.'); return; }
+    saveTextFile(`lisan-${lang.code}-words-${store.dayKey()}.csv`, text, { type: 'text/csv', dialogTitle: `Save your ${lang.name} word list` })
+      .catch((e) => { if (!cancelled(e)) ctx.toast('Couldn’t save the file.'); });
   }
 
   function reset() {
@@ -214,7 +220,9 @@ export default function settings(ctx) {
       h('div', { class: 'button-row' },
         h('button', { type: 'button', class: 'btn', onclick: exportProgress }, 'Export progress'),
         h('button', { type: 'button', class: 'btn', onclick: () => fileInput.click() }, 'Import progress'),
+        h('button', { type: 'button', class: 'btn', onclick: exportWords }, 'Export my words (CSV)'),
         h('button', { type: 'button', class: 'btn danger', onclick: reset }, 'Reset progress')),
+      h('p', { class: 'hint' }, `“Export my words” saves the ${lang.name} words you have started as a spreadsheet file (word, reading, meaning, example) — for printing or a flashcard program.`),
       h('p', { class: 'hint' }, `Reset clears only your ${lang.name} words and daily history; XP, achievements and other languages stay.`),
       fileInput),
     h('section', { class: 'card form danger-zone', 'aria-labelledby': 'delete-all-title' },

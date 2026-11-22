@@ -6,6 +6,7 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **Export my words (CSV)** (Settings → Your data): the words you have started in the current language as a spreadsheet file — word, reading, meaning, example, topic and status — for printing or a flashcard program.
 - **Placement check** (Learn → Already know some words? → “Not sure what you know?”, and from the last welcome step): 24 quick questions, three from each of the first eight topics. Topics where all three were right can be marked as already learned in one tap (untick any you would rather go through); those words still come back once, a month later, for a quick check.
 - **Getting started:** for Ukrainian and Arabic the welcome steps ask “How do you speak?” (as a man / as a woman), so the right first-person forms are used from the first lesson; and the last step offers “Travelling soon? Start with the trip essentials” as an alternative first lesson.
 - **Read the script** (Practice, for Japanese, Arabic and Ukrainian): a word is shown in its script with no audio and no reading, and you pick how it is read from four options of similar length — rōmaji, the transliteration, or the “say it like” respelling. For getting off the reading aids.
@@ -116,6 +117,7 @@
 - **Daily goal** ring on the home screen, a "goal reached" celebration, and a daily-goal setting.
 
 ### Fixed
+- **Export progress in the Android and iOS apps:** it used a browser download, which an app’s WebView cannot do; it now goes through the share sheet (save to Files or Drive, or send it to yourself), like the sync file already did.
 - **Turkish numbers in speaking exercises:** when the phone’s speech recogniser answers with digits (“3” for *üç*, “40” for *kırk*), the answer now counts as right, as it already did in the other languages.
 - **Ukrainian stress:** мене / тебе after a preposition are stressed on the first syllable (у ме́не, в те́бе, як на ме́не) — corrected in 12 phrases.
 - **Japanese voice:** a number or counter followed by more kanji is read as one word (一日中 “ichinichi-jū”, 一人暮らし “hitori-gurashi”, 七時半), not cut in the middle.

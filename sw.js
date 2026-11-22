@@ -57,6 +57,7 @@ const ASSETS = [
   'js/stats.js',
   'js/store.js',
   'js/sync.js',
+  'js/wordlist.js',
   'js/ui.js',
   'js/views/grammar.js',
   'js/views/home.js',

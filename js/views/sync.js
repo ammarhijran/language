@@ -5,7 +5,7 @@ import { h, icon, set } from '../ui.js';
 import { encode, decode, isEncrypted, mergeAll, passphraseOk, MIN_PASSPHRASE, SyncError } from '../sync.js';
 import { meta } from '../languages/index.js';
 import { levelFromXp } from '../game.js';
-import { hasPlugin, plugin } from '../native.js';
+import { hasPlugin, plugin, saveTextFile } from '../native.js';
 import { backLink } from '../components.js';
 
 const kb = (s) => `${(s.length / 1024).toFixed(s.length < 10240 ? 1 : 0)} kB`;
@@ -19,18 +19,7 @@ async function shareText(text) {
   return navigator.share({ title: 'Lisan sync code', text });
 }
 
-async function saveFile(text) {
-  const name = fileName();
-  if (hasPlugin('Filesystem') && hasPlugin('Share')) {
-    const { uri } = await plugin('Filesystem').writeFile({ path: name, data: text, directory: 'CACHE', encoding: 'utf8' });
-    return plugin('Share').share({ title: name, files: [uri], dialogTitle: 'Save your Lisan sync file' });
-  }
-  const a = h('a', { href: URL.createObjectURL(new Blob([text], { type: 'text/plain' })), download: name });
-  document.body.append(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-}
+const saveFile = (text) => saveTextFile(fileName(), text, { dialogTitle: 'Save your Lisan sync file' });
 
 async function copy(text, fallbackEl) {
   try {

@@ -38,6 +38,26 @@ export function plugin(name) {
   });
 }
 
+/**
+ * Hand a text file to the learner: in the apps through the share sheet (save
+ * to Files or Drive, send to oneself) — a WebView has no downloads — and on
+ * the web as a download.
+ */
+export async function saveTextFile(name, text, { type = 'text/plain', dialogTitle = 'Save the file' } = {}) {
+  if (hasPlugin('Filesystem') && hasPlugin('Share')) {
+    const { uri } = await plugin('Filesystem').writeFile({ path: name, data: text, directory: 'CACHE', encoding: 'utf8' });
+    return plugin('Share').share({ title: name, files: [uri], dialogTitle });
+  }
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type }));
+  a.download = name;
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  return undefined;
+}
+
 const App = plugin('App');
 
 /**
