@@ -21,6 +21,10 @@ export const meta = {
       "past-tense",
       "future-tense",
       "politeness",
+      "can-must-want",
+      "commands-suggestions",
+      "comparing-linking",
+      "if-when-before-after",
       "spoken-turkish"
     ]
   },
@@ -44,6 +48,10 @@ export const meta = {
       "past-tense",
       "future-aspect",
       "polite-informal",
+      "dative",
+      "verbs-of-motion",
+      "imperative",
+      "adjectives-comparison",
       "spoken-vs-written"
     ]
   },
@@ -66,7 +74,11 @@ export const meta = {
       "want-to-tai",
       "te-form",
       "plain-form",
+      "reasons-and-linking",
       "politeness-levels",
+      "can-must-may",
+      "giving-receiving",
+      "if-and-when",
       "spoken-japanese"
     ]
   },
@@ -90,6 +102,10 @@ export const meta = {
       "past-tense",
       "negation",
       "polite-and-formal",
+      "future-and-wanting",
+      "commands-and-requests",
+      "was-and-had",
+      "comparing",
       "msa-vs-egyptian"
     ]
   }

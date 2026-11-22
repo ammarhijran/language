@@ -1925,6 +1925,913 @@ export const lessons = [
     ]
   },
   {
+    "id": "future-and-wanting",
+    "title": "The future & “want to, must, can”",
+    "level": "A2",
+    "summary": "Say what you will do with سَـ or سَوْفَ, and what you want to, have to or can do with أَنْ + the present tense.",
+    "sections": [
+      {
+        "heading": "The future: سَـ and سَوْفَ",
+        "body": "You have already met the future: **سَـ (sa-)** is written joined to a present-tense verb, and **سَوْفَ (sawfa)** is a separate word in front of it. Both mean “will” or “going to”: سَأُسَافِرُ = سَوْفَ أُسَافِرُ (I will travel). The verb itself stays exactly as in the present.\n\nThe negative does **not** use سَـ. “Will not” is **لَنْ (lan)** on its own, and the verb after it ends in **-a** instead of -u: سَأَذْهَبُ (I will go) → **لَنْ أَذْهَبَ** (I won’t go). People often add **إِنْ شَاءَ اللَّهُ** (God willing) when they talk about plans.",
+        "examples": [
+          {
+            "tr": "سَأُسَافِرُ إِلَى مِصْرَ فِي الصَّيْفِ.",
+            "tl": "sa-ʾusāfiru ʾilā miṣra fī ṣ-ṣayf",
+            "en": "I’ll travel to Egypt in the summer.",
+            "note": "sa- + ʾusāfiru (I travel)."
+          },
+          {
+            "tr": "مَاذَا سَتَفْعَلُ غَدًا؟",
+            "tl": "mādhā sa-tafʿalu ghadan",
+            "en": "What will you do tomorrow? (to a man)",
+            "note": "sa- + tafʿalu (you do); ghadan = tomorrow."
+          },
+          {
+            "tr": "سَوْفَ أَتَّصِلُ بِكَ فِي الْمَسَاءِ.",
+            "tl": "sawfa ʾattaṣilu bika fī l-masāʾ",
+            "en": "I’ll call you in the evening. (to a man)",
+            "note": "sawfa is a separate word; the verb is the ordinary present."
+          },
+          {
+            "tr": "لَنْ أَتَأَخَّرَ غَدًا، إِنْ شَاءَ اللَّهُ.",
+            "tl": "lan ʾataʾakhkhara ghadan ʾin shāʾa llāh",
+            "en": "I won’t be late tomorrow, God willing.",
+            "note": "lan + ʾataʾakhkhara: the verb ends in -a, and there is no sa-."
+          }
+        ]
+      },
+      {
+        "heading": "“I want to…”: أُرِيدُ أَنْ",
+        "body": "Arabic does not use a form like “to go” after “want”. It says “I want **that I go**”: **أُرِيدُ أَنْ أَذْهَبَ** (ʾurīdu ʾan ʾadhhaba). The little word **أَنْ (ʾan)** is followed by a present-tense verb with its own prefix, so both verbs show the person: تُرِيدُ أَنْ تَذْهَبَ (you want to go).\n\nAfter أَنْ the verb changes its ending slightly, just as after لَنْ: the final **-u becomes -a**, and -īna / -ūna lose their -na (تَذْهَبِينَ → تَذْهَبِي, يَذْهَبُونَ → يَذْهَبُوا, with a silent alif). Grammars call this form the **subjunctive**. The two verbs can have different subjects: أُرِيدُ أَنْ تَذْهَبَ مَعِي = I want you to go with me.",
+        "table": {
+          "head": [
+            "Person",
+            "Arabic",
+            "Transliteration"
+          ],
+          "rows": [
+            [
+              "I want to go",
+              "أُرِيدُ أَنْ أَذْهَبَ",
+              "ʾurīdu ʾan ʾadhhaba"
+            ],
+            [
+              "you want to go (man)",
+              "تُرِيدُ أَنْ تَذْهَبَ",
+              "turīdu ʾan tadhhaba"
+            ],
+            [
+              "you want to go (woman)",
+              "تُرِيدِينَ أَنْ تَذْهَبِي",
+              "turīdīna ʾan tadhhabī"
+            ],
+            [
+              "he wants to go",
+              "يُرِيدُ أَنْ يَذْهَبَ",
+              "yurīdu ʾan yadhhaba"
+            ],
+            [
+              "we want to go",
+              "نُرِيدُ أَنْ نَذْهَبَ",
+              "nurīdu ʾan nadhhaba"
+            ],
+            [
+              "they want to go",
+              "يُرِيدُونَ أَنْ يَذْهَبُوا",
+              "yurīdūna ʾan yadhhabū"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "أُرِيدُ أَنْ أَتَعَلَّمَ الْعَرَبِيَّةَ.",
+            "tl": "ʾurīdu ʾan ʾataʿallama l-ʿarabiyya",
+            "en": "I want to learn Arabic.",
+            "note": "ʾataʿallamu → ʾataʿallama after ʾan."
+          },
+          {
+            "tr": "هَلْ تُرِيدِينَ أَنْ تَشْرَبِي شَيْئًا؟",
+            "tl": "hal turīdīna ʾan tashrabī shayʾan",
+            "en": "Would you like something to drink? (to a woman)",
+            "note": "tashrabīna loses its -na after ʾan: tashrabī."
+          },
+          {
+            "tr": "نُرِيدُ أَنْ نَزُورَ الْأَهْرَامَ.",
+            "tl": "nurīdu ʾan nazūra l-ʾahrām",
+            "en": "We want to visit the pyramids.",
+            "note": "Both verbs carry na- (we)."
+          },
+          {
+            "tr": "لَا أُرِيدُ أَنْ أَذْهَبَ إِلَى الْعَمَلِ الْيَوْمَ.",
+            "tl": "lā ʾurīdu ʾan ʾadhhaba ʾilā l-ʿamali l-yawm",
+            "en": "I don’t want to go to work today.",
+            "note": "lā negates ʾurīdu; the verb after ʾan stays as it is."
+          }
+        ]
+      },
+      {
+        "heading": "Must and can: يَجِبُ أَنْ، يُمْكِنُ أَنْ",
+        "body": "Two more words work with أَنْ. **يَجِبُ أَنْ (yajibu ʾan)** means “it is necessary that…” — must, have to. **يُمْكِنُ أَنْ (yumkinu ʾan)** means “it is possible that…” — can, may. Both keep this one form whoever you are talking about; only the verb after أَنْ changes: يَجِبُ أَنْ أَذْهَبَ (I must go), يَجِبُ أَنْ نَذْهَبَ (we must go).\n\nTo make clear who “can”, add an attached pronoun to يُمْكِنُ: **يُمْكِنُنِي** (yumkinunī, I can), **يُمْكِنُكَ / يُمْكِنُكِ** (you can), **يُمْكِنُنَا** (we can). “Can’t” is simply لَا يُمْكِنُ.",
+        "examples": [
+          {
+            "tr": "يَجِبُ أَنْ أَذْهَبَ الْآنَ.",
+            "tl": "yajibu ʾan ʾadhhaba l-ʾān",
+            "en": "I have to go now.",
+            "note": "yajibu never changes; ʾadhhaba shows that it is “I”."
+          },
+          {
+            "tr": "يَجِبُ أَنْ تَشْرَبِي مَاءً كَثِيرًا.",
+            "tl": "yajibu ʾan tashrabī māʾan kathīran",
+            "en": "You must drink a lot of water. (to a woman)",
+            "note": "The same yajibu; tashrabī is “you” to a woman."
+          },
+          {
+            "tr": "هَلْ يُمْكِنُ أَنْ نَجْلِسَ هُنَا؟",
+            "tl": "hal yumkinu ʾan najlisa hunā",
+            "en": "Can we sit here?",
+            "note": "Literally “is it possible that we sit here?”"
+          },
+          {
+            "tr": "يُمْكِنُكَ أَنْ تَدْفَعَ بِالْبِطَاقَةِ.",
+            "tl": "yumkinuka ʾan tadfaʿa bi-l-biṭāqa",
+            "en": "You can pay by card. (to a man)",
+            "note": "yumkinu + -ka = you can."
+          },
+          {
+            "tr": "لَا يُمْكِنُنِي أَنْ أَنَامَ.",
+            "tl": "lā yumkinunī ʾan ʾanām",
+            "en": "I can’t sleep.",
+            "note": "lā yumkinu = it isn’t possible; -nī = for me."
+          }
+        ]
+      },
+      {
+        "heading": "In everyday Egyptian",
+        "body": "Spoken Egyptian is simpler here: there is no أَنْ and no change of ending — the second verb is just the bare present. The future prefix is **هَـ (ha-)**, which you will also hear and see as حَـ (ḥa-): هَسَافِر (hasāfir, I’ll travel). “Want” is not a verb but a describing word that agrees, like an adjective, with the person who wants: **عَايِز** (ʿāyiz, a man), **عَايْزَة** (ʿayza, a woman), **عَايْزِين** (ʿayzīn, several people). “Must” is **لَازِم (lāzim)** and “can / may” is **مُمْكِن (mumkin)**; neither ever changes.",
+        "examples": [
+          {
+            "tr": "هَشُوفَكْ بُكْرَة.",
+            "tl": "hashūfak bukra",
+            "en": "I’ll see you tomorrow. (to a man)",
+            "note": "Egyptian: ha- + ʾashūf (I see) + -ak (you); bukra = tomorrow.",
+            "dialect": "Egyptian"
+          },
+          {
+            "tr": "عَايِزْ أَشْرَبْ شَايْ.",
+            "tl": "ʿāyiz ʾashrab shāy",
+            "en": "I want to drink tea. (man speaking)",
+            "note": "Egyptian: nothing between the two words. A woman says عَايْزَة أَشْرَبْ شَايْ (ʿayza ʾashrab shāy).",
+            "dialect": "Egyptian"
+          },
+          {
+            "tr": "لَازِمْ أَمْشِي دِلْوَقْتِي.",
+            "tl": "lāzim ʾamshi dilwaʾti",
+            "en": "I have to go now.",
+            "note": "Egyptian: lāzim + bare verb; ʾamshi = I go, I leave.",
+            "dialect": "Egyptian"
+          },
+          {
+            "tr": "مُمْكِنْ تِسَاعِدْنِي؟",
+            "tl": "mumkin tisāʿidni",
+            "en": "Can you help me? (to a man)",
+            "note": "Egyptian: mumkin + bare verb also makes a polite request.",
+            "dialect": "Egyptian"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "How do you say “I want to go”?",
+        "options": [
+          "أُرِيدُ ذَهَبْتُ",
+          "أُرِيدُ سَأَذْهَبُ",
+          "أُرِيدُ أَنْ أَذْهَبَ",
+          "أَنْ أُرِيدَ أَذْهَبُ"
+        ],
+        "answer": 2,
+        "explain": "“Want” is followed by أَنْ + a present-tense verb ending in -a."
+      },
+      {
+        "q": "What is the negative of سَأَذْهَبُ (I will go)?",
+        "options": [
+          "لَنْ أَذْهَبَ",
+          "لَا سَأَذْهَبُ",
+          "لَمْ أَذْهَبْ",
+          "لَيْسَ أَذْهَبُ"
+        ],
+        "answer": 0,
+        "explain": "“Will not” is لَنْ + a verb ending in -a, without سَـ. لَمْ أَذْهَبْ means “I didn’t go”."
+      },
+      {
+        "q": "What does يَجِبُ أَنْ نَذْهَبَ mean?",
+        "options": [
+          "We can go.",
+          "We want to go.",
+          "We will go.",
+          "We must go."
+        ],
+        "answer": 3,
+        "explain": "يَجِبُ أَنْ = must; نَذْهَبَ shows that it is “we”."
+      },
+      {
+        "q": "In Egyptian, which word means “must / have to”?",
+        "options": [
+          "عَايِز",
+          "لَازِم",
+          "مُمْكِن",
+          "بُكْرَة"
+        ],
+        "answer": 1,
+        "explain": "لَازِم (lāzim) = must; عَايِز = wanting, مُمْكِن = can / may, بُكْرَة = tomorrow."
+      }
+    ]
+  },
+  {
+    "id": "commands-and-requests",
+    "title": "Commands & requests",
+    "level": "A2",
+    "summary": "Tell someone to do something — or not to — with the right form for a man, a woman or a group, and soften it with “please”.",
+    "sections": [
+      {
+        "heading": "Forming the command",
+        "body": "A command is made from the “you” form of the present tense. Take off the prefix تَـ and the final vowel: تَكْتُبُ → كْتُب. An Arabic word can’t begin with two consonants, so a helping **alif** is added in front. It is read **u** if the vowel inside the verb is u — **اُكْتُبْ** (uktub, write!) — and **i** otherwise: **اِجْلِسْ** (ijlis, sit!), **اِذْهَبْ** (idhhab, go!). To a woman add **-ī**, to a group **-ū** (written with a silent alif).\n\nIf what is left already starts with a consonant and a vowel, no alif is needed: تَتَكَلَّمُ → **تَكَلَّمْ** (takallam, speak!), تَتَفَضَّلُ → **تَفَضَّلْ** (tafaḍḍal).",
+        "table": {
+          "head": [
+            "Meaning",
+            "To a man",
+            "To a woman",
+            "To a group"
+          ],
+          "rows": [
+            [
+              "write!",
+              "اُكْتُبْ — uktub",
+              "اُكْتُبِي — uktubī",
+              "اُكْتُبُوا — uktubū"
+            ],
+            [
+              "sit!",
+              "اِجْلِسْ — ijlis",
+              "اِجْلِسِي — ijlisī",
+              "اِجْلِسُوا — ijlisū"
+            ],
+            [
+              "go!",
+              "اِذْهَبْ — idhhab",
+              "اِذْهَبِي — idhhabī",
+              "اِذْهَبُوا — idhhabū"
+            ],
+            [
+              "go ahead, here you are",
+              "تَفَضَّلْ — tafaḍḍal",
+              "تَفَضَّلِي — tafaḍḍalī",
+              "تَفَضَّلُوا — tafaḍḍalū"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "اُكْتُبْ عُنْوَانَكَ هُنَا.",
+            "tl": "uktub ʿunwānaka hunā",
+            "en": "Write your address here. (to a man)",
+            "note": "taktubu → uktub: the vowel inside is u, so the helping alif is u too."
+          },
+          {
+            "tr": "اِفْتَحِي الْبَابَ يَا سَارَةُ.",
+            "tl": "iftaḥī l-bāba yā sāra",
+            "en": "Open the door, Sara.",
+            "note": "taftaḥu → iftaḥ, + -ī for a woman."
+          },
+          {
+            "tr": "اِجْلِسُوا هُنَا.",
+            "tl": "ijlisū hunā",
+            "en": "Sit here. (to a group)",
+            "note": "ijlis + -ū for several people."
+          },
+          {
+            "tr": "تَكَلَّمْ بِبُطْءٍ، مِنْ فَضْلِكَ.",
+            "tl": "takallam bi-buṭʾ min faḍlik",
+            "en": "Speak slowly, please. (to a man)",
+            "note": "tatakallamu → takallam: no helping alif is needed."
+          },
+          {
+            "tr": "تَفَضَّلُوا، الْعَشَاءُ جَاهِزٌ.",
+            "tl": "tafaḍḍalū al-ʿashāʾu jāhiz",
+            "en": "Please come, dinner is ready. (to a group)",
+            "note": "tafaḍḍal + -ū: the polite way to invite people in or to the table."
+          }
+        ]
+      },
+      {
+        "heading": "Three short ones: خُذْ، كُلْ، تَعَالَ",
+        "body": "A few of the most common commands are irregular. **أَخَذَ** (to take) and **أَكَلَ** (to eat) lose their first letter: **خُذْ** (khudh, take!) and **كُلْ** (kul, eat!). “Come!” is **تَعَالَ** (taʿāla), a word that is only used as a command. Watch its endings: the form for a woman ends in **-ay** and the form for a group in **-aw**.",
+        "table": {
+          "head": [
+            "Meaning",
+            "To a man",
+            "To a woman",
+            "To a group"
+          ],
+          "rows": [
+            [
+              "take!",
+              "خُذْ — khudh",
+              "خُذِي — khudhī",
+              "خُذُوا — khudhū"
+            ],
+            [
+              "eat!",
+              "كُلْ — kul",
+              "كُلِي — kulī",
+              "كُلُوا — kulū"
+            ],
+            [
+              "come!",
+              "تَعَالَ — taʿāla",
+              "تَعَالَيْ — taʿālay",
+              "تَعَالَوْا — taʿālaw"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "خُذْ هَذَا الْكِتَابَ.",
+            "tl": "khudh hādhā l-kitāb",
+            "en": "Take this book. (to a man)",
+            "note": "From ʾakhadha (to take): the first letter is dropped."
+          },
+          {
+            "tr": "كُلِي شَيْئًا قَبْلَ الْمَدْرَسَةِ.",
+            "tl": "kulī shayʾan qabla l-madrasa",
+            "en": "Eat something before school. (to a girl or woman)",
+            "note": "kul + -ī. Don’t confuse كُلْ (kul, eat!) with كُلّ (kull, every)."
+          },
+          {
+            "tr": "تَعَالَ مَعَنَا إِلَى السُّوقِ.",
+            "tl": "taʿāla maʿanā ʾilā s-sūq",
+            "en": "Come with us to the market. (to a man)",
+            "note": "taʿāla ends in -a even though it is a command."
+          },
+          {
+            "tr": "تَعَالَوْا إِلَى هُنَا.",
+            "tl": "taʿālaw ʾilā hunā",
+            "en": "Come here. (to a group)",
+            "note": "The group form ends in -aw; to a woman: تَعَالَيْ (taʿālay)."
+          }
+        ]
+      },
+      {
+        "heading": "“Don’t!” and “please”",
+        "body": "For “don’t”, Arabic does not use the command form. It uses **لَا** + the “you” form of the present with its **final vowel dropped** — the short form you met after لَمْ, which grammars call the **jussive**: **لَا تَذْهَبْ** (to a man), **لَا تَذْهَبِي** (to a woman), **لَا تَذْهَبُوا** (to a group). The prefix تَـ stays.\n\nA bare command can sound abrupt, so add a softener. Like the command, it changes with the person: **مِنْ فَضْلِكَ / مِنْ فَضْلِكِ / مِنْ فَضْلِكُمْ** (min faḍlika / faḍliki / faḍlikum, please) or **لَوْ سَمَحْتَ / لَوْ سَمَحْتِ / لَوْ سَمَحْتُمْ** (law samaḥta / samaḥti / samaḥtum, if you allow).",
+        "examples": [
+          {
+            "tr": "لَا تَشْرَبْ هَذَا الْمَاءَ.",
+            "tl": "lā tashrab hādhā l-māʾ",
+            "en": "Don’t drink this water. (to a man)",
+            "note": "lā + tashrab, with no final vowel. Compare لَا تَشْرَبُ (lā tashrabu), “you don’t drink”."
+          },
+          {
+            "tr": "لَا تَتَأَخَّرِي يَا لَيْلَى.",
+            "tl": "lā tataʾakhkharī yā laylā",
+            "en": "Don’t be late, Layla.",
+            "note": "To a woman: tataʾakhkharīna loses its -na."
+          },
+          {
+            "tr": "لَا تَجْلِسُوا هُنَا، لَوْ سَمَحْتُمْ.",
+            "tl": "lā tajlisū hunā law samaḥtum",
+            "en": "Please don’t sit here. (to a group)",
+            "note": "Both the verb and the softener are in the group form."
+          },
+          {
+            "tr": "لَوْ سَمَحْتَ، اِنْتَظِرْ دَقِيقَةً.",
+            "tl": "law samaḥt intaẓir daqīqa",
+            "en": "Wait a minute, please. (to a man)",
+            "note": "tantaẓiru → intaẓir (wait!). The softener can come first or last."
+          }
+        ]
+      },
+      {
+        "heading": "Everyday Egyptian commands",
+        "body": "Egyptian commands are built the same way, without the final vowels of careful Arabic, and some everyday ones sound a little different: **خُد** (khud, take), **تَعَالَى** (taʿāla, come; to a woman تَعَالِي, taʿāli), **اِسْتَنَّى** (istanna, wait), **اِتْفَضَّل** (itfaḍḍal, go ahead / here you are). “Don’t” wraps the “you” form in **ma-…-sh**: **مَتِقْلَقْش** (matiʾlaʾsh, don’t worry).",
+        "examples": [
+          {
+            "tr": "تَعَالَى هِنَا.",
+            "tl": "taʿāla hina",
+            "en": "Come here. (to a man)",
+            "note": "Egyptian: hina = here. To a woman: تَعَالِي هِنَا (taʿāli hina).",
+            "dialect": "Egyptian"
+          },
+          {
+            "tr": "خُدْ بَالَكْ.",
+            "tl": "khud bālak",
+            "en": "Be careful! / Watch out! (to a man)",
+            "note": "Egyptian: literally “take your mind”; ذ is said d.",
+            "dialect": "Egyptian"
+          },
+          {
+            "tr": "اِسْتَنَّى شْوَيَّة.",
+            "tl": "istanna shwayya",
+            "en": "Wait a moment. (to a man)",
+            "note": "Egyptian: shwayya = a little.",
+            "dialect": "Egyptian"
+          },
+          {
+            "tr": "مَتِقْلَقْشْ.",
+            "tl": "matiʾlaʾsh",
+            "en": "Don’t worry. (to a man)",
+            "note": "Egyptian: ma- + tiʾlaʾ (you worry) + -sh.",
+            "dialect": "Egyptian"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "You ask a woman to write something down. Which command do you use?",
+        "options": [
+          "اُكْتُبْ",
+          "اُكْتُبُوا",
+          "تَكْتُبِينَ",
+          "اُكْتُبِي"
+        ],
+        "answer": 3,
+        "explain": "The command to a woman adds -ī: uktubī. اُكْتُبْ is for a man, اُكْتُبُوا for a group."
+      },
+      {
+        "q": "How do you tell a man “Don’t sit here”?",
+        "options": [
+          "لَا اِجْلِسْ هُنَا",
+          "لَمْ تَجْلِسْ هُنَا",
+          "لَا تَجْلِسْ هُنَا",
+          "لَنْ تَجْلِسَ هُنَا"
+        ],
+        "answer": 2,
+        "explain": "“Don’t” is لَا + the “you” form with no final vowel, never لَا + the command. لَمْ تَجْلِسْ = you didn’t sit; لَنْ تَجْلِسَ = you won’t sit."
+      },
+      {
+        "q": "What does خُذْ mean?",
+        "options": [
+          "Take!",
+          "Eat!",
+          "Come!",
+          "Sit!"
+        ],
+        "answer": 0,
+        "explain": "خُذْ (khudh) is the short command of أَخَذَ, to take. “Eat!” is كُلْ."
+      },
+      {
+        "q": "You call a group of friends over. What do you say?",
+        "options": [
+          "تَعَالَ",
+          "تَعَالَوْا",
+          "تَعَالَيْ",
+          "تَفَضَّلِي"
+        ],
+        "answer": 1,
+        "explain": "تَعَالَوْا (taʿālaw) is “come!” to a group; تَعَالَ is to a man and تَعَالَيْ to a woman."
+      }
+    ]
+  },
+  {
+    "id": "was-and-had",
+    "title": "Was, had & used to: كَانَ",
+    "level": "A2",
+    "summary": "Use كَانَ to say “was / were”, “I had” and “I used to” — and see why the word after it ends in -an.",
+    "sections": [
+      {
+        "heading": "كَانَ — was / were",
+        "body": "The present needs no “is”, but the past does: the verb **كَانَ (kāna)**. It takes the normal past endings, with one twist: before an ending that starts with a consonant, the long ā shrinks to a short **u** — **كُنْتُ** (kuntu, I was), not “kāntu”.\n\nA noun or adjective that describes the subject after كَانَ takes the ending **-an** (or -a with al-), exactly as after لَيْسَ: الْجَوُّ جَمِيلٌ (the weather is beautiful) → كَانَ الْجَوُّ **جَمِيلًا** (the weather was beautiful). Grammars call this the **accusative**. On a word ending in ة it is written ةً, with no extra alif. A phrase with a preposition doesn’t change: كُنْتُ فِي الْبَيْتِ (I was at home). For “was not”, put **مَا** in front: مَا كُنْتُ…",
+        "table": {
+          "head": [
+            "Person",
+            "Arabic",
+            "Transliteration"
+          ],
+          "rows": [
+            [
+              "I was",
+              "كُنْتُ",
+              "kuntu"
+            ],
+            [
+              "you were (man)",
+              "كُنْتَ",
+              "kunta"
+            ],
+            [
+              "you were (woman)",
+              "كُنْتِ",
+              "kunti"
+            ],
+            [
+              "he was",
+              "كَانَ",
+              "kāna"
+            ],
+            [
+              "she was",
+              "كَانَتْ",
+              "kānat"
+            ],
+            [
+              "we were",
+              "كُنَّا",
+              "kunnā"
+            ],
+            [
+              "you were (plural)",
+              "كُنْتُمْ",
+              "kuntum"
+            ],
+            [
+              "they were",
+              "كَانُوا",
+              "kānū"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "كَانَ الْجَوُّ جَمِيلًا أَمْسِ.",
+            "tl": "kāna l-jawwu jamīlan ʾams",
+            "en": "The weather was beautiful yesterday.",
+            "note": "jamīlun → jamīlan after kāna."
+          },
+          {
+            "tr": "كَانَتْ أُمِّي مُعَلِّمَةً فِي الْقَاهِرَةِ.",
+            "tl": "kānat ʾummī muʿallimatan fī l-qāhira",
+            "en": "My mother was a teacher in Cairo.",
+            "note": "A feminine subject takes kānat; muʿallimatan is written with ةً."
+          },
+          {
+            "tr": "أَيْنَ كُنْتَ أَمْسِ؟",
+            "tl": "ʾayna kunta ʾams",
+            "en": "Where were you yesterday? (to a man)",
+            "note": "kunta = you were; to a woman: كُنْتِ (kunti)."
+          },
+          {
+            "tr": "كَانُوا مَشْغُولِينَ جِدًّا.",
+            "tl": "kānū mashghūlīna jiddan",
+            "en": "They were very busy.",
+            "note": "The plural ending -ūna becomes -īna after kāna."
+          },
+          {
+            "tr": "مَا كُنْتُ فِي الْبَيْتِ.",
+            "tl": "mā kuntu fī l-bayt",
+            "en": "I wasn’t at home.",
+            "note": "mā + past verb = was not; fī l-bayti does not change."
+          }
+        ]
+      },
+      {
+        "heading": "“I had”: كَانَ عِنْدِي",
+        "body": "“I have” is عِنْدِي — “at me (there is)”. For “I had”, simply put كَانَ in front: **كَانَ عِنْدِي** (kāna ʿindī), literally “there was at me”. To change the person, change the ending on عِنْدَ, not the verb: كَانَ عِنْدَكَ (you had), كَانَ عِنْدَهَا (she had), كَانَ عِنْدَنَا (we had).\n\nThe thing you had is the subject of كَانَ, so it keeps its ordinary ending **-un** — and when it is feminine, كَانَ usually becomes **كَانَتْ**: كَانَتْ عِنْدِي سَيَّارَةٌ (I had a car).",
+        "examples": [
+          {
+            "tr": "كَانَ عِنْدِي كَلْبٌ صَغِيرٌ.",
+            "tl": "kāna ʿindī kalbun ṣaghīr",
+            "en": "I had a small dog.",
+            "note": "kāna + ʿindī; kalbun keeps -un because it is the subject."
+          },
+          {
+            "tr": "كَانَتْ عِنْدَنَا سَيَّارَةٌ قَدِيمَةٌ.",
+            "tl": "kānat ʿindanā sayyāratun qadīma",
+            "en": "We had an old car.",
+            "note": "sayyāra is feminine, so kānat; -nā = we."
+          },
+          {
+            "tr": "هَلْ كَانَ عِنْدَكَ وَقْتٌ أَمْسِ؟",
+            "tl": "hal kāna ʿindaka waqtun ʾams",
+            "en": "Did you have time yesterday? (to a man)",
+            "note": "Only the ending on ʿinda shows who had it."
+          },
+          {
+            "tr": "مَا كَانَ عِنْدَهَا هَاتِفٌ.",
+            "tl": "mā kāna ʿindahā hātif",
+            "en": "She didn’t have a phone.",
+            "note": "mā kāna ʿinda… = didn’t have."
+          }
+        ]
+      },
+      {
+        "heading": "“Used to” and “was doing”: كَانَ + present",
+        "body": "Put كَانَ in front of a **present-tense** verb to describe something that went on for a while or happened regularly in the past: **كُنْتُ أَسْكُنُ** (kuntu ʾaskunu) = “I used to live” or “I was living”. Both verbs show the same person: كُنْتُ أَعْمَلُ (I used to work), كَانَ يَعْمَلُ (he used to work), كُنَّا نَعْمَلُ (we used to work). The present verb keeps its normal ending.\n\nCompare the plain past, which reports one finished event: سَكَنْتُ هُنَاكَ سَنَةً (I lived there for a year).",
+        "examples": [
+          {
+            "tr": "كُنْتُ أَسْكُنُ فِي بَيْرُوتَ.",
+            "tl": "kuntu ʾaskunu fī bayrūt",
+            "en": "I used to live in Beirut.",
+            "note": "kuntu + ʾaskunu, both in the “I” form."
+          },
+          {
+            "tr": "كَانَ أَبِي يَعْمَلُ فِي بَنْكٍ.",
+            "tl": "kāna ʾabī yaʿmalu fī bank",
+            "en": "My father used to work in a bank.",
+            "note": "kāna + yaʿmalu (he works)."
+          },
+          {
+            "tr": "كُنَّا نَلْعَبُ كُرَةَ الْقَدَمِ كُلَّ يَوْمٍ.",
+            "tl": "kunnā nalʿabu kurata l-qadami kulla yawm",
+            "en": "We used to play football every day.",
+            "note": "A regular habit in the past."
+          },
+          {
+            "tr": "مَاذَا كُنْتِ تَفْعَلِينَ؟",
+            "tl": "mādhā kunti tafʿalīn",
+            "en": "What were you doing? (to a woman)",
+            "note": "kunti + tafʿalīna: something in progress."
+          },
+          {
+            "tr": "كَانَتْ تَدْرُسُ عِنْدَمَا وَصَلْتُ.",
+            "tl": "kānat tadrusu ʿindamā waṣalt",
+            "en": "She was studying when I arrived.",
+            "note": "kānat tadrusu = was studying; waṣaltu (plain past) = one finished event."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "How do you say “I was”?",
+        "options": [
+          "كَانَ",
+          "كُنَّا",
+          "كَانَتْ",
+          "كُنْتُ"
+        ],
+        "answer": 3,
+        "explain": "With the ending -tu the long ā of كَانَ becomes u: kuntu. كُنَّا is “we were”."
+      },
+      {
+        "q": "Complete “The weather was cold”: كَانَ الْجَوُّ ___",
+        "options": [
+          "بَارِدًا",
+          "بَارِدٌ",
+          "بَارِدٍ",
+          "الْبَارِدُ"
+        ],
+        "answer": 0,
+        "explain": "A description after كَانَ takes the ending -an: bāridan."
+      },
+      {
+        "q": "How do you say “We had a house”?",
+        "options": [
+          "عِنْدَنَا بَيْتٌ",
+          "كَانَ عِنْدَنَا بَيْتٌ",
+          "كُنَّا بَيْتًا",
+          "كَانَ عِنْدِي بَيْتٌ"
+        ],
+        "answer": 1,
+        "explain": "كَانَ + عِنْدَنَا = we had. Without كَانَ it means “we have”, and كُنَّا بَيْتًا would be “we were a house”."
+      },
+      {
+        "q": "What does كُنْتُ أَعْمَلُ فِي مَطْعَمٍ mean?",
+        "options": [
+          "I work in a restaurant.",
+          "I will work in a restaurant.",
+          "I used to work in a restaurant.",
+          "I want to work in a restaurant."
+        ],
+        "answer": 2,
+        "explain": "كَانَ + a present-tense verb describes a habit or an ongoing action in the past."
+      }
+    ]
+  },
+  {
+    "id": "comparing",
+    "title": "Comparing: bigger, biggest, more",
+    "level": "B1",
+    "summary": "Turn كَبِير into أَكْبَر to say “bigger than” and “the biggest”, and use أَكْثَر and أَقَلّ for “more” and “less”.",
+    "sections": [
+      {
+        "heading": "Bigger than: the pattern أَفْعَل",
+        "body": "To compare, Arabic recasts the adjective in the pattern **أَفْعَل (ʾafʿal)**: put **أَ** in front of its three root consonants and an **a** before the last one — كَبِير (k-b-r) → **أَكْبَر** (ʾakbar, bigger). “Than” is **مِنْ**. This form stays the same for masculine, feminine and plural, and it never takes tanwīn: أَكْبَرُ, not “ʾakbarun”.\n\nTwo small variations: when the last two consonants are the same they merge, as in قَلِيل → **أَقَلّ** (ʾaqall, less); and adjectives ending in a weak letter end in -ā, as in غَالٍ (expensive) → **أَغْلَى** (ʾaghlā). “Better” is **أَحْسَن** (ʾaḥsan) or **أَفْضَل** (ʾafḍal).",
+        "table": {
+          "head": [
+            "Adjective",
+            "Comparative",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "كَبِير — kabīr",
+              "أَكْبَر — ʾakbar",
+              "bigger, older"
+            ],
+            [
+              "صَغِير — ṣaghīr",
+              "أَصْغَر — ʾaṣghar",
+              "smaller, younger"
+            ],
+            [
+              "جَمِيل — jamīl",
+              "أَجْمَل — ʾajmal",
+              "more beautiful"
+            ],
+            [
+              "طَوِيل — ṭawīl",
+              "أَطْوَل — ʾaṭwal",
+              "longer, taller"
+            ],
+            [
+              "قَرِيب — qarīb",
+              "أَقْرَب — ʾaqrab",
+              "nearer"
+            ],
+            [
+              "كَثِير — kathīr",
+              "أَكْثَر — ʾakthar",
+              "more"
+            ],
+            [
+              "قَلِيل — qalīl",
+              "أَقَلّ — ʾaqall",
+              "less, fewer"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "الْقَاهِرَةُ أَكْبَرُ مِنَ الْإِسْكَنْدَرِيَّةِ.",
+            "tl": "al-qāhiratu ʾakbaru mina l-ʾiskandariyya",
+            "en": "Cairo is bigger than Alexandria.",
+            "note": "ʾakbar + min (than); no feminine ending, although Cairo is feminine."
+          },
+          {
+            "tr": "أَخِي أَصْغَرُ مِنِّي.",
+            "tl": "ʾakhī ʾaṣgharu minnī",
+            "en": "My brother is younger than me.",
+            "note": "min + -ī = minnī (than me)."
+          },
+          {
+            "tr": "أُخْتِي أَطْوَلُ مِنْ أُمِّي.",
+            "tl": "ʾukhtī ʾaṭwalu min ʾummī",
+            "en": "My sister is taller than my mother.",
+            "note": "ṭawīl → ʾaṭwal, the same form for a woman."
+          },
+          {
+            "tr": "الْقِطَارُ أَسْرَعُ مِنَ الْحَافِلَةِ.",
+            "tl": "al-qiṭāru ʾasraʿu mina l-ḥāfila",
+            "en": "The train is faster than the bus.",
+            "note": "sarīʿ (fast) → ʾasraʿ."
+          },
+          {
+            "tr": "هَذَا الْفُنْدُقُ أَحْسَنُ مِنْ ذَلِكَ.",
+            "tl": "hādhā l-funduqu ʾaḥsanu min dhālik",
+            "en": "This hotel is better than that one.",
+            "note": "ʾaḥsan = better."
+          }
+        ]
+      },
+      {
+        "heading": "The biggest: superlatives",
+        "body": "The same word also means “the biggest”. The usual way is to put it **in front of a singular noun with no al-**, as an iḍāfa: **أَكْبَرُ مَدِينَةٍ** (ʾakbaru madīna) = the biggest city. The noun takes the ending -in, and although nothing has al-, the meaning is definite. Before a plural noun with al- it means “the biggest of…”: أَكْبَرُ الْمُدُنِ (the biggest of the cities).\n\nWith al-, **الْأَكْبَر** follows a definite noun like an ordinary adjective, or stands alone: أَخِي الْأَكْبَرُ (my eldest brother), هُوَ الْأَكْبَرُ (he is the biggest / the eldest). In this use a few common words have a feminine form — **الْكُبْرَى** (al-kubrā) and **الصُّغْرَى** (aṣ-ṣughrā): أُخْتِي الْكُبْرَى (my eldest sister).",
+        "examples": [
+          {
+            "tr": "الْقَاهِرَةُ أَكْبَرُ مَدِينَةٍ فِي مِصْرَ.",
+            "tl": "al-qāhiratu ʾakbaru madīnatin fī miṣr",
+            "en": "Cairo is the biggest city in Egypt.",
+            "note": "ʾakbaru + madīnatin (singular, no al-) = the biggest city."
+          },
+          {
+            "tr": "هَذَا أَجْمَلُ مَكَانٍ فِي الْعَالَمِ.",
+            "tl": "hādhā ʾajmalu makānin fī l-ʿālam",
+            "en": "This is the most beautiful place in the world.",
+            "note": "jamīl → ʾajmal; fī l-ʿālam = in the world."
+          },
+          {
+            "tr": "أَيْنَ أَقْرَبُ صَيْدَلِيَّةٍ؟",
+            "tl": "ʾayna ʾaqrabu ṣaydaliyya",
+            "en": "Where is the nearest pharmacy?",
+            "note": "qarīb → ʾaqrab; ʾaqrabu ṣaydaliyyatin = the nearest pharmacy."
+          },
+          {
+            "tr": "أَخِي الْأَكْبَرُ يَسْكُنُ فِي عَمَّانَ.",
+            "tl": "ʾakhī l-ʾakbaru yaskunu fī ʿammān",
+            "en": "My eldest brother lives in Amman.",
+            "note": "With al-, after the noun, like an ordinary adjective."
+          },
+          {
+            "tr": "أُخْتِي الصُّغْرَى طَالِبَةٌ.",
+            "tl": "ʾukhtī ṣ-ṣughrā ṭāliba",
+            "en": "My youngest sister is a student.",
+            "note": "aṣ-ṣughrā is the feminine of al-ʾaṣghar."
+          }
+        ]
+      },
+      {
+        "heading": "More and less: أَكْثَر، أَقَلّ",
+        "body": "Not every adjective fits the pattern — long ones such as مُفِيد (useful) or مُزْدَحِم (crowded) don’t — and the pattern cannot say “less”. Instead, use **أَكْثَر** (more) or **أَقَلّ** (less) followed by a noun for the quality, ending in **-an**: **أَكْثَرُ فَائِدَةً** (ʾaktharu fāʾidatan, “more in usefulness” = more useful), **أَقَلُّ أَهَمِّيَّةً** (ʾaqallu ʾahammiyyatan, less important).\n\nFor more or less **of something**, put أَكْثَر / أَقَلّ after the noun, like an adjective: وَقْتٌ أَكْثَرُ (more time), سُكَّرٌ أَقَلُّ (less sugar). Before a number or an amount, say **أَكْثَرُ مِنْ** (more than) or **أَقَلُّ مِنْ** (less than).",
+        "examples": [
+          {
+            "tr": "الْقَرْيَةُ أَكْثَرُ هُدُوءًا مِنَ الْمَدِينَةِ.",
+            "tl": "al-qaryatu ʾaktharu hudūʾan mina l-madīna",
+            "en": "The village is quieter than the city.",
+            "note": "ʾakthar + hudūʾan (calm): “more in calm”."
+          },
+          {
+            "tr": "الْمَالُ أَقَلُّ أَهَمِّيَّةً مِنَ الصِّحَّةِ.",
+            "tl": "al-mālu ʾaqallu ʾahammiyyatan mina ṣ-ṣiḥḥa",
+            "en": "Money is less important than health.",
+            "note": "ʾaqall + ʾahammiyyatan (importance) = less important."
+          },
+          {
+            "tr": "عِنْدِي الْيَوْمَ وَقْتٌ أَكْثَرُ.",
+            "tl": "ʿindī l-yawma waqtun ʾakthar",
+            "en": "I have more time today.",
+            "note": "ʾakthar follows the noun: waqtun ʾaktharu = more time."
+          },
+          {
+            "tr": "أُرِيدُ سُكَّرًا أَقَلَّ، مِنْ فَضْلِكَ.",
+            "tl": "ʾurīdu sukkaran ʾaqall min faḍlik",
+            "en": "I’d like less sugar, please.",
+            "note": "sukkaran ʾaqalla = less sugar."
+          },
+          {
+            "tr": "اِنْتَظَرْنَا أَكْثَرَ مِنْ سَاعَةٍ.",
+            "tl": "intaẓarnā ʾakthara min sāʿa",
+            "en": "We waited for more than an hour.",
+            "note": "ʾakthar min + an amount = more than."
+          }
+        ]
+      },
+      {
+        "heading": "In everyday Egyptian",
+        "body": "Egyptians compare in the same way, minus the endings: **أَكْبَر مِنْ** (ʾakbar min, bigger than), **أَحْسَن** (ʾaḥsan, the everyday word for “better” and “best”). Because ث is said t and ق is a glottal stop, “more” is **أَكْتَر (ʾaktar)** and “less” is **أَقَلّ (ʾaʾall)**. With long adjectives, Egyptians simply put أَكْتَر after the adjective: **مُهِمّ أَكْتَر** (muhimm ʾaktar, more important).",
+        "examples": [
+          {
+            "tr": "أَنَا أَكْبَرْ مِنَّكْ.",
+            "tl": "ʾana ʾakbar minnak",
+            "en": "I’m older than you. (to a man)",
+            "note": "Egyptian: minnak = than you; no case endings.",
+            "dialect": "Egyptian"
+          },
+          {
+            "tr": "دَه أَحْسَنْ مَطْعَمْ هِنَا.",
+            "tl": "da ʾaḥsan maṭʿam hina",
+            "en": "This is the best restaurant here.",
+            "note": "Egyptian: da = this; ʾaḥsan + noun = the best.",
+            "dialect": "Egyptian"
+          },
+          {
+            "tr": "عَايِزْ وَقْتْ أَكْتَرْ.",
+            "tl": "ʿāyiz waʾt ʾaktar",
+            "en": "I want more time. (man speaking)",
+            "note": "Egyptian: waʾt = MSA waqt; ʾaktar = MSA ʾakthar.",
+            "dialect": "Egyptian"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Which word means “bigger”?",
+        "options": [
+          "كَبِيرَة",
+          "أَكْثَر",
+          "كَبِيرٌ جِدًّا",
+          "أَكْبَر"
+        ],
+        "answer": 3,
+        "explain": "كَبِير → أَكْبَر on the pattern أَفْعَل. أَكْثَر means “more”, and كَبِيرٌ جِدًّا is “very big”."
+      },
+      {
+        "q": "How do you say “My sister is taller than me”?",
+        "options": [
+          "أُخْتِي أَطْوَلُ مِنِّي",
+          "أُخْتِي أَطْوَلَةٌ مِنِّي",
+          "أُخْتِي أَطْوَلُ أَنَا",
+          "أُخْتِي طَوِيلَةٌ جِدًّا"
+        ],
+        "answer": 0,
+        "explain": "The comparative takes no ة for a woman, and “than” is مِنْ: ʾaṭwalu minnī."
+      },
+      {
+        "q": "What does أَكْبَرُ مَدِينَةٍ فِي الْعَالَمِ mean?",
+        "options": [
+          "a city bigger than the world",
+          "the biggest city in the world",
+          "The city is big in the world.",
+          "the big cities of the world"
+        ],
+        "answer": 1,
+        "explain": "أَفْعَل in front of a singular noun without al- is the superlative: “the biggest city”."
+      },
+      {
+        "q": "What does أَقَلُّ أَهَمِّيَّةً mean?",
+        "options": [
+          "more important",
+          "the most important",
+          "less important",
+          "not important"
+        ],
+        "answer": 2,
+        "explain": "أَقَلّ (less) + a noun in -an: “less in importance”."
+      }
+    ]
+  },
+  {
     "id": "msa-vs-egyptian",
     "title": "Spoken Arabic: MSA vs Egyptian",
     "level": "B1",

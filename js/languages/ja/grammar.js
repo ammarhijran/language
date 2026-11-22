@@ -1855,6 +1855,219 @@ export const lessons = [
     ]
   },
   {
+    "id": "reasons-and-linking",
+    "title": "Reasons and linking: から, ので, けど and て",
+    "level": "A2",
+    "summary": "Give reasons with から and ので, say “but” with けど and が, and join sentences with the て-form, それから and だから.",
+    "sections": [
+      {
+        "heading": "から and ので: because, so",
+        "body": "In Japanese the reason comes **first**, and **から** or **ので** is attached to the end of it: reason + から, result. So 高いから、買いません is “It’s expensive, so I won’t buy it”.\n\n**から** is the everyday word and fits any sentence, including requests and invitations. It follows the polite form or the plain form. **ので** sounds softer and less pushy, so it is common when you explain yourself or apologise. It usually follows the plain form, and after a noun or a な-adjective it needs **な** instead of だ: 雨**な**ので.\n\nTo answer どうしてですか (why?), end your sentence with plain form + **からです**.",
+        "table": {
+          "head": [
+            "Before it",
+            "から",
+            "ので"
+          ],
+          "rows": [
+            [
+              "Verb",
+              "行く**から** / 行きます**から**",
+              "行く**ので**"
+            ],
+            [
+              "い-adjective",
+              "高い**から** / 高いです**から**",
+              "高い**ので**"
+            ],
+            [
+              "な-adjective",
+              "静か**だから** / 静かです**から**",
+              "静か**なので**"
+            ],
+            [
+              "Noun",
+              "雨**だから** / 雨です**から**",
+              "雨**なので**"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "時間がありませんから、タクシーで行きましょう。",
+            "en": "We don’t have time, so let’s go by taxi.",
+            "kana": "じかん が ありません から タクシー で いきましょう",
+            "note": "Reason + から, then the result. から is fine before a suggestion."
+          },
+          {
+            "tr": "頭が痛いので、今日は早く帰ります。",
+            "en": "I have a headache, so I’m going home early today.",
+            "kana": "あたま が いたい ので きょう は はやく かえります",
+            "note": "Plain form 痛い + ので: a soft explanation."
+          },
+          {
+            "tr": "明日は休みなので、どこかに行きたいです。",
+            "en": "I’m off tomorrow, so I’d like to go somewhere.",
+            "kana": "あした は やすみ な ので どこ か に いきたい です",
+            "note": "Noun + な + ので. With から: 休みだから."
+          },
+          {
+            "tr": "仕事が忙しかったからです。",
+            "en": "It’s because I was busy at work.",
+            "kana": "しごと が いそがしかった から です",
+            "note": "An answer to どうしてですか: plain form + からです."
+          }
+        ]
+      },
+      {
+        "heading": "けど and が: but",
+        "body": "**けど** and **が** both mean “but”, and like から they are attached to the end of the first half: A けど、B. **が** follows the polite form and sounds a little formal, so you meet it in writing and in careful speech. **けど** is the everyday choice. It follows the plain or the polite form; a noun or な-adjective in the plain form keeps its **だ** (学生**だ**けど, 好き**だ**けど). You will also hear the longer けれど and けれども.\n\nThis が comes after a verb, an adjective or です, so it is easy to tell from the subject particle が, which comes after a noun.\n\nBoth words have a second job: they soften the start of a question or a request, with no real “but” meaning (すみません**が**…). And a sentence that simply stops at けど or ちょっと… leaves the rest unsaid, which is a gentle way to say no.",
+        "examples": [
+          {
+            "tr": "日本語は難しいですが、面白いです。",
+            "en": "Japanese is difficult, but it’s interesting.",
+            "kana": "にほんご は むずかしい です が おもしろい です",
+            "note": "Polite form + が."
+          },
+          {
+            "tr": "このアパートは駅から近いけど、ちょっと狭いです。",
+            "en": "This flat is close to the station, but it’s a bit small.",
+            "kana": "この アパート は えき から ちかい けど ちょっと せまい です",
+            "note": "Plain form + けど. The end of the sentence sets the politeness."
+          },
+          {
+            "tr": "魚は好きだけど、肉はあまり食べません。",
+            "en": "I like fish, but I don’t eat much meat.",
+            "kana": "さかな は すき だ けど にく は あまり たべません",
+            "note": "な-adjective + だ + けど."
+          },
+          {
+            "tr": "すみませんが、もう一度言ってください。",
+            "en": "Excuse me, but could you say that again?",
+            "kana": "すみません が もう いちど いって ください",
+            "note": "Here が only softens the request."
+          },
+          {
+            "tr": "行きたいですけど、明日はちょっと…。",
+            "en": "I’d like to go, but tomorrow is a bit…",
+            "kana": "いきたい です けど あした は ちょっと",
+            "note": "Trailing off after ちょっと is a polite way to refuse."
+          }
+        ]
+      },
+      {
+        "heading": "Joining sentences: て, それから, だから",
+        "body": "To say “and” between actions, put every verb except the last into the **て-form**: 起き**て**、食べ**て**、出かけます. The actions happen in that order, and only the last verb shows the tense and the politeness. Remember that と means “and” only between nouns (パンと卵); it cannot join two sentences.\n\nAdjectives and nouns have a て-form too (see the table). **いい** becomes **よくて**. The て-form can also give a light reason, especially for feelings and apologies.\n\nTwo useful words start a new sentence: **それから** (“and then”, “after that”) and **だから** (“so”, “that’s why”; more polite: **ですから**). Compare: から ends the clause that gives the reason, but だから begins the sentence that gives the result.",
+        "table": {
+          "head": [
+            "",
+            "て-form",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Verb",
+              "食べる → 食べ**て**",
+              "食べて、寝ます eat and then sleep"
+            ],
+            [
+              "い-adjective",
+              "安い → 安**くて**",
+              "安くて美味しい cheap and tasty"
+            ],
+            [
+              "な-adjective",
+              "静か → 静か**で**",
+              "静かできれい quiet and pretty"
+            ],
+            [
+              "Noun",
+              "学生 → 学生**で**",
+              "学生で、二十歳です is a student and is twenty"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "朝起きて、シャワーを浴びて、会社に行きます。",
+            "en": "I get up in the morning, have a shower and go to work.",
+            "kana": "あさ おきて シャワー を あびて かいしゃ に いきます",
+            "note": "Only the last verb is in the ます form."
+          },
+          {
+            "tr": "このレストランは安くて美味しいです。",
+            "en": "This restaurant is cheap and tasty.",
+            "kana": "この レストラン は やすくて おいしい です",
+            "note": "安い → 安くて."
+          },
+          {
+            "tr": "遅くなって、すみません。",
+            "en": "I’m sorry I’m late.",
+            "kana": "おそく なって すみません",
+            "note": "The て-form gives the reason for the apology: なる → なって."
+          },
+          {
+            "tr": "昨日は買い物をしました。それから、映画を見ました。",
+            "en": "Yesterday I went shopping. After that, I watched a film.",
+            "kana": "きのう は かいもの を しました それから えいが を みました"
+          },
+          {
+            "tr": "今日は雨です。だから、家にいます。",
+            "en": "It’s raining today. So I’m staying at home.",
+            "kana": "きょう は あめ です だから いえ に います",
+            "note": "In one sentence: 今日は雨ですから、家にいます。"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Fill in the gap: 今日は日曜日＿、銀行は休みです。 (It’s Sunday today, so the bank is closed.)",
+        "options": [
+          "ので",
+          "なので",
+          "だので",
+          "くて"
+        ],
+        "answer": 1,
+        "explain": "After a noun, ので needs な: 日曜日なので. (With から it would be 日曜日だから.)"
+      },
+      {
+        "q": "Which sentence means “It’s expensive, but it’s good”?",
+        "options": [
+          "高いから、いいです。",
+          "高くて、いいです。",
+          "高いですが、いいです。",
+          "高いので、いいです。"
+        ],
+        "answer": 2,
+        "explain": "が after the polite form means “but”. から and ので give a reason, and 高くて means “expensive and…”."
+      },
+      {
+        "q": "How do you say “cheap and tasty”?",
+        "options": [
+          "安くて美味しい",
+          "安いと美味しい",
+          "安いで美味しい",
+          "安いて美味しい"
+        ],
+        "answer": 0,
+        "explain": "An い-adjective links with くて: 安い → 安くて. と means “and” only between nouns, and で is for な-adjectives and nouns."
+      },
+      {
+        "q": "Fill in the gap: 今日は雨です。＿、家にいます。 (It’s raining today. So I’m staying at home.)",
+        "options": [
+          "それから",
+          "けど",
+          "から",
+          "だから"
+        ],
+        "answer": 3,
+        "explain": "だから starts a new sentence and means “so”. から on its own must be attached to the end of the reason: 雨ですから、…"
+      }
+    ]
+  },
+  {
     "id": "politeness-levels",
     "title": "Politeness levels: casual, polite and keigo",
     "level": "B1",
@@ -2062,6 +2275,765 @@ export const lessons = [
         ],
         "answer": 0,
         "explain": "かしこまりました is a very polite way to say 分かりました (understood)."
+      }
+    ]
+  },
+  {
+    "id": "can-must-may",
+    "title": "Can, may, must: 行ける, ～てもいい, ～なければならない",
+    "level": "B1",
+    "summary": "Say what you can do with the potential form, ask for permission, and talk about what is forbidden, necessary or not necessary.",
+    "sections": [
+      {
+        "heading": "The potential form: can do",
+        "body": "The **potential form** turns “do” into “can do”. **Group 1**: change the final -u sound to its -e partner and add る (行**く** → 行**け**る, 飲**む** → 飲**め**る, 話**す** → 話**せ**る). **Group 2**: drop る and add **られる** (食べる → 食べ**られる**). **Group 3**: する → **できる**, 来る → **来られる** (read こられる).\n\nEvery potential form is itself a Group 2 verb, so it changes like 食べる: 行けます, 行けません, 行けない, 行けた. The thing you can do usually takes **が** rather than を: 漢字**が**読めます.\n\nIn casual speech many people shorten the Group 2 ending to れる (食べれる, 見れる). You will hear it a lot, but 食べられる is the standard form to learn and write.",
+        "table": {
+          "head": [
+            "Dictionary form",
+            "Potential form",
+            "Polite",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "行く (いく)",
+              "行ける",
+              "行けます",
+              "can go"
+            ],
+            [
+              "飲む (のむ)",
+              "飲める",
+              "飲めます",
+              "can drink"
+            ],
+            [
+              "話す (はなす)",
+              "話せる",
+              "話せます",
+              "can speak"
+            ],
+            [
+              "買う (かう)",
+              "買える",
+              "買えます",
+              "can buy"
+            ],
+            [
+              "泳ぐ (およぐ)",
+              "泳げる",
+              "泳げます",
+              "can swim"
+            ],
+            [
+              "食べる (たべる)",
+              "食べられる",
+              "食べられます",
+              "can eat"
+            ],
+            [
+              "見る (みる)",
+              "見られる",
+              "見られます",
+              "can see"
+            ],
+            [
+              "する",
+              "できる",
+              "できます",
+              "can do"
+            ],
+            [
+              "来る (くる)",
+              "来られる (こられる)",
+              "来られます",
+              "can come"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "漢字が少し読めます。",
+            "en": "I can read kanji a little.",
+            "kana": "かんじ が すこし よめます",
+            "note": "読む → 読める. The object takes が."
+          },
+          {
+            "tr": "辛い物は食べられません。",
+            "en": "I can’t eat spicy food.",
+            "kana": "からい もの は たべられません",
+            "note": "食べる → 食べられる → 食べられません."
+          },
+          {
+            "tr": "明日のパーティーに来られますか。",
+            "en": "Can you come to the party tomorrow?",
+            "kana": "あした の パーティー に こられます か",
+            "note": "来る → 来られる, read こられる."
+          },
+          {
+            "tr": "ここでは切符が買えません。",
+            "en": "You can’t buy tickets here.",
+            "kana": "ここ で は きっぷ が かえません",
+            "note": "買う → 買える: here “can” means it is possible."
+          }
+        ]
+      },
+      {
+        "heading": "できる and ～ことができる",
+        "body": "**できる** on its own means “can do”, and the skill takes が: 料理**が**できます (I can cook), テニス**が**できます (I can play tennis). With a する-verb, simply swap する for できる: 予約する → 予約**できる**.\n\nThere is also a longer way to say “can”: **dictionary form + ことができます**. It means the same as the potential form but sounds more formal, so it is common in writing, on signs and in explanations. In conversation the potential form is more usual.",
+        "examples": [
+          {
+            "tr": "少し日本語ができます。",
+            "en": "I can speak a little Japanese.",
+            "kana": "すこし にほんご が できます",
+            "note": "Noun + ができます."
+          },
+          {
+            "tr": "ネットで予約できますか。",
+            "en": "Can I book online?",
+            "kana": "ネット で よやく できます か",
+            "note": "予約する → 予約できる."
+          },
+          {
+            "tr": "姉はピアノを弾くことができます。",
+            "en": "My older sister can play the piano.",
+            "kana": "あね は ピアノ を ひく こと が できます",
+            "note": "Dictionary form 弾く + ことができます. Shorter: ピアノが弾けます。"
+          },
+          {
+            "tr": "このカードはコンビニで使うことができます。",
+            "en": "This card can be used at convenience stores.",
+            "kana": "この カード は コンビニ で つかう こと が できます",
+            "note": "The kind of sentence you find in written instructions."
+          }
+        ]
+      },
+      {
+        "heading": "～てもいいです and ～てはいけません: may and must not",
+        "body": "To ask for permission, use the **て-form + もいいですか**, literally “is it all right even if I…?”. To give permission, say ～てもいいです, or just はい、どうぞ.\n\nTo forbid something, use the **て-form + はいけません**: “you must not…”. The は here is the particle, read **wa**. This is the language of rules and signs, and of parents and teachers. As a reply to someone’s request it sounds harsh, so people soften it: すみません、ここではちょっと…. Among friends you will hear the spoken form ～ちゃだめ.",
+        "examples": [
+          {
+            "tr": "ここに座ってもいいですか。",
+            "en": "May I sit here?",
+            "kana": "ここ に すわって も いい です か",
+            "note": "座る → 座って + もいいですか."
+          },
+          {
+            "tr": "今日は早く帰ってもいいですよ。",
+            "en": "You can go home early today.",
+            "kana": "きょう は はやく かえって も いい です よ",
+            "note": "Giving permission."
+          },
+          {
+            "tr": "ここでたばこを吸ってはいけません。",
+            "en": "You must not smoke here.",
+            "kana": "ここ で たばこ を すって は いけません",
+            "note": "吸う → 吸って + はいけません."
+          },
+          {
+            "tr": "授業中にスマホを使ってはいけません。",
+            "en": "You must not use your phone during class.",
+            "kana": "じゅぎょうちゅう に スマホ を つかって は いけません",
+            "note": "A school rule."
+          }
+        ]
+      },
+      {
+        "heading": "～なければなりません and ～なくてもいいです: must and needn’t",
+        "body": "“Have to” is built on the **ない form**: change ない to **なければなりません** (行かない → 行か**なければなりません**). Literally it says “if I don’t go, it won’t do”: two negatives that add up to “must”. You will also hear ～なければいけません, with the same meaning. In casual speech the whole ending shrinks to **なきゃ**: 行かなきゃ.\n\nFor “don’t have to”, change ない to **なくてもいいです** (行かない → 行か**なくてもいいです**). Don’t mix it up with ～てはいけません: 行かなくてもいいです means you are free to stay, but 行ってはいけません means going is forbidden.",
+        "table": {
+          "head": [
+            "Pattern",
+            "Built on",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "行っ**てもいいです**",
+              "て-form",
+              "may go"
+            ],
+            [
+              "行っ**てはいけません**",
+              "て-form",
+              "must not go"
+            ],
+            [
+              "行か**なければなりません**",
+              "ない form",
+              "must go, have to go"
+            ],
+            [
+              "行か**なきゃ**",
+              "ない form (spoken)",
+              "have to go (casual)"
+            ],
+            [
+              "行か**なくてもいいです**",
+              "ない form",
+              "don’t have to go"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "明日は六時に起きなければなりません。",
+            "en": "I have to get up at six tomorrow.",
+            "kana": "あした は ろくじ に おきなければ なりません",
+            "note": "起きる → 起きない → 起きなければなりません."
+          },
+          {
+            "tr": "毎日薬を飲まなければなりません。",
+            "en": "I have to take medicine every day.",
+            "kana": "まいにち くすり を のまなければ なりません",
+            "note": "飲む → 飲まない → 飲まなければなりません. In Japanese you “drink” medicine."
+          },
+          {
+            "tr": "もう行かなきゃ。",
+            "en": "I’ve got to go now.",
+            "kana": "もう いかなきゃ",
+            "note": "Spoken form of もう行かなければなりません。"
+          },
+          {
+            "tr": "明日は来なくてもいいです。",
+            "en": "You don’t have to come tomorrow.",
+            "kana": "あした は こなくて も いい です",
+            "note": "来る → 来ない (こない) → 来なくてもいいです."
+          },
+          {
+            "tr": "急がなくてもいいですよ。",
+            "en": "You don’t have to hurry.",
+            "kana": "いそがなくて も いい です よ",
+            "note": "急ぐ → 急がない → 急がなくてもいいです."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "What is the potential form of 話す (speak)?",
+        "options": [
+          "話すられる",
+          "話られる",
+          "話せる",
+          "話しられる"
+        ],
+        "answer": 2,
+        "explain": "話す is a Group 1 verb: す changes to せ, then add る."
+      },
+      {
+        "q": "How do you ask “May I sit here?”",
+        "options": [
+          "ここに座ってもいいですか。",
+          "ここに座るもいいですか。",
+          "ここに座ってください。",
+          "ここに座らなければなりませんか。"
+        ],
+        "answer": 0,
+        "explain": "Permission is て-form + もいいですか. 座ってください means “please sit down”, and 座らなければなりませんか asks “do I have to sit?”."
+      },
+      {
+        "q": "A sign says ここで写真を撮ってはいけません。 What does it mean?",
+        "options": [
+          "You may take photos here.",
+          "You must not take photos here.",
+          "You have to take photos here.",
+          "You don’t have to take photos here."
+        ],
+        "answer": 1,
+        "explain": "て-form + はいけません forbids something: “you must not”."
+      },
+      {
+        "q": "How do you say “You don’t have to come tomorrow”?",
+        "options": [
+          "明日は来てはいけません。",
+          "明日は来なければなりません。",
+          "明日は来てもいいです。",
+          "明日は来なくてもいいです。"
+        ],
+        "answer": 3,
+        "explain": "Change ない to なくてもいいです for “don’t have to”: 来ない → 来なくてもいいです. 来てはいけません would mean “you must not come”."
+      }
+    ]
+  },
+  {
+    "id": "giving-receiving",
+    "title": "Giving and receiving: あげる, くれる, もらう",
+    "level": "B1",
+    "summary": "Choose the right verb for “give” and “receive”, and use ～てあげる, ～てくれる and ～てもらう to talk about favours.",
+    "sections": [
+      {
+        "heading": "Three verbs: あげる, くれる, もらう",
+        "body": "English has “give” and “receive”. Japanese has **two** verbs for “give”, and you choose by direction. **あげる** is giving **away from me**: I give to someone, or one person gives to another. **くれる** is giving **towards me**: someone gives to me, or to my family. **もらう** is “receive”, and the receiver is the subject.\n\nThe thing takes **を** and the receiver takes **に**. With もらう, the giver takes **に** or **から**; use から when the giver is a company, a school or another organisation.\n\nNever use あげる for a gift to yourself: ✗ 友達が私に本をあげました → ✓ 友達が本をくれました. Because くれる already means “to me”, 私に is usually left out. あげる and くれる are Group 2 verbs; もらう is Group 1 (もらいます, もらって).",
+        "table": {
+          "head": [
+            "Verb",
+            "Direction",
+            "Pattern"
+          ],
+          "rows": [
+            [
+              "あげる give",
+              "me → others; others → others",
+              "(giver) は (receiver) **に** (thing) を あげます"
+            ],
+            [
+              "くれる give",
+              "others → me or my family",
+              "(giver) が (私 **に**) (thing) を くれます"
+            ],
+            [
+              "もらう receive",
+              "the receiver is the subject",
+              "(receiver) は (giver) **に / から** (thing) を もらいます"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "私は母に花をあげました。",
+            "en": "I gave my mother some flowers.",
+            "kana": "わたし は はは に はな を あげました",
+            "note": "Away from me: あげる. The receiver takes に."
+          },
+          {
+            "tr": "友達がこの本をくれました。",
+            "en": "A friend gave me this book.",
+            "kana": "ともだち が この ほん を くれました",
+            "note": "Towards me: くれる. 私に is understood."
+          },
+          {
+            "tr": "私は友達にこの本をもらいました。",
+            "en": "I got this book from a friend.",
+            "kana": "わたし は ともだち に この ほん を もらいました",
+            "note": "The same event, told from the receiver’s side. The giver takes に (or から)."
+          },
+          {
+            "tr": "会社からボーナスをもらいました。",
+            "en": "I got a bonus from my company.",
+            "kana": "かいしゃ から ボーナス を もらいました",
+            "note": "The giver is an organisation, so から."
+          },
+          {
+            "tr": "田中さんは鈴木さんにお土産をあげました。",
+            "en": "Mr Tanaka gave Ms Suzuki a souvenir.",
+            "kana": "たなか さん は すずき さん に おみやげ を あげました",
+            "note": "Between two other people: あげる."
+          }
+        ]
+      },
+      {
+        "heading": "Favours: ～てあげる, ～てくれる, ～てもらう",
+        "body": "The same three verbs follow the **て-form** to show that an action is a favour. **～てくれる**: someone does something for me. **～てもらう**: I get someone to do something for me; the helper takes **に**. **～てあげる**: I do something for someone else.\n\nJapanese uses these forms all the time. 友達が手伝いました is a bare fact, but 友達が手伝っ**てくれました** adds “and I’m glad he did”. When someone has helped you, leaving out くれる or もらう can sound cold.\n\nBe careful with ～てあげる. Said straight to the person you are helping, it can sound as if you are pointing out your own kindness. To offer help, use ～ましょうか instead: 手伝いましょうか (Shall I help you?).",
+        "examples": [
+          {
+            "tr": "友達が駅まで送ってくれました。",
+            "en": "A friend took me to the station.",
+            "kana": "ともだち が えき まで おくって くれました",
+            "note": "送る → 送って + くれました: a favour to me."
+          },
+          {
+            "tr": "田中さんに写真を撮ってもらいました。",
+            "en": "I had Mr Tanaka take a photo for me.",
+            "kana": "たなか さん に しゃしん を とって もらいました",
+            "note": "The helper takes に. Same event: 田中さんが写真を撮ってくれました。"
+          },
+          {
+            "tr": "弟に自転車を貸してあげました。",
+            "en": "I lent my younger brother my bike.",
+            "kana": "おとうと に じてんしゃ を かして あげました",
+            "note": "貸す → 貸して + あげました: a favour to someone else."
+          },
+          {
+            "tr": "先生が漢字の読み方を教えてくれました。",
+            "en": "The teacher showed me how to read the kanji.",
+            "kana": "せんせい が かんじ の よみかた を おしえて くれました"
+          },
+          {
+            "tr": "手伝ってくれて、ありがとうございます。",
+            "en": "Thank you for helping me.",
+            "kana": "てつだって くれて ありがとう ございます",
+            "note": "～てくれて、ありがとう is how you thank someone for doing something."
+          }
+        ]
+      },
+      {
+        "heading": "Asking a favour: ～てくれませんか",
+        "body": "Turn ～てくれる into a question and you have a request. **～てくれませんか** (“won’t you … for me?”) is softer than ～てください, because it leaves the other person free to say no. **～てもらえませんか** uses the potential form of もらう (“could I get you to…?”) and is a little more polite again; it is a good choice with strangers. With friends, drop to the plain form: ～てくれる？ or ～てもらえる？\n\nFor customers, teachers and bosses there is a keigo version, **～ていただけませんか**, built on いただく, the humble もらう.",
+        "table": {
+          "head": [
+            "Level",
+            "Request",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Casual",
+              "手伝っ**てくれる？**",
+              "Can you help me?"
+            ],
+            [
+              "Polite",
+              "手伝っ**てください**",
+              "Please help me."
+            ],
+            [
+              "Polite, softer",
+              "手伝っ**てくれませんか**",
+              "Could you help me?"
+            ],
+            [
+              "More polite",
+              "手伝っ**てもらえませんか**",
+              "Could I ask you to help me?"
+            ],
+            [
+              "Very polite",
+              "手伝っ**ていただけませんか**",
+              "Would you be so kind as to help me?"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "ちょっと手伝ってくれませんか。",
+            "en": "Could you give me a hand?",
+            "kana": "ちょっと てつだって くれません か",
+            "note": "手伝う → 手伝って + くれませんか."
+          },
+          {
+            "tr": "駅までの道を教えてくれませんか。",
+            "en": "Could you tell me the way to the station?",
+            "kana": "えき まで の みち を おしえて くれません か"
+          },
+          {
+            "tr": "すみません、写真を撮ってもらえませんか。",
+            "en": "Excuse me, could you take a photo for us?",
+            "kana": "すみません しゃしん を とって もらえません か",
+            "note": "もらえる is the potential form of もらう."
+          },
+          {
+            "tr": "ペン、貸してくれる？",
+            "en": "Can you lend me a pen?",
+            "kana": "ペン かして くれる",
+            "note": "Casual, to a friend. を is dropped."
+          },
+          {
+            "tr": "もう少しゆっくり話していただけませんか。",
+            "en": "Would you mind speaking a little more slowly?",
+            "kana": "もう すこし ゆっくり はなして いただけません か",
+            "note": "Very polite: いただく is the humble もらう."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Fill in the gap: 友達が私に本を＿。 (A friend gave me a book.)",
+        "options": [
+          "あげました",
+          "もらいました",
+          "くれました",
+          "ありました"
+        ],
+        "answer": 2,
+        "explain": "Giving towards me is くれる. あげる is for giving away from me, and with もらう the receiver is the subject: 私は友達に本をもらいました."
+      },
+      {
+        "q": "Fill in the gap: 私は父＿時計をもらいました。 (I got a watch from my father.)",
+        "options": [
+          "を",
+          "が",
+          "で",
+          "に"
+        ],
+        "answer": 3,
+        "explain": "With もらう, the giver takes に (or から)."
+      },
+      {
+        "q": "Mr Tanaka helped you, and you are grateful. Which sentence says so?",
+        "options": [
+          "田中さんが手伝ってくれました。",
+          "田中さんが手伝ってあげました。",
+          "田中さんが手伝ってもらいました。",
+          "田中さんに手伝ってくれました。"
+        ],
+        "answer": 0,
+        "explain": "～てくれる is a favour done for me, and the helper takes が. ～てあげる points away from me, and with ～てもらう the helper takes に: 田中さんに手伝ってもらいました."
+      },
+      {
+        "q": "How do you politely ask someone to open the window for you?",
+        "options": [
+          "窓を開けてあげませんか。",
+          "窓を開けてくれませんか。",
+          "窓を開けてもらいました。",
+          "窓を開けてくれました。"
+        ],
+        "answer": 1,
+        "explain": "～てくれませんか asks for a favour. ～てあげる is a favour for someone else, and the last two are statements about the past."
+      }
+    ]
+  },
+  {
+    "id": "if-and-when",
+    "title": "If and when: ～たら, ～と, ～ば and とき",
+    "level": "B1",
+    "summary": "Say “if” and “when” with たら, と, ば, なら and とき, and know which one to pick in everyday speech.",
+    "sections": [
+      {
+        "heading": "～たら: the everyday “if” and “when”",
+        "body": "Take the plain past (the た form) and add ら: 行った → 行っ**たら**, 食べた → 食べ**たら**. Adjectives, nouns and negatives work the same way (see the table).\n\n**A たら B** means that A is completed first and then B happens. If A is uncertain, it is “if”: 雨が降ったら (if it rains). If A is sure to happen, it is “when” or “once”: 駅に着いたら (when I get to the station). **もし** at the start of the sentence makes it clear that you mean “if”.\n\nたら is the safest of all the forms in this lesson, because anything can follow it: a plan, a request, an invitation, a wish.",
+        "table": {
+          "head": [
+            "",
+            "Plain past",
+            "～たら"
+          ],
+          "rows": [
+            [
+              "Verb",
+              "行った",
+              "行っ**たら** if / when I go"
+            ],
+            [
+              "Verb, negative",
+              "行かなかった",
+              "行かなかっ**たら** if I don’t go"
+            ],
+            [
+              "い-adjective",
+              "安かった",
+              "安かっ**たら** if it’s cheap"
+            ],
+            [
+              "な-adjective",
+              "暇だった",
+              "暇だっ**たら** if you’re free"
+            ],
+            [
+              "Noun",
+              "雨だった",
+              "雨だっ**たら** if it’s rainy"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "雨が降ったら、家にいます。",
+            "en": "If it rains, I’ll stay at home.",
+            "kana": "あめ が ふったら いえ に います",
+            "note": "降る → 降った → 降ったら."
+          },
+          {
+            "tr": "駅に着いたら、電話してください。",
+            "en": "Please call me when you get to the station.",
+            "kana": "えき に ついたら でんわ して ください",
+            "note": "“When”: you are sure to arrive. A request can follow たら."
+          },
+          {
+            "tr": "もし安かったら、買います。",
+            "en": "If it’s cheap, I’ll buy it.",
+            "kana": "もし やすかったら かいます",
+            "note": "安い → 安かった → 安かったら."
+          },
+          {
+            "tr": "暇だったら、一緒に映画を見ませんか。",
+            "en": "If you’re free, would you like to watch a film together?",
+            "kana": "ひま だったら いっしょ に えいが を みません か",
+            "note": "な-adjective + だったら, followed by an invitation."
+          }
+        ]
+      },
+      {
+        "heading": "～と: results that always follow",
+        "body": "Dictionary form (or ない form) + **と** means “whenever A happens, B follows”. Use it when B is automatic: facts of nature, how machines work, directions, habits. The verb before と stays in the non-past form.\n\nBecause B “just happens”, it cannot be a request, an invitation or something you decide to do. ✗ 駅に着くと、電話してください → ✓ 駅に着いたら、電話してください.\n\nThis と follows a verb or an adjective, so it is easy to tell from the と that means “and” or “with” after a noun. い-adjectives go straight before it (寒いと), and nouns and な-adjectives add だ (雨だと).",
+        "examples": [
+          {
+            "tr": "春になると、桜が咲きます。",
+            "en": "When spring comes, the cherry blossoms bloom.",
+            "kana": "はる に なる と さくら が さきます",
+            "note": "A fact of nature: it happens every year."
+          },
+          {
+            "tr": "このボタンを押すと、ドアが開きます。",
+            "en": "When you press this button, the door opens.",
+            "kana": "この ボタン を おす と ドア が あきます",
+            "note": "How a machine works."
+          },
+          {
+            "tr": "まっすぐ行くと、右に銀行があります。",
+            "en": "If you go straight on, there’s a bank on your right.",
+            "kana": "まっすぐ いく と みぎ に ぎんこう が あります",
+            "note": "と is the usual form for giving directions."
+          },
+          {
+            "tr": "お酒を飲むと、顔が赤くなります。",
+            "en": "When I drink alcohol, my face goes red.",
+            "kana": "おさけ を のむ と かお が あかく なります",
+            "note": "Something that happens every time."
+          },
+          {
+            "tr": "勉強しないと、上手になりません。",
+            "en": "If you don’t study, you won’t get good at it.",
+            "kana": "べんきょう しない と じょうず に なりません",
+            "note": "ない form + と."
+          }
+        ]
+      },
+      {
+        "heading": "～ば and なら",
+        "body": "The **ば form** states a condition: “provided that A, then B”. Verbs in every group change the final -u sound to its -e partner and add ば: 行く → 行**けば**, 食べる → 食べ**れば**, する → **すれば**, 来る → **来れば** (くれば). い-adjectives change い to **ければ** (安い → 安**ければ**; いい → **よければ**), and so does ない: 行かない → 行か**なければ**. That is the なければ in ～なければなりません.\n\nIn conversation たら can replace ば almost everywhere, so at first it is enough to understand ば and to use a few fixed phrases such as どうすればいいですか.\n\nNouns and な-adjectives use **なら** instead: 雨**なら**, 暇**なら**. なら also follows a plain verb to pick up what the other person has said or is planning: “if that is the case, then…”. It often introduces advice.",
+        "table": {
+          "head": [
+            "Plain form",
+            "ば form",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "行く (いく)",
+              "行**けば**",
+              "if I go"
+            ],
+            [
+              "買う (かう)",
+              "買**えば**",
+              "if I buy"
+            ],
+            [
+              "食べる (たべる)",
+              "食べ**れば**",
+              "if I eat"
+            ],
+            [
+              "する",
+              "**すれば**",
+              "if I do"
+            ],
+            [
+              "来る (くる)",
+              "来**れば** (くれば)",
+              "if I come"
+            ],
+            [
+              "安い (やすい)",
+              "安**ければ**",
+              "if it’s cheap"
+            ],
+            [
+              "行かない",
+              "行か**なければ**",
+              "if I don’t go"
+            ],
+            [
+              "雨 (あめ)",
+              "雨**なら**",
+              "if it’s rainy"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "急げば、間に合います。",
+            "en": "If we hurry, we’ll make it.",
+            "kana": "いそげば まにあいます",
+            "note": "急ぐ → 急げば."
+          },
+          {
+            "tr": "安ければ、買います。",
+            "en": "If it’s cheap, I’ll buy it.",
+            "kana": "やすければ かいます",
+            "note": "安い → 安ければ. Everyday version: 安かったら、買います。"
+          },
+          {
+            "tr": "どうすればいいですか。",
+            "en": "What should I do?",
+            "kana": "どう すれば いい です か",
+            "note": "Literally “If I do what, will it be good?” する → すれば."
+          },
+          {
+            "tr": "京都に行くなら、秋がいいですよ。",
+            "en": "If you’re going to Kyoto, autumn is a good time.",
+            "kana": "きょうと に いく なら あき が いい です よ",
+            "note": "なら picks up the other person’s plan and adds advice."
+          }
+        ]
+      },
+      {
+        "heading": "とき, and which one to choose",
+        "body": "**とき** (時) means “the time when”. It is a noun, so the words before it take the form they have before any noun: 子供**の**とき, 暇**な**とき, 忙しいとき, 行くとき. It only says when something happens; it never means “if”.\n\nWith a verb, the tense before とき matters. The dictionary form means the action is not finished yet; the た form means it is. 日本に**行く**とき、かばんを買いました: I bought the bag before I went. 日本に**行った**とき、かばんを買いました: I bought it once I was there.\n\nWhich one in everyday speech? Use **たら** as your default “if / when”, **と** for results that always follow, **なら** to react to what someone has said, and **とき** for a plain “at the time when”. Keep **ば** for fixed phrases at first.",
+        "examples": [
+          {
+            "tr": "子供のとき、大阪に住んでいました。",
+            "en": "When I was a child, I lived in Osaka.",
+            "kana": "こども の とき おおさか に すんで いました",
+            "note": "Noun + の + とき."
+          },
+          {
+            "tr": "暇なとき、何をしますか。",
+            "en": "What do you do when you’re free?",
+            "kana": "ひまな とき なに を します か",
+            "note": "な-adjective + な + とき."
+          },
+          {
+            "tr": "分からないときは、先生に聞きます。",
+            "en": "When I don’t understand, I ask the teacher.",
+            "kana": "わからない とき は せんせい に ききます",
+            "note": "ない form + とき. は makes “when…” the topic."
+          },
+          {
+            "tr": "日本に行ったとき、このかばんを買いました。",
+            "en": "I bought this bag when I went to Japan.",
+            "kana": "にほん に いった とき この かばん を かいました",
+            "note": "行ったとき: after arriving, so the bag was bought in Japan."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Fill in the gap: 駅に＿、電話してください。 (Please call me when you get to the station.)",
+        "options": [
+          "着くと",
+          "着いたら",
+          "着きたら",
+          "着いたと"
+        ],
+        "answer": 1,
+        "explain": "A request cannot follow と, so use たら, built on the た form: 着く → 着いた → 着いたら."
+      },
+      {
+        "q": "What is the ば form of 安い (cheap)?",
+        "options": [
+          "安いば",
+          "安けば",
+          "安いれば",
+          "安ければ"
+        ],
+        "answer": 3,
+        "explain": "An い-adjective changes い to ければ: 安い → 安ければ."
+      },
+      {
+        "q": "How do you say “when I was a child”?",
+        "options": [
+          "子供のとき",
+          "子供とき",
+          "子供なとき",
+          "子供だとき"
+        ],
+        "answer": 0,
+        "explain": "とき is a noun, so another noun joins it with の."
+      },
+      {
+        "q": "このボタンを押すと、ドアが開きます。 Why does と fit here?",
+        "options": [
+          "Because the speaker is making a request.",
+          "Because it happened only once, in the past.",
+          "Because the door opens automatically every time.",
+          "Because the speaker is giving advice about a plan."
+        ],
+        "answer": 2,
+        "explain": "と is for results that always follow: press the button and the door opens."
       }
     ]
   },

@@ -2354,6 +2354,1151 @@ export const lessons = [
     ]
   },
   {
+    "id": "dative",
+    "title": "Dative: giving, liking, needing",
+    "level": "A2",
+    "summary": "The dative marks the person who receives something, and it is also how Ukrainian says “I like”, “I need”, “I’m cold” and “I’m twenty”.",
+    "sections": [
+      {
+        "heading": "To whom? The dative of nouns",
+        "body": "The **dative** answers **кому?** (to whom?). It marks the person who receives something or is told something, with no preposition where English uses “to” or “for”: **дати другові** (to give to a friend), **сказати мамі** (to tell mom). Typical verbs are **дати** (give), **сказати** (tell), **написати** (write), **подзвонити** (call), **показати** (show), **купити** (buy) and **допомогти** (help).\n\nFeminine nouns take **-і**, and before it **г, к, х** change to **з, ц, с**, exactly as in the locative: **подруга → подрузі**. Masculine nouns have two endings, both correct: **-ові** (soft stems: **-еві / -єві**) or **-у / -ю**. For people, the longer one is preferred: **братові**, **вчителеві**. The plural is **-ам / -ям** for every gender.",
+        "table": {
+          "head": [
+            "Type of noun",
+            "Dictionary form",
+            "Dative"
+          ],
+          "rows": [
+            [
+              "Feminine in -а, -я",
+              "мама, сестра, Оля",
+              "мамі, сестрі, Олі"
+            ],
+            [
+              "Feminine with г, к, х",
+              "подруга, донька",
+              "подрузі, доньці"
+            ],
+            [
+              "Feminine in -ія",
+              "Марія, Юлія",
+              "Марії, Юлії"
+            ],
+            [
+              "Masculine",
+              "брат, друг, син",
+              "братові, другові, синові (or брату, другу, сину)"
+            ],
+            [
+              "Masculine (soft)",
+              "вчитель, Андрій",
+              "вчителеві, Андрієві (or вчителю, Андрію)"
+            ],
+            [
+              "Neuter",
+              "місто, море",
+              "місту, морю"
+            ],
+            [
+              "Plural",
+              "друзі, батьки, діти",
+              "друзям, батькам, дітям"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Я дам другові твій номер.",
+            "en": "I’ll give my friend your number.",
+            "note": "друг → другові (другу is also correct)."
+          },
+          {
+            "tr": "Я вже написала подрузі.",
+            "en": "I’ve already written to my friend.",
+            "note": "подруга → подрузі: г changes to з before -і."
+          },
+          {
+            "tr": "Увечері я подзвоню мамі.",
+            "en": "I’ll call mom this evening.",
+            "note": "мама → мамі."
+          },
+          {
+            "tr": "Ми купили дітям морозиво.",
+            "en": "We bought the children ice cream.",
+            "note": "діти → дітям: the plural ending -ям."
+          }
+        ]
+      },
+      {
+        "heading": "Pronouns in the dative",
+        "body": "Pronouns have their own dative forms. Like the accusative ones, they often come **before** the verb in speech: **Я тобі подзвоню** (I’ll call you). The question word **хто** becomes **кому**.\n\nNote that **дякувати** (to thank) takes the dative: **Дякую вам!** And don’t mix up **мені** (to me) with **мене** (me): **Він мене бачить** (He sees me), but **Він мені пише** (He writes to me).",
+        "table": {
+          "head": [
+            "Subject",
+            "Dative",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "я",
+              "мені",
+              "to me"
+            ],
+            [
+              "ти",
+              "тобі",
+              "to you"
+            ],
+            [
+              "він / воно",
+              "йому",
+              "to him, to it"
+            ],
+            [
+              "вона",
+              "їй",
+              "to her"
+            ],
+            [
+              "ми",
+              "нам",
+              "to us"
+            ],
+            [
+              "ви",
+              "вам",
+              "to you (polite / plural)"
+            ],
+            [
+              "вони",
+              "їм",
+              "to them"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Покажіть мені, будь ласка, меню.",
+            "en": "Could you show me the menu, please?",
+            "note": "я → мені."
+          },
+          {
+            "tr": "Я тобі допоможу.",
+            "en": "I’ll help you.",
+            "note": "допомогти takes the dative: ти → тобі."
+          },
+          {
+            "tr": "Дякую вам за допомогу!",
+            "en": "Thank you for your help!",
+            "note": "дякувати + dative: ви → вам."
+          },
+          {
+            "tr": "Кому ти пишеш? — Братові.",
+            "en": "Who are you writing to? — My brother.",
+            "note": "хто → кому; the answer is in the dative too."
+          }
+        ]
+      },
+      {
+        "heading": "Мені подобається and мені … років",
+        "body": "Ukrainian turns “I like” around. The thing you like is the subject, and the person goes into the dative: **Мені подобається це місто**, literally “This city is pleasing to me”. The verb agrees with the thing: **подобається** for one thing or for an activity (**Мені подобається готувати**, I like cooking), **подобаються** for several things. For something you tried and liked, use the past of **сподобатися**: **сподобався, сподобалася, сподобалося, сподобалися**.\n\nAge works the same way. The person is in the dative, and the number is followed by **рік, роки** or **років**, as in the genitive lesson: **Мені двадцять років** (I’m twenty), **Синові п’ять років** (My son is five).",
+        "examples": [
+          {
+            "tr": "Мені дуже подобається Львів.",
+            "en": "I really like Lviv.",
+            "note": "Львів is the subject; мені is “to me”."
+          },
+          {
+            "tr": "Тобі подобаються українські пісні?",
+            "en": "Do you like Ukrainian songs?",
+            "note": "Several things → подобаються."
+          },
+          {
+            "tr": "Нам сподобався цей фільм.",
+            "en": "We liked this film.",
+            "note": "Past: сподобався agrees with фільм (masculine)."
+          },
+          {
+            "tr": "Скільки вам років? — Мені тридцять чотири роки.",
+            "en": "How old are you? — I’m thirty-four.",
+            "note": "34 ends in 4, so роки."
+          },
+          {
+            "tr": "Бабусі вісімдесят років.",
+            "en": "My grandma is eighty.",
+            "note": "бабуся → бабусі; 80 takes років."
+          }
+        ]
+      },
+      {
+        "heading": "Мені треба, мені холодно",
+        "body": "A group of words that never change take the person in the dative. **Треба** (or **потрібно**) + infinitive means “need to, have to”; **можна** means “may”, and **не можна** “must not”. To need a **thing**, use **потрібен, потрібна, потрібне, потрібні**, which agrees with the thing: **Мені потрібна допомога** (I need help).\n\nFeelings and states work the same way: **мені холодно** (I’m cold), **жарко** (hot), **добре** (fine), **погано** (unwell), **сумно** (sad), **нудно** (bored), **важко** (it’s hard for me). Don’t say “я холодний”: that means you are cold to the touch. For the past add **було**, for the future **буде**: **Мені було холодно**.",
+        "examples": [
+          {
+            "tr": "Вибач, мені треба йти.",
+            "en": "Sorry, I have to go.",
+            "note": "мені треба + infinitive."
+          },
+          {
+            "tr": "Тобі не холодно? — Ні, мені тепло.",
+            "en": "Aren’t you cold? — No, I’m warm.",
+            "note": "Literally “Is it not cold to you?”"
+          },
+          {
+            "tr": "Мені потрібен новий телефон.",
+            "en": "I need a new phone.",
+            "note": "потрібен agrees with телефон (masculine)."
+          },
+          {
+            "tr": "Дітям було нудно.",
+            "en": "The children were bored.",
+            "note": "Past: було; діти → дітям."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Я пишу ___ (подруга, a friend).",
+        "options": [
+          "подругі",
+          "подрузі",
+          "подругу",
+          "подругою"
+        ],
+        "answer": 1,
+        "explain": "Feminine nouns take -і in the dative, and г changes to з before it: подрузі."
+      },
+      {
+        "q": "How do you say “I like this film”?",
+        "options": [
+          "Мені подобається цей фільм.",
+          "Я подобаюся цей фільм.",
+          "Мене подобається цей фільм.",
+          "Мені подобаються цей фільм."
+        ],
+        "answer": 0,
+        "explain": "The person is in the dative (мені), and the verb agrees with фільм, one thing: подобається."
+      },
+      {
+        "q": "How do you say “She is cold” (she feels cold)?",
+        "options": [
+          "Вона холодно.",
+          "Її холодно.",
+          "Їй холодна.",
+          "Їй холодно."
+        ],
+        "answer": 3,
+        "explain": "Feelings take the person in the dative and a word that doesn’t change: їй холодно."
+      },
+      {
+        "q": "Я дам книжку ___ (брат, brother).",
+        "options": [
+          "брата",
+          "братом",
+          "братові",
+          "браті"
+        ],
+        "answer": 2,
+        "explain": "Masculine nouns for people take -ові in the dative: братові (брату is also correct)."
+      }
+    ]
+  },
+  {
+    "id": "verbs-of-motion",
+    "title": "Verbs of motion: іти, їхати, ходити, їздити",
+    "level": "A2",
+    "summary": "“To go” is four verbs in Ukrainian: on foot or by transport, one trip or a habit. Prefixes then add “arrive”, “leave” and “drop in”.",
+    "sections": [
+      {
+        "heading": "On foot or by transport?",
+        "body": "English “go” covers everything. Ukrainian first asks **how** you move. **Іти / йти** means to go **on foot**. **Їхати** (я їду, ти їдеш) means to go **by transport**: car, bus, train, bike. A trip to another city or country is always **їхати** (or **летіти**, to fly).\n\nSay how you travel with the instrumental and no preposition (**автобусом**, **потягом**, **машиною**) or with **на** + locative (**на автобусі**, **на велосипеді**, **на метро**). “On foot” is **пішки**. Both verbs describe **one trip in one direction**, happening now or already planned: **Завтра я їду до Києва**. Each has a partner for habits, shown in the table and explained in the next section.",
+        "table": {
+          "head": [
+            "",
+            "One trip, one direction",
+            "Habit, or there and back"
+          ],
+          "rows": [
+            [
+              "On foot",
+              "іти / йти",
+              "ходити"
+            ],
+            [
+              "By transport",
+              "їхати",
+              "їздити"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Куди ти йдеш? — Я йду в аптеку.",
+            "en": "Where are you going? — I’m going to the pharmacy.",
+            "note": "On foot, one trip, right now: іти / йти."
+          },
+          {
+            "tr": "Завтра ми їдемо до Львова.",
+            "en": "We’re going to Lviv tomorrow.",
+            "note": "Another city means transport: їхати. до + genitive: Львів → Львова."
+          },
+          {
+            "tr": "Ти їдеш автобусом чи на метро?",
+            "en": "Are you going by bus or by metro?",
+            "note": "автобус → автобусом (instrumental); метро never changes."
+          },
+          {
+            "tr": "Тут недалеко, ми йдемо пішки.",
+            "en": "It’s not far, we’re walking.",
+            "note": "пішки means “on foot”."
+          }
+        ]
+      },
+      {
+        "heading": "One trip or a habit?",
+        "body": "**Ходити** (on foot) and **їздити** (by transport) describe habits, repeated trips, trips there and back, and movement in general. Words like **щодня** (every day), **часто** (often) and **завжди** (always) are a signal to use them. Compare **Я йду на роботу** (I’m on my way to work now) and **Я щодня ходжу на роботу пішки** (I walk to work every day).\n\n**Ходити** also means “to attend”: **ходити до школи**, **ходити на курси**. Watch the я forms: **ходжу** and **їжджу**.",
+        "table": {
+          "head": [
+            "",
+            "їхати",
+            "ходити",
+            "їздити"
+          ],
+          "rows": [
+            [
+              "я",
+              "їду",
+              "ходжу",
+              "їжджу"
+            ],
+            [
+              "ти",
+              "їдеш",
+              "ходиш",
+              "їздиш"
+            ],
+            [
+              "він / вона",
+              "їде",
+              "ходить",
+              "їздить"
+            ],
+            [
+              "ми",
+              "їдемо",
+              "ходимо",
+              "їздимо"
+            ],
+            [
+              "ви",
+              "їдете",
+              "ходите",
+              "їздите"
+            ],
+            [
+              "вони",
+              "їдуть",
+              "ходять",
+              "їздять"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Діти ходять до школи.",
+            "en": "The children go to school.",
+            "note": "A habit: ходити. до + genitive: школа → школи."
+          },
+          {
+            "tr": "Ми часто їздимо до Львова.",
+            "en": "We often go to Lviv.",
+            "note": "часто + transport → їздити."
+          },
+          {
+            "tr": "Я їжджу на роботу велосипедом.",
+            "en": "I cycle to work.",
+            "note": "їздити → я їжджу; велосипед → велосипедом."
+          },
+          {
+            "tr": "Ти часто ходиш у кіно?",
+            "en": "Do you often go to the cinema?",
+            "note": "ходити → ти ходиш."
+          }
+        ]
+      },
+      {
+        "heading": "The past: ішов, їхав, ходив, їздив",
+        "body": "The past of **іти** is irregular, as you saw in the past-tense lesson: **ішов / йшов**, **ішла / йшла**, **ішли / йшли**. The other three are regular: **їхав, їхала, їхали**; **ходив, ходила, ходили**; **їздив, їздила, їздили**.\n\nThe meanings differ. **Ішов** and **їхав** show someone in the middle of one trip: **Я йшов додому** (I was walking home). **Ходив** and **їздив** mean a trip **there and back**: **Учора ми ходили в кіно** (We went to the cinema yesterday, and came back). For “set off” or “left”, you need a prefix: see the next section.",
+        "table": {
+          "head": [
+            "Infinitive",
+            "він",
+            "вона",
+            "вони"
+          ],
+          "rows": [
+            [
+              "іти / йти",
+              "ішов / йшов",
+              "ішла / йшла",
+              "ішли / йшли"
+            ],
+            [
+              "їхати",
+              "їхав",
+              "їхала",
+              "їхали"
+            ],
+            [
+              "ходити",
+              "ходив",
+              "ходила",
+              "ходили"
+            ],
+            [
+              "їздити",
+              "їздив",
+              "їздила",
+              "їздили"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Я йшла додому, коли ти подзвонив.",
+            "en": "I was walking home when you called.",
+            "note": "One trip in progress; a woman speaking: йшла."
+          },
+          {
+            "tr": "Ми їхали п’ять годин.",
+            "en": "We were on the road for five hours.",
+            "note": "їхати → їхали."
+          },
+          {
+            "tr": "У суботу ми ходили в театр.",
+            "en": "On Saturday we went to the theater.",
+            "note": "A trip there and back: ходили."
+          },
+          {
+            "tr": "Влітку я їздив до Одеси.",
+            "en": "I went to Odesa in the summer.",
+            "note": "There and back by transport: їздив. Одеса → до Одеси."
+          }
+        ]
+      },
+      {
+        "heading": "Prefixes: при-, по-, ви-, за-",
+        "body": "Add a prefix to **іти** or **їхати** and you get a new **perfective** verb: one complete movement. After a prefix, іти is written **-йти**: **прийти**, **вийти**, **зайти**; with по- it becomes **піти**. The past follows ішов: **прийшов, пішла, вийшли**. Because these verbs are perfective, their present-style forms mean the future: **я прийду** (I’ll come), **ми поїдемо** (we’ll go).\n\n**При-** is arriving, **по-** is setting off, **ви-** is going out, and **за-** is dropping in on the way.",
+        "table": {
+          "head": [
+            "Prefix",
+            "Idea",
+            "On foot",
+            "By transport"
+          ],
+          "rows": [
+            [
+              "при-",
+              "come, arrive",
+              "прийти → прийшов",
+              "приїхати → приїхав"
+            ],
+            [
+              "по-",
+              "go, set off",
+              "піти → пішов",
+              "поїхати → поїхав"
+            ],
+            [
+              "ви-",
+              "go out, leave",
+              "вийти → вийшов",
+              "виїхати → виїхав"
+            ],
+            [
+              "за-",
+              "drop in",
+              "зайти → зайшов",
+              "заїхати → заїхав"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Коли ти прийдеш додому?",
+            "en": "When will you come home?",
+            "note": "прийти → ти прийдеш: perfective, so it means the future."
+          },
+          {
+            "tr": "Олени немає, вона вже пішла.",
+            "en": "Olena isn’t here, she has already left.",
+            "note": "по- + іти → піти; past: пішов, пішла."
+          },
+          {
+            "tr": "Ми приїхали до Києва вранці.",
+            "en": "We arrived in Kyiv in the morning.",
+            "note": "при- + їхати: arriving by transport."
+          },
+          {
+            "tr": "Він вийшов з дому рано.",
+            "en": "He left the house early.",
+            "note": "ви- + іти → вийти; з + genitive: дім → з дому."
+          },
+          {
+            "tr": "Я зайду до тебе після роботи.",
+            "en": "I’ll drop by your place after work.",
+            "note": "за- + іти → зайти: a short visit on the way."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Я щодня ___ на роботу пішки. (I walk to work every day.)",
+        "options": [
+          "іду",
+          "їду",
+          "ходжу",
+          "їжджу"
+        ],
+        "answer": 2,
+        "explain": "щодня is a habit and пішки is on foot: ходити → я ходжу."
+      },
+      {
+        "q": "Завтра ми ___ до Львова потягом. (Tomorrow we’re going to Lviv by train.)",
+        "options": [
+          "їдемо",
+          "йдемо",
+          "ходимо",
+          "їздимо"
+        ],
+        "answer": 0,
+        "explain": "One planned trip by transport: їхати → ми їдемо."
+      },
+      {
+        "q": "What is the past of **іти** for **вона**?",
+        "options": [
+          "ітила",
+          "ішов",
+          "іділа",
+          "ішла"
+        ],
+        "answer": 3,
+        "explain": "іти is irregular in the past: ішов, ішла, ішли. Ішов is the masculine form."
+      },
+      {
+        "q": "Which verb means “arrived (by transport)”?",
+        "options": [
+          "поїхав",
+          "приїхав",
+          "виїхав",
+          "прийшов"
+        ],
+        "answer": 1,
+        "explain": "при- means arriving and їхати is by transport; прийшов is “arrived on foot”."
+      }
+    ]
+  },
+  {
+    "id": "imperative",
+    "title": "Imperative: commands and requests",
+    "level": "A2",
+    "summary": "How to ask, tell and invite: читай / читайте, скажи / скажіть, не for “don’t”, давай for “let’s” and хай for “let him”.",
+    "sections": [
+      {
+        "heading": "The ти form: читай, скажи, будь",
+        "body": "You already know a few request forms from the lesson on politeness. Here is how they are built. Take the **ти** form of the present (for a perfective verb, of the future), drop **-еш / -єш / -иш**, and look at what is left. If it ends in a **vowel**, add **-й**: чита-єш → **читай**. If it ends in a **consonant**, add **-и** when the я form is stressed on its ending (я скажу → **скажи**), and add nothing when the stress stays on the stem (я буду → **будь**). In that last type, **д, т, з, с, л, н** are written with **ь**.\n\nA few are irregular: **їсти → їж**, **дати → дай**, **пити → пий**. Verbs in **-ся** keep it: **дивитися → дивись** (or **дивися**).\n\nFor one action with a result, use the **perfective** verb (**Прочитай це**); for a process, a habit or an invitation, the **imperfective** (**Читай щодня**, **Сідай**).",
+        "table": {
+          "head": [
+            "Infinitive",
+            "ти form",
+            "Command",
+            "Pattern"
+          ],
+          "rows": [
+            [
+              "читати (read)",
+              "читаєш",
+              "читай",
+              "vowel + -й"
+            ],
+            [
+              "працювати (work)",
+              "працюєш",
+              "працюй",
+              "vowel + -й"
+            ],
+            [
+              "сказати (say, tell)",
+              "скажеш",
+              "скажи",
+              "consonant + -и"
+            ],
+            [
+              "купити (buy)",
+              "купиш",
+              "купи",
+              "consonant + -и"
+            ],
+            [
+              "взяти (take)",
+              "візьмеш",
+              "візьми",
+              "consonant + -и"
+            ],
+            [
+              "бути (be)",
+              "будеш",
+              "будь",
+              "no ending, ь"
+            ],
+            [
+              "сісти (sit down)",
+              "сядеш",
+              "сядь",
+              "no ending, ь"
+            ],
+            [
+              "вибачити (forgive)",
+              "вибачиш",
+              "вибач",
+              "no ending"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Слухай, у мене є ідея!",
+            "en": "Listen, I have an idea!",
+            "note": "слухати → слухаєш → слухай."
+          },
+          {
+            "tr": "Візьми парасольку, буде дощ.",
+            "en": "Take an umbrella, it’s going to rain.",
+            "note": "взяти → візьмеш → візьми."
+          },
+          {
+            "tr": "Андрію, купи, будь ласка, хліб.",
+            "en": "Andrii, buy some bread, please.",
+            "note": "купити → купиш → купи; Андрію is the vocative."
+          },
+          {
+            "tr": "Будь обережний!",
+            "en": "Be careful!",
+            "note": "бути → будеш → будь. To a woman: Будь обережна!"
+          }
+        ]
+      },
+      {
+        "heading": "The ви form and softeners",
+        "body": "For **ви** (polite, or several people), add **-те** to the ти form: **читай → читайте**, **будь → будьте**. If the ти form ends in **-и**, that ending becomes **-іть**: **скажи → скажіть**, **візьми → візьміть**.\n\nA bare command can sound abrupt, so add **будь ласка**, usually right after the verb or at the end. In casual speech you will also hear the particle **-но** attached to a command (**скажи-но**, **іди-но сюди**). It is colloquial and you don’t need it: **будь ласка** does the job.",
+        "table": {
+          "head": [
+            "ти",
+            "ви",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "читай",
+              "читайте",
+              "read"
+            ],
+            [
+              "сідай",
+              "сідайте",
+              "sit down, take a seat"
+            ],
+            [
+              "заходь",
+              "заходьте",
+              "come in"
+            ],
+            [
+              "будь",
+              "будьте",
+              "be"
+            ],
+            [
+              "іди / йди",
+              "ідіть / йдіть",
+              "go"
+            ],
+            [
+              "візьми",
+              "візьміть",
+              "take"
+            ],
+            [
+              "дивись",
+              "дивіться",
+              "look"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Заходьте, будь ласка!",
+            "en": "Come in, please!",
+            "note": "заходити → заходь + -те."
+          },
+          {
+            "tr": "Сідайте, тут вільно.",
+            "en": "Have a seat, this place is free.",
+            "note": "сідати → сідай + -те; the imperfective, because it is an invitation."
+          },
+          {
+            "tr": "Напишіть, будь ласка, ваше ім’я.",
+            "en": "Please write your name.",
+            "note": "напиши → напишіть: -и becomes -іть."
+          },
+          {
+            "tr": "Пані Олено, зачекайте хвилинку!",
+            "en": "Olena, wait a minute!",
+            "note": "зачекай + -те; пані Олено is the polite vocative."
+          }
+        ]
+      },
+      {
+        "heading": "Don’t! не + imperative",
+        "body": "To tell someone **not** to do something, put **не** before the command. The important point is aspect: a negative command normally uses the **imperfective** verb, even where the positive one is perfective. So **Скажи!** but **Не кажи!**, **Візьми!** but **Не бери!**, **Зачекай!** but **Не чекай!**\n\n**Не** + a **perfective** command is kept for warnings about something that could happen by accident: **Не забудь!** (Don’t forget!), **Не впади!** (Don’t fall!).",
+        "table": {
+          "head": [
+            "Do it! (perfective)",
+            "Don’t! (imperfective)",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "скажи",
+              "не кажи",
+              "say, tell"
+            ],
+            [
+              "візьми",
+              "не бери",
+              "take"
+            ],
+            [
+              "зроби",
+              "не роби",
+              "do"
+            ],
+            [
+              "купи",
+              "не купуй",
+              "buy"
+            ],
+            [
+              "зачекай",
+              "не чекай",
+              "wait"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Не кажи мамі, це сюрприз.",
+            "en": "Don’t tell mom, it’s a surprise.",
+            "note": "скажи → не кажи: the imperfective after не."
+          },
+          {
+            "tr": "Не чекайте на мене, я прийду пізніше.",
+            "en": "Don’t wait for me, I’ll come later.",
+            "note": "зачекайте → не чекайте."
+          },
+          {
+            "tr": "Не хвилюйся, все буде добре.",
+            "en": "Don’t worry, everything will be fine.",
+            "note": "хвилюватися → хвилюєшся → хвилюйся."
+          },
+          {
+            "tr": "Не забудь подзвонити бабусі!",
+            "en": "Don’t forget to call grandma!",
+            "note": "A warning, so the perfective забути is used."
+          }
+        ]
+      },
+      {
+        "heading": "Let’s and let him: давай, хай",
+        "body": "For “let’s”, everyday speech uses **давай** (to one person you call ти) or **давайте** (to several people, or politely) + the **ми** form of a perfective verb: **Давай подивимося фільм**. There is also a one-word form in **-мо / -імо**, which is preferred in careful writing: **ходімо** (let’s go), **почнімо** (let’s begin).\n\n**Хай** or **нехай** + a verb in the він / вона / вони form means “let him, let her, let them”, or expresses a wish: **Хай він зачекає** (Let him wait). The two words mean the same; хай is shorter and more conversational.",
+        "examples": [
+          {
+            "tr": "Давай подивимося фільм.",
+            "en": "Let’s watch a film.",
+            "note": "давай + the ми form of подивитися."
+          },
+          {
+            "tr": "Давайте замовимо піцу.",
+            "en": "Let’s order pizza.",
+            "note": "давайте: to several people; замовити → замовимо."
+          },
+          {
+            "tr": "Ходімо додому!",
+            "en": "Let’s go home!",
+            "note": "The one-word “let’s” form of ходити."
+          },
+          {
+            "tr": "Хай він подзвонить мені завтра.",
+            "en": "Have him call me tomorrow.",
+            "note": "хай + the він form of подзвонити."
+          },
+          {
+            "tr": "Хай щастить!",
+            "en": "Good luck!",
+            "note": "A wish with хай."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "What is the **ви** form of **візьми** (take)?",
+        "options": [
+          "візьмете",
+          "візьміть",
+          "візьмите",
+          "візьмийте"
+        ],
+        "answer": 1,
+        "explain": "A ти form in -и changes it to -іть: візьміть. Візьмете is the future, “you will take”."
+      },
+      {
+        "q": "How do you say “Don’t wait for me” to a friend?",
+        "options": [
+          "Не чекай на мене.",
+          "Не зачекай на мене.",
+          "Ні чекай на мене.",
+          "Не чекати на мене."
+        ],
+        "answer": 0,
+        "explain": "не + the imperfective command: зачекай → не чекай."
+      },
+      {
+        "q": "How do you say “Let’s watch a film”?",
+        "options": [
+          "Давай подивився фільм.",
+          "Давай подивляться фільм.",
+          "Давай подивимося фільм.",
+          "Давай подивилися фільм."
+        ],
+        "answer": 2,
+        "explain": "давай + the ми form of the perfective verb: подивимося."
+      },
+      {
+        "q": "What does **Хай він зачекає** mean?",
+        "options": [
+          "He is waiting.",
+          "Let’s wait for him.",
+          "Don’t wait for him.",
+          "Let him wait."
+        ],
+        "answer": 3,
+        "explain": "хай + a він form means “let him …”."
+      }
+    ]
+  },
+  {
+    "id": "adjectives-comparison",
+    "title": "Comparing: bigger, better, the best",
+    "level": "B1",
+    "summary": "A one-table recap of adjective agreement, then the comparative (-іший, -ший), the superlative with най- and three ways to say “than”.",
+    "sections": [
+      {
+        "heading": "Agreement recap: hard and soft adjectives",
+        "body": "An adjective copies the gender and number of its noun. Most adjectives are **hard**: **-ий, -а, -е** and plural **-і**. A smaller **soft** group, almost all ending in **-ній**, uses **-ій, -я, -є, -і**: **синій** (blue), **останній** (last), **домашній** (home, homemade), **сьогоднішній** (today’s), **літній** (summer), **пізній** (late).\n\nThis matters here because every comparative and superlative below is an ordinary hard adjective: **новіший, новіша, новіше, новіші**.",
+        "table": {
+          "head": [
+            "",
+            "Masculine",
+            "Feminine",
+            "Neuter",
+            "Plural"
+          ],
+          "rows": [
+            [
+              "Hard endings",
+              "-ий",
+              "-а",
+              "-е",
+              "-і"
+            ],
+            [
+              "new",
+              "новий",
+              "нова",
+              "нове",
+              "нові"
+            ],
+            [
+              "cheap",
+              "дешевий",
+              "дешева",
+              "дешеве",
+              "дешеві"
+            ],
+            [
+              "Soft endings",
+              "-ій",
+              "-я",
+              "-є",
+              "-і"
+            ],
+            [
+              "blue",
+              "синій",
+              "синя",
+              "синє",
+              "сині"
+            ],
+            [
+              "last",
+              "останній",
+              "остання",
+              "останнє",
+              "останні"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Це дуже цікава книжка.",
+            "en": "This is a very interesting book.",
+            "note": "книжка is feminine → цікава."
+          },
+          {
+            "tr": "Сьогодні останній день відпустки.",
+            "en": "Today is the last day of my vacation.",
+            "note": "A soft adjective, masculine: останній."
+          },
+          {
+            "tr": "Домашня їжа завжди смачна.",
+            "en": "Home-cooked food is always tasty.",
+            "note": "їжа is feminine: soft домашня, hard смачна."
+          },
+          {
+            "tr": "Ці черевики занадто великі.",
+            "en": "These shoes are too big.",
+            "note": "Plural: -і for every gender."
+          }
+        ]
+      },
+      {
+        "heading": "Comparative: -іший and -ший",
+        "body": "For most adjectives, drop the ending and add **-іший**: **новий → новіший**, **теплий → тепліший**. A number of common ones take the shorter **-ший** instead (**дешевий → дешевший**, **молодий → молодший**), often losing **-к-** or **-ок-** first: **легкий → легший**, **швидкий → швидший**, **широкий → ширший**. In a few, the sounds merge: **дорогий → дорожчий**, **високий → вищий**, **низький → нижчий**, **близький → ближчий**. Four everyday pairs are irregular: see the end of the table.\n\nUse **набагато** (much) or **трохи** (a little) to grade the difference: **набагато дешевший**. The neuter form also works as an adverb: **Говоріть повільніше** (Speak more slowly). You can also say **більш** + the plain adjective (**більш зручний**, more comfortable), but never both at once: not “більш зручніший”.",
+        "table": {
+          "head": [
+            "Adjective",
+            "Comparative",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "новий",
+              "новіший",
+              "newer"
+            ],
+            [
+              "теплий",
+              "тепліший",
+              "warmer"
+            ],
+            [
+              "цікавий",
+              "цікавіший",
+              "more interesting"
+            ],
+            [
+              "дешевий",
+              "дешевший",
+              "cheaper"
+            ],
+            [
+              "молодий / старий",
+              "молодший / старший",
+              "younger / older"
+            ],
+            [
+              "дорогий",
+              "дорожчий",
+              "more expensive"
+            ],
+            [
+              "добрий, хороший",
+              "кращий",
+              "better"
+            ],
+            [
+              "поганий",
+              "гірший",
+              "worse"
+            ],
+            [
+              "великий",
+              "більший",
+              "bigger"
+            ],
+            [
+              "малий, маленький",
+              "менший",
+              "smaller"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Цей телефон новіший, але дорожчий.",
+            "en": "This phone is newer but more expensive.",
+            "note": "новий → новіший; дорогий → дорожчий."
+          },
+          {
+            "tr": "Ця кімната більша й світліша.",
+            "en": "This room is bigger and brighter.",
+            "note": "Feminine -а: великий → більша, світлий → світліша."
+          },
+          {
+            "tr": "У вас є щось дешевше?",
+            "en": "Do you have anything cheaper?",
+            "note": "Neuter дешевше agrees with щось."
+          },
+          {
+            "tr": "Моя сестра молодша, а брат старший.",
+            "en": "My sister is younger, and my brother is older.",
+            "note": "молодий → молодший, старий → старший."
+          },
+          {
+            "tr": "Мені вже набагато краще.",
+            "en": "I’m feeling much better now.",
+            "note": "краще as an adverb, with мені in the dative."
+          }
+        ]
+      },
+      {
+        "heading": "Than: ніж, за, від",
+        "body": "There are three standard ways to say “than”. **Ніж** is followed by the same form you would use without it, usually the nominative, and it is the one to use before an adverb or a whole clause: **Сьогодні тепліше, ніж учора**. Write a comma before it.\n\nWith a noun or pronoun you can also use a preposition: **за** + accusative (**старший за брата**, **за мене**) or **від** + genitive (**старший від брата**, **від мене**). All three mean the same. After за and від, the pronouns він, вона, вони begin with н-: **за нього, за неї, за них**. To say by how much, add **на**: **на два роки старший**.",
+        "table": {
+          "head": [
+            "",
+            "Followed by",
+            "Example"
+          ],
+          "rows": [
+            [
+              "ніж",
+              "the same form (nominative)",
+              "Київ більший, ніж Львів."
+            ],
+            [
+              "за",
+              "accusative",
+              "Київ більший за Львів."
+            ],
+            [
+              "від",
+              "genitive",
+              "Київ більший від Львова."
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Мій брат старший за мене на два роки.",
+            "en": "My brother is two years older than me.",
+            "note": "за + accusative: я → мене; на два роки gives the difference."
+          },
+          {
+            "tr": "Чай дешевший від кави.",
+            "en": "Tea is cheaper than coffee.",
+            "note": "від + genitive: кава → кави."
+          },
+          {
+            "tr": "Сьогодні холодніше, ніж учора.",
+            "en": "It’s colder today than yesterday.",
+            "note": "Before an adverb (учора), use ніж."
+          },
+          {
+            "tr": "Потяг швидший за автобус.",
+            "en": "The train is faster than the bus.",
+            "note": "за + accusative: автобус is a thing, so it doesn’t change."
+          }
+        ]
+      },
+      {
+        "heading": "Superlative: най-",
+        "body": "For “the most”, put **най-** in front of the **comparative**, not the plain adjective: **новіший → найновіший**, **кращий → найкращий**, **більший → найбільший**. The result is again an ordinary adjective that agrees with its noun: **найкраща подруга**, **найкращі друзі**.\n\nSay where or among what with **в / у** + locative (**у світі**, in the world; **в Україні**) or **з** + genitive plural (**найкращий з усіх**, the best of all).",
+        "examples": [
+          {
+            "tr": "Це найкраща кав’ярня в місті.",
+            "en": "This is the best café in town.",
+            "note": "кращий → найкраща (кав’ярня is feminine)."
+          },
+          {
+            "tr": "Говерла — найвища гора в Україні.",
+            "en": "Hoverla is the highest mountain in Ukraine.",
+            "note": "високий → вищий → найвища."
+          },
+          {
+            "tr": "Який квиток найдешевший?",
+            "en": "Which ticket is the cheapest?",
+            "note": "дешевший → найдешевший."
+          },
+          {
+            "tr": "Моя наймолодша сестра ще ходить до школи.",
+            "en": "My youngest sister still goes to school.",
+            "note": "молодший → наймолодша."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Choose the right form: ___ їжа (home-cooked food).",
+        "options": [
+          "домашній",
+          "домашнє",
+          "домашна",
+          "домашня"
+        ],
+        "answer": 3,
+        "explain": "їжа is feminine and домашній is a soft adjective, so the ending is -я: домашня."
+      },
+      {
+        "q": "What is the comparative of **теплий** (warm)?",
+        "options": [
+          "найтеплий",
+          "теплший",
+          "тепліший",
+          "більш тепліший"
+        ],
+        "answer": 2,
+        "explain": "Most adjectives add -іший: тепліший. Най- makes a superlative, and більш is never added to a comparative."
+      },
+      {
+        "q": "Київ більший ___ Львів. (Kyiv is bigger than Lviv.)",
+        "options": [
+          "за",
+          "від",
+          "з",
+          "на"
+        ],
+        "answer": 0,
+        "explain": "за takes the accusative, and Львів doesn’t change. Від would need the genitive: від Львова."
+      },
+      {
+        "q": "“This is the best café.” Це ___ кав’ярня.",
+        "options": [
+          "найкращий",
+          "найкраща",
+          "найдобра",
+          "кращіша"
+        ],
+        "answer": 1,
+        "explain": "най- + the comparative кращий, in the feminine to match кав’ярня: найкраща."
+      }
+    ]
+  },
+  {
     "id": "spoken-vs-written",
     "title": "Spoken vs written Ukrainian",
     "level": "B1",

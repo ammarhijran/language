@@ -74,6 +74,9 @@ for (const [code, lang] of Object.entries(languages)) {
   test(`${code}: grammar lessons are well formed`, () => {
     const lessons = lang.grammar || [];
     assert.equal(new Set(lessons.map((l) => l.id)).size, lessons.length, 'unique lesson ids');
+    assert.ok(lessons.length >= 16, `${lessons.length} lessons`);
+    // Levels never go down: the list reads from first sentences to everyday speech.
+    assert.deepEqual(lessons.map((l) => l.level), [...lessons.map((l) => l.level)].sort(), 'lessons are in level order');
     for (const l of lessons) {
       assert.ok(l.id && l.title && l.summary && ['A1', 'A2', 'B1'].includes(l.level), `lesson ${l.id}`);
       assert.ok(l.sections?.length >= 1, `${l.id}: sections`);

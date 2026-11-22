@@ -2086,6 +2086,1074 @@ export const lessons = [
     ]
   },
   {
+    "id": "can-must-want",
+    "title": "Can, must, want: -ebil, -meli, istemek",
+    "level": "A2",
+    "summary": "Say what you can do with -ebil, what you have to do with -meli or lazım, and what you want to do with -mek istiyorum.",
+    "sections": [
+      {
+        "heading": "Can: -ebilir / -abilir",
+        "body": "You have already asked for things with **-ebilir misiniz?** Here is the whole pattern. Add **-ebil** or **-abil** (two-way harmony) to the stem, then **-ir** and a “to be” ending: **gel → gelebilirim** (I can come), **yap → yapabilirim** (I can do it). After a stem ending in a vowel, a **y** comes in: **oku → okuyabilirim**, **bekle → bekleyebilirim**. As usual, **gitmek → gidebilir** and **etmek → edebilir**.\n\nThe **-bilir** part never changes, so the endings are always -im, -sin, -iz, -siniz. One form covers ability (I can come), permission (you can sit here) and possibility (it may rain). -ebil can take other tenses too: **gelebildim** (I was able to come), **gelebileceğim** (I'll be able to come).",
+        "table": {
+          "head": [
+            "Person",
+            "gelmek (come)",
+            "yapmak (do)",
+            "okumak (read)"
+          ],
+          "rows": [
+            [
+              "ben",
+              "gelebilirim",
+              "yapabilirim",
+              "okuyabilirim"
+            ],
+            [
+              "sen",
+              "gelebilirsin",
+              "yapabilirsin",
+              "okuyabilirsin"
+            ],
+            [
+              "o",
+              "gelebilir",
+              "yapabilir",
+              "okuyabilir"
+            ],
+            [
+              "biz",
+              "gelebiliriz",
+              "yapabiliriz",
+              "okuyabiliriz"
+            ],
+            [
+              "siz",
+              "gelebilirsiniz",
+              "yapabilirsiniz",
+              "okuyabilirsiniz"
+            ],
+            [
+              "onlar",
+              "gelebilirler",
+              "yapabilirler",
+              "okuyabilirler"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Yarın gelebilirim.",
+            "en": "I can come tomorrow.",
+            "note": "gel + ebil + ir + im."
+          },
+          {
+            "tr": "Buraya oturabilir miyim?",
+            "en": "May I sit here?",
+            "note": "otur + abil + ir, and the ending goes on mi: asking permission."
+          },
+          {
+            "tr": "Akşam yağmur yağabilir.",
+            "en": "It may rain this evening.",
+            "note": "yağ + abil + ir: possibility."
+          },
+          {
+            "tr": "Biraz Türkçe konuşabiliyorum.",
+            "en": "I can speak a little Turkish.",
+            "note": "konuş + abil + iyor + um: with -iyor for something you are able to do these days."
+          }
+        ]
+      },
+      {
+        "heading": "Can't: -eme / -ama",
+        "body": "“Cannot” does not use -ebil. Instead, add **-e / -a** to the stem and then the negative **-me / -ma**: **gel → geleme-**, **yap → yapama-**, **oku → okuyama-** (with y after a vowel), **git → gideme-**.\n\nFor a general “can't”, the forms are **gelemem, gelemezsin, gelemez, gelemeyiz, gelemezsiniz, gelemezler**. The same stem takes the tenses you already know, as the table shows.",
+        "table": {
+          "head": [
+            "Meaning",
+            "gelmek (come)",
+            "yapmak (do)"
+          ],
+          "rows": [
+            [
+              "I can",
+              "gelebilirim",
+              "yapabilirim"
+            ],
+            [
+              "I can't",
+              "gelemem",
+              "yapamam"
+            ],
+            [
+              "I can't (right now)",
+              "gelemiyorum",
+              "yapamıyorum"
+            ],
+            [
+              "I couldn't",
+              "gelemedim",
+              "yapamadım"
+            ],
+            [
+              "I won't be able to",
+              "gelemeyeceğim",
+              "yapamayacağım"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Üzgünüm, yarın gelemem.",
+            "en": "Sorry, I can't come tomorrow.",
+            "note": "gel + e + me + m."
+          },
+          {
+            "tr": "Seni duyamıyorum.",
+            "en": "I can't hear you.",
+            "note": "duy + a + mı + yor + um: -ma becomes -mı before -yor."
+          },
+          {
+            "tr": "Dün gece hiç uyuyamadım.",
+            "en": "I couldn't sleep at all last night.",
+            "note": "uyu + y + a + ma + dı + m."
+          },
+          {
+            "tr": "Burada park edemezsiniz.",
+            "en": "You can't park here.",
+            "note": "et → ed + e + mez + siniz: “can't” in the sense of “not allowed”."
+          }
+        ]
+      },
+      {
+        "heading": "Must and should: -meli, lazım, gerek",
+        "body": "**-meli / -malı** (two-way harmony) means “must” or “should”. It goes on the stem and takes the “to be” endings: **gitmeliyim** (I must go). The negative is **-memeli / -mamalı**: **gitmemelisin** (you shouldn't go).\n\nIn everyday speech people more often use **lazım** (necessary) or **gerek** (need). Make a noun from the verb with **-me / -ma** and add a possessive ending: **gitmem lazım** (I need to go; literally “my going is necessary”). **gerek** and **gerekiyor** work the same way: **gitmem gerek**, **gitmem gerekiyor**. With a noun, lazım means “I need”: **Bana bir kalem lazım.** (I need a pen.) To say something isn't needed, use **gerek yok**.",
+        "table": {
+          "head": [
+            "Person",
+            "-meli",
+            "lazım"
+          ],
+          "rows": [
+            [
+              "ben",
+              "gitmeliyim",
+              "gitmem lazım"
+            ],
+            [
+              "sen",
+              "gitmelisin",
+              "gitmen lazım"
+            ],
+            [
+              "o",
+              "gitmeli",
+              "gitmesi lazım"
+            ],
+            [
+              "biz",
+              "gitmeliyiz",
+              "gitmemiz lazım"
+            ],
+            [
+              "siz",
+              "gitmelisiniz",
+              "gitmeniz lazım"
+            ],
+            [
+              "onlar",
+              "gitmeliler",
+              "gitmeleri lazım"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Artık gitmem lazım.",
+            "en": "I have to go now.",
+            "note": "git + me + m (my going) + lazım."
+          },
+          {
+            "tr": "Bu filmi mutlaka izlemelisin.",
+            "en": "You really must watch this film.",
+            "note": "izle + meli + sin."
+          },
+          {
+            "tr": "Yarın erken kalkmam gerekiyor.",
+            "en": "I have to get up early tomorrow.",
+            "note": "kalk + ma + m + gerekiyor."
+          },
+          {
+            "tr": "Bu kadar geç yatmamalısın.",
+            "en": "You shouldn't go to bed this late.",
+            "note": "yat + ma + malı + sın: the first -ma is the negative."
+          },
+          {
+            "tr": "Acele etmene gerek yok.",
+            "en": "You don't need to hurry.",
+            "note": "et + me + n (your) + e: literally “there is no need for your hurrying”."
+          }
+        ]
+      },
+      {
+        "heading": "Wanting: -mek istiyorum",
+        "body": "**istemek** means “to want”. With a thing it is simple: **Bir çay istiyorum.** (I'd like a tea.) To say you want to **do** something, put the dictionary form in **-mek / -mak** straight before it: **gitmek istiyorum** (I want to go).\n\nOnly istemek changes: **gitmek istemiyorum** (I don't want to go), **Gitmek istiyor musun?** (Do you want to go?), **gitmek istedim** (I wanted to go). The softer **ister misin?** sounds like “would you like?”. If you want **someone else** to do something, use the -me noun from the last section with the object ending: **Gelmeni istiyorum.** (I want you to come.)",
+        "examples": [
+          {
+            "tr": "Türkçe öğrenmek istiyorum.",
+            "en": "I want to learn Turkish.",
+            "note": "öğrenmek stays in its dictionary form; only istemek takes endings."
+          },
+          {
+            "tr": "Bu akşam dışarı çıkmak istemiyorum.",
+            "en": "I don't want to go out tonight.",
+            "note": "iste + mi + yor + um: the negative goes on istemek."
+          },
+          {
+            "tr": "Ne içmek istersiniz?",
+            "en": "What would you like to drink?",
+            "note": "istersiniz: the polite “would you like”."
+          },
+          {
+            "tr": "Senin de gelmeni istiyorum.",
+            "en": "I want you to come too.",
+            "note": "gel + me + n (your coming) + i (object ending)."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "“I can read”, from **okumak**:",
+        "options": [
+          "okuabilirim",
+          "okuyebilirim",
+          "okuyabilirim",
+          "okubilirim"
+        ],
+        "answer": 2,
+        "explain": "The stem ends in a vowel, so y comes in, and the back vowel u gives -abil: oku + y + abil + ir + im."
+      },
+      {
+        "q": "“I couldn't sleep” (uyumak = to sleep):",
+        "options": [
+          "uyumadım",
+          "uyuyamadım",
+          "uyuamadım",
+          "uyuyamam"
+        ],
+        "answer": 1,
+        "explain": "uyu + y + a + ma + dı + m. Uyumadım is “I didn't sleep” and uyuyamam is “I can't sleep”."
+      },
+      {
+        "q": "Which means “You shouldn't go”?",
+        "options": [
+          "Gitmemelisin.",
+          "Gitmelisin.",
+          "Gidemezsin.",
+          "Gitmek istemiyorsun."
+        ],
+        "answer": 0,
+        "explain": "git + me (negative) + meli + sin. Gitmelisin is “you should go” and gidemezsin is “you can't go”."
+      },
+      {
+        "q": "“I want to learn Turkish”:",
+        "options": [
+          "Türkçe öğren istiyorum.",
+          "Türkçe öğreniyorum istiyorum.",
+          "Türkçe öğrenmem lazım.",
+          "Türkçe öğrenmek istiyorum."
+        ],
+        "answer": 3,
+        "explain": "The verb before istemek stays in its dictionary form (-mek). Öğrenmem lazım means “I need to learn”."
+      }
+    ]
+  },
+  {
+    "id": "commands-suggestions",
+    "title": "Commands and suggestions: gel, gelin, gidelim",
+    "level": "A2",
+    "summary": "The bare stem is a command, -in makes it polite, -elim means “let's” and -eyim mi? asks “shall I?”.",
+    "sections": [
+      {
+        "heading": "Commands: gel, gelin, geliniz",
+        "body": "The command to **sen** is simply the verb stem: **gel** (come), **bak** (look), **otur** (sit down). For **siz** (several people, or one person politely) add **-in, -ın, -un, -ün** (four-way harmony), with a **y** after a vowel: **gelin, bakın, oturun, görün, bekleyin**. On signs and in announcements you will meet the more formal **-iniz**: **geliniz**.\n\nFor “don't”, put **-me / -ma** after the stem first: **gelme**, **gelmeyin**, **gelmeyiniz**. Note that **gitmek** and **etmek** soften their t only before a vowel: **git, et** but **gidin, edin**.",
+        "table": {
+          "head": [
+            "Verb",
+            "sen",
+            "siz",
+            "Formal",
+            "Don't (sen / siz)"
+          ],
+          "rows": [
+            [
+              "gelmek (come)",
+              "gel",
+              "gelin",
+              "geliniz",
+              "gelme / gelmeyin"
+            ],
+            [
+              "bakmak (look)",
+              "bak",
+              "bakın",
+              "bakınız",
+              "bakma / bakmayın"
+            ],
+            [
+              "oturmak (sit)",
+              "otur",
+              "oturun",
+              "oturunuz",
+              "oturma / oturmayın"
+            ],
+            [
+              "beklemek (wait)",
+              "bekle",
+              "bekleyin",
+              "bekleyiniz",
+              "bekleme / beklemeyin"
+            ],
+            [
+              "gitmek (go)",
+              "git",
+              "gidin",
+              "gidiniz",
+              "gitme / gitmeyin"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Buraya gel!",
+            "en": "Come here!",
+            "note": "The bare stem: a command to sen."
+          },
+          {
+            "tr": "İlk sokaktan sağa dönün.",
+            "en": "Turn right at the first street.",
+            "note": "dön + ün: the siz command, common in directions."
+          },
+          {
+            "tr": "Dikkat et, yer ıslak.",
+            "en": "Be careful, the floor is wet.",
+            "note": "dikkat etmek (to be careful): et is the bare stem."
+          },
+          {
+            "tr": "Lütfen burada sigara içmeyin.",
+            "en": "Please don't smoke here.",
+            "note": "iç + me + y + in."
+          }
+        ]
+      },
+      {
+        "heading": "Let's: -elim / -alım",
+        "body": "To suggest doing something together, add **-elim** or **-alım** (two-way harmony) to the stem, with a **y** after a vowel: **gidelim** (let's go), **bakalım** (let's see), **başlayalım** (let's start), **yiyelim** (let's eat; ye- becomes yi-).\n\nThe negative is **-meyelim / -mayalım**: **gitmeyelim** (let's not go). Add **mi / mı** to turn the suggestion into a question: **Gidelim mi?** (Shall we go?). **Hadi** (come on) often comes first: **Hadi gidelim!**",
+        "examples": [
+          {
+            "tr": "Hadi gidelim!",
+            "en": "Come on, let's go!",
+            "note": "git → gid + elim."
+          },
+          {
+            "tr": "Bir kahve içelim mi?",
+            "en": "Shall we have a coffee?",
+            "note": "iç + elim + mi."
+          },
+          {
+            "tr": "Bu akşam dışarıda yiyelim.",
+            "en": "Let's eat out tonight.",
+            "note": "ye → yi + y + elim."
+          },
+          {
+            "tr": "Geç kalmayalım.",
+            "en": "Let's not be late.",
+            "note": "kal + ma + y + alım."
+          },
+          {
+            "tr": "Yarın saat kaçta buluşalım?",
+            "en": "What time shall we meet tomorrow?",
+            "note": "With a question word, no mı is needed."
+          }
+        ]
+      },
+      {
+        "heading": "Shall I? -eyim / -ayım",
+        "body": "The **ben** form is **-eyim / -ayım** (again with y after a vowel): **geleyim, bakayım, başlayayım**. As a statement it offers or announces what you are about to do: **Ben açayım.** (Let me open it.) With **mi / mı** it asks “Shall I…?”: **Açayım mı?** (Shall I open it?). It is the natural way to offer help.",
+        "table": {
+          "head": [
+            "Verb",
+            "Let me… / Shall I…?",
+            "Let's… / Shall we…?"
+          ],
+          "rows": [
+            [
+              "gelmek",
+              "geleyim (mi?)",
+              "gelelim (mi?)"
+            ],
+            [
+              "bakmak",
+              "bakayım (mı?)",
+              "bakalım (mı?)"
+            ],
+            [
+              "gitmek",
+              "gideyim (mi?)",
+              "gidelim (mi?)"
+            ],
+            [
+              "başlamak",
+              "başlayayım (mı?)",
+              "başlayalım (mı?)"
+            ],
+            [
+              "okumak",
+              "okuyayım (mı?)",
+              "okuyalım (mı?)"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Pencereyi açayım mı?",
+            "en": "Shall I open the window?",
+            "note": "aç + ayım + mı; pencere takes the object ending."
+          },
+          {
+            "tr": "Sana bir çay getireyim.",
+            "en": "Let me bring you a tea.",
+            "note": "getir + eyim: an offer."
+          },
+          {
+            "tr": "Seni yarın arayayım mı?",
+            "en": "Shall I call you tomorrow?",
+            "note": "ara + y + ayım + mı."
+          },
+          {
+            "tr": "Şimdi ne yapayım?",
+            "en": "What shall I do now?",
+            "note": "A question word, so no mı."
+          }
+        ]
+      },
+      {
+        "heading": "Softening: lütfen, bir, -sene",
+        "body": "A bare command can sound abrupt, so Turkish softens it in several ways. **Lütfen** (please) works anywhere. A small **bir** before the verb makes the action sound quick and easy, like “just” or “have a…”: **Bir bak.** (Just have a look.) A question with **-ir misin? / -ir misiniz?** is softer still: **Bakar mısınız?** is how you call a waiter.\n\nBetween friends you will hear **-sene / -sana**, and **-senize / -sanıza** to several people: **gelsene** (come on, come!), **baksana** (hey, look!). It is friendly and a little insistent, so keep it for casual conversation.",
+        "examples": [
+          {
+            "tr": "Şuna bir bak.",
+            "en": "Just have a look at this.",
+            "note": "bir softens the command; şu → şuna (at this)."
+          },
+          {
+            "tr": "Bakar mısınız? Hesap, lütfen.",
+            "en": "Excuse me! The bill, please.",
+            "note": "Literally “would you look?”: the polite way to call a waiter."
+          },
+          {
+            "tr": "Sen de gelsene!",
+            "en": "Why don't you come too?",
+            "note": "gel + sene: a warm, casual invitation."
+          },
+          {
+            "tr": "Baksana, kar yağıyor!",
+            "en": "Hey, look, it's snowing!",
+            "note": "bak + sana: used to get a friend's attention."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "The polite (siz) command of **beklemek** (to wait) is…",
+        "options": [
+          "bekle",
+          "beklein",
+          "bekleyın",
+          "bekleyin"
+        ],
+        "answer": 3,
+        "explain": "The stem ends in a vowel, so y comes in, and the front vowel e gives -in: bekle + y + in. Bekle is the sen form."
+      },
+      {
+        "q": "“Let's not be late”:",
+        "options": [
+          "Geç kalmayalım.",
+          "Geç kalma.",
+          "Geç kalalım.",
+          "Geç kalmayayım."
+        ],
+        "answer": 0,
+        "explain": "kal + ma + y + alım. Geç kalma is “don't be late” (to sen) and geç kalalım is “let's be late”."
+      },
+      {
+        "q": "“Shall I open the window?”",
+        "options": [
+          "Pencereyi açalım mı?",
+          "Pencereyi açayım mi?",
+          "Pencereyi açayım mı?",
+          "Pencereyi açın mı?"
+        ],
+        "answer": 2,
+        "explain": "-ayım is the ben form, and mı follows the ı of -ayım. Açalım mı? would be “Shall we open…?”."
+      },
+      {
+        "q": "A friend says **Baksana!** They mean…",
+        "options": [
+          "Don't look!",
+          "Hey, look!",
+          "Shall I look?",
+          "Let's look."
+        ],
+        "answer": 1,
+        "explain": "-sana / -sene makes a casual, friendly command: bak + sana."
+      }
+    ]
+  },
+  {
+    "id": "comparing-linking",
+    "title": "Comparing and linking: daha, en, gibi, çünkü",
+    "level": "A2",
+    "summary": "Compare things with daha, en, kadar and gibi, and join your ideas with ve, ama, çünkü, o yüzden, ile and için.",
+    "sections": [
+      {
+        "heading": "More and most: daha, en",
+        "body": "Turkish adjectives never change. For “more”, put **daha** in front: **daha büyük** (bigger), **daha pahalı** (more expensive). For “most”, use **en**: **en büyük** (the biggest), **en pahalı** (the most expensive). There are no irregular forms: **iyi, daha iyi, en iyi** (good, better, best).\n\nAs you saw with the place endings, “than” is **-den / -dan** on the thing you compare with, and daha is then optional: **Ankara İstanbul'dan (daha) küçük.** The pronouns are **benden, senden, ondan** (than me, than you, than him / her). “Less” is **daha az**: **daha az pahalı** (less expensive).",
+        "table": {
+          "head": [
+            "Adjective",
+            "More",
+            "Most"
+          ],
+          "rows": [
+            [
+              "büyük (big)",
+              "daha büyük",
+              "en büyük"
+            ],
+            [
+              "iyi (good)",
+              "daha iyi",
+              "en iyi"
+            ],
+            [
+              "ucuz (cheap)",
+              "daha ucuz",
+              "en ucuz"
+            ],
+            [
+              "kolay (easy)",
+              "daha kolay",
+              "en kolay"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Daha ucuz bir oda var mı?",
+            "en": "Do you have a cheaper room?",
+            "note": "daha + adjective, then bir + noun."
+          },
+          {
+            "tr": "Bugün dünden daha soğuk.",
+            "en": "Today is colder than yesterday.",
+            "note": "dün + den = than yesterday."
+          },
+          {
+            "tr": "Ablam benden üç yaş büyük.",
+            "en": "My sister is three years older than me.",
+            "note": "ben + den = than me; büyük also means “older”."
+          },
+          {
+            "tr": "Türkiye'nin en büyük şehri İstanbul.",
+            "en": "Türkiye's biggest city is Istanbul.",
+            "note": "şehir + i → şehri (the second vowel drops), linked to Türkiye'nin."
+          },
+          {
+            "tr": "En çok hangi mevsimi seviyorsun?",
+            "en": "Which season do you like most?",
+            "note": "en çok = most (of all)."
+          }
+        ]
+      },
+      {
+        "heading": "As … as and like: kadar, gibi",
+        "body": "**kadar** after a noun means “as … as”: **Ali kadar uzun** (as tall as Ali). With **değil** it gives “not as … as”. **gibi** means “like”: **buz gibi** (like ice, that is, ice-cold), **her zamanki gibi** (as usual). Nouns stay bare before both words, but most pronouns take their owner form: **benim kadar** (as … as me), **senin gibi** (like you), **onun gibi**, **bizim gibi**, **bunun gibi** (like this). Only **onlar** stays as it is: **onlar gibi**.\n\nAfter the direction ending **-e / -a**, kadar means “until” or “as far as”: **saat beşe kadar** (until five o'clock), **otele kadar** (as far as the hotel).",
+        "examples": [
+          {
+            "tr": "Kızım benim kadar uzun.",
+            "en": "My daughter is as tall as me.",
+            "note": "ben → benim before kadar."
+          },
+          {
+            "tr": "Bugün dün kadar sıcak değil.",
+            "en": "Today isn't as hot as yesterday.",
+            "note": "kadar + adjective + değil: not as … as."
+          },
+          {
+            "tr": "Deniz buz gibi!",
+            "en": "The sea is ice-cold!",
+            "note": "Literally “like ice”."
+          },
+          {
+            "tr": "Ben de senin gibi düşünüyorum.",
+            "en": "I think the same as you.",
+            "note": "sen → senin before gibi."
+          },
+          {
+            "tr": "Saat altıya kadar ofisteyim.",
+            "en": "I'm at the office until six.",
+            "note": "altı + ya + kadar: until."
+          }
+        ]
+      },
+      {
+        "heading": "Linking sentences: ve, ama, çünkü, o yüzden",
+        "body": "These words stand between two words or two sentences, just as in English. **ve** is “and”, **ama** is “but”, **veya** and **ya da** are “or”. **çünkü** (because) introduces the reason, which comes second. **o yüzden** (so, that's why) does the opposite: the reason comes first and the result follows. You will also hear **bu yüzden** and **onun için** with the same meaning.",
+        "table": {
+          "head": [
+            "Word",
+            "Meaning",
+            "Example"
+          ],
+          "rows": [
+            [
+              "ve",
+              "and",
+              "ekmek ve peynir (bread and cheese)"
+            ],
+            [
+              "ama",
+              "but",
+              "Küçük ama rahat. (Small but comfortable.)"
+            ],
+            [
+              "veya / ya da",
+              "or",
+              "çay veya kahve (tea or coffee)"
+            ],
+            [
+              "çünkü",
+              "because",
+              "Evdeyim çünkü hastayım. (I'm at home because I'm ill.)"
+            ],
+            [
+              "o yüzden",
+              "so, that's why",
+              "Hastayım, o yüzden evdeyim. (I'm ill, so I'm at home.)"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Çok yorgunum ama uyuyamıyorum.",
+            "en": "I'm very tired but I can't sleep.",
+            "note": "ama joins two full sentences."
+          },
+          {
+            "tr": "Dışarı çıkmıyorum çünkü yağmur yağıyor.",
+            "en": "I'm not going out because it's raining.",
+            "note": "çünkü + the reason."
+          },
+          {
+            "tr": "Yağmur yağıyor, o yüzden dışarı çıkmıyorum.",
+            "en": "It's raining, so I'm not going out.",
+            "note": "The same idea with the reason first."
+          },
+          {
+            "tr": "Bir simit ve bir çay aldım.",
+            "en": "I bought a simit and a tea.",
+            "note": "ve joins two nouns; a simit is a sesame bread ring."
+          }
+        ]
+      },
+      {
+        "heading": "With and for: ile, için",
+        "body": "**ile** means “with”, or “by” for transport. It is usually attached as **-le / -la** (two-way harmony), or **-yle / -yla** after a vowel: **arkadaşımla** (with my friend), **otobüsle** (by bus), **arabayla** (by car). Between two nouns it can also mean “and”: **Ali ile Ayşe**.\n\n**için** means “for”: **annem için** (for my mother). After a dictionary form it means “in order to”: **öğrenmek için** (in order to learn). With both ile and için, pronouns again take their owner form, except onlar.",
+        "table": {
+          "head": [
+            "Pronoun",
+            "with",
+            "for",
+            "like"
+          ],
+          "rows": [
+            [
+              "ben",
+              "benimle",
+              "benim için",
+              "benim gibi"
+            ],
+            [
+              "sen",
+              "seninle",
+              "senin için",
+              "senin gibi"
+            ],
+            [
+              "o",
+              "onunla",
+              "onun için",
+              "onun gibi"
+            ],
+            [
+              "biz",
+              "bizimle",
+              "bizim için",
+              "bizim gibi"
+            ],
+            [
+              "siz",
+              "sizinle",
+              "sizin için",
+              "sizin gibi"
+            ],
+            [
+              "onlar",
+              "onlarla",
+              "onlar için",
+              "onlar gibi"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "İşe otobüsle gidiyorum.",
+            "en": "I go to work by bus.",
+            "note": "otobüs + le."
+          },
+          {
+            "tr": "Arabayla yarım saat sürüyor.",
+            "en": "It takes half an hour by car.",
+            "note": "araba + y + la: y after a vowel."
+          },
+          {
+            "tr": "Bizimle gelmek ister misin?",
+            "en": "Would you like to come with us?",
+            "note": "biz → bizim + le."
+          },
+          {
+            "tr": "Bu hediye senin için.",
+            "en": "This present is for you.",
+            "note": "sen → senin before için."
+          },
+          {
+            "tr": "Türkçe öğrenmek için İstanbul'a geldim.",
+            "en": "I came to Istanbul to learn Turkish.",
+            "note": "Dictionary form + için: in order to."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "“the cheapest hotel”:",
+        "options": [
+          "en ucuz otel",
+          "daha ucuz otel",
+          "çok ucuz otel",
+          "ucuz en otel"
+        ],
+        "answer": 0,
+        "explain": "en + adjective means “the most”. Daha ucuz is “cheaper” and çok ucuz is “very cheap”."
+      },
+      {
+        "q": "“as tall as me”:",
+        "options": [
+          "ben kadar uzun",
+          "benden kadar uzun",
+          "bana kadar uzun",
+          "benim kadar uzun"
+        ],
+        "answer": 3,
+        "explain": "Before kadar, pronouns take their owner form: benim kadar."
+      },
+      {
+        "q": "Complete: Hastayım, ___ işe gitmiyorum. (I'm ill, so I'm not going to work.)",
+        "options": [
+          "çünkü",
+          "o yüzden",
+          "gibi",
+          "veya"
+        ],
+        "answer": 1,
+        "explain": "o yüzden introduces the result. çünkü would introduce the reason instead."
+      },
+      {
+        "q": "“by car” (car = araba):",
+        "options": [
+          "arabala",
+          "arabayle",
+          "arabayla",
+          "araba için"
+        ],
+        "answer": 2,
+        "explain": "After a vowel, ile becomes -yle / -yla, and the back vowel a gives -yla."
+      }
+    ]
+  },
+  {
+    "id": "if-when-before-after",
+    "title": "If, when, before, after: -se, -ince, -ken",
+    "level": "B1",
+    "summary": "Where English starts a clause with “if”, “when”, “while”, “before” or “after”, Turkish puts an ending on the verb.",
+    "sections": [
+      {
+        "heading": "If: -se / -sa",
+        "body": "For a real “if” (something that may well happen), add **-se / -sa** (two-way harmony) after a tense ending, then the short personal endings of the -di past: **-m, -n, (nothing), -k, -niz**. The tense is nearly always the aorist, the “general” tense you know from **ister misin?** and **gelebilir**: **gelirsen** (if you come), **yaparsan** (if you do). Its negative is **-mez / -maz**: **gelmezsen** (if you don't come). You can put **eğer** (if) at the start, but the ending does the work.\n\nThe aorist ending is **-r** after a vowel (**istersen**), **-er / -ar** after most one-syllable stems (**giderse, bakarsan**) and **-ir** (four-way) after longer stems (**konuşursan**). A few very common short verbs take -ir too: **gelir, alır, olur, verir, bilir, görür, kalır, bulur**.\n\nAfter nouns, adjectives and var / yok, add **-(y)se / -(y)sa** directly: **yorgunsan** (if you're tired), **hastaysan** (if you're ill), **varsa** (if there is), **yoksa** (if there isn't). Without a tense ending (**gelsen**), -se describes unreal or wished-for situations, a topic for later.",
+        "table": {
+          "head": [
+            "Person",
+            "gelmek (if … come)",
+            "yapmak (if … do)",
+            "Negative"
+          ],
+          "rows": [
+            [
+              "ben",
+              "gelirsem",
+              "yaparsam",
+              "gelmezsem"
+            ],
+            [
+              "sen",
+              "gelirsen",
+              "yaparsan",
+              "gelmezsen"
+            ],
+            [
+              "o",
+              "gelirse",
+              "yaparsa",
+              "gelmezse"
+            ],
+            [
+              "biz",
+              "gelirsek",
+              "yaparsak",
+              "gelmezsek"
+            ],
+            [
+              "siz",
+              "gelirseniz",
+              "yaparsanız",
+              "gelmezseniz"
+            ],
+            [
+              "onlar",
+              "gelirlerse",
+              "yaparlarsa",
+              "gelmezlerse"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Hava güzel olursa denize gideceğiz.",
+            "en": "If the weather is nice, we'll go to the beach.",
+            "note": "ol + ur + sa: the “if” part comes first."
+          },
+          {
+            "tr": "İstersen sana yardım edebilirim.",
+            "en": "If you like, I can help you.",
+            "note": "iste + r + se + n."
+          },
+          {
+            "tr": "Acele etmezsek treni kaçıracağız.",
+            "en": "If we don't hurry, we'll miss the train.",
+            "note": "et + mez + se + k: the negative."
+          },
+          {
+            "tr": "Vaktin varsa bir kahve içelim.",
+            "en": "If you have time, let's have a coffee.",
+            "note": "var + sa: literally “if your time exists”."
+          },
+          {
+            "tr": "Yorgunsan biraz dinlen.",
+            "en": "If you're tired, rest a little.",
+            "note": "yorgun + sa + n."
+          }
+        ]
+      },
+      {
+        "heading": "When and while: -ince, -ken",
+        "body": "**-ince** (four-way harmony: **-ince, -ınca, -unca, -ünce**, with y after a vowel) means “when” or “as soon as”: one thing happens, then another. It takes no tense and no personal ending; the time comes from the main verb and the person from the context. So **gelince** can mean “when I come”, “when you came” and so on.\n\n**-ken** means “while”: two things happen at the same time. It is added to the aorist (**gelirken**, while coming) or, as **-(y)ken**, to nouns and adjectives (**çocukken**, as a child; **evdeyken**, while at home). Unusually, -ken never changes its vowel: **yaparken, okurken**.",
+        "table": {
+          "head": [
+            "Verb",
+            "-ince (when)",
+            "-ken (while)"
+          ],
+          "rows": [
+            [
+              "gelmek (come)",
+              "gelince",
+              "gelirken"
+            ],
+            [
+              "yapmak (do)",
+              "yapınca",
+              "yaparken"
+            ],
+            [
+              "görmek (see)",
+              "görünce",
+              "görürken"
+            ],
+            [
+              "okumak (read)",
+              "okuyunca",
+              "okurken"
+            ],
+            [
+              "gitmek (go)",
+              "gidince",
+              "giderken"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Eve gelince beni ara.",
+            "en": "Call me when you get home.",
+            "note": "gel + ince; the command ara (call) shows it is about “you”."
+          },
+          {
+            "tr": "Yağmur başlayınca eve döndük.",
+            "en": "When the rain started, we went back home.",
+            "note": "başla + y + ınca."
+          },
+          {
+            "tr": "Seni görünce çok sevindim.",
+            "en": "I was so happy when I saw you.",
+            "note": "gör + ünce."
+          },
+          {
+            "tr": "Yemek yerken telefona bakma.",
+            "en": "Don't look at your phone while eating.",
+            "note": "ye + r + ken."
+          },
+          {
+            "tr": "Eve giderken ekmek alır mısın?",
+            "en": "Could you buy some bread on your way home?",
+            "note": "git → gid + er + ken: literally “while going home”."
+          }
+        ]
+      },
+      {
+        "heading": "Before and after: -meden önce, -dikten sonra",
+        "body": "“Before doing” is the stem + **-meden / -madan** + **önce**: **gitmeden önce** (before going), **yatmadan önce** (before going to bed). Without önce, -meden means “without doing”: **bakmadan** (without looking).\n\n“After doing” is the stem + **-dik** (four-way: **-dik, -dık, -duk, -dük**, with t after a hard consonant) + **-ten / -tan** + **sonra**: **geldikten sonra** (after coming), **yaptıktan sonra** (after doing).\n\nNeither form takes a tense or a personal ending; to say who, just name the subject: **sen gittikten sonra** (after you left). With a noun, use **-den önce** and **-den sonra**: **yemekten önce** (before the meal), **dersten sonra** (after class).",
+        "table": {
+          "head": [
+            "Verb",
+            "before …ing",
+            "after …ing"
+          ],
+          "rows": [
+            [
+              "gelmek (come)",
+              "gelmeden önce",
+              "geldikten sonra"
+            ],
+            [
+              "yapmak (do)",
+              "yapmadan önce",
+              "yaptıktan sonra"
+            ],
+            [
+              "okumak (read)",
+              "okumadan önce",
+              "okuduktan sonra"
+            ],
+            [
+              "görmek (see)",
+              "görmeden önce",
+              "gördükten sonra"
+            ],
+            [
+              "gitmek (go)",
+              "gitmeden önce",
+              "gittikten sonra"
+            ]
+          ]
+        },
+        "examples": [
+          {
+            "tr": "Yatmadan önce dişlerimi fırçalıyorum.",
+            "en": "I brush my teeth before going to bed.",
+            "note": "yat + madan + önce."
+          },
+          {
+            "tr": "Yemekten önce ellerini yıka.",
+            "en": "Wash your hands before the meal.",
+            "note": "With a noun: yemek + ten + önce."
+          },
+          {
+            "tr": "İşten çıktıktan sonra seni arayacağım.",
+            "en": "I'll call you after I leave work.",
+            "note": "çık + tık + tan + sonra: t after the hard consonant k."
+          },
+          {
+            "tr": "Sen gittikten sonra Ayşe geldi.",
+            "en": "Ayşe came after you left.",
+            "note": "git + tik + ten; the subject sen is simply named."
+          },
+          {
+            "tr": "Kahvaltı yapmadan evden çıkma.",
+            "en": "Don't leave the house without having breakfast.",
+            "note": "yap + madan with no önce: “without”."
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "“if you come” (to sen), as a real condition:",
+        "options": [
+          "gelirsin",
+          "gelince",
+          "gelirsen",
+          "gelirken"
+        ],
+        "answer": 2,
+        "explain": "gel + ir + se + n. Gelince is “when … come” and gelirken is “while coming”."
+      },
+      {
+        "q": "“while doing”, from **yapmak**:",
+        "options": [
+          "yapken",
+          "yaparkan",
+          "yapınca",
+          "yaparken"
+        ],
+        "answer": 3,
+        "explain": "-ken is added to the aorist (yapar) and never changes its vowel. Yapınca is “when … do”."
+      },
+      {
+        "q": "“after reading”, from **okumak**:",
+        "options": [
+          "okudikten sonra",
+          "okuduktan sonra",
+          "okumadan sonra",
+          "okuduktan önce"
+        ],
+        "answer": 1,
+        "explain": "oku + duk (the vowel follows u) + tan + sonra."
+      },
+      {
+        "q": "What does **kahvaltı yapmadan önce** mean?",
+        "options": [
+          "before having breakfast",
+          "after having breakfast",
+          "while having breakfast",
+          "if you have breakfast"
+        ],
+        "answer": 0,
+        "explain": "-madan önce means “before doing”."
+      }
+    ]
+  },
+  {
     "id": "spoken-turkish",
     "title": "Spoken Turkish: how people really talk",
     "level": "B1",
