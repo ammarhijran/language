@@ -110,8 +110,9 @@ export const soundTips = [
 ];
 
 export const minimalPairs = [
-  { contrast: 'short / long vowel', pairs: [['おばさん', 'aunt', 'おばあさん', 'grandmother'], ['おじさん', 'uncle', 'おじいさん', 'grandfather'], ['ゆき', 'snow', 'ゆうき', 'courage'], ['とり', 'bird', 'とおり', 'street']] },
-  { contrast: 'single / double consonant', pairs: [['きて', 'come!', 'きって', 'stamp'], ['いた', 'was there', 'いった', 'went'], ['さか', 'slope', 'さっか', 'writer']] },
+  { contrast: 'short / long vowel', pairs: [['おばさん', 'aunt', 'おばあさん', 'grandmother'], ['おじさん', 'uncle', 'おじいさん', 'grandfather'], ['ゆき', 'snow', 'ゆうき', 'courage'], ['とり', 'bird', 'とおり', 'street'], ['ビル', 'building', 'ビール', 'beer'], ['しゅじん', 'husband', 'しゅうじん', 'prisoner'], ['くつ', 'shoes', 'くつう', 'pain']] },
+  { contrast: 'single / double consonant', pairs: [['きて', 'come!', 'きって', 'stamp'], ['いた', 'was there', 'いった', 'went'], ['さか', 'slope', 'さっか', 'writer'], ['おと', 'sound', 'おっと', 'husband'], ['かこ', 'the past', 'かっこ', 'brackets'], ['にし', 'west', 'にっし', 'daily report']] },
+  { contrast: 'k / g, t / d', pairs: [['かき', 'persimmon', 'かぎ', 'key'], ['てんき', 'weather', 'でんき', 'electricity'], ['たいがく', 'leaving school', 'だいがく', 'university']] },
   { contrast: 'pitch accent', pairs: [['雨', 'rain', '飴', 'candy'], ['橋', 'bridge', '箸', 'chopsticks']] },
-  { contrast: 'つ / す', pairs: [['つき', 'moon', 'すき', 'liked']] },
+  { contrast: 'つ / す', pairs: [['つき', 'moon', 'すき', 'liked'], ['つる', 'crane', 'する', 'to do']] },
 ];

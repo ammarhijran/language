@@ -93,9 +93,12 @@ export const soundTips = [
 ];
 
 export const minimalPairs = [
-  { contrast: 'и / і', pairs: [['кит', 'whale', 'кіт', 'cat'], ['дим', 'smoke', 'дім', 'house'], ['бик', 'bull', 'бік', 'side']] },
-  { contrast: 'ж / ш', pairs: [['жар', 'heat', 'шар', 'layer; ball']] },
-  { contrast: 'г / ґ', pairs: [['грати', 'to play', 'ґрати', 'bars (grating)']] },
+  { contrast: 'и / і', pairs: [['кит', 'whale', 'кіт', 'cat'], ['дим', 'smoke', 'дім', 'house'], ['бик', 'bull', 'бік', 'side'], ['лис', 'fox', 'ліс', 'forest'], ['рис', 'rice', 'ріс', 'he grew']] },
+  { contrast: 'ж / ш', pairs: [['жар', 'heat', 'шар', 'layer; ball'], ['жити', 'to live', 'шити', 'to sew']] },
+  { contrast: 'г / ґ', pairs: [['грати', 'to play', 'ґрати', 'bars (grating)'], ['гніт', 'oppression', 'ґніт', 'wick']] },
+  { contrast: 'г / х', pairs: [['гол', 'goal', 'хол', 'hall, lobby'], ['гід', 'guide', 'хід', 'move; course']] },
   { contrast: 'с / з', pairs: [['сад', 'garden', 'зад', 'back'], ['коса', 'braid', 'коза', 'goat']] },
   { contrast: 'т / д', pairs: [['там', 'there', 'дам', 'I’ll give'], ['тим', 'by that', 'дим', 'smoke']] },
+  { contrast: 'п / б', pairs: [['пити', 'to drink', 'бити', 'to beat'], ['пік', 'peak', 'бік', 'side']] },
+  { contrast: 'hard / soft (ь)', pairs: [['стан', 'state; waist', 'стань', 'become!'], ['рис', 'rice', 'рись', 'lynx'], ['сіл', 'of villages', 'сіль', 'salt']] },
 ];

@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **More ear training:** about twice as many minimal pairs for Ukrainian (18), Japanese (21) and Arabic (19), and five more for Turkish (24) — new contrasts such as Ukrainian г / х and hard / soft consonants, Japanese k / g and t / d (てんき / でんき), Arabic د / ض and غ / خ. Every pair is checked to differ in exactly one sound.
 - **Numbers by ear** (Practice → Numbers by ear): the voice says a number and you type its digits — four ranges from 0–10 up to 10,000, ten numbers a round. The answer also shows the course’s word for the number where it has one.
 - **Four new achievements** (48 in all): Easy Listening (5 hands-free rounds), Sharp Ears (20 sentences built by ear), In My Own Words (practise a text of your own) and Ready to Travel (learn all the trip essentials of a language).
 - **Home:** near the start of a language, a “Trip soon? 🎒 Essentials” row leads straight to the trip-essentials crash course.

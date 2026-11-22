@@ -93,12 +93,14 @@ export const soundTips = [
 ];
 
 export const minimalPairs = [
-  { contrast: 'ق / ك', pairs: [['قَلْب', 'heart', 'كَلْب', 'dog']] },
-  { contrast: 'س / ص', pairs: [['سَيْف', 'sword', 'صَيْف', 'summer']] },
-  { contrast: 'ت / ط', pairs: [['تِين', 'figs', 'طِين', 'clay']] },
-  { contrast: 'ح / ه', pairs: [['حَرَم', 'sanctuary', 'هَرَم', 'pyramid']] },
-  { contrast: 'ح / خ', pairs: [['حَال', 'condition', 'خَال', 'maternal uncle']] },
-  { contrast: 'ع / ء', pairs: [['عَمَل', 'work', 'أَمَل', 'hope']] },
-  { contrast: 'short / long vowel', pairs: [['جَمَل', 'camel', 'جَمَال', 'beauty']] },
-  { contrast: 'single / double', pairs: [['دَرَسَ', 'he studied', 'دَرَّسَ', 'he taught']] },
+  { contrast: 'ق / ك', pairs: [['قَلْب', 'heart', 'كَلْب', 'dog'], ['قُلْ', 'say!', 'كُلْ', 'eat!']] },
+  { contrast: 'س / ص', pairs: [['سَيْف', 'sword', 'صَيْف', 'summer'], ['سَارَ', 'he walked', 'صَارَ', 'he became']] },
+  { contrast: 'ت / ط', pairs: [['تِين', 'figs', 'طِين', 'clay'], ['تَابَ', 'he repented', 'طَابَ', 'it became pleasant']] },
+  { contrast: 'د / ض', pairs: [['دَلَّ', 'he showed the way', 'ضَلَّ', 'he lost his way']] },
+  { contrast: 'ح / ه', pairs: [['حَرَم', 'sanctuary', 'هَرَم', 'pyramid'], ['سَاحِر', 'magician', 'سَاهِر', 'staying up late']] },
+  { contrast: 'ح / خ', pairs: [['حَال', 'condition', 'خَال', 'maternal uncle'], ['حَلّ', 'solution', 'خَلّ', 'vinegar']] },
+  { contrast: 'غ / خ', pairs: [['غَيْر', 'other than', 'خَيْر', 'good']] },
+  { contrast: 'ع / ء', pairs: [['عَمَل', 'work', 'أَمَل', 'hope'], ['عَلَم', 'flag', 'أَلَم', 'pain'], ['سَعَلَ', 'he coughed', 'سَأَلَ', 'he asked']] },
+  { contrast: 'short / long vowel', pairs: [['جَمَل', 'camel', 'جَمَال', 'beauty'], ['مَطَر', 'rain', 'مَطَار', 'airport'], ['كَتَبَ', 'he wrote', 'كَاتَبَ', 'he wrote to']] },
+  { contrast: 'single / double', pairs: [['دَرَسَ', 'he studied', 'دَرَّسَ', 'he taught'], ['حَمَام', 'pigeons', 'حَمَّام', 'bathroom']] },
 ];
