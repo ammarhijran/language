@@ -33,6 +33,7 @@ const DEFAULTS = {
   reminder: false, // daily study reminder (Android / iOS apps)
   reminderTime: '19:00',
   speakAs: 'm', // 'f': first-person phrases in the form a woman says (Ukrainian, Arabic)
+  newsSeen: '', // id of the last “What’s new” list the learner has seen (see news.js)
   aidJa: 'full', // Japanese readings: 'full' (kana · rōmaji), 'script' (kana only), 'off'
   aidAr: 'full', // Arabic transliteration: 'full' or 'off'
   textSize: 'm', // 'm', 'l' or 'xl'

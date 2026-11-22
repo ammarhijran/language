@@ -6,6 +6,7 @@ import { h, icon, storageBanner } from '../ui.js';
 import { voiceBanner, playButton, readingLine, glyph } from '../components.js';
 import { computeStats, nextTopics, topicCounts, wordOfTheDay, learnedWords } from '../stats.js';
 import { challengeList, repairBanner } from './journey.js';
+import { newsToShow } from '../news.js';
 
 export default function home(ctx) {
   const { lang } = ctx;
@@ -45,6 +46,19 @@ export default function home(ctx) {
   // Sentences from the words learned once there are enough, else from every phrase.
   const buildScope = learnedWords(ctx).length >= 20 ? 'learned' : 'all';
 
+  // What's new: once, for people who were already using the app.
+  const news = newsToShow(ctx.store);
+  const newsCard = news ? h('section', { class: 'card news', 'aria-labelledby': 'news-title' },
+    h('div', { class: 'title-row' },
+      h('h2', { class: 'card-title', id: 'news-title' }, '✨ New in Lisan'),
+      h('button', {
+        type: 'button', class: 'btn small',
+        onclick: () => { ctx.store.updateSettings({ newsSeen: news.id }); newsCard.remove(); },
+      }, 'Got it')),
+    h('ul', { class: 'news-list' }, news.items.map((n) => h('li', null,
+      h('a', { href: n.href, onclick: () => ctx.store.updateSettings({ newsSeen: news.id }) },
+        h('span', { 'aria-hidden': 'true' }, n.emoji), h('span', null, h('b', null, n.text), h('small', null, n.where))))))) : null;
+
   return h('div', { class: 'view home today' },
     h('section', { class: 'hello' },
       h('div', null,
@@ -61,6 +75,7 @@ export default function home(ctx) {
     voiceBanner(ctx),
     repairBanner(ctx),
     cta,
+    newsCard,
     after
       ? h('a', { class: 'up-next', href: `#/learn/${encodeURIComponent(after.cat.id)}` },
         h('span', { class: 'kicker' }, 'Up next'),

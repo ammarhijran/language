@@ -41,6 +41,7 @@ const ASSETS = [
   'js/game.js',
   'js/handsfree.js',
   'js/kit.js',
+  'js/news.js',
   'js/compare.js',
   'js/components.js',
   'js/exercises.js',

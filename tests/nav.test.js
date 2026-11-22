@@ -8,6 +8,7 @@ import { learningPath, nextTopics, nextCategory, topicCounts, stagesOf } from '.
 import { sanitize, mergeAll } from '../js/sync.js';
 import * as store from '../js/store.js';
 import { tripKit } from '../js/kit.js';
+import { NEWS, newsToShow } from '../js/news.js';
 import { rankEntries, scoreEntry, searchGrammar, searchTexts, searchTopics, glossesOf } from '../js/views/search.js';
 
 const card = (t = Date.now()) => ({ ease: 2.5, interval: 1, reps: 1, lapses: 0, due: t + 86400000, added: t, last: t });
@@ -323,4 +324,20 @@ test('Phrasebook: every language has a trip-essentials kit, each entry once, str
     assert.ok(kit.every((w) => [...w.tr].length <= 45), `${lang.code}: short enough to say`);
     assert.ok(kit.filter((w) => ['casual', 'slang'].includes(w.reg)).length <= 4, `${lang.code}: not the casual forms`);
   }
+});
+
+test('What’s new: shown once to a learner with progress, never to a new one', () => {
+  store._resetAll();
+  assert.equal(newsToShow(store), null, 'a new learner is not told what is new');
+  assert.equal(store.getSettings().newsSeen, NEWS.id);
+
+  store._resetAll();
+  store.setCard('tr', 'merhaba', { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: Date.now(), added: Date.now() });
+  assert.equal(newsToShow(store), NEWS, 'someone already learning sees it');
+  assert.equal(newsToShow(store), NEWS, 'until they dismiss it');
+  store.updateSettings({ newsSeen: NEWS.id });
+  assert.equal(newsToShow(store), null);
+
+  assert.ok(NEWS.items.length >= 4 && NEWS.items.every((n) => n.text && n.where && /^#\//.test(n.href)));
+  store._resetAll();
 });
