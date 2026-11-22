@@ -20,17 +20,17 @@ It runs as a website (works offline, installable as a PWA) and as native **Andro
 ### Languages
 | | Words | Pronunciation help | Typing accepts |
 | --- | --- | --- | --- |
-| 🇹🇷 Turkish | 942 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
-| 🇺🇦 Ukrainian | 824 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
-| 🇯🇵 Japanese | 809 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
-| 🇸🇦 Arabic (MSA + Egyptian) | 815 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
+| 🇹🇷 Turkish | 1158 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
+| 🇺🇦 Ukrainian | 1040 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
+| 🇯🇵 Japanese | 1025 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
+| 🇸🇦 Arabic (MSA + Egyptian) | 1031 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
 
 Each language has its own alphabet/kana chart, sound guides and minimal-pair ear training. Progress, streak and daily goal are kept separately for each language. Switch from the language pill in the top bar.
 
 ### Vocabulary
-- **52 topics per language, chosen by everyday frequency**, in three groups:
-  - **Words** (30 topics, 540–670 words): Essentials, Numbers, People & Family, Food & Drink, Time & Days, Colors & Descriptions, Places & Travel, Home & Things, Body & Health, Common Verbs, Questions & Little Words, Nature & Animals, More Everyday Verbs, Daily Routine, Feelings & Opinions, Shopping & Money, Connecting Words, Work & Study, Months & Dates, Family & Relationships, Clothes, Free Time & Hobbies, Countries & Languages, Weather, Fruit/Vegetables & Groceries, Doctor & Pharmacy, Phone & Internet, Around Town, Kitchen & Cooking and Jobs.
-  - **Phrases** (20 situations, about 224 ready-to-use sentences): Small Talk, Café & Restaurant, Shopping, Getting Around, Making Plans, Reactions, Problems & Help, Polite Requests, Language Help, Introducing Yourself, At Someone's Home, Wishes & Occasions, Doctor & Pharmacy, Phone & Messages (including real texting forms), Hotel, Emergencies, Trains/Planes/Taxis, At Work, Opinions, Friends & Compliments.
+- **66 topics per language, chosen by everyday frequency**, in three groups:
+  - **Words** (38 topics, 685–817 words): Essentials, Numbers, People & Family, Food & Drink, Time & Days, Colors & Descriptions, Places & Travel, Home & Things, Body & Health, Common Verbs, Questions & Little Words, Nature & Animals, More Everyday Verbs, Daily Routine, Feelings & Opinions, Shopping & Money, Connecting Words, Work & Study, Months & Dates, Family & Relationships, Clothes, Free Time & Hobbies, Countries & Languages, Weather, Fruit/Vegetables & Groceries, Doctor & Pharmacy, Phone & Internet, Around Town, Kitchen & Cooking, Jobs, Animals, School & Study, Money & Bank, Eating Out, Sports & Fitness, Arts & Entertainment, Personality & People and More Useful Verbs.
+  - **Phrases** (26 situations, about 296 ready-to-use sentences): Small Talk, Café & Restaurant, Shopping, Getting Around, Making Plans, Reactions, Problems & Help, Polite Requests, Language Help, Introducing Yourself, At Someone's Home, Wishes & Occasions, Doctor & Pharmacy, Phone & Messages (including real texting forms), Hotel, Emergencies, Trains/Planes/Taxis, At Work, Opinions, Friends & Compliments, At a Restaurant, Renting & Home, Bank/Post & Paperwork, Airport & Border, Problems & Complaints, Feelings & Support.
   - **Talk like a local** (2 topics, 45 entries): everyday spoken forms and slang — Turkish *naber, kanka, aynen*; Ukrainian *норм, класно*; Japanese *やばい, マジで, めっちゃ*; Egyptian Arabic *يلا، خلاص، معلش*.
   Most entries have an example sentence and a usage note.
 - **Polite vs everyday speech, side by side.** Words and phrases carry a register (formal, polite, neutral, casual, slang) and, where people say it differently, the other version: *"What people say"* next to *"Proper / polite"* (in Arabic: the Egyptian everyday form next to Modern Standard Arabic). Both sides can be played.

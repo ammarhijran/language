@@ -75,8 +75,8 @@ export const meta = {
     "name": "Arabic",
     "nativeName": "العربية",
     "flag": "🇸🇦",
-    "words": 815,
-    "topics": 52,
+    "words": 1031,
+    "topics": 66,
     "alphabet": 29,
     "grammar": [
       "vowels-and-the-article",

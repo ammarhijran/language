@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **More vocabulary and phrases (third round):** 8 new word topics (Animals, School & Study, Money & Bank, Eating Out, Sports & Fitness, Arts & Entertainment, Personality & People, More Useful Verbs — 144 words, each with an example sentence) and 6 new phrase situations (At a Restaurant, Renting & Home, Bank, Post & Paperwork, Airport & Border, Problems & Complaints, Feelings & Support — 72 phrases with polite ⇄ everyday pairs) in every language: 1,025–1,158 entries per language in 66 topics now.
 - **Hands-free listening** (Practice → Hands-free): a round of up to 20 words or phrases that plays by itself — each one is spoken, you get time to repeat it, you hear it again and then its meaning in English. Pause, skip back and forth, choose how long the pause is; the screen stays on where the browser allows it.
 - **Learn:** long topic lists are grouped under “Start here”, “Everyday life” and “Going further”.
 - **Store screenshots and feature graphic** retaken for the current app: home, a Japanese lesson card, the pronunciation score, the Arabic phrasebook, the Ukrainian reader and progress.
@@ -92,6 +93,7 @@
 - **Daily goal** ring on the home screen, a "goal reached" celebration, and a daily-goal setting.
 
 ### Fixed
+- **Ukrainian stress:** мене / тебе after a preposition are stressed on the first syllable (у ме́не, в те́бе, як на ме́не) — corrected in 12 phrases.
 - **Japanese voice:** a number or counter followed by more kanji is read as one word (一日中 “ichinichi-jū”, 一人暮らし “hitori-gurashi”, 七時半), not cut in the middle.
 - **Rewards paid twice:**
   - Re-setting an already-reached personal goal no longer pays out again, and neither does syncing a goal completed on another device.

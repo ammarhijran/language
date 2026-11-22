@@ -50,6 +50,9 @@ test('no other single word of the course passes for a word when spoken or typed'
         if (L.spokenTargets(w).some((t) => L.normalize(t) === L.normalize(o.tr))) continue; // one is the other's spelling
         if (L.sameSound?.(o, w)) continue; // homophones (鼻 · 花) can't be told apart by ear
         const r = said(L, w, o.tr);
+        // Heard as the other-register form of an entry that sounds the same (Egyptian أَوِي is
+        // written قوي, like the word “strong”): by ear they are one word.
+        if (r.match === 'sound' && r.pair && L.sameSound?.(r.other.pair, w)) continue;
         assert.equal(speakRating(r.score), AGAIN, `${L.code} ${w.tr} ← ${o.tr}: ${r.score} (${r.match})`);
         assert.notEqual(checkTyped(L, w, o.tr).verdict === 'almost', true, `${L.code} ${w.tr} typed ${o.tr}`);
       }
