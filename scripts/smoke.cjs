@@ -111,6 +111,8 @@ async function walk(browser, lang, pack, texts) {
   await page.click('.hf-play');
   await open(`learn/${enc(pack.categories[0].id)}`, { selector: '.intro' });
   await open('learn/kit', { selector: '.intro' });
+  await open('numbers', { selector: '.choice' });
+  await open('numbers/100', { selector: '#number-answer' });
 
   await ctx.close();
   return { pages, problems };

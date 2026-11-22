@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Numbers by ear** (Practice → Numbers by ear): the voice says a number and you type its digits — four ranges from 0–10 up to 10,000, ten numbers a round. The answer also shows the course’s word for the number where it has one.
 - **Four new achievements** (48 in all): Easy Listening (5 hands-free rounds), Sharp Ears (20 sentences built by ear), In My Own Words (practise a text of your own) and Ready to Travel (learn all the trip essentials of a language).
 - **Home:** near the start of a language, a “Trip soon? 🎒 Essentials” row leads straight to the trip-essentials crash course.
 - **Browser smoke test** (`npm run smoke`, for developers): opens the real app in Chromium for each language and walks about 300 screens — every topic, word pages, the phrasebook, every text, practice modes, My texts, a lesson — failing on any script error, error screen or sideways scroll at phone width.
@@ -108,6 +109,7 @@
 - **Daily goal** ring on the home screen, a "goal reached" celebration, and a daily-goal setting.
 
 ### Fixed
+- **Turkish numbers in speaking exercises:** when the phone’s speech recogniser answers with digits (“3” for *üç*, “40” for *kırk*), the answer now counts as right, as it already did in the other languages.
 - **Ukrainian stress:** мене / тебе after a preposition are stressed on the first syllable (у ме́не, в те́бе, як на ме́не) — corrected in 12 phrases.
 - **Japanese voice:** a number or counter followed by more kanji is read as one word (一日中 “ichinichi-jū”, 一人暮らし “hitori-gurashi”, 七時半), not cut in the middle.
 - **Rewards paid twice:**

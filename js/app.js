@@ -12,6 +12,7 @@ import home from './views/home.js';
 import learn from './views/learn.js';
 import review from './views/review.js';
 import practice from './views/practice.js';
+import numbersView from './views/numbers.js';
 import pronounce from './views/pronounce.js';
 import progress from './views/progress.js';
 import settingsView from './views/settings.js';
@@ -67,6 +68,7 @@ const ROUTES = {
   phrases,
   search,
   me,
+  numbers: numbersView,
 };
 
 // Bottom navigation: Home (today), Learn (topics, grammar, texts), Practice
@@ -81,7 +83,7 @@ const TABS = [
 // The tab each screen belongs to (a screen with no entry is its own tab).
 const TAB_OF = {
   topic: 'learn', grammar: 'learn', read: 'learn', known: 'learn', word: 'learn',
-  review: 'practice', speak: 'practice',
+  review: 'practice', speak: 'practice', numbers: 'practice',
   progress: 'me', journey: 'me', settings: 'me', sync: 'me', language: 'me',
   search: null, welcome: null,
 };
@@ -291,7 +293,7 @@ function titleOf(name, params) {
     case 'grammar': return params[0] ? (lang.grammar || []).find((l) => l.id === params[0])?.title || 'Grammar' : 'Grammar';
     default: return {
       review: 'Review', practice: 'Practice', speak: 'Speak', progress: 'Progress', settings: 'Settings', welcome: 'Welcome',
-      known: 'Already learned', language: 'Languages', sync: 'Sync', read: 'Read & Listen', phrases: 'Phrasebook', search: 'Search', me: 'Me',
+      known: 'Already learned', language: 'Languages', sync: 'Sync', read: 'Read & Listen', phrases: 'Phrasebook', search: 'Search', me: 'Me', numbers: 'Numbers',
     }[name];
   }
 }

@@ -210,3 +210,9 @@ body.in-session .session-head {
 /* Sentence builder by ear (dictation): bigger audio buttons, no meaning until the answer */
 .exercise.by-ear .build-audio .btn { min-height: var(--tap); padding-inline: 1rem; font-size: var(--fs-md); }
 .build-ear-hint { margin: 0 0 var(--sp-2); text-align: center; }
+
+/* Practice → Numbers by ear */
+.numbers-card { display: grid; gap: var(--sp-3); text-align: center; }
+.numbers-audio { justify-content: center; }
+.numbers-answer { margin: 0; font: 800 var(--fs-hero) var(--font-display); letter-spacing: .02em; }
+.numbers .choice { text-decoration: none; color: inherit; }
