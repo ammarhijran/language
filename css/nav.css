@@ -308,9 +308,14 @@ body.showing { overflow: hidden; }
 
 /* ---------- Practice ---------- */
 
+/* Practice modes: compact cards (icon and name); the description of the chosen
+   one is shown in a line below the grid and stays in each button for screen readers. */
 .practice-modes { grid-template-columns: repeat(auto-fill, minmax(138px, 1fr)); }
-.practice-modes .choice { padding: .6rem .7rem; }
-.practice-modes .choice small { font-size: var(--fs-xs); line-height: 1.3; }
+.practice-modes .choice { position: relative; flex-direction: row; align-items: center; gap: .5rem; padding: .45rem .65rem; min-height: var(--tap); }
+.practice-modes .choice .icon { margin: 0; flex-shrink: 0; }
+.practice-modes .choice b { font-size: var(--fs-sm); line-height: 1.2; }
+.practice-modes .choice small { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.mode-hint { margin: var(--sp-2) 0 0; min-height: 1.4em; }
 .review-idle > span:nth-child(2) { flex: 1; }
 .practice .topic-select { margin-top: .5rem; }
 .topic-select.chosen { border-color: var(--text); font-weight: 600; }

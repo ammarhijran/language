@@ -145,9 +145,13 @@ function setup(ctx) {
       type: 'button', class: `choice${m.id === mode ? ' selected' : ''}`, disabled,
       'aria-pressed': String(m.id === mode),
       title: disabled ? 'Speech recognition isn’t available in this browser' : null,
-      onclick: (e) => { mode = m.id; select(modeButtons, e.currentTarget); refreshScopes(); },
+      onclick: (e) => { mode = m.id; select(modeButtons, e.currentTarget); paintHint(); refreshScopes(); },
     }, icon(m.icon, 20), h('b', null, m.name), h('small', null, disabled ? 'Not supported here' : m.desc));
   });
+  // The cards are compact (icon and name); what the chosen mode does is said in one line below them.
+  const modeHint = h('p', { class: 'hint mode-hint', 'aria-live': 'polite' });
+  const paintHint = () => { modeHint.textContent = `${modes.find((m) => m.id === mode)?.desc || ''}.`; };
+  paintHint();
 
   // What to practise: three quick choices, or any one topic from a menu
   // grouped like Learn (Words / Phrases / Talk like a local).
@@ -233,6 +237,7 @@ function setup(ctx) {
     h('h2', { class: 'section-title' }, 'Quick round'),
     h('p', { class: 'hint' }, `${ROUND} questions in the mode you like. Practice doesn’t change your review schedule.`),
     h('div', { class: 'choice-grid practice-modes' }, modeButtons),
+    modeHint,
     scopeTitle,
     scopeRows,
     h('div', { class: 'actions sticky' },
