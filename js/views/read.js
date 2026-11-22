@@ -12,8 +12,8 @@ import * as speech from '../speech.js';
 import { newCard } from '../srs.js';
 import {
   KINDS, LEVELS, REGISTERS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
-  canRolePlay, nextText, markGlossary, findWord, fadeLine, SHADOW_ROUNDS, createPlayer, listenTimeout,
-  scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead, ownTextFor, splitIntoLines, OWN_LINES_MAX,
+  canRolePlay, nextText, findWord, fadeLine, SHADOW_ROUNDS, createPlayer, listenTimeout,
+  scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead, ownTextFor, splitIntoLines, OWN_LINES_MAX, markAll, extraGlossary,
 } from '../reader.js';
 
 // The Learn screen's entry card lives in reader.js, so Learn doesn't load this view.
@@ -133,12 +133,12 @@ function bringIntoView(row, bar) {
 }
 
 /** Speaker label, text (with glossary words), reading and translation of one line. */
-function lineBody(ctx, text, line, { glossary = null, onGloss } = {}) {
+function lineBody(ctx, text, line, { glossary = null, extra = [], onGloss } = {}) {
   const { lang } = ctx;
   const reading = lang.reading(line);
   const parts = glossary
-    ? markGlossary(lang, line.tr, glossary).map((seg) => (seg.gloss == null ? seg.text : h('button', {
-      type: 'button', class: 'gloss', 'aria-haspopup': 'dialog', title: glossary[seg.gloss].en,
+    ? markAll(lang, line.tr, glossary, extra).map((seg) => (seg.gloss == null ? seg.text : h('button', {
+      type: 'button', class: `gloss${seg.gloss >= glossary.length ? ' gloss-course' : ''}`, 'aria-haspopup': 'dialog', title: (glossary[seg.gloss] || extra[seg.gloss - glossary.length]).en,
       onclick: (e) => { e.stopPropagation(); onGloss(seg.gloss, e.currentTarget); },
     }, seg.text)))
     : line.tr;
@@ -321,7 +321,7 @@ function editor(ctx, rec) {
 // ---------- Glossary sheet ----------
 
 /** `say` speaks the word (the reader pauses Play all first, so the two don't cut each other off). */
-function glossSheet(ctx, text, host, { say = ctx.say, onOpen } = {}) {
+function glossSheet(ctx, text, host, { say = ctx.say, onOpen, items = text.glossary } = {}) {
   const { lang, store } = ctx;
   let el = null;
   let opener = null;
@@ -374,7 +374,7 @@ function glossSheet(ctx, text, host, { say = ctx.say, onOpen } = {}) {
     close({ restore: false });
     onOpen?.();
     opener = from;
-    const item = text.glossary[gi];
+    const item = items[gi];
     const word = findWord(lang, item);
     const reading = lang.reading(item);
     const listen = h('button', { type: 'button', class: 'btn small', onclick: () => say(sayable(ctx, text, item)) }, icon('volume', 16), 'Listen');
@@ -382,7 +382,7 @@ function glossSheet(ctx, text, host, { say = ctx.say, onOpen } = {}) {
       h('div', { class: 'sheet-backdrop', onclick: () => close() }),
       h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'sheet-word', 'aria-describedby': 'sheet-en' },
         h('button', { type: 'button', class: 'icon-btn sheet-close', 'aria-label': 'Close', onclick: () => close() }, icon('x')),
-        h('p', { class: 'kicker' }, text.own ? 'From your word lists' : 'Glossary'),
+        h('p', { class: 'kicker' }, item.exact ? 'From your word lists' : 'Glossary'),
         h('h2', { id: 'sheet-word', class: 'sheet-word', ...textAttrs(lang) }, item.tr),
         readingText(reading),
         h('p', { id: 'sheet-en', class: 'sheet-en' }, item.en),
@@ -392,7 +392,7 @@ function glossSheet(ctx, text, host, { say = ctx.say, onOpen } = {}) {
         word ? h('div', { class: 'sheet-word-info' },
           h('p', { class: 'hint' }, 'In your word lists: ', h('b', { ...textAttrs(lang) }, word.tr), ` — ${word.en}`),
           vocab(word)) : null,
-        text.own ? h('p', { class: 'hint' }, 'Matched by spelling with a word of the course — in your sentence it may mean something else.') : null));
+        item.exact ? h('p', { class: 'hint' }, 'Matched by spelling with a word of the course — in this sentence it may mean something else.') : null));
     host.append(el);
     document.addEventListener('keydown', onKey, true);
     if (ctx.settings.autoplay !== false) say(sayable(ctx, text, item), { auto: true });
@@ -502,7 +502,9 @@ function readerView(ctx, texts, text) {
   // missing voice. Looking a word up also keeps the place in the text.
   const pausePlayer = () => { if (player.playing) player.pause(); };
   const sayAside = (target, opts) => { pausePlayer(); return ctx.say(target, opts); };
-  const sheet = glossSheet(ctx, text, host, { say: sayAside, onOpen: pausePlayer });
+  // Besides the text's own glossary, the course's other words in it can be tapped.
+  const extra = extraGlossary(lang, text);
+  const sheet = glossSheet(ctx, text, host, { say: sayAside, onOpen: pausePlayer, items: [...text.glossary, ...extra] });
   let listenFirst = false;
   let current = -1;
 
@@ -531,7 +533,7 @@ function readerView(ctx, texts, text) {
         h('button', { type: 'button', class: 'icon-btn play read-play', 'aria-label': `Play line ${i + 1}`, onclick: (e) => { e.stopPropagation(); player.jump(i); } }, icon('volume')),
         h('div', { class: 'read-body' },
           h('span', { class: 'read-mask', 'aria-hidden': 'true', style: { '--w': `${Math.min(100, 25 + [...line.tr].length * 1.6)}%` } }),
-          lineBody(ctx, text, line, { glossary: text.glossary, onGloss: (gi, from) => sheet.open(gi, from) }),
+          lineBody(ctx, text, line, { glossary: text.glossary, extra, onGloss: (gi, from) => sheet.open(gi, from) }),
           reveal)));
     return li;
   });

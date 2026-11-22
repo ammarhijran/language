@@ -222,6 +222,25 @@ export function markGlossary(lang, text, glossary = []) {
   return out;
 }
 
+/**
+ * markGlossary with a second list that only fills what the first leaves
+ * plain (a text's own glossary, then the course's other words in it). Items
+ * of `extra` get the index glossary.length + their own.
+ */
+export function markAll(lang, text, glossary = [], extra = []) {
+  const first = markGlossary(lang, text, glossary);
+  if (!extra.length) return first;
+  return first.flatMap((seg) => (seg.gloss != null ? [seg]
+    : markGlossary(lang, seg.text, extra).map((x) => (x.gloss == null ? x : { text: x.text, gloss: glossary.length + x.gloss }))));
+}
+
+/** The course's words in a text that its own glossary does not already explain (see autoGlossary). */
+export function extraGlossary(lang, text) {
+  if (text.own) return [];
+  const have = new Set((text.glossary || []).flatMap((g) => glossaryForms(lang, g)));
+  return autoGlossary(lang, text.lines).filter((g) => !have.has(lang.normalize(g.tr)));
+}
+
 /** Indexes of the glossary items found somewhere in the text. */
 export function glossaryFound(lang, text) {
   const found = new Set();

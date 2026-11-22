@@ -141,6 +141,8 @@ button.gloss {
   text-decoration-thickness: 2px; text-underline-offset: .22em; cursor: pointer;
 }
 button.gloss:hover { background: var(--action-soft); }
+/* A word of the course outside the text's own glossary: a quieter underline. */
+button.gloss-course { text-decoration-color: color-mix(in srgb, var(--muted) 60%, transparent); text-decoration-thickness: 1px; }
 
 /* Translation: shown, tap to show, hidden. Reading line on or off. */
 .read-reveal { display: none; margin-top: .1rem; }

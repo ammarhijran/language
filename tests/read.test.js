@@ -466,3 +466,26 @@ test('own texts: words of the course in them become a glossary — whole words o
   assert.deepEqual(autoGlossary(languages.tr, []), []);
   assert.ok(autoGlossary(languages.tr, [{ tr: languages.tr.words.filter((w) => !/\s/.test(w.tr)).slice(0, 200).map((w) => w.tr).join(' ') }]).length <= 60, 'capped');
 });
+
+test('built-in texts: the course’s other words can be tapped too, without touching the text’s own glossary', async () => {
+  const { markAll, extraGlossary } = await import('../js/reader.js');
+  for (const [code, texts] of Object.entries(ALL)) {
+    const lang = languages[code];
+    let extraMarks = 0;
+    for (const t of texts) {
+      const extra = extraGlossary(lang, t);
+      const own = new Set(t.glossary.flatMap((g) => glossaryForms(lang, g)));
+      assert.ok(extra.every((g) => g.exact && !own.has(lang.normalize(g.tr))), `${code}/${t.id}: no item twice`);
+      for (const l of t.lines) {
+        const plain = markGlossary(lang, l.tr, t.glossary);
+        const all = markAll(lang, l.tr, t.glossary, extra);
+        assert.equal(joined(all), l.tr.normalize('NFC'), `${code}/${t.id}: ${l.tr}`);
+        // every word the text's glossary marks is still marked, with the same item
+        assert.deepEqual(all.filter((s) => s.gloss != null && s.gloss < t.glossary.length), plain.filter((s) => s.gloss != null), `${code}/${t.id}: ${l.tr}`);
+        extraMarks += all.filter((s) => s.gloss != null && s.gloss >= t.glossary.length).length;
+      }
+    }
+    assert.ok(extraMarks > texts.length * 5, `${code}: ${extraMarks} extra tappable words`);
+  }
+  assert.deepEqual(extraGlossary(languages.tr, { own: true, lines: [{ tr: 'Merhaba' }], glossary: [] }), []);
+});
