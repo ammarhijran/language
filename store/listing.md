@@ -3,6 +3,8 @@
 Copy each field into App Store Connect / Google Play Console. The character counts are shown against each store's limit.
 
 > The app now teaches four languages, so this text was rewritten from the Turkish-only version. The **app name** is a suggestion — it is your branding decision (the previous name was “Lisan: Learn Turkish Words”). The screenshots and the feature graphic in `store/` show the current design and all four languages (regenerate them with `node scripts/store-screenshots.cjs`).
+>
+> **Your call before submitting:** the lessons were written and checked with AI help and have not been reviewed by native speakers yet. The app says so in Settings → About the lessons; decide whether the store description should say it too (one honest line near the end is enough).
 
 ## App name (App Store & Google Play)
 _24 / 30 characters_
@@ -40,7 +42,7 @@ turkish,ukrainian,japanese,arabic,learn,vocabulary,pronunciation,phrases,flashca
 ```
 
 ## Full description (App Store & Google Play)
-_1909 / 4000 characters_
+_2391 / 4000 characters_
 
 ```
 Learn Turkish, Ukrainian, Japanese or Arabic — the words people really use, and how to say them properly.
@@ -57,20 +59,27 @@ HOW PEOPLE REALLY TALK
 • Polite and everyday forms side by side — what the textbook says, and what people actually say
 • Slang and casual speech, clearly labelled
 • Arabic: Modern Standard Arabic next to everyday Egyptian
-• A phrasebook for 22 situations with favourites and a big-text mode to show your phone to someone
+• A phrasebook for 27 situations with favourites and a big-text mode to show your phone to someone
+• Trip essentials: the 40 phrases to learn first, as a crash course before you travel
 
 READ, LISTEN AND SPEAK
-• Graded dialogues, stories and short speeches with line-by-line audio, translations and tap-a-word meanings
+• 22 graded dialogues, stories and speeches per language with line-by-line audio, translations and tap-a-word meanings
 • Practise speeches by repeating, shadowing and recording yourself; role-play dialogues
+• Paste your own text or speech and rehearse it with the same tools
+• Hands-free listening rounds for walking, cooking or commuting
+• Dictation and numbers by ear
 • Grammar lessons from first sentences to everyday speech, each with a quick quiz
 
 PRONUNCIATION YOU CAN SEE
 • Every word split into syllables with the stress marked, IPA and an easy "say it like" guide
-• Kana and rōmaji for Japanese; full vowel marks and transliteration for Arabic
+• Kana and rōmaji for Japanese; full vowel marks and transliteration for Arabic — and you can hide them when you are ready to read the script
 • Say a word and get an instant score that shows which letters to work on
 • Alphabet and kana charts, sound guides and ear training
+• Compare your phone's voices and pick the most natural one
 
-STAY ON TRACK
+MADE TO FIT YOU
+• Larger text if you want it
+• Ukrainian and Arabic: phrases in the form a woman or a man says
 • Daily goal, streaks, weekly challenges and achievements
 • An optional daily reminder that tells you what is waiting
 • Sync between your devices with a code — no account, no server
