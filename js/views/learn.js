@@ -6,6 +6,7 @@ import { recognitionSupported } from '../speech.js';
 import { lessonDrillHref } from './pronounce.js';
 import { readLink, loadTexts, cachedTexts, sortTexts, KINDS } from '../reader.js';
 import { nextTopics, topicCounts, stagesOf } from '../stats.js';
+import { tripKit } from '../kit.js';
 import { scriptRuns } from './grammar.js';
 
 /** The sections of Learn (#/learn/g/<id>); the last one opened is remembered on this device. */
@@ -29,15 +30,19 @@ function stagedTopics(cats, grid) {
 export default function learn(ctx, catId, section) {
   const { lang, store } = ctx;
   if (catId === 'g' || !catId) return picker(ctx, section);
-  const cat = lang.categories.find((c) => c.id === catId);
+  // "kit": the trip essentials as a short course of their own (a virtual topic
+  // made of entries from many topics; see kit.js).
+  const kit = catId === 'kit' ? tripKit(lang) : null;
+  const cat = kit?.length ? { id: 'kit', name: 'Trip essentials', emoji: '🎒', virtual: true } : lang.categories.find((c) => c.id === catId);
   if (!cat) return picker(ctx);
+  const topicHref = cat.virtual ? '#/phrases/kit' : `#/topic/${encodeURIComponent(cat.id)}`;
 
-  const all = lang.wordsIn(cat.id);
+  const all = kit?.length ? kit : lang.wordsIn(cat.id);
   const unseen = all.filter((w) => !store.getCard(lang.code, w.id));
-  if (!unseen.length) return finished(ctx, cat);
+  if (!unseen.length) return finished(ctx, cat, topicHref);
 
   // "Continue" on Home picks up this topic next time.
-  store.setLastCat(lang.code, cat.id);
+  if (!cat.virtual) store.setLastCat(lang.code, cat.id);
   const batch = unseen.slice(0, ctx.settings.lessonSize);
   const items = [
     ...batch.map((word, index) => ({ word, type: 'intro', meta: { index, total: batch.length } })),
@@ -50,7 +55,7 @@ export default function learn(ctx, catId, section) {
 
   return h('div', { class: 'view' }, runSession(ctx, {
     label: `Lesson: ${cat.name}`,
-    exitHref: `#/topic/${encodeURIComponent(cat.id)}`,
+    exitHref: topicHref,
     // Leaving early keeps the words already shown, but not the quick check.
     confirmExit: () => (introduced.size
       ? `Leave this lesson? The ${introduced.size === 1 ? 'word' : `${introduced.size} words`} you’ve seen ${introduced.size === 1 ? 'is' : 'are'} kept and will come back in Review.`
@@ -118,7 +123,7 @@ export default function learn(ctx, catId, section) {
               ? h('a', { class: 'btn primary wide', href: `#/learn/${encodeURIComponent(upNext.id)}` }, `Next topic: ${upNext.emoji} ${upNext.name}`, icon('arrow', 18))
               : h('a', { class: 'btn primary wide', href: '#/learn' }, 'Choose another topic'),
           sayThemLink(batch),
-          h('a', { class: 'btn wide', href: `#/topic/${encodeURIComponent(cat.id)}` }, `All of ${cat.emoji} ${cat.name}`),
+          h('a', { class: 'btn wide', href: topicHref }, `All of ${cat.emoji} ${cat.name}`),
           h('a', { class: 'btn ghost wide', href: '#/' }, 'Back home'),
         ),
       );
@@ -241,7 +246,7 @@ function readSection(ctx) {
     list);
 }
 
-function finished(ctx, cat) {
+function finished(ctx, cat, topicHref) {
   return h('div', { class: 'view' },
     h('div', { class: 'summary' },
       h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, cat.emoji),
@@ -249,8 +254,8 @@ function finished(ctx, cat) {
       h('p', { class: 'muted' }, 'They’ll keep coming back in reviews. You can also practise them any time.'),
       h('div', { class: 'actions stack' },
         h('a', { class: 'btn primary wide', href: `#/practice/mixed/${cat.id}` }, 'Practise this topic'),
-        h('a', { class: 'btn wide', href: `#/topic/${encodeURIComponent(cat.id)}` }, 'See all its words'),
-        h('a', { class: 'btn wide', href: `#/known/${cat.id}` }, 'Edit “already learned” words'),
+        h('a', { class: 'btn wide', href: topicHref }, 'See all its words'),
+        cat.virtual ? null : h('a', { class: 'btn wide', href: `#/known/${cat.id}` }, 'Edit “already learned” words'),
         h('a', { class: 'btn ghost wide', href: '#/learn' }, 'Choose another topic')),
     ),
   );

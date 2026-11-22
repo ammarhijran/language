@@ -94,7 +94,9 @@ export default function phrases(ctx, chipArg, queryArg = '') {
     } else if (chip === 'kit') {
       current = kit;
       set(heading, '🎒 Trip essentials');
-      set(note, h('p', { class: 'hint' }, `The ${kit.length} things to be able to say first, gathered from all topics. `,
+      const learnedKit = kit.filter((w) => store.getCard(lang.code, w.id)).length;
+      set(note, h('p', { class: 'hint' }, `The ${kit.length} things to be able to say first, gathered from all topics (${learnedKit} learned). `,
+        learnedKit < kit.length ? [h('a', { href: '#/learn/kit' }, learnedKit ? 'Continue learning them' : 'Learn them step by step'), ' · '] : null,
         h('a', { href: '#/practice/mixed/kit' }, 'Practise'), ' · ',
         h('a', { href: '#/practice/handsfree/kit' }, 'Listen hands-free')));
     } else {
