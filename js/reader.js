@@ -82,14 +82,24 @@ export function filterTexts(texts, { level = 'all', kind = null } = {}) {
   return texts.filter((t) => (level === 'all' || t.level === level) && (!kind || t.kind === kind));
 }
 
-/**
- * Rough minutes to listen once and read along, plus the questions: about 12
- * letters (or 7 kana) a second of speech, a short pause per line, times three.
- */
+/** A text of 20 lines or more: marked "Long read" in the list. */
+export const isLongRead = (text) => text.lines.length >= 20;
+
+// Seconds a native reading takes: about 12 letters (or 7 kana) a second, a short pause per line.
+const speechSeconds = (text) => text.lines.reduce((sec, l) => sec + (l.kana ? [...l.kana.replace(/\s+/g, '')].length / 7 : [...l.tr].length / 12), 0) + text.lines.length * 1.5;
+
+/** Rough minutes to listen once and read along, plus the questions: three readings. */
 export function estimateMinutes(text) {
-  const speech = text.lines.reduce((sec, l) => sec + (l.kana ? [...l.kana.replace(/\s+/g, '')].length / 7 : [...l.tr].length / 12), 0);
-  const seconds = (speech + text.lines.length * 1.5) * 3;
-  return Math.max(1, Math.round(seconds / 60));
+  return Math.max(1, Math.round((speechSeconds(text) * 3) / 60));
+}
+
+/**
+ * How long a learner may record the whole text: about twice a native reading
+ * of it, never under 1:30 and never over 5:00, in steps of 30 s.
+ */
+export function recordLimit(text) {
+  const ms = Math.ceil((speechSeconds(text) * 2) / 30) * 30000;
+  return Math.min(300000, Math.max(90000, ms));
 }
 
 /** Speakers in order of appearance → colour index (lines without a speaker get none). */

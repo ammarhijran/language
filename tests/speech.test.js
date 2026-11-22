@@ -144,6 +144,10 @@ test('ja: text with a kana reading but no override (Read & Listen lines) gets th
   assert.equal(readAmbiguous('窓を開けてください。', 'まど を あけて ください'), '窓を開けてください。', '開ける is never ひらける');
   assert.equal(readAmbiguous('開店は十時です。', 'かいてん は じゅうじ です'), '開店は十時です。', 'a different word is left alone');
   assert.equal(readAmbiguous('明日', 'あす'), '明日', 'a reading the voice gives anyway is left alone');
+  // Kanji after the token belong to the same word: cut off, 中 would be read なか and 暮らし くらし.
+  assert.equal(readAmbiguous('日曜日は一日中働けます。', 'にちようび は いちにちじゅう はたらけます'), '日曜日はいちにちじゅうはたらけます。');
+  assert.equal(readAmbiguous('一人暮らしは自由だ。', 'ひとりぐらし は じゆう だ'), 'ひとりぐらしは自由だ。');
+  assert.equal(readAmbiguous('毎朝七時に起きる。', 'まいあさ しちじ に おきる'), '毎朝しちじに起きる。', 'kanji in front stay');
   assert.equal(readAmbiguous('明日は休み', 'まるで ちがう'), '明日は休み', 'a reading that does not fit changes nothing');
   assert.deepEqual(alignReading('お名前は何ですか。', 'おなまえ は なん です か').filter((r) => r.kind === 'kanji').map((r) => r.kana), ['なまえ', 'なん']);
 });

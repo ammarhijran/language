@@ -13,17 +13,16 @@ import { newCard } from '../srs.js';
 import {
   KINDS, LEVELS, REGISTERS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, markGlossary, findWord, fadeLine, SHADOW_ROUNDS, createPlayer, listenTimeout,
-  scoreLine, verdict, recordClip, playClip, clock,
+  scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead,
 } from '../reader.js';
 
 // The Learn screen's entry card lives in reader.js, so Learn doesn't load this view.
 export { readLink } from '../reader.js';
 
-const RECORD_MAX = 90000;
 const MODES = [
   { id: 'repeat', emoji: '🔁', title: 'Listen & repeat', short: 'Repeat', hint: 'Hear each line, then say it yourself.' },
   { id: 'shadow', emoji: '👥', title: 'Shadowing', short: 'Shadow', hint: 'Speak along with the voice while the text fades out over three rounds.' },
-  { id: 'record', emoji: '🎙️', title: 'Record the speech', short: 'Record', hint: 'Give the whole speech (up to 1:30), then compare it with the model.' },
+  { id: 'record', emoji: '🎙️', title: 'Record the speech', short: 'Record', hint: 'Give the whole speech, then compare it with the model.' },
 ];
 const TRANSLATION = { show: 'Shown', tap: 'On tap', hide: 'Hidden' };
 
@@ -80,6 +79,7 @@ function registerBadge(reg) {
 }
 const dialectBadge = (d) => (d ? h('span', { class: 'badge read-dialect' }, d === 'Egyptian' ? '🇪🇬 Egyptian' : d) : null);
 const levelBadge = (level) => h('span', { class: `badge level-${level}` }, level);
+const longBadge = (t) => (isLongRead(t) ? h('span', { class: 'badge read-long' }, 'Long read') : null);
 
 function toggle(label, on, onChange, extra = {}) {
   const btn = h('button', {
@@ -169,7 +169,7 @@ function textCard(ctx, t) {
       h('span', { class: 'read-meta' },
         levelBadge(t.level),
         h('span', null, `${kind.one} · ${t.lines.length} lines · ~${estimateMinutes(t)} min`),
-        registerBadge(t.register), dialectBadge(t.dialect))),
+        longBadge(t), registerBadge(t.register), dialectBadge(t.dialect))),
     best != null
       ? h('span', { class: 'read-score' }, h('span', { 'aria-hidden': 'true' }, '✓'), h('small', null, h('span', { class: 'read-sr' }, 'Done, best score '), pct(best)))
       : null);
@@ -940,7 +940,7 @@ function recordMode(ctx, text) {
   let rewarded = false;
   const summary = h('div');
   const rec = recorderWidget(ctx, {
-    maxMs: RECORD_MAX,
+    maxMs: recordLimit(text),
     big: true,
     label: 'Record the speech',
     playModel,
@@ -963,7 +963,7 @@ function recordMode(ctx, text) {
   return [
     h('section', { class: 'card read-record' },
       h('h2', { class: 'card-title' }, '🎙️ Give the speech'),
-      h('p', { class: 'muted small' }, `Read it out from start to finish — up to ${clock(RECORD_MAX)}. When you stop, you’ll hear the model and then yourself.`),
+      h('p', { class: 'muted small' }, `Read it out from start to finish — up to ${clock(recordLimit(text))}. When you stop, you’ll hear the model and then yourself.`),
       h('div', { class: 'button-row' },
         h('button', {
           type: 'button', class: 'btn small',

@@ -3,6 +3,9 @@
 ## Unreleased
 
 ### Added
+- **Long reads in Read & Listen:** four longer texts per language (20–26 lines each, marked “Long read”): a folk tale (Nasreddin Hoca and the cauldron, The Mitten, Momotarō, Juha and the donkey), a “Why I’m learning …” talk written so any learner can adapt and give it, a letter to a friend about life in a new city, and a job interview. Each has a glossary and questions like the short texts. 20 texts per language now.
+- **Recording a whole speech** allows more time for longer texts (1:30 up to 5:00, about twice a native reading) instead of a fixed 1:30.
+- **Offline notice for speaking practice:** when the device is offline, the mic says before you speak that scores usually need a connection (you can still listen and record yourself).
 - **Display settings** (Settings → Display): text size Normal / Large / Extra large for the whole app, and reading aids — Japanese can show kana and rōmaji, kana only, or no reading; Arabic can hide the transliteration. New words, answers and word pages always show the full reading, and search still matches rōmaji and transliterations.
 - **Tricky words:** Practice offers a round on the words you keep forgetting in reviews (most-forgotten first), once there are a few.
 - **Lessons:** a word you needed a second try for in the lesson's quick check starts on a slower schedule than the ones you knew straight away.
@@ -85,6 +88,7 @@
 - **Daily goal** ring on the home screen, a "goal reached" celebration, and a daily-goal setting.
 
 ### Fixed
+- **Japanese voice:** a number or counter followed by more kanji is read as one word (一日中 “ichinichi-jū”, 一人暮らし “hitori-gurashi”, 七時半), not cut in the middle.
 - **Rewards paid twice:**
   - Re-setting an already-reached personal goal no longer pays out again, and neither does syncing a goal completed on another device.
   - Changing the daily goal can't earn it twice in one day, and lowering it still credits today.

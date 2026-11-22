@@ -2,7 +2,7 @@
 // Each text: { id, kind, level, title, titleNative, summary, dialect?, register?,
 //   lines: [{ speaker?, tr, en, tl }], glossary: [{ tr, en, tl }],
 //   questions: [{ q, options[4], answer, explain }] }.
-// Written by one author and checked line by line by a native-level reviewer; edit freely.
+// Written and proofread with AI assistance; not yet reviewed by native speakers. Edit freely.
 // Loaded on demand (not at startup).
 export const texts = [
   {
@@ -2872,6 +2872,1112 @@ export const texts = [
         ],
         "answer": 3,
         "explain": "لَا تَحْتَاجُونَ إِلَى كَامِيرَا غَالِيَةٍ، فَهَاتِفُكُمْ يَكْفِي لِلْبِدَايَةِ."
+      }
+    ]
+  },
+  {
+    "id": "ar-juha-tale",
+    "kind": "story",
+    "level": "B1",
+    "title": "Juha, His Son and the Donkey",
+    "titleNative": "جُحَا وَابْنُهُ وَالْحِمَارُ",
+    "summary": "A classic folk tale: Juha and his son set off for the market with their donkey, and everyone they pass finds something to criticise.",
+    "register": "mixed",
+    "lines": [
+      {
+        "tr": "جُحَا شَخْصِيَّةٌ مَشْهُورَةٌ فِي الْحِكَايَاتِ الشَّعْبِيَّةِ الْعَرَبِيَّةِ، تُضْحِكُ النَّاسَ وَتُعَلِّمُهُمْ فِي الْوَقْتِ نَفْسِهِ.",
+        "en": "Juha is a famous character in Arab folk tales, who makes people laugh and teaches them something at the same time.",
+        "tl": "juḥā shakhṣiyyatun mashhūratun fī-l-ḥikāyāti-sh-shaʿbiyyati-l-ʿarabiyyati tuḍḥiku-n-nāsa wa-tuʿallimuhum fī-l-waqti nafsih"
+      },
+      {
+        "tr": "فِي يَوْمٍ مِنَ الْأَيَّامِ، أَرَادَ جُحَا أَنْ يَذْهَبَ مَعَ ابْنِهِ إِلَى سُوقِ الْمَدِينَةِ.",
+        "en": "One day, Juha wanted to go to the town market with his son.",
+        "tl": "fī yawmin mina-l-ʾayyāmi ʾarāda juḥā ʾan yadhhaba maʿa-bnihi ʾilā sūqi-l-madīna"
+      },
+      {
+        "tr": "رَكِبَ جُحَا الْحِمَارَ، وَمَشَى ابْنُهُ الصَّغِيرُ خَلْفَهُ عَلَى قَدَمَيْهِ.",
+        "en": "Juha rode the donkey, and his young son walked behind him on foot.",
+        "tl": "rakiba juḥā-l-ḥimāra wa-mashā-bnuhu-ṣ-ṣaghīru khalfahu ʿalā qadamayh"
+      },
+      {
+        "tr": "مَرَّا بِبَعْضِ النِّسَاءِ، فَقَالَتْ وَاحِدَةٌ مِنْهُنَّ: «مَا أَقْسَى هَذَا الْأَبَ!»",
+        "en": "They passed some women, and one of them said: “What a hard-hearted father!”",
+        "tl": "marrā bi-baʿḍi-n-nisāʾi fa-qālat wāḥidatun minhunn mā ʾaqsā hādhā-l-ʾab"
+      },
+      {
+        "tr": "وَقَالَتْ أُخْرَى: «يَرْكَبُ هُوَ الْحِمَارَ، وَيَتْرُكُ ابْنَهُ الصَّغِيرَ يَمْشِي تَحْتَ الشَّمْسِ!»",
+        "en": "And another said: “He rides the donkey himself and leaves his little boy to walk in the sun!”",
+        "tl": "wa-qālat ʾukhrā yarkabu huwa-l-ḥimāra wa-yatruku-bnahu-ṣ-ṣaghīra yamshī taḥta-sh-shams"
+      },
+      {
+        "tr": "سَمِعَ جُحَا هَذَا الْكَلَامَ، فَنَزَلَ عَنِ الْحِمَارِ وَأَرْكَبَ ابْنَهُ مَكَانَهُ.",
+        "en": "Juha heard these words, so he got down from the donkey and put his son on it in his place.",
+        "tl": "samiʿa juḥā hādhā-l-kalāma fa-nazala ʿani-l-ḥimāri wa-ʾarkaba-bnahu makānah"
+      },
+      {
+        "tr": "بَعْدَ قَلِيلٍ، مَرَّا بِرِجَالٍ يَجْلِسُونَ أَمَامَ دُكَّانٍ صَغِيرٍ.",
+        "en": "A little later, they passed some men sitting in front of a small shop.",
+        "tl": "baʿda qalīlin marrā bi-rijālin yajlisūna ʾamāma dukkānin ṣaghīr"
+      },
+      {
+        "tr": "قَالَ أَحَدُهُمْ بِصَوْتٍ مُرْتَفِعٍ: «اُنْظُرُوا إِلَى هَذَا الْوَلَدِ الَّذِي لَا يَحْتَرِمُ أَبَاهُ!»",
+        "en": "One of them said in a loud voice: “Look at this boy who has no respect for his father!”",
+        "tl": "qāla ʾaḥaduhum bi-ṣawtin murtafiʿ unẓurū ʾilā hādhā-l-waladi-lladhī lā yaḥtarimu ʾabāh"
+      },
+      {
+        "tr": "وَأَضَافَ صَدِيقُهُ: «الْوَلَدُ يَرْكَبُ مُرْتَاحًا، وَأَبُوهُ الْكَبِيرُ فِي السِّنِّ يَمْشِي مُتْعَبًا!»",
+        "en": "And his friend added: “The boy rides in comfort while his elderly father walks, worn out!”",
+        "tl": "wa-ʾaḍāfa ṣadīquh al-waladu yarkabu murtāḥan wa-ʾabūhu-l-kabīru fī-s-sinni yamshī mutʿab"
+      },
+      {
+        "tr": "خَجِلَ الْوَلَدُ مِنْ كَلَامِهِمْ، فَقَالَ لَهُ جُحَا: «سَنَرْكَبُ الْحِمَارَ مَعًا، وَلَنْ يَقُولَ أَحَدٌ شَيْئًا.»",
+        "en": "The boy was embarrassed by what they said, so Juha told him: “We’ll ride the donkey together, and nobody will say a thing.”",
+        "tl": "khajila-l-waladu min kalāmihim fa-qāla lahu juḥā sa-narkabu-l-ḥimāra maʿan wa-lan yaqūla ʾaḥadun shayʾ"
+      },
+      {
+        "tr": "رَكِبَ الِاثْنَانِ عَلَى ظَهْرِ الْحِمَارِ، وَسَارَ الْحِمَارُ بِبُطْءٍ شَدِيدٍ.",
+        "en": "The two of them got on the donkey’s back, and the donkey plodded along very slowly.",
+        "tl": "rakiba-l-ithnāni ʿalā ẓahri-l-ḥimāri wa-sāra-l-ḥimāru bi-buṭʾin shadīd"
+      },
+      {
+        "tr": "ثُمَّ مَرَّا بِمَجْمُوعَةٍ مِنَ الشَّبَابِ، فَصَاحَ وَاحِدٌ مِنْهُمْ: «أَلَا تَرْحَمَانِ هَذَا الْحَيَوَانَ الْمِسْكِينَ؟»",
+        "en": "Then they passed a group of young men, and one of them shouted: “Have you two no pity for this poor animal?”",
+        "tl": "thumma marrā bi-majmūʿatin mina-sh-shabābi fa-ṣāḥa wāḥidun minhum ʾalā tarḥamāni hādhā-l-ḥayawāna-l-miskīn"
+      },
+      {
+        "tr": "فَنَزَلَ جُحَا وَابْنُهُ، وَمَشَيَا خَلْفَ الْحِمَارِ وَلَا أَحَدَ عَلَى ظَهْرِهِ.",
+        "en": "So Juha and his son got down and walked behind the donkey, with nobody on its back.",
+        "tl": "fa-nazala juḥā wa-bnuhu wa-mashayā khalfa-l-ḥimāri wa-lā ʾaḥada ʿalā ẓahrih"
+      },
+      {
+        "tr": "وَعِنْدَ بَابِ السُّوقِ، رَآهُمَا بَعْضُ التُّجَّارِ فَضَحِكُوا كَثِيرًا.",
+        "en": "At the market gate, some of the merchants saw them and laughed out loud.",
+        "tl": "wa-ʿinda bābi-s-sūqi raʾāhumā baʿḍu-t-tujjāri fa-ḍaḥikū kathīran"
+      },
+      {
+        "tr": "قَالَ تَاجِرٌ مِنْهُمْ: «عِنْدَهُمَا حِمَارٌ قَوِيٌّ، وَيَمْشِيَانِ عَلَى أَقْدَامِهِمَا فِي هَذَا الْحَرِّ!»",
+        "en": "One of the merchants said: “They have a strong donkey, and they’re walking on their own two feet in this heat!”",
+        "tl": "qāla tājirun minhum ʿindahumā ḥimārun qawiyyun wa-yamshiyāni ʿalā ʾaqdāmihimā fī hādhā-l-ḥarr"
+      },
+      {
+        "tr": "وَسَأَلَ آخَرُ: «لِمَاذَا اشْتَرَيَا الْحِمَارَ إِذَنْ؟»",
+        "en": "And another asked: “So why did they buy the donkey?”",
+        "tl": "wa-saʾala ʾākhar limādhā-shtarayā-l-ḥimāra ʾidhan"
+      },
+      {
+        "tr": "وَقَفَ جُحَا فِي وَسَطِ الطَّرِيقِ، وَنَظَرَ إِلَى ابْنِهِ وَإِلَى الْحِمَارِ، ثُمَّ ضَحِكَ.",
+        "en": "Juha stopped in the middle of the road, looked at his son and at the donkey, and then laughed.",
+        "tl": "waqafa juḥā fī wasaṭi-ṭ-ṭarīqi wa-naẓara ʾilā-bnihi wa-ʾilā-l-ḥimāri thumma ḍaḥik"
+      },
+      {
+        "tr": "قَالَ لِابْنِهِ: «هَلْ رَأَيْتَ يَا بُنَيَّ؟»",
+        "en": "He said to his son: “Did you see that, my boy?”",
+        "tl": "qāla li-bnih hal raʾayta yā bunayy"
+      },
+      {
+        "tr": "«رَكِبْتُ أَنَا فَلَامُونَا، وَرَكِبْتَ أَنْتَ فَلَامُونَا، وَرَكِبْنَا مَعًا فَلَامُونَا، وَمَشَيْنَا فَضَحِكُوا مِنَّا.»",
+        "en": "“I rode and they blamed us, you rode and they blamed us, we both rode and they blamed us, and we walked and they laughed at us.”",
+        "tl": "rakibtu ʾanā fa-lāmūnā wa-rakibta ʾanta fa-lāmūnā wa-rakibnā maʿan fa-lāmūnā wa-mashaynā fa-ḍaḥikū minnā"
+      },
+      {
+        "tr": "ثُمَّ أَضَافَ وَهُوَ يَضْحَكُ: «لَمْ يَبْقَ إِلَّا أَنْ نَحْمِلَ الْحِمَارَ عَلَى أَكْتَافِنَا!»",
+        "en": "Then he added, laughing: “The only thing left is for us to carry the donkey on our shoulders!”",
+        "tl": "thumma ʾaḍāfa wa-huwa yaḍḥak lam yabqa ʾillā ʾan naḥmila-l-ḥimāra ʿalā ʾaktāfinā"
+      },
+      {
+        "tr": "فَهِمَ الْوَلَدُ الدَّرْسَ، وَضَحِكَ مَعَ أَبِيهِ.",
+        "en": "The boy understood the lesson and laughed along with his father.",
+        "tl": "fahima-l-waladu-d-darsa wa-ḍaḥika maʿa ʾabīh"
+      },
+      {
+        "tr": "ثُمَّ رَكِبَ جُحَا حِمَارَهُ كَمَا فَعَلَ فِي أَوَّلِ الطَّرِيقِ، وَدَخَلَا السُّوقَ دُونَ أَنْ يَهْتَمَّا بِكَلَامِ أَحَدٍ.",
+        "en": "Then Juha got back on his donkey, just as at the start of the journey, and the two of them went into the market without caring what anyone said.",
+        "tl": "thumma rakiba juḥā ḥimārahu kamā faʿala fī ʾawwali-ṭ-ṭarīqi wa-dakhalā-s-sūqa dūna ʾan yahtammā bi-kalāmi ʾaḥad"
+      },
+      {
+        "tr": "وَلِهَذَا يَقُولُ النَّاسُ إِلَى الْيَوْمِ: «إِرْضَاءُ النَّاسِ غَايَةٌ لَا تُدْرَكُ.»",
+        "en": "And that is why people still say to this day: “Pleasing everybody is a goal that can never be reached.”",
+        "tl": "wa-li-hādhā yaqūlu-n-nāsu ʾilā-l-yawm ʾirḍāʾu-n-nāsi ghāyatun lā tudrak"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "الْحِكَايَاتِ الشَّعْبِيَّةِ",
+        "en": "folk tales",
+        "tl": "al-ḥikāyāt ash-shaʿbiyya"
+      },
+      {
+        "tr": "الْحِمَارَ",
+        "en": "the donkey",
+        "tl": "al-ḥimār"
+      },
+      {
+        "tr": "مَا أَقْسَى",
+        "en": "how hard-hearted…! (مَا + أَفْعَلَ makes an exclamation)",
+        "tl": "mā ʾaqsā"
+      },
+      {
+        "tr": "نَزَلَ عَنِ",
+        "en": "he got down from, he dismounted",
+        "tl": "nazal ʿan"
+      },
+      {
+        "tr": "أَرْكَبَ",
+        "en": "he put (someone) on to ride",
+        "tl": "ʾarkab"
+      },
+      {
+        "tr": "بِصَوْتٍ مُرْتَفِعٍ",
+        "en": "in a loud voice",
+        "tl": "bi-ṣawt murtafiʿ"
+      },
+      {
+        "tr": "لَا يَحْتَرِمُ",
+        "en": "does not respect",
+        "tl": "lā yaḥtarim"
+      },
+      {
+        "tr": "خَجِلَ",
+        "en": "he was embarrassed, he felt ashamed",
+        "tl": "khajil"
+      },
+      {
+        "tr": "بِبُطْءٍ شَدِيدٍ",
+        "en": "very slowly (literally “with great slowness”)",
+        "tl": "bi-buṭʾ shadīd"
+      },
+      {
+        "tr": "تَرْحَمَانِ",
+        "en": "you two have mercy on (dual)",
+        "tl": "tarḥamān"
+      },
+      {
+        "tr": "التُّجَّارِ",
+        "en": "the merchants, the traders (singular تَاجِر)",
+        "tl": "at-tujjār"
+      },
+      {
+        "tr": "لَامُونَا",
+        "en": "they blamed us",
+        "tl": "lāmūnā"
+      },
+      {
+        "tr": "لَمْ يَبْقَ إِلَّا أَنْ",
+        "en": "the only thing left is to… (literally “nothing remains except that”)",
+        "tl": "lam yabqa ʾillā ʾan"
+      },
+      {
+        "tr": "أَكْتَافِنَا",
+        "en": "our shoulders",
+        "tl": "ʾaktāfinā"
+      },
+      {
+        "tr": "دُونَ أَنْ يَهْتَمَّا",
+        "en": "without (the two of them) caring",
+        "tl": "dūn ʾan yahtammā"
+      },
+      {
+        "tr": "إِرْضَاءُ النَّاسِ",
+        "en": "pleasing people, keeping everybody happy",
+        "tl": "ʾirḍāʾ an-nās"
+      },
+      {
+        "tr": "غَايَةٌ لَا تُدْرَكُ",
+        "en": "a goal that cannot be reached",
+        "tl": "ghāya lā tudrak"
+      }
+    ],
+    "questions": [
+      {
+        "q": "At the start of the journey, who is walking?",
+        "options": [
+          "Juha",
+          "Juha’s son",
+          "Both of them",
+          "Nobody — they both ride"
+        ],
+        "answer": 1,
+        "explain": "رَكِبَ جُحَا الْحِمَارَ، وَمَشَى ابْنُهُ الصَّغِيرُ خَلْفَهُ — Juha rode and his young son walked behind him."
+      },
+      {
+        "q": "Why do the men in front of the shop criticise the boy?",
+        "options": [
+          "He is riding while his father walks",
+          "He is shouting at the donkey",
+          "He is walking too slowly",
+          "He refuses to go to the market"
+        ],
+        "answer": 0,
+        "explain": "الْوَلَدُ يَرْكَبُ مُرْتَاحًا، وَأَبُوهُ الْكَبِيرُ فِي السِّنِّ يَمْشِي مُتْعَبًا — the boy rides in comfort while his elderly father walks."
+      },
+      {
+        "q": "What do the young men say when father and son are both riding?",
+        "options": [
+          "That they should hurry up",
+          "That the donkey is too expensive",
+          "That the boy should get down",
+          "That they have no pity for the poor animal"
+        ],
+        "answer": 3,
+        "explain": "أَلَا تَرْحَمَانِ هَذَا الْحَيَوَانَ الْمِسْكِينَ؟ — have you two no pity for this poor animal?"
+      },
+      {
+        "q": "What is the lesson of the story?",
+        "options": [
+          "A donkey should never carry two people",
+          "Children must always obey their parents",
+          "You can never please everybody",
+          "Strangers usually give good advice"
+        ],
+        "answer": 2,
+        "explain": "The last line gives the saying: إِرْضَاءُ النَّاسِ غَايَةٌ لَا تُدْرَكُ — pleasing people is a goal that cannot be reached."
+      }
+    ]
+  },
+  {
+    "id": "ar-why-i-learn-arabic",
+    "kind": "speech",
+    "level": "B1",
+    "title": "Why I’m Learning Arabic",
+    "titleNative": "لِمَاذَا أَتَعَلَّمُ الْعَرَبِيَّةَ؟",
+    "summary": "A learner tells a class or meetup why they started Arabic, what was hard, what helped — and one unforgettable mistake. It uses only first-person verbs, so it suits any speaker, man or woman, as it stands.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "مَسَاءُ الْخَيْرِ جَمِيعًا، وَشُكْرًا لَكُمْ عَلَى حُضُورِكُمْ.",
+        "en": "Good evening, everyone, and thank you for coming.",
+        "tl": "masāʾu-l-khayri jamīʿan wa-shukran lakum ʿalā ḥuḍūrikum"
+      },
+      {
+        "tr": "اِسْمِي سَامْ، وَأَعْمَلُ فِي مَكْتَبَةٍ صَغِيرَةٍ فِي وَسَطِ الْمَدِينَةِ.",
+        "en": "My name is Sam, and I work in a small bookshop in the town centre.",
+        "tl": "ismī sām wa-ʾaʿmalu fī maktabatin ṣaghīratin fī wasaṭi-l-madīna"
+      },
+      {
+        "tr": "أَدْرُسُ اللُّغَةَ الْعَرَبِيَّةَ مُنْذُ سَنَتَيْنِ، وَأُرِيدُ أَنْ أَحْكِيَ لَكُمُ الْيَوْمَ قِصَّتِي مَعَهَا.",
+        "en": "I have been studying Arabic for two years, and today I would like to tell you my story with it.",
+        "tl": "ʾadrusu-l-lughata-l-ʿarabiyyata mundhu sanatayni wa-ʾurīdu ʾan ʾaḥkiya lakumu-l-yawma qiṣṣatī maʿahā"
+      },
+      {
+        "tr": "بَدَأْتُ لِسَبَبٍ بَسِيطٍ: لِي جِيرَانٌ مِنْ سُورِيَا، وَأَرَدْتُ أَنْ أَقُولَ لَهُمْ أَكْثَرَ مِنْ «مَرْحَبًا».",
+        "en": "I started for a simple reason: I have neighbours from Syria, and I wanted to say more to them than “hello”.",
+        "tl": "badaʾtu li-sababin basīṭ lī jīrānun min sūriyā wa-ʾaradtu ʾan ʾaqūla lahum ʾakthara min marḥaban"
+      },
+      {
+        "tr": "فِي الْبِدَايَةِ، كَانَ كُلُّ شَيْءٍ صَعْبًا، وَكَانَتِ الْحُرُوفُ أَوَّلَ مُشْكِلَةٍ.",
+        "en": "At first everything was hard, and the letters were the first problem.",
+        "tl": "fī-l-bidāyati kāna kullu shayʾin ṣaʿban wa-kānati-l-ḥurūfu ʾawwala mushkila"
+      },
+      {
+        "tr": "الْحَرْفُ الْوَاحِدُ يُكْتَبُ بِأَشْكَالٍ مُخْتَلِفَةٍ فِي أَوَّلِ الْكَلِمَةِ وَوَسَطِهَا وَآخِرِهَا.",
+        "en": "One and the same letter is written in different shapes at the beginning, in the middle and at the end of a word.",
+        "tl": "al-ḥarfu-l-wāḥidu yuktabu bi-ʾashkālin mukhtalifatin fī ʾawwali-l-kalimati wa-wasaṭihā wa-ʾākhirihā"
+      },
+      {
+        "tr": "وَكُنْتُ أَبْدَأُ الْقِرَاءَةَ مِنَ الْيَسَارِ دُونَ أَنْ أَشْعُرَ!",
+        "en": "And I kept starting to read from the left without noticing!",
+        "tl": "wa-kuntu ʾabdaʾu-l-qirāʾata mina-l-yasāri dūna ʾan ʾashʿur"
+      },
+      {
+        "tr": "ثُمَّ جَاءَتِ الْأَصْوَاتُ: الْعَيْنُ وَالْحَاءُ وَالْقَافُ.",
+        "en": "Then came the sounds: ʿayn, ḥāʾ and qāf.",
+        "tl": "thumma jāʾati-l-ʾaṣwāt al-ʿaynu wa-l-ḥāʾu wa-l-qāf"
+      },
+      {
+        "tr": "تَدَرَّبْتُ عَلَيْهَا أَمَامَ الْمِرْآةِ كُلَّ صَبَاحٍ، حَتَّى ظَنَّ جِيرَانِي أَنَّ عِنْدِي أَلَمًا فِي الْحَلْقِ.",
+        "en": "I practised them in front of the mirror every morning, until my neighbours thought I had a sore throat.",
+        "tl": "tadarrabtu ʿalayhā ʾamāma-l-mirʾāti kulla ṣabāḥin ḥattā ẓanna jīrānī ʾanna ʿindī ʾalaman fī-l-ḥalq"
+      },
+      {
+        "tr": "وَاكْتَشَفْتُ أَنَّ هُنَاكَ عَرَبِيَّةً فُصْحَى فِي الْكُتُبِ وَالْأَخْبَارِ، وَلَهَجَاتٍ كَثِيرَةً فِي الشَّوَارِعِ وَالْبُيُوتِ.",
+        "en": "And I discovered that there is a formal, standard Arabic in books and on the news, and many dialects in the streets and at home.",
+        "tl": "wa-ktashaftu ʾanna hunāka ʿarabiyyatan fuṣḥā fī-l-kutubi wa-l-ʾakhbāri wa-lahajātin kathīratan fī-sh-shawāriʿi wa-l-buyūt"
+      },
+      {
+        "tr": "قُلْتُ لِجَارِي جُمْلَةً مِنَ الْكِتَابِ، فَضَحِكَ وَقَالَ: «لَا أَحَدَ يَتَكَلَّمُ هَكَذَا فِي الْبَيْتِ!»",
+        "en": "I said a sentence from the textbook to my neighbour, and he laughed and said: “Nobody talks like that at home!”",
+        "tl": "qultu li-jārī jumlatan mina-l-kitābi fa-ḍaḥika wa-qāl lā ʾaḥada yatakallamu hākadhā fī-l-bayt"
+      },
+      {
+        "tr": "وَأَمَّا الْمُثَنَّى فَقِصَّةٌ أُخْرَى: كِتَابٌ، كِتَابَانِ، كُتُبٌ.",
+        "en": "As for the dual, that is another story: one book, two books, books.",
+        "tl": "wa-ʾammā-l-muthannā fa-qiṣṣatun ʾukhrā kitābun kitābāni kutub"
+      },
+      {
+        "tr": "لِمَاذَا تَحْتَاجُ الْعَرَبِيَّةُ إِلَى شَكْلٍ خَاصٍّ لِشَيْئَيْنِ فَقَطْ؟",
+        "en": "Why does Arabic need a special form for just two things?",
+        "tl": "limādhā taḥtāju-l-ʿarabiyyatu ʾilā shaklin khāṣṣin li-shayʾayni faqaṭ"
+      },
+      {
+        "tr": "مَا الَّذِي سَاعَدَنِي إِذَنْ؟",
+        "en": "So what helped me?",
+        "tl": "mā-lladhī sāʿadanī ʾidhan"
+      },
+      {
+        "tr": "أَوَّلًا، أَكْتُبُ خَمْسَ كَلِمَاتٍ جَدِيدَةٍ كُلَّ يَوْمٍ وَأَسْتَعْمِلُهَا فِي جُمَلٍ قَصِيرَةٍ.",
+        "en": "First, I write down five new words every day and use them in short sentences.",
+        "tl": "ʾawwalan ʾaktubu khamsa kalimātin jadīdatin kulla yawmin wa-ʾastaʿmiluhā fī jumalin qaṣīra"
+      },
+      {
+        "tr": "ثَانِيًا، أَسْتَمِعُ إِلَى الْأَغَانِي وَالْأَخْبَارِ بِالْعَرَبِيَّةِ وَأَنَا أَطْبُخُ أَوْ أَمْشِي.",
+        "en": "Second, I listen to songs and the news in Arabic while I cook or walk.",
+        "tl": "thāniyan ʾastamiʿu ʾilā-l-ʾaghānī wa-l-ʾakhbāri bi-l-ʿarabiyyati wa-ʾanā ʾaṭbukhu ʾaw ʾamshī"
+      },
+      {
+        "tr": "ثَالِثًا، أَتَكَلَّمُ مَعَ جِيرَانِي مَرَّةً فِي الْأُسْبُوعِ، وَلَا أَخَافُ مِنَ الْأَخْطَاءِ.",
+        "en": "Third, I talk with my neighbours once a week, and I am not afraid of mistakes.",
+        "tl": "thālithan ʾatakallamu maʿa jīrānī marratan fī-l-ʾusbūʿi wa-lā ʾakhāfu mina-l-ʾakhṭāʾ"
+      },
+      {
+        "tr": "وَعَلَى ذِكْرِ الْأَخْطَاءِ، لِي خَطَأٌ لَنْ أَنْسَاهُ أَبَدًا.",
+        "en": "And speaking of mistakes, there is one of mine that I will never forget.",
+        "tl": "wa-ʿalā dhikri-l-ʾakhṭāʾi lī khaṭaʾun lan ʾansāhu ʾabadan"
+      },
+      {
+        "tr": "أَرَدْتُ مَرَّةً أَنْ أَقُولَ لِجَارَتِي: «قَلْبُكِ كَبِيرٌ»، فَقُلْتُ لَهَا: «كَلْبُكِ كَبِيرٌ»!",
+        "en": "I once wanted to tell my neighbour, “You have a big heart,” and what I said to her was, “You have a big dog”!",
+        "tl": "ʾaradtu marratan ʾan ʾaqūla li-jāratī qalbuki kabīrun fa-qultu lahā kalbuki kabīr"
+      },
+      {
+        "tr": "ضَحِكَتْ كَثِيرًا، ثُمَّ عَلَّمَتْنِي الْفَرْقَ بَيْنَ الْقَافِ وَالْكَافِ، وَلَمْ أَنْسَهُ بَعْدَ ذَلِكَ.",
+        "en": "She laughed a lot, then taught me the difference between qāf and kāf, and I have never forgotten it since.",
+        "tl": "ḍaḥikat kathīran thumma ʿallamatnī-l-farqa bayna-l-qāfi wa-l-kāfi wa-lam ʾansahu baʿda dhālik"
+      },
+      {
+        "tr": "الْيَوْمَ أَسْتَطِيعُ أَنْ أَقْرَأَ قِصَّةً قَصِيرَةً وَأَنْ أَطْلُبَ الطَّعَامَ فِي الْمَطْعَمِ بِالْعَرَبِيَّةِ.",
+        "en": "Today I can read a short story and order food in a restaurant in Arabic.",
+        "tl": "al-yawma ʾastaṭīʿu ʾan ʾaqraʾa qiṣṣatan qaṣīratan wa-ʾan ʾaṭluba-ṭ-ṭaʿāma fī-l-maṭʿami bi-l-ʿarabiyya"
+      },
+      {
+        "tr": "فِي السَّنَةِ الْقَادِمَةِ، أُرِيدُ أَنْ أُسَافِرَ إِلَى الْأُرْدُنِّ وَأَنْ أَدْرُسَ هُنَاكَ شَهْرًا أَوْ شَهْرَيْنِ.",
+        "en": "Next year, I want to travel to Jordan and study there for a month or two.",
+        "tl": "fī-s-sanati-l-qādimati ʾurīdu ʾan ʾusāfira ʾilā-l-ʾurdunni wa-ʾan ʾadrusa hunāka shahran ʾaw shahrayn"
+      },
+      {
+        "tr": "وَحُلْمِي أَنْ أَقْرَأَ رِوَايَةً عَرَبِيَّةً كَامِلَةً بِدُونِ قَامُوسٍ.",
+        "en": "And my dream is to read a whole Arabic novel without a dictionary.",
+        "tl": "wa-ḥulmī ʾan ʾaqraʾa riwāyatan ʿarabiyyatan kāmilatan bi-dūni qāmūs"
+      },
+      {
+        "tr": "نَصِيحَتِي لِمَنْ يَبْدَأُ الْآنَ: لَا تَنْتَظِرُوا حَتَّى تَتَكَلَّمُوا بِلَا أَخْطَاءٍ، بَلْ تَكَلَّمُوا مِنَ الْيَوْمِ الْأَوَّلِ.",
+        "en": "My advice to anyone starting now: don’t wait until you can speak without mistakes — speak from day one.",
+        "tl": "naṣīḥatī li-man yabdaʾu-l-ʾān lā tantaẓirū ḥattā tatakallamū bi-lā ʾakhṭāʾin bal takallamū mina-l-yawmi-l-ʾawwal"
+      },
+      {
+        "tr": "أَشْكُرُ كُلَّ مَنْ عَلَّمَنِي حَرْفًا، وَأَشْكُرُكُمْ عَلَى حُسْنِ اسْتِمَاعِكُمْ.",
+        "en": "I thank everyone who has taught me so much as a single letter, and I thank you for listening so kindly.",
+        "tl": "ʾashkuru kulla man ʿallamanī ḥarfan wa-ʾashkurukum ʿalā ḥusni-stimāʿikum"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "لِسَبَبٍ بَسِيطٍ",
+        "en": "for a simple reason",
+        "tl": "li-sabab basīṭ"
+      },
+      {
+        "tr": "جِيرَانٌ",
+        "en": "neighbours (singular جَار / جَارَة)",
+        "tl": "jīrān"
+      },
+      {
+        "tr": "بِأَشْكَالٍ مُخْتَلِفَةٍ",
+        "en": "in different shapes, in different forms",
+        "tl": "bi-ʾashkāl mukhtalifa"
+      },
+      {
+        "tr": "دُونَ أَنْ أَشْعُرَ",
+        "en": "without noticing, without realising",
+        "tl": "dūn ʾan ʾashʿur"
+      },
+      {
+        "tr": "الْأَصْوَاتُ",
+        "en": "the sounds (singular صَوْت)",
+        "tl": "al-ʾaṣwāt"
+      },
+      {
+        "tr": "تَدَرَّبْتُ",
+        "en": "I practised, I trained (followed by عَلَى)",
+        "tl": "tadarrabt"
+      },
+      {
+        "tr": "الْمِرْآةِ",
+        "en": "the mirror",
+        "tl": "al-mirʾāh"
+      },
+      {
+        "tr": "الْحَلْقِ",
+        "en": "the throat",
+        "tl": "al-ḥalq"
+      },
+      {
+        "tr": "اكْتَشَفْتُ",
+        "en": "I discovered",
+        "tl": "iktashaft"
+      },
+      {
+        "tr": "فُصْحَى",
+        "en": "formal, standard (Arabic): the language of books, news and speeches",
+        "tl": "fuṣḥā"
+      },
+      {
+        "tr": "لَهَجَاتٍ",
+        "en": "dialects (singular لَهْجَة)",
+        "tl": "lahajāt"
+      },
+      {
+        "tr": "الْمُثَنَّى",
+        "en": "the dual: the special form for two of something",
+        "tl": "al-muthannā"
+      },
+      {
+        "tr": "أَسْتَعْمِلُهَا",
+        "en": "I use them",
+        "tl": "ʾastaʿmiluhā"
+      },
+      {
+        "tr": "عَلَى ذِكْرِ",
+        "en": "speaking of…, while we are on the subject of…",
+        "tl": "ʿalā dhikr"
+      },
+      {
+        "tr": "الْفَرْقَ بَيْنَ",
+        "en": "the difference between",
+        "tl": "al-farq bayn"
+      },
+      {
+        "tr": "رِوَايَةً",
+        "en": "a novel",
+        "tl": "riwāya"
+      },
+      {
+        "tr": "قَامُوسٍ",
+        "en": "a dictionary",
+        "tl": "qāmūs"
+      },
+      {
+        "tr": "حُسْنِ اسْتِمَاعِكُمْ",
+        "en": "your kind attention (literally “the goodness of your listening”)",
+        "tl": "ḥusn istimāʿikum"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Why did the speaker start learning Arabic?",
+        "options": [
+          "To get a job abroad",
+          "To talk to their neighbours from Syria",
+          "Because it was a school subject",
+          "To read old poetry"
+        ],
+        "answer": 1,
+        "explain": "لِي جِيرَانٌ مِنْ سُورِيَا، وَأَرَدْتُ أَنْ أَقُولَ لَهُمْ أَكْثَرَ مِنْ «مَرْحَبًا» — I have neighbours from Syria and wanted to say more than “hello”."
+      },
+      {
+        "q": "What did the neighbours think when the speaker practised the sounds every morning?",
+        "options": [
+          "That the speaker was learning to sing",
+          "That the speaker was arguing with someone",
+          "That the speaker had a sore throat",
+          "That the speaker was on the phone"
+        ],
+        "answer": 2,
+        "explain": "حَتَّى ظَنَّ جِيرَانِي أَنَّ عِنْدِي أَلَمًا فِي الْحَلْقِ — until my neighbours thought I had a pain in my throat."
+      },
+      {
+        "q": "What was the mistake the speaker will never forget?",
+        "options": [
+          "Saying “your dog is big” instead of “your heart is big”",
+          "Reading a whole page from left to right",
+          "Calling the neighbour by the wrong name",
+          "Saying “two books” instead of “books”"
+        ],
+        "answer": 0,
+        "explain": "The speaker meant قَلْبُكِ كَبِيرٌ (your heart is big) but said كَلْبُكِ كَبِيرٌ (your dog is big) — ك instead of ق."
+      },
+      {
+        "q": "What is the speaker’s advice to people who are starting now?",
+        "options": [
+          "Learn the dialect before the standard language",
+          "Buy a good dictionary first",
+          "Spend a month in Jordan",
+          "Speak from the very first day, mistakes and all"
+        ],
+        "answer": 3,
+        "explain": "لَا تَنْتَظِرُوا حَتَّى تَتَكَلَّمُوا بِلَا أَخْطَاءٍ، بَلْ تَكَلَّمُوا مِنَ الْيَوْمِ الْأَوَّلِ — don’t wait until you speak without mistakes; speak from day one."
+      }
+    ]
+  },
+  {
+    "id": "ar-letter-from-amman",
+    "kind": "everyday",
+    "level": "A2",
+    "title": "A Letter from Amman",
+    "titleNative": "رِسَالَةٌ مِنْ عَمَّانَ",
+    "summary": "Layla (a woman) writes to her friend Rim (also a woman) about her new life in Amman — her flat, her neighbourhood, her working day, the food and her weekends — and invites her to visit.",
+    "register": "casual",
+    "lines": [
+      {
+        "tr": "عَزِيزَتِي رِيمُ، كَيْفَ حَالُكِ وَكَيْفَ حَالُ عَائِلَتِكِ؟",
+        "en": "Dear Rim, how are you, and how is your family?",
+        "tl": "ʿazīzatī rīmu kayfa ḥāluki wa-kayfa ḥālu ʿāʾilatik"
+      },
+      {
+        "tr": "أَكْتُبُ لَكِ مِنْ عَمَّانَ، فَأَنَا أَسْكُنُ هُنَا مُنْذُ شَهْرَيْنِ.",
+        "en": "I’m writing to you from Amman — I’ve been living here for two months now.",
+        "tl": "ʾaktubu laki min ʿammāna fa-ʾanā ʾaskunu hunā mundhu shahrayn"
+      },
+      {
+        "tr": "وَجَدْتُ شَقَّةً صَغِيرَةً فِي الطَّابِقِ الثَّالِثِ، فِيهَا غُرْفَةُ نَوْمٍ وَمَطْبَخٌ وَشُرْفَةٌ جَمِيلَةٌ.",
+        "en": "I found a small flat on the third floor, with a bedroom, a kitchen and a lovely balcony.",
+        "tl": "wajadtu shaqqatan ṣaghīratan fī-ṭ-ṭābiqi-th-thālithi fīhā ghurfatu nawmin wa-maṭbakhun wa-shurfatun jamīla"
+      },
+      {
+        "tr": "مِنَ الشُّرْفَةِ أَرَى بُيُوتَ الْمَدِينَةِ الْبَيْضَاءَ عَلَى الْجِبَالِ.",
+        "en": "From the balcony I can see the city’s white houses on the hills.",
+        "tl": "mina-sh-shurfati ʾarā buyūta-l-madīnati-l-bayḍāʾa ʿalā-l-jibāl"
+      },
+      {
+        "tr": "الْحَيُّ هَادِئٌ وَقَدِيمٌ، وَفِيهِ مَخْبَزٌ وَبَقَّالَةٌ وَمَقْهًى صَغِيرٌ.",
+        "en": "The neighbourhood is quiet and old, and it has a bakery, a grocer’s and a small café.",
+        "tl": "al-ḥayyu hādiʾun wa-qadīmun wa-fīhi makhbazun wa-baqqālatun wa-maqhan ṣaghīr"
+      },
+      {
+        "tr": "جَارَتِي أُمُّ خَالِدٍ طَيِّبَةُ الْقَلْبِ، وَتُحْضِرُ لِي أَحْيَانًا طَبَقًا مِنْ طَعَامِهَا.",
+        "en": "My neighbour, Umm Khalid, is kind-hearted, and she sometimes brings me a plate of her cooking.",
+        "tl": "jāratī ʾummu khālidin ṭayyibatu-l-qalbi wa-tuḥḍiru lī ʾaḥyānan ṭabaqan min ṭaʿāmihā"
+      },
+      {
+        "tr": "أَسْتَيْقِظُ كُلَّ يَوْمٍ فِي السَّاعَةِ السَّابِعَةِ، وَأَشْرَبُ قَهْوَتِي عَلَى الشُّرْفَةِ.",
+        "en": "I wake up every day at seven o’clock and drink my coffee on the balcony.",
+        "tl": "ʾastayqiẓu kulla yawmin fī-s-sāʿati-s-sābiʿati wa-ʾashrabu qahwatī ʿalā-sh-shurfa"
+      },
+      {
+        "tr": "ثُمَّ أَذْهَبُ إِلَى الْعَمَلِ بِالْحَافِلَةِ، وَأَصِلُ بَعْدَ نِصْفِ سَاعَةٍ تَقْرِيبًا.",
+        "en": "Then I go to work by bus, and I get there about half an hour later.",
+        "tl": "thumma ʾadhhabu ʾilā-l-ʿamali bi-l-ḥāfilati wa-ʾaṣilu baʿda niṣfi sāʿatin taqrīban"
+      },
+      {
+        "tr": "أَعْمَلُ فِي مَدْرَسَةٍ لِلُّغَاتِ، وَزُمَلَائِي لُطَفَاءُ مَعِي.",
+        "en": "I work at a language school, and my colleagues are nice to me.",
+        "tl": "ʾaʿmalu fī madrasatin li-l-lughāti wa-zumalāʾī luṭafāʾu maʿī"
+      },
+      {
+        "tr": "أَرْجِعُ إِلَى الْبَيْتِ فِي السَّاعَةِ الْخَامِسَةِ مُتْعَبَةً وَلَكِنْ سَعِيدَةً.",
+        "en": "I get home at five o’clock, tired but happy.",
+        "tl": "ʾarjiʿu ʾilā-l-bayti fī-s-sāʿati-l-khāmisati mutʿabatan wa-lākin saʿīda"
+      },
+      {
+        "tr": "الطَّعَامُ هُنَا لَذِيذٌ جِدًّا، وَأَنَا أُحِبُّ الْفَلَافِلَ وَالْحُمُّصَ فِي الصَّبَاحِ.",
+        "en": "The food here is delicious, and I love falafel and hummus in the morning.",
+        "tl": "aṭ-ṭaʿāmu hunā ladhīdhun jiddan wa-ʾanā ʾuḥibbu-l-falāfila wa-l-ḥummuṣa fī-ṣ-ṣabāḥ"
+      },
+      {
+        "tr": "فِي الْأُسْبُوعِ الْمَاضِي، دَعَتْنِي زَمِيلَتِي إِلَى الْغَدَاءِ فِي بَيْتِ أَهْلِهَا، وَأَكَلْتُ الْمَنْسَفَ لِأَوَّلِ مَرَّةٍ.",
+        "en": "Last week, a colleague invited me to lunch at her family’s house, and I ate mansaf for the first time.",
+        "tl": "fī-l-ʾusbūʿi-l-māḍī daʿatnī zamīlatī ʾilā-l-ghadāʾi fī bayti ʾahlihā wa-ʾakaltu-l-mansafa li-ʾawwali marra"
+      },
+      {
+        "tr": "الْمَنْسَفُ أَشْهَرُ طَبَقٍ فِي الْأُرْدُنِّ: أَرُزٌّ وَلَحْمٌ وَلَبَنٌ.",
+        "en": "Mansaf is the most famous dish in Jordan: rice, meat and yoghurt.",
+        "tl": "al-mansafu ʾashharu ṭabaqin fī-l-ʾurdunn ʾaruzzun wa-laḥmun wa-laban"
+      },
+      {
+        "tr": "عُطْلَةُ نِهَايَةِ الْأُسْبُوعِ هُنَا يَوْمَ الْجُمُعَةِ وَيَوْمَ السَّبْتِ، فَأَنَامُ حَتَّى السَّاعَةِ التَّاسِعَةِ.",
+        "en": "The weekend here is Friday and Saturday, so I sleep until nine o’clock.",
+        "tl": "ʿuṭlatu nihāyati-l-ʾusbūʿi hunā yawma-l-jumuʿati wa-yawma-s-sabti fa-ʾanāmu ḥattā-s-sāʿati-t-tāsiʿa"
+      },
+      {
+        "tr": "يَوْمَ الْجُمُعَةِ الْمَاضِيَةِ، ذَهَبْتُ مَعَ زَمِيلَاتِي إِلَى وَسَطِ الْبَلَدِ وَمَشَيْنَا فِي السُّوقِ الْقَدِيمِ.",
+        "en": "Last Friday, I went downtown with my colleagues and we walked around the old market.",
+        "tl": "yawma-l-jumuʿati-l-māḍiyati dhahabtu maʿa zamīlātī ʾilā wasaṭi-l-baladi wa-mashaynā fī-s-sūqi-l-qadīm"
+      },
+      {
+        "tr": "ثُمَّ صَعِدْنَا إِلَى الْقَلْعَةِ، وَرَأَيْنَا الْمَدِينَةَ كُلَّهَا عِنْدَ غُرُوبِ الشَّمْسِ.",
+        "en": "Then we went up to the Citadel and saw the whole city at sunset.",
+        "tl": "thumma ṣaʿidnā ʾilā-l-qalʿati wa-raʾaynā-l-madīnata kullahā ʿinda ghurūbi-sh-shams"
+      },
+      {
+        "tr": "الطَّقْسُ الْآنَ جَمِيلٌ: النَّهَارُ دَافِئٌ، وَاللَّيْلُ بَارِدٌ قَلِيلًا.",
+        "en": "The weather is lovely at the moment: the days are warm, and the nights are a little cold.",
+        "tl": "aṭ-ṭaqsu-l-ʾāna jamīl an-nahāru dāfiʾun wa-l-laylu bāridun qalīlan"
+      },
+      {
+        "tr": "أَتَعَلَّمُ أَيْضًا بَعْضَ الْكَلِمَاتِ مِنَ اللَّهْجَةِ الْأُرْدُنِّيَّةِ، وَالنَّاسُ يَبْتَسِمُونَ عِنْدَمَا أَسْتَعْمِلُهَا.",
+        "en": "I’m also learning a few words of the Jordanian dialect, and people smile when I use them.",
+        "tl": "ʾataʿallamu ʾayḍan baʿḍa-l-kalimāti mina-l-lahjati-l-ʾurdunniyyati wa-n-nāsu yabtasimūna ʿindamā ʾastaʿmiluhā"
+      },
+      {
+        "tr": "لَكِنِّي أَشْتَاقُ إِلَيْكِ كَثِيرًا، وَإِلَى قَهْوَةِ يَوْمِ السَّبْتِ مَعَكِ.",
+        "en": "But I miss you a lot, and our Saturday coffee together.",
+        "tl": "lākinnī ʾashtāqu ʾilayki kathīran wa-ʾilā qahwati yawmi-s-sabti maʿak"
+      },
+      {
+        "tr": "مَتَى تَزُورِينَنِي؟",
+        "en": "When are you coming to visit me?",
+        "tl": "matā tazūrīnanī"
+      },
+      {
+        "tr": "عِنْدِي مَكَانٌ لَكِ فِي الشَّقَّةِ، وَالتَّذَاكِرُ رَخِيصَةٌ فِي فَصْلِ الرَّبِيعِ.",
+        "en": "I have room for you in the flat, and tickets are cheap in the spring.",
+        "tl": "ʿindī makānun laki fī-sh-shaqqati wa-t-tadhākiru rakhīṣatun fī faṣli-r-rabīʿ"
+      },
+      {
+        "tr": "إِذَا جِئْتِ، فَسَنَذْهَبُ مَعًا إِلَى الْبَتْرَاءِ وَإِلَى الْبَحْرِ الْمَيِّتِ.",
+        "en": "If you come, we’ll go to Petra and to the Dead Sea together.",
+        "tl": "ʾidhā jiʾti fa-sa-nadhhabu maʿan ʾilā-l-batrāʾi wa-ʾilā-l-baḥri-l-mayyit"
+      },
+      {
+        "tr": "اُكْتُبِي لِي قَرِيبًا، وَأَخْبِرِينِي بِكُلِّ أَخْبَارِكِ.",
+        "en": "Write to me soon and tell me all your news.",
+        "tl": "uktubī lī qarīban wa-ʾakhbirīnī bi-kulli ʾakhbārik"
+      },
+      {
+        "tr": "سَلِّمِي لِي عَلَى أُمِّكِ وَأَبِيكِ.",
+        "en": "Say hello to your mum and dad for me.",
+        "tl": "sallimī lī ʿalā ʾummiki wa-ʾabīk"
+      },
+      {
+        "tr": "مَعَ كُلِّ الْحُبِّ، صَدِيقَتُكِ لَيْلَى.",
+        "en": "With all my love, your friend Layla.",
+        "tl": "maʿa kulli-l-ḥubbi ṣadīqatuki laylā"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "الطَّابِقِ الثَّالِثِ",
+        "en": "the third floor",
+        "tl": "aṭ-ṭābiq ath-thālith"
+      },
+      {
+        "tr": "شُرْفَةٌ",
+        "en": "a balcony",
+        "tl": "shurfa"
+      },
+      {
+        "tr": "الْحَيُّ",
+        "en": "the neighbourhood, the district",
+        "tl": "al-ḥayy"
+      },
+      {
+        "tr": "بَقَّالَةٌ",
+        "en": "a grocer’s, a small food shop",
+        "tl": "baqqāla"
+      },
+      {
+        "tr": "طَيِّبَةُ الْقَلْبِ",
+        "en": "kind-hearted (of a woman; literally “good of heart”)",
+        "tl": "ṭayyibat al-qalb"
+      },
+      {
+        "tr": "تُحْضِرُ لِي",
+        "en": "she brings me",
+        "tl": "tuḥḍir lī"
+      },
+      {
+        "tr": "أَسْتَيْقِظُ",
+        "en": "I wake up",
+        "tl": "ʾastayqiẓ"
+      },
+      {
+        "tr": "بِالْحَافِلَةِ",
+        "en": "by bus",
+        "tl": "bi-l-ḥāfila"
+      },
+      {
+        "tr": "زُمَلَائِي",
+        "en": "my colleagues (singular زَمِيل / زَمِيلَة)",
+        "tl": "zumalāʾī"
+      },
+      {
+        "tr": "دَعَتْنِي",
+        "en": "she invited me",
+        "tl": "daʿatnī"
+      },
+      {
+        "tr": "أَشْهَرُ طَبَقٍ",
+        "en": "the most famous dish",
+        "tl": "ʾashhar ṭabaq"
+      },
+      {
+        "tr": "عُطْلَةُ نِهَايَةِ الْأُسْبُوعِ",
+        "en": "the weekend (literally “the end-of-the-week holiday”)",
+        "tl": "ʿuṭlat nihāyat al-ʾusbūʿ"
+      },
+      {
+        "tr": "وَسَطِ الْبَلَدِ",
+        "en": "downtown, the town centre",
+        "tl": "wasaṭ al-balad"
+      },
+      {
+        "tr": "الْقَلْعَةِ",
+        "en": "the citadel, the fortress",
+        "tl": "al-qalʿa"
+      },
+      {
+        "tr": "غُرُوبِ الشَّمْسِ",
+        "en": "sunset",
+        "tl": "ghurūb ash-shams"
+      },
+      {
+        "tr": "أَشْتَاقُ إِلَيْكِ",
+        "en": "I miss you (said to a woman)",
+        "tl": "ʾashtāq ʾilayk"
+      },
+      {
+        "tr": "تَزُورِينَنِي",
+        "en": "you visit me (said to a woman)",
+        "tl": "tazūrīnanī"
+      },
+      {
+        "tr": "سَلِّمِي لِي عَلَى",
+        "en": "say hello for me to… (said to a woman)",
+        "tl": "sallimī lī ʿalā"
+      }
+    ],
+    "questions": [
+      {
+        "q": "How long has Layla been living in Amman?",
+        "options": [
+          "Two weeks",
+          "Two months",
+          "Two years",
+          "Since last Friday"
+        ],
+        "answer": 1,
+        "explain": "أَسْكُنُ هُنَا مُنْذُ شَهْرَيْنِ — I have been living here for two months."
+      },
+      {
+        "q": "How does she get to work?",
+        "options": [
+          "On foot",
+          "By taxi",
+          "In a colleague’s car",
+          "By bus"
+        ],
+        "answer": 3,
+        "explain": "أَذْهَبُ إِلَى الْعَمَلِ بِالْحَافِلَةِ — I go to work by bus."
+      },
+      {
+        "q": "What did she eat for the first time at her colleague’s family home?",
+        "options": [
+          "Mansaf",
+          "Falafel",
+          "Hummus",
+          "Fresh fish"
+        ],
+        "answer": 0,
+        "explain": "دَعَتْنِي زَمِيلَتِي إِلَى الْغَدَاءِ … وَأَكَلْتُ الْمَنْسَفَ لِأَوَّلِ مَرَّةٍ — I ate mansaf for the first time."
+      },
+      {
+        "q": "Where does Layla want to take Rim if she comes?",
+        "options": [
+          "To the Citadel and the old market",
+          "To her school and the café",
+          "To Petra and the Dead Sea",
+          "To Umm Khalid’s for lunch"
+        ],
+        "answer": 2,
+        "explain": "فَسَنَذْهَبُ مَعًا إِلَى الْبَتْرَاءِ وَإِلَى الْبَحْرِ الْمَيِّتِ — we’ll go to Petra and the Dead Sea together."
+      }
+    ]
+  },
+  {
+    "id": "ar-job-interview",
+    "kind": "dialogue",
+    "level": "B1",
+    "title": "A Job Interview",
+    "titleNative": "مُقَابَلَةُ عَمَلٍ",
+    "summary": "Nadia, a department manager (a woman), interviews Omar (a man) for a customer-service job: his background and experience, his strengths, his languages, the working hours and the start date.",
+    "register": "polite",
+    "lines": [
+      {
+        "speaker": "Nadia",
+        "tr": "صَبَاحُ الْخَيْرِ يَا سَيِّدُ عُمَرُ، تَفَضَّلْ بِالْجُلُوسِ.",
+        "en": "Good morning, Mr Omar. Please, have a seat.",
+        "tl": "ṣabāḥu-l-khayri yā sayyidu ʿumaru tafaḍḍal bi-l-julūs"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "صَبَاحُ النُّورِ يَا سَيِّدَةُ نَادِيَةُ، وَشُكْرًا لَكِ عَلَى دَعْوَتِي إِلَى هَذِهِ الْمُقَابَلَةِ.",
+        "en": "Good morning, Ms Nadia, and thank you for inviting me to this interview.",
+        "tl": "ṣabāḥu-n-nūri yā sayyidatu nādiyatu wa-shukran laki ʿalā daʿwatī ʾilā hādhihi-l-muqābala"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "أَنَا مُدِيرَةُ قِسْمِ خِدْمَةِ الْعُمَلَاءِ، فَحَدِّثْنِي قَلِيلًا عَنْ نَفْسِكَ مِنْ فَضْلِكَ.",
+        "en": "I’m the head of the customer service department, so please tell me a little about yourself.",
+        "tl": "ʾanā mudīratu qismi khidmati-l-ʿumalāʾi fa-ḥaddithnī qalīlan ʿan nafsika min faḍlik"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "بِكُلِّ سُرُورٍ، عُمْرِي ثَمَانِيَةٌ وَعِشْرُونَ عَامًا، وَدَرَسْتُ إِدَارَةَ الْأَعْمَالِ فِي الْجَامِعَةِ.",
+        "en": "With pleasure. I’m twenty-eight, and I studied business administration at university.",
+        "tl": "bi-kulli surūrin ʿumrī thamāniyatun wa-ʿishrūna ʿāman wa-darastu ʾidārata-l-ʾaʿmāli fī-l-jāmiʿa"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "بَعْدَ التَّخَرُّجِ، عَمِلْتُ ثَلَاثَ سَنَوَاتٍ فِي قِسْمِ الِاسْتِقْبَالِ فِي فُنْدُقٍ كَبِيرٍ.",
+        "en": "After graduating, I worked for three years on the front desk of a large hotel.",
+        "tl": "baʿda-t-takharruji ʿamiltu thalātha sanawātin fī qismi-l-istiqbāli fī funduqin kabīr"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "وَمَا الَّذِي تَعَلَّمْتَهُ مِنْ هَذِهِ التَّجْرِبَةِ؟",
+        "en": "And what did you learn from that experience?",
+        "tl": "wa-mā-lladhī taʿallamtahu min hādhihi-t-tajriba"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "تَعَلَّمْتُ أَنْ أَسْتَمِعَ إِلَى الزَّبُونِ جَيِّدًا، وَأَنْ أَبْقَى هَادِئًا حَتَّى فِي الْمَوَاقِفِ الصَّعْبَةِ.",
+        "en": "I learned to listen carefully to the customer, and to stay calm even in difficult situations.",
+        "tl": "taʿallamtu ʾan ʾastamiʿa ʾilā-z-zabūni jayyidan wa-ʾan ʾabqā hādiʾan ḥattā fī-l-mawāqifi-ṣ-ṣaʿba"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "وَلِمَاذَا تُرِيدُ أَنْ تَتْرُكَ عَمَلَكَ الْحَالِيَّ؟",
+        "en": "And why do you want to leave your current job?",
+        "tl": "wa-limādhā turīdu ʾan tatruka ʿamalaka-l-ḥālī"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "أَحْتَرِمُ عَمَلِي الْحَالِيَّ كَثِيرًا، لَكِنِّي أَبْحَثُ عَنْ مَسْؤُولِيَّاتٍ أَكْبَرَ وَفُرْصَةٍ لِلتَّطَوُّرِ.",
+        "en": "I have great respect for my current job, but I’m looking for greater responsibilities and a chance to develop.",
+        "tl": "ʾaḥtarimu ʿamalī-l-ḥāliyya kathīran lākinnī ʾabḥathu ʿan masʾūliyyātin ʾakbara wa-furṣatin li-t-taṭawwur"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "مَا هِيَ نِقَاطُ قُوَّتِكَ فِي رَأْيِكَ؟",
+        "en": "What are your strengths, in your opinion?",
+        "tl": "mā hiya niqāṭu quwwatika fī raʾyik"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "أَنَا مُنَظَّمٌ وَدَقِيقٌ فِي الْمَوَاعِيدِ، وَأُحِبُّ الْعَمَلَ ضِمْنَ فَرِيقٍ.",
+        "en": "I’m organised and punctual, and I enjoy working as part of a team.",
+        "tl": "ʾanā munaẓẓamun wa-daqīqun fī-l-mawāʿīdi wa-ʾuḥibbu-l-ʿamala ḍimna farīq"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "وَهَلْ لَدَيْكَ نُقْطَةُ ضَعْفٍ تَعْمَلُ عَلَى تَحْسِينِهَا؟",
+        "en": "And do you have a weakness that you are working to improve?",
+        "tl": "wa-hal ladayka nuqṭatu ḍaʿfin taʿmalu ʿalā taḥsīnihā"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "نَعَمْ، كُنْتُ أَخَافُ مِنَ الْكَلَامِ أَمَامَ الْجُمْهُورِ، وَلَكِنِّي أَخَذْتُ دَوْرَةً تَدْرِيبِيَّةً وَتَحَسَّنْتُ كَثِيرًا.",
+        "en": "Yes — I used to be afraid of speaking in front of an audience, but I took a training course and have improved a lot.",
+        "tl": "naʿam kuntu ʾakhāfu mina-l-kalāmi ʾamāma-l-jumhūri wa-lākinnī ʾakhadhtu dawratan tadrībiyyatan wa-taḥassantu kathīran"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "نَتَعَامَلُ هُنَا مَعَ عُمَلَاءَ مِنْ بِلَادٍ كَثِيرَةٍ، فَمَا اللُّغَاتُ الَّتِي تَتَكَلَّمُهَا؟",
+        "en": "We deal with clients from many countries here, so which languages do you speak?",
+        "tl": "nataʿāmalu hunā maʿa ʿumalāʾa min bilādin kathīratin fa-mā-l-lughātu-llatī tatakallamuhā"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "الْعَرَبِيَّةُ لُغَتِي الْأُمُّ، وَأَتَكَلَّمُ الْإِنْجِلِيزِيَّةَ بِطَلَاقَةٍ، وَأَفْهَمُ الْفَرَنْسِيَّةَ بِشَكْلٍ جَيِّدٍ.",
+        "en": "Arabic is my mother tongue, I speak English fluently, and I understand French well.",
+        "tl": "al-ʿarabiyyatu lughatī-l-ʾummu wa-ʾatakallamu-l-ʾinjilīziyyata bi-ṭalāqatin wa-ʾafhamu-l-faransiyyata bi-shaklin jayyid"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "مُمْتَازٌ، هَلْ عِنْدَكَ أَسْئِلَةٌ عَنِ الْوَظِيفَةِ؟",
+        "en": "Excellent. Do you have any questions about the job?",
+        "tl": "mumtāzun hal ʿindaka ʾasʾilatun ʿani-l-waẓīfa"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "نَعَمْ، مَا هِيَ سَاعَاتُ الدَّوَامِ، وَهَلْ يُوجَدُ عَمَلٌ فِي عُطْلَةِ نِهَايَةِ الْأُسْبُوعِ؟",
+        "en": "Yes — what are the working hours, and is there any work at the weekend?",
+        "tl": "naʿam mā hiya sāʿātu-d-dawāmi wa-hal yūjadu ʿamalun fī ʿuṭlati nihāyati-l-ʾusbūʿ"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "الدَّوَامُ مِنَ السَّاعَةِ التَّاسِعَةِ صَبَاحًا إِلَى الْخَامِسَةِ مَسَاءً، مِنَ الْأَحَدِ إِلَى الْخَمِيسِ.",
+        "en": "The hours are from nine in the morning to five in the evening, Sunday to Thursday.",
+        "tl": "ad-dawāmu mina-s-sāʿati-t-tāsiʿati ṣabāḥan ʾilā-l-khāmisati masāʾan mina-l-ʾaḥadi ʾilā-l-khamīs"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "وَنَعْمَلُ أَحْيَانًا يَوْمَ السَّبْتِ فِي مَوْسِمِ الصَّيْفِ، مَعَ أَجْرٍ إِضَافِيٍّ.",
+        "en": "And we sometimes work on Saturdays in the summer season, for extra pay.",
+        "tl": "wa-naʿmalu ʾaḥyānan yawma-s-sabti fī mawsimi-ṣ-ṣayfi maʿa ʾajrin ʾiḍāfī"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "هَذَا مُنَاسِبٌ لِي تَمَامًا، وَمَتَى يَبْدَأُ الْعَمَلُ إِذَا تَمَّ اخْتِيَارِي؟",
+        "en": "That suits me perfectly. And when would the job start if I am chosen?",
+        "tl": "hādhā munāsibun lī tamāman wa-matā yabdaʾu-l-ʿamalu ʾidhā tamma-khtiyārī"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "نُرِيدُ مُوَظَّفًا يَبْدَأُ فِي أَوَّلِ الشَّهْرِ الْقَادِمِ، فَهَلْ هَذَا مُمْكِنٌ؟",
+        "en": "We want someone who can start at the beginning of next month — is that possible?",
+        "tl": "nurīdu muwaẓẓafan yabdaʾu fī ʾawwali-sh-shahri-l-qādimi fa-hal hādhā mumkin"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "نَعَمْ، أَسْتَطِيعُ أَنْ أَبْدَأَ فِي هَذَا التَّارِيخِ دُونَ أَيِّ مُشْكِلَةٍ.",
+        "en": "Yes, I can start on that date without any problem.",
+        "tl": "naʿam ʾastaṭīʿu ʾan ʾabdaʾa fī hādhā-t-tārīkhi dūna ʾayyi mushkila"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "شُكْرًا لَكَ يَا سَيِّدُ عُمَرُ، سَنَتَّصِلُ بِكَ خِلَالَ أُسْبُوعٍ لِنُخْبِرَكَ بِالنَّتِيجَةِ.",
+        "en": "Thank you, Mr Omar. We will contact you within a week to let you know the result.",
+        "tl": "shukran laka yā sayyidu ʿumaru sa-nattaṣilu bika khilāla ʾusbūʿin li-nukhbiraka bi-n-natīja"
+      },
+      {
+        "speaker": "Omar",
+        "tr": "شُكْرًا جَزِيلًا عَلَى وَقْتِكِ، وَأَتَمَنَّى أَنْ أَنْضَمَّ إِلَى فَرِيقِكُمْ قَرِيبًا.",
+        "en": "Thank you very much for your time. I hope to join your team soon.",
+        "tl": "shukran jazīlan ʿalā waqtiki wa-ʾatamannā ʾan ʾanḍamma ʾilā farīqikum qarīban"
+      },
+      {
+        "speaker": "Nadia",
+        "tr": "بِالتَّوْفِيقِ، وَمَعَ السَّلَامَةِ.",
+        "en": "Good luck, and goodbye.",
+        "tl": "bi-t-tawfīqi wa-maʿa-s-salāma"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "تَفَضَّلْ بِالْجُلُوسِ",
+        "en": "please have a seat (said to a man)",
+        "tl": "tafaḍḍal bi-l-julūs"
+      },
+      {
+        "tr": "الْمُقَابَلَةِ",
+        "en": "the interview",
+        "tl": "al-muqābala"
+      },
+      {
+        "tr": "قِسْمِ خِدْمَةِ الْعُمَلَاءِ",
+        "en": "the customer service department",
+        "tl": "qism khidmat al-ʿumalāʾ"
+      },
+      {
+        "tr": "إِدَارَةَ الْأَعْمَالِ",
+        "en": "business administration",
+        "tl": "ʾidārat al-ʾaʿmāl"
+      },
+      {
+        "tr": "التَّخَرُّجِ",
+        "en": "graduation, graduating",
+        "tl": "at-takharruj"
+      },
+      {
+        "tr": "التَّجْرِبَةِ",
+        "en": "the experience",
+        "tl": "at-tajriba"
+      },
+      {
+        "tr": "الزَّبُونِ",
+        "en": "the customer",
+        "tl": "az-zabūn"
+      },
+      {
+        "tr": "الْمَوَاقِفِ الصَّعْبَةِ",
+        "en": "difficult situations",
+        "tl": "al-mawāqif aṣ-ṣaʿba"
+      },
+      {
+        "tr": "عَمَلَكَ الْحَالِيَّ",
+        "en": "your current job",
+        "tl": "ʿamalak al-ḥālī"
+      },
+      {
+        "tr": "مَسْؤُولِيَّاتٍ",
+        "en": "responsibilities",
+        "tl": "masʾūliyyāt"
+      },
+      {
+        "tr": "نِقَاطُ قُوَّتِكَ",
+        "en": "your strengths (literally “your points of strength”)",
+        "tl": "niqāṭ quwwatik"
+      },
+      {
+        "tr": "نُقْطَةُ ضَعْفٍ",
+        "en": "a weakness, a weak point",
+        "tl": "nuqṭat ḍaʿf"
+      },
+      {
+        "tr": "دَوْرَةً تَدْرِيبِيَّةً",
+        "en": "a training course",
+        "tl": "dawra tadrībiyya"
+      },
+      {
+        "tr": "بِطَلَاقَةٍ",
+        "en": "fluently",
+        "tl": "bi-ṭalāqa"
+      },
+      {
+        "tr": "سَاعَاتُ الدَّوَامِ",
+        "en": "working hours",
+        "tl": "sāʿāt ad-dawām"
+      },
+      {
+        "tr": "أَجْرٍ إِضَافِيٍّ",
+        "en": "extra pay",
+        "tl": "ʾajr ʾiḍāfī"
+      },
+      {
+        "tr": "سَنَتَّصِلُ بِكَ",
+        "en": "we will contact you, we will call you",
+        "tl": "sa-nattaṣil bik"
+      },
+      {
+        "tr": "بِالتَّوْفِيقِ",
+        "en": "good luck (literally “with success”)",
+        "tl": "bi-t-tawfīq"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Where did Omar work after graduating?",
+        "options": [
+          "In a bank",
+          "At a language school",
+          "On the front desk of a large hotel",
+          "In a travel agency abroad"
+        ],
+        "answer": 2,
+        "explain": "عَمِلْتُ ثَلَاثَ سَنَوَاتٍ فِي قِسْمِ الِاسْتِقْبَالِ فِي فُنْدُقٍ كَبِيرٍ — three years in the reception department of a large hotel."
+      },
+      {
+        "q": "Why is Omar looking for a new job?",
+        "options": [
+          "He wants greater responsibilities and a chance to develop",
+          "He does not like his current job",
+          "His hotel is closing",
+          "He wants to work fewer hours"
+        ],
+        "answer": 0,
+        "explain": "أَبْحَثُ عَنْ مَسْؤُولِيَّاتٍ أَكْبَرَ وَفُرْصَةٍ لِلتَّطَوُّرِ — I’m looking for greater responsibilities and a chance to develop."
+      },
+      {
+        "q": "Besides Arabic, which language does Omar speak fluently?",
+        "options": [
+          "French",
+          "Turkish",
+          "Spanish",
+          "English"
+        ],
+        "answer": 3,
+        "explain": "وَأَتَكَلَّمُ الْإِنْجِلِيزِيَّةَ بِطَلَاقَةٍ — I speak English fluently; French he only “understands well”."
+      },
+      {
+        "q": "When will the company let Omar know the result?",
+        "options": [
+          "The same evening",
+          "Within a week",
+          "At the beginning of next month",
+          "After the summer season"
+        ],
+        "answer": 1,
+        "explain": "سَنَتَّصِلُ بِكَ خِلَالَ أُسْبُوعٍ لِنُخْبِرَكَ بِالنَّتِيجَةِ — we will contact you within a week to tell you the result."
       }
     ]
   }

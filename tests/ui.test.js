@@ -321,6 +321,16 @@ test('speakPractice: a result after leaving is not scored, shown or rewarded', a
   assert.equal(el.find((e) => e.className.includes('speak-result')).hidden, true);
 });
 
+test('speakPractice: offline, it says before the first attempt that scores need a connection', () => {
+  navigator.onLine = false;
+  try {
+    const el = speakPractice(ctxFor(uk), uk.words[0]);
+    assert.match(el.find((e) => e.className === 'speak-status').textContent, /offline/i);
+  } finally { delete navigator.onLine; }
+  const el = speakPractice(ctxFor(uk), uk.words[0]);
+  assert.match(el.find((e) => e.className === 'speak-status').textContent, /^Tap the mic/);
+});
+
 test('speakPractice: a good attempt gets the pack’s title and the word as written', async () => {
   const ctx = ctxFor(ja);
   const word = ja.words.find((w) => w.tr === 'コーヒー');

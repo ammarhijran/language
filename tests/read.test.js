@@ -10,7 +10,7 @@ import { sanitize, mergeGame, mergeAll } from '../js/sync.js';
 import {
   KINDS, LEVELS, REGISTERS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, markGlossary, glossaryForms, glossaryFound, glossaryMissing, findWord, fadeLine,
-  createPlayer, listenTimeout, scoreLine, verdict, clock,
+  createPlayer, listenTimeout, scoreLine, verdict, clock, recordLimit,
 } from '../js/reader.js';
 
 const ALL = {};
@@ -100,6 +100,16 @@ for (const [code, texts] of Object.entries(ALL)) {
     for (const level of LEVELS) assert.ok(texts.some((t) => t.level === level), level);
     for (const kind of Object.keys(KINDS)) assert.ok(texts.some((t) => t.kind === kind), kind);
     assert.ok(texts.every((t) => estimateMinutes(t) >= 1 && estimateMinutes(t) <= 15));
+  });
+
+  test(`${code}: longer reads exist, and a whole speech fits the recording limit`, () => {
+    assert.ok(texts.filter((t) => t.lines.length >= 20).length >= 3, 'at least three long texts');
+    for (const t of texts) {
+      const ms = recordLimit(t);
+      assert.ok(ms >= 90000 && ms <= 300000 && ms % 30000 === 0, `${code}/${t.id}: ${ms}`);
+      // a native reading is about a third of estimateMinutes' "three passes"
+      if (t.kind === 'speech') assert.ok(ms >= estimateMinutes(t) * 60000 * 0.4, `${code}/${t.id}: room to give the speech`);
+    }
   });
 }
 

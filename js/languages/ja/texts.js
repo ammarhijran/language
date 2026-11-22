@@ -2,7 +2,7 @@
 // Each text: { id, kind, level, title, titleNative, summary, dialect?, register?,
 //   lines: [{ speaker?, tr, en, kana }], glossary: [{ tr, en, kana }],
 //   questions: [{ q, options[4], answer, explain }] }.
-// Written by one author and checked line by line by a native-level reviewer; edit freely.
+// Written and proofread with AI assistance; not yet reviewed by native speakers. Edit freely.
 // Loaded on demand (not at startup).
 export const texts = [
   {
@@ -2855,6 +2855,1128 @@ export const texts = [
         ],
         "answer": 1,
         "explain": "私のおすすめは、朝、市場で食べる海鮮丼です."
+      }
+    ]
+  },
+  {
+    "id": "ja-momotaro-tale",
+    "kind": "story",
+    "level": "B1",
+    "title": "Momotaro, the Peach Boy",
+    "titleNative": "桃太郎",
+    "summary": "The old folk tale retold in simple words: a boy born from a peach sets off with a dog, a monkey and a pheasant to defeat the ogres.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "むかしむかし、ある村に、おじいさんとおばあさんが住んでいました。",
+        "en": "Once upon a time, in a certain village, there lived an old man and an old woman.",
+        "kana": "むかしむかし ある むら に おじいさん と おばあさん が すんで いました"
+      },
+      {
+        "tr": "ある日、おじいさんは山へしばかりに、おばあさんは川へ洗濯に行きました。",
+        "en": "One day the old man went to the mountains to gather firewood, and the old woman went to the river to do the washing.",
+        "kana": "ある ひ おじいさん は やま へ しばかり に おばあさん は かわ へ せんたく に いきました"
+      },
+      {
+        "tr": "おばあさんが洗濯をしていると、大きな桃がどんぶらこ、どんぶらこと流れてきました。",
+        "en": "While the old woman was washing, a big peach came bobbing along down the river.",
+        "kana": "おばあさん が せんたく を して いる と おおきな もも が どんぶらこ どんぶらこ と ながれて きました"
+      },
+      {
+        "tr": "おばあさんはその桃を拾って、おじいさんと食べようと家に持って帰りました。",
+        "en": "The old woman picked up the peach and took it home to eat with the old man.",
+        "kana": "おばあさん は その もも を ひろって おじいさん と たべよう と いえ に もって かえりました"
+      },
+      {
+        "tr": "二人が桃を切ろうとすると、桃が二つに割れて、中から元気な男の子が出てきました。",
+        "en": "Just as the two of them were about to cut the peach, it split in two and a healthy baby boy came out.",
+        "kana": "ふたり が もも を きろう と する と もも が ふたつ に われて なか から げんき な おとこのこ が でて きました"
+      },
+      {
+        "tr": "二人はとても喜んで、桃から生まれたその子を桃太郎と名付けました。",
+        "en": "The two were overjoyed, and they named the child, who had been born from a peach, Momotaro.",
+        "kana": "ふたり は とても よろこんで もも から うまれた その こ を ももたろう と なづけました"
+      },
+      {
+        "tr": "桃太郎はご飯をたくさん食べて、どんどん大きく、強くなりました。",
+        "en": "Momotaro ate a lot of rice and quickly grew bigger and stronger.",
+        "kana": "ももたろう は ごはん を たくさん たべて どんどん おおきく つよく なりました"
+      },
+      {
+        "tr": "そのころ、鬼が島の鬼たちが村に来ては、人々の宝物をうばっていました。",
+        "en": "In those days, the ogres of Ogre Island kept coming to the village and robbing people of their treasures.",
+        "kana": "その ころ おにがしま の おに たち が むら に きて は ひとびと の たからもの を うばって いました"
+      },
+      {
+        "tr": "ある日、桃太郎は「鬼が島へ行って、悪い鬼を退治してきます」と言いました。",
+        "en": "One day Momotaro said, \"I am going to Ogre Island to get rid of the wicked ogres.\"",
+        "kana": "ある ひ ももたろう は おにがしま へ いって わるい おに を たいじ して きます と いいました"
+      },
+      {
+        "tr": "おじいさんとおばあさんは心配しましたが、桃太郎の気持ちは変わりませんでした。",
+        "en": "The old man and the old woman were worried, but Momotaro did not change his mind.",
+        "kana": "おじいさん と おばあさん は しんぱい しました が ももたろう の きもち は かわりませんでした"
+      },
+      {
+        "tr": "そこで、おばあさんは日本一のきびだんごを作って、桃太郎に持たせました。",
+        "en": "So the old woman made the best millet dumplings in Japan and gave them to Momotaro to take with him.",
+        "kana": "そこで おばあさん は にっぽんいち の きびだんご を つくって ももたろう に もたせました"
+      },
+      {
+        "tr": "桃太郎が歩いていくと、犬が来て、「桃太郎さん、どこへ行くのですか」と聞きました。",
+        "en": "As Momotaro walked along, a dog came up and asked, \"Momotaro, where are you going?\"",
+        "kana": "ももたろう が あるいて いく と いぬ が きて ももたろう さん どこ へ いく の です か と ききました"
+      },
+      {
+        "tr": "桃太郎は「鬼が島へ鬼退治に行くんだ」と答えました。",
+        "en": "\"I'm going to Ogre Island to fight the ogres,\" Momotaro answered.",
+        "kana": "ももたろう は おにがしま へ おにたいじ に いく ん だ と こたえました"
+      },
+      {
+        "tr": "犬は「そのきびだんごを一つくださるなら、お供します」と言いました。",
+        "en": "The dog said, \"If you give me one of those millet dumplings, I will come with you.\"",
+        "kana": "いぬ は その きびだんご を ひとつ くださる なら おとも します と いいました"
+      },
+      {
+        "tr": "桃太郎は犬にきびだんごを一つあげて、仲間にしました。",
+        "en": "Momotaro gave the dog a dumpling and made him his companion.",
+        "kana": "ももたろう は いぬ に きびだんご を ひとつ あげて なかま に しました"
+      },
+      {
+        "tr": "同じようにして、サルとキジも桃太郎の仲間になりました。",
+        "en": "In the same way, a monkey and a pheasant joined Momotaro too.",
+        "kana": "おなじ よう に して サル と キジ も ももたろう の なかま に なりました"
+      },
+      {
+        "tr": "桃太郎たちは船に乗って海をわたり、やっと鬼が島に着きました。",
+        "en": "Momotaro and his companions got on a boat, crossed the sea and at last reached Ogre Island.",
+        "kana": "ももたろう たち は ふね に のって うみ を わたり やっと おにがしま に つきました"
+      },
+      {
+        "tr": "鬼たちは、お酒を飲んでさわいでいるところでした。",
+        "en": "The ogres were in the middle of drinking and making a lot of noise.",
+        "kana": "おに たち は おさけ を のんで さわいで いる ところ でした"
+      },
+      {
+        "tr": "犬は鬼の足にかみつき、サルは顔をひっかき、キジは目をつつきました。",
+        "en": "The dog bit the ogres' legs, the monkey scratched their faces, and the pheasant pecked at their eyes.",
+        "kana": "いぬ は おに の あし に かみつき サル は かお を ひっかき キジ は め を つつきました"
+      },
+      {
+        "tr": "桃太郎も、一番強い鬼と力いっぱい戦いました。",
+        "en": "Momotaro, too, fought the strongest ogre with all his might.",
+        "kana": "ももたろう も いちばん つよい おに と ちからいっぱい たたかいました"
+      },
+      {
+        "tr": "とうとう鬼たちは「もう悪いことはしません、許してください」と泣いて謝りました。",
+        "en": "In the end the ogres cried and apologised: \"We will never do anything bad again. Please forgive us.\"",
+        "kana": "とうとう おに たち は もう わるい こと は しません ゆるして ください と ないて あやまりました"
+      },
+      {
+        "tr": "桃太郎は鬼たちを許して、取られた宝物を持って村へ帰りました。",
+        "en": "Momotaro forgave the ogres and went back to the village with the treasures that had been taken.",
+        "kana": "ももたろう は おに たち を ゆるして とられた たからもの を もって むら へ かえりました"
+      },
+      {
+        "tr": "おじいさんとおばあさんは、無事に帰ってきた桃太郎を見て、とても喜びました。",
+        "en": "The old man and the old woman were delighted to see Momotaro come home safely.",
+        "kana": "おじいさん と おばあさん は ぶじ に かえって きた ももたろう を みて とても よろこびました"
+      },
+      {
+        "tr": "桃太郎は、宝物を全部、村の人たちに返しました。",
+        "en": "Momotaro gave all the treasures back to the people of the village.",
+        "kana": "ももたろう は たからもの を ぜんぶ むら の ひと たち に かえしました"
+      },
+      {
+        "tr": "それから三人は、いつまでも幸せに暮らしました。",
+        "en": "And from then on, the three of them lived happily ever after.",
+        "kana": "それから さんにん は いつまでも しあわせ に くらしました"
+      },
+      {
+        "tr": "めでたし、めでたし。",
+        "en": "And so the story ends happily.",
+        "kana": "めでたし めでたし"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "むかしむかし",
+        "en": "once upon a time",
+        "kana": "むかしむかし"
+      },
+      {
+        "tr": "しばかり",
+        "en": "gathering firewood (an old word known from this tale)",
+        "kana": "しばかり"
+      },
+      {
+        "tr": "どんぶらこ",
+        "en": "the sound of something big bobbing along in water (used in this tale)",
+        "kana": "どんぶらこ"
+      },
+      {
+        "tr": "割れて",
+        "en": "split, broke open (割れる)",
+        "kana": "われて"
+      },
+      {
+        "tr": "名付けました",
+        "en": "named, gave the name (名付ける)",
+        "kana": "なづけました"
+      },
+      {
+        "tr": "鬼が島",
+        "en": "Ogre Island (鬼 = ogre, demon)",
+        "kana": "おにがしま"
+      },
+      {
+        "tr": "宝物",
+        "en": "treasure",
+        "kana": "たからもの"
+      },
+      {
+        "tr": "うばっていました",
+        "en": "used to take by force, rob (うばう)",
+        "kana": "うばって いました"
+      },
+      {
+        "tr": "退治",
+        "en": "getting rid of, defeating (monsters, pests)",
+        "kana": "たいじ"
+      },
+      {
+        "tr": "日本一",
+        "en": "the best in Japan",
+        "kana": "にっぽんいち"
+      },
+      {
+        "tr": "きびだんご",
+        "en": "millet dumplings",
+        "kana": "きびだんご"
+      },
+      {
+        "tr": "お供します",
+        "en": "I will go with you, I will accompany you (humble)",
+        "kana": "おとも します"
+      },
+      {
+        "tr": "仲間",
+        "en": "companion, one of the group",
+        "kana": "なかま"
+      },
+      {
+        "tr": "かみつき",
+        "en": "bit, sank his teeth into (かみつく)",
+        "kana": "かみつき"
+      },
+      {
+        "tr": "戦いました",
+        "en": "fought (戦う)",
+        "kana": "たたかいました"
+      },
+      {
+        "tr": "謝りました",
+        "en": "apologised (謝る)",
+        "kana": "あやまりました"
+      },
+      {
+        "tr": "無事に",
+        "en": "safely, unharmed",
+        "kana": "ぶじ に"
+      },
+      {
+        "tr": "めでたし",
+        "en": "happily ended — the set phrase that closes a folk tale",
+        "kana": "めでたし"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Where did the baby boy come from?",
+        "options": [
+          "He was found in the mountains",
+          "The ogres left him in the village",
+          "He came out of a big peach",
+          "A dog brought him to the house"
+        ],
+        "answer": 2,
+        "explain": "桃が二つに割れて、中から元気な男の子が出てきました — the peach split in two and a boy came out."
+      },
+      {
+        "q": "What did the old woman make for Momotaro to take with him?",
+        "options": [
+          "Millet dumplings",
+          "A new boat",
+          "Rice balls",
+          "Warm clothes"
+        ],
+        "answer": 0,
+        "explain": "おばあさんは日本一のきびだんごを作って、桃太郎に持たせました."
+      },
+      {
+        "q": "Which animals became his companions?",
+        "options": [
+          "A dog, a cat and a crane",
+          "A dog, a monkey and a pheasant",
+          "A horse, a monkey and a crow",
+          "A fox, a dog and a pheasant"
+        ],
+        "answer": 1,
+        "explain": "First 犬, and then サルとキジも桃太郎の仲間になりました."
+      },
+      {
+        "q": "What did Momotaro do with the treasures?",
+        "options": [
+          "He kept them for his family",
+          "He left them on the island",
+          "He shared them with the ogres",
+          "He gave them all back to the villagers"
+        ],
+        "answer": 3,
+        "explain": "宝物を全部、村の人たちに返しました — he returned all of them to the people of the village."
+      }
+    ]
+  },
+  {
+    "id": "ja-why-i-learn-japanese",
+    "kind": "speech",
+    "level": "B1",
+    "title": "Why I'm Learning Japanese",
+    "titleNative": "私が日本語を勉強している理由",
+    "summary": "A learner from Spain gives a short talk to her class: why she started Japanese, what was hard, what helped, a funny mistake and her plans.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "皆さん、こんにちは。",
+        "en": "Hello, everyone.",
+        "kana": "みなさん こんにち は"
+      },
+      {
+        "tr": "スペインから来ましたマリアと申します。",
+        "en": "My name is Maria, and I come from Spain.",
+        "kana": "スペイン から きました マリア と もうします"
+      },
+      {
+        "tr": "今日は、私が日本語を勉強している理由についてお話ししたいと思います。",
+        "en": "Today I'd like to talk about why I am studying Japanese.",
+        "kana": "きょう は わたし が にほんご を べんきょう して いる りゆう に ついて おはなし したい と おもいます"
+      },
+      {
+        "tr": "日本語を始めたのは三年前です。",
+        "en": "I started Japanese three years ago.",
+        "kana": "にほんご を はじめた の は さんねん まえ です"
+      },
+      {
+        "tr": "きっかけは、子どものころから好きだった日本のアニメでした。",
+        "en": "What got me started was Japanese anime, which I'd loved since I was a child.",
+        "kana": "きっかけ は こども の ころ から すき だった にほん の アニメ でした"
+      },
+      {
+        "tr": "字幕なしで見られるようになりたいと思って、一人で勉強を始めました。",
+        "en": "I wanted to be able to watch it without subtitles, so I began studying on my own.",
+        "kana": "じまく なし で みられる よう に なりたい と おもって ひとり で べんきょう を はじめました"
+      },
+      {
+        "tr": "でも、最初は思ったよりずっと大変でした。",
+        "en": "But at first it was much harder than I had expected.",
+        "kana": "でも さいしょ は おもった より ずっと たいへん でした"
+      },
+      {
+        "tr": "まず、漢字は数が多くて、覚えてもすぐに忘れてしまいました。",
+        "en": "First of all, there are so many kanji, and even when I learned them I soon forgot them.",
+        "kana": "まず かんじ は かず が おおくて おぼえて も すぐ に わすれて しまいました"
+      },
+      {
+        "tr": "「は」と「が」のような助詞の使い方も、今でもよく間違えます。",
+        "en": "I still often make mistakes with how to use particles like は and が, too.",
+        "kana": "は と が の よう な じょし の つかいかた も いま でも よく まちがえます"
+      },
+      {
+        "tr": "それに、敬語は相手によって言葉が変わるので、本当に難しいと思いました。",
+        "en": "On top of that, with polite language the words change depending on who you are talking to, so I found it really difficult.",
+        "kana": "それに けいご は あいて に よって ことば が かわる ので ほんとう に むずかしい と おもいました"
+      },
+      {
+        "tr": "一番役に立ったのは、毎日少しずつ続けることでした。",
+        "en": "What helped me most was keeping going a little every day.",
+        "kana": "いちばん やく に たった の は まいにち すこし ずつ つづける こと でした"
+      },
+      {
+        "tr": "毎朝十五分だけ漢字を練習して、電車の中では日本語のポッドキャストを聞きました。",
+        "en": "Every morning I practised kanji for just fifteen minutes, and on the train I listened to podcasts in Japanese.",
+        "kana": "まいあさ じゅうごふん だけ かんじ を れんしゅう して でんしゃ の なか で は にほんご の ポッドキャスト を ききました"
+      },
+      {
+        "tr": "週に一回、日本人の友達とオンラインで話す練習もしています。",
+        "en": "Once a week I also practise speaking online with a Japanese friend.",
+        "kana": "しゅう に いっかい にほんじん の ともだち と オンライン で はなす れんしゅう も して います"
+      },
+      {
+        "tr": "間違えてもいいから、たくさん話すことが大切だと分かりました。",
+        "en": "I've learned that the important thing is to speak a lot, even if you make mistakes.",
+        "kana": "まちがえて も いい から たくさん はなす こと が たいせつ だ と わかりました"
+      },
+      {
+        "tr": "実は、おもしろい失敗もたくさんあります。",
+        "en": "To tell the truth, I have made plenty of funny mistakes as well.",
+        "kana": "じつ は おもしろい しっぱい も たくさん あります"
+      },
+      {
+        "tr": "ある日、友達の赤ちゃんを見て、「かわいいですね」と言おうとしました。",
+        "en": "One day I saw my friend's baby and tried to say \"Kawaii desu ne\" — \"How cute!\"",
+        "kana": "ある ひ ともだち の あかちゃん を みて かわいい です ね と いおう と しました"
+      },
+      {
+        "tr": "ところが、間違えて「こわいですね」と言ってしまったんです。",
+        "en": "But by mistake I said \"Kowai desu ne\" — \"How scary!\"",
+        "kana": "ところが まちがえて こわい です ね と いって しまった ん です"
+      },
+      {
+        "tr": "友達は大笑いしましたが、この二つの言葉はもう二度と間違えないと思います。",
+        "en": "My friend burst out laughing, but I don't think I'll ever mix up those two words again.",
+        "kana": "ともだち は おおわらい しました が この ふたつ の ことば は もう にど と まちがえない と おもいます"
+      },
+      {
+        "tr": "来年は日本へ行って、日本語だけで旅行をしてみたいです。",
+        "en": "Next year I'd like to go to Japan and try travelling using only Japanese.",
+        "kana": "らいねん は にほん へ いって にほんご だけ で りょこう を して みたい です"
+      },
+      {
+        "tr": "そしていつか、日本語を使う仕事ができたらいいなと思っています。",
+        "en": "And one day, I hope I'll be able to have a job where I use Japanese.",
+        "kana": "そして いつか にほんご を つかう しごと が できたら いい な と おもって います"
+      },
+      {
+        "tr": "ここまで続けられたのは、いつも親切に教えてくださる先生と、クラスの皆さんのおかげです。",
+        "en": "It's thanks to our teacher, who always teaches us so kindly, and to all of you in the class that I've been able to keep going this far.",
+        "kana": "ここ まで つづけられた の は いつも しんせつ に おしえて くださる せんせい と クラス の みなさん の おかげ です"
+      },
+      {
+        "tr": "これからも、楽しみながら勉強を続けていきたいと思います。",
+        "en": "I'd like to carry on studying, and enjoying it as I go.",
+        "kana": "これから も たのしみながら べんきょう を つづけて いきたい と おもいます"
+      },
+      {
+        "tr": "ご清聴ありがとうございました。",
+        "en": "Thank you for listening.",
+        "kana": "ごせいちょう ありがとう ございました"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "と申します",
+        "en": "my name is… (humble)",
+        "kana": "と もうします"
+      },
+      {
+        "tr": "理由",
+        "en": "reason",
+        "kana": "りゆう"
+      },
+      {
+        "tr": "きっかけ",
+        "en": "what got (me) started, the trigger",
+        "kana": "きっかけ"
+      },
+      {
+        "tr": "字幕なしで",
+        "en": "without subtitles",
+        "kana": "じまく なし で"
+      },
+      {
+        "tr": "思ったより",
+        "en": "than (I) expected",
+        "kana": "おもった より"
+      },
+      {
+        "tr": "忘れてしまいました",
+        "en": "ended up forgetting (忘れる + てしまう)",
+        "kana": "わすれて しまいました"
+      },
+      {
+        "tr": "助詞",
+        "en": "particle (は, が, を…)",
+        "kana": "じょし"
+      },
+      {
+        "tr": "使い方",
+        "en": "how to use, usage",
+        "kana": "つかいかた"
+      },
+      {
+        "tr": "敬語",
+        "en": "polite / honorific language",
+        "kana": "けいご"
+      },
+      {
+        "tr": "相手によって",
+        "en": "depending on the person you are talking to",
+        "kana": "あいて に よって"
+      },
+      {
+        "tr": "役に立った",
+        "en": "was useful, helped (役に立つ)",
+        "kana": "やく に たった"
+      },
+      {
+        "tr": "少しずつ",
+        "en": "little by little",
+        "kana": "すこし ずつ"
+      },
+      {
+        "tr": "間違えてもいい",
+        "en": "it's all right to make mistakes",
+        "kana": "まちがえて も いい"
+      },
+      {
+        "tr": "失敗",
+        "en": "mistake, failure",
+        "kana": "しっぱい"
+      },
+      {
+        "tr": "大笑い",
+        "en": "a big laugh, bursting out laughing",
+        "kana": "おおわらい"
+      },
+      {
+        "tr": "二度と",
+        "en": "never again (with a negative)",
+        "kana": "にど と"
+      },
+      {
+        "tr": "おかげ",
+        "en": "thanks to (someone)",
+        "kana": "おかげ"
+      },
+      {
+        "tr": "楽しみながら",
+        "en": "while enjoying (it)",
+        "kana": "たのしみながら"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Why did Maria start learning Japanese?",
+        "options": [
+          "Her company sent her to Japan",
+          "She wanted to watch anime without subtitles",
+          "Her grandmother is Japanese",
+          "She needed it for a university exam"
+        ],
+        "answer": 1,
+        "explain": "きっかけは…日本のアニメでした, and 字幕なしで見られるようになりたいと思って — she wanted to watch without subtitles."
+      },
+      {
+        "q": "What helped her most?",
+        "options": [
+          "Moving to Japan for a year",
+          "Buying an expensive textbook",
+          "Memorising a hundred kanji a day",
+          "Continuing a little every day"
+        ],
+        "answer": 3,
+        "explain": "一番役に立ったのは、毎日少しずつ続けることでした."
+      },
+      {
+        "q": "What did she say by mistake about her friend's baby?",
+        "options": [
+          "\"How scary!\"",
+          "\"How cute!\"",
+          "\"How expensive!\"",
+          "\"How small!\""
+        ],
+        "answer": 0,
+        "explain": "She meant かわいい (cute) but said こわいですね (scary): 間違えて「こわいですね」と言ってしまったんです."
+      },
+      {
+        "q": "What does she want to do next year?",
+        "options": [
+          "Take a Japanese exam",
+          "Start teaching Japanese",
+          "Travel in Japan using only Japanese",
+          "Find a job in Spain"
+        ],
+        "answer": 2,
+        "explain": "来年は日本へ行って、日本語だけで旅行をしてみたいです."
+      }
+    ]
+  },
+  {
+    "id": "ja-letter-from-osaka",
+    "kind": "everyday",
+    "level": "A2",
+    "title": "A Letter from Osaka",
+    "titleNative": "大阪からの手紙",
+    "summary": "A month after moving to Osaka, someone writes a long, friendly message to their friend Yuki about the flat, the neighbourhood, daily life and food, and invites her to visit.",
+    "register": "casual",
+    "lines": [
+      {
+        "tr": "ゆき、ひさしぶり！",
+        "en": "Yuki, it's been a while!",
+        "kana": "ゆき ひさしぶり"
+      },
+      {
+        "tr": "元気にしてる？",
+        "en": "How have you been?",
+        "kana": "げんき に してる"
+      },
+      {
+        "tr": "大阪に引っ越して、もう一か月になったよ。",
+        "en": "It's already been a month since I moved to Osaka.",
+        "kana": "おおさか に ひっこして もう いっかげつ に なった よ"
+      },
+      {
+        "tr": "新しいアパートは小さいけど、駅から歩いて五分で、とても便利だよ。",
+        "en": "My new flat is small, but it's a five-minute walk from the station, so it's really convenient.",
+        "kana": "あたらしい アパート は ちいさい けど えき から あるいて ごふん で とても べんり だ よ"
+      },
+      {
+        "tr": "部屋は三階で、窓から小さい公園が見えるんだ。",
+        "en": "My flat is on the third floor, and I can see a little park from the window.",
+        "kana": "へや は さんがい で まど から ちいさい こうえん が みえる ん だ"
+      },
+      {
+        "tr": "近所には、スーパーやパン屋や古い商店街があるよ。",
+        "en": "In the neighbourhood there's a supermarket, a bakery and an old shopping street.",
+        "kana": "きんじょ に は スーパー や パンや や ふるい しょうてんがい が ある よ"
+      },
+      {
+        "tr": "商店街の人はみんな明るくて、よく話しかけてくれる。",
+        "en": "The people in the shopping street are all cheerful and often start chatting to me.",
+        "kana": "しょうてんがい の ひと は みんな あかるくて よく はなしかけて くれる"
+      },
+      {
+        "tr": "大阪弁はまだよく分からないけど、聞いていると楽しい。",
+        "en": "I still don't understand Osaka dialect very well, but it's fun to listen to.",
+        "kana": "おおさかべん は まだ よく わからない けど きいて いる と たのしい"
+      },
+      {
+        "tr": "店の人がよく言う「おおきに」は、「ありがとう」という意味なんだって。",
+        "en": "Apparently \"ookini\", which the shop people often say, means \"thank you\".",
+        "kana": "みせ の ひと が よく いう おおきに は ありがとう と いう いみ な ん だ って"
+      },
+      {
+        "tr": "平日は毎朝七時に起きて、八時の電車で会社に行く。",
+        "en": "On weekdays I get up at seven every morning and take the eight o'clock train to work.",
+        "kana": "へいじつ は まいあさ しちじ に おきて はちじ の でんしゃ で かいしゃ に いく"
+      },
+      {
+        "tr": "朝の電車はすごく混んでいて、毎日ちょっと大変だよ。",
+        "en": "The morning train is really crowded, so every day is a bit of a struggle.",
+        "kana": "あさ の でんしゃ は すごく こんで いて まいにち ちょっと たいへん だ よ"
+      },
+      {
+        "tr": "仕事は六時ごろ終わって、帰りにスーパーで買い物をする。",
+        "en": "Work finishes at about six, and I do my shopping at the supermarket on the way home.",
+        "kana": "しごと は ろくじ ごろ おわって かえり に スーパー で かいもの を する"
+      },
+      {
+        "tr": "夜は自分でご飯を作るけど、まだあまり上手じゃない。",
+        "en": "In the evening I cook for myself, but I'm not very good at it yet.",
+        "kana": "よる は じぶん で ごはん を つくる けど まだ あまり じょうず じゃ ない"
+      },
+      {
+        "tr": "それに、大阪は食べ物が安くておいしいから、つい外で食べちゃう。",
+        "en": "Besides, the food in Osaka is cheap and tasty, so I end up eating out without meaning to.",
+        "kana": "それに おおさか は たべもの が やすくて おいしい から つい そと で たべちゃう"
+      },
+      {
+        "tr": "先週は、会社の人とお好み焼きを食べに行ったよ。",
+        "en": "Last week I went to eat okonomiyaki with people from work.",
+        "kana": "せんしゅう は かいしゃ の ひと と おこのみやき を たべ に いった よ"
+      },
+      {
+        "tr": "店の人が目の前で焼いてくれて、本当においしかった。",
+        "en": "The staff cooked it right in front of us, and it was really delicious.",
+        "kana": "みせ の ひと が め の まえ で やいて くれて ほんとう に おいしかった"
+      },
+      {
+        "tr": "たこ焼きも毎週食べているから、少し太ったかもしれない。",
+        "en": "I'm eating takoyaki every week too, so I may have put on a little weight.",
+        "kana": "たこやき も まいしゅう たべて いる から すこし ふとった かも しれない"
+      },
+      {
+        "tr": "週末は、自転車で大阪城の公園まで行くことが多いよ。",
+        "en": "At weekends I often cycle to the park at Osaka Castle.",
+        "kana": "しゅうまつ は じてんしゃ で おおさかじょう の こうえん まで いく こと が おおい よ"
+      },
+      {
+        "tr": "今は公園の木が赤や黄色になっていて、とてもきれいなんだ。",
+        "en": "Right now the trees in the park have turned red and yellow, and it looks beautiful.",
+        "kana": "いま は こうえん の き が あか や きいろ に なって いて とても きれい な ん だ"
+      },
+      {
+        "tr": "一人暮らしは自由だけど、ときどきさびしくなる。",
+        "en": "Living alone means freedom, but sometimes I get lonely.",
+        "kana": "ひとりぐらし は じゆう だ けど ときどき さびしく なる"
+      },
+      {
+        "tr": "だから、ゆきが遊びに来てくれたら、すごくうれしいな。",
+        "en": "So I'd be really happy if you came to visit.",
+        "kana": "だから ゆき が あそび に きて くれたら すごく うれしい な"
+      },
+      {
+        "tr": "冬休みに時間があったら、ぜひ大阪に来てね。",
+        "en": "If you have time in the winter holidays, do come to Osaka.",
+        "kana": "ふゆやすみ に じかん が あったら ぜひ おおさか に きて ね"
+      },
+      {
+        "tr": "うちに泊まっていいから、ホテルはいらないよ。",
+        "en": "You can stay at my place, so you won't need a hotel.",
+        "kana": "うち に とまって いい から ホテル は いらない よ"
+      },
+      {
+        "tr": "おいしい店をたくさん案内するから、楽しみにしていてね。",
+        "en": "I'll take you to lots of good places to eat, so look forward to it.",
+        "kana": "おいしい みせ を たくさん あんない する から たのしみ に して いて ね"
+      },
+      {
+        "tr": "じゃあ、体に気をつけて、また連絡するね。",
+        "en": "Well, take care of yourself, and I'll be in touch again.",
+        "kana": "じゃあ からだ に き を つけて また れんらく する ね"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "ひさしぶり",
+        "en": "it's been a while, long time no see",
+        "kana": "ひさしぶり"
+      },
+      {
+        "tr": "引っ越して",
+        "en": "moved house (引っ越す)",
+        "kana": "ひっこして"
+      },
+      {
+        "tr": "便利",
+        "en": "convenient, handy",
+        "kana": "べんり"
+      },
+      {
+        "tr": "近所",
+        "en": "neighbourhood",
+        "kana": "きんじょ"
+      },
+      {
+        "tr": "商店街",
+        "en": "shopping street (a street lined with small local shops)",
+        "kana": "しょうてんがい"
+      },
+      {
+        "tr": "話しかけてくれる",
+        "en": "start talking to me, chat to me (話しかける)",
+        "kana": "はなしかけて くれる"
+      },
+      {
+        "tr": "大阪弁",
+        "en": "Osaka dialect",
+        "kana": "おおさかべん"
+      },
+      {
+        "tr": "意味",
+        "en": "meaning",
+        "kana": "いみ"
+      },
+      {
+        "tr": "平日",
+        "en": "weekdays",
+        "kana": "へいじつ"
+      },
+      {
+        "tr": "混んでいて",
+        "en": "is crowded, and… (混む)",
+        "kana": "こんで いて"
+      },
+      {
+        "tr": "食べちゃう",
+        "en": "end up eating (casual for 食べてしまう)",
+        "kana": "たべちゃう"
+      },
+      {
+        "tr": "お好み焼き",
+        "en": "okonomiyaki, a savoury pancake cooked on a hot plate",
+        "kana": "おこのみやき"
+      },
+      {
+        "tr": "目の前で",
+        "en": "right in front of (us)",
+        "kana": "め の まえ で"
+      },
+      {
+        "tr": "太った",
+        "en": "put on weight (太る)",
+        "kana": "ふとった"
+      },
+      {
+        "tr": "一人暮らし",
+        "en": "living alone",
+        "kana": "ひとりぐらし"
+      },
+      {
+        "tr": "さびしく",
+        "en": "lonely (さびしい)",
+        "kana": "さびしく"
+      },
+      {
+        "tr": "泊まって",
+        "en": "stay overnight (泊まる)",
+        "kana": "とまって"
+      },
+      {
+        "tr": "案内する",
+        "en": "show (you) around, take (you) to",
+        "kana": "あんない する"
+      }
+    ],
+    "questions": [
+      {
+        "q": "How long has the writer been living in Osaka?",
+        "options": [
+          "One week",
+          "One month",
+          "Half a year",
+          "One year"
+        ],
+        "answer": 1,
+        "explain": "大阪に引っ越して、もう一か月になったよ — a month has already passed."
+      },
+      {
+        "q": "How far is the flat from the station?",
+        "options": [
+          "Five minutes by bike",
+          "Fifteen minutes by bus",
+          "Three minutes by train",
+          "Five minutes on foot"
+        ],
+        "answer": 3,
+        "explain": "駅から歩いて五分 — a five-minute walk from the station."
+      },
+      {
+        "q": "What did the writer eat with colleagues last week?",
+        "options": [
+          "Okonomiyaki",
+          "Sushi",
+          "Ramen",
+          "Curry"
+        ],
+        "answer": 0,
+        "explain": "先週は、会社の人とお好み焼きを食べに行ったよ."
+      },
+      {
+        "q": "Where can Yuki stay if she comes to Osaka?",
+        "options": [
+          "At a hotel near the station",
+          "At a colleague's house",
+          "At the writer's flat",
+          "At an inn by the castle"
+        ],
+        "answer": 2,
+        "explain": "うちに泊まっていいから、ホテルはいらないよ — she can stay at the writer's place."
+      }
+    ]
+  },
+  {
+    "id": "ja-job-interview",
+    "kind": "dialogue",
+    "level": "B1",
+    "title": "A Job Interview at a Café",
+    "titleNative": "カフェのアルバイトの面接",
+    "summary": "Lin, a university student from Vietnam, has an interview for a part-time job at a café with the manager, Mr Yamada.",
+    "register": "polite",
+    "lines": [
+      {
+        "speaker": "Interviewer",
+        "tr": "どうぞ、お入りください。",
+        "en": "Please come in.",
+        "kana": "どうぞ おはいり ください"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "失礼します。",
+        "en": "Excuse me. (said on entering)",
+        "kana": "しつれい します"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "リンと申します、本日はよろしくお願いいたします。",
+        "en": "My name is Lin. Thank you for seeing me today.",
+        "kana": "リン と もうします ほんじつ は よろしく おねがい いたします"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "店長の山田です、どうぞおかけください。",
+        "en": "I'm Yamada, the manager. Please take a seat.",
+        "kana": "てんちょう の やまだ です どうぞ おかけ ください"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "では、まず簡単に自己紹介をお願いします。",
+        "en": "Now, first of all, could you briefly introduce yourself?",
+        "kana": "で は まず かんたん に じこしょうかい を おねがい します"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "はい、私はベトナムのハノイ出身で、今は大学で経済を勉強しています。",
+        "en": "Certainly. I'm from Hanoi in Vietnam, and I'm now studying economics at university.",
+        "kana": "はい わたし は ベトナム の ハノイ しゅっしん で いま は だいがく で けいざい を べんきょう して います"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "日本に来て二年になります。",
+        "en": "I've been in Japan for two years.",
+        "kana": "にほん に きて にねん に なります"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "この店で働きたいと思った理由を教えてください。",
+        "en": "Please tell me why you would like to work at this café.",
+        "kana": "この みせ で はたらきたい と おもった りゆう を おしえて ください"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "こちらのお店にはよく来ていて、店員の皆さんの明るい接客がすてきだと思ったからです。",
+        "en": "I often come here, and I thought the cheerful way all the staff look after customers was lovely.",
+        "kana": "こちら の おみせ に は よく きて いて てんいん の みなさん の あかるい せっきゃく が すてき だ と おもった から です"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "今までにアルバイトの経験はありますか。",
+        "en": "Have you had a part-time job before?",
+        "kana": "いままで に アルバイト の けいけん は あります か"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "はい、コンビニで一年ほどレジの仕事をしておりました。",
+        "en": "Yes, I worked on the till at a convenience store for about a year.",
+        "kana": "はい コンビニ で いちねん ほど レジ の しごと を して おりました"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "ご自分の長所は何だと思いますか。",
+        "en": "What do you think your strengths are?",
+        "kana": "ごじぶん の ちょうしょ は なん だ と おもいます か"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "人と話すのが好きで、いつも笑顔でいられるところだと思います。",
+        "en": "I think it is that I like talking to people and can always keep smiling.",
+        "kana": "ひと と はなす の が すき で いつも えがお で いられる ところ だ と おもいます"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "それから、一度教えていただいたことは、必ずメモをして覚えるようにしています。",
+        "en": "Also, once I have been taught something, I always take notes and make sure I remember it.",
+        "kana": "それから いちど おしえて いただいた こと は かならず メモ を して おぼえる よう に して います"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "日本語がとてもお上手ですね。",
+        "en": "Your Japanese is very good.",
+        "kana": "にほんご が とても おじょうず です ね"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "いえ、まだまだですが、敬語をもっと勉強したいと思っております。",
+        "en": "No, I still have a long way to go, but I'd like to study polite language more.",
+        "kana": "いえ まだまだ です が けいご を もっと べんきょう したい と おもって おります"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "週に何日ぐらい入れますか。",
+        "en": "About how many days a week can you work?",
+        "kana": "しゅう に なんにち ぐらい はいれます か"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "火曜日と木曜日は午後五時から、土曜日と日曜日は一日中働けます。",
+        "en": "On Tuesdays and Thursdays I can work from 5 p.m., and on Saturdays and Sundays I can work all day.",
+        "kana": "かようび と もくようび は ごご ごじ から どようび と にちようび は いちにちじゅう はたらけます"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "いつから働けますか。",
+        "en": "When can you start?",
+        "kana": "いつ から はたらけます か"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "来週からでしたら、いつでも始められます。",
+        "en": "From next week onwards, I can start at any time.",
+        "kana": "らいしゅう から でしたら いつでも はじめられます"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "最後に、何か質問はありますか。",
+        "en": "Finally, do you have any questions?",
+        "kana": "さいご に なにか しつもん は あります か"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "はい、制服はお借りできるのでしょうか。",
+        "en": "Yes — would I be able to borrow a uniform?",
+        "kana": "はい せいふく は おかり できる の でしょう か"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "ええ、エプロンはこちらで用意しますので、白いシャツだけ持ってきてください。",
+        "en": "Yes, we'll provide the apron, so please just bring a white shirt.",
+        "kana": "ええ エプロン は こちら で ようい します ので しろい シャツ だけ もって きて ください"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "結果は、今週中にお電話でお知らせします。",
+        "en": "We'll let you know the result by phone by the end of this week.",
+        "kana": "けっか は こんしゅうちゅう に おでんわ で おしらせ します"
+      },
+      {
+        "speaker": "Lin",
+        "tr": "承知いたしました、本日はお時間をいただき、ありがとうございました。",
+        "en": "I understand. Thank you very much for your time today.",
+        "kana": "しょうち いたしました ほんじつ は おじかん を いただき ありがとう ございました"
+      },
+      {
+        "speaker": "Interviewer",
+        "tr": "こちらこそ、ありがとうございました。",
+        "en": "Thank you, too.",
+        "kana": "こちらこそ ありがとう ございました"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "失礼します",
+        "en": "excuse me (said when entering or leaving a room)",
+        "kana": "しつれい します"
+      },
+      {
+        "tr": "本日",
+        "en": "today (formal)",
+        "kana": "ほんじつ"
+      },
+      {
+        "tr": "店長",
+        "en": "shop / café manager",
+        "kana": "てんちょう"
+      },
+      {
+        "tr": "おかけください",
+        "en": "please take a seat (honorific)",
+        "kana": "おかけ ください"
+      },
+      {
+        "tr": "自己紹介",
+        "en": "self-introduction",
+        "kana": "じこしょうかい"
+      },
+      {
+        "tr": "出身",
+        "en": "coming from, a native of",
+        "kana": "しゅっしん"
+      },
+      {
+        "tr": "接客",
+        "en": "serving customers, customer service",
+        "kana": "せっきゃく"
+      },
+      {
+        "tr": "経験",
+        "en": "experience",
+        "kana": "けいけん"
+      },
+      {
+        "tr": "しておりました",
+        "en": "was doing (humble for していました)",
+        "kana": "して おりました"
+      },
+      {
+        "tr": "長所",
+        "en": "strength, strong point",
+        "kana": "ちょうしょ"
+      },
+      {
+        "tr": "笑顔",
+        "en": "smile, smiling face",
+        "kana": "えがお"
+      },
+      {
+        "tr": "教えていただいた",
+        "en": "(I) was kindly taught (humble, 教えてもらった)",
+        "kana": "おしえて いただいた"
+      },
+      {
+        "tr": "まだまだです",
+        "en": "I still have a long way to go (modest reply to praise)",
+        "kana": "まだまだ です"
+      },
+      {
+        "tr": "入れます",
+        "en": "can work a shift (入れる, from シフトに入る)",
+        "kana": "はいれます"
+      },
+      {
+        "tr": "一日中",
+        "en": "all day long",
+        "kana": "いちにちじゅう"
+      },
+      {
+        "tr": "制服",
+        "en": "uniform",
+        "kana": "せいふく"
+      },
+      {
+        "tr": "お知らせします",
+        "en": "we will let you know (humble)",
+        "kana": "おしらせ します"
+      },
+      {
+        "tr": "承知いたしました",
+        "en": "understood, certainly (humble)",
+        "kana": "しょうち いたしました"
+      }
+    ],
+    "questions": [
+      {
+        "q": "What is Lin studying at university?",
+        "options": [
+          "Japanese literature",
+          "Economics",
+          "Tourism",
+          "Cooking"
+        ],
+        "answer": 1,
+        "explain": "今は大学で経済を勉強しています — she is studying economics."
+      },
+      {
+        "q": "What work experience does she have?",
+        "options": [
+          "About a year on the till at a convenience store",
+          "Two years as a waitress in Hanoi",
+          "Six months in another café",
+          "None at all"
+        ],
+        "answer": 0,
+        "explain": "コンビニで一年ほどレジの仕事をしておりました."
+      },
+      {
+        "q": "On which days can she work all day?",
+        "options": [
+          "Tuesday and Thursday",
+          "Monday to Friday",
+          "Every day from next week",
+          "Saturday and Sunday"
+        ],
+        "answer": 3,
+        "explain": "土曜日と日曜日は一日中働けます; on Tuesdays and Thursdays only from 5 p.m."
+      },
+      {
+        "q": "What does Lin need to bring herself?",
+        "options": [
+          "An apron",
+          "A uniform",
+          "A white shirt",
+          "Black shoes"
+        ],
+        "answer": 2,
+        "explain": "エプロンはこちらで用意しますので、白いシャツだけ持ってきてください — only a white shirt."
       }
     ]
   }

@@ -44,11 +44,11 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Progress:** streak, a 14-day activity chart, mastery per topic, and a searchable word list.
 
 ### Read & Listen — longer texts and speeches
-- **16 graded texts per language** (A1 → B1): dialogues, short stories, everyday texts (text messages, signs, a café menu) and short speeches (introducing yourself, a toast, a short talk). Arabic includes everyday Egyptian dialogues. Every line has a translation, and Japanese and Arabic lines their kana / transliteration.
+- **20 graded texts per language** (A1 → B1): dialogues, short stories, everyday texts (text messages, signs, a café menu) and short speeches (introducing yourself, a toast, a short talk) — plus four **long reads** of 20–26 lines each: a folk tale (Nasreddin Hoca, The Mitten, Momotarō, Juha), a “Why I’m learning …” talk you can adapt and give yourself, a letter to a friend, and a job interview. Arabic includes everyday Egyptian dialogues. Every line has a translation, and Japanese and Arabic lines their kana / transliteration.
 - **Player:** Play all (line by line, current line highlighted), slow mode, translation shown / on tap / hidden, readings on or off, "Listen first" with the text hidden, and tap any line to hear it.
 - **Tap-a-word glossary:** key words are underlined in the text; tap one for its meaning, reading and audio, and add it to your reviews.
 - **Comprehension questions** with XP and achievements, synced between devices.
-- **Speech practice:** listen & repeat line by line (scored by speech recognition, or record yourself), shadowing with the text fading out over three rounds, and recording the whole speech (up to 1:30) to compare with the model. Dialogues have a **role-play** mode: pick a speaker and say your lines.
+- **Speech practice:** listen & repeat line by line (scored by speech recognition, or record yourself), shadowing with the text fading out over three rounds, and recording the whole speech (1:30 to 5:00, depending on its length) to compare with the model. Dialogues have a **role-play** mode: pick a speaker and say your lines.
 
 ### Game mechanics, achievements and goals
 - **XP and levels**:

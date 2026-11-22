@@ -47,6 +47,7 @@
 .read-empty .actions { max-width: 360px; margin: 1rem auto 0; }
 
 .badge.reg-mixed { background: color-mix(in srgb, var(--reg-slang) 16%, transparent); color: var(--reg-slang-ink); }
+.badge.read-long { background: color-mix(in srgb, var(--action) 14%, transparent); color: var(--action); }
 .badge.read-dialect { background: color-mix(in srgb, var(--st-known) 22%, transparent); color: var(--st-known-ink); }
 
 /* ---------- Reader header ---------- */

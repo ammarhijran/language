@@ -2,7 +2,7 @@
 // Each text: { id, kind, level, title, titleNative, summary, dialect?, register?,
 //   lines: [{ speaker?, tr, en }], glossary: [{ tr, en }],
 //   questions: [{ q, options[4], answer, explain }] }.
-// Written by one author and checked line by line by a native-level reviewer; edit freely.
+// Written and proofread with AI assistance; not yet reviewed by native speakers. Edit freely.
 // Loaded on demand (not at startup).
 export const texts = [
   {
@@ -2508,6 +2508,944 @@ export const texts = [
         ],
         "answer": 3,
         "explain": "'Şehre yaklaşık bir saat uzaklıktaki Efes Antik Kenti' – about an hour away."
+      }
+    ]
+  },
+  {
+    "id": "tr-nasreddin-hoca-tale",
+    "kind": "story",
+    "level": "B1",
+    "title": "Nasreddin Hoca and the Cauldron That Gave Birth",
+    "titleNative": "Nasreddin Hoca: Kazan Doğurdu",
+    "summary": "A classic Nasreddin Hoca folk tale: the Hoca borrows his neighbour's cauldron twice and teaches him a lesson. Like most Turkish tales, it is told in the -miş storytelling past.",
+    "register": "casual",
+    "lines": [
+      {
+        "tr": "Bir gün Nasreddin Hoca, komşusundan büyük bir kazan ödünç istemiş.",
+        "en": "One day Nasreddin Hoca asked his neighbour to lend him a big cauldron."
+      },
+      {
+        "tr": "Komşusu pek vermek istememiş ama Hoca'yı kıramamış ve kazanı vermiş.",
+        "en": "His neighbour didn't much want to lend it, but he couldn't say no to the Hoca and handed the cauldron over."
+      },
+      {
+        "tr": "Hoca kazanı birkaç gün kullanmış, sonra içine küçük bir tencere koyup geri götürmüş.",
+        "en": "The Hoca used the cauldron for a few days, then put a small pot inside it and took it back."
+      },
+      {
+        "tr": "Komşusu tencereyi görünce çok şaşırmış.",
+        "en": "When his neighbour saw the pot, he was very surprised."
+      },
+      {
+        "tr": "“Hocam, kazanın içindeki bu tencere ne?” diye sormuş.",
+        "en": "“Hoca, what is this pot inside the cauldron?” he asked."
+      },
+      {
+        "tr": "Hoca gülümseyerek “Gözün aydın komşu, kazanın doğurdu!” demiş.",
+        "en": "The Hoca smiled and said, “Congratulations, neighbour, your cauldron has given birth!”"
+      },
+      {
+        "tr": "Komşusu buna hiç inanmamış ama işine geldiği için sesini çıkarmamış.",
+        "en": "His neighbour didn't believe this at all, but since it suited him, he kept quiet."
+      },
+      {
+        "tr": "Hem kazanı hem de tencereyi sevinerek almış.",
+        "en": "He happily took both the cauldron and the pot."
+      },
+      {
+        "tr": "Aradan birkaç hafta geçmiş.",
+        "en": "A few weeks went by."
+      },
+      {
+        "tr": "Hoca yine komşusunun kapısını çalmış ve kazanı bir kez daha istemiş.",
+        "en": "The Hoca knocked on his neighbour's door again and asked for the cauldron once more."
+      },
+      {
+        "tr": "Komşusu bu sefer kazanı hemen, hem de güler yüzle vermiş.",
+        "en": "This time his neighbour gave him the cauldron straight away, and with a smile too."
+      },
+      {
+        "tr": "İçinden “Belki kazan yine doğurur” diye düşünmüş.",
+        "en": "“Maybe the cauldron will give birth again,” he thought to himself."
+      },
+      {
+        "tr": "Günler, haftalar geçmiş ama Hoca kazanı geri getirmemiş.",
+        "en": "Days and weeks passed, but the Hoca didn't bring the cauldron back."
+      },
+      {
+        "tr": "Sonunda komşusu dayanamamış ve Hoca'nın evine gitmiş.",
+        "en": "In the end his neighbour couldn't stand it any longer and went to the Hoca's house."
+      },
+      {
+        "tr": "“Hocam, kazanım nerede, onu ne zaman geri vereceksin?” diye sormuş.",
+        "en": "“Hoca, where is my cauldron, and when are you going to give it back?” he asked."
+      },
+      {
+        "tr": "Hoca üzgün bir yüzle “Başın sağ olsun komşu, kazanın öldü” demiş.",
+        "en": "With a sad face the Hoca said, “My condolences, neighbour, your cauldron has died.”"
+      },
+      {
+        "tr": "Komşusu çok kızmış.",
+        "en": "His neighbour got very angry."
+      },
+      {
+        "tr": "“Olur mu öyle şey Hocam, kazan hiç ölür mü?” diye bağırmış.",
+        "en": "“That's impossible, Hoca, how can a cauldron die?” he shouted."
+      },
+      {
+        "tr": "Hoca sakin sakin cevap vermiş.",
+        "en": "The Hoca answered calmly."
+      },
+      {
+        "tr": "“Kazanın doğurduğuna inandın da öldüğüne neden inanmıyorsun?”",
+        "en": "“You believed that the cauldron gave birth, so why don't you believe that it has died?”"
+      },
+      {
+        "tr": "Komşusu verecek cevap bulamamış ve evine eli boş dönmüş.",
+        "en": "His neighbour couldn't find an answer and went home empty-handed."
+      },
+      {
+        "tr": "O günden beri bu hikâye, yalnızca işine gelen şeye inananlara anlatılır.",
+        "en": "Ever since that day, this story has been told to people who believe only what suits them."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "ödünç istemiş",
+        "en": "asked to borrow (ödünç = on loan; -miş is the storytelling past of tales)"
+      },
+      {
+        "tr": "kazan",
+        "en": "cauldron, large cooking pot"
+      },
+      {
+        "tr": "kıramamış",
+        "en": "couldn't say no to him (kırmak = to break; also to hurt someone's feelings)"
+      },
+      {
+        "tr": "tencere",
+        "en": "pot, saucepan"
+      },
+      {
+        "tr": "görünce",
+        "en": "when he saw (-ince = when, as soon as)"
+      },
+      {
+        "tr": "şaşırmış",
+        "en": "was surprised (şaşırmak = to be surprised)"
+      },
+      {
+        "tr": "Gözün aydın",
+        "en": "congratulations on your happy news (lit. 'may your eye be bright')"
+      },
+      {
+        "tr": "doğurdu",
+        "en": "gave birth (doğurmak = to give birth)"
+      },
+      {
+        "tr": "işine geldiği için",
+        "en": "because it suited him (işine gelmek = to suit one's interests)"
+      },
+      {
+        "tr": "sesini çıkarmamış",
+        "en": "kept quiet, didn't say a word (lit. 'didn't let his voice out')"
+      },
+      {
+        "tr": "bir kez daha",
+        "en": "once more"
+      },
+      {
+        "tr": "güler yüzle",
+        "en": "with a smile, cheerfully (lit. 'with a smiling face')"
+      },
+      {
+        "tr": "dayanamamış",
+        "en": "couldn't stand it any longer (dayanmak = to bear, to hold out)"
+      },
+      {
+        "tr": "Başın sağ olsun",
+        "en": "my condolences (lit. 'may your head be healthy'; said after a death)"
+      },
+      {
+        "tr": "kızmış",
+        "en": "got angry (kızmak = to get angry)"
+      },
+      {
+        "tr": "Olur mu öyle şey",
+        "en": "That's impossible! How can that be?"
+      },
+      {
+        "tr": "sakin sakin",
+        "en": "calmly"
+      },
+      {
+        "tr": "eli boş",
+        "en": "empty-handed"
+      }
+    ],
+    "questions": [
+      {
+        "q": "What was inside the cauldron when the Hoca first brought it back?",
+        "options": [
+          "Some food he had cooked",
+          "A small pot",
+          "Nothing at all",
+          "Some money"
+        ],
+        "answer": 1,
+        "explain": "'İçine küçük bir tencere koyup geri götürmüş' – he put a small pot inside it and took it back."
+      },
+      {
+        "q": "Why did the neighbour say nothing when he heard that his cauldron had 'given birth'?",
+        "options": [
+          "He was afraid of the Hoca",
+          "He really believed it",
+          "He didn't hear what the Hoca said",
+          "It suited him, because he got an extra pot"
+        ],
+        "answer": 3,
+        "explain": "'Buna hiç inanmamış ama işine geldiği için sesini çıkarmamış' – he didn't believe it, but it suited him, so he kept quiet."
+      },
+      {
+        "q": "What did the Hoca say when the neighbour finally came to ask for his cauldron?",
+        "options": [
+          "That the cauldron had died",
+          "That the cauldron had been stolen",
+          "That he had sold the cauldron",
+          "That the cauldron had given birth again"
+        ],
+        "answer": 0,
+        "explain": "'Başın sağ olsun komşu, kazanın öldü' – my condolences, neighbour, your cauldron has died."
+      },
+      {
+        "q": "What is the point of the Hoca's last answer?",
+        "options": [
+          "Cauldrons should never be lent to neighbours",
+          "Neighbours should always help each other",
+          "If you accept a silly story when it benefits you, you must accept it when it doesn't",
+          "It is rude to ask for your things back"
+        ],
+        "answer": 2,
+        "explain": "'Kazanın doğurduğuna inandın da öldüğüne neden inanmıyorsun?' – you believed it gave birth, so why not that it died?"
+      }
+    ]
+  },
+  {
+    "id": "tr-why-i-learn-turkish",
+    "kind": "speech",
+    "level": "B1",
+    "title": "Why I'm Learning Turkish",
+    "titleNative": "Neden Türkçe Öğreniyorum?",
+    "summary": "Alex, a learner from Canada, gives a short talk at a language meetup: how it started, what was hard, what helped, a funny mistake and what comes next.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "Herkese merhaba, bugün sizinle burada olmaktan çok mutluyum.",
+        "en": "Hello everyone, I'm very happy to be here with you today."
+      },
+      {
+        "tr": "Benim adım Alex, Kanadalıyım ve yaklaşık iki yıldır Türkçe öğreniyorum.",
+        "en": "My name is Alex, I'm from Canada, and I've been learning Turkish for about two years."
+      },
+      {
+        "tr": "Size kısaca Türkçe öğrenme hikâyemi anlatmak istiyorum.",
+        "en": "I'd like to tell you briefly the story of how I've been learning Turkish."
+      },
+      {
+        "tr": "Her şey İstanbul'da yaptığım bir haftalık tatille başladı.",
+        "en": "It all started with a one-week holiday I took in Istanbul."
+      },
+      {
+        "tr": "İnsanlar o kadar sıcak ve yardımseverdi ki onlarla kendi dillerinde konuşmak istedim.",
+        "en": "People were so warm and helpful that I wanted to talk to them in their own language."
+      },
+      {
+        "tr": "Eve döner dönmez bir Türkçe kursuna yazıldım.",
+        "en": "As soon as I got home, I signed up for a Turkish course."
+      },
+      {
+        "tr": "İtiraf etmeliyim, ilk aylar hiç kolay değildi.",
+        "en": "I have to admit, the first months weren't easy at all."
+      },
+      {
+        "tr": "Beni en çok ekler zorladı, çünkü Türkçede tek bir kelime bazen koca bir cümle demek.",
+        "en": "The suffixes were what I struggled with most, because in Turkish a single word sometimes means a whole sentence."
+      },
+      {
+        "tr": "Ünlü uyumunu anlamam da epey zaman aldı.",
+        "en": "It also took me quite a while to understand vowel harmony."
+      },
+      {
+        "tr": "Bir de fiil cümlenin sonunda olduğu için karşımdakini sonuna kadar dinlemeyi öğrendim.",
+        "en": "And because the verb comes at the end of the sentence, I learned to listen to the other person right to the end."
+      },
+      {
+        "tr": "Bana en çok yardımcı olan şey, her gün az da olsa pratik yapmaktı.",
+        "en": "The thing that helped me most was practising every day, even if only a little."
+      },
+      {
+        "tr": "Türk dizileri izledim, şarkı sözleri ezberledim ve her fırsatta konuşmaya çalıştım.",
+        "en": "I watched Turkish series, memorised song lyrics and tried to speak at every opportunity."
+      },
+      {
+        "tr": "Tabii bu sırada çok hata yaptım.",
+        "en": "Of course, I made a lot of mistakes along the way."
+      },
+      {
+        "tr": "Size en komik hatamı anlatayım.",
+        "en": "Let me tell you about my funniest mistake."
+      },
+      {
+        "tr": "Bir akşam lokantada garsona “Çok açım” demek isterken yanlışlıkla “Çok açığım” dedim.",
+        "en": "One evening in a restaurant, I meant to say “I'm very hungry” to the waiter, but by mistake I said “I'm very open”."
+      },
+      {
+        "tr": "Garson gülümsedi ve “Biz de açığız efendim, buyurun” dedi.",
+        "en": "The waiter smiled and said, “We're open too, do come in.”"
+      },
+      {
+        "tr": "O gün “aç” ile “açık” arasındaki farkı bir daha unutmamak üzere öğrendim.",
+        "en": "That day I learned the difference between “aç” (hungry) and “açık” (open), and I've never forgotten it since."
+      },
+      {
+        "tr": "Artık hata yapmaktan korkmuyorum, çünkü en çok şeyi hatalarımdan öğrendim.",
+        "en": "I'm no longer afraid of making mistakes, because I have learned the most from my mistakes."
+      },
+      {
+        "tr": "Bundan sonraki hedefim, bir Türk romanını sözlüğe bakmadan baştan sona okuyabilmek.",
+        "en": "My next goal is to be able to read a Turkish novel from beginning to end without looking at a dictionary."
+      },
+      {
+        "tr": "Bir gün Karadeniz'den Akdeniz'e kadar bütün Türkiye'yi gezmeyi de çok istiyorum.",
+        "en": "One day I'd also love to travel all over Turkey, from the Black Sea to the Mediterranean."
+      },
+      {
+        "tr": "Yolda tanıştığım insanlarla Türkçe sohbet edebilirsem ne mutlu bana!",
+        "en": "If I can chat in Turkish with the people I meet on the way, how happy I'll be!"
+      },
+      {
+        "tr": "Bugüne kadar bana sabırla yardım eden öğretmenlerime ve arkadaşlarıma çok şey borçluyum.",
+        "en": "I owe a great deal to my teachers and friends, who have patiently helped me up to now."
+      },
+      {
+        "tr": "Yeni başlayanlara tek bir tavsiyem var: Yanlış yapmaktan çekinmeyin, bol bol konuşun.",
+        "en": "I have just one piece of advice for beginners: don't be shy about getting things wrong, and speak as much as you can."
+      },
+      {
+        "tr": "Beni dinlediğiniz için hepinize teşekkür ederim.",
+        "en": "Thank you all for listening to me."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "yaklaşık",
+        "en": "about, approximately"
+      },
+      {
+        "tr": "kısaca",
+        "en": "briefly"
+      },
+      {
+        "tr": "yardımseverdi",
+        "en": "were helpful (yardımsever = helpful, kind)"
+      },
+      {
+        "tr": "döner dönmez",
+        "en": "as soon as (I) got back (dönmek = to return)"
+      },
+      {
+        "tr": "yazıldım",
+        "en": "I signed up, I enrolled (yazılmak)"
+      },
+      {
+        "tr": "İtiraf etmeliyim",
+        "en": "I have to admit (itiraf etmek = to admit, confess)"
+      },
+      {
+        "tr": "ekler",
+        "en": "suffixes (ek = suffix)"
+      },
+      {
+        "tr": "zorladı",
+        "en": "was hard for (me), gave (me) trouble (zorlamak = to force, to strain)"
+      },
+      {
+        "tr": "Ünlü uyumunu",
+        "en": "vowel harmony (as an object; ünlü uyumu)"
+      },
+      {
+        "tr": "epey zaman aldı",
+        "en": "it took quite a while"
+      },
+      {
+        "tr": "karşımdakini",
+        "en": "the person I'm talking to (lit. 'the one opposite me', as an object)"
+      },
+      {
+        "tr": "az da olsa",
+        "en": "even if only a little"
+      },
+      {
+        "tr": "ezberledim",
+        "en": "I memorised, learned by heart (ezberlemek)"
+      },
+      {
+        "tr": "her fırsatta",
+        "en": "at every opportunity (fırsat = opportunity)"
+      },
+      {
+        "tr": "yanlışlıkla",
+        "en": "by mistake"
+      },
+      {
+        "tr": "arasındaki farkı",
+        "en": "the difference between (fark = difference)"
+      },
+      {
+        "tr": "sözlüğe bakmadan",
+        "en": "without looking at a dictionary (sözlük = dictionary)"
+      },
+      {
+        "tr": "çekinmeyin",
+        "en": "don't be shy, don't hold back (çekinmek = to hesitate, to be shy)"
+      }
+    ],
+    "questions": [
+      {
+        "q": "What made Alex want to learn Turkish?",
+        "options": [
+          "A job offer in Ankara",
+          "A Turkish novel",
+          "The warm, helpful people Alex met on a holiday in Istanbul",
+          "A Turkish TV series"
+        ],
+        "answer": 2,
+        "explain": "'İnsanlar o kadar sıcak ve yardımseverdi ki onlarla kendi dillerinde konuşmak istedim.'"
+      },
+      {
+        "q": "What did Alex find hardest about Turkish?",
+        "options": [
+          "The suffixes",
+          "The alphabet",
+          "The numbers",
+          "The pronunciation of 'r'"
+        ],
+        "answer": 0,
+        "explain": "'Beni en çok ekler zorladı' – the suffixes were the hardest thing for me."
+      },
+      {
+        "q": "What did Alex say to the waiter by mistake?",
+        "options": [
+          "'I'm very full'",
+          "'I'm very tired'",
+          "'I'm very late'",
+          "'I'm very open'"
+        ],
+        "answer": 3,
+        "explain": "Instead of 'Çok açım' (I'm very hungry), Alex said 'Çok açığım' (I'm very open)."
+      },
+      {
+        "q": "What is Alex's next goal?",
+        "options": [
+          "To move to Istanbul for good",
+          "To read a Turkish novel without a dictionary",
+          "To become a Turkish teacher",
+          "To pass a university exam"
+        ],
+        "answer": 1,
+        "explain": "'Bundan sonraki hedefim, bir Türk romanını sözlüğe bakmadan baştan sona okuyabilmek.'"
+      }
+    ]
+  },
+  {
+    "id": "tr-letter-from-istanbul",
+    "kind": "everyday",
+    "level": "A2",
+    "title": "A Letter from Istanbul",
+    "titleNative": "İstanbul'dan Mektup",
+    "summary": "Merve has moved to Istanbul and writes a long message to her friend Ayşe about her flat, her neighbourhood, her days and her weekends, and invites her to visit.",
+    "register": "casual",
+    "lines": [
+      {
+        "tr": "Sevgili Ayşe, nasılsın?",
+        "en": "Dear Ayşe, how are you?"
+      },
+      {
+        "tr": "Ben çok iyiyim, İstanbul'a iki ay önce taşındım ve yavaş yavaş alışıyorum.",
+        "en": "I'm very well; I moved to Istanbul two months ago and I'm slowly getting used to it."
+      },
+      {
+        "tr": "Kadıköy'de küçük ama aydınlık bir dairede oturuyorum.",
+        "en": "I live in a small but bright flat in Kadıköy."
+      },
+      {
+        "tr": "Dairem üçüncü katta, bir odası, bir salonu ve küçük bir balkonu var.",
+        "en": "My flat is on the third floor; it has one bedroom, a living room and a small balcony."
+      },
+      {
+        "tr": "Balkondan biraz deniz görünüyor, sabahları orada kahvaltı yapıyorum.",
+        "en": "You can see a bit of the sea from the balcony, and I have breakfast there in the mornings."
+      },
+      {
+        "tr": "Mahallemi çok seviyorum çünkü her şey çok yakın.",
+        "en": "I love my neighbourhood because everything is very close."
+      },
+      {
+        "tr": "Sokağın köşesinde bir fırın var, her sabah oradan taze simit alıyorum.",
+        "en": "There's a bakery on the corner of the street, and I buy fresh simit there every morning."
+      },
+      {
+        "tr": "Komşularım da çok iyi insanlar, geçen hafta bana bir tabak börek getirdiler.",
+        "en": "My neighbours are very nice people too; last week they brought me a plate of börek."
+      },
+      {
+        "tr": "Hafta içi her gün saat yedide kalkıyorum.",
+        "en": "On weekdays I get up at seven every day."
+      },
+      {
+        "tr": "İşe vapurla gidiyorum, yolculuk yirmi dakika sürüyor.",
+        "en": "I go to work by ferry; the trip takes twenty minutes."
+      },
+      {
+        "tr": "Vapurda çay içiyorum ve martılara simit atıyorum.",
+        "en": "On the ferry I drink tea and throw bits of simit to the seagulls."
+      },
+      {
+        "tr": "Akşamları genellikle evde yemek yapıyorum ama bazen dışarıda yiyorum.",
+        "en": "In the evenings I usually cook at home, but sometimes I eat out."
+      },
+      {
+        "tr": "Buradaki yemekler harika, özellikle balık ekmek ve mercimek çorbası çok lezzetli.",
+        "en": "The food here is wonderful; the fish sandwiches and the lentil soup are especially tasty."
+      },
+      {
+        "tr": "Bir de her gün en az beş bardak çay içiyorum, tam bir İstanbullu oldum!",
+        "en": "And I drink at least five glasses of tea every day, so I've become a real Istanbulite!"
+      },
+      {
+        "tr": "Cumartesi günleri pazara gidiyorum ve taze meyve sebze alıyorum.",
+        "en": "On Saturdays I go to the market and buy fresh fruit and vegetables."
+      },
+      {
+        "tr": "Geçen pazar arkadaşlarımla Adalar'a gittik ve bisiklete bindik.",
+        "en": "Last Sunday my friends and I went to the Princes' Islands and rode bikes."
+      },
+      {
+        "tr": "Hava çok güzeldi, deniz kenarında yürüdük ve akşam balık yedik.",
+        "en": "The weather was lovely; we walked by the sea and had fish in the evening."
+      },
+      {
+        "tr": "Şehir çok büyük ve kalabalık, bu yüzden bazen yoruluyorum.",
+        "en": "The city is very big and crowded, so sometimes I get tired."
+      },
+      {
+        "tr": "Ama burada hiç sıkılmıyorum, her gün yeni bir yer keşfediyorum.",
+        "en": "But I never get bored here; every day I discover a new place."
+      },
+      {
+        "tr": "Seni ve oradaki arkadaşlarımızı çok özledim.",
+        "en": "I miss you and our friends there very much."
+      },
+      {
+        "tr": "Beni ne zaman ziyaret edeceksin?",
+        "en": "When are you going to visit me?"
+      },
+      {
+        "tr": "Evim küçük ama sana her zaman yer var.",
+        "en": "My place is small, but there's always room for you."
+      },
+      {
+        "tr": "Gelirsen sana Boğaz'ı gezdiririm, birlikte güzel bir kahvaltı da yaparız.",
+        "en": "If you come, I'll show you around the Bosphorus, and we'll have a lovely breakfast together too."
+      },
+      {
+        "tr": "Cevabını bekliyorum, kendine iyi bak!",
+        "en": "I'm waiting for your reply. Take care of yourself!"
+      },
+      {
+        "tr": "Sevgiler, Merve",
+        "en": "Love, Merve"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "taşındım",
+        "en": "I moved (house) (taşınmak = to move)"
+      },
+      {
+        "tr": "yavaş yavaş",
+        "en": "slowly, little by little"
+      },
+      {
+        "tr": "alışıyorum",
+        "en": "I'm getting used to it (alışmak = to get used to)"
+      },
+      {
+        "tr": "aydınlık",
+        "en": "bright, full of light"
+      },
+      {
+        "tr": "üçüncü katta",
+        "en": "on the third floor (kat = floor)"
+      },
+      {
+        "tr": "görünüyor",
+        "en": "can be seen, is visible (görünmek)"
+      },
+      {
+        "tr": "Mahallemi",
+        "en": "my neighbourhood (as an object; mahalle = neighbourhood)"
+      },
+      {
+        "tr": "köşesinde",
+        "en": "on the corner of (köşe = corner)"
+      },
+      {
+        "tr": "fırın",
+        "en": "bakery (also: oven)"
+      },
+      {
+        "tr": "Hafta içi",
+        "en": "on weekdays, during the week"
+      },
+      {
+        "tr": "vapurla",
+        "en": "by ferry (vapur = ferry)"
+      },
+      {
+        "tr": "martılara",
+        "en": "to the seagulls (martı = seagull)"
+      },
+      {
+        "tr": "lezzetli",
+        "en": "tasty, delicious"
+      },
+      {
+        "tr": "pazara",
+        "en": "to the market (pazar = market; also Sunday)"
+      },
+      {
+        "tr": "bisiklete bindik",
+        "en": "we rode bikes (bisiklete binmek = to ride a bike)"
+      },
+      {
+        "tr": "sıkılmıyorum",
+        "en": "I don't get bored (sıkılmak = to get bored)"
+      },
+      {
+        "tr": "özledim",
+        "en": "I miss, I have missed (özlemek = to miss)"
+      },
+      {
+        "tr": "kendine iyi bak",
+        "en": "take care of yourself"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Where does Merve live?",
+        "options": [
+          "In a big house with a garden",
+          "In a hotel near her office",
+          "With her neighbours",
+          "In a small, bright flat in Kadıköy"
+        ],
+        "answer": 3,
+        "explain": "'Kadıköy'de küçük ama aydınlık bir dairede oturuyorum.'"
+      },
+      {
+        "q": "How does she get to work?",
+        "options": [
+          "By ferry",
+          "By bus",
+          "By bike",
+          "On foot"
+        ],
+        "answer": 0,
+        "explain": "'İşe vapurla gidiyorum, yolculuk yirmi dakika sürüyor.'"
+      },
+      {
+        "q": "What did she do last Sunday?",
+        "options": [
+          "She went to the market",
+          "She went to the Islands with friends and rode bikes",
+          "She stayed at home and cooked",
+          "She visited Ayşe"
+        ],
+        "answer": 1,
+        "explain": "'Geçen pazar arkadaşlarımla Adalar'a gittik ve bisiklete bindik.' The market is on Saturdays."
+      },
+      {
+        "q": "What does Merve promise to do if Ayşe comes?",
+        "options": [
+          "Find her a job",
+          "Take her to the Black Sea",
+          "Show her around the Bosphorus and have breakfast together",
+          "Give her the flat"
+        ],
+        "answer": 2,
+        "explain": "'Gelirsen sana Boğaz'ı gezdiririm, birlikte güzel bir kahvaltı da yaparız.'"
+      }
+    ]
+  },
+  {
+    "id": "tr-job-interview",
+    "kind": "dialogue",
+    "level": "B1",
+    "title": "A Job Interview",
+    "titleNative": "İş Görüşmesi",
+    "summary": "Deniz has an interview with Elif Hanım at a tourism company: background, experience, strengths, languages, working hours and a possible start date.",
+    "register": "polite",
+    "lines": [
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Hoş geldiniz, buyurun oturun.",
+        "en": "Welcome, please have a seat."
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Hoş bulduk, beni görüşmeye çağırdığınız için teşekkür ederim.",
+        "en": "Glad to be here, and thank you for inviting me to the interview."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Rica ederim, önce bize biraz kendinizden bahseder misiniz?",
+        "en": "You're welcome. First, could you tell us a little about yourself?"
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Tabii, yirmi dokuz yaşındayım, İzmir'de doğup büyüdüm ve üniversitede işletme okudum.",
+        "en": "Of course. I'm twenty-nine, I was born and raised in Izmir, and I studied business administration at university."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Mezun olduktan sonra nerelerde çalıştınız?",
+        "en": "Where have you worked since you graduated?"
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Önce dört yıl bir otelde çalıştım, son iki yıldır da bir seyahat acentesinde çalışıyorum.",
+        "en": "First I worked in a hotel for four years, and for the last two years I've been working at a travel agency."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Orada tam olarak ne iş yapıyorsunuz?",
+        "en": "What exactly do you do there?"
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Müşterilerle ilgileniyorum, tur programları hazırlıyorum ve şikâyetleri çözmeye çalışıyorum.",
+        "en": "I look after customers, put together tour programmes and try to resolve complaints."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Şu anki işinizden neden ayrılmak istiyorsunuz?",
+        "en": "Why do you want to leave your current job?"
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Şirketimden memnunum ama artık daha büyük bir ekipte kendimi geliştirmek istiyorum.",
+        "en": "I'm happy with my company, but now I'd like to develop myself in a bigger team."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Sizce en güçlü yönleriniz neler?",
+        "en": "What would you say your greatest strengths are?"
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Sabırlıyım, insanlarla kolay iletişim kurarım ve zor durumlarda sakin kalmayı bilirim.",
+        "en": "I'm patient, I communicate easily with people, and I know how to stay calm in difficult situations."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Peki, geliştirmeniz gereken bir yönünüz var mı?",
+        "en": "And is there something you need to work on?"
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Bazen ayrıntılara fazla takılıyorum ama zamanımı daha iyi planlamayı öğreniyorum.",
+        "en": "Sometimes I get too caught up in details, but I'm learning to plan my time better."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Bu pozisyonda yabancı dil çok önemli, hangi dilleri biliyorsunuz?",
+        "en": "Foreign languages are very important in this position. Which languages do you speak?"
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "İngilizcem çok iyi, Almancayı da günlük konuşmaları anlayacak kadar biliyorum.",
+        "en": "My English is very good, and I know enough German to follow everyday conversations."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Çok güzel, sizin bize sormak istediğiniz bir şey var mı?",
+        "en": "Very good. Is there anything you would like to ask us?"
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Evet, çalışma saatlerini öğrenebilir miyim?",
+        "en": "Yes, could I ask what the working hours are?"
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Hafta içi dokuzdan altıya kadar çalışıyoruz, ayda bir cumartesi de ofise geliyoruz.",
+        "en": "We work from nine to six on weekdays, and one Saturday a month we come into the office too."
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Anladım, benim için hiçbir sakıncası yok.",
+        "en": "I see, that's no problem at all for me."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Sizinle çalışmaya karar verirsek ne zaman başlayabilirsiniz?",
+        "en": "If we decide to work with you, when could you start?"
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Şu anki iş yerime bir ay önceden haber vermem gerekiyor, yani en erken bir ay sonra başlayabilirim.",
+        "en": "I have to give my current workplace a month's notice, so I could start in a month at the earliest."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Peki, değerlendirmemizi tamamlayıp en geç cuma günü size dönüş yapacağız.",
+        "en": "All right, we'll finish our assessment and get back to you by Friday at the latest."
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "Çok teşekkür ederim, sizden haber bekleyeceğim.",
+        "en": "Thank you very much, I'll be waiting to hear from you."
+      },
+      {
+        "speaker": "Elif Hanım",
+        "tr": "Geldiğiniz için biz teşekkür ederiz, iyi günler.",
+        "en": "Thank you for coming. Have a good day."
+      },
+      {
+        "speaker": "Deniz",
+        "tr": "İyi günler, iyi çalışmalar dilerim.",
+        "en": "Goodbye, and I wish you a good day at work."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "görüşmeye",
+        "en": "to the interview (görüşme = interview, meeting)"
+      },
+      {
+        "tr": "kendinizden bahseder misiniz",
+        "en": "could you tell (us) about yourself? (-den bahsetmek = to talk about)"
+      },
+      {
+        "tr": "doğup büyüdüm",
+        "en": "I was born and raised"
+      },
+      {
+        "tr": "işletme",
+        "en": "business administration"
+      },
+      {
+        "tr": "Mezun olduktan sonra",
+        "en": "after graduating (mezun olmak = to graduate)"
+      },
+      {
+        "tr": "seyahat acentesinde",
+        "en": "at a travel agency (seyahat acentesi)"
+      },
+      {
+        "tr": "ilgileniyorum",
+        "en": "I look after, I deal with (-le ilgilenmek)"
+      },
+      {
+        "tr": "şikâyetleri",
+        "en": "the complaints (as an object; şikâyet = complaint)"
+      },
+      {
+        "tr": "ayrılmak",
+        "en": "to leave (a job or a place)"
+      },
+      {
+        "tr": "memnunum",
+        "en": "I'm happy, I'm satisfied (-den memnun = happy with)"
+      },
+      {
+        "tr": "kendimi geliştirmek",
+        "en": "to develop myself, to improve"
+      },
+      {
+        "tr": "güçlü yönleriniz",
+        "en": "your strengths (lit. 'your strong sides')"
+      },
+      {
+        "tr": "iletişim kurarım",
+        "en": "I communicate (iletişim kurmak = to communicate, make contact)"
+      },
+      {
+        "tr": "ayrıntılara",
+        "en": "on details (ayrıntı = detail)"
+      },
+      {
+        "tr": "çalışma saatlerini",
+        "en": "the working hours (as an object)"
+      },
+      {
+        "tr": "sakıncası yok",
+        "en": "there's no problem with it, no objection (sakınca = drawback)"
+      },
+      {
+        "tr": "önceden haber vermem",
+        "en": "my giving notice in advance (haber vermek = to let someone know)"
+      },
+      {
+        "tr": "dönüş yapacağız",
+        "en": "we'll get back to you (dönüş yapmak)"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Where is Deniz working at the moment?",
+        "options": [
+          "At a hotel",
+          "At a travel agency",
+          "At a university",
+          "At a bank"
+        ],
+        "answer": 1,
+        "explain": "'Son iki yıldır da bir seyahat acentesinde çalışıyorum.' The hotel job came before that."
+      },
+      {
+        "q": "Why does Deniz want to change jobs?",
+        "options": [
+          "The salary is too low",
+          "The office is too far from home",
+          "Deniz wants to develop in a bigger team",
+          "Deniz doesn't like the manager"
+        ],
+        "answer": 2,
+        "explain": "'Şirketimden memnunum ama artık daha büyük bir ekipte kendimi geliştirmek istiyorum.'"
+      },
+      {
+        "q": "Which languages does Deniz know besides Turkish?",
+        "options": [
+          "Very good English and everyday German",
+          "Very good German and a little English",
+          "English and French",
+          "Only English"
+        ],
+        "answer": 0,
+        "explain": "'İngilizcem çok iyi, Almancayı da günlük konuşmaları anlayacak kadar biliyorum.'"
+      },
+      {
+        "q": "When could Deniz start the new job?",
+        "options": [
+          "Immediately",
+          "Next Monday",
+          "In three months",
+          "In a month at the earliest"
+        ],
+        "answer": 3,
+        "explain": "Deniz has to give a month's notice: 'en erken bir ay sonra başlayabilirim'."
       }
     ]
   }

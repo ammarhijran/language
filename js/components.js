@@ -216,8 +216,21 @@ export function speakPractice(ctx, word, { onResult, onOverride, maxMs } = {}) {
   let session = null;
   let disposed = false;
 
+  // Scoring is done by the device's speech service, which usually needs a
+  // connection: say so before the learner speaks, not after a failed attempt.
+  const READY = 'Tap the mic, then say it out loud.';
+  const OFFLINE = 'You’re offline — speaking scores usually need internet. You can still listen and record yourself.';
+  const offline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
   const status = h('p', { class: 'speak-status', 'aria-live': 'polite' },
-    canRecognize ? 'Tap the mic, then say it out loud.' : speech.RECOGNITION_ERRORS.unsupported);
+    !canRecognize ? speech.RECOGNITION_ERRORS.unsupported : offline() ? OFFLINE : READY);
+  const onNet = () => {
+    if (session || disposed || !canRecognize) return;
+    if (offline() && status.textContent === READY) status.textContent = OFFLINE;
+    else if (!offline() && status.textContent === OFFLINE) status.textContent = READY;
+  };
+  const net = typeof window !== 'undefined' && typeof window.addEventListener === 'function' ? window : null;
+  net?.addEventListener('online', onNet);
+  net?.addEventListener('offline', onNet);
   const result = h('div', { class: 'speak-result', hidden: true });
 
   const mic = h('button', {
@@ -294,7 +307,12 @@ export function speakPractice(ctx, word, { onResult, onOverride, maxMs } = {}) {
     );
   }
 
-  ctx.onCleanup(() => { disposed = true; session?.stop(); });
+  ctx.onCleanup(() => {
+    disposed = true;
+    session?.stop();
+    net?.removeEventListener('online', onNet);
+    net?.removeEventListener('offline', onNet);
+  });
 
   return h('div', { class: 'speak' },
     h('div', { class: 'speak-main' },

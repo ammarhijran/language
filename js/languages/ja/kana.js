@@ -240,8 +240,14 @@ function readRun(run, after) {
   for (const [key, readings] of AMBIGUOUS) {
     if (key.length < 2) continue;
     for (const rd of readings) {
-      if (run.text.startsWith(key) && run.kana.startsWith(rd)) return rd + run.text.slice(key.length);
-      if (run.text.endsWith(key) && run.kana.endsWith(rd)) return run.text.slice(0, -key.length) + rd;
+      const head = run.text.startsWith(key) && run.kana.startsWith(rd);
+      if (!head && !(run.text.endsWith(key) && run.kana.endsWith(rd))) continue;
+      // Kanji that follow the token usually form one word with it, and cut off
+      // they get their stand-alone reading (一日中 → いちにち + 中 "なか",
+      // 一人暮らし → ひとり + "くらし"); so does a single kanji left in front.
+      // Then the whole run is said in kana. 毎朝七時 keeps 毎朝.
+      if (head || run.text.length - key.length === 1) return run.kana;
+      return run.text.slice(0, -key.length) + rd;
     }
   }
   return run.text;
