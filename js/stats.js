@@ -12,6 +12,18 @@ export function dueWords(ctx, now = Date.now()) {
     .sort((a, b) => a.card.due - b.card.due);
 }
 
+/**
+ * Words that keep slipping: forgotten at least once in review (a lapse) or
+ * with a lowered ease, most-forgotten first. Words ticked "already learned"
+ * and words not yet reviewed don't count.
+ */
+export function trickyWords(ctx) {
+  const cards = ctx.store.getCards(ctx.lang.code);
+  return ctx.lang.words
+    .filter((w) => { const c = cards[w.id]; return c && !c.known && (c.lapses >= 1 || c.ease <= 2.2); })
+    .sort((a, b) => (cards[b.id].lapses - cards[a.id].lapses) || (cards[a.id].ease - cards[b.id].ease));
+}
+
 export function learnedWords(ctx) {
   const cards = ctx.store.getCards(ctx.lang.code);
   return ctx.lang.words.filter((w) => cards[w.id]);

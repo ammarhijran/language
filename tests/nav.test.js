@@ -282,3 +282,19 @@ test('search: grammar lessons, texts and topics by title', () => {
   assert.deepEqual(searchTopics(tr, 'café').map((c) => c.id), ['p-cafe']);
   assert.ok(searchTopics(languages.uk, 'їжа').length + searchTopics(languages.uk, 'food').length >= 1);
 });
+
+test('tricky words: forgotten in review or with lowered ease, most-forgotten first', async () => {
+  const { trickyWords } = await import('../js/stats.js');
+  const lang = languages.tr;
+  const [a, b, c, d, e] = lang.words;
+  const card = (over) => ({ ease: 2.5, interval: 3, reps: 2, lapses: 0, due: 0, added: 0, last: 0, ...over });
+  const cards = {
+    [a.id]: card({ lapses: 1 }),
+    [b.id]: card({ lapses: 3 }),
+    [c.id]: card({}), // doing fine
+    [d.id]: card({ ease: 2.05 }), // rated hard several times
+    [e.id]: card({ lapses: 2, known: true }), // ticked as already learned
+  };
+  const ctx = { lang, store: { getCards: () => cards } };
+  assert.deepEqual(trickyWords(ctx).map((w) => w.id), [b.id, a.id, d.id]);
+});

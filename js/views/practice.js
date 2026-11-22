@@ -1,6 +1,6 @@
 import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
-import { learnedWords, dueWords } from '../stats.js';
+import { learnedWords, dueWords, trickyWords } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
 import { GROUPS } from '../components.js';
 import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
@@ -21,6 +21,7 @@ function wordsFor(ctx, scope) {
   if (!scope || scope === 'learned') return learnedWords(ctx);
   if (scope === 'all') return ctx.lang.words;
   if (scope === 'saved') return ctx.store.getFavs(ctx.lang.code).map((id) => ctx.lang.byId(id)).filter(Boolean);
+  if (scope === 'tricky') return trickyWords(ctx);
   return ctx.lang.wordsIn(scope);
 }
 
@@ -139,10 +140,13 @@ function setup(ctx) {
   // What to practise: three quick choices, or any one topic from a menu
   // grouped like Learn (Words / Phrases / Talk like a local).
   const savedCount = ctx.store.getFavs(lang.code).filter((id) => lang.byId(id)).length;
+  const trickyCount = trickyWords(ctx).length;
   const pills = [
     { id: 'learned', name: `Words I’ve learned (${learned})`, disabled: learned < 4 },
     { id: 'all', name: `All words (${lang.words.length})` },
     { id: 'saved', name: `★ Saved (${savedCount})`, disabled: savedCount < 4, why: 'Save at least 4 words or phrases (☆) first' },
+    // Shown once there is something in it: the words you keep forgetting in reviews.
+    ...(trickyCount ? [{ id: 'tricky', name: `Tricky words (${trickyCount})`, disabled: trickyCount < 4, why: 'Needs at least 4 words you have missed in reviews' }] : []),
   ];
   const isPill = (id) => pills.some((p) => p.id === id);
   const pillButtons = pills.map((s) => h('button', {
@@ -176,7 +180,7 @@ function setup(ctx) {
     if (!counts) {
       const cards = ctx.store.getCards(lang.code);
       counts = new Map([...pills.map((p) => p.id), ...lang.categories.map((c) => c.id)]
-        .map((id) => [id, id === 'saved' ? 0 : sentencesFor(lang, id, { cards }).length]));
+        .map((id) => [id, id === 'saved' || id === 'tricky' ? 0 : sentencesFor(lang, id, { cards }).length]));
     }
     return counts.get(id);
   };

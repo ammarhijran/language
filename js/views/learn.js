@@ -1,7 +1,7 @@
 import { h, icon, shuffle, set } from '../ui.js';
 import { GROUPS, topicTile, devicePref, setDevicePref } from '../components.js';
 import { runSession } from '../session.js';
-import { newCard, review, markKnown, GOOD, AGAIN } from '../srs.js';
+import { newCard, review, markKnown, GOOD, HARD, AGAIN } from '../srs.js';
 import { recognitionSupported } from '../speech.js';
 import { lessonDrillHref } from './pronounce.js';
 import { readLink, loadTexts, cachedTexts, sortTexts, KINDS } from '../reader.js';
@@ -37,6 +37,7 @@ export default function learn(ctx, catId, section) {
 
   const known = [];
   const introduced = new Set(); // saved by this lesson when their card was shown
+  const missed = new Set(); // needed a second try in this lesson's quick check
 
   return h('div', { class: 'view' }, runSession(ctx, {
     label: `Lesson: ${cat.name}`,
@@ -65,6 +66,7 @@ export default function learn(ctx, catId, section) {
         return null;
       }
       if (r.rating !== AGAIN) return null;
+      missed.add(item.word.id); // needed a second try in the quick check
       const retries = (item.retries || 0) + 1;
       return retries <= 2 ? { word: item.word, type: item.type === 'listen' ? 'meaning' : 'produce', retries } : null;
     },
@@ -78,7 +80,8 @@ export default function learn(ctx, catId, section) {
           introduced.add(w.id);
         } else if (introduced.has(w.id) && card.reps === 0 && !card.known) {
           // The quick check is done: the word moves on from "due now" to tomorrow.
-          store.setCard(lang.code, w.id, review(card, GOOD, now));
+          // One that was missed in the check starts as HARD, so it grows more slowly.
+          store.setCard(lang.code, w.id, review(card, missed.has(w.id) ? HARD : GOOD, now, { id: w.id }));
         }
       }
       const added = introduced.size;
