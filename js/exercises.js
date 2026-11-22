@@ -4,7 +4,7 @@
 import { h, icon, bindKeys, shuffle, pick, set } from './ui.js';
 import {
   playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge,
-  praiseLine, diffLine, sayLater,
+  praiseLine, diffLine, sayLater, readingText,
 } from './components.js';
 import { checkTyped, overlaps } from './compare.js';
 import { AGAIN, HARD, GOOD, EASY } from './srs.js';
@@ -216,7 +216,7 @@ export function produce(ctx, word, onDone) {
     // Show the reading (kana / transliteration) under the script for beginners.
     render: (w) => h('span', { class: 'option-label' },
       h('span', { lang: ctx.lang.code }, w.tr),
-      ctx.lang.reading(w) ? h('small', { class: 'option-reading' }, ctx.lang.reading(w)) : null),
+      readingText(ctx.lang.reading(w), 'option-reading', 'small')),
   });
 }
 

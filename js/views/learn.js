@@ -6,6 +6,7 @@ import { recognitionSupported } from '../speech.js';
 import { lessonDrillHref } from './pronounce.js';
 import { readLink, loadTexts, cachedTexts, sortTexts, KINDS } from '../reader.js';
 import { nextTopics, topicCounts } from '../stats.js';
+import { scriptRuns } from './grammar.js';
 
 /** The sections of Learn (#/learn/g/<id>); the last one opened is remembered on this device. */
 export const SECTIONS = [
@@ -194,7 +195,8 @@ function grammarSection(ctx) {
       const best = ctx.game.grammarBest(lang.code, l.id);
       return h('li', null, h('a', { href: `#/grammar/${encodeURIComponent(l.id)}`, class: best != null ? 'done' : null },
         h('span', { class: 'll-num', 'aria-hidden': 'true' }, best != null ? '✓' : String(i + 1)),
-        h('span', { class: 'll-text' }, h('b', null, l.title), h('small', null, l.summary)),
+        // Arabic / Japanese words inside the English text get their own font
+        h('span', { class: 'll-text' }, h('b', null, scriptRuns(l.title, lang.code)), h('small', null, scriptRuns(l.summary, lang.code))),
         h('span', { class: `badge level-${l.level}` }, l.level)));
     })));
 }

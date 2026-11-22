@@ -17,7 +17,7 @@ export const GOALS = [
   { value: 60, name: 'Intense', time: '~15 min a day' },
 ];
 
-const STEPS = ['language', 'goal', 'sound', 'start'];
+export const STEPS = ['language', 'goal', 'sound', 'start'];
 
 export default function welcome(ctx, stepArg) {
   const { lang, store } = ctx;

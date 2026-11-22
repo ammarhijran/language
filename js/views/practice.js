@@ -208,7 +208,7 @@ function setup(ctx) {
     h('div', { class: 'shortcuts speak-links' },
       speakLink('#/speak/drill', icon('mic', 22), 'Speak', 'Say words, get a score'),
       speakLink('#/speak/ear', icon('ear', 22), 'Ear training', 'Hear the difference'),
-      speakLink('#/speak/alphabet', h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, lang.code === 'ja' ? 'あ' : lang.code === 'ar' ? 'ع' : lang.code === 'uk' ? 'Ї' : 'Ğ'), 'Alphabet', lang.code === 'ja' ? 'Kana chart' : 'Letters & sounds'),
+      speakLink('#/speak/alphabet', h('span', { class: 'sc-emoji', 'aria-hidden': 'true', lang: lang.code }, lang.code === 'ja' ? 'あ' : lang.code === 'ar' ? 'ع' : lang.code === 'uk' ? 'Ї' : 'Ğ'), 'Alphabet', lang.code === 'ja' ? 'Kana chart' : 'Letters & sounds'),
       speakLink('#/speak/sounds', icon('wave', 22), 'Sounds', 'Tricky sounds explained')),
     h('h2', { class: 'section-title' }, 'Quick round'),
     h('p', { class: 'hint' }, `${ROUND} questions in the mode you like. Practice doesn’t change your review schedule.`),

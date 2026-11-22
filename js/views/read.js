@@ -6,7 +6,7 @@
 // Texts load on demand (js/reader.js), so the first visit renders a short
 // loading state and fills in; later visits render straight away.
 import { h, icon, set, bindKeys, meter } from '../ui.js';
-import { voiceBanner, diffLine, praiseLine, cleanupScope, backLink } from '../components.js';
+import { voiceBanner, diffLine, praiseLine, cleanupScope, backLink, readingText } from '../components.js';
 import { rich } from './grammar.js';
 import * as speech from '../speech.js';
 import { newCard } from '../srs.js';
@@ -144,7 +144,7 @@ function lineBody(ctx, text, line, { glossary = null, onGloss } = {}) {
     : line.tr;
   return [
     h('p', { class: 'read-tr', ...textAttrs(lang) }, parts),
-    reading ? h('p', { class: 'reading small read-reading' }, reading) : null,
+    readingText(reading, 'reading small read-reading'),
     h('p', { class: 'read-en' }, line.en),
   ];
 }
@@ -309,7 +309,7 @@ function glossSheet(ctx, text, host, { say = ctx.say, onOpen } = {}) {
         h('button', { type: 'button', class: 'icon-btn sheet-close', 'aria-label': 'Close', onclick: () => close() }, icon('x')),
         h('p', { class: 'kicker' }, 'Glossary'),
         h('h2', { id: 'sheet-word', class: 'sheet-word', ...textAttrs(lang) }, item.tr),
-        reading ? h('p', { class: 'reading' }, reading) : null,
+        readingText(reading),
         h('p', { id: 'sheet-en', class: 'sheet-en' }, item.en),
         h('div', { class: 'button-row' },
           listen,

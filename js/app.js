@@ -16,7 +16,7 @@ import pronounce from './views/pronounce.js';
 import progress from './views/progress.js';
 import settingsView from './views/settings.js';
 import wordView from './views/word.js';
-import welcome from './views/welcome.js';
+import welcome, { STEPS as WELCOME_STEPS } from './views/welcome.js';
 import journey from './views/journey.js';
 import syncView from './views/sync.js';
 import grammarView from './views/grammar.js';
@@ -344,7 +344,10 @@ function render() {
 // like the lesson's ✕.
 function onBack({ canGoBack }) {
   const dialog = document.querySelector('[role="dialog"][aria-modal="true"]:not(.leaving)');
-  const { name } = parse();
+  const { name, params } = parse();
+  // Welcome steps 2–4: back means the previous step, not leaving the app.
+  const step = name === 'welcome' && !dialog ? WELCOME_STEPS.indexOf(params[0]) : -1;
+  if (step > 0) { location.replace(`#/welcome${step > 1 ? `/${WELCOME_STEPS[step - 1]}` : ''}`); return; }
   const action = backAction({ dialogOpen: !!dialog, atRoot: name === '' || name === 'welcome', canGoBack });
   const leave = () => { if (action === 'back') history.back(); else location.hash = '#/'; };
   if (action === 'close-dialog') dialog.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
