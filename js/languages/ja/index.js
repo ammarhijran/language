@@ -2,6 +2,7 @@
 import { categories as baseCategories, vocab as baseVocab } from './vocab.js';
 import { categories as moreCategories, vocab as moreVocab } from './more.js';
 import { lessons } from './grammar.js';
+import { extraExamples } from './examples.js';
 import { exampleReadings } from './readings.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyzeKana, romaji, toHiragana, hasKana, morae } from './kana.js';
@@ -36,6 +37,7 @@ const plainKana = (w) => w.kana.replace(/\s+/g, '');
 const romanOf = (w) => w.rom ?? romaji(w.kana);
 
 export default makePack({
+  extraExamples,
   exampleReadings,
   exampleReadingKey: 'kana',
   code: 'ja',

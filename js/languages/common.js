@@ -73,20 +73,21 @@ export function makePack(def) {
   // Example sentences as entry-like objects, with their reading (Japanese kana,
   // Arabic transliteration) when the pack provides one: shown under the example
   // and used for sentence-builder tiles.
-  const exampleOf = (w) => {
+  const exampleOf = (w, extra) => {
     if (!w.ex) return undefined;
     const [tr, en] = w.ex;
-    const reading = def.exampleReadings?.[tr];
+    const reading = def.exampleReadings?.[tr] || extra?.[2];
     // An example of a dialect entry is in that dialect too (Egyptian stress, badge).
     const dialect = w.dialect ? { dialect: w.dialect } : {};
     return reading ? { tr, en, [def.exampleReadingKey]: reading, ...dialect } : { tr, en, ...dialect };
   };
-  const words = def.vocab.map((w, index) => ({
-    ...w,
-    id: w.id ?? normalize(w.tr).replace(/\s+/g, '-'),
-    index,
-    example: exampleOf(w),
-  }));
+  const words = def.vocab.map((w, index) => {
+    const id = w.id ?? normalize(w.tr).replace(/\s+/g, '-');
+    // Core words without their own example get one from the pack's examples.js.
+    const extra = w.ex ? null : def.extraExamples?.[id];
+    const word = extra ? { ...w, ex: [extra[0], extra[1]] } : w;
+    return { ...word, id, index, example: exampleOf(word, extra) };
+  });
   const byId = new Map(words.map((w) => [w.id, w]));
   const letterInfo = new Map(def.alphabet.map((l) => [l.key ?? l.lower, l]));
 

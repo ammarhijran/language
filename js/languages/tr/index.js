@@ -2,6 +2,7 @@
 import { categories as baseCategories, vocab as baseVocab } from './vocab.js';
 import { categories as moreCategories, vocab as moreVocab } from './more.js';
 import { lessons } from './grammar.js';
+import { extraExamples } from './examples.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyze, lower } from './phonetics.js';
 import { makePack } from '../common.js';
@@ -56,6 +57,7 @@ export function normalizeSpoken(s) {
 }
 
 export default makePack({
+  extraExamples,
   code: 'tr',
   name: 'Turkish',
   nativeName: 'Türkçe',
