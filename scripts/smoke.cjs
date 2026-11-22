@@ -1,6 +1,6 @@
 // Browser smoke test: opens the real app in Chromium for every language and
 // walks its screens — every topic, a word page per topic, the phrasebook,
-// Read & Listen (a long text, its practice modes, adding your own text),
+// Read & Listen (a long text, its practice modes, filling the gaps, adding your own text),
 // hands-free listening, dictation and a lesson — and fails on any script
 // error, error screen or sideways scroll at phone width.
 //
@@ -88,6 +88,13 @@ async function walk(browser, lang, pack, texts) {
   const speech = texts.filter((t) => t.kind === 'speech').sort((a, b) => b.lines.length - a.lines.length)[0];
   if (speech) for (const m of ['repeat', 'shadow', 'record']) await open(`read/${enc(speech.id)}/practice/${m}`, { wait: 300 });
   for (const t of texts.filter((x) => x.kind === 'twister' || x.kind === 'saying')) await open(`read/${enc(t.id)}/practice/repeat`, { wait: 300 });
+  // Fill the gaps: the first text, answered to the end.
+  await open(`read/${enc(texts[0].id)}/gaps`, { selector: '.read-gaps .option' });
+  for (let k = 0; k < 12 && await page.$('.read-gaps .option'); k++) {
+    await page.locator('.read-gaps .option').first().click();
+    await page.locator('.read-gaps > .btn.primary').click();
+  }
+  if (!(await page.$('.read-summary-box'))) problems.push(`${lang}: the gap exercise did not finish`);
   const dialogue = texts.find((t) => t.kind === 'dialogue');
   if (dialogue) await open(`read/${enc(dialogue.id)}/roleplay/0`, { wait: 300 });
 

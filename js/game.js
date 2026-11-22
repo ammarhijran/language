@@ -574,7 +574,7 @@ export function textDone({ lang, id, correct, total }) {
 export function textPractised({ lang, id, mode, own = false }) {
   const s = g();
   if (mode === 'roleplay') c().rolePlays++;
-  else c().speechPractice++;
+  else if (mode !== 'gaps') c().speechPractice++; // gap-filling is reading, not speaking
   if (own) c().ownTextPractice++;
   const today = spokenToday(s);
   const key = `practice:${lang}:${id}:${mode}`;

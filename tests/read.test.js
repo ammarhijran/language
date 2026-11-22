@@ -8,7 +8,7 @@ import * as store from '../js/store.js';
 import * as game from '../js/game.js';
 import { sanitize, mergeGame, mergeAll } from '../js/sync.js';
 import {
-  KINDS, LEVELS, REGISTERS, canPractise, practiceModes, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
+  KINDS, LEVELS, REGISTERS, canPractise, practiceModes, gapItems, MIN_GAPS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, markGlossary, glossaryForms, glossaryFound, glossaryMissing, findWord, fadeLine,
   createPlayer, listenTimeout, scoreLine, verdict, clock, recordLimit,
 } from '../js/reader.js';
@@ -326,6 +326,8 @@ test('practice: XP once per text and mode per day; speech and role-play achievem
   assert.equal(game.textPractised({ lang: 'tr', id: d, mode: 'roleplay' }), game.XP.textPractice);
   assert.ok(unlocked().includes('roleplay-1'));
   assert.equal(game.counters().rolePlays, 1);
+  assert.equal(game.textPractised({ lang: 'tr', id: d, mode: 'gaps' }), game.XP.textPractice, 'filling the gaps earns XP too');
+  assert.deepEqual([game.counters().speechPractice, game.counters().rolePlays], [3, 1], '…but it is not speaking practice');
   nextDay();
   assert.equal(game.textPractised({ lang: 'tr', id, mode: 'repeat' }), game.XP.textPractice, 'the next day');
 });
@@ -536,4 +538,55 @@ test('proverbs and tongue twisters: practised line by line, with a note under ev
       }
     }
   }
+});
+
+// ---------- Fill the gaps ----------
+
+/** A repeatable random(): the same gaps every run. */
+function seeded(seed = 7) {
+  let x = seed;
+  return () => { x = (x * 1103515245 + 12345) % 2147483648; return x / 2147483648; };
+}
+
+test('fill the gaps: one glossary word per line, four different options, the line stays intact', () => {
+  for (const [code, texts] of Object.entries(ALL)) {
+    const lang = languages[code];
+    let offered = 0;
+    for (const t of texts) {
+      const items = gapItems(lang, t, { random: seeded() });
+      assert.ok(items.length <= 10, `${code}/${t.id}: at most ten gaps`);
+      assert.equal(new Set(items.map((g) => g.line)).size, items.length, `${code}/${t.id}: one gap per line`);
+      assert.equal(new Set(items.map((g) => g.gloss)).size, items.length, `${code}/${t.id}: each word once`);
+      assert.deepEqual(items.map((g) => g.line), items.map((g) => g.line).sort((a, b) => a - b), `${code}/${t.id}: in text order`);
+      for (const g of items) {
+        assert.equal(g.before + g.answer + g.after, t.lines[g.line].tr.normalize('NFC'), `${code}/${t.id}: line ${g.line}`);
+        assert.equal(g.options.length, 4);
+        assert.equal(new Set(g.options.map((o) => lang.normalize(o))).size, 4, `${code}/${t.id}: options differ: ${g.options.join(' / ')}`);
+        assert.ok(g.options.includes(g.option), `${code}/${t.id}: the right answer is offered`);
+        assert.equal(lang.normalize(g.option), lang.normalize(g.answer));
+        assert.ok(lang.normalize(g.answer), `${code}/${t.id}: the gap is a word`);
+      }
+      if (items.length >= MIN_GAPS) offered++;
+    }
+    assert.ok(offered >= texts.length - 2, `${code}: nearly every text has a gap exercise (${offered}/${texts.length})`);
+  }
+});
+
+test('fill the gaps: no capital-letter giveaway, repeated words skipped, too few words gives nothing', () => {
+  const text = (lines, words) => ({ lines: lines.map((tr) => ({ tr, en: '' })), glossary: words.map((tr) => ({ tr, en: '' })) });
+  const t = text(['Kedi uyuyor.', 'Bu bir köpek.', 'İyi günler, efendim.', 'Balık yüzüyor.'], ['kedi', 'köpek', 'iyi günler', 'balık']);
+  const items = gapItems(L.tr, t, { random: seeded(3) });
+  assert.equal(items.length, 4);
+  assert.deepEqual(items.map((g) => g.answer), ['Kedi', 'köpek', 'İyi günler', 'Balık'], 'the line keeps its own spelling');
+  assert.deepEqual(items.map((g) => g.option), ['kedi', 'köpek', 'iyi günler', 'balık'], 'Turkish İ → i, not ı̇');
+  for (const g of items) assert.deepEqual([...g.options].sort(), ['balık', 'iyi günler', 'kedi', 'köpek']);
+  // A name keeps its capital: the glossary writes it with one.
+  const named = gapItems(L.tr, text(['Ankara güzel.', 'Kedi uyuyor.', 'Bu bir köpek.', 'Balık yüzüyor.'], ['Ankara', 'kedi', 'köpek', 'balık']), { random: seeded() });
+  assert.equal(named.find((g) => g.answer === 'Ankara').option, 'Ankara');
+  // "berber" twice in a line would answer itself: that line gets no gap for it.
+  const twice = gapItems(L.tr, text(['Bir berber bir berbere geldi.', 'Kedi uyuyor.', 'Bu bir köpek.', 'Balık yüzüyor.', 'Kuş uçuyor.'], ['berber', 'kedi', 'köpek', 'balık', 'kuş']), { random: seeded() });
+  assert.ok(!twice.some((g) => g.line === 0));
+  assert.deepEqual(gapItems(L.tr, text(['Kedi uyuyor.', 'Bu bir köpek.', 'Balık yüzüyor.'], ['kedi', 'köpek', 'balık'])), [], 'three words are not enough for four options');
+  assert.deepEqual(gapItems(L.tr, text(['Kedi uyuyor.'], [])), []);
+  assert.equal(gapItems(L.tr, t, { max: 2, random: seeded() }).length, 2);
 });

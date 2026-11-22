@@ -1,6 +1,7 @@
 // Read & Listen: graded dialogues, stories, everyday texts, speeches, proverbs and tongue twisters.
 //   #/read                         the list, with level and kind filters
 //   #/read/<id>                    the reader: player bar, lines, glossary, questions
+//   #/read/<id>/gaps               fill the gaps: a glossary word is missing in each line
 //   #/read/<id>/practice/<mode>    speeches: repeat line by line, shadow, record (proverbs, twisters: repeat, shadow)
 //   #/read/<id>/roleplay/<n>       dialogues: play one of the speakers
 // Texts load on demand (js/reader.js), so the first visit renders a short
@@ -12,7 +13,7 @@ import * as speech from '../speech.js';
 import { keepScreenOn } from '../native.js';
 import { newCard } from '../srs.js';
 import {
-  KINDS, LEVELS, REGISTERS, canPractise, practiceModes, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
+  KINDS, LEVELS, REGISTERS, canPractise, practiceModes, gapItems, MIN_GAPS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, findWord, fadeLine, SHADOW_ROUNDS, createPlayer, listenTimeout,
   scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead, ownTextFor, splitIntoLines, OWN_LINES_MAX, markAll, extraGlossary,
 } from '../reader.js';
@@ -424,6 +425,7 @@ function textQuiz(ctx, texts, text) {
         next ? h('a', { class: 'btn primary wide', href: href(next.id) }, `Next: ${next.title}`, icon('arrow', 18)) : null,
         canPractise(text) ? h('a', { class: 'btn wide', href: href(text.id, 'practice', 'repeat') }, text.kind === 'speech' ? '🎤 Practise this speech' : '🎤 Practise saying them') : null,
         canRolePlay(text) ? h('a', { class: 'btn wide', href: href(text.id, 'roleplay') }, '🎭 Role-play this dialogue') : null,
+        gapItems(lang, text).length >= MIN_GAPS ? h('a', { class: 'btn wide', href: href(text.id, 'gaps') }, '🧩 Fill the gaps') : null,
         h('button', { type: 'button', class: 'btn wide', onclick: () => { set(wrap, ...questions()); wrap.querySelector('.option')?.focus(); } }, 'Answer the questions again'),
         h('a', { class: 'btn ghost wide', href: '#/read' }, 'All texts')));
     wrap.append(box);
@@ -662,6 +664,12 @@ function readerView(ctx, texts, text) {
         const play = h('button', { type: 'button', class: 'icon-btn play', 'aria-label': `Listen: ${g.tr}`, onclick: () => sayAside(sayable(ctx, text, g)) }, icon('volume'));
         return h('li', null, play, btn);
       }))) : null,
+    gapItems(lang, text).length >= MIN_GAPS
+      ? h('a', { class: 'quick-link read-gaps-link', href: href(text.id, 'gaps') },
+        h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🧩'),
+        h('span', null, h('b', null, 'Fill the gaps'), h('small', null, 'Put the glossary words back into the text')),
+        icon('arrow', 18))
+      : null,
     textQuiz(ctx, texts, text),
     host,
   ];
@@ -1205,6 +1213,97 @@ function rolePlay(ctx, texts, text, who) {
   ];
 }
 
+// ---------- Practice: fill the gaps ----------
+
+function gapMode(ctx, text) {
+  const { lang } = ctx;
+  const card = h('section', { class: 'card read-gaps' });
+  let items = [];
+  let i = 0;
+  let correct = 0;
+
+  function show() {
+    const it = items[i];
+    const line = text.lines[it.line];
+    const entry = sayable(ctx, text, line);
+    const title = h('p', { class: 'kicker', tabindex: '-1' }, `Gap ${i + 1} of ${items.length}`);
+    const blank = h('span', { class: 'gap-blank' }, h('span', { class: 'read-sr' }, 'missing word'));
+    const feedback = h('div', { class: 'gap-feedback', 'aria-live': 'polite' });
+    const next = h('button', {
+      type: 'button', class: 'btn primary wide', hidden: true,
+      onclick: () => { i++; if (i < items.length) show(); else finish(); },
+    }, i === items.length - 1 ? 'See the result' : 'Next', icon('arrow', 18));
+    let done = false;
+    const buttons = it.options.map((opt) => h('button', {
+      type: 'button', class: 'option',
+      onclick: () => {
+        if (done) return;
+        done = true;
+        const ok = opt === it.option;
+        if (ok) correct++;
+        buttons.forEach((b, k) => {
+          b.disabled = true;
+          if (it.options[k] === it.option) b.classList.add('correct');
+          else if (it.options[k] === opt) b.classList.add('wrong');
+        });
+        set(blank, it.answer);
+        blank.classList.add('filled', ok ? 'right' : 'missed');
+        const g = text.glossary[it.gloss];
+        set(feedback,
+          h('p', null, h('b', null, ok ? 'Correct. ' : 'Not quite. '), h('span', { ...textAttrs(lang) }, g.tr), ` — ${g.en}`),
+          readingText(lang.reading(line), 'reading small'),
+          h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(entry) }, icon('volume', 16), 'Listen to the line'));
+        next.hidden = false;
+        if (ctx.settings.autoplay !== false) ctx.say(entry, { auto: true });
+        next.focus({ preventScroll: true });
+        next.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
+      },
+    }, h('span', { class: 'option-label', ...textAttrs(lang) }, opt)));
+    set(card,
+      title,
+      meter(i + 1, items.length),
+      line.speaker ? h('span', { class: 'read-speaker' }, line.speaker) : null,
+      h('p', { class: 'read-big gap-line', ...textAttrs(lang) }, it.before, blank, it.after),
+      line.en ? h('p', { class: 'read-en' }, line.en) : null,
+      h('div', { class: 'options' }, buttons),
+      feedback,
+      next);
+    if (i) title.focus({ preventScroll: true });
+  }
+
+  function finish() {
+    const n = items.length;
+    set(card, practiceSummary(ctx, text, {
+      emoji: correct === n ? '🌟' : '🧩',
+      title: `${correct} / ${n} gaps filled`,
+      mode: 'gaps',
+      practiced: n,
+      lines: [correct === n ? 'Every word in its place.' : 'The words you missed are in the glossary under the text.'],
+      again: h('button', { type: 'button', class: 'btn primary wide', onclick: start }, 'Try again — other gaps'),
+    }));
+  }
+
+  function start() {
+    items = gapItems(lang, text);
+    i = 0;
+    correct = 0;
+    if (items.length < MIN_GAPS) {
+      set(card, h('p', { class: 'muted' }, 'This text has too few glossary words for a gap exercise.'),
+        h('a', { class: 'btn primary wide', href: href(text.id) }, 'Back to the text'));
+      return;
+    }
+    show();
+  }
+
+  start();
+  return [
+    h('p', { class: 'muted' }, text.own
+      ? 'A word of the course is missing in each line. Choose the one that fits.'
+      : 'A word from the glossary is missing in each line. Choose the one that fits — the translation helps.'),
+    card,
+  ];
+}
+
 // ---------- Route ----------
 
 function practiceView(ctx, texts, text, mode) {
@@ -1230,6 +1329,10 @@ function routeView(ctx, texts, id, mode, arg) {
     ];
   }
   if (mode === 'practice') return practiceView(ctx, texts, text, arg);
+  if (mode === 'gaps') {
+    queueMicrotask(() => { document.title = `Fill the gaps · ${text.title} · Lisan`; });
+    return [...practiceHead(ctx, text, 'Fill the gaps'), gapMode(ctx, text)];
+  }
   if (mode === 'roleplay') {
     queueMicrotask(() => { document.title = `Role-play · ${text.title} · Lisan`; });
     return [...practiceHead(ctx, text, 'Role-play'), voiceBanner(ctx), rolePlay(ctx, texts, text, arg)];

@@ -305,3 +305,18 @@ button.gloss-course { text-decoration-color: color-mix(in srgb, var(--muted) 60%
 .seen-list a > span { color: var(--muted); overflow-wrap: anywhere; }
 .seen-list a > span[lang="ar"] { font-family: var(--font-ar); font-size: var(--fs-lg); }
 .seen-list a > span[lang="ja"] { font-family: var(--font-ja); }
+
+/* Fill the gaps */
+.read-gaps .meter { margin-bottom: .25rem; }
+.read-gaps .kicker:focus { outline: none; }
+.gap-line { line-height: 1.7; }
+.gap-blank { display: inline-block; min-width: 4.5ch; margin: 0 .15em; padding: 0 .3em; border-bottom: 2px solid var(--action); border-radius: var(--r-xs) var(--r-xs) 0 0; background: var(--action-soft); text-align: center; vertical-align: baseline; }
+.gap-blank:not(.filled)::before { content: "\00a0"; }
+.gap-blank.right { border-color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+.gap-blank.missed { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, transparent); }
+.read-gaps .options { margin-top: var(--sp-3); }
+.gap-feedback { margin-top: var(--sp-3); }
+.gap-feedback:empty { display: none; }
+.gap-feedback .btn { margin-top: var(--sp-2); }
+.read-gaps > .btn.wide { margin-top: var(--sp-3); }
+.read-gaps-link { margin-top: var(--sp-3); }

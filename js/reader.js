@@ -20,6 +20,8 @@ export const KINDS = {
 /** Texts made for saying aloud: line-by-line practice (repeat, shadow) is offered for them. */
 export const canPractise = (text) => ['speech', 'twister', 'saying'].includes(text?.kind);
 /** Recording "the whole thing" only makes sense for a speech. */
+/** A text needs this many gaps for "Fill the gaps" to be offered. */
+export const MIN_GAPS = 4;
 export const practiceModes = (text) => (text?.kind === 'speech' ? ['repeat', 'shadow', 'record'] : canPractise(text) ? ['repeat', 'shadow'] : []);
 
 export const REGISTERS = {
@@ -417,6 +419,71 @@ export function textsWithWord(lang, texts, wordId) {
     seenIn.set(lang.code, index);
   }
   return index.map.get(wordId) || [];
+}
+
+// ---------- Fill the gaps ----------
+
+/**
+ * Gap-fill items made from a text's own glossary: a line with one glossary
+ * word left out, and four words of the text to choose from (as they are
+ * written in it, so the endings fit a sentence of this text). At most one gap
+ * per line and per glossary item, in text order; [] when the text has fewer
+ * than four different glossary words to choose between.
+ * [{ line, gloss, before, answer, after, option, options }]: `answer` is the word as
+ * the line writes it, `option` the one of `options` that is right.
+ */
+export function gapItems(lang, text, { max = 10, random = Math.random } = {}) {
+  const mix = (list) => {
+    const a = [...list];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  const all = [];
+  text.lines.forEach((l, line) => {
+    const segs = markGlossary(lang, l.tr, text.glossary || []);
+    segs.forEach((seg, si) => {
+      if (seg.gloss == null) return;
+      // A word that is in the line twice would give itself away.
+      if (segs.filter((x) => x.gloss === seg.gloss).length > 1) return;
+      all.push({
+        line, gloss: seg.gloss, answer: seg.text,
+        before: segs.slice(0, si).map((x) => x.text).join(''),
+        after: segs.slice(si + 1).map((x) => x.text).join(''),
+      });
+    });
+  });
+  // The options show each word as the text writes it, except that a capital
+  // letter it only has because it starts a sentence would give the place away.
+  const label = (c) => {
+    const first = [...c.answer][0];
+    const own = [...String(text.glossary[c.gloss].tr)][0];
+    return own && own === own.toLocaleLowerCase(lang.code) && first !== first.toLocaleLowerCase(lang.code)
+      ? first.toLocaleLowerCase(lang.code) + [...c.answer].slice(1).join('') : c.answer;
+  };
+  // One written form per glossary item, to choose the wrong answers from.
+  const forms = new Map();
+  for (const c of all) if (!forms.has(c.gloss)) forms.set(c.gloss, label(c));
+  if (forms.size < 4) return [];
+  const lines = new Set();
+  const glosses = new Set();
+  const picked = [];
+  for (const c of mix(all)) {
+    if (picked.length >= max) break;
+    if (lines.has(c.line) || glosses.has(c.gloss)) continue;
+    lines.add(c.line);
+    glosses.add(c.gloss);
+    picked.push(c);
+  }
+  return picked.sort((a, b) => a.line - b.line).map((c) => {
+    const option = label(c);
+    const key = lang.normalize(option);
+    const wrong = mix([...forms].filter(([g, f]) => g !== c.gloss && lang.normalize(f) !== key).map(([, f]) => f));
+    const others = [...new Map(wrong.map((f) => [lang.normalize(f), f])).values()].slice(0, 3);
+    return { ...c, option, options: mix([option, ...others]) };
+  }).filter((c) => c.options.length === 4);
 }
 
 // ---------- Shadowing ----------
