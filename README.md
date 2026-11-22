@@ -169,9 +169,14 @@ See **[STORE.md](STORE.md)**. It's a step-by-step checklist for Google Play and 
 ```
 index.html, css/styles.css     app shell & styles
 js/app.js                      router + app context
-js/views/                      home, learn, review, practice, pronounce, progress, grammar, journey, sync, settings, word…
+js/views/                      one file per screen: home, learn, topic, review, practice, phrases, read, pronounce, numbers,
+                               handsfree, placement, progress, grammar, journey, sync, settings, word, welcome…
 js/exercises.js, session.js    exercise types and the session runner
-js/sentences.js                practice sentences for the sentence builder (tiles, answer check)
+js/sentences.js                practice sentences for the sentence builder and dictation (tiles, answer check)
+js/reader.js                   Read & Listen: texts, glossary matching, the line player, your own texts
+js/handsfree.js, numbers.js    hands-free listening rounds · numbers by ear
+js/kit.js, placement.js        the trip-essentials list · the placement check
+js/reminders.js, news.js       daily reminders (apps) · the “New in Lisan” card
 js/components.js               pronunciation panel, speak-and-score, recorder
 js/srs.js                      spaced-repetition scheduler
 js/game.js, celebrate.js       XP, levels, achievements, challenges, goals · reward overlays
@@ -184,7 +189,11 @@ android/, ios/                 native app projects (Capacitor)
 assets/                        source images for app icons and splash screens
 js/languages/common.js         makePack(): shared defaults for language packs
 js/languages/tr/ uk/ ja/ ar/   language packs: vocab.js (core), more.js (everyday words, phrases, talk like a local),
-                               grammar.js (lessons), alphabet/sounds, phonetics
+                               grammar.js (lessons), texts.js (Read & Listen), sounds.js (alphabet, ear training),
+                               phonetics; feminine.js (uk, ar: what a woman says)
+js/languages/index.js, meta.js loads the pack being learned · generated names and counts of all packs
+scripts/                       serve.js (npm start), build-web.js, smoke.cjs (npm run smoke), store-screenshots.cjs
+tests/                         unit tests (npm test)
 ```
 
 ## Adding a language
