@@ -24,6 +24,7 @@
   - New achievements: First Rules, Grammar Geek, Grammarian, Rule Master and Talk Like a Local.
 - **Egyptian Arabic sounds like Cairo:** dialect entries are stressed by Cairene rules (*mush-KI-la*, *maʿ-LĒSH*), and typed answers accept Arabizi numbers (*ma3lesh*, *5alas*, *7abibi*).
 - **Independent content audit:** after the native-level edit, separate reviewers checked every new entry and lesson in each language again (form & pronunciation, usage & register, grammar), and every finding was re-checked before it was applied (Turkish 18, Japanese 6, Ukrainian 9, Arabic 15 fixes).
+- **Readings for example sentences:** every Japanese example now shows its kana and rōmaji, and every Arabic example its transliteration (178 + 172 sentences, written by one linguist and checked by another). Japanese example sentences can now be practised in Sentences mode too (394 sentences, up from 233).
 - **Delete all my data** in Settings erases every language, XP, achievements, settings and sync history on the device.
 - **Android back button** goes to the previous screen (and closes a celebration first) instead of leaving the app.
 - **Sync between devices without storing any user data.**

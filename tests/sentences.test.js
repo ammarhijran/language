@@ -54,9 +54,12 @@ test('Japanese tiles are the spaced kana; the kanji sentence is shown and spoken
   assert.equal(pair.reg, 'casual');
 });
 
-test('Japanese example sentences (no kana reading) are skipped; everything else has kana tiles', () => {
+test('Japanese example sentences use their kana reading as tiles; a sentence without one is skipped', () => {
   const all = sentencesFor(ja, 'all');
-  assert.equal(all.filter((s) => s.source.kind === 'example').length, 0);
+  assert.ok(all.filter((s) => s.source.kind === 'example').length > 100, 'example sentences are buildable');
+  const ex = all.find((s) => s.audioText === '先生、おはようございます。');
+  assert.deepEqual(ex.tokens, ['せんせい', 'おはよう', 'ございます']);
+  assert.equal(ex.display, '先生、おはようございます。');
   assert.equal(makeSentence(ja, { tr: '先生、おはようございます。', en: 'Good morning, teacher.' }, {}, 'x'), null);
   for (const s of all) {
     assert.doesNotMatch(s.text, /\p{Script=Han}/u, s.id);
@@ -68,10 +71,10 @@ test('Arabic tiles keep their vowel marks and punctuation; the transliteration i
   const s = find(ar, 'p-cafe', 'phrase:القايمهمنفضلك');
   assert.deepEqual(s.tokens, ['الْقَائِمَةُ،', 'مِنْ', 'فَضْلِكَ.']);
   assert.equal(s.reading, 'al-qāʾima, min faḍlik');
-  // Example sentences have no transliteration of their own.
+  // Example sentences carry their transliteration from js/languages/ar/readings.js.
   const ex = find(ar, 'essentials', 'example:مرحبا');
   assert.deepEqual(ex.tokens, ['مَرْحَبًا،', 'كَيْفَ', 'حَالُكَ؟']);
-  assert.equal(ex.reading, undefined);
+  assert.ok(ex.reading && /^marḥaban/.test(ex.reading), ex.reading);
 });
 
 test(`every sentence has ${MIN_TOKENS}–${MAX_TOKENS} tiles, each with a letter or digit`, () => {

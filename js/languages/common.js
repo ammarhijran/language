@@ -77,7 +77,9 @@ export function makePack(def) {
     if (!w.ex) return undefined;
     const [tr, en] = w.ex;
     const reading = def.exampleReadings?.[tr];
-    return reading ? { tr, en, [def.exampleReadingKey]: reading } : { tr, en };
+    // An example of a dialect entry is in that dialect too (Egyptian stress, badge).
+    const dialect = w.dialect ? { dialect: w.dialect } : {};
+    return reading ? { tr, en, [def.exampleReadingKey]: reading, ...dialect } : { tr, en, ...dialect };
   };
   const words = def.vocab.map((w, index) => ({
     ...w,

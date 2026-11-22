@@ -116,3 +116,26 @@ test('service worker caches every shipped file', () => {
     .map((p) => relative(root, p).split('\\').join('/'));
   for (const f of files) assert.ok(sw.includes(`'${f}'`), `sw.js is missing ${f}`);
 });
+
+test('every Japanese and Arabic example sentence has a reading', async () => {
+  const { exampleReadings: jaR } = await import('../js/languages/ja/readings.js');
+  const { exampleReadings: arR } = await import('../js/languages/ar/readings.js');
+  for (const [code, map, key] of [['ja', jaR, 'kana'], ['ar', arR, 'tl']]) {
+    const lang = languages[code];
+    const used = new Set();
+    for (const w of lang.words.filter((x) => x.ex)) {
+      assert.ok(w.example?.[key], `${code}: no reading for the example of ${w.tr}: ${w.ex[0]}`);
+      used.add(w.ex[0]);
+    }
+    for (const k of Object.keys(map)) assert.ok(used.has(k), `${code}: unused reading for “${k}”`);
+  }
+  // Japanese: kana only, and the kana written in the sentence appear in order
+  const toH = (s) => s.replace(/[ァ-ヶ]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
+  for (const [sentence, kana] of Object.entries(jaR)) {
+    assert.match(kana, /^[぀-ヿー]+( [぀-ヿー]+)*$/, `ja reading is spaced kana: ${kana}`);
+    const want = toH(sentence.replace(/[^぀-ヿー]/g, ''));
+    let i = 0;
+    for (const ch of toH(kana.replace(/ /g, ''))) if (ch === want[i]) i++;
+    assert.equal(i, want.length, `ja reading misses kana of “${sentence}”: ${kana}`);
+  }
+});

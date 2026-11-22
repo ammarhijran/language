@@ -131,7 +131,7 @@ test('ar: Modern Standard forms and elision in the pack', () => {
   for (const t of ['maʿa-s-salāma', 'maʿa as-salāma', 'maa as-salama']) {
     assert.ok(ar.acceptedAnswers(bye).some((a) => ar.normalize(a) === ar.normalize(t)), t);
   }
-  for (const w of ar.words) {
+  for (const w of [...ar.words, ...ar.words.filter((x) => x.example?.tl).map((x) => x.example)]) {
     const parts = w.tl.split(/\s+/);
     // After a vowel-final word the article loses its a (hamzat al-waṣl): write maʿa-s-salāma.
     for (let i = 1; i < parts.length; i++) {
