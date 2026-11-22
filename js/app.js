@@ -42,6 +42,7 @@ function applyDisplaySettings() {
   const s = store.getSettings();
   const aid = { ja: s.aidJa, ar: s.aidAr }[lang.code];
   lang.readingAid = ['full', 'script', 'off'].includes(aid) ? aid : 'full';
+  lang.speakAs?.(s.speakAs === 'f' ? 'f' : 'm');
   document.documentElement.dataset.textSize = ['l', 'xl'].includes(s.textSize) ? s.textSize : 'm';
 }
 applyDisplaySettings();

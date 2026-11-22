@@ -93,6 +93,7 @@ const ASSETS = [
   'js/languages/uk/more.js',
   'js/languages/uk/grammar.js',
   'js/languages/uk/examples.js',
+  'js/languages/uk/feminine.js',
   'js/languages/uk/texts.js',
   'js/languages/ja/index.js',
   'js/languages/ja/kana.js',
@@ -113,6 +114,7 @@ const ASSETS = [
   'js/languages/ar/more.js',
   'js/languages/ar/grammar.js',
   'js/languages/ar/examples.js',
+  'js/languages/ar/feminine.js',
   'js/languages/ar/texts.js',
   'js/languages/ar/readings.js',
 ];

@@ -12,6 +12,7 @@ import { exampleReadings } from './readings.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyzeTranslit, asciiTranslit, spokenArabic, alignTranslit } from './translit.js';
 import { say } from './say.js';
+import { feminine } from './feminine.js';
 import { makePack, pauseBetweenWords, sameScriptAlts, writtenUnits } from '../common.js';
 
 const TASHKEEL = /[ؐ-ًؚ-ٰٟۖ-ۭ]/g;
@@ -201,6 +202,7 @@ export default makePack({
     questionWords: ['ما', 'ماذا', 'متى', 'أين', 'كيف', 'لماذا', 'من', 'هل', 'كم', 'أي', 'إيه', 'فين', 'إمتى', 'ليه', 'إزاي', 'مين'],
   },
   say,
+  feminine,
   speechRegions: MSA_REGIONS,
   altVoiceHint: 'This device has no Egyptian voice, so a Standard Arabic voice reads this. In Cairo ج is a hard g (gamīl) and ق is usually a catch in the throat, ʾ (ʾahwa): follow the transliteration.',
   // The voice reads what the transliteration shows: pausal forms instead of

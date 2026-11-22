@@ -3,6 +3,7 @@ import { categories as baseCategories, vocab as baseVocab } from './vocab.js';
 import { categories as moreCategories, vocab as moreVocab } from './more.js';
 import { lessons } from './grammar.js';
 import { extraExamples } from './examples.js';
+import { feminine } from './feminine.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyze, lower, transliterate } from './phonetics.js';
 import { makePack, pauseBetweenWords } from '../common.js';
@@ -57,6 +58,7 @@ const QUESTION_WORDS = ['що', 'де', 'коли', 'як', 'чому', 'хто'
 
 export default makePack({
   extraExamples,
+  feminine,
   code: 'uk',
   name: 'Ukrainian',
   nativeName: 'Українська',

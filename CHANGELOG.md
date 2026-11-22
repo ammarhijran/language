@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **“I speak as a woman”** (Settings → Display, Ukrainian and Arabic): first-person phrases that change with the speaker — Я згоден → Я згодна, Я хотів би → Я хотіла б, آسِف → آسِفَة, عَايِز → عَايْزَة — are shown, spoken and checked in the form a woman says (24 Ukrainian and 26 Arabic entries, including their everyday / Egyptian forms). The other form still counts as a right answer, and progress is unaffected.
 - **Dictation** (Practice → Dictation): the sentence builder by ear — you hear a sentence (normal or slow, as often as you like) and build it from the word tiles; its meaning appears with the answer. Works with every sentence set the builder has, in all four languages.
 - **Compare voices** (Settings → Audio): when the device has more than one voice for the language, each is listed with its quality (Enhanced, Premium, needs internet) — tap ▶ to hear the same sentence in each and keep the most natural one.
 - **Two more long speeches per language:** a farewell speech to colleagues, and a short class presentation about a holiday — Ramazan Bayramı, Ukrainian Easter, the Japanese New Year and Eid al-Fitr — each with glossary and questions, and practised like the other speeches (listen & repeat, shadowing, recording). 22 texts per language, 6 of them speeches.

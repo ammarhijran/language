@@ -159,11 +159,22 @@ export default function settings(ctx) {
         pick('aidAr', [['full', 'Shown'], ['off', 'Hidden']])),
       h('p', { class: 'hint' }, 'New words, answers and word pages always show the transliteration. Hide it elsewhere once you can read the script.')]
       : null;
+  // Who is speaking: packs with feminine forms (Ukrainian, Arabic) can give
+  // first-person phrases in the form a woman says. It changes the pack, so the app reloads.
+  const speakerField = lang.feminine
+    ? [h('label', { class: 'field', for: 'set-speakAs' }, h('span', null, 'I speak as'),
+      h('select', {
+        class: 'select', id: 'set-speakAs',
+        onchange: (e) => { store.updateSettings({ speakAs: e.target.value }); store.flush?.(); location.reload(); },
+      }, [['m', 'A man'], ['f', 'A woman']].map(([value, label]) => h('option', { value, selected: (s.speakAs || 'm') === value }, label)))),
+    h('p', { class: 'hint' }, `${lang.name} changes some “I …” phrases with the speaker (${lang.code === 'uk' ? 'Я згоден / Я згодна' : 'آسِف / آسِفَة'}). Lisan shows, says and checks the form you choose; the other one still counts as right.`)]
+    : null;
   const displayCard = h('section', { class: 'card form' },
     h('h2', { class: 'card-title' }, 'Display'),
     h('label', { class: 'field', for: 'set-textSize' }, h('span', null, 'Text size'),
       pick('textSize', [['m', 'Normal'], ['l', 'Large'], ['xl', 'Extra large']])),
-    aidField);
+    aidField,
+    speakerField);
 
   return h('div', { class: 'view' },
     h('h1', null, 'Settings'),

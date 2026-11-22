@@ -32,6 +32,7 @@ const DEFAULTS = {
   gameOn: true, // XP, levels, achievements, challenges and celebrations
   reminder: false, // daily study reminder (Android / iOS apps)
   reminderTime: '19:00',
+  speakAs: 'm', // 'f': first-person phrases in the form a woman says (Ukrainian, Arabic)
   aidJa: 'full', // Japanese readings: 'full' (kana · rōmaji), 'script' (kana only), 'off'
   aidAr: 'full', // Arabic transliteration: 'full' or 'off'
   textSize: 'm', // 'm', 'l' or 'xl'

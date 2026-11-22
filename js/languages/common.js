@@ -242,6 +242,29 @@ export function makePack(def) {
     return parts.length > 1 ? parts[0] : null;
   };
 
+  // Who is speaking. The course gives first-person phrases in the form a man
+  // says; a pack with a `feminine` map (id → { tr, s?, tl?, en?, pair? }) can
+  // show, speak and check the form a woman says instead. The other form stays
+  // an accepted answer. Applied once, when the app starts (before any search
+  // key or lexicon is built); the ids, and so the learner's progress, stay.
+  pack.speaker = 'm';
+  pack.speakAs = (who) => {
+    if (who !== 'f' || pack.speaker === 'f' || !def.feminine) return pack.speaker;
+    const swap = (entry, f) => {
+      const alt = [...new Set([...(entry.alt || []), entry.tr])].filter((a) => a !== f.tr);
+      const { pair: _pair, ...own } = f;
+      return { ...entry, ...own, alt, ...(entry.tl && f.tl ? { alt: [...alt, entry.tl] } : {}) };
+    };
+    for (const [id, f] of Object.entries(def.feminine)) {
+      const w = byId.get(id);
+      if (!w) continue;
+      if (f.tr) Object.assign(w, swap(w, f));
+      if (f.pair && w.pair) w.pair = swap(w.pair, f.pair);
+    }
+    pack.speaker = 'f';
+    return pack.speaker;
+  };
+
   /** Text used by the word-list search: the word, its readings and romanisations.
    * Built on the first search, not at startup (it is the costliest part of a pack). */
   let keysBuilt = false;
