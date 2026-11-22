@@ -2,6 +2,7 @@
 import { h, icon, platform, set } from './ui.js';
 import * as speech from './speech.js';
 import { scoreWord } from './compare.js';
+import { autoGlossary, markGlossary } from './reader.js';
 
 // Audio takes what is being spoken, not just its text: an entry ({ tr, kana?,
 // tl?, dialect?, say? }), an example or pair object, a string, or a resolved
@@ -117,7 +118,20 @@ function regionVoiceNote(ctx, word) {
   return el;
 }
 
-export function exampleBlock(ctx, word) {
+/**
+ * An example sentence with the course's other words in it as links to their
+ * pages (whole words only, never the entry's own word): text and <a> nodes.
+ */
+export function linkedSentence(ctx, sentence, word) {
+  const { lang } = ctx;
+  const items = autoGlossary(lang, [{ tr: sentence }]).filter((g) => g.wordId && g.wordId !== word.id);
+  if (!items.length) return sentence;
+  return markGlossary(lang, sentence, items).map((seg) => (seg.gloss == null ? seg.text
+    : h('a', { class: 'ex-link', href: `#/word/${encodeURIComponent(items[seg.gloss].wordId)}`, title: items[seg.gloss].en }, seg.text)));
+}
+
+/** `links`: the course's other words in the sentence lead to their word pages (word page only, not inside a lesson). */
+export function exampleBlock(ctx, word, { links = false } = {}) {
   if (!word.ex) return null;
   const ex = word.example || { tr: word.ex[0], en: word.ex[1] };
   // Kana · rōmaji (Japanese) or transliteration (Arabic) when the pack has one.
@@ -125,7 +139,7 @@ export function exampleBlock(ctx, word) {
   return h('div', { class: 'example' },
     playButton(ctx, ex, { label: 'Play example' }),
     h('div', { class: 'example-text' },
-      h('p', { class: 'ex-tr', lang: ctx.lang.code }, ex.tr),
+      h('p', { class: 'ex-tr', lang: ctx.lang.code }, links ? linkedSentence(ctx, ex.tr, word) : ex.tr),
       readingText(reading, 'reading small'),
       h('p', { class: 'ex-en' }, ex.en)),
   );

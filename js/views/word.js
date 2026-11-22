@@ -31,7 +31,7 @@ export default function word(ctx, id) {
       audioControls(ctx, w),
       pronunciationPanel(ctx, w),
       registerBlock(ctx, w),
-      exampleBlock(ctx, w),
+      exampleBlock(ctx, w, { links: true }),
       w.note ? h('p', { class: 'note' }, rich(w.note, lang.code)) : null,
       st === 'new'
         ? h('button', {

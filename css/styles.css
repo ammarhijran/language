@@ -597,6 +597,9 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .word-hero { text-align: center; margin: .25rem 0 1rem; }
 .hero-tr { font-family: var(--font-display); font-size: var(--fs-hero); font-weight: 800; line-height: 1.15; margin: 0; letter-spacing: -.01em; word-break: break-word; }
 .hero-en { color: var(--muted); font-size: var(--fs-lg); margin: .35rem 0 0; }
+/* Other words of the course inside an example sentence (word page): quiet links. */
+.ex-link { color: inherit; text-decoration: underline dotted color-mix(in srgb, var(--muted) 60%, transparent); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+.ex-link:hover, .ex-link:focus-visible { color: var(--action); }
 .audio-controls { display: flex; gap: var(--sp-2); justify-content: center; margin-bottom: 1rem; }
 .note {
   background: var(--surface-2); border-radius: var(--r-sm); padding: .65rem .85rem; font-size: var(--fs-sm);

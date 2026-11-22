@@ -98,7 +98,7 @@ URL.revokeObjectURL = (u) => { urls.revoked++; revokeUrl(u); };
 
 const { languages } = await import('./all-languages.js');
 const { makePack, writtenUnits } = await import('../js/languages/common.js');
-const { recorder, speakPractice, praiseLine, cleanupScope, sayLater, pronunciationPanel, exampleBlock, playButton, registerBlock } = await import('../js/components.js');
+const { recorder, speakPractice, praiseLine, cleanupScope, sayLater, pronunciationPanel, exampleBlock, playButton, registerBlock, linkedSentence } = await import('../js/components.js');
 const { tr, uk, ja, ar } = languages;
 
 const wait = (ms = 5) => new Promise((r) => setTimeout(r, ms));
@@ -394,4 +394,29 @@ test('speakPractice listens for Egyptian Arabic in Egyptian entries', () => {
   speakPractice(msa, ar.words.find((w) => !w.dialect)).find((e) => e.getAttribute('aria-label') === 'Speak now').click();
   assert.equal(recognitions.at(-1).lang, 'ar-SA');
   msa.leave();
+});
+
+test('word page: other course words in the example sentence link to their pages, never the word itself', () => {
+  const word = uk.words.find((w) => w.id === 'кава') || uk.words.find((w) => w.ex && /\s/.test(w.ex[0]));
+  const parts = linkedSentence(ctxFor(uk), word.ex[0], word);
+  const text = Array.isArray(parts) ? parts.map((p) => (typeof p === 'string' ? p : p.textContent)).join('') : parts;
+  assert.equal(text, word.ex[0].normalize('NFC'), 'the sentence is unchanged');
+  const links = Array.isArray(parts) ? parts.filter((p) => typeof p !== 'string') : [];
+  for (const a of links) {
+    assert.match(a.getAttribute('href'), /^#\/word\//);
+    assert.notEqual(decodeURIComponent(a.getAttribute('href').slice(7)), word.id);
+    assert.ok(a.getAttribute('title'));
+  }
+  // across the pack: sentences stay intact and something gets linked
+  let linked = 0;
+  for (const w of uk.words.filter((x) => x.ex).slice(0, 150)) {
+    const out = linkedSentence(ctxFor(uk), w.ex[0], w);
+    const joined = Array.isArray(out) ? out.map((p) => (typeof p === 'string' ? p : p.textContent)).join('') : out;
+    assert.equal(joined, w.ex[0].normalize('NFC'), w.ex[0]);
+    if (Array.isArray(out)) linked += out.filter((p) => typeof p !== 'string').length;
+  }
+  assert.ok(linked > 50, `${linked} links in 150 examples`);
+  // inside a lesson the example is plain text
+  const plain = exampleBlock(ctxFor(uk), word);
+  assert.equal(plain.find((e) => e.tagName === 'A'), null);
 });
