@@ -113,6 +113,174 @@ export const categories = [
     "native": "Argo ve Deyimler",
     "emoji": "😎",
     "group": "talk"
+  },
+  {
+    "id": "months",
+    "name": "Months, Dates & Seasons",
+    "native": "Aylar, Tarihler ve Mevsimler",
+    "emoji": "📆",
+    "group": "words"
+  },
+  {
+    "id": "family2",
+    "name": "Family & Relationships",
+    "native": "Aile ve İlişkiler",
+    "emoji": "💞",
+    "group": "words"
+  },
+  {
+    "id": "clothes",
+    "name": "Clothes & Getting Dressed",
+    "native": "Kıyafetler ve Giyinme",
+    "emoji": "👕",
+    "group": "words"
+  },
+  {
+    "id": "hobbies",
+    "name": "Free Time & Hobbies",
+    "native": "Boş Zaman ve Hobiler",
+    "emoji": "🎸",
+    "group": "words"
+  },
+  {
+    "id": "countries",
+    "name": "Countries & Languages",
+    "native": "Ülkeler ve Diller",
+    "emoji": "🌍",
+    "group": "words"
+  },
+  {
+    "id": "weather",
+    "name": "Weather",
+    "native": "Hava Durumu",
+    "emoji": "🌦️",
+    "group": "words"
+  },
+  {
+    "id": "groceries",
+    "name": "Fruit, Vegetables & Groceries",
+    "native": "Meyve, Sebze ve Market",
+    "emoji": "🍎",
+    "group": "words"
+  },
+  {
+    "id": "health",
+    "name": "Doctor & Pharmacy",
+    "native": "Doktor ve Eczane",
+    "emoji": "💊",
+    "group": "words"
+  },
+  {
+    "id": "tech",
+    "name": "Phone & Internet",
+    "native": "Telefon ve İnternet",
+    "emoji": "📱",
+    "group": "words"
+  },
+  {
+    "id": "town",
+    "name": "Around Town",
+    "native": "Şehirde",
+    "emoji": "🏙️",
+    "group": "words"
+  },
+  {
+    "id": "kitchen",
+    "name": "Kitchen & Cooking",
+    "native": "Mutfak ve Yemek",
+    "emoji": "🍳",
+    "group": "words"
+  },
+  {
+    "id": "jobs",
+    "name": "Jobs",
+    "native": "Meslekler",
+    "emoji": "👩‍⚕️",
+    "group": "words"
+  },
+  {
+    "id": "p-language",
+    "name": "Language Help",
+    "native": "Dil Yardımı",
+    "emoji": "🗨️",
+    "group": "phrases"
+  },
+  {
+    "id": "p-intro",
+    "name": "Introducing Yourself",
+    "native": "Kendini Tanıtmak",
+    "emoji": "🤝",
+    "group": "phrases"
+  },
+  {
+    "id": "p-guest",
+    "name": "At Someone's Home",
+    "native": "Misafirlikte",
+    "emoji": "🏠",
+    "group": "phrases"
+  },
+  {
+    "id": "p-wishes",
+    "name": "Wishes & Occasions",
+    "native": "Dilekler ve Özel Günler",
+    "emoji": "🎉",
+    "group": "phrases"
+  },
+  {
+    "id": "p-doctor",
+    "name": "At the Doctor & Pharmacy",
+    "native": "Doktorda ve Eczanede",
+    "emoji": "🩺",
+    "group": "phrases"
+  },
+  {
+    "id": "p-phone",
+    "name": "Phone & Messages",
+    "native": "Telefon ve Mesajlar",
+    "emoji": "📞",
+    "group": "phrases"
+  },
+  {
+    "id": "p-hotel",
+    "name": "Hotel & Staying",
+    "native": "Otel ve Konaklama",
+    "emoji": "🏨",
+    "group": "phrases"
+  },
+  {
+    "id": "p-emergency",
+    "name": "Emergencies",
+    "native": "Acil Durumlar",
+    "emoji": "🚨",
+    "group": "phrases"
+  },
+  {
+    "id": "p-transport",
+    "name": "Trains, Planes & Taxis",
+    "native": "Tren, Uçak ve Taksi",
+    "emoji": "🚆",
+    "group": "phrases"
+  },
+  {
+    "id": "p-work",
+    "name": "At Work",
+    "native": "İş Yerinde",
+    "emoji": "💼",
+    "group": "phrases"
+  },
+  {
+    "id": "p-opinions",
+    "name": "Opinions & Discussion",
+    "native": "Fikirler ve Tartışma",
+    "emoji": "💭",
+    "group": "phrases"
+  },
+  {
+    "id": "p-social",
+    "name": "Friends & Compliments",
+    "native": "Arkadaşlar ve İltifatlar",
+    "emoji": "😊",
+    "group": "phrases"
   }
 ];
 
@@ -2992,6 +3160,3690 @@ export const vocab = [
       "tr": "Bu çok can sıkıcı.",
       "reg": "neutral",
       "en": "This is really annoying."
+    }
+  },
+  {
+    "tr": "ocak",
+    "en": "January",
+    "cat": "months",
+    "ex": [
+      "Ocak ayı çok soğuk geçti.",
+      "January was very cold."
+    ],
+    "note": "Also means “stove; hob”. Months are written lowercase unless part of a date: 1 Ocak 2025."
+  },
+  {
+    "tr": "şubat",
+    "en": "February",
+    "cat": "months",
+    "ex": [
+      "Şubat yılın en kısa ayı.",
+      "February is the shortest month of the year."
+    ]
+  },
+  {
+    "tr": "mart",
+    "en": "March",
+    "cat": "months",
+    "ex": [
+      "Mart ayında hava çok değişken.",
+      "In March the weather is very changeable."
+    ]
+  },
+  {
+    "tr": "nisan",
+    "en": "April",
+    "cat": "months",
+    "ex": [
+      "Nisanda laleler açar.",
+      "Tulips bloom in April."
+    ],
+    "note": "For “in” a month add -da/-de (-ta/-te after a voiceless consonant): nisanda, eylülde, ağustosta."
+  },
+  {
+    "tr": "mayıs",
+    "en": "May",
+    "cat": "months",
+    "ex": [
+      "Doğum günüm mayıs ayında.",
+      "My birthday is in May."
+    ]
+  },
+  {
+    "tr": "haziran",
+    "en": "June",
+    "cat": "months",
+    "ex": [
+      "Okullar haziranda kapanıyor.",
+      "Schools close in June."
+    ]
+  },
+  {
+    "tr": "temmuz",
+    "en": "July",
+    "cat": "months",
+    "ex": [
+      "Temmuzda hava çok sıcak.",
+      "It's very hot in July."
+    ]
+  },
+  {
+    "tr": "ağustos",
+    "en": "August",
+    "cat": "months",
+    "ex": [
+      "Ağustosta tatile gidiyoruz.",
+      "We're going on holiday in August."
+    ]
+  },
+  {
+    "tr": "eylül",
+    "en": "September",
+    "cat": "months",
+    "ex": [
+      "Okullar eylülde açılıyor.",
+      "Schools open in September."
+    ]
+  },
+  {
+    "tr": "ekim",
+    "en": "October",
+    "cat": "months",
+    "ex": [
+      "Ekim ayında Cumhuriyet Bayramı var.",
+      "Republic Day is in October."
+    ],
+    "note": "29 Ekim is Republic Day, one of the biggest national holidays."
+  },
+  {
+    "tr": "kasım",
+    "en": "November",
+    "cat": "months",
+    "ex": [
+      "Kasım ayında çok yağmur yağar.",
+      "It rains a lot in November."
+    ]
+  },
+  {
+    "tr": "aralık",
+    "en": "December",
+    "cat": "months",
+    "ex": [
+      "Aralık yılın son ayı.",
+      "December is the last month of the year."
+    ],
+    "note": "Also means “gap” or “interval”."
+  },
+  {
+    "tr": "ilkbahar",
+    "en": "spring",
+    "cat": "months",
+    "ex": [
+      "İlkbaharda her yer yemyeşil.",
+      "Everything is lush and green in spring."
+    ],
+    "note": "Often just “bahar”. Add -da/-de for “in”: ilkbaharda, sonbaharda."
+  },
+  {
+    "tr": "yaz",
+    "en": "summer",
+    "cat": "months",
+    "ex": [
+      "Yazın denize gideriz.",
+      "In summer we go to the seaside."
+    ],
+    "note": "“Yazın” = in summer, “kışın” = in winter. “Yaz!” also means “Write!”"
+  },
+  {
+    "tr": "sonbahar",
+    "en": "autumn; fall",
+    "cat": "months",
+    "ex": [
+      "Sonbaharda yapraklar sararır.",
+      "Leaves turn yellow in autumn."
+    ]
+  },
+  {
+    "tr": "kış",
+    "en": "winter",
+    "cat": "months",
+    "ex": [
+      "Erzurum'da kış çok uzun sürer.",
+      "Winter lasts a very long time in Erzurum."
+    ]
+  },
+  {
+    "tr": "tarih",
+    "en": "date; history",
+    "cat": "months",
+    "ex": [
+      "Tarihi buraya yazın, lütfen.",
+      "Please write the date here."
+    ],
+    "note": "Also means “history”. To ask today's date: “Bugün ayın kaçı?” (lit. which of the month is today?)."
+  },
+  {
+    "tr": "doğum günü",
+    "en": "birthday",
+    "cat": "months",
+    "ex": [
+      "Yarın annemin doğum günü.",
+      "It's my mum's birthday tomorrow."
+    ],
+    "note": "“İyi ki doğdun!” (lit. good that you were born) is the most common birthday wish; also “Doğum günün kutlu olsun!”"
+  },
+  {
+    "tr": "birinci",
+    "en": "first",
+    "cat": "months",
+    "ex": [
+      "Ofisimiz birinci katta.",
+      "Our office is on the first floor."
+    ],
+    "note": "Ordinals add -inci/-ıncı/-uncu/-üncü: ikinci, üçüncü, dördüncü, beşinci. “İlk” also means first: ilk kez (the first time)."
+  },
+  {
+    "tr": "ikinci",
+    "en": "second",
+    "cat": "months",
+    "ex": [
+      "Bu benim Türkiye'ye ikinci gelişim.",
+      "This is my second time coming to Türkiye."
+    ],
+    "note": "Written with a dot after the number: 2. kat = second floor."
+  },
+  {
+    "tr": "geçen hafta",
+    "en": "last week",
+    "cat": "months",
+    "ex": [
+      "Geçen hafta İzmir'deydim.",
+      "I was in Izmir last week."
+    ],
+    "note": "Geçen = last: geçen ay (last month), geçen yıl (last year)."
+  },
+  {
+    "tr": "gelecek yıl",
+    "en": "next year",
+    "cat": "months",
+    "ex": [
+      "Gelecek yıl üniversiteye başlıyorum.",
+      "I'm starting university next year."
+    ],
+    "note": "Gelecek = next: gelecek hafta (next week). In speech “seneye” (next year) and “haftaya” (next week) are very common.",
+    "pair": {
+      "tr": "seneye",
+      "reg": "casual"
+    }
+  },
+  {
+    "tr": "kocam",
+    "en": "my husband",
+    "cat": "family2",
+    "ex": [
+      "Kocam mühendis olarak çalışıyor.",
+      "My husband works as an engineer."
+    ],
+    "note": "From “koca” (husband; also “huge”). “Eşim” (my spouse) is the more polite choice for a husband or wife.",
+    "pair": {
+      "tr": "eşim",
+      "reg": "polite",
+      "en": "my spouse"
+    }
+  },
+  {
+    "tr": "karım",
+    "en": "my wife",
+    "cat": "family2",
+    "ex": [
+      "Karımla İzmir'de tanıştık.",
+      "My wife and I met in Izmir."
+    ],
+    "note": "Common, but can sound blunt; “eşim” or “hanımım” is more polite. Bare “karı” for a woman is rude.",
+    "reg": "casual",
+    "pair": {
+      "tr": "eşim",
+      "reg": "polite",
+      "en": "my spouse"
+    }
+  },
+  {
+    "tr": "hala",
+    "en": "aunt (father's sister)",
+    "cat": "family2",
+    "ex": [
+      "Halam Ankara'da oturuyor.",
+      "My aunt lives in Ankara."
+    ],
+    "note": "Your mother's sister is “teyze”. Don't confuse with “hâlâ” (still)."
+  },
+  {
+    "tr": "dayı",
+    "en": "uncle (mother's brother)",
+    "cat": "family2",
+    "ex": [
+      "Dayım bize yemeğe geliyor.",
+      "My uncle is coming over for dinner."
+    ],
+    "note": "Your father's brother is “amca”."
+  },
+  {
+    "tr": "yenge",
+    "en": "aunt by marriage; sister-in-law",
+    "cat": "family2",
+    "ex": [
+      "Yengem çok güzel yemek yapar.",
+      "My aunt (my uncle's wife) is a great cook."
+    ],
+    "note": "The wife of your uncle or of your brother. Men also use it for a friend's wife."
+  },
+  {
+    "tr": "enişte",
+    "en": "uncle by marriage; brother-in-law",
+    "cat": "family2",
+    "ex": [
+      "Eniştem bizi havalimanından aldı.",
+      "My uncle (my aunt's husband) picked us up from the airport."
+    ],
+    "note": "The husband of your aunt or of your sister."
+  },
+  {
+    "tr": "kuzen",
+    "en": "cousin",
+    "cat": "family2",
+    "ex": [
+      "Kuzenim Almanya'da yaşıyor.",
+      "My cousin lives in Germany."
+    ],
+    "note": "From French. Also very common: teyze oğlu, amca kızı (aunt's son, uncle's daughter) and so on."
+  },
+  {
+    "tr": "torun",
+    "en": "grandchild",
+    "cat": "family2",
+    "ex": [
+      "Dedemin beş torunu var.",
+      "My grandfather has five grandchildren."
+    ]
+  },
+  {
+    "tr": "anne baba",
+    "en": "parents",
+    "cat": "family2",
+    "ex": [
+      "Anne babam emekli oldu.",
+      "My parents have retired."
+    ],
+    "note": "“Ebeveyn” is the formal word, used on forms and in the news.",
+    "pair": {
+      "tr": "ebeveyn",
+      "reg": "formal",
+      "en": "parent(s)"
+    }
+  },
+  {
+    "tr": "akraba",
+    "en": "relative",
+    "cat": "family2",
+    "ex": [
+      "Bayramda akrabaları ziyaret ederiz.",
+      "We visit our relatives during the holidays."
+    ]
+  },
+  {
+    "tr": "evli",
+    "en": "married",
+    "cat": "family2",
+    "ex": [
+      "Ablam evli, iki çocuğu var.",
+      "My older sister is married with two children."
+    ],
+    "note": "“Evli misiniz?” (Are you married?) is a normal, friendly question in Türkiye."
+  },
+  {
+    "tr": "bekâr",
+    "en": "single (not married)",
+    "cat": "family2",
+    "ex": [
+      "Hayır, ben bekârım.",
+      "No, I'm single."
+    ],
+    "note": "Also written “bekar”. It means not married, not necessarily without a partner.",
+    "alt": [
+      "bekar"
+    ]
+  },
+  {
+    "tr": "sevgili",
+    "en": "boyfriend; girlfriend; partner",
+    "cat": "family2",
+    "ex": [
+      "Sevgilin var mı?",
+      "Do you have a boyfriend / girlfriend?"
+    ],
+    "note": "Also “erkek arkadaş” (boyfriend) and “kız arkadaş” (girlfriend), which can also just mean a friend."
+  },
+  {
+    "tr": "evlenmek",
+    "en": "to get married",
+    "cat": "family2",
+    "ex": [
+      "Ablam haziranda evleniyor.",
+      "My older sister is getting married in June."
+    ],
+    "note": "To marry someone: biriyle evlenmek — Ali ile evlendi (she married Ali)."
+  },
+  {
+    "tr": "nişanlı",
+    "en": "engaged; fiancé(e)",
+    "cat": "family2",
+    "ex": [
+      "Bu benim nişanlım, Ayşe.",
+      "This is my fiancée, Ayşe."
+    ],
+    "note": "Both an adjective (engaged) and a noun (fiancé / fiancée)."
+  },
+  {
+    "tr": "kıyafet",
+    "en": "clothes; outfit",
+    "cat": "clothes",
+    "ex": [
+      "Bu kıyafet sana çok yakışmış.",
+      "This outfit really suits you."
+    ],
+    "note": "Yakışmak = to suit. “Giysi” is a more formal synonym."
+  },
+  {
+    "tr": "gömlek",
+    "en": "shirt",
+    "cat": "clothes",
+    "ex": [
+      "Beyaz bir gömlek arıyorum.",
+      "I'm looking for a white shirt."
+    ]
+  },
+  {
+    "tr": "tişört",
+    "en": "T-shirt",
+    "cat": "clothes",
+    "ex": [
+      "Yazın hep tişört giyerim.",
+      "In summer I always wear T-shirts."
+    ]
+  },
+  {
+    "tr": "pantolon",
+    "en": "trousers; pants",
+    "cat": "clothes",
+    "ex": [
+      "Bu pantolon bana biraz dar.",
+      "These trousers are a bit tight on me."
+    ],
+    "note": "Singular in Turkish: bir pantolon = a pair of trousers."
+  },
+  {
+    "tr": "etek",
+    "en": "skirt",
+    "cat": "clothes",
+    "ex": [
+      "Bu etek biraz kısa.",
+      "This skirt is a bit short."
+    ]
+  },
+  {
+    "tr": "elbise",
+    "en": "dress",
+    "cat": "clothes",
+    "ex": [
+      "Düğün için yeni bir elbise aldım.",
+      "I bought a new dress for the wedding."
+    ],
+    "note": "Takım elbise = a suit."
+  },
+  {
+    "tr": "ayakkabı",
+    "en": "shoe; shoes",
+    "cat": "clothes",
+    "ex": [
+      "Bu ayakkabılar çok rahat.",
+      "These shoes are very comfortable."
+    ],
+    "note": "Literally “foot cover”. Take your shoes off at the door when you visit a Turkish home."
+  },
+  {
+    "tr": "çorap",
+    "en": "socks",
+    "cat": "clothes",
+    "ex": [
+      "Kışın kalın çorap giyiyorum.",
+      "In winter I wear thick socks."
+    ],
+    "note": "Bir çift çorap = a pair of socks."
+  },
+  {
+    "tr": "mont",
+    "en": "(winter) jacket; coat",
+    "cat": "clothes",
+    "ex": [
+      "Hava soğuk, montunu al.",
+      "It's cold, take your coat."
+    ],
+    "note": "A padded or casual jacket. A long, smart overcoat is a “palto”."
+  },
+  {
+    "tr": "ceket",
+    "en": "jacket; blazer",
+    "cat": "clothes",
+    "ex": [
+      "Toplantı için ceket giydim.",
+      "I wore a jacket for the meeting."
+    ],
+    "note": "A tailored jacket. A warm winter jacket is a “mont”."
+  },
+  {
+    "tr": "şapka",
+    "en": "hat",
+    "cat": "clothes",
+    "ex": [
+      "Güneş çok yakıyor, şapkanı tak.",
+      "The sun is really strong, put your hat on."
+    ],
+    "note": "Hats are usually “put on” with takmak: şapka takmak."
+  },
+  {
+    "tr": "kazak",
+    "en": "sweater; jumper",
+    "cat": "clothes",
+    "ex": [
+      "Annem bana bir kazak ördü.",
+      "My mother knitted me a sweater."
+    ]
+  },
+  {
+    "tr": "gözlük",
+    "en": "glasses",
+    "cat": "clothes",
+    "ex": [
+      "Gözlüğümü nerede bıraktım?",
+      "Where did I leave my glasses?"
+    ],
+    "note": "Singular in Turkish. Güneş gözlüğü = sunglasses. You “takmak” glasses, not “giymek”."
+  },
+  {
+    "tr": "sırt çantası",
+    "en": "backpack",
+    "cat": "clothes",
+    "ex": [
+      "Sırt çantamı otelde unuttum.",
+      "I left my backpack at the hotel."
+    ],
+    "note": "Literally “back bag”. Çanta = bag."
+  },
+  {
+    "tr": "numara",
+    "en": "number; (shoe) size",
+    "cat": "clothes",
+    "ex": [
+      "Kaç numara giyiyorsunuz?",
+      "What shoe size do you wear?"
+    ],
+    "note": "Shoe sizes: 40 numara. Clothes use “beden”: M beden. Also any number: telefon numarası."
+  },
+  {
+    "tr": "giymek",
+    "en": "to wear; to put on (clothes)",
+    "cat": "clothes",
+    "ex": [
+      "Bugün ne giysem acaba?",
+      "I wonder what I should wear today."
+    ],
+    "note": "For clothes and shoes. Glasses, watches, jewellery and hats usually take “takmak”."
+  },
+  {
+    "tr": "çıkarmak",
+    "en": "to take off; to take out",
+    "cat": "clothes",
+    "ex": [
+      "Lütfen ayakkabılarınızı kapıda çıkarın.",
+      "Please take your shoes off at the door."
+    ],
+    "note": "Also “to take out”: Cüzdanını çıkardı = He took out his wallet."
+  },
+  {
+    "tr": "takmak",
+    "en": "to put on; to wear (accessories)",
+    "cat": "clothes",
+    "ex": [
+      "Saatini takmayı unutma.",
+      "Don't forget to put on your watch."
+    ],
+    "note": "For glasses, watches, rings, earrings, ties and hats. Also “to attach” or “plug in”."
+  },
+  {
+    "tr": "terlik",
+    "en": "slippers",
+    "cat": "clothes",
+    "ex": [
+      "Misafirler için terlik var.",
+      "There are slippers for guests."
+    ],
+    "note": "Hosts usually offer slippers once you've taken your shoes off."
+  },
+  {
+    "tr": "kot",
+    "en": "jeans; denim",
+    "cat": "clothes",
+    "ex": [
+      "Hafta sonları hep kot giyerim.",
+      "I always wear jeans at weekends."
+    ],
+    "note": "Short for “kot pantolon”."
+  },
+  {
+    "tr": "boş zaman",
+    "en": "free time",
+    "cat": "hobbies",
+    "ex": [
+      "Boş zamanlarında ne yaparsın?",
+      "What do you do in your free time?"
+    ],
+    "note": "Literally “empty time”."
+  },
+  {
+    "tr": "hobi",
+    "en": "hobby",
+    "cat": "hobbies",
+    "ex": [
+      "Benim hobim fotoğraf çekmek.",
+      "My hobby is taking photos."
+    ]
+  },
+  {
+    "tr": "müzik",
+    "en": "music",
+    "cat": "hobbies",
+    "ex": [
+      "Ne tür müzik dinlersin?",
+      "What kind of music do you listen to?"
+    ]
+  },
+  {
+    "tr": "film",
+    "en": "film; movie",
+    "cat": "hobbies",
+    "ex": [
+      "Bu akşam film izleyelim mi?",
+      "Shall we watch a film tonight?"
+    ]
+  },
+  {
+    "tr": "spor",
+    "en": "sport; exercise",
+    "cat": "hobbies",
+    "ex": [
+      "Haftada iki kez spor salonuna gidiyorum.",
+      "I go to the gym twice a week."
+    ],
+    "note": "Spor salonu = gym. Spor yapmak = to exercise."
+  },
+  {
+    "tr": "futbol",
+    "en": "football; soccer",
+    "cat": "hobbies",
+    "ex": [
+      "Türkiye'de futbol çok popüler.",
+      "Football is very popular in Türkiye."
+    ],
+    "note": "The big three clubs: Galatasaray, Fenerbahçe and Beşiktaş."
+  },
+  {
+    "tr": "sinema",
+    "en": "cinema",
+    "cat": "hobbies",
+    "s": 2,
+    "ex": [
+      "Hafta sonu sinemaya gidelim.",
+      "Let's go to the cinema at the weekend."
+    ]
+  },
+  {
+    "tr": "konser",
+    "en": "concert",
+    "cat": "hobbies",
+    "ex": [
+      "Cumartesi akşamı konsere gidiyoruz.",
+      "We're going to a concert on Saturday evening."
+    ]
+  },
+  {
+    "tr": "oyun",
+    "en": "game; play",
+    "cat": "hobbies",
+    "ex": [
+      "Bu oyun çok eğlenceli.",
+      "This game is a lot of fun."
+    ],
+    "note": "Also a theatre play. Bilgisayar oyunu = computer game."
+  },
+  {
+    "tr": "oynamak",
+    "en": "to play (games, sports)",
+    "cat": "hobbies",
+    "ex": [
+      "Hafta sonu futbol oynuyoruz.",
+      "We play football at the weekend."
+    ],
+    "note": "For musical instruments use “çalmak”: gitar çalmak."
+  },
+  {
+    "tr": "yüzmek",
+    "en": "to swim",
+    "cat": "hobbies",
+    "ex": [
+      "Denizde yüzmeyi çok seviyorum.",
+      "I love swimming in the sea."
+    ]
+  },
+  {
+    "tr": "koşmak",
+    "en": "to run",
+    "cat": "hobbies",
+    "ex": [
+      "Her sabah parkta koşuyorum.",
+      "I run in the park every morning."
+    ]
+  },
+  {
+    "tr": "dans etmek",
+    "en": "to dance",
+    "cat": "hobbies",
+    "ex": [
+      "Düğünde herkes dans etti.",
+      "Everyone danced at the wedding."
+    ],
+    "note": "At weddings people dance the “halay” together in a long line."
+  },
+  {
+    "tr": "şarkı söylemek",
+    "en": "to sing",
+    "cat": "hobbies",
+    "ex": [
+      "Arabada hep şarkı söylerim.",
+      "I always sing in the car."
+    ],
+    "note": "Şarkı = song; söylemek = to say."
+  },
+  {
+    "tr": "resim yapmak",
+    "en": "to draw; to paint",
+    "cat": "hobbies",
+    "ex": [
+      "Kızım resim yapmayı çok seviyor.",
+      "My daughter loves drawing."
+    ],
+    "note": "Resim = picture. “Çizmek” = to draw lines or a sketch."
+  },
+  {
+    "tr": "fotoğraf çekmek",
+    "en": "to take photos",
+    "cat": "hobbies",
+    "ex": [
+      "Burada fotoğraf çekebilir miyim?",
+      "Can I take photos here?"
+    ],
+    "note": "Literally “to pull a photo”."
+  },
+  {
+    "tr": "kitap okumak",
+    "en": "to read (books)",
+    "cat": "hobbies",
+    "ex": [
+      "Yatmadan önce kitap okurum.",
+      "I read before going to bed."
+    ]
+  },
+  {
+    "tr": "seyahat etmek",
+    "en": "to travel",
+    "cat": "hobbies",
+    "ex": [
+      "Seyahat etmeyi çok severim.",
+      "I love travelling."
+    ],
+    "note": "For trips and sightseeing people often just say “gezmek” (to go around): Gezmeyi çok severim."
+  },
+  {
+    "tr": "çalmak",
+    "en": "to play (an instrument); to ring; to steal",
+    "cat": "hobbies",
+    "ex": [
+      "Ablam piyano çalıyor.",
+      "My older sister plays the piano."
+    ],
+    "note": "Also “to ring”: Telefon çalıyor. And “to steal”. Games and sports use “oynamak”."
+  },
+  {
+    "tr": "maç",
+    "en": "match; game (sports)",
+    "cat": "hobbies",
+    "ex": [
+      "Bu akşam maç var mı?",
+      "Is there a match tonight?"
+    ]
+  },
+  {
+    "tr": "dizi",
+    "en": "TV series",
+    "cat": "hobbies",
+    "ex": [
+      "Türk dizileri dünyada çok popüler.",
+      "Turkish TV series are very popular around the world."
+    ]
+  },
+  {
+    "tr": "yürüyüş yapmak",
+    "en": "to go for a walk; to hike",
+    "cat": "hobbies",
+    "ex": [
+      "Yemekten sonra yürüyüş yapalım mı?",
+      "Shall we go for a walk after the meal?"
+    ],
+    "note": "Yürüyüş = a walk or hike; also a (protest) march."
+  },
+  {
+    "tr": "bisiklet",
+    "en": "bicycle; bike",
+    "cat": "hobbies",
+    "ex": [
+      "Pazar günleri bisiklete biniyorum.",
+      "I ride my bike on Sundays."
+    ],
+    "note": "You “get on” it: bisiklete binmek = to ride a bike."
+  },
+  {
+    "tr": "takım",
+    "en": "team",
+    "cat": "hobbies",
+    "ex": [
+      "Hangi takımı tutuyorsun?",
+      "Which team do you support?"
+    ],
+    "note": "Tutmak (to hold) also means to support a team. Takım also means “set” or “suit”."
+  },
+  {
+    "tr": "tavla",
+    "en": "backgammon",
+    "cat": "hobbies",
+    "ex": [
+      "Dedem her akşam tavla oynar.",
+      "My grandfather plays backgammon every evening."
+    ],
+    "note": "Hugely popular in Türkiye — played in cafés and on balconies over tea."
+  },
+  {
+    "tr": "ülke",
+    "en": "country",
+    "cat": "countries",
+    "ex": [
+      "Hangi ülkeden geliyorsun?",
+      "Which country are you from?"
+    ]
+  },
+  {
+    "tr": "dil",
+    "en": "language; tongue",
+    "cat": "countries",
+    "ex": [
+      "Kaç dil konuşuyorsun?",
+      "How many languages do you speak?"
+    ],
+    "note": "Also means “tongue”."
+  },
+  {
+    "tr": "yabancı",
+    "en": "foreign; foreigner; stranger",
+    "cat": "countries",
+    "ex": [
+      "Ben yabancıyım, Türkçem iyi değil.",
+      "I'm a foreigner, my Turkish isn't good."
+    ],
+    "note": "Also “stranger”. Yabancı dil = foreign language."
+  },
+  {
+    "tr": "uyruk",
+    "en": "nationality",
+    "cat": "countries",
+    "ex": [
+      "Lütfen buraya uyruğunuzu yazın.",
+      "Please write your nationality here."
+    ],
+    "note": "Used on forms. In conversation people ask “Nerelisin?” (Where are you from?)."
+  },
+  {
+    "tr": "Türk",
+    "en": "Turk; Turkish (person)",
+    "cat": "countries",
+    "ex": [
+      "Annem Türk, babam İngiliz.",
+      "My mother is Turkish, my father is English."
+    ],
+    "note": "A Turkish person or thing: Türk kahvesi. The language is “Türkçe”."
+  },
+  {
+    "tr": "Türkçe",
+    "en": "Turkish (language)",
+    "cat": "countries",
+    "s": 1,
+    "ex": [
+      "Türkçem her gün daha iyi oluyor.",
+      "My Turkish is getting better every day."
+    ],
+    "note": "Language names end in -ca/-ce and are stressed just before it: TÜRK-çe, al-MAN-ca."
+  },
+  {
+    "tr": "Kıbrıs",
+    "en": "Cyprus",
+    "cat": "countries",
+    "s": 1,
+    "ex": [
+      "Kıbrıs'ta da Türkçe konuşuluyor.",
+      "Turkish is spoken in Cyprus too."
+    ],
+    "note": "Turkish is an official language of Cyprus and is spoken in the north of the island."
+  },
+  {
+    "tr": "Yunanistan",
+    "en": "Greece",
+    "cat": "countries",
+    "s": 3,
+    "ex": [
+      "Yunanistan Türkiye'nin komşusu.",
+      "Greece is Türkiye's neighbour."
+    ],
+    "note": "Greek: Yunanlı (person), Yunanca (language). -istan means “land of”."
+  },
+  {
+    "tr": "İngiltere",
+    "en": "England; the UK",
+    "cat": "countries",
+    "s": 2,
+    "ex": [
+      "Ben İngiltere'den geliyorum.",
+      "I come from England."
+    ],
+    "note": "Often used for the whole UK; officially “Birleşik Krallık”."
+  },
+  {
+    "tr": "İngiliz",
+    "en": "English; British (person)",
+    "cat": "countries",
+    "ex": [
+      "Komşumuz İngiliz, çok kibar.",
+      "Our neighbour is English, very polite."
+    ]
+  },
+  {
+    "tr": "İngilizce",
+    "en": "English (language)",
+    "cat": "countries",
+    "s": 3,
+    "ex": [
+      "İngilizce menü var mı?",
+      "Is there an English menu?"
+    ]
+  },
+  {
+    "tr": "Amerika",
+    "en": "America; the USA",
+    "cat": "countries",
+    "s": 3,
+    "ex": [
+      "Kuzenim Amerika'da okuyor.",
+      "My cousin is studying in America."
+    ],
+    "note": "Officially “Amerika Birleşik Devletleri” (ABD), but people just say “Amerika”.",
+    "pair": {
+      "tr": "Amerika Birleşik Devletleri",
+      "reg": "formal",
+      "en": "United States of America"
+    }
+  },
+  {
+    "tr": "Amerikalı",
+    "en": "American (person)",
+    "cat": "countries",
+    "ex": [
+      "Yeni öğretmenimiz Amerikalı.",
+      "Our new teacher is American."
+    ],
+    "note": "-lı/-li/-lu/-lü = from: İstanbullu (from Istanbul), Londralı (from London)."
+  },
+  {
+    "tr": "Almanya",
+    "en": "Germany",
+    "cat": "countries",
+    "s": 2,
+    "ex": [
+      "Almanya'da çok Türk yaşıyor.",
+      "A lot of Turks live in Germany."
+    ],
+    "note": "About three million people of Turkish origin live in Germany."
+  },
+  {
+    "tr": "Almanca",
+    "en": "German (language)",
+    "cat": "countries",
+    "s": 2,
+    "ex": [
+      "Almanca biraz zor bir dil.",
+      "German is a rather difficult language."
+    ],
+    "note": "A German person is “Alman”."
+  },
+  {
+    "tr": "Fransa",
+    "en": "France",
+    "cat": "countries",
+    "s": 1,
+    "ex": [
+      "Fransa'ya hiç gittin mi?",
+      "Have you ever been to France?"
+    ]
+  },
+  {
+    "tr": "Fransızca",
+    "en": "French (language)",
+    "cat": "countries",
+    "s": 2,
+    "ex": [
+      "Okulda Fransızca öğrendim.",
+      "I learned French at school."
+    ],
+    "note": "A French person is “Fransız”. Many Turkish words come from French: kuzen, kuaför, şoför."
+  },
+  {
+    "tr": "Rusya",
+    "en": "Russia",
+    "cat": "countries",
+    "s": 1,
+    "ex": [
+      "Rusya çok büyük bir ülke.",
+      "Russia is a very big country."
+    ],
+    "note": "Russian: Rus (person), Rusça (language)."
+  },
+  {
+    "tr": "Çin",
+    "en": "China",
+    "cat": "countries",
+    "ex": [
+      "Bu telefon Çin'de yapılmış.",
+      "This phone was made in China."
+    ],
+    "note": "Chinese: Çinli (person), Çince (language)."
+  },
+  {
+    "tr": "Japonya",
+    "en": "Japan",
+    "cat": "countries",
+    "s": 2,
+    "ex": [
+      "Japonya'ya gitmek istiyorum.",
+      "I want to go to Japan."
+    ],
+    "note": "Japanese: Japon (person), Japonca (language)."
+  },
+  {
+    "tr": "bulutlu",
+    "en": "cloudy",
+    "cat": "weather",
+    "ex": [
+      "Bugün hava bulutlu.",
+      "It's cloudy today."
+    ]
+  },
+  {
+    "tr": "rüzgârlı",
+    "en": "windy",
+    "cat": "weather",
+    "ex": [
+      "Sahilde hava çok rüzgârlı.",
+      "It's very windy on the coast."
+    ],
+    "alt": [
+      "rüzgarlı"
+    ]
+  },
+  {
+    "tr": "güneşli",
+    "en": "sunny",
+    "cat": "weather",
+    "ex": [
+      "Yarın hava güneşli olacak.",
+      "It will be sunny tomorrow."
+    ]
+  },
+  {
+    "tr": "yağmurlu",
+    "en": "rainy",
+    "cat": "weather",
+    "ex": [
+      "Yağmurlu günlerde evde kalırım.",
+      "On rainy days I stay at home."
+    ]
+  },
+  {
+    "tr": "ılık",
+    "en": "warm; mild; lukewarm",
+    "cat": "weather",
+    "ex": [
+      "Bugün hava ılık ve güzel.",
+      "Today the weather is warm and nice."
+    ],
+    "note": "Pleasantly warm, not hot. Also for water: ılık su = lukewarm water."
+  },
+  {
+    "tr": "serin",
+    "en": "cool",
+    "cat": "weather",
+    "ex": [
+      "Akşamları hava serin oluyor.",
+      "It gets cool in the evenings."
+    ],
+    "note": "Pleasantly cool — milder than “soğuk” (cold)."
+  },
+  {
+    "tr": "nemli",
+    "en": "humid; damp",
+    "cat": "weather",
+    "ex": [
+      "İstanbul yazın çok nemli olur.",
+      "Istanbul gets very humid in summer."
+    ]
+  },
+  {
+    "tr": "derece",
+    "en": "degree (temperature)",
+    "cat": "weather",
+    "ex": [
+      "Bugün hava kaç derece?",
+      "What's the temperature today?"
+    ],
+    "note": "Answer: “Otuz derece.” Below zero: “eksi beş derece” (minus five)."
+  },
+  {
+    "tr": "hava durumu",
+    "en": "weather forecast",
+    "cat": "weather",
+    "ex": [
+      "Hava durumuna baktın mı?",
+      "Did you check the weather forecast?"
+    ],
+    "note": "Literally “weather situation” — what TV and weather apps call the forecast."
+  },
+  {
+    "tr": "şemsiye",
+    "en": "umbrella",
+    "cat": "weather",
+    "ex": [
+      "Yağmur yağabilir, şemsiyeni al.",
+      "It might rain, take your umbrella."
+    ]
+  },
+  {
+    "tr": "fırtına",
+    "en": "storm",
+    "cat": "weather",
+    "ex": [
+      "Gece büyük bir fırtına çıktı.",
+      "A big storm broke out in the night."
+    ]
+  },
+  {
+    "tr": "sis",
+    "en": "fog",
+    "cat": "weather",
+    "ex": [
+      "Sabah yollarda yoğun sis vardı.",
+      "There was thick fog on the roads this morning."
+    ],
+    "note": "Foggy = sisli."
+  },
+  {
+    "tr": "kar yağmak",
+    "en": "to snow",
+    "cat": "weather",
+    "ex": [
+      "Dışarıda kar yağıyor!",
+      "It's snowing outside!"
+    ],
+    "note": "Rain and snow “fall” (yağmak): yağmur yağıyor (it's raining), kar yağıyor (it's snowing)."
+  },
+  {
+    "tr": "üşümek",
+    "en": "to feel cold",
+    "cat": "weather",
+    "ex": [
+      "Pencereyi kapatır mısın? Üşüdüm.",
+      "Could you close the window? I'm cold."
+    ],
+    "note": "“Üşüdüm” (past form) = I'm cold right now. Don't say “Ben soğuğum”."
+  },
+  {
+    "tr": "ıslanmak",
+    "en": "to get wet",
+    "cat": "weather",
+    "ex": [
+      "Şemsiyem yoktu, sırılsıklam ıslandım.",
+      "I had no umbrella, so I got soaked."
+    ],
+    "note": "Sırılsıklam = soaking wet."
+  },
+  {
+    "tr": "armut",
+    "en": "pear",
+    "cat": "groceries",
+    "ex": [
+      "Bu armutlar çok tatlı.",
+      "These pears are very sweet."
+    ]
+  },
+  {
+    "tr": "üzüm",
+    "en": "grapes",
+    "cat": "groceries",
+    "ex": [
+      "Çocuklar üzüme bayılıyor.",
+      "The kids love grapes."
+    ],
+    "note": "Used as a mass noun: üzüm = grapes. One grape = bir tane üzüm."
+  },
+  {
+    "tr": "çilek",
+    "en": "strawberry",
+    "cat": "groceries",
+    "ex": [
+      "Pazarda taze çilek var.",
+      "There are fresh strawberries at the market."
+    ]
+  },
+  {
+    "tr": "karpuz",
+    "en": "watermelon",
+    "cat": "groceries",
+    "ex": [
+      "Yazın karpuz ve beyaz peynir yeriz.",
+      "In summer we eat watermelon and white cheese."
+    ]
+  },
+  {
+    "tr": "kiraz",
+    "en": "cherry",
+    "cat": "groceries",
+    "ex": [
+      "Kiraz mevsimi haziranda başlar.",
+      "Cherry season starts in June."
+    ]
+  },
+  {
+    "tr": "şeftali",
+    "en": "peach",
+    "cat": "groceries",
+    "ex": [
+      "Bu şeftaliler çok sulu.",
+      "These peaches are very juicy."
+    ]
+  },
+  {
+    "tr": "limon",
+    "en": "lemon",
+    "cat": "groceries",
+    "ex": [
+      "Salataya biraz limon sıkar mısın?",
+      "Could you squeeze some lemon on the salad?"
+    ]
+  },
+  {
+    "tr": "incir",
+    "en": "fig",
+    "cat": "groceries",
+    "ex": [
+      "Taze incir çok lezzetli.",
+      "Fresh figs are delicious."
+    ]
+  },
+  {
+    "tr": "nar",
+    "en": "pomegranate",
+    "cat": "groceries",
+    "ex": [
+      "Sonbaharda nar suyu içeriz.",
+      "In autumn we drink pomegranate juice."
+    ]
+  },
+  {
+    "tr": "soğan",
+    "en": "onion",
+    "cat": "groceries",
+    "ex": [
+      "Önce soğanı doğra.",
+      "First, chop the onion."
+    ]
+  },
+  {
+    "tr": "sarımsak",
+    "en": "garlic",
+    "cat": "groceries",
+    "ex": [
+      "Yoğurda biraz sarımsak koy.",
+      "Put a little garlic in the yogurt."
+    ],
+    "alt": [
+      "sarmısak"
+    ]
+  },
+  {
+    "tr": "salatalık",
+    "en": "cucumber",
+    "cat": "groceries",
+    "ex": [
+      "Kahvaltıda domates ve salatalık yeriz.",
+      "We eat tomatoes and cucumber at breakfast."
+    ],
+    "note": "Also “hıyar”, but that word is also a mild insult (“idiot”)."
+  },
+  {
+    "tr": "biber",
+    "en": "pepper",
+    "cat": "groceries",
+    "ex": [
+      "Bu biber çok acı!",
+      "This pepper is really hot!"
+    ],
+    "note": "Also the spice: karabiber = black pepper. Acı = hot, spicy."
+  },
+  {
+    "tr": "patlıcan",
+    "en": "aubergine; eggplant",
+    "cat": "groceries",
+    "ex": [
+      "Türk mutfağında patlıcan çok önemli.",
+      "Aubergine is very important in Turkish cooking."
+    ],
+    "note": "The star of dishes like karnıyarık and imam bayıldı."
+  },
+  {
+    "tr": "havuç",
+    "en": "carrot",
+    "cat": "groceries",
+    "ex": [
+      "Çorbaya bir havuç ekle.",
+      "Add a carrot to the soup."
+    ]
+  },
+  {
+    "tr": "marul",
+    "en": "lettuce",
+    "cat": "groceries",
+    "ex": [
+      "Bir marul ve iki limon, lütfen.",
+      "A lettuce and two lemons, please."
+    ]
+  },
+  {
+    "tr": "pirinç",
+    "en": "rice (uncooked)",
+    "cat": "groceries",
+    "ex": [
+      "Pilav için pirinci yıka.",
+      "Wash the rice for the pilaf."
+    ],
+    "note": "Uncooked rice; cooked rice is “pilav”. Also means “brass”."
+  },
+  {
+    "tr": "un",
+    "en": "flour",
+    "cat": "groceries",
+    "ex": [
+      "Kek için un lazım.",
+      "We need flour for the cake."
+    ]
+  },
+  {
+    "tr": "makarna",
+    "en": "pasta",
+    "cat": "groceries",
+    "s": 2,
+    "ex": [
+      "Akşama makarna yapalım mı?",
+      "Shall we make pasta for dinner?"
+    ]
+  },
+  {
+    "tr": "yoğurt",
+    "en": "yogurt",
+    "cat": "groceries",
+    "ex": [
+      "Yoğurt aslında Türkçe bir kelime.",
+      "Yogurt is actually a Turkish word."
+    ],
+    "note": "Ayran = a salty yogurt drink."
+  },
+  {
+    "tr": "mercimek",
+    "en": "lentils",
+    "cat": "groceries",
+    "ex": [
+      "Bir paket kırmızı mercimek alır mısın?",
+      "Could you get a packet of red lentils?"
+    ]
+  },
+  {
+    "tr": "fasulye",
+    "en": "beans",
+    "cat": "groceries",
+    "s": 2,
+    "ex": [
+      "Bugün kuru fasulye pişirdim.",
+      "I made white bean stew today."
+    ],
+    "note": "Kuru fasulye (white bean stew) with pilav is a classic. Taze fasulye = green beans."
+  },
+  {
+    "tr": "yağ",
+    "en": "oil; fat",
+    "cat": "groceries",
+    "ex": [
+      "Tavaya biraz yağ koy.",
+      "Put a little oil in the pan."
+    ],
+    "note": "Zeytinyağı = olive oil, ayçiçek yağı = sunflower oil."
+  },
+  {
+    "tr": "kilo",
+    "en": "kilo; weight",
+    "cat": "groceries",
+    "ex": [
+      "İki kilo domates, lütfen.",
+      "Two kilos of tomatoes, please."
+    ],
+    "note": "Market prices are per kilo; yarım kilo = half a kilo. Kilo almak = to put on weight."
+  },
+  {
+    "tr": "manav",
+    "en": "greengrocer",
+    "cat": "groceries",
+    "ex": [
+      "Köşedeki manav çok ucuz.",
+      "The greengrocer on the corner is very cheap."
+    ],
+    "note": "A local fruit-and-veg shop. Weekly street markets are called “pazar”."
+  },
+  {
+    "tr": "ateş",
+    "en": "fever; fire",
+    "cat": "health",
+    "ex": [
+      "Çocuğun ateşi var mı?",
+      "Does the child have a fever?"
+    ],
+    "note": "Ateşim var = I have a fever. Also means “fire”."
+  },
+  {
+    "tr": "öksürük",
+    "en": "cough",
+    "cat": "health",
+    "ex": [
+      "İki gündür öksürüğüm var.",
+      "I've had a cough for two days."
+    ],
+    "note": "To cough = öksürmek. k → ğ before a vowel: öksürüğüm (my cough)."
+  },
+  {
+    "tr": "baş ağrısı",
+    "en": "headache",
+    "cat": "health",
+    "ex": [
+      "Sabahtan beri baş ağrım var.",
+      "I've had a headache since this morning."
+    ],
+    "note": "Also: diş ağrısı (toothache), mide ağrısı (stomach ache)."
+  },
+  {
+    "tr": "nezle",
+    "en": "a cold",
+    "cat": "health",
+    "ex": [
+      "Nezle oldum, burnum akıyor.",
+      "I've caught a cold, my nose is running."
+    ],
+    "note": "Nezle olmak = to catch a cold. Doctors often say “soğuk algınlığı”.",
+    "pair": {
+      "tr": "soğuk algınlığı",
+      "reg": "formal",
+      "en": "common cold"
+    }
+  },
+  {
+    "tr": "grip",
+    "en": "flu",
+    "cat": "health",
+    "ex": [
+      "Grip oldum, bugün işe gidemem.",
+      "I've got the flu, I can't go to work today."
+    ],
+    "note": "Grip olmak = to have / catch the flu."
+  },
+  {
+    "tr": "alerji",
+    "en": "allergy",
+    "cat": "health",
+    "ex": [
+      "Kedilere alerjim var.",
+      "I'm allergic to cats."
+    ],
+    "note": "X-e alerjim var = I'm allergic to X: penisiline alerjim var (I'm allergic to penicillin)."
+  },
+  {
+    "tr": "reçete",
+    "en": "prescription",
+    "cat": "health",
+    "ex": [
+      "Bu ilaç reçeteyle mi satılıyor?",
+      "Do you need a prescription for this medicine?"
+    ]
+  },
+  {
+    "tr": "randevu",
+    "en": "appointment",
+    "cat": "health",
+    "ex": [
+      "Saat üçte doktordan randevum var.",
+      "I have a doctor's appointment at three."
+    ],
+    "note": "Randevu almak = to book an appointment."
+  },
+  {
+    "tr": "hap",
+    "en": "pill; tablet",
+    "cat": "health",
+    "ex": [
+      "Günde iki hap iç.",
+      "Take two pills a day."
+    ],
+    "note": "Pills are “drunk” in Turkish: hap / ilaç içmek. Packets say “tablet”."
+  },
+  {
+    "tr": "ağrı kesici",
+    "en": "painkiller",
+    "cat": "health",
+    "ex": [
+      "Ağrı kesici var mı?",
+      "Do you have any painkillers?"
+    ],
+    "note": "Literally “pain cutter”."
+  },
+  {
+    "tr": "ambulans",
+    "en": "ambulance",
+    "cat": "health",
+    "ex": [
+      "Ambulans on dakikada geldi.",
+      "The ambulance came in ten minutes."
+    ],
+    "note": "Emergency number in Türkiye: 112 (ambulance, police and fire)."
+  },
+  {
+    "tr": "acil",
+    "en": "emergency; urgent",
+    "cat": "health",
+    "ex": [
+      "Acil servis nerede?",
+      "Where is the emergency department?"
+    ],
+    "note": "Acil servis = A&E / ER. Also “urgent”: Acil! = It's urgent!"
+  },
+  {
+    "tr": "ağrımak",
+    "en": "to hurt; to ache",
+    "cat": "health",
+    "ex": [
+      "Dişim çok ağrıyor.",
+      "My tooth really hurts."
+    ],
+    "note": "The body part is the subject: Başım ağrıyor. For a sharp, stinging pain use “acımak”: Elim acıyor."
+  },
+  {
+    "tr": "muayene",
+    "en": "(medical) examination; check-up",
+    "cat": "health",
+    "ex": [
+      "Doktor sizi şimdi muayene edecek.",
+      "The doctor will examine you now."
+    ],
+    "note": "Muayene olmak = to be examined, to see a doctor."
+  },
+  {
+    "tr": "ishal",
+    "en": "diarrhoea",
+    "cat": "health",
+    "ex": [
+      "Sanırım bir şey dokundu, ishal oldum.",
+      "I think something disagreed with me — I've got diarrhoea."
+    ],
+    "note": "“Dokunmak” (to touch) is also used for food that disagrees with you."
+  },
+  {
+    "tr": "kusmak",
+    "en": "to vomit; to be sick",
+    "cat": "health",
+    "ex": [
+      "Çocuk gece iki kez kustu.",
+      "The child was sick twice in the night."
+    ],
+    "note": "Feeling sick (nauseous) is “Midem bulanıyor” (lit. my stomach is getting cloudy)."
+  },
+  {
+    "tr": "iğne",
+    "en": "injection; needle",
+    "cat": "health",
+    "ex": [
+      "Hemşire bana iğne yaptı.",
+      "The nurse gave me an injection."
+    ],
+    "note": "İğne yapmak = to give an injection. Also a sewing needle."
+  },
+  {
+    "tr": "tansiyon",
+    "en": "blood pressure",
+    "cat": "health",
+    "ex": [
+      "Babamın tansiyonu yüksek.",
+      "My father has high blood pressure."
+    ],
+    "note": "A favourite health topic in Türkiye: Tansiyonum düştü = My blood pressure dropped."
+  },
+  {
+    "tr": "nöbetçi eczane",
+    "en": "duty pharmacy (open at night)",
+    "cat": "health",
+    "ex": [
+      "Yakınlarda nöbetçi eczane var mı?",
+      "Is there a duty pharmacy nearby?"
+    ],
+    "note": "Pharmacies take turns opening at night and on Sundays; each one posts the list in its window."
+  },
+  {
+    "tr": "boğaz",
+    "en": "throat",
+    "cat": "health",
+    "ex": [
+      "Boğazım ağrıyor, sesim kısıldı.",
+      "My throat hurts and I've lost my voice."
+    ],
+    "note": "Also the Bosphorus in Istanbul: Boğaz."
+  },
+  {
+    "tr": "internet",
+    "en": "internet",
+    "cat": "tech",
+    "ex": [
+      "Otelde internet var mı?",
+      "Is there internet at the hotel?"
+    ],
+    "note": "Wi-Fi is just “wifi”, said “vay-fay”: Wifi şifresi ne? (What's the Wi-Fi password?)"
+  },
+  {
+    "tr": "şarj aleti",
+    "en": "charger",
+    "cat": "tech",
+    "ex": [
+      "Şarj aletini ödünç alabilir miyim?",
+      "Can I borrow your charger?"
+    ],
+    "note": "Also “şarj cihazı”. The j sounds like the s in “measure”."
+  },
+  {
+    "tr": "şarj",
+    "en": "(battery) charge",
+    "cat": "tech",
+    "ex": [
+      "Telefonumun şarjı bitti.",
+      "My phone's battery has died."
+    ],
+    "note": "Şarj etmek = to charge. The battery itself is the “pil” or “batarya”."
+  },
+  {
+    "tr": "şifre",
+    "en": "password; PIN",
+    "cat": "tech",
+    "ex": [
+      "Kartımın şifresini unuttum.",
+      "I forgot my card's PIN."
+    ],
+    "note": "Used for passwords, PINs and codes."
+  },
+  {
+    "tr": "görüntülü arama",
+    "en": "video call",
+    "cat": "tech",
+    "ex": [
+      "Akşam görüntülü arama yapalım mı?",
+      "Shall we do a video call this evening?"
+    ],
+    "note": "Görüntülü aramak = to video-call: Seni görüntülü arayayım mı? (Shall I video-call you?)"
+  },
+  {
+    "tr": "mesaj",
+    "en": "message; text",
+    "cat": "tech",
+    "ex": [
+      "Sana bir mesaj attım.",
+      "I sent you a message."
+    ],
+    "note": "Mesaj atmak (lit. to throw a message) = to text someone."
+  },
+  {
+    "tr": "göndermek",
+    "en": "to send",
+    "cat": "tech",
+    "ex": [
+      "Adresi bana gönderir misin?",
+      "Can you send me the address?"
+    ],
+    "note": "Everyday speech often uses “atmak”: Konumunu at = Send your location.",
+    "pair": {
+      "tr": "atmak",
+      "reg": "casual",
+      "en": "to send (lit. to throw)"
+    }
+  },
+  {
+    "tr": "indirmek",
+    "en": "to download; to lower",
+    "cat": "tech",
+    "ex": [
+      "Bu uygulamayı indirmen lazım.",
+      "You need to download this app."
+    ],
+    "note": "Also “to lower” or “take down”. Opposite: yüklemek (to upload)."
+  },
+  {
+    "tr": "yüklemek",
+    "en": "to upload; to install; to load",
+    "cat": "tech",
+    "ex": [
+      "Fotoğrafları buluta yükledim.",
+      "I uploaded the photos to the cloud."
+    ],
+    "note": "Also “to install” an app and “to load” a truck."
+  },
+  {
+    "tr": "uygulama",
+    "en": "app; application",
+    "cat": "tech",
+    "ex": [
+      "Bu uygulama çok işe yarıyor.",
+      "This app is really useful."
+    ]
+  },
+  {
+    "tr": "giriş yapmak",
+    "en": "to log in; to sign in",
+    "cat": "tech",
+    "ex": [
+      "Hesabıma giriş yapamıyorum.",
+      "I can't log in to my account."
+    ],
+    "note": "Hesap = account (also “the bill”). To log out = çıkış yapmak."
+  },
+  {
+    "tr": "bağlantı",
+    "en": "link; connection",
+    "cat": "tech",
+    "ex": [
+      "Bağlantı çok yavaş.",
+      "The connection is very slow."
+    ],
+    "note": "For a web link people usually say “link”: Linki atar mısın?",
+    "pair": {
+      "tr": "link",
+      "reg": "casual",
+      "en": "link"
+    }
+  },
+  {
+    "tr": "sesli mesaj",
+    "en": "voice message",
+    "cat": "tech",
+    "ex": [
+      "Sana sesli mesaj attım.",
+      "I sent you a voice message."
+    ],
+    "note": "Very popular in Türkiye. Also called “ses kaydı” (voice recording)."
+  },
+  {
+    "tr": "ekran görüntüsü",
+    "en": "screenshot",
+    "cat": "tech",
+    "ex": [
+      "Ekran görüntüsü alıp gönder.",
+      "Take a screenshot and send it."
+    ],
+    "note": "Ekran görüntüsü almak = to take a screenshot. Young people often just say “SS”."
+  },
+  {
+    "tr": "e-posta",
+    "en": "email",
+    "cat": "tech",
+    "ex": [
+      "E-posta adresiniz nedir?",
+      "What is your email address?"
+    ],
+    "note": "In everyday speech people say “mail” (pronounced “meyl”): Mail atarım.",
+    "alt": [
+      "eposta"
+    ],
+    "pair": {
+      "tr": "mail",
+      "reg": "casual"
+    }
+  },
+  {
+    "tr": "çekmiyor",
+    "en": "there's no signal",
+    "cat": "tech",
+    "s": 1,
+    "ex": [
+      "Köyde telefon hiç çekmiyor.",
+      "There's no phone signal at all in the village."
+    ],
+    "note": "From çekmek (to pull). Çekiyor mu? = Do you have signal?"
+  },
+  {
+    "tr": "ekran",
+    "en": "screen",
+    "cat": "tech",
+    "ex": [
+      "Telefonumun ekranı kırıldı.",
+      "My phone screen broke."
+    ]
+  },
+  {
+    "tr": "kulaklık",
+    "en": "headphones; earphones",
+    "cat": "tech",
+    "ex": [
+      "Kulaklığımı evde unuttum.",
+      "I left my headphones at home."
+    ],
+    "note": "From kulak (ear). Singular in Turkish, like gözlük (glasses)."
+  },
+  {
+    "tr": "paylaşmak",
+    "en": "to share",
+    "cat": "tech",
+    "ex": [
+      "Bu fotoğrafı paylaşabilir miyim?",
+      "Can I share this photo?"
+    ],
+    "note": "Also for sharing food, a room or a bill."
+  },
+  {
+    "tr": "silmek",
+    "en": "to delete; to wipe",
+    "cat": "tech",
+    "ex": [
+      "Yanlışlıkla mesajı sildim.",
+      "I deleted the message by mistake."
+    ],
+    "note": "Also “to wipe”: Masayı sil = Wipe the table."
+  },
+  {
+    "tr": "postane",
+    "en": "post office",
+    "cat": "town",
+    "ex": [
+      "Postane saat kaçta kapanıyor?",
+      "What time does the post office close?"
+    ],
+    "note": "Everyone calls it “PTT” (pe-te-te), after the national postal service."
+  },
+  {
+    "tr": "kütüphane",
+    "en": "library",
+    "cat": "town",
+    "ex": [
+      "Hafta sonu kütüphanede ders çalışıyorum.",
+      "I study at the library at the weekend."
+    ],
+    "note": "A bookshop is a “kitapçı”."
+  },
+  {
+    "tr": "park",
+    "en": "park",
+    "cat": "town",
+    "ex": [
+      "Evimizin yanında büyük bir park var.",
+      "There's a big park next to our house."
+    ],
+    "note": "Park etmek = to park (a car)."
+  },
+  {
+    "tr": "meydan",
+    "en": "square (in a town)",
+    "cat": "town",
+    "ex": [
+      "Taksim Meydanı'nda buluşalım.",
+      "Let's meet in Taksim Square."
+    ],
+    "note": "In names it becomes “Meydanı”: Taksim Meydanı, Kızılay Meydanı."
+  },
+  {
+    "tr": "köprü",
+    "en": "bridge",
+    "cat": "town",
+    "ex": [
+      "Köprüde trafik çok yoğun.",
+      "Traffic on the bridge is very heavy."
+    ],
+    "note": "Istanbul's bridges over the Bosphorus link Europe and Asia."
+  },
+  {
+    "tr": "trafik ışıkları",
+    "en": "traffic lights",
+    "cat": "town",
+    "ex": [
+      "Trafik ışıklarından sağa dönün.",
+      "Turn right at the traffic lights."
+    ],
+    "note": "In directions people just say “ışıklar”: Işıklardan sola dön.",
+    "pair": {
+      "tr": "ışıklar",
+      "reg": "casual",
+      "en": "the lights"
+    }
+  },
+  {
+    "tr": "bankamatik",
+    "en": "ATM; cash machine",
+    "cat": "town",
+    "ex": [
+      "Buralarda bankamatik var mı?",
+      "Is there an ATM around here?"
+    ],
+    "note": "Signs say “ATM”, but in speech “bankamatik” is still very common."
+  },
+  {
+    "tr": "kilise",
+    "en": "church",
+    "cat": "town",
+    "ex": [
+      "Bu eski kilise artık müze.",
+      "This old church is now a museum."
+    ],
+    "note": "Mosque = cami, synagogue = sinagog (also “havra”)."
+  },
+  {
+    "tr": "müze",
+    "en": "museum",
+    "cat": "town",
+    "ex": [
+      "Müze pazartesi günleri kapalı.",
+      "The museum is closed on Mondays."
+    ]
+  },
+  {
+    "tr": "belediye",
+    "en": "municipality; town hall",
+    "cat": "town",
+    "ex": [
+      "Belediye yeni bir park yaptı.",
+      "The municipality built a new park."
+    ],
+    "note": "Runs local buses, parks and rubbish collection."
+  },
+  {
+    "tr": "karakol",
+    "en": "police station",
+    "cat": "town",
+    "ex": [
+      "Cüzdanım çalındı, karakola gitmem lazım.",
+      "My wallet was stolen, I need to go to the police station."
+    ]
+  },
+  {
+    "tr": "durak",
+    "en": "stop (bus, tram)",
+    "cat": "town",
+    "ex": [
+      "Otobüs durağı evimin hemen önünde.",
+      "The bus stop is right outside my house."
+    ],
+    "note": "k → ğ before a vowel: otobüs durağı. Taksi durağı = taxi rank."
+  },
+  {
+    "tr": "istasyon",
+    "en": "station",
+    "cat": "town",
+    "ex": [
+      "Tren istasyonu buraya uzak mı?",
+      "Is the train station far from here?"
+    ]
+  },
+  {
+    "tr": "cadde",
+    "en": "avenue; main street",
+    "cat": "town",
+    "ex": [
+      "İstiklal Caddesi her zaman kalabalık.",
+      "Istiklal Avenue is always crowded."
+    ],
+    "note": "A big street with shops; a smaller one is a “sokak”."
+  },
+  {
+    "tr": "mahalle",
+    "en": "neighbourhood",
+    "cat": "town",
+    "ex": [
+      "Bizim mahalle çok sakin.",
+      "Our neighbourhood is very quiet."
+    ],
+    "note": "Each mahalle has an elected head, the “muhtar”, who handles local paperwork."
+  },
+  {
+    "tr": "köşe",
+    "en": "corner",
+    "cat": "town",
+    "ex": [
+      "Köşede bir fırın var.",
+      "There's a bakery on the corner."
+    ]
+  },
+  {
+    "tr": "kavşak",
+    "en": "junction; intersection",
+    "cat": "town",
+    "ex": [
+      "Kavşaktan sonra sola dönün.",
+      "Turn left after the junction."
+    ]
+  },
+  {
+    "tr": "otopark",
+    "en": "car park; parking lot",
+    "cat": "town",
+    "ex": [
+      "Otopark ücretli mi?",
+      "Do you have to pay for the car park?"
+    ]
+  },
+  {
+    "tr": "alışveriş merkezi",
+    "en": "shopping centre; mall",
+    "cat": "town",
+    "ex": [
+      "Yeni alışveriş merkezi çok büyük.",
+      "The new shopping centre is very big."
+    ],
+    "note": "Usually shortened to “AVM” (a-ve-me), in speech and in the news."
+  },
+  {
+    "tr": "metro",
+    "en": "metro; underground",
+    "cat": "town",
+    "ex": [
+      "Her gün metroyla işe gidiyorum.",
+      "I go to work by metro every day."
+    ]
+  },
+  {
+    "tr": "tava",
+    "en": "frying pan",
+    "cat": "kitchen",
+    "ex": [
+      "Yumurtaları tavaya kır.",
+      "Crack the eggs into the pan."
+    ]
+  },
+  {
+    "tr": "tencere",
+    "en": "pot; saucepan",
+    "cat": "kitchen",
+    "ex": [
+      "Tencerenin kapağını kapat.",
+      "Put the lid on the pot."
+    ],
+    "note": "Düdüklü tencere = pressure cooker, found in most Turkish kitchens."
+  },
+  {
+    "tr": "fırın",
+    "en": "oven; bakery",
+    "cat": "kitchen",
+    "ex": [
+      "Börek fırında pişiyor.",
+      "The börek is baking in the oven."
+    ],
+    "note": "Also “bakery”: Fırından ekmek aldım = I bought bread from the bakery."
+  },
+  {
+    "tr": "buzdolabı",
+    "en": "fridge",
+    "cat": "kitchen",
+    "ex": [
+      "Sütü buzdolabına koy.",
+      "Put the milk in the fridge."
+    ],
+    "note": "Literally “ice cupboard”."
+  },
+  {
+    "tr": "çaydanlık",
+    "en": "teapot (Turkish double teapot)",
+    "cat": "kitchen",
+    "ex": [
+      "Çaydanlığı ocağa koydum.",
+      "I put the teapot on the stove."
+    ],
+    "note": "A two-tier pot: strong tea brews on top while water boils below."
+  },
+  {
+    "tr": "fincan",
+    "en": "cup (with a handle)",
+    "cat": "kitchen",
+    "ex": [
+      "Bir fincan Türk kahvesi içer misin?",
+      "Would you like a cup of Turkish coffee?"
+    ],
+    "note": "Turkish tea is served in a small glass (bardak) instead."
+  },
+  {
+    "tr": "bulaşık makinesi",
+    "en": "dishwasher",
+    "cat": "kitchen",
+    "ex": [
+      "Bulaşık makinesini çalıştırır mısın?",
+      "Could you run the dishwasher?"
+    ]
+  },
+  {
+    "tr": "baharat",
+    "en": "spice; spices",
+    "cat": "kitchen",
+    "ex": [
+      "Bu yemekte hangi baharatlar var?",
+      "Which spices are in this dish?"
+    ]
+  },
+  {
+    "tr": "tarif",
+    "en": "recipe",
+    "cat": "kitchen",
+    "ex": [
+      "Bu kekin tarifini verir misin?",
+      "Could you give me the recipe for this cake?"
+    ],
+    "note": "Also directions: yol tarifi."
+  },
+  {
+    "tr": "pişirmek",
+    "en": "to cook (something)",
+    "cat": "kitchen",
+    "ex": [
+      "Akşama tavuk pişirdim.",
+      "I cooked chicken for dinner."
+    ],
+    "note": "Yemek yapmak = to cook in general; pişirmek = to cook a particular food."
+  },
+  {
+    "tr": "kaynatmak",
+    "en": "to boil (something)",
+    "cat": "kitchen",
+    "ex": [
+      "Önce suyu kaynat.",
+      "First, boil the water."
+    ],
+    "note": "The water itself “kaynıyor” (is boiling), from kaynamak."
+  },
+  {
+    "tr": "kızartmak",
+    "en": "to fry; to roast",
+    "cat": "kitchen",
+    "ex": [
+      "Patatesleri kızartır mısın?",
+      "Could you fry the potatoes?"
+    ],
+    "note": "Ekmek kızartmak = to toast bread. Kızartma = fried food."
+  },
+  {
+    "tr": "doğramak",
+    "en": "to chop; to dice",
+    "cat": "kitchen",
+    "ex": [
+      "Domatesleri küçük küçük doğra.",
+      "Chop the tomatoes into small pieces."
+    ]
+  },
+  {
+    "tr": "kesmek",
+    "en": "to cut",
+    "cat": "kitchen",
+    "ex": [
+      "Ekmeği bıçakla kes.",
+      "Cut the bread with a knife."
+    ],
+    "note": "Also for cut-offs: Sular kesildi = The water has been cut off."
+  },
+  {
+    "tr": "soymak",
+    "en": "to peel",
+    "cat": "kitchen",
+    "ex": [
+      "Elmayı soyup dilimle.",
+      "Peel the apple and slice it."
+    ],
+    "note": "Also “to rob”: Bizi soydular! = We've been robbed!"
+  },
+  {
+    "tr": "karıştırmak",
+    "en": "to stir; to mix",
+    "cat": "kitchen",
+    "ex": [
+      "Çorbayı arada bir karıştır.",
+      "Stir the soup now and then."
+    ],
+    "note": "Also “to mix up”: İsimleri karıştırdım = I mixed up the names."
+  },
+  {
+    "tr": "eklemek",
+    "en": "to add",
+    "cat": "kitchen",
+    "ex": [
+      "Biraz tuz ekle.",
+      "Add a little salt."
+    ]
+  },
+  {
+    "tr": "ısıtmak",
+    "en": "to heat up; to warm up",
+    "cat": "kitchen",
+    "ex": [
+      "Yemeği mikrodalgada ısıtabilirsin.",
+      "You can heat the food up in the microwave."
+    ]
+  },
+  {
+    "tr": "tadına bakmak",
+    "en": "to taste; to try (food)",
+    "cat": "kitchen",
+    "ex": [
+      "Çorbanın tadına bakar mısın?",
+      "Could you taste the soup?"
+    ],
+    "note": "Tat = taste: Tadı çok güzel = It tastes great."
+  },
+  {
+    "tr": "lezzetli",
+    "en": "delicious; tasty",
+    "cat": "kitchen",
+    "ex": [
+      "Bu yemek çok lezzetli olmuş!",
+      "This food has turned out really delicious!"
+    ],
+    "note": "Thank the cook with “Elinize sağlık!” (lit. health to your hands)."
+  },
+  {
+    "tr": "mühendis",
+    "en": "engineer",
+    "cat": "jobs",
+    "ex": [
+      "Abim inşaat mühendisi.",
+      "My older brother is a civil engineer."
+    ],
+    "note": "Add -im/-ım/-um/-üm for “I am”: Mühendisim = I'm an engineer. No word for “a / an” is needed."
+  },
+  {
+    "tr": "şoför",
+    "en": "driver",
+    "cat": "jobs",
+    "ex": [
+      "Otobüs şoförü çok kibar.",
+      "The bus driver is very polite."
+    ],
+    "note": "From French. “Sürücü” is the formal word, e.g. sürücü belgesi (driving licence).",
+    "pair": {
+      "tr": "sürücü",
+      "reg": "formal"
+    }
+  },
+  {
+    "tr": "aşçı",
+    "en": "cook; chef",
+    "cat": "jobs",
+    "ex": [
+      "Bu lokantanın aşçısı çok usta.",
+      "This restaurant's cook is very skilled."
+    ]
+  },
+  {
+    "tr": "hemşire",
+    "en": "nurse",
+    "cat": "jobs",
+    "ex": [
+      "Hemşire tansiyonumu ölçtü.",
+      "The nurse took my blood pressure."
+    ],
+    "note": "To address a nurse politely: “Hemşire Hanım”."
+  },
+  {
+    "tr": "tezgâhtar",
+    "en": "shop assistant",
+    "cat": "jobs",
+    "ex": [
+      "Tezgâhtar bize çok yardımcı oldu.",
+      "The shop assistant was very helpful."
+    ],
+    "note": "From tezgâh (counter). Shops and job ads now usually say “satış danışmanı”.",
+    "alt": [
+      "tezgahtar"
+    ],
+    "pair": {
+      "tr": "satış danışmanı",
+      "reg": "formal",
+      "en": "sales consultant"
+    }
+  },
+  {
+    "tr": "garson",
+    "en": "waiter; waitress",
+    "cat": "jobs",
+    "ex": [
+      "Garson hemen menüyü getirdi.",
+      "The waiter brought the menu right away."
+    ],
+    "note": "Don't shout “Garson!” — say “Bakar mısınız?” to get their attention."
+  },
+  {
+    "tr": "polis",
+    "en": "police; police officer",
+    "cat": "jobs",
+    "ex": [
+      "Polise haber verelim mi?",
+      "Shall we tell the police?"
+    ],
+    "note": "Means both the police and one officer. To address an officer: “Memur Bey”."
+  },
+  {
+    "tr": "avukat",
+    "en": "lawyer",
+    "cat": "jobs",
+    "ex": [
+      "Avukatımla konuşmam lazım.",
+      "I need to talk to my lawyer."
+    ]
+  },
+  {
+    "tr": "kuaför",
+    "en": "hairdresser",
+    "cat": "jobs",
+    "ex": [
+      "Cumartesi kuaföre gideceğim.",
+      "I'll go to the hairdresser on Saturday."
+    ],
+    "note": "For a men's haircut people go to the “berber” (barber)."
+  },
+  {
+    "tr": "diş hekimi",
+    "en": "dentist",
+    "cat": "jobs",
+    "ex": [
+      "Yarın diş hekimine gitmem lazım.",
+      "I need to go to the dentist tomorrow."
+    ],
+    "note": "The official title. In everyday speech: “dişçi” or “diş doktoru”.",
+    "pair": {
+      "tr": "dişçi",
+      "reg": "casual"
+    }
+  },
+  {
+    "tr": "eczacı",
+    "en": "pharmacist",
+    "cat": "jobs",
+    "ex": [
+      "Eczacı bu ilacı önerdi.",
+      "The pharmacist recommended this medicine."
+    ]
+  },
+  {
+    "tr": "memur",
+    "en": "civil servant; official",
+    "cat": "jobs",
+    "ex": [
+      "Babam devlet memuru.",
+      "My father is a civil servant."
+    ],
+    "note": "Devlet memuru = government employee — a secure, sought-after job in Türkiye."
+  },
+  {
+    "tr": "işçi",
+    "en": "worker; labourer",
+    "cat": "jobs",
+    "ex": [
+      "Fabrikada yüz işçi çalışıyor.",
+      "A hundred workers work at the factory."
+    ]
+  },
+  {
+    "tr": "yazılımcı",
+    "en": "software developer",
+    "cat": "jobs",
+    "ex": [
+      "Kuzenim bir şirkette yazılımcı.",
+      "My cousin is a software developer at a company."
+    ],
+    "note": "From yazılım (software). Also “yazılım mühendisi” (software engineer)."
+  },
+  {
+    "tr": "ev hanımı",
+    "en": "housewife; homemaker",
+    "cat": "jobs",
+    "ex": [
+      "Annem ev hanımı, babam emekli.",
+      "My mother is a homemaker, my father is retired."
+    ]
+  },
+  {
+    "tr": "Bu Türkçede nasıl denir?",
+    "en": "How do you say this in Turkish?",
+    "cat": "p-language",
+    "ex": [
+      "— “Umbrella” Türkçede nasıl denir? — “Şemsiye” denir.",
+      "— How do you say “umbrella” in Turkish? — You say “şemsiye”."
+    ],
+    "note": "Point at something, or say the English word first.",
+    "pair": {
+      "tr": "Bunun Türkçesi ne?",
+      "reg": "casual",
+      "en": "What's this in Turkish?"
+    }
+  },
+  {
+    "tr": "Bu ne demek?",
+    "en": "What does this mean?",
+    "cat": "p-language",
+    "ex": [
+      "Pardon, “kolay gelsin” ne demek?",
+      "Sorry, what does “kolay gelsin” mean?"
+    ],
+    "note": "Put the word in front: “Hayırlı olsun” ne demek? A little more formal: Bu ne anlama geliyor?"
+  },
+  {
+    "tr": "Bunu yazabilir misiniz?",
+    "en": "Could you write it down?",
+    "cat": "p-language",
+    "note": "Hand over your phone or notebook — Turkish is spelled as it sounds, so seeing a word helps a lot.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Şuraya yazar mısın?",
+      "reg": "casual",
+      "en": "Can you write it here?"
+    }
+  },
+  {
+    "tr": "Nasıl yazılıyor?",
+    "en": "How do you spell it?",
+    "cat": "p-language",
+    "ex": [
+      "— Adım Gökçe. — Nasıl yazılıyor?",
+      "— My name is Gökçe. — How do you spell it?"
+    ],
+    "note": "Consonants are named with an “e”: be, ce, çe, de… Vowels are just themselves, and ğ is “yumuşak ge”."
+  },
+  {
+    "tr": "Bu nasıl okunuyor?",
+    "en": "How do you pronounce this?",
+    "cat": "p-language",
+    "note": "Lit. “How is this read?” — handy when pointing at a sign or a menu."
+  },
+  {
+    "tr": "Doğru mu söyledim?",
+    "en": "Did I say it right?",
+    "cat": "p-language",
+    "ex": [
+      "— “Teşekkürler.” Doğru mu söyledim? — Evet, çok güzel!",
+      "— “Teşekkürler.” Did I say it right? — Yes, very good!"
+    ]
+  },
+  {
+    "tr": "Yanlış söylersem düzeltir misiniz?",
+    "en": "Would you correct me if I say something wrong?",
+    "cat": "p-language",
+    "note": "Turks are often too polite to correct a learner — asking like this gives them permission.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Yanlışım olursa düzelt, olur mu?",
+      "reg": "casual",
+      "en": "Correct me if I get it wrong, OK?"
+    }
+  },
+  {
+    "tr": "Türkçe öğrenmeye yeni başladım.",
+    "en": "I've just started learning Turkish.",
+    "cat": "p-language",
+    "note": "People are usually delighted — expect “Aferin!” (Well done!) or “Çok güzel konuşuyorsunuz!”"
+  },
+  {
+    "tr": "Türkçem pek iyi değil.",
+    "en": "My Turkish isn't very good.",
+    "cat": "p-language",
+    "ex": [
+      "Türkçem pek iyi değil ama öğreniyorum.",
+      "My Turkish isn't very good, but I'm learning."
+    ],
+    "note": "“Pek” before a negative = not very / not really."
+  },
+  {
+    "tr": "Benimle Türkçe konuşur musunuz?",
+    "en": "Would you speak Turkish with me?",
+    "cat": "p-language",
+    "note": "Many Turks switch to English to be helpful. Add “Pratik yapmak istiyorum.” (I want to practise.)",
+    "reg": "polite",
+    "pair": {
+      "tr": "Benimle Türkçe konuşur musun?",
+      "reg": "casual",
+      "en": "Will you speak Turkish with me?"
+    }
+  },
+  {
+    "tr": "Daha basit anlatabilir misiniz?",
+    "en": "Could you explain it more simply?",
+    "cat": "p-language",
+    "reg": "polite",
+    "pair": {
+      "tr": "Biraz daha basit anlatır mısın?",
+      "reg": "casual",
+      "en": "Can you explain it a bit more simply?"
+    }
+  },
+  {
+    "tr": "Anladım.",
+    "en": "I understand. / Got it.",
+    "cat": "p-language",
+    "ex": [
+      "— Yarın saat beşte, kafede. — Anladım, görüşürüz.",
+      "— Tomorrow at five, at the café. — Got it, see you."
+    ],
+    "note": "When something has just become clear, Turks use the past tense (lit. “I understood”). “Anlıyorum” is more “I understand / I see how you feel”."
+  },
+  {
+    "tr": "Benim adım Emma.",
+    "en": "My name is Emma.",
+    "cat": "p-intro",
+    "note": "Ask back: “Ya sizin?” (And yours? — polite) or “Ya senin?” (casual). Often shortened to just “Adım Emma.”",
+    "pair": {
+      "tr": "Ben Emma.",
+      "reg": "casual",
+      "en": "I'm Emma."
+    }
+  },
+  {
+    "tr": "Ben Amerikalıyım.",
+    "en": "I'm American.",
+    "cat": "p-intro",
+    "ex": [
+      "— Nerelisiniz? — Amerikalıyım, Boston'dan geliyorum.",
+      "— Where are you from? — I'm American, I come from Boston."
+    ],
+    "note": "Add -lı/-li/-lu/-lü to the country: Kanadalı, Avustralyalı, İrlandalı. Some have their own word: İngilizim (I'm English)."
+  },
+  {
+    "tr": "İstanbul'da yaşıyorum.",
+    "en": "I live in Istanbul.",
+    "cat": "p-intro",
+    "note": "“Oturuyorum” works too. Place names take an apostrophe before endings: Londra'da, İzmir'de."
+  },
+  {
+    "tr": "Bankada çalışıyorum.",
+    "en": "I work at a bank.",
+    "cat": "p-intro",
+    "note": "Or just name the job + -im/-ım/-um/-üm, with no word for “a”: Öğretmenim, Mühendisim, Doktorum."
+  },
+  {
+    "tr": "Otuz yaşındayım.",
+    "en": "I'm thirty (years old).",
+    "cat": "p-intro",
+    "ex": [
+      "— Kaç yaşındasınız? — Otuz yaşındayım.",
+      "— How old are you? — I'm thirty."
+    ]
+  },
+  {
+    "tr": "Evliyim, iki çocuğum var.",
+    "en": "I'm married and I have two children.",
+    "cat": "p-intro",
+    "note": "Bekârım = I'm single. Çocuğum yok = I don't have children. Turks ask about family early — it's friendly, not nosy."
+  },
+  {
+    "tr": "Kardeşiniz var mı?",
+    "en": "Do you have any brothers or sisters?",
+    "cat": "p-intro",
+    "ex": [
+      "— Kardeşiniz var mı? — Evet, bir ablam var.",
+      "— Do you have any siblings? — Yes, I have an older sister."
+    ],
+    "reg": "polite",
+    "pair": {
+      "tr": "Kardeşin var mı?",
+      "reg": "casual",
+      "en": "Have you got any brothers or sisters?"
+    }
+  },
+  {
+    "tr": "Burada tatildeyim.",
+    "en": "I'm here on holiday.",
+    "cat": "p-intro",
+    "note": "For work: İş için buradayım. For your studies: Burada okuyorum."
+  },
+  {
+    "tr": "İki haftadır buradayım.",
+    "en": "I've been here for two weeks.",
+    "cat": "p-intro",
+    "note": "-dır/-dir/-dur/-dür after a time = “for (up to now)”: üç aydır, bir yıldır. Locals ask: Ne zamandır buradasınız?"
+  },
+  {
+    "tr": "Aslen nerelisiniz?",
+    "en": "Where are you originally from?",
+    "cat": "p-intro",
+    "note": "A very Turkish question: it asks about your family's home town, even if you were born in the city you live in.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Aslen nerelisin?",
+      "reg": "casual",
+      "en": "Where are you from originally?"
+    }
+  },
+  {
+    "tr": "Tanıştırayım, bu arkadaşım Ayşe.",
+    "en": "Let me introduce you — this is my friend Ayşe.",
+    "cat": "p-intro"
+  },
+  {
+    "tr": "Sizi tanıdığıma çok sevindim.",
+    "en": "It was really nice to meet you.",
+    "cat": "p-intro",
+    "note": "Said when parting after a first meeting. When you first shake hands, say “Memnun oldum.”",
+    "reg": "polite",
+    "pair": {
+      "tr": "Seni tanıdığıma çok sevindim.",
+      "reg": "casual",
+      "en": "Really glad I got to meet you."
+    }
+  },
+  {
+    "tr": "Hoş bulduk!",
+    "en": "Glad to be here! (reply to “Welcome!”)",
+    "cat": "p-guest",
+    "ex": [
+      "— Hoş geldiniz! — Hoş bulduk!",
+      "— Welcome! — Glad to be here!"
+    ],
+    "note": "The fixed reply to “Hoş geldin(iz)” — lit. “we found it pleasant”. Say it even if you came alone."
+  },
+  {
+    "tr": "Buyurun, içeri geçin.",
+    "en": "Please, come on in.",
+    "cat": "p-guest",
+    "reg": "polite",
+    "pair": {
+      "tr": "Gel, içeri geç.",
+      "reg": "casual",
+      "en": "Come in, come in."
+    }
+  },
+  {
+    "tr": "Ayakkabılarımı çıkarayım mı?",
+    "en": "Shall I take my shoes off?",
+    "cat": "p-guest",
+    "note": "Turks usually take their shoes off at the door, and hosts often offer slippers: “Terlik vereyim.”"
+  },
+  {
+    "tr": "Size küçük bir şey getirdim.",
+    "en": "I brought you a little something.",
+    "cat": "p-guest",
+    "note": "Popular gifts: baklava, chocolates or flowers. It's customary not to arrive empty-handed.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Sana ufak bir şey aldım.",
+      "reg": "casual",
+      "en": "I got you a little something."
+    }
+  },
+  {
+    "tr": "Zahmet ettiniz, ne gerek vardı!",
+    "en": "You shouldn't have! (receiving a gift)",
+    "cat": "p-guest",
+    "note": "Lit. “You went to trouble — there was no need!” What hosts always say when handed a gift.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Ne gerek vardı ya!",
+      "reg": "casual",
+      "en": "Aw, you shouldn't have!"
+    }
+  },
+  {
+    "tr": "Kahveniz nasıl olsun?",
+    "en": "How do you take your (Turkish) coffee?",
+    "cat": "p-guest",
+    "note": "Answer with the sugar level: sade (none), az şekerli (a little), orta (medium) or şekerli (sweet).",
+    "reg": "polite",
+    "pair": {
+      "tr": "Kahven nasıl olsun?",
+      "reg": "casual",
+      "en": "How do you like your coffee?"
+    }
+  },
+  {
+    "tr": "Sofraya buyurun!",
+    "en": "Please come to the table!",
+    "cat": "p-guest",
+    "note": "“Sofra” is the table laid with the meal. This is how the host tells you food is ready.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Hadi, sofraya!",
+      "reg": "casual",
+      "en": "Come on, food's ready!"
+    }
+  },
+  {
+    "tr": "Çok güzel olmuş, tarifini alabilir miyim?",
+    "en": "This is delicious — could I have the recipe?",
+    "cat": "p-guest",
+    "note": "“Güzel olmuş” (it turned out great) is the go-to food compliment. Then add “Elinize sağlık!”",
+    "reg": "polite",
+    "pair": {
+      "tr": "Tarifini mutlaka ver!",
+      "reg": "casual",
+      "en": "You have to give me the recipe!"
+    }
+  },
+  {
+    "tr": "Sağ olun, doydum.",
+    "en": "Thank you, I'm full.",
+    "cat": "p-guest",
+    "note": "Hosts insist: “Biraz daha koyayım mı?” (Shall I give you some more?) A smiling but firm “doydum” is fine.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Yok yok, doydum valla.",
+      "reg": "casual",
+      "en": "No, no, I'm honestly full."
+    }
+  },
+  {
+    "tr": "Allah bereket versin.",
+    "en": "Thank you for the meal. (lit. “May God give abundance.”)",
+    "cat": "p-guest",
+    "note": "Said after a meal to thank the host — more traditional than “Elinize sağlık”. Shopkeepers also say it when you pay."
+  },
+  {
+    "tr": "Artık müsaadenizi isteyelim.",
+    "en": "We'd better be going now.",
+    "cat": "p-guest",
+    "note": "The polite way to announce you're leaving (lit. “let us ask your permission”). Hosts protest: “Daha erken!” (It's still early!)",
+    "reg": "polite",
+    "pair": {
+      "tr": "Hadi, biz kalkalım artık.",
+      "reg": "casual",
+      "en": "Right, we'll get going."
+    }
+  },
+  {
+    "tr": "Yine bekleriz!",
+    "en": "Come again! (lit. “We'll expect you again.”)",
+    "cat": "p-guest",
+    "note": "Hosts and shopkeepers say it as you leave. Reply: “Biz de sizi bekleriz!” (We'll expect you too!)"
+  },
+  {
+    "tr": "Doğum gününüz kutlu olsun!",
+    "en": "Happy birthday!",
+    "cat": "p-wishes",
+    "note": "Turks sing “İyi ki doğdun” to the tune of “Happy Birthday to You”.",
+    "reg": "polite",
+    "pair": {
+      "tr": "İyi ki doğdun!",
+      "reg": "casual",
+      "en": "Happy birthday! (lit. “Good thing you were born!”)"
+    }
+  },
+  {
+    "tr": "Nice yıllara!",
+    "en": "Many happy returns!",
+    "cat": "p-wishes",
+    "note": "Lit. “To many more years!” For birthdays, anniversaries and New Year."
+  },
+  {
+    "tr": "Yeni yılınız kutlu olsun!",
+    "en": "Happy New Year!",
+    "cat": "p-wishes",
+    "note": "Also common: “İyi yıllar!” New Year's Eve is “yılbaşı”.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Mutlu yıllar!",
+      "reg": "neutral"
+    }
+  },
+  {
+    "tr": "Bayramınız kutlu olsun!",
+    "en": "Happy holidays! (for a Bayram)",
+    "cat": "p-wishes",
+    "note": "For Ramazan Bayramı, Kurban Bayramı and national holidays. On religious Bayrams people visit elders and kiss their hand.",
+    "reg": "polite",
+    "pair": {
+      "tr": "İyi bayramlar!",
+      "reg": "neutral",
+      "en": "Happy holidays!"
+    }
+  },
+  {
+    "tr": "Hayırlı olsun!",
+    "en": "Congratulations! / All the best with it!",
+    "cat": "p-wishes",
+    "note": "Lit. “May it bring good.” For anything new: a job, a house, a car, an engagement, a baby."
+  },
+  {
+    "tr": "Güle güle kullanın!",
+    "en": "Enjoy it! (about something new)",
+    "cat": "p-wishes",
+    "note": "For a new phone or car. For clothes: “Güle güle giy!” For a new home: “Güle güle oturun!”",
+    "reg": "polite",
+    "pair": {
+      "tr": "Güle güle kullan!",
+      "reg": "casual",
+      "en": "Enjoy your new …!"
+    }
+  },
+  {
+    "tr": "Bir yastıkta kocayın!",
+    "en": "May you grow old together! (to newlyweds)",
+    "cat": "p-wishes",
+    "note": "A classic wedding wish — lit. “grow old on one pillow”. Also: “Mutluluklar dilerim!” (I wish you happiness!)"
+  },
+  {
+    "tr": "Acil şifalar dilerim.",
+    "en": "I wish you a speedy recovery.",
+    "cat": "p-wishes",
+    "note": "Usually after “Geçmiş olsun”. Şifa = healing; acil = urgent, i.e. quick.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Acil şifalar!",
+      "reg": "neutral",
+      "en": "Get well soon!"
+    }
+  },
+  {
+    "tr": "Başınız sağ olsun.",
+    "en": "My condolences.",
+    "cat": "p-wishes",
+    "note": "Lit. “May your head be healthy.” The usual reply: “Dostlar sağ olsun.” (Thank you — lit. “may friends be well”.)",
+    "reg": "polite",
+    "pair": {
+      "tr": "Başın sağ olsun.",
+      "reg": "casual",
+      "en": "I'm so sorry for your loss."
+    }
+  },
+  {
+    "tr": "Allah rahmet eylesin.",
+    "en": "May he/she rest in peace.",
+    "cat": "p-wishes",
+    "note": "Said about someone who has died, often together with “Başınız sağ olsun”."
+  },
+  {
+    "tr": "Başarılar dilerim!",
+    "en": "I wish you success! / Good luck!",
+    "cat": "p-wishes",
+    "note": "Before an exam, an interview or a new job. Also: “Bol şans!” (Good luck!)",
+    "reg": "polite",
+    "pair": {
+      "tr": "Başarılar!",
+      "reg": "neutral",
+      "en": "Good luck!"
+    }
+  },
+  {
+    "tr": "İyi yolculuklar!",
+    "en": "Have a good trip!",
+    "cat": "p-wishes",
+    "note": "Also: “Yolun açık olsun!” (lit. “may your road be open”)."
+  },
+  {
+    "tr": "Randevu almak istiyorum.",
+    "en": "I'd like to make an appointment.",
+    "cat": "p-doctor",
+    "note": "For the same day: “Bugün için randevu var mı?” (Are there any appointments today?)"
+  },
+  {
+    "tr": "Şikâyetiniz nedir?",
+    "en": "What seems to be the problem? (doctor)",
+    "cat": "p-doctor",
+    "note": "What doctors and pharmacists ask first. Şikâyet = complaint, i.e. your symptoms.",
+    "reg": "polite",
+    "alt": [
+      "Şikayetiniz nedir?"
+    ],
+    "pair": {
+      "tr": "Neyin var?",
+      "reg": "casual",
+      "en": "What's wrong? (to a friend)"
+    }
+  },
+  {
+    "tr": "Ateşim var.",
+    "en": "I have a fever.",
+    "cat": "p-doctor",
+    "note": "Also: Öksürüğüm var (I have a cough), Grip oldum (I've got the flu), Nezle oldum (I've caught a cold)."
+  },
+  {
+    "tr": "Boğazım ağrıyor.",
+    "en": "I have a sore throat.",
+    "cat": "p-doctor",
+    "note": "Body part + -(ı)m ağrıyor: Dişim ağrıyor (toothache), Karnım ağrıyor (stomach ache), Sırtım ağrıyor (backache)."
+  },
+  {
+    "tr": "Midem bulanıyor.",
+    "en": "I feel sick. / I feel nauseous.",
+    "cat": "p-doctor",
+    "note": "Lit. “My stomach is getting murky.” Dizzy: Başım dönüyor."
+  },
+  {
+    "tr": "Burası ağrıyor.",
+    "en": "It hurts here.",
+    "cat": "p-doctor",
+    "note": "Point to the spot. The doctor may ask: “Ne zamandır ağrıyor?” (How long has it been hurting?)"
+  },
+  {
+    "tr": "Üç gündür devam ediyor.",
+    "en": "It's been going on for three days.",
+    "cat": "p-doctor",
+    "ex": [
+      "— Ne zamandır böyle? — Üç gündür devam ediyor.",
+      "— How long has it been like this? — It's been going on for three days."
+    ]
+  },
+  {
+    "tr": "Penisiline alerjim var.",
+    "en": "I'm allergic to penicillin.",
+    "cat": "p-doctor",
+    "note": "Pattern: X-e/-a alerjim var. Doctors ask: “Herhangi bir ilaca alerjiniz var mı?” (Are you allergic to any medicine?)"
+  },
+  {
+    "tr": "Bunu reçetesiz alabilir miyim?",
+    "en": "Can I get this without a prescription?",
+    "cat": "p-doctor",
+    "note": "Reçete = prescription. For minor problems, Turkish pharmacists are happy to give advice.",
+    "reg": "polite"
+  },
+  {
+    "tr": "Günde kaç kere içmeliyim?",
+    "en": "How many times a day should I take it?",
+    "cat": "p-doctor",
+    "note": "In Turkish you “drink” medicine: ilaç içmek. A typical answer: “Günde üç kere, tok karnına.”"
+  },
+  {
+    "tr": "Aç karnına mı, tok karnına mı?",
+    "en": "On an empty stomach or after eating?",
+    "cat": "p-doctor",
+    "note": "Aç karnına = on an empty stomach; tok karnına = on a full stomach (after a meal)."
+  },
+  {
+    "tr": "Nöbetçi eczane nerede?",
+    "en": "Where's the duty pharmacy?",
+    "cat": "p-doctor",
+    "note": "At night and on Sundays only the “nöbetçi” (on-duty) pharmacy is open. Every pharmacy door lists the nearest one."
+  },
+  {
+    "tr": "Alo, efendim?",
+    "en": "Hello? (answering the phone)",
+    "cat": "p-phone",
+    "note": "“Alo” is only used on the phone; “Efendim?” here means “Yes?”. Friends often answer with “Söyle.” (Go ahead.)",
+    "pair": {
+      "tr": "Alo, söyle.",
+      "reg": "casual",
+      "en": "Hey, go ahead. (to a friend)"
+    }
+  },
+  {
+    "tr": "Ahmet Bey'le görüşebilir miyim?",
+    "en": "Could I speak to Mr Ahmet?",
+    "cat": "p-phone",
+    "note": "Use the first name + Bey (Mr) or Hanım (Ms): Ayşe Hanım'la görüşebilir miyim?",
+    "reg": "polite",
+    "pair": {
+      "tr": "Ahmet orada mı?",
+      "reg": "casual",
+      "en": "Is Ahmet there?"
+    }
+  },
+  {
+    "tr": "Kiminle görüşüyorum?",
+    "en": "Who am I speaking to?",
+    "cat": "p-phone",
+    "reg": "polite",
+    "pair": {
+      "tr": "Kim arıyor?",
+      "reg": "neutral",
+      "en": "Who's calling?"
+    }
+  },
+  {
+    "tr": "Şu an konuşamıyorum, sizi sonra arayayım.",
+    "en": "I can't talk right now — let me call you back later.",
+    "cat": "p-phone",
+    "reg": "polite",
+    "pair": {
+      "tr": "Şu an konuşamam, sonra ararım.",
+      "reg": "casual",
+      "en": "Can't talk now, I'll call you later."
+    }
+  },
+  {
+    "tr": "Sesiniz gelmiyor.",
+    "en": "I can't hear you.",
+    "cat": "p-phone",
+    "note": "Lit. “Your voice isn't coming.” If you're breaking up: “Ses gidip geliyor.”",
+    "reg": "polite",
+    "pair": {
+      "tr": "Sesin gelmiyor.",
+      "reg": "casual"
+    }
+  },
+  {
+    "tr": "Burada telefon çekmiyor.",
+    "en": "There's no signal here.",
+    "cat": "p-phone",
+    "note": "Lit. “The phone doesn't pull here.” Battery dying? “Şarjım bitiyor.”"
+  },
+  {
+    "tr": "Konumu atar mısın?",
+    "en": "Can you send me the location?",
+    "cat": "p-phone",
+    "note": "Turks share a map pin (konum) on WhatsApp rather than an address. In chat, “atmak” (to throw) = to send.",
+    "reg": "casual",
+    "pair": {
+      "tr": "Konumu gönderebilir misiniz?",
+      "reg": "polite",
+      "en": "Could you send me the location?"
+    }
+  },
+  {
+    "tr": "Görüldü attı!",
+    "en": "He/She left me on read!",
+    "cat": "p-phone",
+    "note": "From the “Görüldü” (Seen) label that appears under a message that has been read.",
+    "reg": "slang",
+    "pair": {
+      "tr": "Mesajımı okudu ama cevap vermedi.",
+      "reg": "neutral",
+      "en": "They read my message but didn't reply."
+    }
+  },
+  {
+    "tr": "slm nbr",
+    "en": "hi, what's up (in a text)",
+    "cat": "p-phone",
+    "note": "A typical chat opener: vowels dropped, no capitals, no punctuation.",
+    "reg": "slang",
+    "pair": {
+      "tr": "Selam, ne haber?",
+      "reg": "casual",
+      "en": "Hi, what's up?"
+    }
+  },
+  {
+    "tr": "tmm",
+    "en": "OK (in a text)",
+    "cat": "p-phone",
+    "ex": [
+      "tmm, yarın görüşürüz",
+      "OK, see you tomorrow"
+    ],
+    "note": "Read it as “tamam”. You'll also see “tamamdır” shortened to “tmmdır”.",
+    "reg": "slang",
+    "pair": {
+      "tr": "Tamam.",
+      "reg": "neutral",
+      "en": "OK."
+    }
+  },
+  {
+    "tr": "çok tşk",
+    "en": "thanks a lot (in a text)",
+    "cat": "p-phone",
+    "note": "“tşk” = teşekkür. Also common: “tşkler” (teşekkürler) and “tşk ederim”.",
+    "reg": "slang",
+    "alt": [
+      "çok tşkler"
+    ],
+    "pair": {
+      "tr": "Çok teşekkürler.",
+      "reg": "neutral",
+      "en": "Thanks a lot."
+    }
+  },
+  {
+    "tr": "Varınca mesaj at!",
+    "en": "Text me when you get there!",
+    "cat": "p-phone",
+    "note": "What Turks say to anyone heading home, especially at night. Also: “Eve varınca haber ver.” (Let me know when you're home.)",
+    "reg": "casual",
+    "pair": {
+      "tr": "Vardığınızda bana mesaj atar mısınız?",
+      "reg": "polite",
+      "en": "Could you text me when you arrive?"
+    }
+  },
+  {
+    "tr": "Bu gece için boş odanız var mı?",
+    "en": "Do you have a room available for tonight?",
+    "cat": "p-hotel",
+    "reg": "polite",
+    "pair": {
+      "tr": "Boş oda var mı?",
+      "reg": "casual",
+      "en": "Any rooms free?"
+    }
+  },
+  {
+    "tr": "Smith adına rezervasyonum var.",
+    "en": "I have a reservation under the name Smith.",
+    "cat": "p-hotel",
+    "note": "“X adına” = in the name of X. Reception may ask: “Kimliğinizi alabilir miyim?” (May I have your ID?)"
+  },
+  {
+    "tr": "İki kişilik bir oda istiyorum.",
+    "en": "I'd like a room for two.",
+    "cat": "p-hotel",
+    "note": "Tek kişilik = single. Çift kişilik yatak = a double bed; iki ayrı yatak = twin beds."
+  },
+  {
+    "tr": "Kahvaltı dâhil mi?",
+    "en": "Is breakfast included?",
+    "cat": "p-hotel",
+    "note": "A Turkish hotel breakfast is a big spread: cheese, olives, eggs, tomatoes and endless tea.",
+    "alt": [
+      "Kahvaltı dahil mi?"
+    ]
+  },
+  {
+    "tr": "Kahvaltı saat kaçtan kaça kadar?",
+    "en": "What are the breakfast hours?",
+    "cat": "p-hotel",
+    "ex": [
+      "— Kahvaltı saat kaçtan kaça kadar? — Yediden ona kadar.",
+      "— What time is breakfast? — From seven to ten."
+    ]
+  },
+  {
+    "tr": "İnternet şifresi nedir?",
+    "en": "What's the Wi-Fi password?",
+    "cat": "p-hotel",
+    "note": "People say “internet şifresi” or “Wi-Fi şifresi” (Wi-Fi is said “vay-fay”).",
+    "pair": {
+      "tr": "Wi-Fi şifresi ne?",
+      "reg": "casual"
+    }
+  },
+  {
+    "tr": "Klima çalışmıyor.",
+    "en": "The air conditioning isn't working.",
+    "cat": "p-hotel",
+    "note": "Works for anything: Televizyon çalışmıyor, Asansör çalışmıyor. Then ask: “Biri bakabilir mi?” (Could someone take a look?)"
+  },
+  {
+    "tr": "Sıcak su gelmiyor.",
+    "en": "There's no hot water.",
+    "cat": "p-hotel",
+    "note": "Lit. “Hot water isn't coming.”"
+  },
+  {
+    "tr": "Oda kartımı içeride unuttum.",
+    "en": "I've left my key card in the room.",
+    "cat": "p-hotel"
+  },
+  {
+    "tr": "Fazladan bir havlu alabilir miyim?",
+    "en": "Could I have an extra towel?",
+    "cat": "p-hotel",
+    "note": "Swap in: bir yastık (a pillow), bir battaniye (a blanket).",
+    "reg": "polite"
+  },
+  {
+    "tr": "Odayı saat kaçta boşaltmamız gerekiyor?",
+    "en": "What time do we need to check out?",
+    "cat": "p-hotel",
+    "note": "Lit. “What time do we have to vacate the room?” Many hotels also just say “check-out”.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Çıkış kaçta?",
+      "reg": "casual",
+      "en": "What time's check-out?"
+    }
+  },
+  {
+    "tr": "Valizlerimi burada bırakabilir miyim?",
+    "en": "Can I leave my suitcases here?",
+    "cat": "p-hotel",
+    "note": "Handy after check-out. Valiz and bavul both mean suitcase.",
+    "reg": "polite"
+  },
+  {
+    "tr": "Yardım edin!",
+    "en": "Help!",
+    "cat": "p-emergency",
+    "note": "Shout this or “İmdat!”."
+  },
+  {
+    "tr": "Ambulans çağırın!",
+    "en": "Call an ambulance!",
+    "cat": "p-emergency",
+    "note": "112 is the emergency number in Türkiye for ambulance, police and fire."
+  },
+  {
+    "tr": "Polis çağırın!",
+    "en": "Call the police!",
+    "cat": "p-emergency"
+  },
+  {
+    "tr": "Kaza oldu!",
+    "en": "There's been an accident!",
+    "cat": "p-emergency",
+    "ex": [
+      "Kaza oldu! Lütfen ambulans çağırın!",
+      "There's been an accident! Please call an ambulance!"
+    ]
+  },
+  {
+    "tr": "Yaralı var!",
+    "en": "Someone's hurt!",
+    "cat": "p-emergency",
+    "note": "Lit. “There is an injured person!”"
+  },
+  {
+    "tr": "Yangın var!",
+    "en": "Fire! (There's a fire!)",
+    "cat": "p-emergency"
+  },
+  {
+    "tr": "Dikkat edin!",
+    "en": "Watch out! / Be careful!",
+    "cat": "p-emergency",
+    "note": "As a sudden shout, just “Dikkat!”",
+    "reg": "polite",
+    "pair": {
+      "tr": "Dikkat et!",
+      "reg": "casual",
+      "en": "Watch out!"
+    }
+  },
+  {
+    "tr": "İyi misiniz?",
+    "en": "Are you OK?",
+    "cat": "p-emergency",
+    "reg": "polite",
+    "pair": {
+      "tr": "İyi misin?",
+      "reg": "casual",
+      "en": "You OK?"
+    }
+  },
+  {
+    "tr": "Hırsız! Tutun onu!",
+    "en": "Thief! Stop him/her!",
+    "cat": "p-emergency"
+  },
+  {
+    "tr": "Telefonum çalındı.",
+    "en": "My phone has been stolen.",
+    "cat": "p-emergency",
+    "note": "Also: Çantam çalındı (my bag was stolen). Report it at the karakol (police station)."
+  },
+  {
+    "tr": "Pasaportumu kaybettim.",
+    "en": "I've lost my passport.",
+    "cat": "p-emergency",
+    "note": "Report it to the police, then contact your consulate (konsolosluk)."
+  },
+  {
+    "tr": "En yakın karakol nerede?",
+    "en": "Where's the nearest police station?",
+    "cat": "p-emergency",
+    "note": "Karakol = police station. Big tourist areas also have a “Turizm Polisi” (tourist police) office."
+  },
+  {
+    "tr": "Ankara treni hangi perondan kalkıyor?",
+    "en": "Which platform does the Ankara train leave from?",
+    "cat": "p-transport",
+    "note": "Peron = platform. High-speed trains are called “YHT” (Yüksek Hızlı Tren)."
+  },
+  {
+    "tr": "Uçak rötarlı mı?",
+    "en": "Is the flight delayed?",
+    "cat": "p-transport",
+    "note": "Rötar = delay, for flights and trains. Cancelled = iptal."
+  },
+  {
+    "tr": "Cam kenarı bir koltuk alabilir miyim?",
+    "en": "Could I have a window seat?",
+    "cat": "p-transport",
+    "note": "Cam kenarı = window seat; koridor tarafı = aisle seat.",
+    "reg": "polite"
+  },
+  {
+    "tr": "Biniş saat kaçta?",
+    "en": "What time is boarding?",
+    "cat": "p-transport",
+    "note": "Biniş kartı = boarding pass. Gate = kapı: “Kaçıncı kapı?” (Which gate number?)"
+  },
+  {
+    "tr": "Aktarma yapmam gerekiyor mu?",
+    "en": "Do I need to change (trains or buses)?",
+    "cat": "p-transport",
+    "note": "Aktarma = a change or connection. For flights: aktarmalı uçuş (connecting flight)."
+  },
+  {
+    "tr": "Bir sonraki durak neresi?",
+    "en": "What's the next stop?",
+    "cat": "p-transport"
+  },
+  {
+    "tr": "Burası boş mu?",
+    "en": "Is this seat free?",
+    "cat": "p-transport",
+    "note": "Lit. “Is this place empty?” Replies: “Boş, buyurun.” or “Dolu, kusura bakmayın.” (Sorry, it's taken.)"
+  },
+  {
+    "tr": "İzmir'e gidiş dönüş bir bilet, lütfen.",
+    "en": "A return ticket to İzmir, please.",
+    "cat": "p-transport",
+    "note": "Gidiş dönüş = return (round trip); tek yön or sadece gidiş = one way.",
+    "alt": [
+      "İzmir'e gidiş-dönüş bir bilet, lütfen."
+    ]
+  },
+  {
+    "tr": "Valizim gelmedi.",
+    "en": "My suitcase didn't arrive.",
+    "cat": "p-transport",
+    "note": "Ask for the lost baggage desk: “Kayıp bagaj nerede?”"
+  },
+  {
+    "tr": "Havalimanına ne kadar tutar?",
+    "en": "How much will it be to the airport?",
+    "cat": "p-transport",
+    "note": "“Tutmak” here = to come to (a price). Taxis should run the meter (taksimetre).",
+    "pair": {
+      "tr": "Abi, havalimanına kaça gidersin?",
+      "reg": "casual",
+      "en": "Mate, how much to the airport?"
+    }
+  },
+  {
+    "tr": "Taksi durağı nerede?",
+    "en": "Where's the taxi rank?",
+    "cat": "p-transport"
+  },
+  {
+    "tr": "Şurada durabilir misiniz?",
+    "en": "Could you stop over there?",
+    "cat": "p-transport",
+    "reg": "polite",
+    "pair": {
+      "tr": "Şurada bırak abi.",
+      "reg": "casual",
+      "en": "Drop me off there, mate."
+    }
+  },
+  {
+    "tr": "Hayırlı işler!",
+    "en": "Have a good day at work! (lit. “blessed work”)",
+    "cat": "p-work",
+    "note": "Said to colleagues in the morning, or to a shopkeeper as you walk in. While someone is working, say “Kolay gelsin”."
+  },
+  {
+    "tr": "İyi çalışmalar!",
+    "en": "Have a productive day! / Best regards (in emails)",
+    "cat": "p-work",
+    "note": "Said to colleagues, and the standard friendly sign-off at the end of a work email."
+  },
+  {
+    "tr": "Bir dakikanız var mı?",
+    "en": "Do you have a minute?",
+    "cat": "p-work",
+    "reg": "polite",
+    "pair": {
+      "tr": "Bir dakikan var mı?",
+      "reg": "casual",
+      "en": "Got a minute?"
+    }
+  },
+  {
+    "tr": "Toplantı saat kaçta?",
+    "en": "What time is the meeting?",
+    "cat": "p-work",
+    "ex": [
+      "— Toplantı saat kaçta? — Öğleden sonra üçte.",
+      "— What time is the meeting? — At three in the afternoon."
+    ]
+  },
+  {
+    "tr": "Toplantıyı yarına erteleyebilir miyiz?",
+    "en": "Could we move the meeting to tomorrow?",
+    "cat": "p-work",
+    "reg": "polite",
+    "pair": {
+      "tr": "Toplantıyı yarına kaydıralım mı?",
+      "reg": "casual",
+      "en": "Shall we push the meeting to tomorrow?"
+    }
+  },
+  {
+    "tr": "Son teslim tarihi ne zaman?",
+    "en": "When's the deadline?",
+    "cat": "p-work",
+    "note": "In many offices people simply say “deadline”, as in English.",
+    "pair": {
+      "tr": "Deadline ne zaman?",
+      "reg": "casual"
+    }
+  },
+  {
+    "tr": "Size bir e-posta gönderdim.",
+    "en": "I've sent you an email.",
+    "cat": "p-work",
+    "note": "In speech, “mail” (said “meyl”) is far more common than “e-posta”.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Sana mail attım.",
+      "reg": "casual",
+      "en": "I sent you an email."
+    }
+  },
+  {
+    "tr": "Bugün içinde size gönderirim.",
+    "en": "I'll send it to you today.",
+    "cat": "p-work",
+    "reg": "polite",
+    "pair": {
+      "tr": "Bugün atarım sana.",
+      "reg": "casual",
+      "en": "I'll send it over today."
+    }
+  },
+  {
+    "tr": "Size en kısa sürede dönüş yapacağım.",
+    "en": "I'll get back to you as soon as possible.",
+    "cat": "p-work",
+    "note": "“Dönüş yapmak” = to get back to someone — very common office Turkish.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Sana sonra dönerim.",
+      "reg": "casual",
+      "en": "I'll get back to you later."
+    }
+  },
+  {
+    "tr": "Bugün evden çalışıyorum.",
+    "en": "I'm working from home today.",
+    "cat": "p-work"
+  },
+  {
+    "tr": "Bugün mesaiye kalmam lazım.",
+    "en": "I have to stay late at work today.",
+    "cat": "p-work",
+    "note": "Mesai = working hours; mesaiye kalmak = to work overtime. “Mesai bitti!” = Work's over!"
+  },
+  {
+    "tr": "Ben çıkıyorum, yarın görüşürüz.",
+    "en": "I'm heading off — see you tomorrow.",
+    "cat": "p-work",
+    "note": "Colleagues answer “İyi akşamlar!” or “Güle güle!”"
+  },
+  {
+    "tr": "Ben de öyle düşünüyorum.",
+    "en": "I think so too.",
+    "cat": "p-opinions",
+    "pair": {
+      "tr": "Bence de.",
+      "reg": "casual",
+      "en": "Me too. / I think so too."
+    }
+  },
+  {
+    "tr": "Bana kalırsa bu iyi bir fikir değil.",
+    "en": "If you ask me, it's not a good idea.",
+    "cat": "p-opinions",
+    "note": "“Bana kalırsa” (if it were up to me) = in my opinion, like “bence” or “bana göre”."
+  },
+  {
+    "tr": "Siz ne düşünüyorsunuz?",
+    "en": "What do you think?",
+    "cat": "p-opinions",
+    "note": "Shorter: “Sizce?” (In your opinion?)",
+    "reg": "polite",
+    "pair": {
+      "tr": "Sen ne düşünüyorsun?",
+      "reg": "casual"
+    }
+  },
+  {
+    "tr": "Hiç fikrim yok.",
+    "en": "I have no idea.",
+    "cat": "p-opinions",
+    "note": "Lit. “I have no idea at all.” For a softer “I'm not sure”, say “Emin değilim.”",
+    "pair": {
+      "tr": "Bilmem ki…",
+      "reg": "casual",
+      "en": "Dunno…"
+    }
+  },
+  {
+    "tr": "Duruma göre değişir.",
+    "en": "It depends.",
+    "cat": "p-opinions",
+    "note": "Lit. “It changes depending on the situation.” Also: “Neye göre?” (Depends on what?)",
+    "pair": {
+      "tr": "Değişir.",
+      "reg": "casual",
+      "en": "Depends."
+    }
+  },
+  {
+    "tr": "Fark etmez.",
+    "en": "It doesn't matter. / Either is fine.",
+    "cat": "p-opinions",
+    "ex": [
+      "— Çay mı, kahve mi? — Fark etmez.",
+      "— Tea or coffee? — Either is fine."
+    ],
+    "note": "Written as two words (often misspelled “farketmez”). Also: “Hangisi olursa.” (Whichever.)",
+    "pair": {
+      "tr": "Siz nasıl isterseniz.",
+      "reg": "polite",
+      "en": "Whatever you prefer."
+    }
+  },
+  {
+    "tr": "Buna katılmıyorum.",
+    "en": "I don't agree with that.",
+    "cat": "p-opinions",
+    "note": "Softer: “Ben biraz farklı düşünüyorum.” (I see it a bit differently.)",
+    "pair": {
+      "tr": "Yok, bence öyle değil.",
+      "reg": "casual",
+      "en": "Nah, I don't think so."
+    }
+  },
+  {
+    "tr": "İyi bir noktaya değindiniz.",
+    "en": "That's a good point.",
+    "cat": "p-opinions",
+    "note": "Lit. “You touched on a good point.” Typical in meetings.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Doğru diyorsun, onu düşünmemiştim.",
+      "reg": "casual",
+      "en": "True, I hadn't thought of that."
+    }
+  },
+  {
+    "tr": "Bu mantıklı.",
+    "en": "That makes sense.",
+    "cat": "p-opinions",
+    "pair": {
+      "tr": "Mantıklı ya.",
+      "reg": "casual",
+      "en": "Makes sense, yeah."
+    }
+  },
+  {
+    "tr": "Ne demek istiyorsunuz?",
+    "en": "What do you mean?",
+    "cat": "p-opinions",
+    "reg": "polite",
+    "pair": {
+      "tr": "Ne demek istiyorsun?",
+      "reg": "casual"
+    }
+  },
+  {
+    "tr": "Bir şey ekleyebilir miyim?",
+    "en": "May I add something?",
+    "cat": "p-opinions",
+    "reg": "polite",
+    "pair": {
+      "tr": "Bir şey ekleyeyim.",
+      "reg": "casual",
+      "en": "Let me add something."
+    }
+  },
+  {
+    "tr": "Açıkçası pek beğenmedim.",
+    "en": "To be honest, I didn't really like it.",
+    "cat": "p-opinions",
+    "note": "“Açıkçası” (frankly) softens criticism; “pek” + negative = not really."
+  },
+  {
+    "tr": "Görüşmeyeli çok oldu!",
+    "en": "Long time no see!",
+    "cat": "p-social",
+    "note": "A warm reply: “Evet ya, seni çok özledim!” (Yes, I've really missed you!)",
+    "pair": {
+      "tr": "Nerelerdesin ya?",
+      "reg": "casual",
+      "en": "Where have you been?!"
+    }
+  },
+  {
+    "tr": "Ne var ne yok?",
+    "en": "What's new?",
+    "cat": "p-social",
+    "note": "Lit. “What is there, what isn't?” A classic answer: “İyilik, sağlık.” (All good, all healthy.)",
+    "reg": "casual",
+    "pair": {
+      "tr": "Nasılsınız, neler yapıyorsunuz?",
+      "reg": "polite",
+      "en": "How are you, what have you been up to?"
+    }
+  },
+  {
+    "tr": "Çok yakışmış!",
+    "en": "It really suits you!",
+    "cat": "p-social",
+    "ex": [
+      "Bu ceket sana çok yakışmış!",
+      "That jacket really suits you!"
+    ],
+    "note": "For clothes, glasses, a new haircut. Reply: “Teşekkür ederim!” or “Sağ ol!”"
+  },
+  {
+    "tr": "Sıhhatler olsun!",
+    "en": "Looking fresh! (after a haircut or a shower)",
+    "cat": "p-social",
+    "note": "Lit. “health to you” — said after a haircut, a shave, a bath or a shower. Reply: “Teşekkürler!”"
+  },
+  {
+    "tr": "Çok naziksiniz.",
+    "en": "You're very kind.",
+    "cat": "p-social",
+    "reg": "polite",
+    "pair": {
+      "tr": "Çok tatlısın!",
+      "reg": "casual",
+      "en": "You're so sweet!"
+    }
+  },
+  {
+    "tr": "Bu akşam bize gelsene!",
+    "en": "Why don't you come over tonight!",
+    "cat": "p-social",
+    "note": "-sene/-sana makes a warm, insistent invitation: gelsene, otursana, yesene.",
+    "reg": "casual",
+    "pair": {
+      "tr": "Bu akşam sizi bize bekleriz.",
+      "reg": "polite",
+      "en": "We'd love to have you over tonight."
+    }
+  },
+  {
+    "tr": "Bir ara kahve içelim!",
+    "en": "Let's grab a coffee sometime!",
+    "cat": "p-social",
+    "note": "A friendly “let's keep in touch” — not always a firm plan. To make it real: “Ne zaman müsaitsin?”",
+    "reg": "casual"
+  },
+  {
+    "tr": "Bu sefer hesap benden!",
+    "en": "This time the bill's on me!",
+    "cat": "p-social",
+    "note": "Turks often argue over who pays. Expect protests: “Olmaz öyle şey!” (No way!)"
+  },
+  {
+    "tr": "Moralini bozma, her şey düzelecek.",
+    "en": "Don't be down — everything will be fine.",
+    "cat": "p-social",
+    "reg": "casual",
+    "pair": {
+      "tr": "Moralinizi bozmayın, her şey düzelecek.",
+      "reg": "polite",
+      "en": "Don't lose heart — everything will be fine."
+    }
+  },
+  {
+    "tr": "Sen yaparsın, merak etme!",
+    "en": "You can do it, don't worry!",
+    "cat": "p-social",
+    "reg": "casual"
+  },
+  {
+    "tr": "Ailene selam söyle!",
+    "en": "Say hi to your family!",
+    "cat": "p-social",
+    "reg": "casual",
+    "pair": {
+      "tr": "Ailenize selam söyleyin.",
+      "reg": "polite",
+      "en": "Please give my regards to your family."
+    }
+  },
+  {
+    "tr": "Kalın sağlıcakla!",
+    "en": "Take care! (warm goodbye from the one leaving)",
+    "cat": "p-social",
+    "note": "Lit. “stay with health”. Said by the person leaving, like “Hoşça kalın”.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Hadi, kal sağlıcakla!",
+      "reg": "casual",
+      "en": "Right, take care!"
     }
   }
 ];
