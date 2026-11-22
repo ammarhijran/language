@@ -2,6 +2,7 @@ import { h, icon } from '../ui.js';
 import { audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge, sayLater, backLink, favButton } from '../components.js';
 import { status, STATUS_LABEL, markKnown } from '../srs.js';
 import { rich } from './grammar.js';
+import { loadTexts, textsWithWord } from '../reader.js';
 
 export default function word(ctx, id) {
   const { lang, store } = ctx;
@@ -16,6 +17,23 @@ export default function word(ctx, id) {
   const st = status(card);
   const cat = lang.categories.find((c) => c.id === w.cat);
   if (ctx.settings.autoplay) sayLater(ctx, w.tr);
+
+  // "In Read & Listen": the texts that use this word, filled in once the texts are loaded.
+  const seen = h('section', { class: 'card seen-in', hidden: true });
+  let gone = false;
+  ctx.onCleanup(() => { gone = true; });
+  loadTexts(lang.code).then((texts) => {
+    if (gone) return;
+    const found = textsWithWord(lang, texts, w.id).slice(0, 4);
+    if (!found.length) return;
+    seen.hidden = false;
+    seen.append(
+      h('h2', { class: 'card-title' }, '🎧 In Read & Listen'),
+      h('ul', { class: 'seen-list' }, found.map((f) => h('li', null,
+        h('a', { href: `#/read/${encodeURIComponent(f.id)}` },
+          h('b', null, f.title, f.level ? h('span', { class: `badge level-${f.level}` }, f.level) : null),
+          h('span', { lang: lang.code, dir: lang.dir === 'rtl' ? 'rtl' : null }, f.line))))));
+  }).catch(() => { /* the texts are optional here */ });
 
   return h('div', { class: 'view' },
     backLink(ctx, '#/progress', 'Word list'),
@@ -53,5 +71,6 @@ export default function word(ctx, id) {
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, 'Practise saying it'),
       speakPractice(ctx, w)),
+    seen,
   );
 }

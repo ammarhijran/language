@@ -489,3 +489,23 @@ test('built-in texts: the course’s other words can be tapped too, without touc
   }
   assert.deepEqual(extraGlossary(languages.tr, { own: true, lines: [{ tr: 'Merhaba' }], glossary: [] }), []);
 });
+
+test('word pages: the texts a course word appears in, with the line it is first seen in', async () => {
+  const { textsWithWord } = await import('../js/reader.js');
+  for (const [code, texts] of Object.entries(ALL)) {
+    const lang = languages[code];
+    let linked = 0;
+    for (const w of lang.words) {
+      const found = textsWithWord(lang, texts, w.id);
+      if (!found.length) continue;
+      linked++;
+      assert.equal(new Set(found.map((f) => f.id)).size, found.length, `${code} ${w.id}: each text once`);
+      for (const f of found) {
+        const t = texts.find((x) => x.id === f.id);
+        assert.ok(t && t.lines.some((l) => l.tr === f.line), `${code} ${w.id}: a real line of ${f.id}`);
+      }
+    }
+    assert.ok(linked >= 150, `${code}: ${linked} words are linked to a text`);
+    assert.deepEqual(textsWithWord(lang, texts, 'no-such-word'), []);
+  }
+});

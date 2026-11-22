@@ -388,6 +388,30 @@ export function autoGlossary(lang, lines, max = 60) {
   return [...items.values()];
 }
 
+// Which texts use which course words: word id → [{ id, title, line }] (the
+// first line of each text that has the word, built once per language).
+const seenIn = new Map();
+/** The texts in which a course word occurs (as a whole word), with the line it is first seen in. */
+export function textsWithWord(lang, texts, wordId) {
+  let index = seenIn.get(lang.code);
+  if (!index || index.texts !== texts) {
+    const map = new Map();
+    for (const t of texts) {
+      const done = new Set();
+      for (const line of t.lines) {
+        for (const item of autoGlossary(lang, [line], 200)) {
+          if (!item.wordId || done.has(item.wordId)) continue;
+          done.add(item.wordId);
+          map.set(item.wordId, [...(map.get(item.wordId) || []), { id: t.id, title: t.title, level: t.level, line: line.tr }]);
+        }
+      }
+    }
+    index = { texts, map };
+    seenIn.set(lang.code, index);
+  }
+  return index.map.get(wordId) || [];
+}
+
 // ---------- Shadowing ----------
 
 export const SHADOW_ROUNDS = [

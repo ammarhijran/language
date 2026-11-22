@@ -292,3 +292,12 @@ button.gloss-course { text-decoration-color: color-mix(in srgb, var(--muted) 60%
 .own-body[lang="ar"] { font-family: var(--font-ar); font-size: var(--fs-lg); }
 .own-body[lang="ja"] { font-family: var(--font-ja); }
 .read-en:empty { display: none; }
+
+/* Word page: the texts a word appears in */
+.seen-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-2); }
+.seen-list a { display: flex; flex-direction: column; gap: .15rem; padding: .5rem .6rem; border: 1px solid var(--border); border-radius: var(--r-sm); color: inherit; text-decoration: none; }
+.seen-list a:hover { border-color: var(--action); }
+.seen-list b { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); }
+.seen-list a > span { color: var(--muted); overflow-wrap: anywhere; }
+.seen-list a > span[lang="ar"] { font-family: var(--font-ar); font-size: var(--fs-lg); }
+.seen-list a > span[lang="ja"] { font-family: var(--font-ja); }
