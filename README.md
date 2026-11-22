@@ -112,6 +112,7 @@ A typical code is under 1 kB. Even every word in all four languages fits in abou
 npm start        # serves the website at http://localhost:8000 (no install needed)
 npm test         # unit tests (Node 22+)
 npm run build    # copies the web app into www/ (used by the native apps)
+npm run smoke    # browser smoke test: every topic and screen in all four languages (needs Playwright)
 ```
 
 Any static file server works too, e.g. `python3 -m http.server`.

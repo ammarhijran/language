@@ -2,11 +2,12 @@
   "name": "lisan",
   "version": "1.0.0",
   "private": true,
-  "description": "Language learning app focused on vocabulary and pronunciation. First language: Turkish.",
+  "description": "Language learning app for Turkish, Ukrainian, Japanese and Arabic: vocabulary, phrases, grammar, reading and pronunciation.",
   "type": "module",
   "scripts": {
     "start": "node scripts/serve.js",
     "test": "node --test tests/*.test.js",
+    "smoke": "node scripts/smoke.cjs",
     "build": "node scripts/build-web.js",
     "cap:sync": "npm run build && cap sync",
     "android:open": "cap open android",

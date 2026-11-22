@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Browser smoke test** (`npm run smoke`, for developers): opens the real app in Chromium for each language and walks about 300 screens — every topic, word pages, the phrasebook, every text, practice modes, My texts, a lesson — failing on any script error, error screen or sideways scroll at phone width.
 - **“New in Lisan”** card on Home: shown once to people who already use the app, with links to the features added since their last version (hands-free listening, dictation, My texts, trip essentials, new content, voice and display settings).
 - **Handy Extras:** a new phrase topic with 9–12 everyday phrases per language that were missing — “What time is it?”, “I’m looking for a pharmacy”, “Of course”, “Just a moment”, “What is this?”, “I need a taxi”, and in Japanese “Do you speak English?”, “Can you help me?”, “I don’t know”, “No problem”. 1,038–1,171 entries per language in 67 topics now.
 - **Trip essentials** (Phrasebook → 🎒 Trip essentials, the first thing a new learner sees there): the 37–41 phrases to learn first for a trip, gathered from all topics in the order you need them, with Practise and Listen hands-free — and **“Learn them step by step”**, which teaches the essentials as short lessons of their own (a crash course before a trip).
