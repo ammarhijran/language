@@ -3,6 +3,11 @@
 ## Unreleased
 
 ### Added
+- **Sentence builder:** practise the example sentences instead of only reading them. The English meaning is shown (the sentence can be played, also slowly), and the learner taps shuffled word tiles into the right order; a wrong answer shows the right sentence, its reading and the learner's order.
+  - **Practice → Sentences** builds 10 sentences from any topic, the words you've learned, or everything: phrases and their everyday/proper counterparts, example sentences and grammar examples (about 230–390 per language).
+  - **Grammar lessons** end with "Practise these sentences" for the lesson's examples.
+  - **Reviews** sometimes ask a familiar phrase as a sentence to build.
+  - Japanese tiles are the kana reading (the kanji sentence is shown after answering); Arabic tiles read right to left. Punctuation, capitals and Arabic vowel marks don't count, and identical words may swap places. Tiles work with the keyboard (Tab and Enter, or number keys; Backspace takes the last one back).
 - **Much more everyday content, chosen by frequency — about 1,000 new entries across the four languages.** Each language goes from 12 to 28 topics, in three groups shown on Learn, Home and Practice:
   - **Words** (+130 per language): More Everyday Verbs, Daily Routine, Feelings & Opinions, Shopping & Money, Connecting Words, Work & Study.
   - **Phrases** (+80): Small Talk, Café & Restaurant, Shopping, Getting Around, Making Plans, Reactions, Problems & Help, Polite Requests.

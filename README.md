@@ -29,6 +29,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Spaced-repetition reviews** (an SM-2-style scheduler, like Anki) bring each word back just before you're likely to forget it.
 - **Exercises get harder as you learn:** listening → reading → choosing the Turkish → flashcards → typing → speaking. The typing exercise has buttons for ç ğ ı ö ş ü. If you only get a special letter wrong, you're told exactly which one.
 - **Practice mode** gives you free rounds on any topic, in any mode. It doesn't change your review schedule.
+- **Sentence builder:** see the English, hear the sentence if you like, and put shuffled word tiles in the right order. It practises the phrases, example sentences and grammar examples (Practice → Sentences, "Practise these sentences" at the end of a grammar lesson, and now and then in reviews of phrases you know well). Japanese is built from kana tiles; Arabic reads right to left.
 - **Progress:** streak, a 14-day activity chart, mastery per topic, and a searchable word list.
 
 ### Game mechanics, achievements and goals
@@ -138,6 +139,7 @@ index.html, css/styles.css     app shell & styles
 js/app.js                      router + app context
 js/views/                      home, learn, review, practice, pronounce, progress, grammar, journey, sync, settings, word…
 js/exercises.js, session.js    exercise types and the session runner
+js/sentences.js                practice sentences for the sentence builder (tiles, answer check)
 js/components.js               pronunciation panel, speak-and-score, recorder
 js/srs.js                      spaced-repetition scheduler
 js/game.js, celebrate.js       XP, levels, achievements, challenges, goals · reward overlays

@@ -1,5 +1,6 @@
 // Exercise types. Each takes (ctx, word, onDone, meta) and returns an element.
 // onDone receives { correct, rating } (rating uses the SRS scale) or { skipped: true }.
+// 'build' (the sentence builder) takes its sentence from meta.sentence, or builds one from the phrase.
 import { h, icon, bindKeys, shuffle, pick, set } from './ui.js';
 import {
   playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge,
@@ -7,6 +8,7 @@ import {
 } from './components.js';
 import { similarity } from './compare.js';
 import { AGAIN, HARD, GOOD, EASY } from './srs.js';
+import { phraseSentence, checkOrder, tileKey } from './sentences.js';
 
 function once(fn) {
   let called = false;
@@ -303,4 +305,132 @@ export function intro(ctx, word, onDone, meta = {}) {
   );
 }
 
-export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro };
+// ---------- Sentence builder ----------
+
+/** The tiles in a random order that isn't already the answer (when the words allow one). */
+function scramble(lang, tokens) {
+  const tiles = tokens.map((text) => ({ text, key: tileKey(lang, text) }));
+  let out = shuffle(tiles);
+  for (let n = 0; n < 12 && out.every((t, i) => t.key === tiles[i].key); n++) out = shuffle(tiles);
+  return out;
+}
+
+/** After checking: the sentence as written, its reading and meaning, and (when wrong) the learner's order. */
+function sentenceReveal(ctx, s, correct, mine) {
+  const { lang } = ctx;
+  return h('div', { class: `reveal ${correct ? 'good' : 'bad'}` },
+    h('p', { class: 'verdict' }, icon(correct ? 'check' : 'x', 18),
+      correct ? praiseLine(lang, pick(lang.praise)) : 'Not quite — here’s the right order:'),
+    h('div', { class: 'reveal-word' },
+      playButton(ctx, s.audioText),
+      h('div', null,
+        h('p', { class: 'tr', lang: lang.code }, s.display || s.text),
+        s.reading ? h('p', { class: 'reading small' }, s.reading) : null,
+        h('p', { class: 'en' }, s.en))),
+    correct ? null : h('p', { class: 'hint build-mine' }, 'Your order: ', h('q', { lang: lang.code }, mine.join(' '))),
+  );
+}
+
+/**
+ * Sentence builder: the English meaning (audio on request) and the sentence's
+ * words as shuffled tiles to tap into the answer line. `meta.sentence` comes
+ * from sentences.js; in a review it is built from the phrase being reviewed.
+ */
+export function build(ctx, word, onDone, meta = {}) {
+  const { lang } = ctx;
+  const s = meta.sentence || phraseSentence(lang, word);
+  if (!s) return produce(ctx, word, onDone);
+  const tiles = scramble(lang, s.tokens);
+  const placed = []; // indexes into tiles, in the learner's order
+  let lineEls = [];
+  let result = null;
+
+  const finish = once((r) => { unbind(); onDone(r); });
+  const feedback = h('div', { class: 'feedback', 'aria-live': 'polite' });
+  const empty = h('span', { class: 'build-empty' }, 'Tap the words in order');
+  const line = h('div', { class: 'build-line', role: 'group', 'aria-label': 'Your sentence', dir: lang.dir }, empty);
+  const slots = tiles.map((t, i) => h('button', { type: 'button', class: 'tile', lang: lang.code, onclick: () => place(i, true) },
+    i < 9 ? h('span', { class: 'kbd', 'aria-hidden': 'true' }, String(i + 1)) : null,
+    t.text));
+  const bank = h('div', { class: 'build-bank', role: 'group', 'aria-label': 'Words to use', dir: lang.dir }, slots);
+  const checkBtn = h('button', { type: 'button', class: 'btn primary', onclick: check }, 'Check');
+  const actions = h('div', { class: 'actions split' },
+    h('button', { type: 'button', class: 'btn ghost', onclick: () => finish({ skipped: true }) }, 'Skip'),
+    checkBtn);
+
+  const hint = (text) => { if (!result) set(feedback, text ? h('p', { class: 'hint' }, text) : null); };
+
+  function renderLine() {
+    lineEls = placed.map((i, pos) => h('button', { type: 'button', class: 'tile', lang: lang.code, onclick: () => unplace(pos, true) }, tiles[i].text));
+    set(line, lineEls.length ? lineEls : empty);
+  }
+
+  function place(i, fromTile = false) {
+    if (result || placed.includes(i)) return;
+    const hadFocus = fromTile || document.activeElement === slots[i];
+    placed.push(i);
+    // The tile leaves an empty slot in the bank, so the other tiles don't jump.
+    slots[i].classList.add('used');
+    slots[i].disabled = true;
+    slots[i].setAttribute('aria-hidden', 'true');
+    renderLine();
+    hint(null);
+    // Its button is gone from view: focus the next word left in the bank, or Check once all are placed.
+    if (hadFocus || placed.length === tiles.length) {
+      const left = slots.filter((b, j) => !placed.includes(j));
+      (left.find((b) => slots.indexOf(b) > i) || left[left.length - 1] || checkBtn).focus({ preventScroll: true });
+    }
+  }
+
+  function unplace(pos, fromTile = false) {
+    if (result || pos < 0) return;
+    const hadFocus = fromTile || lineEls.includes(document.activeElement);
+    const [i] = placed.splice(pos, 1);
+    slots[i].classList.remove('used');
+    slots[i].disabled = false;
+    slots[i].removeAttribute('aria-hidden');
+    renderLine();
+    hint(null);
+    if (hadFocus) (lineEls[pos] || lineEls[pos - 1] || slots[i]).focus({ preventScroll: true });
+  }
+
+  function check() {
+    if (result) return;
+    const left = tiles.length - placed.length;
+    if (left) { hint(`Use all the words first — ${left} left.`); return; }
+    const mine = placed.map((i) => tiles[i].text);
+    const { correct, marks } = checkOrder(lang, s, mine);
+    result = { correct, rating: correct ? GOOD : AGAIN };
+    lineEls.forEach((b, pos) => { b.disabled = true; b.classList.add(marks[pos] ? 'correct' : 'wrong'); });
+    bank.hidden = true;
+    set(feedback, sentenceReveal(ctx, s, correct, mine));
+    ctx.say(s.audioText);
+    const btn = continueButton(() => finish(result));
+    set(actions, btn);
+    btn.focus({ preventScroll: true });
+  }
+
+  const keys = {
+    Enter: () => (result ? finish(result) : check()),
+    Backspace: () => unplace(placed.length - 1),
+  };
+  slots.slice(0, 9).forEach((b, i) => { keys[i + 1] = () => place(i); });
+  const unbind = bindKeys(keys);
+  ctx.onCleanup(unbind);
+
+  return h('div', { class: 'exercise build' },
+    h('p', { class: 'kicker' }, 'Put the words in order'),
+    h('div', { class: 'prompt build-prompt' },
+      h('p', { class: 'prompt-word en build-en' }, s.en, ' ', regBadge(s)),
+      // Labelled buttons, not playButton(): its label would read the answer out to screen readers.
+      h('div', { class: 'build-audio' },
+        h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(s.audioText) }, icon('volume', 14), 'Listen'),
+        h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(s.audioText, { slow: true }) }, icon('slow', 14), 'Slowly'))),
+    line,
+    bank,
+    feedback,
+    actions,
+  );
+}
+
+export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build };

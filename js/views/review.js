@@ -3,7 +3,7 @@ import { runSession } from '../session.js';
 import { newCard, review as schedule, missedToday, AGAIN, startOfDay } from '../srs.js';
 import { dueWords, chooseReviewType, nextCategory } from '../stats.js';
 
-const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce' };
+const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce', build: 'produce' };
 
 export default function review(ctx) {
   const { lang, store } = ctx;
@@ -12,7 +12,7 @@ export default function review(ctx) {
   if (!due.length) return empty(ctx);
 
   const items = shuffle(due.slice(0, ctx.settings.sessionSize))
-    .map(({ word, card }) => ({ word, type: chooseReviewType(card, word) }));
+    .map(({ word, card }) => ({ word, type: chooseReviewType(card, word, lang) }));
   const firstTry = new Map();
 
   return h('div', { class: 'view' }, runSession(ctx, {

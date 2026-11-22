@@ -2,6 +2,7 @@
 // tables, audio examples and a 4-question quiz.
 import { h, icon, set, bindKeys } from '../ui.js';
 import { playButton } from '../components.js';
+import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
 
 /** Plain text with **bold** → nodes (no HTML parsing). */
 export function rich(text) {
@@ -98,6 +99,17 @@ function quiz(ctx, lesson, next) {
   return wrap;
 }
 
+/** End of a lesson: build its example sentences from shuffled words (Practice, Sentences mode). */
+function practiseCard(ctx, lesson) {
+  const scope = `grammar:${lesson.id}`;
+  const n = sentencesFor(ctx.lang, scope).length;
+  if (n < MIN_SENTENCES) return null;
+  return h('section', { class: 'card g-practise' },
+    h('h2', { class: 'card-title' }, '🧩 Build the sentences'),
+    h('p', { class: 'muted' }, `Put the words of this lesson’s ${n} example sentences back in order.`),
+    h('a', { class: 'btn primary wide', href: `#/practice/build/${encodeURIComponent(scope)}` }, 'Practise these sentences', icon('arrow', 18)));
+}
+
 function lessonView(ctx, id) {
   const { lang } = ctx;
   const lessons = lang.grammar || [];
@@ -118,6 +130,7 @@ function lessonView(ctx, id) {
       s.table ? table(s.table) : null,
       s.examples?.length ? h('ul', { class: 'g-examples' }, s.examples.map((ex) => example(ctx, ex))) : null)),
     lesson.quiz?.length ? quiz(ctx, lesson, next) : null,
+    practiseCard(ctx, lesson),
   );
 }
 

@@ -60,6 +60,7 @@ const ICONS = {
   flame: '<path d="M12 2s5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 1-3.5S9 11 11 11c0-4 1-9 1-9z"/>',
   ear: '<path d="M6 8.5a6 6 0 1 1 12 0c0 6-6 6-6 10a3 3 0 0 1-6 0"/><path d="M15 8.5a3 3 0 0 0-6 0"/>',
   search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
+  tiles: '<rect x="2" y="5" width="8" height="6" rx="1.5"/><rect x="13" y="5" width="9" height="6" rx="1.5"/><rect x="2" y="14" width="12" height="6" rx="1.5"/>',
   shuffle: '<path d="M2 18h3.5a5 5 0 0 0 4-2l5-8a5 5 0 0 1 4-2H22"/><path d="m19 3 3 3-3 3"/><path d="M2 6h3.5a5 5 0 0 1 3.8 1.8"/><path d="M14.7 16.2a5 5 0 0 0 3.8 1.8H22"/><path d="m19 15 3 3-3 3"/>',
 };
 

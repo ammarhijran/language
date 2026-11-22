@@ -89,6 +89,9 @@ export default makePack({
   acceptedAnswers: (w) => [...new Set([w.tr, plainKana(w), romanOf(w), romaji(w.kana, 'wapuro'), ...(w.alt || [])])],
   spokenTargets: (w) => [...new Set([w.tr, plainKana(w)])],
   noteSource: (w) => plainKana(w),
+  // Written Japanese has no spaces between words: sentence-builder tiles are the
+  // spaced kana reading, so sentences without one (example sentences) are skipped.
+  sentenceTiles: (w) => w.kana || null,
   normalize,
   stripDiacritics,
   voiceHelp: {

@@ -1,6 +1,7 @@
 // Derived numbers used across views.
 import { isDue, status } from './srs.js';
 import { recognitionSupported } from './speech.js';
+import { phraseSentence } from './sentences.js';
 
 export function dueWords(ctx, now = Date.now()) {
   const { lang, store } = ctx;
@@ -38,8 +39,10 @@ export function nextCategory(ctx) {
   return ctx.lang.categories.find((c) => ctx.lang.wordsIn(c.id).some((w) => !cards[w.id]));
 }
 
-/** Exercise type for a review, based on how well the word is known. */
-export function chooseReviewType(card, word) {
+const FAMILIAR = new Set(['familiar', 'mastered', 'known']);
+
+/** Exercise type for a review, based on how well the word is known (pass `lang` to allow sentence building). */
+export function chooseReviewType(card, word, lang) {
   const speak = recognitionSupported();
   // Typing a whole sentence is tedious: phrases are practised by choice, recall and speaking.
   const long = word && (word.tr.trim().split(/\s+/).length > 3 || word.tr.length > 24);
@@ -48,6 +51,9 @@ export function chooseReviewType(card, word) {
   else if (card.reps <= 3) pool = ['produce', 'listen', 'flashcard', ...(speak ? ['speak'] : [])];
   else pool = ['type', 'flashcard', 'listen', ...(speak ? ['speak', 'speak'] : ['type'])];
   if (long) pool = pool.filter((t) => t !== 'type').concat(['produce']);
+  // A phrase the learner already knows fairly well is sometimes built from
+  // shuffled words instead: recall of its word order, not just its meaning.
+  if (lang && word && FAMILIAR.has(status(card)) && phraseSentence(lang, word)) pool.push('build');
   return pool[Math.floor(Math.random() * pool.length)];
 }
 

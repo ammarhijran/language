@@ -114,3 +114,11 @@ test('Home quick links and ear-training pairs can shrink to a 320px screen', () 
   assert.equal(prop('.pair-btn b', 'overflow-wrap'), 'anywhere');
   assert.equal(prop('.pair-btn small', 'overflow-wrap'), 'anywhere');
 });
+
+test('sentence-builder tiles wrap inside a 320px screen', () => {
+  assert.equal(prop('.build-line', 'flex-wrap'), 'wrap');
+  assert.equal(prop('.build-bank', 'flex-wrap'), 'wrap');
+  assert.equal(prop('.tile', 'max-width'), '100%');
+  assert.equal(prop('.tile', 'overflow-wrap'), 'anywhere');
+  assert.equal(prop('.prompt-word.build-en', 'overflow-wrap'), 'anywhere');
+});

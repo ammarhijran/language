@@ -1,6 +1,6 @@
 // Offline support: network-first so updates show up immediately when online,
 // falling back to the cache when offline. Bump VERSION when the file list changes.
-const VERSION = 'lisan-v10';
+const VERSION = 'lisan-v11';
 
 const ASSETS = [
   './',
@@ -18,6 +18,7 @@ const ASSETS = [
   'js/components.js',
   'js/exercises.js',
   'js/native.js',
+  'js/sentences.js',
   'js/session.js',
   'js/speech.js',
   'js/srs.js',

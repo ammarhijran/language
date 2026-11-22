@@ -16,6 +16,8 @@
 //   acceptedAnswers(word), spokenTargets(word), noteSource(word), voiceHelp,
 //   praise, scoreTitles          — feedback lines: an English string, or [native, English gloss]
 //   displayUnits(text)           — see writtenUnits() below
+//   sentenceTiles(entry)         — the text cut into word tiles by the sentence builder
+//                                  (js/sentences.js), or null when it can't be built
 
 import { alignDiff } from '../compare.js';
 
@@ -98,6 +100,7 @@ export function makePack(def) {
     acceptedAnswers: (w) => [w.tr, ...(w.alt || [])],
     spokenTargets: (w) => [w.tr],
     noteSource: (w) => w.tr,
+    sentenceTiles: (w) => w.tr,
     // Feedback in English unless the pack has native words for it.
     praise: ['Correct!', 'Great!', 'Well done!', 'Nice!'],
     scoreTitles: { excellent: 'Excellent!', close: 'Very close!' },
