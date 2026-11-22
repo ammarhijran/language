@@ -2286,6 +2286,19 @@ export const vocab = [
     }
   },
   {
+    "tr": "トイレはどこですか。",
+    "en": "Where is the toilet?",
+    "cat": "p-directions",
+    "kana": "トイレ は どこ です か",
+    "note": "お手洗い (おてあらい) is a softer word for the toilet: お手洗いはどこですか。",
+    "reg": "polite",
+    "pair": {
+      "tr": "トイレ、どこ？",
+      "reg": "casual",
+      "kana": "トイレ どこ"
+    }
+  },
+  {
     "tr": "東京駅までどうやって行けばいいですか。",
     "en": "How do I get to Tokyo Station?",
     "cat": "p-directions",

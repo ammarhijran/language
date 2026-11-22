@@ -40,6 +40,7 @@ const ASSETS = [
   'js/celebrate.js',
   'js/game.js',
   'js/handsfree.js',
+  'js/kit.js',
   'js/compare.js',
   'js/components.js',
   'js/exercises.js',

@@ -2464,6 +2464,26 @@ export const vocab = [
     "reg": "polite"
   },
   {
+    "tr": "Де туалет?",
+    "en": "Where is the toilet?",
+    "cat": "p-directions",
+    "s": [
+      0,
+      2
+    ],
+    "note": "Politer with a lead-in. On the doors: Ч (чоловічий, men) and Ж (жіночий, women).",
+    "pair": {
+      "tr": "Перепрошую, де тут туалет?",
+      "reg": "polite",
+      "s": [
+        3,
+        0,
+        0,
+        2
+      ]
+    }
+  },
+  {
     "tr": "Як дістатися до центру?",
     "en": "How do I get to the centre?",
     "cat": "p-directions",

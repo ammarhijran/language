@@ -5,6 +5,7 @@ import { recognitionSupported } from '../speech.js';
 import { GROUPS } from '../components.js';
 import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
 import handsFree from './handsfree.js';
+import { tripKit } from '../kit.js';
 
 const MODES = [
   { id: 'mixed', name: 'Mixed', desc: 'A bit of everything', icon: 'shuffle' },
@@ -25,6 +26,7 @@ function wordsFor(ctx, scope) {
   if (scope === 'all') return ctx.lang.words;
   if (scope === 'saved') return ctx.store.getFavs(ctx.lang.code).map((id) => ctx.lang.byId(id)).filter(Boolean);
   if (scope === 'tricky') return trickyWords(ctx);
+  if (scope === 'kit') return tripKit(ctx.lang);
   return ctx.lang.wordsIn(scope);
 }
 

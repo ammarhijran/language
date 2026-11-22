@@ -6,7 +6,7 @@ export const meta = {
     "name": "Turkish",
     "nativeName": "Türkçe",
     "flag": "🇹🇷",
-    "words": 1158,
+    "words": 1159,
     "topics": 66,
     "alphabet": 29,
     "grammar": [
@@ -29,7 +29,7 @@ export const meta = {
     "name": "Ukrainian",
     "nativeName": "Українська",
     "flag": "🇺🇦",
-    "words": 1040,
+    "words": 1041,
     "topics": 66,
     "alphabet": 33,
     "grammar": [
@@ -52,7 +52,7 @@ export const meta = {
     "name": "Japanese",
     "nativeName": "日本語",
     "flag": "🇯🇵",
-    "words": 1025,
+    "words": 1026,
     "topics": 66,
     "alphabet": 48,
     "grammar": [
@@ -75,7 +75,7 @@ export const meta = {
     "name": "Arabic",
     "nativeName": "العربية",
     "flag": "🇸🇦",
-    "words": 1031,
+    "words": 1032,
     "topics": 66,
     "alphabet": 29,
     "grammar": [

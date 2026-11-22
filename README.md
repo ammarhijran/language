@@ -21,10 +21,10 @@ It runs as a website (works offline, installable as a PWA) and as native **Andro
 ### Languages
 | | Words | Pronunciation help | Typing accepts |
 | --- | --- | --- | --- |
-| 🇹🇷 Turkish | 1158 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
-| 🇺🇦 Ukrainian | 1040 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
-| 🇯🇵 Japanese | 1025 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
-| 🇸🇦 Arabic (MSA + Egyptian) | 1031 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
+| 🇹🇷 Turkish | 1159 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
+| 🇺🇦 Ukrainian | 1041 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
+| 🇯🇵 Japanese | 1026 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
+| 🇸🇦 Arabic (MSA + Egyptian) | 1032 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
 
 Each language has its own alphabet/kana chart, sound guides and minimal-pair ear training. Progress, streak and daily goal are kept separately for each language. Switch from the language pill in the top bar.
 
@@ -34,6 +34,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
   - **Phrases** (26 situations, about 296 ready-to-use sentences): Small Talk, Café & Restaurant, Shopping, Getting Around, Making Plans, Reactions, Problems & Help, Polite Requests, Language Help, Introducing Yourself, At Someone's Home, Wishes & Occasions, Doctor & Pharmacy, Phone & Messages (including real texting forms), Hotel, Emergencies, Trains/Planes/Taxis, At Work, Opinions, Friends & Compliments, At a Restaurant, Renting & Home, Bank/Post & Paperwork, Airport & Border, Problems & Complaints, Feelings & Support.
   - **Talk like a local** (2 topics, 45 entries): everyday spoken forms and slang — Turkish *naber, kanka, aynen*; Ukrainian *норм, класно*; Japanese *やばい, マジで, めっちゃ*; Egyptian Arabic *يلا، خلاص، معلش*.
   Most entries have an example sentence and a usage note.
+- **Trip essentials** in the Phrasebook: the 37–41 things to be able to say first (hello, thank you, “I don’t understand”, “Where is the toilet?”, “How much is this?”, “I need a doctor”…), gathered from all topics, to practise or play hands-free.
 - **Polite vs everyday speech, side by side.** Words and phrases carry a register (formal, polite, neutral, casual, slang) and, where people say it differently, the other version: *"What people say"* next to *"Proper / polite"* (in Arabic: the Egyptian everyday form next to Modern Standard Arabic). Both sides can be played.
 - **Grammar:** 12 short lessons per language (A1 → B1), each with explanations, tables, playable examples and a 4-question quiz — from Turkish vowel harmony, Ukrainian cases and Japanese particles to Arabic attached pronouns — and a final lesson on how the spoken language differs from the written one. Lessons earn XP and have their own achievements.
 - **Lessons** introduce 5 words at a time (you can change this). Each word comes with audio, a pronunciation breakdown and an example, then a quick quiz checks you remember them.

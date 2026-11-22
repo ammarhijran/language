@@ -2492,6 +2492,22 @@ export const vocab = [
     }
   },
   {
+    "tr": "أَيْنَ الْحَمَّامُ؟",
+    "en": "Where is the toilet?",
+    "cat": "p-directions",
+    "tl": "ʾayna-l-ḥammām",
+    "note": "On signs you will also see دَوْرَةُ الْمِيَاهِ (dawrat al-miyāh), the formal word.",
+    "alt": [
+      "ʾayna al-ḥammām"
+    ],
+    "pair": {
+      "tr": "الْحَمَّام فِين؟",
+      "reg": "casual",
+      "tl": "il-ḥammām fēn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
     "tr": "كَيْفَ أَصِلُ إِلَى الْمَتْحَفِ؟",
     "en": "How do I get to the museum?",
     "cat": "p-directions",

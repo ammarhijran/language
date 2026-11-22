@@ -7,6 +7,7 @@ import { languages } from './all-languages.js';
 import { learningPath, nextTopics, nextCategory, topicCounts, stagesOf } from '../js/stats.js';
 import { sanitize, mergeAll } from '../js/sync.js';
 import * as store from '../js/store.js';
+import { tripKit } from '../js/kit.js';
 import { rankEntries, scoreEntry, searchGrammar, searchTexts, searchTopics, glossesOf } from '../js/views/search.js';
 
 const card = (t = Date.now()) => ({ ease: 2.5, interval: 1, reps: 1, lapses: 0, due: t + 86400000, added: t, last: t });
@@ -308,5 +309,18 @@ test('Learn: topics are grouped by stage, in order, and every language has more 
       assert.ok(stages.length >= 2, `${lang.code} ${group}`);
       assert.ok(stages.every((s) => s.cats.length >= 4 && s.cats.length <= 20), `${lang.code} ${group}: no stage is tiny or endless`);
     }
+  }
+});
+
+test('Phrasebook: every language has a trip-essentials kit, each entry once, strangers-first forms', () => {
+  for (const lang of Object.values(languages)) {
+    const kit = tripKit(lang);
+    assert.ok(kit.length >= 34, `${lang.code}: ${kit.length} essentials`);
+    assert.equal(new Set(kit.map((w) => w.id)).size, kit.length, `${lang.code}: no entry twice`);
+    assert.equal(tripKit(lang), kit, 'computed once');
+    const en = kit.map((w) => w.en).join(' | ');
+    for (const must of [/hello/i, /thank/i, /please/i, /don.?t understand/i, /where is the toilet/i, /how much/i, /help/i]) assert.match(en, must, `${lang.code}: ${must}`);
+    assert.ok(kit.every((w) => [...w.tr].length <= 45), `${lang.code}: short enough to say`);
+    assert.ok(kit.filter((w) => ['casual', 'slang'].includes(w.reg)).length <= 4, `${lang.code}: not the casual forms`);
   }
 });

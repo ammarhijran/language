@@ -4,6 +4,7 @@
 import { h, icon, set, debounce } from '../ui.js';
 import { phraseRow, showMode, devicePref, setDevicePref, pairToggleLabel, glyph } from '../components.js';
 import { rankEntries } from './search.js';
+import { tripKit } from '../kit.js';
 
 const PHRASE_GROUPS = new Set(['phrases', 'talk']);
 
@@ -12,9 +13,10 @@ export default function phrases(ctx, chipArg, queryArg = '') {
   const cats = lang.categories.filter((c) => PHRASE_GROUPS.has(c.group));
   const entries = lang.words.filter((w) => cats.some((c) => c.id === w.cat));
   const saved = () => store.getFavs(lang.code).map((id) => lang.byId(id)).filter(Boolean);
-  const valid = (id) => id === 'saved' || cats.some((c) => c.id === id);
+  const kit = tripKit(lang);
+  const valid = (id) => id === 'saved' || id === 'kit' || cats.some((c) => c.id === id);
   const remembered = devicePref('phraseChip', null);
-  let chip = valid(chipArg) ? chipArg : valid(remembered) ? remembered : saved().length ? 'saved' : cats[0]?.id || 'saved';
+  let chip = valid(chipArg) ? chipArg : valid(remembered) ? remembered : saved().length ? 'saved' : kit.length ? 'kit' : cats[0]?.id || 'saved';
   let query = String(queryArg || '');
   const pairsPref = () => devicePref('pairs', null);
   const catOf = (id) => cats.find((c) => c.id === id);
@@ -44,6 +46,7 @@ export default function phrases(ctx, chipArg, queryArg = '') {
   const savedLabel = () => `★ Saved (${saved().length})`;
   const chips = h('div', { class: 'chip-scroll', role: 'group', 'aria-label': 'Situations' },
     chipFor('saved', savedLabel(), { class: 'pill chip-tab saved-chip' }),
+    kit.length ? chipFor('kit', '🎒 Trip essentials') : null,
     cats.map((c) => chipFor(c.id, `${c.emoji} ${c.name}`)));
 
   const input = h('input', {
@@ -88,6 +91,12 @@ export default function phrases(ctx, chipArg, queryArg = '') {
       current = saved();
       set(heading, '★ Saved');
       set(note, current.length >= 4 ? h('p', { class: 'hint' }, h('a', { href: '#/practice/handsfree/saved' }, 'Listen to them hands-free')) : current.length ? null : h('p', { class: 'muted empty-note' }, 'Nothing saved yet. Tap ☆ next to any phrase (or any word in a topic) to keep it here — handy before a trip.'));
+    } else if (chip === 'kit') {
+      current = kit;
+      set(heading, '🎒 Trip essentials');
+      set(note, h('p', { class: 'hint' }, `The ${kit.length} things to be able to say first, gathered from all topics. `,
+        h('a', { href: '#/practice/mixed/kit' }, 'Practise'), ' · ',
+        h('a', { href: '#/practice/handsfree/kit' }, 'Listen hands-free')));
     } else {
       const cat = catOf(chip);
       current = lang.wordsIn(chip);

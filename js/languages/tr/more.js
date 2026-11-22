@@ -2103,6 +2103,17 @@ export const vocab = [
     }
   },
   {
+    "tr": "Tuvalet nerede?",
+    "en": "Where is the toilet?",
+    "cat": "p-directions",
+    "note": "In cafés and restaurants many people ask for the “lavabo” (washbasin) instead — it sounds a little more polite.",
+    "pair": {
+      "tr": "Lavabo ne tarafta?",
+      "reg": "polite",
+      "en": "Which way is the washroom?"
+    }
+  },
+  {
     "tr": "Taksim'e nasıl gidebilirim?",
     "en": "How can I get to Taksim?",
     "cat": "p-directions",

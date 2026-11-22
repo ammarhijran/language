@@ -3,6 +3,8 @@
 ## Unreleased
 
 ### Added
+- **Trip essentials** (Phrasebook → 🎒 Trip essentials, the first thing a new learner sees there): the 37–41 phrases to learn first for a trip, gathered from all topics in the order you need them, with Practise and Listen hands-free.
+- **“Where is the toilet?”** is now a phrase of its own in every language (with its polite or everyday counterpart).
 - **“I speak as a woman”** (Settings → Display, Ukrainian and Arabic): first-person phrases that change with the speaker — Я згоден → Я згодна, Я хотів би → Я хотіла б, آسِف → آسِفَة, عَايِز → عَايْزَة — are shown, spoken and checked in the form a woman says (24 Ukrainian and 26 Arabic entries, including their everyday / Egyptian forms). The other form still counts as a right answer, and progress is unaffected.
 - **Dictation** (Practice → Dictation): the sentence builder by ear — you hear a sentence (normal or slow, as often as you like) and build it from the word tiles; its meaning appears with the answer. Works with every sentence set the builder has, in all four languages.
 - **Compare voices** (Settings → Audio): when the device has more than one voice for the language, each is listed with its quality (Enhanced, Premium, needs internet) — tap ▶ to hear the same sentence in each and keep the most natural one.
