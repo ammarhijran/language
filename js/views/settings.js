@@ -11,16 +11,47 @@ export default function settings(ctx) {
 
   const voiceSelect = h('select', {
     class: 'select', id: 'voice',
-    onchange: (e) => { store.updateSettings({ voices: { ...s.voices, [lang.code]: e.target.value } }); ctx.say(lang.greeting); },
+    onchange: (e) => { store.updateSettings({ voices: { ...store.getSettings().voices, [lang.code]: e.target.value } }); fillVoiceList(); ctx.say(lang.greeting); },
   });
   const fillVoices = () => {
     const voices = speech.voicesFor(lang.speechLang);
     set(voiceSelect, 
       h('option', { value: '' }, voices.length ? 'Automatic' : `No ${lang.name} voices found`),
-      voices.map((v) => h('option', { value: v.voiceURI, selected: v.voiceURI === s.voices?.[lang.code] }, `${v.name} (${v.lang})${v.localService ? '' : ' · online'}`)));
+      voices.map((v) => h('option', { value: v.voiceURI, selected: v.voiceURI === store.getSettings().voices?.[lang.code] }, `${v.name} (${v.lang})${v.localService ? '' : ' · online'}`)));
   };
-  fillVoices();
-  ctx.onCleanup(speech.onVoicesChanged(fillVoices));
+  // Compare voices: the same sentence in every installed voice, so the learner
+  // can keep the most natural one (the biggest lever on how the audio sounds).
+  const QUALITY = { premium: 'Premium', enhanced: 'Enhanced', basic: 'Basic', novelty: 'Novelty voice' };
+  const voiceList = h('div', { class: 'voice-list', hidden: true });
+  const useVoice = (uri) => {
+    store.updateSettings({ voices: { ...store.getSettings().voices, [lang.code]: uri } });
+    voiceSelect.value = uri;
+    fillVoiceList();
+  };
+  function fillVoiceList() {
+    const voices = speech.voicesFor(lang.speechLang);
+    const chosen = store.getSettings().voices?.[lang.code] || '';
+    const inUse = voices.find((v) => v.voiceURI === chosen) || voices[0];
+    voiceList.hidden = voices.length < 2;
+    if (voiceList.hidden) return;
+    const sample = lang.speech(lang.sampleSentence).text;
+    set(voiceList,
+      h('p', { class: 'hint' }, 'Hear the same sentence in each voice and keep the one that sounds most natural.'),
+      voices.map((v, i) => h('div', { class: `voice-row${v === inUse ? ' selected' : ''}` },
+        h('button', {
+          type: 'button', class: 'icon-btn play', 'aria-label': `Hear ${v.name}`,
+          onclick: () => speech.speak(sample, { lang: v.lang, voiceURI: v.voiceURI, rate: store.getSettings().rate, regions: [v.lang] }),
+        }, icon('volume')),
+        h('span', { class: 'voice-name' },
+          h('b', null, v.name),
+          h('small', null, [v.lang, QUALITY[speech.voiceQuality(v)], speech.isOnlineVoice(v) ? 'needs internet' : null, i === 0 ? 'suggested' : null].filter(Boolean).join(' · '))),
+        v === inUse
+          ? h('span', { class: 'voice-on' }, icon('check', 16), 'In use')
+          : h('button', { type: 'button', class: 'btn small', onclick: () => useVoice(v.voiceURI) }, 'Use'))));
+  }
+  const fillAll = () => { fillVoices(); fillVoiceList(); };
+  fillAll();
+  ctx.onCleanup(speech.onVoicesChanged(fillAll));
 
   const rateOut = h('output', { for: 'rate' }, `${s.rate.toFixed(2)}×`);
   const rate = h('input', {
@@ -144,6 +175,7 @@ export default function settings(ctx) {
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'Audio'),
       h('label', { class: 'field', for: 'voice' }, h('span', null, `${lang.name} voice`), voiceSelect),
+      voiceList,
       h('label', { class: 'field', for: 'rate' }, h('span', null, 'Speaking speed ', rateOut), rate),
       h('label', { class: 'field inline' }, autoplay, h('span', null, 'Play words automatically')),
       h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(lang.sampleSentence) }, icon('volume', 16), 'Test voice'),

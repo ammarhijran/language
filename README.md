@@ -85,6 +85,7 @@ A typical code is under 1 kB. Even every word in all four languages fits in abou
 
 ### Pronunciation
 - **Native-voice audio** at normal and slow speed, using your device's text-to-speech voices — chosen carefully:
+  - **Compare voices** in Settings: hear the same sentence in every installed voice and keep the most natural one;
   - the best installed voice for the language (enhanced/neural voices first; robotic novelty voices never), and **never a voice of another language** — if none is installed you get a clear hint instead of the word read in English or Russian;
   - **Arabic** is spoken in the pausal form the transliteration shows (no unspoken case endings), and Egyptian entries use an Egyptian voice when the device has one;
   - **Japanese** words whose kanji have several readings (counters, 開く, 辛い, 明日…) are given to the voice with the right reading;
