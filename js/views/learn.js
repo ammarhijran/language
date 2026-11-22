@@ -5,7 +5,7 @@ import { newCard, review, markKnown, GOOD, HARD, AGAIN } from '../srs.js';
 import { recognitionSupported } from '../speech.js';
 import { lessonDrillHref } from './pronounce.js';
 import { readLink, loadTexts, cachedTexts, sortTexts, KINDS } from '../reader.js';
-import { nextTopics, topicCounts } from '../stats.js';
+import { nextTopics, topicCounts, stagesOf } from '../stats.js';
 import { scriptRuns } from './grammar.js';
 
 /** The sections of Learn (#/learn/g/<id>); the last one opened is remembered on this device. */
@@ -16,6 +16,15 @@ export const SECTIONS = [
   { id: 'grammar', title: 'Grammar' },
   { id: 'read', title: 'Read & Listen' },
 ];
+
+function stagedTopics(cats, grid) {
+  const stages = stagesOf(cats);
+  if (stages.length < 2) return grid(cats);
+  return stages.map((g) => [
+    h('h2', { class: 'stage-title' }, g.title, h('small', null, `${g.cats.length} topics`)),
+    grid(g.cats),
+  ]);
+}
 
 export default function learn(ctx, catId, section) {
   const { lang, store } = ctx;
@@ -159,7 +168,7 @@ function picker(ctx, wanted) {
     const cats = lang.categories.filter((c) => (c.group || 'words') === section);
     body = h('section', { class: 'learn-section' },
       h('p', { class: 'hint' }, g.hint, section === 'words' ? '' : ' · ', section === 'words' ? null : h('a', { href: section === 'talk' ? `#/phrases/${encodeURIComponent(cats[0]?.id || '')}` : '#/phrases' }, 'Open the phrasebook')),
-      h('div', { class: 'topic-grid' }, cats.map((c) => topicTile(ctx, c, counts.get(c.id), { current: resume?.id === c.id }))),
+      stagedTopics(cats, (list) => h('div', { class: 'topic-grid' }, list.map((c) => topicTile(ctx, c, counts.get(c.id), { current: resume?.id === c.id })))),
       section === 'words'
         ? h('a', { class: 'quick-link known-link', href: '#/known' },
           icon('check', 22),

@@ -90,6 +90,9 @@ body.showing { overflow: hidden; }
 .seg a.active:focus-visible, .chip-tab[aria-pressed="true"]:focus-visible { outline-color: var(--action); }
 .learn-section > * + * { margin-top: .75rem; }
 .learn-section > .hint { margin: 0; }
+.stage-title { display: flex; align-items: baseline; gap: var(--sp-2); margin: var(--sp-4) 0 0; font-size: var(--fs-md); }
+.stage-title small { font-size: var(--fs-xs); font-weight: 600; color: var(--muted); }
+.learn-section > .stage-title:first-of-type { margin-top: var(--sp-2); }
 
 .topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(136px, 1fr)); gap: var(--sp-2); }
 @media (min-width: 600px) { .topic-grid { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); } }

@@ -119,168 +119,192 @@ export const categories = [
     "name": "Months, Dates & Seasons",
     "native": "الشُّهُور وَالتَّوَارِيخ وَالْفُصُول",
     "emoji": "📆",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "family2",
     "name": "Family & Relationships",
     "native": "الْعَائِلَة وَالْعَلَاقَات",
     "emoji": "💞",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "clothes",
     "name": "Clothes & Getting Dressed",
     "native": "الْمَلَابِس",
     "emoji": "👕",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "hobbies",
     "name": "Free Time & Hobbies",
     "native": "وَقْت الْفَرَاغ وَالْهِوَايَات",
     "emoji": "🎸",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "countries",
     "name": "Countries & Languages",
     "native": "الْبُلْدَان وَاللُّغَات",
     "emoji": "🌍",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "weather",
     "name": "Weather",
     "native": "الطَّقْس",
     "emoji": "🌦️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "groceries",
     "name": "Fruit, Vegetables & Groceries",
     "native": "الْفَوَاكِه وَالْخُضَار وَالْبِقَالَة",
     "emoji": "🍎",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "health",
     "name": "Doctor & Pharmacy",
     "native": "الطَّبِيب وَالصَّيْدَلِيَّة",
     "emoji": "💊",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "tech",
     "name": "Phone & Internet",
     "native": "الْهَاتِف وَالْإِنْتَرْنِت",
     "emoji": "📱",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "town",
     "name": "Around Town",
     "native": "فِي الْمَدِينَة",
     "emoji": "🏙️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "kitchen",
     "name": "Kitchen & Cooking",
     "native": "الْمَطْبَخ وَالطَّبْخ",
     "emoji": "🍳",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "jobs",
     "name": "Jobs",
     "native": "الْمِهَن",
     "emoji": "👩‍⚕️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "p-language",
     "name": "Language Help",
     "native": "مُسَاعَدَة فِي اللُّغَة",
     "emoji": "🗨️",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-intro",
     "name": "Introducing Yourself",
     "native": "التَّعَارُف",
     "emoji": "🤝",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-guest",
     "name": "At Someone's Home",
     "native": "فِي بَيْت الْمُضِيف",
     "emoji": "🏠",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-wishes",
     "name": "Wishes & Occasions",
     "native": "التَّهَانِي وَالْمُنَاسَبَات",
     "emoji": "🎉",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-doctor",
     "name": "At the Doctor & Pharmacy",
     "native": "عِنْد الطَّبِيب وَفِي الصَّيْدَلِيَّة",
     "emoji": "🩺",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-phone",
     "name": "Phone & Messages",
     "native": "الْهَاتِف وَالرَّسَائِل",
     "emoji": "📞",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-hotel",
     "name": "Hotel & Staying",
     "native": "فِي الْفُنْدُق",
     "emoji": "🏨",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-emergency",
     "name": "Emergencies",
     "native": "حَالَات الطَّوَارِئ",
     "emoji": "🚨",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-transport",
     "name": "Trains, Planes & Taxis",
     "native": "الْقِطَار وَالطَّائِرَة وَالتَّاكْسِي",
     "emoji": "🚆",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-work",
     "name": "At Work",
     "native": "فِي الْعَمَل",
     "emoji": "💼",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-opinions",
     "name": "Opinions & Discussion",
     "native": "الْآرَاء وَالنِّقَاش",
     "emoji": "💭",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-social",
     "name": "Friends & Compliments",
     "native": "الْأَصْدِقَاء وَالْمُجَامَلَات",
     "emoji": "😊",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   }
 ];
 

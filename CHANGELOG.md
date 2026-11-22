@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Learn:** long topic lists are grouped under “Start here”, “Everyday life” and “Going further”.
 - **Store screenshots and feature graphic** retaken for the current app: home, a Japanese lesson card, the pronunciation score, the Arabic phrasebook, the Ukrainian reader and progress.
 - **About the lessons** (Settings): says plainly that the content was written and checked with AI help and automated tests and has not been reviewed by native speakers yet. The README and the content files’ headers now describe this accurately.
 - **Long reads in Read & Listen:** four longer texts per language (20–26 lines each, marked “Long read”): a folk tale (Nasreddin Hoca and the cauldron, The Mitten, Momotarō, Juha and the donkey), a “Why I’m learning …” talk written so any learner can adapt and give it, a letter to a friend about life in a new city, and a job interview. Each has a glossary and questions like the short texts. 20 texts per language now.

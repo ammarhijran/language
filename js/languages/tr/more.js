@@ -119,168 +119,192 @@ export const categories = [
     "name": "Months, Dates & Seasons",
     "native": "Aylar, Tarihler ve Mevsimler",
     "emoji": "📆",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "family2",
     "name": "Family & Relationships",
     "native": "Aile ve İlişkiler",
     "emoji": "💞",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "clothes",
     "name": "Clothes & Getting Dressed",
     "native": "Kıyafetler ve Giyinme",
     "emoji": "👕",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "hobbies",
     "name": "Free Time & Hobbies",
     "native": "Boş Zaman ve Hobiler",
     "emoji": "🎸",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "countries",
     "name": "Countries & Languages",
     "native": "Ülkeler ve Diller",
     "emoji": "🌍",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "weather",
     "name": "Weather",
     "native": "Hava Durumu",
     "emoji": "🌦️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "groceries",
     "name": "Fruit, Vegetables & Groceries",
     "native": "Meyve, Sebze ve Market",
     "emoji": "🍎",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "health",
     "name": "Doctor & Pharmacy",
     "native": "Doktor ve Eczane",
     "emoji": "💊",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "tech",
     "name": "Phone & Internet",
     "native": "Telefon ve İnternet",
     "emoji": "📱",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "town",
     "name": "Around Town",
     "native": "Şehirde",
     "emoji": "🏙️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "kitchen",
     "name": "Kitchen & Cooking",
     "native": "Mutfak ve Yemek",
     "emoji": "🍳",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "jobs",
     "name": "Jobs",
     "native": "Meslekler",
     "emoji": "👩‍⚕️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "p-language",
     "name": "Language Help",
     "native": "Dil Yardımı",
     "emoji": "🗨️",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-intro",
     "name": "Introducing Yourself",
     "native": "Kendini Tanıtmak",
     "emoji": "🤝",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-guest",
     "name": "At Someone's Home",
     "native": "Misafirlikte",
     "emoji": "🏠",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-wishes",
     "name": "Wishes & Occasions",
     "native": "Dilekler ve Özel Günler",
     "emoji": "🎉",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-doctor",
     "name": "At the Doctor & Pharmacy",
     "native": "Doktorda ve Eczanede",
     "emoji": "🩺",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-phone",
     "name": "Phone & Messages",
     "native": "Telefon ve Mesajlar",
     "emoji": "📞",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-hotel",
     "name": "Hotel & Staying",
     "native": "Otel ve Konaklama",
     "emoji": "🏨",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-emergency",
     "name": "Emergencies",
     "native": "Acil Durumlar",
     "emoji": "🚨",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-transport",
     "name": "Trains, Planes & Taxis",
     "native": "Tren, Uçak ve Taksi",
     "emoji": "🚆",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-work",
     "name": "At Work",
     "native": "İş Yerinde",
     "emoji": "💼",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-opinions",
     "name": "Opinions & Discussion",
     "native": "Fikirler ve Tartışma",
     "emoji": "💭",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-social",
     "name": "Friends & Compliments",
     "native": "Arkadaşlar ve İltifatlar",
     "emoji": "😊",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   }
 ];
 

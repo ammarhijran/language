@@ -119,168 +119,192 @@ export const categories = [
     "name": "Months, Dates & Seasons",
     "native": "Місяці, дати й пори року",
     "emoji": "📆",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "family2",
     "name": "Family & Relationships",
     "native": "Родина й стосунки",
     "emoji": "💞",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "clothes",
     "name": "Clothes & Getting Dressed",
     "native": "Одяг і взуття",
     "emoji": "👕",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "hobbies",
     "name": "Free Time & Hobbies",
     "native": "Дозвілля й хобі",
     "emoji": "🎸",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "countries",
     "name": "Countries & Languages",
     "native": "Країни й мови",
     "emoji": "🌍",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "weather",
     "name": "Weather",
     "native": "Погода",
     "emoji": "🌦️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "groceries",
     "name": "Fruit, Vegetables & Groceries",
     "native": "Фрукти, овочі й продукти",
     "emoji": "🍎",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "health",
     "name": "Doctor & Pharmacy",
     "native": "Лікар і аптека",
     "emoji": "💊",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "tech",
     "name": "Phone & Internet",
     "native": "Телефон та інтернет",
     "emoji": "📱",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "town",
     "name": "Around Town",
     "native": "У місті",
     "emoji": "🏙️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "kitchen",
     "name": "Kitchen & Cooking",
     "native": "Кухня й готування",
     "emoji": "🍳",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "jobs",
     "name": "Jobs",
     "native": "Професії",
     "emoji": "👩‍⚕️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "p-language",
     "name": "Language Help",
     "native": "Допомога з мовою",
     "emoji": "🗨️",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-intro",
     "name": "Introducing Yourself",
     "native": "Про себе",
     "emoji": "🤝",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-guest",
     "name": "At Someone’s Home",
     "native": "У гостях",
     "emoji": "🏠",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-wishes",
     "name": "Wishes & Occasions",
     "native": "Побажання й свята",
     "emoji": "🎉",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-doctor",
     "name": "At the Doctor & Pharmacy",
     "native": "Лікар і аптека",
     "emoji": "🩺",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-phone",
     "name": "Phone & Messages",
     "native": "Телефон і повідомлення",
     "emoji": "📞",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-hotel",
     "name": "Hotel & Staying",
     "native": "Готель",
     "emoji": "🏨",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-emergency",
     "name": "Emergencies",
     "native": "Надзвичайні ситуації",
     "emoji": "🚨",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-transport",
     "name": "Trains, Planes & Taxis",
     "native": "Потяги, літаки й таксі",
     "emoji": "🚆",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-work",
     "name": "At Work",
     "native": "На роботі",
     "emoji": "💼",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-opinions",
     "name": "Opinions & Discussion",
     "native": "Думки й обговорення",
     "emoji": "💭",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-social",
     "name": "Friends & Compliments",
     "native": "Друзі й компліменти",
     "emoji": "😊",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   }
 ];
 

@@ -4,7 +4,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { languages } from './all-languages.js';
-import { learningPath, nextTopics, nextCategory, topicCounts } from '../js/stats.js';
+import { learningPath, nextTopics, nextCategory, topicCounts, stagesOf } from '../js/stats.js';
 import { sanitize, mergeAll } from '../js/sync.js';
 import * as store from '../js/store.js';
 import { rankEntries, scoreEntry, searchGrammar, searchTexts, searchTopics, glossesOf } from '../js/views/search.js';
@@ -297,4 +297,16 @@ test('tricky words: forgotten in review or with lowered ease, most-forgotten fir
   };
   const ctx = { lang, store: { getCards: () => cards } };
   assert.deepEqual(trickyWords(ctx).map((w) => w.id), [b.id, a.id, d.id]);
+});
+
+test('Learn: topics are grouped by stage, in order, and every language has more than one stage of words', () => {
+  const g = stagesOf([{ id: 'a' }, { id: 'b', stage: 2 }, { id: 'c' }, { id: 'd', stage: 9 }, { id: 'e', stage: 2 }]);
+  assert.deepEqual(g.map((x) => [x.stage, x.title, x.cats.map((c) => c.id).join('')]), [[1, 'Start here', 'ac'], [2, 'Everyday life', 'be'], [3, 'Going further', 'd']]);
+  for (const lang of Object.values(languages)) {
+    for (const group of ['words', 'phrases']) {
+      const stages = stagesOf(lang.categories.filter((c) => (c.group || 'words') === group));
+      assert.ok(stages.length >= 2, `${lang.code} ${group}`);
+      assert.ok(stages.every((s) => s.cats.length >= 4 && s.cats.length <= 20), `${lang.code} ${group}: no stage is tiny or endless`);
+    }
+  }
 });

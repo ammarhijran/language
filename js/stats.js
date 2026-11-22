@@ -153,3 +153,18 @@ export function wordOfTheDay(ctx, d = new Date()) {
   const words = withExamples.length >= 30 ? withExamples : ctx.lang.words;
   return words[(day * 7919) % words.length];
 }
+
+// Long topic lists are split by stage (a category's `stage`, 1 when absent),
+// each under its own heading on the Learn screen.
+const STAGES = ['Start here', 'Everyday life', 'Going further'];
+/** [{ stage, title, cats }] in stage order; topics keep their order within a stage. */
+export function stagesOf(cats) {
+  const out = [];
+  for (const c of cats) {
+    const stage = Math.min(STAGES.length, Math.max(1, c.stage || 1));
+    let g = out.find((x) => x.stage === stage);
+    if (!g) out.push(g = { stage, title: STAGES[stage - 1], cats: [] });
+    g.cats.push(c);
+  }
+  return out.sort((a, b) => a.stage - b.stage);
+}

@@ -119,168 +119,192 @@ export const categories = [
     "name": "Months, Dates & Seasons",
     "native": "月・日付・季節",
     "emoji": "📆",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "family2",
     "name": "Family & Relationships",
     "native": "家族と人間関係",
     "emoji": "💞",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "clothes",
     "name": "Clothes & Getting Dressed",
     "native": "服と身につけるもの",
     "emoji": "👕",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "hobbies",
     "name": "Free Time & Hobbies",
     "native": "趣味と自由時間",
     "emoji": "🎸",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "countries",
     "name": "Countries & Languages",
     "native": "国と言葉",
     "emoji": "🌍",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "weather",
     "name": "Weather",
     "native": "天気",
     "emoji": "🌦️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "groceries",
     "name": "Fruit, Vegetables & Groceries",
     "native": "果物・野菜・食料品",
     "emoji": "🍎",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "health",
     "name": "Doctor & Pharmacy",
     "native": "病院と薬局",
     "emoji": "💊",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "tech",
     "name": "Phone & Internet",
     "native": "スマホとインターネット",
     "emoji": "📱",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "town",
     "name": "Around Town",
     "native": "町の中",
     "emoji": "🏙️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "kitchen",
     "name": "Kitchen & Cooking",
     "native": "台所と料理",
     "emoji": "🍳",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "jobs",
     "name": "Jobs",
     "native": "職業",
     "emoji": "👩‍⚕️",
-    "group": "words"
+    "group": "words",
+    "stage": 2
   },
   {
     "id": "p-language",
     "name": "Language Help",
     "native": "ことばの質問",
     "emoji": "🗨️",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-intro",
     "name": "Introducing Yourself",
     "native": "自己紹介",
     "emoji": "🤝",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-guest",
     "name": "At Someone’s Home",
     "native": "お宅訪問",
     "emoji": "🏠",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-wishes",
     "name": "Wishes & Occasions",
     "native": "お祝いとあいさつ",
     "emoji": "🎉",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-doctor",
     "name": "At the Doctor & Pharmacy",
     "native": "病院と薬局",
     "emoji": "🩺",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-phone",
     "name": "Phone & Messages",
     "native": "電話とメッセージ",
     "emoji": "📞",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-hotel",
     "name": "Hotel & Staying",
     "native": "ホテル・宿泊",
     "emoji": "🏨",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-emergency",
     "name": "Emergencies",
     "native": "緊急のとき",
     "emoji": "🚨",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-transport",
     "name": "Trains, Planes & Taxis",
     "native": "電車・飛行機・タクシー",
     "emoji": "🚆",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-work",
     "name": "At Work",
     "native": "職場で",
     "emoji": "💼",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-opinions",
     "name": "Opinions & Discussion",
     "native": "意見を言う",
     "emoji": "💭",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   },
   {
     "id": "p-social",
     "name": "Friends & Compliments",
     "native": "友達とほめ言葉",
     "emoji": "😊",
-    "group": "phrases"
+    "group": "phrases",
+    "stage": 2
   }
 ];
 
