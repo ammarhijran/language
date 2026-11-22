@@ -223,3 +223,13 @@ test('reviews sometimes build a familiar phrase, never a new one or a single wor
   assert.ok(types(familiar, jp, ja).has('build'));
   assert.deepEqual(phraseSentence(ja, jp).tokens, ['おなまえ', 'は', 'なん', 'です', 'か']);
 });
+
+test('every word topic can be practised in Sentences mode, and every core word has an example', () => {
+  for (const L of [tr, uk, ja, ar]) {
+    const wordTopics = L.categories.filter((c) => (c.group || 'words') === 'words');
+    for (const c of wordTopics) assert.ok(sentencesFor(L, c.id).length >= 10, `${L.code} ${c.id}: ${sentencesFor(L, c.id).length}`);
+    for (const c of L.categories.slice(0, 12)) {
+      for (const w of L.wordsIn(c.id)) assert.ok(w.ex, `${L.code}: core word ${w.tr} has no example`);
+    }
+  }
+});
