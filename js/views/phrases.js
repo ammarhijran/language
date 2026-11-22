@@ -87,14 +87,15 @@ export default function phrases(ctx, chipArg, queryArg = '') {
     } else if (chip === 'saved') {
       current = saved();
       set(heading, '★ Saved');
-      set(note, current.length ? null : h('p', { class: 'muted empty-note' }, 'Nothing saved yet. Tap ☆ next to any phrase (or any word in a topic) to keep it here — handy before a trip.'));
+      set(note, current.length >= 4 ? h('p', { class: 'hint' }, h('a', { href: '#/practice/handsfree/saved' }, 'Listen to them hands-free')) : current.length ? null : h('p', { class: 'muted empty-note' }, 'Nothing saved yet. Tap ☆ next to any phrase (or any word in a topic) to keep it here — handy before a trip.'));
     } else {
       const cat = catOf(chip);
       current = lang.wordsIn(chip);
       set(heading, `${cat.emoji} ${cat.name}`);
       set(note, h('p', { class: 'hint' }, h('span', { lang: lang.code }, cat.native), ' · ',
         h('a', { href: `#/topic/${encodeURIComponent(cat.id)}` }, 'Learn these'), ' · ',
-        h('a', { href: `#/practice/mixed/${encodeURIComponent(cat.id)}` }, 'Practise')));
+        h('a', { href: `#/practice/mixed/${encodeURIComponent(cat.id)}` }, 'Practise'), ' · ',
+        h('a', { href: `#/practice/handsfree/${encodeURIComponent(cat.id)}` }, 'Listen hands-free')));
     }
     showBtn.disabled = !current.length;
     paintList();

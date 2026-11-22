@@ -70,6 +70,7 @@ export default function topic(ctx, catId) {
         done ? null : h('a', { class: 'btn small', href: `#/practice/mixed/${encodeURIComponent(cat.id)}` }, icon('repeat', 16), 'Practise'),
         canBuild ? h('a', { class: 'btn small', href: `#/practice/build/${encodeURIComponent(cat.id)}` }, icon('tiles', 16), 'Sentences') : null,
         h('a', { class: 'btn small', href: `#/speak/drill/${encodeURIComponent(cat.id)}` }, icon(scored ? 'mic' : 'volume', 16), scored ? 'Say them' : 'Listen & repeat'),
+        h('a', { class: 'btn small', href: `#/practice/handsfree/${encodeURIComponent(cat.id)}` }, icon('volume', 16), 'Hands-free'),
         h('a', { class: 'btn small', href: `#/known/${encodeURIComponent(cat.id)}` }, icon('check', 16), 'Mark known'))),
     h('div', { class: 'list-head' },
       h('h2', { class: 'section-title' }, `${words.length} ${group.id === 'words' ? 'words' : 'entries'}`),
