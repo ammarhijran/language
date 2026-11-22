@@ -257,3 +257,12 @@ test('ar: Arabizi numbers count in typed transliteration', () => {
   assert.equal(ar.normalize('7abibi'), ar.normalize('ḥabibi'));
   assert.equal(ar.normalize('٣ كيلو'), '٣كيلو', 'Arabic-script input is left alone');
 });
+
+test('fast lowercase/uppercase match the locale-aware versions on every pack string', () => {
+  const strings = (L) => L.words.flatMap((w) => [w.tr, w.en, ...(w.alt || []), ...(w.ex || []), w.pair?.tr || ''])
+    .concat(L.alphabet.flatMap((a) => [a.upper || '', a.lower || '']));
+  for (const s of strings(tr).concat(['IĞDIR', 'İSTANBUL', 'Iİıi', 'İ'])) {
+    assert.equal(trLower(s), s.toLocaleLowerCase('tr-TR'), s);
+  }
+  for (const s of strings(uk)) assert.equal(s.toLowerCase(), s.toLocaleLowerCase('uk-UA'), s);
+});

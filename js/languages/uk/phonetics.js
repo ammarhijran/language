@@ -2,7 +2,8 @@
 // Latin transliteration. Ukrainian spelling is close to phonemic, but stress is
 // free (it can fall on any syllable), so it comes from the vocabulary data.
 
-export const lower = (s) => s.toLocaleLowerCase('uk-UA');
+// Unicode has no Ukrainian-specific case rules, so the plain (much faster) mapping is identical.
+export const lower = (s) => s.toLowerCase();
 
 const VOWELS = new Set([...'аеєиіїоуюя']);
 const IOTATED = { я: 'a', ю: 'u', є: 'ɛ', ї: 'i' };

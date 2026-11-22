@@ -228,11 +228,17 @@ export function makePack(def) {
     });
   };
 
-  /** Text used by the word-list search: the word, its readings and romanisations. */
-  for (const w of words) {
-    const forms = [w.tr, ...pack.acceptedAnswers(w), pack.reading(w) || ''];
-    w.searchKey = [...new Set(forms.flatMap((f) => [normalize(f), stripDiacritics(f)]))].join(' ');
-  }
+  /** Text used by the word-list search: the word, its readings and romanisations.
+   * Built on the first search, not at startup (it is the costliest part of a pack). */
+  let keysBuilt = false;
+  const buildKeys = () => {
+    if (keysBuilt) return;
+    keysBuilt = true;
+    for (const w of words) {
+      const forms = [w.tr, ...pack.acceptedAnswers(w), pack.reading(w) || ''];
+      w.searchKey = [...new Set(forms.flatMap((f) => [normalize(f), stripDiacritics(f)]))].join(' ');
+    }
+  };
   // ---------- What the voice reads ----------
 
   // Display strings passed to ctx.say() (views, older callers) are looked up
@@ -323,6 +329,7 @@ export function makePack(def) {
   pack.matches = (w, query) => {
     const q = query.trim();
     if (!q) return true;
+    buildKeys();
     return w.searchKey.includes(normalize(q)) || w.searchKey.includes(stripDiacritics(q))
       || w.en.toLowerCase().includes(q.toLowerCase());
   };

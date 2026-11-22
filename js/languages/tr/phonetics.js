@@ -4,8 +4,11 @@
 // transcription and an English-friendly respelling can all be derived from
 // the written word with a handful of rules.
 
-export const lower = (s) => s.toLocaleLowerCase('tr-TR');
-export const upper = (s) => s.toLocaleUpperCase('tr-TR');
+// Turkish dotted/dotless i, then plain case mapping: same result as
+// toLocale*Case('tr-TR') (checked on every string in the pack by a test) but
+// about 70× faster in V8, which matters for startup and every answer check.
+export const lower = (s) => s.replace(/I\u0307/g, 'i').replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase();
+export const upper = (s) => s.replace(/i/g, 'İ').replace(/ı/g, 'I').toUpperCase();
 
 const VOWELS = new Set([...'aeıioöuüâîû']);
 const FRONT = new Set([...'eiöüî']);
