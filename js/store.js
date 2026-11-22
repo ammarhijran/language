@@ -43,7 +43,32 @@ const RANGES = { rate: [0.5, 1.2, false], lessonSize: [3, 15, true], sessionSize
 const isObj = (x) => x != null && typeof x === 'object' && !Array.isArray(x);
 const BAD_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 
-const fresh = () => ({ settings: { ...DEFAULTS }, progress: {}, game: {} });
+const fresh = () => ({ settings: { ...DEFAULTS }, progress: {}, game: {}, mine: {} });
+
+// The learner's own texts for Read & Listen ("My texts"): kept on this device
+// and in backup files, not in sync codes (they are personal, and can be long).
+export const OWN_TEXT_MAX = 6000; // characters per text
+export const OWN_TEXTS_MAX = 30; // texts per language
+const OWN_ID = /^my-[a-z0-9]{1,12}$/;
+function cleanMine(raw) {
+  const out = {};
+  if (!isObj(raw)) return out;
+  for (const [lang, list] of Object.entries(raw)) {
+    if (BAD_KEYS.has(lang) || !/^[a-z]{2,3}$/.test(lang) || !Array.isArray(list)) continue;
+    const seen = new Set();
+    const texts = [];
+    for (const t of list) {
+      if (!isObj(t) || typeof t.id !== 'string' || !OWN_ID.test(t.id) || seen.has(t.id)) continue;
+      const body = typeof t.body === 'string' ? t.body.slice(0, OWN_TEXT_MAX).trim() : '';
+      if (!body) continue;
+      seen.add(t.id);
+      texts.push({ id: t.id, title: (typeof t.title === 'string' ? t.title : '').trim().slice(0, 80), body, at: Number.isFinite(t.at) ? t.at : 0 });
+      if (texts.length >= OWN_TEXTS_MAX) break;
+    }
+    if (texts.length) out[lang] = texts;
+  }
+  return out;
+}
 
 let memDeviceId = null;
 let wiped = false; // set by deleteAllData(): nothing may be written back before the reload
@@ -83,7 +108,7 @@ function cleanSettings(raw) {
 function fromData(d) {
   const settings = cleanSettings(d?.settings);
   const { progress, game } = sanitize(d, { device: deviceId(), dailyGoal: settings.dailyGoal });
-  return { settings, progress, game };
+  return { settings, progress, game, mine: cleanMine(d?.mine) };
 }
 
 function load() {
@@ -340,6 +365,39 @@ export function setFav(lang, id, on) {
 }
 
 /** The id of the topic whose lesson was started last, or null. */
+/** The learner's own texts in a language, newest first: [{ id, title, body, at }]. */
+export const getOwnTexts = (lang) => [...(state.mine?.[lang] || [])].sort((a, b) => b.at - a.at);
+
+/**
+ * Add a text, or replace the one with `id`. Returns its id, or null when the
+ * text is empty or the language already has OWN_TEXTS_MAX texts.
+ */
+export function saveOwnText(lang, { id = null, title = '', body = '' }) {
+  const text = String(body).slice(0, OWN_TEXT_MAX).trim();
+  if (!text) return null;
+  state.mine ||= {};
+  const list = (state.mine[lang] ||= []);
+  let rec = id ? list.find((t) => t.id === id) : null;
+  if (!rec) {
+    if (list.length >= OWN_TEXTS_MAX) return null;
+    let n = Date.now().toString(36).slice(-8);
+    while (list.some((t) => t.id === `my-${n}`)) n = (parseInt(n, 36) + 1).toString(36);
+    rec = { id: `my-${n}` };
+    list.push(rec);
+  }
+  Object.assign(rec, { title: String(title).trim().slice(0, 80), body: text, at: Date.now() });
+  save();
+  return rec.id;
+}
+
+export function deleteOwnText(lang, id) {
+  const list = state.mine?.[lang];
+  if (!list?.some((t) => t.id === id)) return;
+  state.mine[lang] = list.filter((t) => t.id !== id);
+  if (!state.mine[lang].length) delete state.mine[lang];
+  save();
+}
+
 export const getLastCat = (lang) => prog(lang).lastCat?.id ?? null;
 export function setLastCat(lang, id) {
   const p = prog(lang);

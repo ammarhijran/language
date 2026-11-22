@@ -367,3 +367,69 @@ test('sync: a code from another device brings its finished texts; local progress
   const again = JSON.parse(store.exportData());
   assert.deepEqual(sanitize(again, { device: 'me' }).game.texts.tr, { [ALL.tr[0].id]: 1, [ALL.tr[1].id]: 0.5 });
 });
+
+// ---------- My texts ----------
+
+test('own texts: a pasted text becomes one line per sentence', async () => {
+  const { splitIntoLines, ownText, OWN_LINES_MAX } = await import('../js/reader.js');
+  assert.deepEqual(splitIntoLines('Merhaba! Benim adım Alex.\n\nKanadalıyım ve 3.5 yıldır öğreniyorum… Dr. Ali ile çalışıyorum'),
+    ['Merhaba!', 'Benim adım Alex.', 'Kanadalıyım ve 3.5 yıldır öğreniyorum…', 'Dr. Ali ile çalışıyorum']);
+  assert.deepEqual(splitIntoLines('皆さん、こんにちは。マリアと申します！どうぞよろしく'), ['皆さん、こんにちは。', 'マリアと申します！', 'どうぞよろしく']);
+  assert.deepEqual(splitIntoLines('اسمي سام، وأنا من كندا. لماذا أتعلم العربية؟ لأنني أحبها.'), ['اسمي سام، وأنا من كندا.', 'لماذا أتعلم العربية؟', 'لأنني أحبها.']);
+  assert.deepEqual(splitIntoLines('  \n '), []);
+  // long sentences are cut, nothing is lost, and the number of lines is capped
+  const long = `${'слово '.repeat(40)}, а потім ${'ще '.repeat(40)}.`;
+  const cut = splitIntoLines(long);
+  assert.ok(cut.length > 1 && cut.every((l) => [...l].length <= 180));
+  assert.equal(cut.join(' ').replace(/\s+/g, ''), long.replace(/\s+/g, ''));
+  assert.equal(splitIntoLines('Ben de. '.repeat(500)).length, OWN_LINES_MAX);
+  assert.deepEqual(splitIntoLines('Ben de. Sen mi? Evet, o.'), ['Ben de.', 'Sen mi?', 'Evet, o.'], 'short last words end a sentence');
+
+  const t = ownText({ id: 'my-1', title: '', body: 'Merhaba! Nasılsın?' });
+  assert.equal(t.own, true);
+  assert.equal(t.kind, 'speech');
+  assert.equal(t.title, 'Merhaba!');
+  assert.deepEqual(t.lines, [{ tr: 'Merhaba!', en: '' }, { tr: 'Nasılsın?', en: '' }]);
+  assert.deepEqual([t.glossary, t.questions], [[], []]);
+  assert.equal(ownText({ id: 'my-2', title: 'Intro', body: 'x' }).title, 'Intro');
+  // the reader's helpers work on it
+  assert.ok(estimateMinutes(t) >= 1);
+  assert.ok(recordLimit(t) >= 90000);
+});
+
+test('own texts: saved per language, kept in backups, never in sync data', () => {
+  store._resetAll();
+  assert.deepEqual(store.getOwnTexts('tr'), []);
+  assert.equal(store.saveOwnText('tr', { title: 'x', body: '   ' }), null, 'empty text');
+  const id = store.saveOwnText('tr', { title: '  Intro ', body: ' Merhaba! ' });
+  assert.match(id, /^my-[a-z0-9]{1,12}$/);
+  const id2 = store.saveOwnText('tr', { body: 'İkinci metin.' });
+  assert.notEqual(id2, id);
+  assert.deepEqual(store.getOwnTexts('tr').map((t) => [t.id, t.title, t.body]).sort(), [[id, 'Intro', 'Merhaba!'], [id2, '', 'İkinci metin.']].sort());
+  assert.deepEqual(store.getOwnTexts('uk'), []);
+  // editing keeps the id
+  assert.equal(store.saveOwnText('tr', { id, title: 'Intro 2', body: 'Selam!' }), id);
+  assert.equal(store.getOwnTexts('tr').find((t) => t.id === id).body, 'Selam!');
+  assert.equal(store.getOwnTexts('tr').length, 2);
+  // too long is cut; too many are refused
+  const big = store.saveOwnText('uk', { body: 'я'.repeat(store.OWN_TEXT_MAX + 50) });
+  assert.equal(store.getOwnTexts('uk')[0].body.length, store.OWN_TEXT_MAX);
+  store.deleteOwnText('uk', big);
+  assert.deepEqual(store.getOwnTexts('uk'), []);
+  for (let i = 0; i < store.OWN_TEXTS_MAX; i++) store.saveOwnText('ja', { body: `テキスト${i}` });
+  assert.equal(store.saveOwnText('ja', { body: 'もう一つ' }), null);
+  assert.equal(store.getOwnTexts('ja').length, store.OWN_TEXTS_MAX);
+
+  assert.equal('mine' in store.syncData(), false, 'not synced');
+  const backup = store.exportData();
+  store._resetAll();
+  assert.deepEqual(store.getOwnTexts('tr'), []);
+  store.importData(backup);
+  assert.equal(store.getOwnTexts('tr').length, 2);
+  // a tampered backup is cleaned
+  const d = JSON.parse(backup);
+  d.mine = { tr: [{ id: '../x', body: 'a' }, { id: 'my-ok', title: 5, body: 'b' }, { id: 'my-ok', body: 'dup' }, { id: 'my-empty', body: ' ' }], __proto__: [], 'not a lang': [] };
+  store.importData(JSON.stringify(d));
+  assert.deepEqual(store.getOwnTexts('tr').map((t) => [t.id, t.title, t.body]), [['my-ok', '', 'b']]);
+  store._resetAll();
+});

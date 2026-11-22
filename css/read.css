@@ -274,3 +274,17 @@ button.gloss:hover { background: var(--action-soft); }
   .read-card { gap: var(--sp-3); padding: .7rem .75rem; }
   .read-emoji { width: 1.7rem; font-size: var(--fs-xl); }
 }
+
+/* My texts */
+.read-own { margin-top: var(--sp-5); }
+.read-own .section-title { margin: 0; }
+.read-own > * + * { margin-top: var(--sp-2); }
+.own-body {
+  width: 100%; min-height: 11rem; box-sizing: border-box; resize: vertical; padding: .7rem .8rem;
+  border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); color: var(--text);
+  font: inherit; font-size: var(--fs-md); line-height: 1.6;
+}
+.own-body:focus-visible { outline: 2px solid var(--action); outline-offset: 1px; }
+.own-body[lang="ar"] { font-family: var(--font-ar); font-size: var(--fs-lg); }
+.own-body[lang="ja"] { font-family: var(--font-ja); }
+.read-en:empty { display: none; }

@@ -13,7 +13,7 @@ import { newCard } from '../srs.js';
 import {
   KINDS, LEVELS, REGISTERS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, markGlossary, findWord, fadeLine, SHADOW_ROUNDS, createPlayer, listenTimeout,
-  scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead,
+  scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead, ownText, splitIntoLines, OWN_LINES_MAX,
 } from '../reader.js';
 
 // The Learn screen's entry card lives in reader.js, so Learn doesn't load this view.
@@ -157,6 +157,25 @@ const speakerClass = (line, spk) => (line.speaker && spk.size >= 2 ? ` spk spk-$
 
 // ---------- List ----------
 
+function ownCard(ctx, t) {
+  return h('a', { class: 'read-card', href: href(t.id) },
+    h('span', { class: 'read-emoji', 'aria-hidden': 'true' }, '✍️'),
+    h('span', { class: 'read-card-text' },
+      h('b', { ...textAttrs(ctx.lang) }, t.title),
+      h('span', { class: 'read-meta' }, h('span', null, `${t.lines.length} line${t.lines.length === 1 ? '' : 's'} · ~${estimateMinutes(t)} min`))));
+}
+
+/** "My texts": the learner's own texts and the way to add one. */
+function ownSection(ctx, own) {
+  return h('section', { class: 'read-own' },
+    h('div', { class: 'title-row' },
+      h('h2', { class: 'section-title' }, 'My texts'),
+      h('a', { class: 'btn small', href: href('new') }, '＋ Add a text')),
+    own.length
+      ? h('div', { class: 'read-list' }, own.map((t) => ownCard(ctx, t)))
+      : h('p', { class: 'hint' }, `Paste your own ${ctx.lang.name} — a self-introduction, a speech, a message your teacher corrected — and practise it line by line: listen, repeat, shadow and record.`));
+}
+
 function textCard(ctx, t) {
   const { lang } = ctx;
   const best = ctx.game.textBest(lang.code, t.id);
@@ -188,14 +207,14 @@ function emptyState(ctx) {
       h('a', { class: 'btn wide', href: '#/learn' }, 'Back to topics')));
 }
 
-function listView(ctx, texts) {
+function listView(ctx, texts, own = []) {
   const { lang } = ctx;
   const all = sortTexts(texts);
   const head = [
     backLink(ctx, '#/learn/g/read', 'Learn'),
     h('h1', null, 'Read & Listen'),
   ];
-  if (!all.length) return [...head, emptyState(ctx)];
+  if (!all.length) return [...head, emptyState(ctx), ownSection(ctx, own)];
 
   const done = all.filter((t) => ctx.game.textBest(lang.code, t.id) != null).length;
   const listEl = h('div', { class: 'read-list' });
@@ -240,6 +259,53 @@ function listView(ctx, texts) {
       h('div', { class: 'pill-row', role: 'group', 'aria-label': 'Kind of text' }, kindBtns)),
     status,
     listEl,
+    ownSection(ctx, own),
+  ];
+}
+
+// ---------- My texts: add or edit ----------
+
+function editor(ctx, rec) {
+  const { lang, store } = ctx;
+  const title = h('input', { type: 'text', class: 'select', id: 'own-title', maxlength: '80', value: rec?.title || '', placeholder: 'For example: My introduction' });
+  const body = h('textarea', {
+    class: 'own-body', id: 'own-body', rows: '10', ...textAttrs(lang), spellcheck: 'false', autocapitalize: 'sentences',
+    placeholder: `Type or paste your ${lang.name} text here.`,
+  });
+  body.value = rec?.body || '';
+  const count = h('p', { class: 'hint', 'aria-live': 'polite' });
+  const paint = () => {
+    const n = splitIntoLines(body.value).length;
+    count.textContent = !body.value.trim() ? 'One sentence becomes one line to listen to and repeat.'
+      : `${n} line${n === 1 ? '' : 's'}${n >= OWN_LINES_MAX ? ` (the first ${OWN_LINES_MAX} — split a longer text in two)` : ''} · ${body.value.trim().length} of ${store.OWN_TEXT_MAX} characters`;
+  };
+  body.addEventListener('input', paint);
+  paint();
+  const save = () => {
+    if (!body.value.trim()) { ctx.toast('Type or paste some text first.'); body.focus(); return; }
+    const id = store.saveOwnText(lang.code, { id: rec?.id, title: title.value, body: body.value });
+    if (!id) { ctx.toast(`You can keep ${store.OWN_TEXTS_MAX} texts per language. Delete one first.`); return; }
+    store.flush?.();
+    ctx.replace(`/read/${id}`);
+  };
+  const remove = () => {
+    if (!confirm('Delete this text? This can’t be undone.')) return;
+    store.deleteOwnText(lang.code, rec.id);
+    ctx.replace('/read');
+  };
+  queueMicrotask(() => { document.title = `${rec ? 'Edit my text' : 'Add a text'} · Read & Listen · Lisan`; });
+  return [
+    backLink(ctx, rec ? href(rec.id) : '#/read', rec ? 'Back to the text' : 'All texts'),
+    h('h1', null, rec ? 'Edit my text' : 'Add a text'),
+    h('p', { class: 'muted' }, `The app reads your text aloud with the ${lang.name} voice and lets you repeat, shadow and record it. It does not correct or translate it — use a text you trust.`),
+    h('section', { class: 'card form' },
+      h('label', { class: 'field', for: 'own-title' }, h('span', null, 'Title (optional)'), title),
+      h('label', { class: 'field', for: 'own-body' }, h('span', null, `Your text in ${lang.name}`), body),
+      count,
+      h('div', { class: 'button-row' },
+        h('button', { type: 'button', class: 'btn primary', onclick: save }, icon('check', 16), 'Save'),
+        rec ? h('button', { type: 'button', class: 'btn danger', onclick: remove }, 'Delete') : null),
+      h('p', { class: 'hint' }, 'Your texts stay on this device (and in a backup file you export). They are not part of sync codes. They are read by your device’s voice — with an online voice, each sentence is sent to that voice’s provider.')),
   ];
 }
 
@@ -460,8 +526,9 @@ function readerView(ctx, texts, text) {
     return li;
   });
   const list = h('ol', { class: 'read-lines', 'aria-label': 'Text' }, rows);
+  const hasEn = text.lines.some((l) => l.en);
   const applyView = () => {
-    list.className = `read-lines tr-${p.translation}${p.reading ? '' : ' no-reading'}${listenFirst ? ' listen-first' : ''}`;
+    list.className = `read-lines tr-${hasEn ? p.translation : 'hide'}${p.reading ? '' : ' no-reading'}${listenFirst ? ' listen-first' : ''}`;
   };
   applyView();
 
@@ -530,7 +597,7 @@ function readerView(ctx, texts, text) {
       counter,
       toggle([icon('slow', 16), h('span', { class: 'read-long' }, 'Slow')], p.slow, (on) => { p.slow = on; ctx.store.updateSettings({ readSlow: on }); }, { 'aria-label': 'Slow' })),
     h('div', { class: 'read-options' },
-      h('label', { class: 'read-select-wrap' }, h('span', { 'aria-hidden': 'true' }, 'EN'), trSelect),
+      hasEn ? h('label', { class: 'read-select-wrap' }, h('span', { 'aria-hidden': 'true' }, 'EN'), trSelect) : null,
       hasReading
         ? toggle(lang.code === 'ja' ? label('Kana · rōmaji', 'Kana') : lang.code === 'ar' ? label('Transliteration', 'Latin') : 'Reading', p.reading, (on) => {
           p.reading = on;
@@ -553,11 +620,15 @@ function readerView(ctx, texts, text) {
 
   return [
     backLink(ctx, '#/read', 'All texts'),
-    h('p', { class: 'kicker read-kicker' }, h('span', { 'aria-hidden': 'true' }, `${kind.emoji} `), `${kind.one} · `, levelBadge(text.level), ` · ${n} lines · ~${estimateMinutes(text)} min`),
+    text.own
+      ? h('p', { class: 'kicker read-kicker' }, h('span', { 'aria-hidden': 'true' }, '✍️ '), `My text · ${n} line${n === 1 ? '' : 's'} · ~${estimateMinutes(text)} min`)
+      : h('p', { class: 'kicker read-kicker' }, h('span', { 'aria-hidden': 'true' }, `${kind.emoji} `), `${kind.one} · `, levelBadge(text.level), ` · ${n} lines · ~${estimateMinutes(text)} min`),
     h('div', { class: 'read-head' },
-      h('h1', null, text.title),
-      h('p', { class: 'read-native-title', ...textAttrs(lang) }, text.titleNative),
-      h('p', { class: 'muted read-summary' }, text.summary, ' ', registerBadge(text.register), ' ', dialectBadge(text.dialect)),
+      h('h1', { ...(text.own ? textAttrs(lang) : {}) }, text.title),
+      text.titleNative ? h('p', { class: 'read-native-title', ...textAttrs(lang) }, text.titleNative) : null,
+      text.own
+        ? h('p', { class: 'muted read-summary' }, 'Your own text, read by the voice as written. ', h('a', { href: href(text.id, 'edit') }, 'Edit or delete'))
+        : h('p', { class: 'muted read-summary' }, text.summary, ' ', registerBadge(text.register), ' ', dialectBadge(text.dialect)),
       best != null ? h('p', { class: 'read-best' }, icon('check', 16), `Done · best score ${pct(best)}`) : null),
     voiceBanner(ctx),
     practiceCard(text),
@@ -1127,12 +1198,16 @@ function practiceView(ctx, texts, text, mode) {
 }
 
 function routeView(ctx, texts, id, mode, arg) {
-  if (!id) return listView(ctx, texts);
-  const text = texts.find((t) => t.id === id);
+  const mine = ctx.store.getOwnTexts(ctx.lang.code);
+  const own = mine.map(ownText);
+  if (!id) return listView(ctx, texts, own);
+  if (id === 'new') return editor(ctx, null);
+  const text = own.find((t) => t.id === id) || texts.find((t) => t.id === id);
+  if (text?.own && mode === 'edit') return editor(ctx, mine.find((t) => t.id === id));
   if (!text) {
     return [
       backLink(ctx, '#/read', 'All texts'),
-      h('div', { class: 'summary' }, h('h1', null, 'Text not found'), h('p', { class: 'muted' }, 'It may have been renamed.'),
+      h('div', { class: 'summary' }, h('h1', null, 'Text not found'), h('p', { class: 'muted' }, 'It may have been renamed or deleted.'),
         h('a', { class: 'btn primary', href: '#/read' }, 'All texts')),
     ];
   }

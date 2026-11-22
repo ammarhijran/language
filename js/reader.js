@@ -302,6 +302,66 @@ export function fadeLine(lang, line, round) {
   }).join('');
 }
 
+// ---------- The learner's own texts ----------
+
+export const OWN_LINES_MAX = 80;
+const LINE_MAX = 180; // characters: longer sentences are cut at a comma or space
+// The end of a sentence: . ! ? … and their CJK / Arabic forms, with any closing quote or bracket.
+const SENTENCE = /[^.!?…。！？؟۔]+(?:[.!?…。！？؟۔]+["'”’»」』)\]]*|$)/gu;
+
+function cutLong(sentence) {
+  const out = [];
+  let rest = sentence;
+  while ([...rest].length > LINE_MAX) {
+    const head = [...rest].slice(0, LINE_MAX).join('');
+    // the last comma (any script) in the second half, else the last space, else a hard cut
+    const comma = Math.max(...[',', '،', '、', ';', '؛', '，', ':', '—'].map((c) => head.lastIndexOf(c)));
+    const at = comma > LINE_MAX / 2 ? comma + 1 : head.lastIndexOf(' ') > LINE_MAX / 2 ? head.lastIndexOf(' ') : head.length;
+    out.push(rest.slice(0, at).trim());
+    rest = rest.slice(at).trim();
+  }
+  if (rest) out.push(rest);
+  return out;
+}
+
+/**
+ * A pasted text as lines to play and practise: one sentence each (line breaks
+ * also separate), long sentences cut at a comma, at most OWN_LINES_MAX lines.
+ * A number or abbreviation with a dot (“3.5”, “Dr. X”) stays in one line when
+ * what follows the dot is not a space plus a new sentence.
+ */
+export function splitIntoLines(body) {
+  const lines = [];
+  for (const para of String(body ?? '').normalize('NFC').split(/\n+/)) {
+    const text = para.replace(/\s+/g, ' ').trim();
+    if (!text) continue;
+    const parts = [];
+    for (const m of text.match(SENTENCE) || [text]) {
+      const piece = m.trim();
+      if (!piece) continue;
+      const prev = parts[parts.length - 1];
+      // “3.” + “5 km”, or “Dr.” + “Ali”: a dot inside a number, or after a short capitalised
+      // abbreviation, does not end a sentence (a short last word does: “Ben de.”).
+      if (prev && (/\d\.$/.test(prev) && /^\d/.test(piece) || /(^|\s)\p{Lu}\p{L}?\.$/u.test(prev))) parts[parts.length - 1] = `${prev}${/\d\.$/.test(prev) ? '' : ' '}${piece}`;
+      else if (!/[\p{L}\p{N}]/u.test(piece) && prev) parts[parts.length - 1] = `${prev}${piece}`; // stray punctuation
+      else parts.push(piece);
+    }
+    for (const p of parts) lines.push(...cutLong(p));
+  }
+  return lines.slice(0, OWN_LINES_MAX);
+}
+
+/** A stored own text ({ id, title, body }) as a text the reader can show: a speech without translation, glossary or quiz. */
+export function ownText(rec) {
+  const lines = splitIntoLines(rec.body).map((tr) => ({ tr, en: '' }));
+  const first = lines[0]?.tr || '';
+  return {
+    id: rec.id, kind: 'speech', level: null, own: true,
+    title: rec.title || (first.length > 40 ? `${[...first].slice(0, 40).join('')}…` : first) || 'My text',
+    titleNative: '', summary: 'Your own text.', lines, glossary: [], questions: [],
+  };
+}
+
 // ---------- Player ----------
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));

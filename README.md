@@ -49,6 +49,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Player:** Play all (line by line, current line highlighted), slow mode, translation shown / on tap / hidden, readings on or off, "Listen first" with the text hidden, and tap any line to hear it.
 - **Tap-a-word glossary:** key words are underlined in the text; tap one for its meaning, reading and audio, and add it to your reviews.
 - **Comprehension questions** with XP and achievements, synced between devices.
+- **My texts:** paste your own speech or text and practise it with the same tools (line-by-line voice, listen & repeat, shadowing, recording). The app reads it as written; it doesn’t correct or translate it.
 - **Speech practice:** listen & repeat line by line (scored by speech recognition, or record yourself), shadowing with the text fading out over three rounds, and recording the whole speech (1:30 to 5:00, depending on its length) to compare with the model. Dialogues have a **role-play** mode: pick a speaker and say your lines.
 
 ### Game mechanics, achievements and goals
