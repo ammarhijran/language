@@ -104,7 +104,7 @@ async function walk(browser, lang, pack, texts) {
   if (await page.$$eval('.read-own .read-card', (e) => e.length)) problems.push(`${lang}: my text was not deleted`);
 
   // Practice modes start; a lesson starts; the trip-essentials course starts.
-  for (const m of ['mixed', 'listen', 'meaning', 'type', 'flashcard', 'build', 'dictation']) await open(`practice/${m}/all`, { wait: 350 });
+  for (const m of ['mixed', 'listen', 'meaning', 'type', 'flashcard', 'build', 'dictation', 'script']) await open(`practice/${m}/all`, { wait: 350 });
   await open('practice/handsfree/all', { selector: '.hf-card' });
   await page.click('.hf-play');
   await page.waitForTimeout(400);

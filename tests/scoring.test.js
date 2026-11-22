@@ -115,3 +115,23 @@ test('homophones.js SPELLINGS are for words of the course, and none is another e
     }
   }
 });
+
+test('read the script: every entry has a Latin reading, and the options are four different readings', async () => {
+  const { readingLabel, scriptOptions } = await import('../js/exercises.js');
+  for (const L of [uk, ja, ar]) {
+    let n = 0;
+    for (const w of L.words) {
+      const own = readingLabel(L, w);
+      assert.ok(own && /[a-z]/i.test(own), `${L.code} ${w.tr}: a reading in Latin letters (${own})`);
+      if (w.tr.trim().split(/\s+/).length > 3 || n++ % 7) continue; // a sample is enough for the options
+      const opts = scriptOptions(L, w);
+      assert.equal(opts.length, 4, `${L.code} ${w.tr}`);
+      assert.ok(opts.includes(w), `${L.code} ${w.tr}: the word is among them`);
+      assert.equal(new Set(opts.map((o) => readingLabel(L, o))).size, 4, `${L.code} ${w.tr}: no two options read the same`);
+    }
+  }
+  // Japanese gives rōmaji, Arabic its transliteration, Ukrainian the respelling.
+  assert.equal(readingLabel(ja, ja.words.find((w) => w.tr === '百')), 'hyaku');
+  assert.equal(readingLabel(ar, ar.words.find((w) => w.tr === 'مَرْحَبًا')), 'marḥaban');
+  assert.equal(readingLabel(uk, uk.words.find((w) => w.tr === 'привіт')), 'prih-veet');
+});

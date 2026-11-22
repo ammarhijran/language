@@ -141,8 +141,8 @@ function continueButton(onClick, label = 'Continue') {
   return h('button', { type: 'button', class: 'btn primary wide continue', onclick: onClick }, label, icon('arrow', 18));
 }
 
-function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render }) {
-  const opts = pickOptions(ctx.lang, word, label);
+function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, options = null }) {
+  const opts = options || pickOptions(ctx.lang, word, label);
   const live = liveRegion();
   let correct = false;
   let answered = false;
@@ -207,6 +207,50 @@ export function meaning(ctx, word, onDone) {
     h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word)),
     readingLine(ctx, word));
   return choice(ctx, word, onDone, { kicker: 'What does this mean?', prompt, label: (w) => w.en });
+}
+
+/**
+ * How an entry is read, in Latin letters: rōmaji (Japanese), the
+ * transliteration (Arabic), or the “say it like” respelling of its syllables
+ * (Ukrainian). null when the pack has none for it.
+ */
+export function readingLabel(lang, w) {
+  const full = lang.fullReading?.(w);
+  if (full) return String(full).split(' · ').pop();
+  try {
+    const parts = lang.analyze(w).words.map((x) => x.syllables.map((y) => y.respell || '').join('-'));
+    return parts.length && parts.every((x) => x.replace(/-/g, '')) ? parts.join(' ') : null;
+  } catch { return null; }
+}
+
+/** The entry and three others of about the same length and number of words, each read differently. */
+export function scriptOptions(lang, word, n = 4) {
+  const own = readingLabel(lang, word);
+  const count = (w) => w.tr.trim().split(/\s+/).length;
+  const len = (w) => [...w.tr].length;
+  const seen = new Set([own]);
+  const near = lang.words
+    .filter((w) => w.id !== word.id && count(w) === count(word))
+    .sort((a, b) => Math.abs(len(a) - len(word)) - Math.abs(len(b) - len(word)))
+    .slice(0, 24);
+  const picks = [];
+  for (const w of shuffle(near)) {
+    const r = readingLabel(lang, w);
+    if (!r || seen.has(r)) continue;
+    seen.add(r);
+    picks.push(w);
+    if (picks.length === n - 1) break;
+  }
+  return shuffle([word, ...picks]);
+}
+
+/** Read the script: the word as written, no audio and no reading — pick how it is read. */
+export function script(ctx, word, onDone) {
+  const { lang } = ctx;
+  const options = readingLabel(lang, word) ? scriptOptions(lang, word) : [];
+  if (options.length < 3) return meaning(ctx, word, onDone);
+  const prompt = h('div', { class: 'prompt' }, h('p', { class: 'prompt-word script-word', lang: lang.code }, word.tr));
+  return choice(ctx, word, onDone, { kicker: 'How is this read?', prompt, label: (w) => readingLabel(lang, w), options });
 }
 
 export function produce(ctx, word, onDone) {
@@ -622,4 +666,4 @@ export function build(ctx, word, onDone, meta = {}) {
   return el;
 }
 
-export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build };
+export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build, script };

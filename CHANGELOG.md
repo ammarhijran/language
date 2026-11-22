@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Read the script** (Practice, for Japanese, Arabic and Ukrainian): a word is shown in its script with no audio and no reading, and you pick how it is read from four options of similar length — rōmaji, the transliteration, or the “say it like” respelling. For getting off the reading aids.
 - **More ear training:** about twice as many minimal pairs for Ukrainian, Japanese and Arabic (20 each), and five more for Turkish (24) — new contrasts such as Ukrainian г / х and hard / soft consonants, Japanese k / g and t / d (てんき / でんき), Arabic د / ض and غ / خ. Every pair is checked to differ in exactly one sound.
 - **Numbers by ear** (Practice → Numbers by ear): the voice says a number and you type its digits — four ranges from 0–10 up to 10,000, ten numbers a round. The answer also shows the course’s word for the number where it has one.
 - **Four new achievements** (48 in all): Easy Listening (5 hands-free rounds), Sharp Ears (20 sentences built by ear), In My Own Words (practise a text of your own) and Ready to Travel (learn all the trip essentials of a language).

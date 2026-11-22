@@ -16,6 +16,8 @@ const MODES = [
   { id: 'flashcard', name: 'Flashcards', desc: 'Recall and self-rate', icon: 'repeat' },
   { id: 'build', name: 'Sentences', desc: 'Put the words in order', icon: 'tiles' },
   { id: 'dictation', name: 'Dictation', desc: 'Hear a sentence, build it', icon: 'ear' },
+  // For scripts that are new to the learner (not Turkish, which is written in Latin letters).
+  { id: 'script', name: 'Read the script', desc: 'See it, pick how it’s read', icon: 'book', langs: ['ja', 'ar', 'uk'] },
   { id: 'handsfree', name: 'Hands-free', desc: 'Listen and repeat, no tapping', icon: 'volume' },
 ];
 
@@ -44,9 +46,11 @@ function typeFor(mode, word) {
 }
 
 export default function practice(ctx, mode, scope) {
-  if (!mode || !MODES.some((m) => m.id === mode)) return setup(ctx);
+  const modeDef = MODES.find((m) => m.id === mode);
+  if (!modeDef || (modeDef.langs && !modeDef.langs.includes(ctx.lang.code))) return setup(ctx);
   if (mode === 'build' || mode === 'dictation') return sentenceRound(ctx, scope, mode === 'dictation');
-  const pool = wordsFor(ctx, scope);
+  // Reading the script is for words and short phrases, not whole sentences.
+  const pool = wordsFor(ctx, scope).filter((w) => mode !== 'script' || w.tr.trim().split(/\s+/).length <= 3);
   if (pool.length < 4) return notEnough('Not enough words yet', 'Learn a lesson first, or pick a topic to practise from.');
   if (mode === 'handsfree') return handsFree(ctx, pool);
 
@@ -134,7 +138,8 @@ function setup(ctx) {
   let mode = 'mixed';
   let scope = learned >= 4 ? 'learned' : ctx.lang.categories[0].id;
 
-  const modeButtons = MODES.map((m) => {
+  const modes = MODES.filter((m) => !m.langs || m.langs.includes(lang.code));
+  const modeButtons = modes.map((m) => {
     const disabled = m.needsMic && !recognitionSupported();
     return h('button', {
       type: 'button', class: `choice${m.id === mode ? ' selected' : ''}`, disabled,
