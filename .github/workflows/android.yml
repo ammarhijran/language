@@ -70,6 +70,16 @@ jobs:
             --notes "Install on Android: download **${APK}** below on your phone and open it. You may need to allow installs from your browser or file manager.
 
           Built from \`${GITHUB_REF_NAME}\` at ${GITHUB_SHA::7}. New test builds install over this one and keep your progress."
+          # Now and then GitHub leaves the new release as a draft (the APK link
+          # then answers 404). Check, and publish it if that happened.
+          for attempt in 1 2 3 4 5; do
+            sleep 3
+            draft=$(gh release view android-test-build --json isDraft --jq .isDraft 2>/dev/null || echo unknown)
+            if [ "$draft" = "false" ]; then break; fi
+            echo "Release is not published yet (isDraft=$draft), attempt $attempt: publishing it."
+            gh release edit android-test-build --draft=false --prerelease || true
+          done
+          [ "$(gh release view android-test-build --json isDraft --jq .isDraft)" = "false" ]
 
       # Google Play bundle, signed with your private upload key — only when the
       # signing secrets are configured (see STORE.md).
