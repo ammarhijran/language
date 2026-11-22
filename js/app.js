@@ -6,6 +6,7 @@ import { dueWords } from './stats.js';
 import { glyph } from './components.js';
 import { onBackButton, backAction, leaveApp } from './native.js';
 import { bootDone } from './boot.js';
+import { sessionBack } from './session.js';
 import home from './views/home.js';
 import learn from './views/learn.js';
 import review from './views/review.js';
@@ -338,11 +339,15 @@ function render() {
 
 // Android's back button / gesture: close an open dialog first, otherwise go
 // back a screen; only the home screen (or the welcome screen) leaves the app.
+// In a lesson that would lose answers, it first asks "Leave this lesson?",
+// like the lesson's ✕.
 function onBack({ canGoBack }) {
   const dialog = document.querySelector('[role="dialog"][aria-modal="true"]:not(.leaving)');
   const { name } = parse();
   const action = backAction({ dialogOpen: !!dialog, atRoot: name === '' || name === 'welcome', canGoBack });
+  const leave = () => { if (action === 'back') history.back(); else location.hash = '#/'; };
   if (action === 'close-dialog') dialog.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+  else if ((action === 'back' || action === 'home') && sessionBack(leave)) { /* asked first */ }
   else if (action === 'back') history.back();
   else if (action === 'home') location.hash = '#/';
   else { speech.cancelSpeech(); leaveApp(); }

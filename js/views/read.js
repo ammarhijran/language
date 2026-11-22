@@ -6,7 +6,7 @@
 // Texts load on demand (js/reader.js), so the first visit renders a short
 // loading state and fills in; later visits render straight away.
 import { h, icon, set, bindKeys, meter } from '../ui.js';
-import { voiceBanner, diffLine, praiseLine, cleanupScope } from '../components.js';
+import { voiceBanner, diffLine, praiseLine, cleanupScope, backLink } from '../components.js';
 import { rich } from './grammar.js';
 import * as speech from '../speech.js';
 import { newCard } from '../srs.js';
@@ -192,7 +192,7 @@ function listView(ctx, texts) {
   const { lang } = ctx;
   const all = sortTexts(texts);
   const head = [
-    h('a', { href: '#/learn', class: 'back-link' }, icon('back', 16), 'Learn'),
+    backLink(ctx, '#/learn/g/read', 'Learn'),
     h('h1', null, 'Read & Listen'),
   ];
   if (!all.length) return [...head, emptyState(ctx)];
@@ -552,7 +552,7 @@ function readerView(ctx, texts, text) {
   queueMicrotask(() => { document.title = `${text.title} · Read & Listen · Lisan`; });
 
   return [
-    h('a', { href: '#/read', class: 'back-link' }, icon('back', 16), 'All texts'),
+    backLink(ctx, '#/read', 'All texts'),
     h('p', { class: 'kicker read-kicker' }, h('span', { 'aria-hidden': 'true' }, `${kind.emoji} `), `${kind.one} · `, levelBadge(text.level), ` · ${n} lines · ~${estimateMinutes(text)} min`),
     h('div', { class: 'read-head' },
       h('h1', null, text.title),
@@ -584,7 +584,7 @@ function readerView(ctx, texts, text) {
 
 function practiceHead(ctx, text, title) {
   return [
-    h('a', { href: href(text.id), class: 'back-link' }, icon('back', 16), 'Back to the text'),
+    backLink(ctx, href(text.id), 'Back to the text'),
     h('p', { class: 'kicker' }, h('span', { 'aria-hidden': 'true' }, `${(KINDS[text.kind] || KINDS.story).emoji} `), `Practise · ${text.title}`),
     h('h1', null, title),
   ];
@@ -1131,7 +1131,7 @@ function routeView(ctx, texts, id, mode, arg) {
   const text = texts.find((t) => t.id === id);
   if (!text) {
     return [
-      h('a', { href: '#/read', class: 'back-link' }, icon('back', 16), 'All texts'),
+      backLink(ctx, '#/read', 'All texts'),
       h('div', { class: 'summary' }, h('h1', null, 'Text not found'), h('p', { class: 'muted' }, 'It may have been renamed.'),
         h('a', { class: 'btn primary', href: '#/read' }, 'All texts')),
     ];
@@ -1160,7 +1160,7 @@ export default function read(ctx, id, mode, arg) {
     return view;
   }
   set(view,
-    h('a', { href: id ? '#/read' : '#/learn', class: 'back-link' }, icon('back', 16), id ? 'All texts' : 'Learn'),
+    backLink(ctx, id ? '#/read' : '#/learn/g/read', id ? 'All texts' : 'Learn'),
     h('h1', null, 'Read & Listen'),
     h('p', { class: 'muted', role: 'status' }, 'Loading texts…'));
   loadTexts(lang.code).then((texts) => {
@@ -1171,7 +1171,7 @@ export default function read(ctx, id, mode, arg) {
     if (gone) return;
     console.warn('Read & Listen: could not load texts', err);
     set(view,
-      h('a', { href: '#/learn', class: 'back-link' }, icon('back', 16), 'Learn'),
+      backLink(ctx, '#/learn/g/read', 'Learn'),
       h('h1', null, 'Read & Listen'),
       h('div', { class: 'banner', role: 'alert' }, 'The texts couldn’t be loaded. Check your connection and try again.'),
       h('button', { type: 'button', class: 'btn primary', onclick: () => ctx.rerender() }, 'Try again'));

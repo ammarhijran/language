@@ -2,6 +2,7 @@
 import { h, icon, meter, set } from '../ui.js';
 import { languages } from '../languages/index.js';
 import { GOALS } from './welcome.js';
+import { bottomSheet } from '../components.js';
 
 const fmtDate = (d) => d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
 
@@ -93,35 +94,67 @@ function dailyGoalCard(ctx) {
       h('span', null, done >= goal ? icon('check', 22) : h('b', null, String(done)), h('small', null, done >= goal ? 'goal met' : `of ${goal}`))),
     h('div', { class: 'daily-body' },
       h('h2', { class: 'card-title' }, 'Today'),
-      h('p', { class: 'hint' }, done >= goal ? 'Daily goal met — every extra exercise is a bonus.' : `${goal - done} more exercise${goal - done === 1 ? '' : 's'} to reach your daily goal.`),
-      h('select', {
-        class: 'select', 'aria-label': 'Daily goal',
-        onchange: (e) => { ctx.store.updateSettings({ dailyGoal: Number(e.target.value) }); ctx.rerender(); },
-      }, GOALS.map((g) => h('option', { value: String(g.value), selected: g.value === goal }, `${g.name} — ${g.value} a day`)))));
+      h('p', { class: 'hint' }, done >= goal ? 'Daily goal met — every extra exercise is a bonus.' : `${goal - done} more exercise${goal - done === 1 ? '' : 's'} to reach your daily goal.`)),
+    h('select', {
+      class: 'select', 'aria-label': 'Daily goal',
+      onchange: (e) => { ctx.store.updateSettings({ dailyGoal: Number(e.target.value) }); ctx.rerender(); },
+    }, GOALS.map((g) => h('option', { value: String(g.value), selected: g.value === goal }, `${g.name} · ${g.value}/day`))));
+}
+
+/** The badge's details in a sheet: what it is for, and how far along it is. */
+function badgeSheet(ctx, a, fresh, from) {
+  bottomSheet(ctx, {
+    label: a.title,
+    opener: from,
+    className: 'medal-sheet',
+    build: (close) => [
+      h('p', { class: 'kicker' }, a.group),
+      h('div', { class: `medal-sheet-icon${a.unlocked ? ' unlocked' : ''}`, 'aria-hidden': 'true' }, a.icon),
+      h('h2', null, a.title),
+      h('p', null, a.desc),
+      a.unlocked
+        ? h('p', { class: 'hint' }, fresh.has(a.id) ? '✨ New — unlocked ' : 'Unlocked ', fmtDate(new Date(a.at)), '.')
+        : [meter(a.value, a.target), h('p', { class: 'hint' }, `${a.value} of ${a.target} — ${a.target - a.value} to go.`)],
+      h('div', { class: 'actions' }, h('button', { type: 'button', class: 'btn wide sheet-focus', onclick: close }, 'Close')),
+    ],
+  });
 }
 
 function achievementGrid(ctx, fresh) {
   const all = ctx.game.achievementProgress();
   const groups = [...new Set(all.map((a) => a.group))];
   const unlocked = all.filter((a) => a.unlocked).length;
+  // The three closest to unlocking (with some progress) come first.
+  const close = all.filter((a) => !a.unlocked && a.value > 0)
+    .sort((x, y) => y.value / y.target - x.value / x.target || x.target - y.target).slice(0, 3);
+  const medal = (a) => {
+    const pct = a.unlocked ? 100 : Math.round((a.value / a.target) * 100);
+    return h('li', null, h('button', {
+      type: 'button', class: `medal${a.unlocked ? ' unlocked' : ' locked'}${fresh.has(a.id) ? ' fresh' : ''}`, 'aria-haspopup': 'dialog',
+      'aria-label': a.unlocked
+        ? `${a.title} — ${a.desc}. Unlocked ${fmtDate(new Date(a.at))}.`
+        : `Locked: ${a.title} — ${a.desc}. ${a.value} of ${a.target}.`,
+      onclick: (e) => badgeSheet(ctx, a, fresh, e.currentTarget),
+    },
+      h('span', { class: 'medal-ring', style: { '--pct': pct }, 'aria-hidden': 'true' }, h('span', null, a.icon)),
+      h('span', { class: 'medal-title', 'aria-hidden': 'true' }, a.title),
+      h('span', { class: 'medal-sub', 'aria-hidden': 'true' }, a.unlocked ? (fresh.has(a.id) ? 'New!' : fmtDate(new Date(a.at))) : `${a.value}/${a.target}`)));
+  };
   return h('section', null,
     h('div', { class: 'title-row' },
       h('h2', { class: 'section-title' }, 'Achievements'),
       h('span', { class: 'muted small' }, `${unlocked} of ${all.length} unlocked`)),
+    close.length
+      ? h('section', { class: 'card next-up-card' },
+        h('h3', { class: 'card-title' }, 'Almost there'),
+        h('ul', { class: 'next-up' }, close.map((a) => h('li', null,
+          h('span', { class: 'nu-icon', 'aria-hidden': 'true' }, a.icon),
+          h('span', { class: 'nu-body' }, h('b', null, a.title), h('small', null, a.desc), meter(a.value, a.target)),
+          h('span', { class: 'nu-count' }, `${a.value}/${a.target}`)))))
+      : null,
     groups.map((g) => h('div', { class: 'badge-group' },
       h('h3', { class: 'kicker' }, g),
-      h('ul', { class: 'badge-grid' }, all.filter((a) => a.group === g).map((a) => h('li', {
-        class: `badge-tile${a.unlocked ? ' unlocked' : ''}${fresh.has(a.id) ? ' fresh' : ''}`,
-        'aria-label': a.unlocked
-          ? `${a.title} — ${a.desc}. Unlocked ${fmtDate(new Date(a.at))}.`
-          : `Locked: ${a.title} — ${a.desc}. ${a.value} of ${a.target}.`,
-      },
-        h('span', { class: 'badge-icon', 'aria-hidden': 'true' }, a.icon),
-        h('b', null, a.title),
-        h('small', null, a.desc),
-        a.unlocked
-          ? h('small', { class: 'badge-date' }, fresh.has(a.id) ? 'New!' : fmtDate(new Date(a.at)))
-          : h('span', { class: 'badge-progress' }, meter(a.value, a.target), h('small', null, `${a.value}/${a.target}`))))))),
+      h('ul', { class: 'badge-grid' }, all.filter((a) => a.group === g).map(medal)))),
   );
 }
 

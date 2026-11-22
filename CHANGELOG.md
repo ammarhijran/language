@@ -3,6 +3,12 @@
 ## Unreleased
 
 ### Added
+- **Design pass:**
+  - Arabic and Japanese render in proper Naskh / Japanese fonts at readable sizes, Arabic examples line up with their transliteration, and Japanese readings never leave a dangling "·".
+  - Separate colours for actions (indigo), progress and success (green), the brand (logo red) and errors, so finished topics no longer look like alerts; better dark-mode surfaces and visible progress tracks.
+  - A consistent type, spacing and radius scale, and every control at least 44 px.
+  - Polished screens: a short step-by-step onboarding without app chrome; a clearer Progress page (full topic names, chart labels, empty states); a compact Speak lab (kana as a gojūon table, Arabic letters right to left, letter details in a sheet); Journey badges as medals with an "Almost there" strip; grammar lessons with section chips, phone-friendly tables and a one-question-at-a-time quiz.
+  - Smaller fixes: back links that follow where you came from, ★ on word pages, a sync summary that counts saved phrases, the Android back button asks before leaving a lesson, and search understands Egyptian spellings (hesab → الحساب).
 - **New navigation:** Home (Today) · Learn · Practice · Phrasebook · Me, with a search button in the top bar. Home shows one clear next step ("Review N" / "Continue <topic>" / next topic), shortcuts and the day's word instead of a 28-card grid; Learn is split into Words, Phrases, Talk like a local, Grammar and Read & Listen with compact topic tiles; topic pages list every entry.
 - **Phrasebook** with search, situation chips, a polite ⇄ everyday (MSA ⇄ Egyptian) switch, ★ favourites synced between devices, and a big-text Show mode.
 - **Global search** for words, phrases, topics, grammar and texts; **continue where you left off**; a learning path that interleaves phrases and everyday speech; leaving a lesson keeps the words you've seen (with a "Leave this lesson?" prompt).

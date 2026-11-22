@@ -70,7 +70,7 @@ function empty(ctx) {
       h('div', { class: 'actions stack' },
         next ? h('a', { class: 'btn primary wide', href: `#/learn/${next.id}` }, `Learn: ${next.emoji} ${next.name}`) : null,
         learned ? h('a', { class: 'btn wide', href: '#/practice' }, 'Practise anyway') : null,
-        h('a', { class: 'btn ghost wide', href: '#/speak' }, 'Pronunciation lab')),
+        h('a', { class: 'btn ghost wide', href: '#/speak' }, icon('mic', 18), 'Speak')),
     ),
   );
 }

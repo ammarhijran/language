@@ -1,5 +1,5 @@
 import { h, icon, meter, set, growList, debounce } from '../ui.js';
-import { computeStats } from '../stats.js';
+import { computeStats, nextCategory } from '../stats.js';
 import { status, STATUS_LABEL } from '../srs.js';
 import { playButton } from '../components.js';
 
@@ -15,7 +15,9 @@ export default function progress(ctx, catFilter) {
     d.setDate(d.getDate() - (13 - k)); // calendar days: 24 h steps can skip a day across DST
     return { d, n: store.dayTotal(store.getDay(lang.code, d)) };
   });
-  const maxN = Math.max(5, ...history.map((x) => x.n));
+  const busiest = Math.max(...history.map((x) => x.n));
+  const maxN = Math.max(5, busiest);
+  const nothingYet = s.learned === 0 && busiest === 0;
 
   let query = '';
   let filter = 'all';
@@ -48,7 +50,7 @@ export default function progress(ctx, catFilter) {
       set(list, h('li', { class: 'muted empty' }, 'No words match.'));
       return;
     }
-    stopList = growList(list, rows, row, { first: 60, step: 120, label: 'Show more words' });
+    stopList = growList(list, rows, row, { first: 40, step: 120, label: 'Show more words' });
   }
   const searchLater = debounce(renderList, 150);
   ctx.onCleanup(() => { searchLater.cancel(); stopList(); });
@@ -66,38 +68,65 @@ export default function progress(ctx, catFilter) {
 
   renderList();
 
-  return h('div', { class: 'view' },
-    h('div', { class: 'title-row' }, h('h1', null, 'Progress'),
-      h('div', { class: 'button-row' },
-        h('a', { href: '#/known', class: 'btn small' }, icon('check', 16), 'Already learned'),
-        h('a', { href: '#/settings', class: 'btn small' }, icon('settings', 16), 'Settings'))),
+  const next = nextCategory(ctx);
+  const dayName = (d) => d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
+  // The busiest day and today carry their numbers; the rest is the shape.
+  const labelled = new Set([13, busiest ? history.findIndex((x) => x.n === busiest) : -1]);
+
+  return h('div', { class: 'view progress' },
+    h('h1', null, 'Progress'),
     h('div', { class: 'stat-row' },
       stat(s.streak, 'day streak'),
       stat(s.learned, 'words learned'),
       stat(s.counts.mastered, 'mastered'),
       stat(s.due, 'due now')),
-    h('section', { class: 'card' },
-      h('h2', { class: 'card-title' }, 'Last 14 days'),
-      h('div', { class: 'bars', role: 'img', 'aria-label': `Activity over the last 14 days: ${history.map((x) => x.n).join(', ')}` },
-        history.map((x, k) => h('div', { class: `bar${k === 13 ? ' today' : ''}`, title: `${x.d.toLocaleDateString()}: ${x.n}` },
-          h('span', { style: { height: `${(x.n / maxN) * 100}%` } }),
-          h('small', null, x.d.toLocaleDateString(undefined, { weekday: 'narrow' })))))),
-    h('section', { class: 'card' },
-      h('h2', { class: 'card-title' }, 'Mastery'),
-      h('div', { class: 'stack-bar', role: 'img', 'aria-label': Object.entries(s.counts).map(([k, v]) => `${STATUS_LABEL[k]} ${v}`).join(', ') },
-        ['mastered', 'known', 'familiar', 'learning', 'new'].map((k) => h('span', { class: k, style: { flex: s.counts[k] } }))),
-      h('ul', { class: 'legend' }, ['mastered', 'known', 'familiar', 'learning', 'new'].map((k) =>
-        h('li', null, h('i', { class: k }), `${STATUS_LABEL[k]} · ${s.counts[k]}`))),
-      h('ul', { class: 'cat-progress-list' }, lang.categories.map((c) => {
-        const ws = lang.wordsIn(c.id);
-        const learned = ws.filter((w) => cards[w.id]).length;
-        return h('li', null,
-          h('a', { href: `#/topic/${encodeURIComponent(c.id)}` }, `${c.emoji} ${c.name}`),
-          meter(learned, ws.length),
-          h('span', { class: 'muted small' }, `${learned}/${ws.length}`));
-      }))),
+    nothingYet
+      ? h('section', { class: 'card empty-state' },
+        h('div', { class: 'empty-art', 'aria-hidden': 'true' }, '🌱'),
+        h('h2', null, 'Your first lesson starts your chart'),
+        h('p', null, `Each day you practise shows up here as a bar, and every topic fills up as you learn its words. Lessons teach ${ctx.settings.lessonSize} words at a time.`),
+        h('div', { class: 'actions stack' },
+          next ? h('a', { class: 'btn primary wide', href: `#/learn/${encodeURIComponent(next.id)}` }, `Start: ${next.emoji} ${next.name}`, icon('arrow', 18)) : null,
+          h('a', { class: 'btn wide', href: '#/known' }, icon('check', 18), 'I already know some words')))
+      : [
+        h('section', { class: 'card' },
+          h('h2', { class: 'card-title' }, 'Last 14 days'),
+          h('div', { class: 'bars', role: 'img', 'aria-label': `Exercises per day over the last 14 days: ${history.map((x) => `${dayName(x.d)} ${x.n}`).join(', ')}` },
+            history.map((x, k) => {
+              const pct = Math.round((x.n / maxN) * 100);
+              return h('div', { class: `bar${k === 13 ? ' today' : ''}${x.n ? '' : ' none'}`, title: `${dayName(x.d)}: ${x.n}`, style: { '--h': pct } },
+                labelled.has(k) && x.n ? h('b', { class: 'bar-val', 'aria-hidden': 'true' }, String(x.n)) : null,
+                h('span', { class: 'bar-fill', style: { height: `${pct}%` } }));
+            })),
+          h('div', { class: 'bar-days', 'aria-hidden': 'true' }, history.map((x, k) => h('small', { class: k === 13 ? 'today' : null }, x.d.toLocaleDateString(undefined, { weekday: 'narrow' })))),
+          h('p', { class: 'hint chart-note' }, history[13].n
+            ? `Today: ${history[13].n} exercise${history[13].n === 1 ? '' : 's'}${busiest > history[13].n ? ` · best day: ${busiest}` : ''}.`
+            : `Nothing yet today${busiest ? ` · best day: ${busiest}` : ''}.`)),
+        h('section', { class: 'card' },
+          h('h2', { class: 'card-title' }, 'Mastery'),
+          h('div', { class: 'stack-bar', role: 'img', 'aria-label': Object.entries(s.counts).map(([k, v]) => `${STATUS_LABEL[k]} ${v}`).join(', ') },
+            ['mastered', 'known', 'familiar', 'learning', 'new'].map((k) => h('span', { class: k, style: { flex: s.counts[k] } }))),
+          h('ul', { class: 'legend' }, ['mastered', 'known', 'familiar', 'learning', 'new'].map((k) =>
+            h('li', null, h('i', { class: k }), `${STATUS_LABEL[k]} · ${s.counts[k]}`))),
+          h('h3', { class: 'kicker' }, 'By topic'),
+          h('ul', { class: 'cat-progress-list' }, lang.categories.map((c) => {
+            const ws = lang.wordsIn(c.id);
+            const learned = ws.filter((w) => cards[w.id]).length;
+            const done = ws.length > 0 && learned >= ws.length;
+            return h('li', null, h('a', {
+              href: `#/topic/${encodeURIComponent(c.id)}`, class: done ? 'done' : null,
+              'aria-label': `${c.name}: ${done ? 'all learned' : `${learned} of ${ws.length} learned`}`,
+            },
+              h('span', { class: 'cpl-icon', 'aria-hidden': 'true' }, c.emoji),
+              h('span', { class: 'cpl-name' }, c.name),
+              h('span', { class: 'cpl-count' }, done ? [icon('check', 14), 'Done'] : `${learned}/${ws.length}`),
+              meter(learned, ws.length, done ? 'done' : '')));
+          }))),
+      ],
     h('section', null,
-      h('h2', { class: 'section-title' }, 'Word list'),
+      h('div', { class: 'word-list-head' },
+        h('h2', { class: 'section-title' }, 'Word list'),
+        h('a', { href: '#/known', class: 'btn small' }, icon('check', 16), 'Already learned')),
       h('div', { class: 'filters' }, search, catSelect, statusSelect),
       list),
   );

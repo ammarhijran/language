@@ -73,8 +73,33 @@ export function pronunciationPanel(ctx, word, { compact = false } = {}) {
 
 /** Secondary line under a word: kana reading, transliteration… (null when the pack has none). */
 export function readingLine(ctx, word, cls = 'reading') {
-  const r = ctx.lang.reading(word);
-  return r ? h('p', { class: cls }, r) : null;
+  return readingText(ctx.lang.reading(word), cls);
+}
+
+/**
+ * A reading as a paragraph. One in parts (kana · rōmaji) keeps its parts
+ * whole: side by side while they fit, the second under the first when they
+ * don't (css .rd-split), so a line never ends on a lone "·". Screen readers
+ * still hear the separator.
+ */
+export function readingText(r, cls = 'reading', tag = 'p') {
+  if (!r) return null;
+  const parts = String(r).split(' · ');
+  if (parts.length < 2) return h(tag, { class: cls, lang: scriptLang(r) }, r);
+  return h(tag, { class: `${cls} rd-split${[...r].length > 22 ? ' rd-long' : ''}` },
+    parts.map((t, i) => [i ? h('span', { class: 'rd-sep' }, ' · ') : null, h('span', { class: 'rd-part', lang: scriptLang(t) }, t)]));
+}
+
+/**
+ * The language of a reading's part when it is written in a script with its
+ * own font (kana or kanji, Arabic), else null: the kana of "みず · mizu" is
+ * then set in the Japanese font, not a fallback (which can be a Chinese one).
+ */
+export function scriptLang(text) {
+  const t = String(text ?? '');
+  if (/[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u.test(t)) return 'ja';
+  if (/\p{Script=Arabic}/u.test(t)) return 'ar';
+  return null;
 }
 
 /**
@@ -98,9 +123,9 @@ export function exampleBlock(ctx, word) {
   const reading = ex.kana || ex.tl ? ctx.lang.reading(ex) : null;
   return h('div', { class: 'example' },
     playButton(ctx, ex, { label: 'Play example' }),
-    h('div', null,
+    h('div', { class: 'example-text' },
       h('p', { class: 'ex-tr', lang: ctx.lang.code }, ex.tr),
-      reading ? h('p', { class: 'reading small' }, reading) : null,
+      readingText(reading, 'reading small'),
       h('p', { class: 'ex-en' }, ex.en)),
   );
 }
@@ -415,7 +440,7 @@ export function registerBlock(ctx, word, { compact = false } = {}) {
       playButton(ctx, w),
       h('span', null,
         h('b', { lang: lang.code }, w.tr),
-        lang.reading(w) ? h('small', { class: 'reading small' }, lang.reading(w)) : null)),
+        readingText(lang.reading(w), 'reading small', 'small'))),
     !compact && w.en && w.en !== word.en ? h('p', { class: 'muted small' }, w.en) : null);
   return h('div', { class: `register${compact ? ' compact' : ''}`, role: 'group', 'aria-label': 'Everyday speech compared with the proper form' },
     side(everyday, '🗣️ What people say', 'everyday'),
@@ -509,9 +534,44 @@ export function backLink(ctx, href, label) {
         e.preventDefault();
         history.back();
       },
-    }, icon('back', 16), prev.title);
+    }, icon('back', 16), h('span', { lang: /[A-Za-z]/.test(prev.title) ? null : scriptLang(prev.title) }, prev.title));
   }
   return h('a', { href, class: 'back-link' }, icon('back', 16), label);
+}
+
+/**
+ * A bottom sheet (dialog) over the screen: `build(close)` returns its content.
+ * Escape, the ✕, the backdrop and Android back (which sends Escape to an open
+ * dialog) close it; Tab stays inside; focus returns to `opener`. Returns close().
+ */
+export function bottomSheet(ctx, { label, build, opener = document.activeElement, className = '' }) {
+  let onKey = null;
+  const close = () => {
+    if (!wrap.isConnected) return;
+    document.removeEventListener('keydown', onKey, true);
+    wrap.remove();
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
+  };
+  const sheet = h('div', { class: `sheet ${className}`, role: 'dialog', 'aria-modal': 'true', 'aria-label': label },
+    h('button', { type: 'button', class: 'icon-btn sheet-close', 'aria-label': 'Close', onclick: close }, icon('x')),
+    build(close));
+  const wrap = h('div', { class: 'sheet-wrap' }, h('div', { class: 'sheet-backdrop', onclick: close }), sheet);
+  onKey = (e) => {
+    e.stopPropagation(); // the screen's own shortcuts stay off while it is open
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key === 'Tab') {
+      const items = [...sheet.querySelectorAll('button, a[href], select, input')].filter((x) => !x.disabled);
+      const at = items.indexOf(document.activeElement);
+      e.preventDefault();
+      items[at < 0 ? 0 : (at + (e.shiftKey ? -1 : 1) + items.length) % items.length]?.focus();
+    }
+  };
+  document.body.append(wrap);
+  document.addEventListener('keydown', onKey, true);
+  ctx.onCleanup(close);
+  const first = sheet.querySelector('.sheet-focus') || sheet.querySelector('button:not(.sheet-close), a[href]') || sheet.querySelector('button');
+  first?.focus({ preventScroll: true });
+  return close;
 }
 
 // ---------- Topic tiles ----------
@@ -597,8 +657,9 @@ function readingNode(lang, entry, cls = 'pr-reading') {
   const r = lang.reading(entry);
   if (!r) return null;
   const parts = String(r).split(' · ');
-  if (parts.length < 2 || [...r].length <= 26) return h('span', { class: cls }, r);
-  return h('span', { class: `${cls} parts` }, parts.map((t) => h('span', null, t)));
+  if (parts.length < 2) return h('span', { class: cls, lang: scriptLang(r) }, r);
+  if ([...r].length <= 26) return h('span', { class: cls }, parts.map((t, i) => [i ? ' · ' : null, h('span', { lang: scriptLang(t) }, t)]));
+  return h('span', { class: `${cls} parts` }, parts.map((t) => h('span', { lang: scriptLang(t) }, t)));
 }
 
 /** The other-register form of an entry, as a line under its row. */

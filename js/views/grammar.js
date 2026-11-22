@@ -1,22 +1,38 @@
 // Grammar guide: a list of short lessons per language, each with explanations,
 // tables, audio examples and a 4-question quiz.
 import { h, icon, set, bindKeys } from '../ui.js';
-import { playButton } from '../components.js';
+import { playButton, backLink, readingText } from '../components.js';
 import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
 
-/** Plain text with **bold** → nodes (no HTML parsing). */
-export function rich(text) {
-  return String(text).split(/\*\*(.+?)\*\*/g).map((part, i) => (i % 2 ? h('b', null, part) : part));
+// Runs of Arabic or Japanese inside the English text of a lesson get their
+// language, so they are set in the script's font and Arabic keeps its
+// direction inside an English sentence.
+const ARABIC = '؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿';
+const SCRIPT_RUN = {
+  ar: new RegExp(`([${ARABIC}]+(?:[  ]+[${ARABIC}]+)*)`, 'u'),
+  ja: /([　-〿぀-ヿ㐀-䶿一-鿿豈-﫿！-～｡-ﾟ]+)/u,
+};
+export function scriptRuns(text, code) {
+  const re = SCRIPT_RUN[code];
+  if (!re) return text;
+  return String(text).split(re).map((part, i) => (i % 2 ? h('span', { lang: code }, part) : part)).filter((p) => p !== '');
 }
-const paragraphs = (text) => String(text || '').split(/\n{2,}/).map((p) => h('p', null, rich(p)));
+
+/** Plain text with **bold** → nodes (no HTML parsing); `code`: tag that language's script in it. */
+export function rich(text, code) {
+  return String(text).split(/\*\*(.+?)\*\*/g).map((part, i) => (i % 2 ? h('b', null, scriptRuns(part, code)) : scriptRuns(part, code)));
+}
+const plain = (text) => String(text).replace(/\*\*/g, '');
+const paragraphs = (text, code) => String(text || '').split(/\n{2,}/).map((p) => h('p', null, rich(p, code)));
+const LESSONS_HREF = '#/learn/g/grammar';
 
 function lessonCard(ctx, lesson, index) {
   const best = ctx.game.grammarBest(ctx.lang.code, lesson.id);
   return h('a', { class: `grammar-card${best != null ? ' done' : ''}`, href: `#/grammar/${encodeURIComponent(lesson.id)}` },
     h('span', { class: 'grammar-num', 'aria-hidden': 'true' }, best != null ? '✓' : String(index + 1)),
     h('span', { class: 'grammar-text' },
-      h('b', null, lesson.title),
-      h('small', null, lesson.summary)),
+      h('b', null, rich(lesson.title, ctx.lang.code)),
+      h('small', null, rich(lesson.summary, ctx.lang.code))),
     h('span', { class: `badge level-${lesson.level}` }, lesson.level));
 }
 
@@ -25,7 +41,7 @@ function list(ctx) {
   const lessons = lang.grammar || [];
   const done = lessons.filter((l) => ctx.game.grammarBest(lang.code, l.id) != null).length;
   return h('div', { class: 'view' },
-    h('a', { href: '#/learn', class: 'back-link' }, icon('back', 16), 'Learn'),
+    backLink(ctx, LESSONS_HREF, 'Learn'),
     h('h1', null, `${lang.name} grammar`),
     lessons.length
       ? h('p', { class: 'muted' }, `${lessons.length} short lessons, from first sentences to everyday speech — each ends with a quick quiz. ${done ? `${done} done.` : ''}`)
@@ -36,66 +52,127 @@ function list(ctx) {
 
 function example(ctx, ex) {
   const { lang } = ctx;
-  const reading = lang.reading({ ...ex, en: ex.en });
   return h('li', { class: 'g-example' },
-    playButton(ctx, ex.tr, { label: 'Play example' }),
+    playButton(ctx, ex, { label: 'Play example' }),
     h('div', null,
       h('p', { class: 'ex-tr', lang: lang.code }, ex.tr),
-      reading ? h('p', { class: 'reading small' }, reading) : null,
+      readingText(lang.reading({ ...ex, en: ex.en }), 'reading small'),
       h('p', { class: 'ex-en' }, ex.en),
-      ex.note ? h('p', { class: 'g-note' }, ex.note) : null));
+      ex.note ? h('p', { class: 'g-note' }, rich(ex.note, lang.code)) : null));
 }
 
-function table(t) {
-  return h('div', { class: 'g-table-wrap' },
-    h('table', { class: 'g-table' },
-      h('thead', null, h('tr', null, t.head.map((c) => h('th', { scope: 'col' }, rich(c))))),
-      h('tbody', null, t.rows.map((r) => h('tr', null, r.map((c, i) => (i === 0 ? h('th', { scope: 'row' }, rich(c)) : h('td', null, rich(c)))))))));
+/**
+ * A lesson table. With 3+ columns it stacks on phones (css .g-table.stack):
+ * each row a small card, its cells labelled with their column. The roles keep
+ * it a table for screen readers once its display changes.
+ */
+function table(t, code) {
+  const labels = t.head.map(plain);
+  // Stacked on phones when a row would not fit: 4+ columns, or 3 with long cells.
+  const rowLen = t.rows.reduce((sum, r) => sum + r.reduce((n, c) => n + [...plain(c)].length, 0), 0) / (t.rows.length || 1);
+  const stack = t.head.length >= 4 || (t.head.length === 3 && rowLen > 28);
+  return h('div', { class: `g-table-wrap${stack ? ' stacked' : ''}` },
+    h('table', { class: `g-table${stack ? ' stack' : ''}`, role: 'table' },
+      h('thead', { role: 'rowgroup' }, h('tr', { role: 'row' }, t.head.map((c) => h('th', { scope: 'col', role: 'columnheader' }, rich(c, code))))),
+      h('tbody', { role: 'rowgroup' }, t.rows.map((r) => h('tr', { role: 'row' }, r.map((c, i) => (i === 0
+        ? h('th', { scope: 'row', role: 'rowheader' }, rich(c, code))
+        : h('td', { role: 'cell', 'data-label': labels[i] || '' }, h('span', { class: 'g-cell' }, rich(c, code))))))))));
 }
 
+/** The end-of-lesson quiz, one question at a time (keys 1–4 answer, Enter goes on). */
 function quiz(ctx, lesson, next) {
-  const wrap = h('section', { class: 'card g-quiz' });
-  const answers = new Array(lesson.quiz.length).fill(null);
-  let finished = false;
+  const code = ctx.lang.code;
+  const qs = lesson.quiz;
+  const wrap = h('section', { class: 'card g-quiz', id: 'g-quiz', 'aria-labelledby': 'g-quiz-title' });
+  const answers = new Array(qs.length).fill(null);
+  const dots = h('span', { class: 'g-quiz-dots', 'aria-hidden': 'true' }, qs.map(() => h('i')));
+  const counter = h('span', { class: 'muted small' });
+  const stage = h('div', { 'aria-live': 'polite' });
+  let at = 0;
+  let unbind = () => {};
+  ctx.onCleanup(() => unbind());
+
+  function paintDots() {
+    [...dots.children].forEach((d, i) => {
+      d.className = answers[i] == null ? (i === at ? 'now' : '') : answers[i] === qs[i].answer ? 'right' : 'wrong';
+    });
+    counter.textContent = at < qs.length ? `${at + 1} of ${qs.length}` : `${qs.length} of ${qs.length}`;
+  }
 
   function finish() {
-    if (finished) return;
-    finished = true;
-    const correct = answers.filter((a, i) => a === lesson.quiz[i].answer).length;
-    ctx.store.logActivity(ctx.lang.code, { practiced: lesson.quiz.length });
-    const xp = ctx.game.grammarDone({ lang: ctx.lang.code, id: lesson.id, correct, total: lesson.quiz.length });
-    wrap.append(h('div', { class: 'summary g-result' },
-      h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, correct === lesson.quiz.length ? '🌟' : '📘'),
-      h('h2', null, `${correct} / ${lesson.quiz.length} correct`),
+    unbind();
+    const correct = answers.filter((a, i) => a === qs[i].answer).length;
+    ctx.store.logActivity(code, { practiced: qs.length });
+    const xp = ctx.game.grammarDone({ lang: code, id: lesson.id, correct, total: qs.length });
+    paintDots();
+    set(stage, h('div', { class: 'summary g-result' },
+      h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, correct === qs.length ? '🌟' : '📘'),
+      h('h3', { class: 'g-result-title', tabindex: '-1' }, `${correct} / ${qs.length} correct`),
       xp ? h('p', { class: 'muted' }, `+${xp} XP`) : null,
+      h('ul', { class: 'g-review' }, qs.map((q, i) => h('li', { class: answers[i] === q.answer ? 'right' : 'wrong' },
+        icon(answers[i] === q.answer ? 'check' : 'x', 16),
+        h('span', null, rich(q.q, code))))),
       h('div', { class: 'actions stack' },
         next ? h('a', { class: 'btn primary wide', href: `#/grammar/${encodeURIComponent(next.id)}` }, `Next: ${next.title}`, icon('arrow', 18)) : null,
-        h('a', { class: 'btn wide', href: '#/grammar' }, 'All lessons'))));
+        h('button', { type: 'button', class: 'btn wide', onclick: () => { answers.fill(null); at = 0; show(); } }, icon('repeat', 18), 'Try the quiz again'),
+        h('a', { class: 'btn ghost wide', href: LESSONS_HREF }, 'All lessons'))));
+    stage.querySelector('.g-result-title')?.focus({ preventScroll: true });
     ctx.flushRewards?.();
   }
 
-  const qs = lesson.quiz.map((q, qi) => {
-    const feedback = h('p', { class: 'g-explain', 'aria-live': 'polite' });
-    const buttons = q.options.map((opt, oi) => h('button', {
-      type: 'button', class: 'option',
-      onclick: () => {
-        if (answers[qi] !== null) return;
-        answers[qi] = oi;
-        buttons.forEach((b, j) => {
-          b.disabled = true;
-          if (j === q.answer) b.classList.add('correct');
-          else if (j === oi) b.classList.add('wrong');
-        });
-        set(feedback, h('b', null, oi === q.answer ? 'Correct. ' : 'Not quite. '), rich(q.explain || ''));
-        if (answers.every((a) => a !== null)) finish();
-      },
-    }, h('span', { class: 'option-label' }, rich(opt))));
-    return h('div', { class: 'g-q' },
-      h('p', { class: 'g-q-text' }, h('b', null, `${qi + 1}. `), rich(q.q)),
+  function show() {
+    unbind();
+    paintDots();
+    const q = qs[at];
+    const feedback = h('div', { class: 'g-explain' });
+    const nextBtn = h('button', {
+      type: 'button', class: 'btn primary wide', hidden: true,
+      onclick: () => { at++; if (at < qs.length) show(); else finish(); },
+    }, at + 1 < qs.length ? 'Next question' : 'See my score', icon('arrow', 18));
+    const choose = (oi) => {
+      if (answers[at] !== null || !buttons[oi]) return;
+      answers[at] = oi;
+      const right = oi === q.answer;
+      buttons.forEach((b, j) => {
+        b.disabled = true;
+        if (j === q.answer) { b.classList.add('correct'); b.append(h('span', { class: 'mark yes', 'aria-hidden': 'true' }, icon('check', 16))); }
+        else if (j === oi) { b.classList.add('wrong'); b.append(h('span', { class: 'mark no', 'aria-hidden': 'true' }, icon('x', 16))); }
+        else b.classList.add('dim');
+      });
+      if (right) buttons[oi].classList.add('picked');
+      feedback.className = `g-explain ${right ? 'good' : 'bad'}`;
+      set(feedback, h('b', null, right ? 'Correct. ' : 'Not quite. '), rich(q.explain || '', code));
+      paintDots();
+      nextBtn.hidden = false;
+      nextBtn.focus({ preventScroll: true });
+    };
+    const buttons = q.options.map((opt, oi) => h('button', { type: 'button', class: 'option', onclick: () => choose(oi) },
+      h('span', { class: 'kbd', 'aria-hidden': 'true' }, String(oi + 1)),
+      h('span', { class: 'option-label' }, rich(opt, code))));
+    set(stage,
+      h('p', { class: 'g-q-text' }, rich(q.q, code)),
       h('div', { class: 'options' }, buttons),
-      feedback);
-  });
-  set(wrap, h('h2', { class: 'card-title' }, '✏️ Quick check'), qs);
+      feedback,
+      h('div', { class: 'actions' }, nextBtn));
+    // The keys answer only while the quiz is on screen (not while reading the lesson above it).
+    const onScreen = () => {
+      if (!wrap.getBoundingClientRect) return true;
+      const r = wrap.getBoundingClientRect();
+      return r.top < innerHeight && r.bottom > 0;
+    };
+    const key = (fn) => () => { if (onScreen()) fn(); };
+    unbind = bindKeys({
+      1: key(() => choose(0)), 2: key(() => choose(1)), 3: key(() => choose(2)), 4: key(() => choose(3)),
+      Enter: key(() => { if (!nextBtn.hidden) nextBtn.click(); }),
+    });
+  }
+
+  set(wrap,
+    h('div', { class: 'g-quiz-head' },
+      h('h2', { class: 'card-title', id: 'g-quiz-title' }, '✏️ Quick check'),
+      h('span', { class: 'g-quiz-progress' }, counter, ' ', dots)),
+    stage);
+  show();
   return wrap;
 }
 
@@ -104,34 +181,88 @@ function practiseCard(ctx, lesson) {
   const scope = `grammar:${lesson.id}`;
   const n = sentencesFor(ctx.lang, scope).length;
   if (n < MIN_SENTENCES) return null;
-  return h('section', { class: 'card g-practise' },
+  return h('section', { class: 'card g-practise', id: 'g-practise' },
     h('h2', { class: 'card-title' }, '🧩 Build the sentences'),
     h('p', { class: 'muted' }, `Put the words of this lesson’s ${n} example sentences back in order.`),
     h('a', { class: 'btn primary wide', href: `#/practice/build/${encodeURIComponent(scope)}` }, 'Practise these sentences', icon('arrow', 18)));
 }
 
+/**
+ * Section chips under the top bar: each jumps to its part of the lesson, and
+ * the one being read is marked as the page scrolls.
+ */
+function lessonNav(ctx, view, parts) {
+  const chips = parts.map((p, i) => h('button', {
+    type: 'button', 'aria-controls': p.el.id,
+    onclick: () => {
+      p.el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      const heading = p.el.querySelector('h2');
+      if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }); }
+      mark(i);
+    },
+  }, h('span', { class: 'g-nav-n', 'aria-hidden': 'true' }, p.n), h('span', null, scriptRuns(p.label, ctx.lang.code))));
+  const nav = h('nav', { class: 'g-nav', 'aria-label': 'In this lesson' }, chips);
+  let current = -1;
+  function mark(i) {
+    if (i === current) return;
+    current = i;
+    chips.forEach((c, j) => { c.classList.toggle('current', j === i); if (j === i) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current'); });
+    const c = chips[i];
+    if (c) nav.scrollTo?.({ left: Math.max(0, c.offsetLeft - 16), behavior: 'auto' });
+  }
+  let frame = 0;
+  const update = () => {
+    frame = 0;
+    if (!nav.isConnected) return;
+    const line = nav.getBoundingClientRect().bottom + 24;
+    let i = 0;
+    parts.forEach((p, j) => { if (p.el.getBoundingClientRect().top <= line) i = j; });
+    // At the very end of the page the last part is the one in view.
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) i = parts.length - 1;
+    mark(i);
+  };
+  const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
+  // The chips stay just under the top bar, whatever its height (safe area, font size).
+  const place = () => view.style.setProperty('--g-top', `${Math.round(document.querySelector('.topbar')?.getBoundingClientRect().height || 0)}px`);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', place);
+  ctx.onCleanup(() => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', place); if (frame) cancelAnimationFrame(frame); });
+  requestAnimationFrame(() => { place(); update(); });
+  mark(0);
+  return nav;
+}
+
 function lessonView(ctx, id) {
   const { lang } = ctx;
+  const code = lang.code;
   const lessons = lang.grammar || [];
   const i = lessons.findIndex((l) => l.id === id);
   if (i < 0) return list(ctx);
   const lesson = lessons[i];
   const next = lessons[i + 1];
-  const unbind = bindKeys({});
-  ctx.onCleanup(unbind);
-  return h('div', { class: 'view grammar-lesson' },
-    h('a', { href: '#/grammar', class: 'back-link' }, icon('back', 16), 'All grammar lessons'),
+  const sections = lesson.sections.map((s, si) => h('section', { class: 'card g-section', id: `g-s-${si + 1}`, 'aria-labelledby': `g-h-${si + 1}` },
+    h('h2', { class: 'card-title', id: `g-h-${si + 1}` }, h('span', { class: 'g-section-n', 'aria-hidden': 'true' }, `${si + 1}`), h('span', null, rich(s.heading, code))),
+    paragraphs(s.body, code),
+    s.table ? table(s.table, code) : null,
+    s.examples?.length ? h('ul', { class: 'g-examples' }, s.examples.map((ex) => example(ctx, ex))) : null));
+  const quizCard = lesson.quiz?.length ? quiz(ctx, lesson, next) : null;
+  const practise = practiseCard(ctx, lesson);
+  const parts = [
+    ...sections.map((el, si) => ({ el, n: String(si + 1), label: plain(lesson.sections[si].heading) })),
+    quizCard ? { el: quizCard, n: '✏️', label: 'Quick check' } : null,
+    practise ? { el: practise, n: '🧩', label: 'Sentences' } : null,
+  ].filter(Boolean);
+  const view = h('div', { class: 'view grammar-lesson' });
+  set(view,
+    backLink(ctx, LESSONS_HREF, 'Grammar'),
     h('p', { class: 'kicker' }, `Lesson ${i + 1} of ${lessons.length} · `, h('span', { class: `badge level-${lesson.level}` }, lesson.level)),
-    h('h1', null, lesson.title),
-    h('p', { class: 'muted' }, lesson.summary),
-    lesson.sections.map((s) => h('section', { class: 'card g-section' },
-      h('h2', { class: 'card-title' }, s.heading),
-      paragraphs(s.body),
-      s.table ? table(s.table) : null,
-      s.examples?.length ? h('ul', { class: 'g-examples' }, s.examples.map((ex) => example(ctx, ex))) : null)),
-    lesson.quiz?.length ? quiz(ctx, lesson, next) : null,
-    practiseCard(ctx, lesson),
-  );
+    h('h1', null, rich(lesson.title, code)),
+    h('p', { class: 'muted' }, rich(lesson.summary, code)),
+    parts.length > 1 ? lessonNav(ctx, view, parts) : null,
+    sections,
+    quizCard,
+    practise);
+  return view;
 }
 
 export default function grammar(ctx, id) {

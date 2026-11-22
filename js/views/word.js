@@ -1,13 +1,16 @@
 import { h, icon } from '../ui.js';
-import { audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge, sayLater } from '../components.js';
+import { audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge, sayLater, backLink, favButton } from '../components.js';
 import { status, STATUS_LABEL, markKnown } from '../srs.js';
+import { rich } from './grammar.js';
 
 export default function word(ctx, id) {
   const { lang, store } = ctx;
   const w = lang.byId(id);
   if (!w) {
-    return h('div', { class: 'view' }, h('div', { class: 'summary' },
-      h('h2', null, 'Word not found'), h('a', { class: 'btn primary', href: '#/progress' }, 'Go to the word list')));
+    return h('div', { class: 'view' },
+      backLink(ctx, '#/progress', 'Word list'),
+      h('div', { class: 'summary' },
+        h('h1', null, 'Word not found'), h('a', { class: 'btn primary', href: '#/progress' }, 'Go to the word list')));
   }
   const card = store.getCard(lang.code, w.id);
   const st = status(card);
@@ -15,20 +18,21 @@ export default function word(ctx, id) {
   if (ctx.settings.autoplay) sayLater(ctx, w.tr);
 
   return h('div', { class: 'view' },
-    h('a', { href: '#/progress', class: 'back-link' }, icon('back', 16), 'Word list'),
+    backLink(ctx, '#/progress', 'Word list'),
     h('article', { class: 'card word-detail' },
       h('div', { class: 'detail-meta' },
         h('span', { class: `badge ${st}` }, STATUS_LABEL[st]),
-        h('a', { href: `#/learn/${cat.id}`, class: 'muted small' }, `${cat.emoji} ${cat.name}`)),
+        cat ? h('a', { href: `#/topic/${encodeURIComponent(cat.id)}`, class: 'detail-topic' }, `${cat.emoji} ${cat.name}`) : null,
+        favButton(ctx, w)),
       h('div', { class: 'word-hero' },
         h('h1', { class: 'hero-tr', lang: lang.code }, w.tr),
         readingLine(ctx, w),
         h('p', { class: 'hero-en' }, w.en, ' ', regBadge(w))),
-      audioControls(ctx, w.tr),
+      audioControls(ctx, w),
       pronunciationPanel(ctx, w),
       registerBlock(ctx, w),
       exampleBlock(ctx, w),
-      w.note ? h('p', { class: 'note' }, w.note) : null,
+      w.note ? h('p', { class: 'note' }, rich(w.note, lang.code)) : null,
       st === 'new'
         ? h('button', {
           type: 'button', class: 'btn small',

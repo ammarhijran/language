@@ -1,12 +1,14 @@
 import { h, icon, shuffle, pick, bindKeys, set } from '../ui.js';
-import { playButton, pronunciationPanel, speakPractice, voiceBanner, exampleBlock, readingLine, cleanupScope, sayLater } from '../components.js';
+import { pronunciationPanel, speakPractice, voiceBanner, exampleBlock, readingLine, cleanupScope, sayLater, audioControls, bottomSheet } from '../components.js';
 import { learnedWords } from '../stats.js';
+import { rich } from './grammar.js';
 
 // Doing first (speaking, ear training), then the reference (letters, sounds).
+// `short`: the label on a phone, so the four always fit in one row.
 const TABS = [
   { id: 'drill', name: 'Speak' },
-  { id: 'ear', name: 'Ear training' },
-  { id: 'alphabet', name: 'Alphabet' },
+  { id: 'ear', name: 'Ear training', short: 'Ear' },
+  { id: 'alphabet', name: 'Alphabet', short: 'Letters', ja: 'Kana' },
   { id: 'sounds', name: 'Sounds' },
 ];
 
@@ -14,30 +16,97 @@ export default function pronounce(ctx, tab, ...args) {
   // Without a section: speaking, once there are a few words to say; before that, the letters.
   if (!TABS.some((t) => t.id === tab)) tab = learnedWords(ctx).length >= 5 ? 'drill' : 'alphabet';
   const body = { alphabet, sounds, ear, drill }[tab](ctx, ...args);
-  return h('div', { class: 'view' },
-    h('h1', null, 'Pronunciation'),
+  const code = ctx.lang.code;
+  return h('div', { class: 'view speak-lab' },
+    h('h1', null, 'Speak'),
     voiceBanner(ctx),
-    h('nav', { class: 'tabs', 'aria-label': 'Pronunciation sections' },
-      TABS.map((t) => h('a', { href: `#/speak/${t.id}`, class: t.id === tab ? 'active' : '', 'aria-current': t.id === tab ? 'page' : null }, t.name))),
+    h('nav', { class: 'tabs', 'aria-label': 'Speak sections' },
+      TABS.map((t) => {
+        const name = (code === 'ja' && t.ja) || t.name;
+        const short = (code === 'ja' && t.ja) || t.short;
+        return h('a', { href: `#/speak/${t.id}`, class: t.id === tab ? 'active' : '', 'aria-current': t.id === tab ? 'page' : null },
+          short ? [h('span', { class: 'tab-long' }, name), h('span', { class: 'tab-short', 'aria-hidden': 'true' }, short)] : name);
+      })),
     body,
   );
 }
 
+// The kana chart as the gojūon table: rows by consonant, columns a i u e o.
+const GOJUON = ['あいうえお', 'かきくけこ', 'さしすせそ', 'たちつてと', 'なにぬねの', 'はひふへほ', 'まみむめも', 'や_ゆ_よ', 'らりるれろ', 'わ___を', 'ん____'];
+// Arabic letters that never join the letter after them (no initial or medial form).
+const AR_NON_JOINING = new Set([...'اأإآدذرزوؤءة']);
+const TATWEEL = 'ـ';
+
+/** An Arabic letter's shapes: [label, text], in reading order (isolated first). */
+function arabicForms(letter) {
+  if (letter === 'ء') return [];
+  const forms = [['isolated', letter]];
+  if (!AR_NON_JOINING.has(letter)) forms.push(['initial', letter + TATWEEL], ['medial', TATWEEL + letter + TATWEEL]);
+  forms.push(['final', TATWEEL + letter]);
+  return forms;
+}
+
 function alphabet(ctx) {
   const { lang } = ctx;
+  const code = lang.code;
+  const tile = (l) => h('button', {
+    type: 'button', class: `letter${l.special ? ' special' : ''}`, 'aria-haspopup': 'dialog',
+    'aria-label': `${l.upper}${l.lowerIsName ? `, ${l.lower}` : ''}: /${l.ipa}/. ${l.hint}`,
+    onclick: (e) => open(l, e.currentTarget),
+  },
+    h('span', { class: 'letter-big', 'aria-hidden': 'true' },
+      h('span', { lang: code }, l.upper),
+      !l.lowerIsName && l.lower !== l.upper ? h('small', { lang: code }, l.lower) : null),
+    h('span', { class: 'ipa', 'aria-hidden': 'true' }, `/${l.ipa}/`));
+
+  function open(l, from) {
+    ctx.say(l.ex[0]);
+    ctx.game.letterTapped(code, l.key ?? l.lower);
+    const forms = code === 'ar' ? arabicForms(l.upper) : [];
+    bottomSheet(ctx, {
+      label: `${l.upper}${l.lowerIsName ? ` (${l.lower})` : ''}`,
+      opener: from,
+      className: 'letter-sheet',
+      build: () => [
+        h('p', { class: 'kicker' }, code === 'ja' ? 'Kana' : 'Letter', l.lowerIsName ? ` · ${l.lower}` : '', l.special ? ' · worth a closer look' : ''),
+        h('p', { class: 'letter-sheet-glyph' },
+          h('span', { lang: code }, l.upper),
+          !l.lowerIsName && l.lower !== l.upper ? h('small', { lang: code }, l.lower) : null,
+          h('span', { class: 'ipa' }, `/${l.ipa}/`)),
+        forms.length > 1 ? h('ul', { class: 'letter-forms', 'aria-label': 'Its shapes in a word' }, forms.map(([name, text]) =>
+          h('li', null, h('b', { lang: 'ar' }, text), h('small', null, name)))) : null,
+        h('p', null, rich(l.hint, code)),
+        h('div', { class: 'letter-sheet-ex' },
+          h('div', { class: 'example-text' }, h('b', { lang: code }, l.ex[0]), h('p', { class: 'muted' }, l.ex[1]))),
+        h('div', { class: 'button-row' },
+          h('button', { type: 'button', class: 'btn primary sheet-focus', onclick: () => ctx.say(l.ex[0]) }, icon('volume', 18), 'Listen'),
+          h('button', { type: 'button', class: 'btn', onclick: () => ctx.say(l.ex[0], { slow: true }) }, icon('slow', 18), 'Slowly')),
+      ],
+    });
+  }
+
+  let chart;
+  if (code === 'ja') {
+    const byKey = new Map(lang.alphabet.map((l) => [l.key ?? l.upper, l]));
+    const placed = new Set();
+    const cells = GOJUON.flatMap((row) => [...row].map((k) => {
+      const l = k === '_' ? null : byKey.get(k);
+      if (!l) return h('span', { class: 'letter-gap', 'aria-hidden': 'true' });
+      placed.add(l);
+      return tile(l);
+    }));
+    const extra = lang.alphabet.filter((l) => !placed.has(l));
+    chart = [
+      h('div', { class: 'letter-grid gojuon' }, cells),
+      extra.length ? h('div', { class: 'letter-grid letter-extra' }, extra.map(tile)) : null,
+    ];
+  } else {
+    chart = h('div', { class: 'letter-grid', dir: lang.dir === 'rtl' || code === 'ar' ? 'rtl' : null }, lang.alphabet.map(tile));
+  }
   return h('section', null,
     h('p', { class: 'muted' }, lang.alphabetIntro),
-    h('div', { class: 'letter-grid' }, lang.alphabet.map((l) =>
-      h('button', {
-        type: 'button', class: `letter${l.special ? ' special' : ''}`,
-        onclick: () => { ctx.say(l.ex[0]); ctx.game.letterTapped(lang.code, l.key ?? l.lower); },
-        'aria-label': `${l.upper}: ${l.hint}. Example ${l.ex[0]}, ${l.ex[1]}`,
-      },
-        h('span', { class: 'letter-big' }, h('span', { lang: lang.code }, l.upper), h('small', { lang: l.lowerIsName ? null : lang.code }, l.lower)),
-        h('span', { class: 'ipa' }, `/${l.ipa}/`),
-        h('span', { class: 'letter-hint' }, l.hint),
-        h('span', { class: 'letter-ex' }, h('b', { lang: lang.code }, l.ex[0]), ` ${l.ex[1]}`),
-      ))),
+    chart,
+    lang.alphabet.some((l) => l.special) ? h('p', { class: 'hint letter-legend' }, h('i', { 'aria-hidden': 'true' }), 'Tinted: sounds English speakers find new.') : null,
   );
 }
 
@@ -45,8 +114,8 @@ function sounds(ctx) {
   const { lang } = ctx;
   return h('section', { class: 'tips' }, lang.soundTips.map((t) =>
     h('article', { class: 'card tip' },
-      h('h2', null, t.title, t.ipa ? h('span', { class: 'ipa' }, ` /${t.ipa}/`) : null),
-      h('p', null, t.body),
+      h('h2', null, rich(t.title, lang.code), t.ipa ? h('span', { class: 'ipa' }, ` /${t.ipa}/`) : null),
+      h('p', null, rich(t.body, lang.code)),
       h('div', { class: 'chip-row' }, t.examples.map(([w, en]) =>
         h('button', { type: 'button', class: 'chip', onclick: () => ctx.say(w, { slow: true }) },
           icon('volume', 14), h('b', { lang: lang.code }, w), h('span', null, en)))),
@@ -62,7 +131,7 @@ function ear(ctx) {
       h('p', { class: 'muted' }, 'These word pairs differ by a single sound. Listen to both, then quiz yourself — training your ear is the fastest way to fix your own pronunciation.'),
       h('button', { type: 'button', class: 'btn primary wide', onclick: quiz }, icon('ear', 18), 'Quiz me (10 rounds)'),
       lang.minimalPairs.map((g) => h('div', { class: 'card pair-group' },
-        h('h2', { lang: lang.code }, g.contrast),
+        lang.code === 'ar' || lang.code === 'ja' ? h('h2', null, rich(g.contrast, lang.code)) : h('h2', { lang: lang.code }, g.contrast),
         g.pairs.map(([a, am, b, bm]) => h('div', { class: 'pair' },
           pairBtn(a, am), h('span', { class: 'vs' }, 'vs'), pairBtn(b, bm))))),
     );
@@ -186,9 +255,10 @@ function drill(ctx, scope, ...ids) {
     set(stage, h('div', { class: 'card drill-card' },
       h('p', { class: 'kicker' }, `${i + 1} / ${words.length}`),
       h('div', { class: 'word-hero' },
-        h('h2', { class: 'hero-tr', lang: lang.code }, w.tr, ' ', playButton(c, w.tr), playButton(c, w.tr, { slow: true })),
+        h('h2', { class: 'hero-tr', lang: lang.code }, w.tr),
         readingLine(c, w),
         h('p', { class: 'hero-en' }, w.en)),
+      audioControls(c, w),
       pronunciationPanel(c, w),
       speakPractice(c, w),
       exampleBlock(c, w),

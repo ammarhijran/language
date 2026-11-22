@@ -1,6 +1,6 @@
 // "Already learned": tick off words you already know so lessons skip them.
 import { h, icon, set } from '../ui.js';
-import { playButton } from '../components.js';
+import { playButton, backLink } from '../components.js';
 import { markKnown, status, STATUS_LABEL } from '../srs.js';
 
 export default function known(ctx, catId) {
@@ -62,18 +62,21 @@ export default function known(ctx, catId) {
     for (const id of add) store.setCard(lang.code, id, markKnown());
     for (const id of remove) store.deleteCard(lang.code, id);
     ctx.toast(add.length ? `Marked ${add.length} word${add.length === 1 ? '' : 's'} as already learned` : 'Saved');
-    ctx.go(`/learn/${cat.id}`);
+    // Back to the topic, which shows what changed (back in history when that is where the learner came from).
+    const topicPath = `/topic/${encodeURIComponent(cat.id)}`;
+    if (ctx.previous?.()?.href === `#${topicPath}`) history.back();
+    else ctx.go(topicPath);
   }
 
   set(list, words.map(row));
   refresh();
 
   return h('div', { class: 'view' },
-    h('a', { href: '#/learn', class: 'back-link' }, icon('back', 16), 'Learn'),
+    backLink(ctx, `#/topic/${encodeURIComponent(cat.id)}`, cat.name),
     h('h1', null, 'Already learned'),
     h('p', { class: 'muted' }, 'Tick the words you already know. Lessons will skip them, and they’ll only come back for a quick check in about a month — if you get one wrong then, it goes back into normal practice.'),
     h('label', { class: 'field' }, h('span', null, 'Topic'),
-      h('select', { class: 'select', onchange: (e) => ctx.go(`/known/${e.target.value}`) },
+      h('select', { class: 'select', onchange: (e) => (ctx.replace ? ctx.replace(`/known/${e.target.value}`) : ctx.go(`/known/${e.target.value}`)) },
         lang.categories.map((c) => h('option', { value: c.id, selected: c.id === cat.id }, `${c.emoji} ${c.name}`)))),
     h('div', { class: 'known-tools' },
       h('button', { type: 'button', class: 'btn small', onclick: () => selectAll(true) }, 'Tick all'),

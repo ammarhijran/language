@@ -10,7 +10,7 @@ import { loadTexts, cachedTexts } from '../reader.js';
 
 // ---------- Ranking (no DOM: tested in tests/nav.test.js) ----------
 
-const formsCache = new WeakMap(); // lang → Map(word id → { main, pair, en, pairEn })
+const formsCache = new WeakMap(); // lang → Map(word id → { main, mainStarts, pair, pairStarts, en, pairEn })
 
 const LEADING = /^(?:to|the|a|an)\s+/;
 /** The English glosses of a meaning: "to eat; a meal (food)" → ['eat', 'meal']. */
@@ -19,6 +19,32 @@ export function glossesOf(en) {
     .map((g) => g.trim().replace(/[.!?…"“”]+/g, '').replace(LEADING, '').trim())
     .filter(Boolean);
 }
+
+/**
+ * Egyptian romanisation folded onto the three MSA vowels: e → i, o → u,
+ * ē → ī, ō → ū (and the article el-/il- → al-), so "hesab" meets ḥisāb and
+ * "maalesh" meets maʿlish. Only for Latin text in Arabic (null otherwise).
+ */
+export function foldEgyptian(lang, s) {
+  if (lang.code !== 'ar' || !s || /\p{Script=Arabic}/u.test(s) || !/[a-zāīūēō]/i.test(s)) return null;
+  const out = s.toLowerCase().replace(/(^|[\s-])(?:el|il)(?=[-\s])/g, '$1al')
+    .replace(/ē/g, 'ī').replace(/ō/g, 'ū').replace(/e/g, 'i').replace(/o/g, 'u');
+  return out === s ? null : out;
+}
+
+/** The comparison keys of a string: as written (normalized), without diacritics, and folded (Arabic). */
+function keysFor(lang, f) {
+  const keys = [lang.normalize(f), lang.stripDiacritics(f)];
+  const folded = foldEgyptian(lang, f);
+  if (folded) keys.push(lang.normalize(folded), lang.stripDiacritics(folded));
+  return keys.filter(Boolean);
+}
+
+// Where a word starts inside a form. Arabic and Japanese keys lose their
+// spaces when normalized, so the words are split before (kana and rōmaji
+// readings, transliterations) and the Arabic article al-/ال counts as a start.
+const WORD_BREAK = /[\s\-‐.,!?؟،؛:;"“”()«»「」『』、。・…]+/u;
+const AR_ARTICLE = /^(?:ال|al)(?=..)/;
 
 function keysOf(lang, entry, withAnswers) {
   const forms = [entry.tr];
@@ -29,11 +55,18 @@ function keysOf(lang, entry, withAnswers) {
   const reading = lang.reading(entry);
   if (reading) forms.push(...String(reading).split(' · '));
   const keys = new Set();
+  const starts = new Set();
   for (const f of forms) {
     if (typeof f !== 'string' || !f) continue;
-    for (const k of [lang.normalize(f), lang.stripDiacritics(f)]) if (k) keys.add(k);
+    for (const k of keysFor(lang, f)) keys.add(k);
+    f.split(WORD_BREAK).filter(Boolean).forEach((word, i) => {
+      for (const k of keysFor(lang, word)) {
+        if (i > 0) starts.add(k);
+        if (lang.code === 'ar' && AR_ARTICLE.test(k)) starts.add(k.replace(AR_ARTICLE, ''));
+      }
+    });
   }
-  return [...keys];
+  return { keys: [...keys], starts: [...starts] };
 }
 
 function formsOf(lang, w) {
@@ -42,9 +75,13 @@ function formsOf(lang, w) {
   let f = map.get(w.id);
   if (!f) {
     const pair = w.pair ? { ...w.pair, en: w.pair.en || w.en, cat: w.cat } : null;
+    const main = keysOf(lang, w, true);
+    const other = pair ? keysOf(lang, pair, true) : { keys: [], starts: [] };
     f = {
-      main: keysOf(lang, w, true),
-      pair: pair ? keysOf(lang, pair, true) : [],
+      main: main.keys,
+      mainStarts: main.starts,
+      pair: other.keys,
+      pairStarts: other.starts,
       en: String(w.en || '').toLowerCase(),
       pairEn: pair && pair.en !== w.en ? String(pair.en).toLowerCase() : '',
     };
@@ -63,18 +100,20 @@ const startsAWord = (k, q) => {
 
 /**
  * 0 the whole form, 2 its start, 3 the start of a word in it, 4 anywhere in it;
- * null when no form matches. `qs` is the query as typed (normalized) and then
- * without diacritics: a match only once the marks the learner typed are dropped
- * counts a little less (Arabic ماء "water" before مَا "what").
+ * null when no form matches. `qs` is the query as typed (normalized), then
+ * without diacritics, then folded: a match only once the marks the learner
+ * typed are dropped counts a little less (Arabic ماء "water" before مَا "what").
+ * `starts`: the keys of the words that start inside the forms (see keysOf).
  */
-function formScore(keys, qs) {
+function formScore(keys, starts, qs) {
   let best = null;
+  const consider = (s, i) => { if (s != null && (best == null || s + i * 0.1 < best)) best = s + i * 0.1; };
   for (const k of keys) {
-    qs.forEach((q, i) => {
-      const s = k === q ? 0 : k.startsWith(q) ? 2 : !k.includes(q) ? null : startsAWord(k, q) ? 3 : 4;
-      if (s != null && (best == null || s + i * 0.1 < best)) best = s + i * 0.1;
-    });
+    qs.forEach((q, i) => consider(k === q ? 0 : k.startsWith(q) ? 2 : !k.includes(q) ? null : startsAWord(k, q) ? 3 : 4, i));
     if (best === 0) return 0;
+  }
+  if (best == null || best >= 3) {
+    for (const k of starts) qs.forEach((q, i) => consider(k.startsWith(q) ? 3 : null, i));
   }
   return best;
 }
@@ -98,13 +137,13 @@ function englishScore(en, q) {
 export function scoreEntry(lang, w, query) {
   const q = String(query || '').trim();
   if (!q) return null;
-  const qs = [...new Set([lang.normalize(q), lang.stripDiacritics(q)])].filter(Boolean);
+  const qs = [...new Set(keysFor(lang, q))];
   const lq = q.toLowerCase();
   const f = formsOf(lang, w);
   const scores = [
-    qs.length ? formScore(f.main, qs) : null,
+    qs.length ? formScore(f.main, f.mainStarts, qs) : null,
     englishScore(f.en, lq),
-    qs.length && f.pair.length ? formScore(f.pair, qs) : null,
+    qs.length && f.pair.length ? formScore(f.pair, f.pairStarts, qs) : null,
     englishScore(f.pairEn, lq),
   ];
   const pairOff = [0, 0, 0.5, 0.5];

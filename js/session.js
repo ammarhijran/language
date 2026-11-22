@@ -8,6 +8,20 @@ import { AGAIN } from './srs.js';
 
 export const FOCUS_CLASS = 'in-session';
 
+// The running session's answer to the system back button (Android), or null.
+let backHandler = null;
+
+/**
+ * The system back button was pressed (js/app.js). A running session that
+ * would lose answers asks the same "Leave this lesson?" question as its ✕
+ * and returns true; `leave()` then runs if the learner leaves. Otherwise
+ * (no session, nothing answered yet, a session that saves every answer)
+ * it returns false and the back button does what it always does.
+ */
+export function sessionBack(leave) {
+  return backHandler ? backHandler(leave) : false;
+}
+
 const bodyClass = (on) => {
   const list = typeof document !== 'undefined' ? document.body?.classList : null;
   if (list) list[on ? 'add' : 'remove'](FOCUS_CLASS);
@@ -62,6 +76,7 @@ export function runSession(ctx, { items, onResult, onFinish, exitHref = '#/', la
     ? requestAnimationFrame(() => { if (running && root.isConnected) bodyClass(true); })
     : null;
   const endFocus = () => {
+    if (backHandler === onBack) backHandler = null;
     running = false;
     if (raf != null) cancelAnimationFrame(raf);
     closeConfirm?.();
@@ -81,20 +96,40 @@ export function runSession(ctx, { items, onResult, onFinish, exitHref = '#/', la
     ctx.flushRewards?.();
   });
 
+  /** The question to ask before leaving, or null when leaving loses nothing. */
+  function leaveQuestion() {
+    if (!confirmExit || !running || !done) return null;
+    // `left` counts the card on screen, which isn't in the queue any more.
+    return typeof confirmExit === 'function' ? confirmExit({ done, left: queue.length + 1 }) : confirmExit;
+  }
+
   /** Leaving with the ✕: ask first only if this session would lose answers. */
   function onExit(e) {
-    if (!confirmExit || !running || !done) return; // the link just leaves
-    // `left` counts the card on screen, which isn't in the queue any more.
-    const ask = typeof confirmExit === 'function' ? confirmExit({ done, left: queue.length + 1 }) : confirmExit;
-    if (!ask) return;
+    const ask = leaveQuestion();
+    if (!ask) return; // the link just leaves
     e.preventDefault();
     askToLeave(ask);
   }
 
-  function askToLeave(question) {
+  /** The system back button: the same question as the ✕; "Leave" then goes back (`leave`). */
+  function onBack(leave) {
+    const ask = leaveQuestion();
+    if (!ask) return false;
+    askToLeave(ask, leave);
+    return true;
+  }
+  backHandler = onBack;
+
+  function askToLeave(question, leaveBy = null) {
     if (closeConfirm) return;
     const stay = h('button', { type: 'button', class: 'btn wide', onclick: () => close() }, 'Keep going');
-    const leave = h('a', { class: 'btn primary wide', href: exitHref, onclick: () => close(false) }, 'Leave');
+    const leave = h('a', {
+      class: 'btn primary wide', href: exitHref,
+      onclick: (e) => {
+        close(false);
+        if (leaveBy) { e.preventDefault(); leaveBy(); }
+      },
+    }, 'Leave');
     const box = h('div', { class: 'session-confirm', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'session-confirm-q' },
       h('div', { class: 'session-confirm-card' },
         h('p', { id: 'session-confirm-q', class: 'session-confirm-q' }, question),

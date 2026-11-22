@@ -6,6 +6,7 @@ import { encode, decode, isEncrypted, mergeAll, passphraseOk, MIN_PASSPHRASE, Sy
 import { languages } from '../languages/index.js';
 import { levelFromXp } from '../game.js';
 import { hasPlugin, plugin } from '../native.js';
+import { backLink } from '../components.js';
 
 const kb = (s) => `${(s.length / 1024).toFixed(s.length < 10240 ? 1 : 0)} kB`;
 const when = (t) => new Date(t).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -38,6 +39,39 @@ async function copy(text, fallbackEl) {
     fallbackEl.select();
     document.execCommand('copy');
   }
+}
+
+const plural = (n, one, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
+
+/** What merging changes in one language: its words, then its ★ saved entries (only the parts that apply). */
+export function langChanges(l) {
+  const parts = [];
+  const words = l.remoteWords > 0 || l.added || l.updated || l.removed;
+  if (words) {
+    parts.push(`${plural(l.remoteWords, 'word')} · `, h('b', null, `${l.added} new`), ` · ${l.updated} updated`);
+    if (l.removed) parts.push(` · ${l.removed} removed`);
+    if (l.skipped) parts.push(` · ${l.skipped} from before your reset left out`);
+  }
+  if (l.savedAdded || l.savedRemoved) {
+    if (parts.length) parts.push(' · ');
+    if (l.savedAdded) parts.push(h('b', null, `★ ${l.savedAdded} saved`));
+    if (l.savedAdded && l.savedRemoved) parts.push(', ');
+    if (l.savedRemoved) parts.push(`${l.savedRemoved} unsaved`);
+  }
+  return parts;
+}
+
+/** The sentence after a merge: words first, then saved entries; never "0 new, 0 updated" for a code that only changes ★. */
+export function mergedText(rows) {
+  const sum = (k) => rows.reduce((s, l) => s + (l[k] || 0), 0);
+  const [added, updated, removed, savedAdded, savedRemoved] = ['added', 'updated', 'removed', 'savedAdded', 'savedRemoved'].map(sum);
+  const out = [];
+  if (added || updated || removed) out.push(`${added} new and ${updated} updated words${removed ? `, ${removed} removed` : ''}`);
+  if (savedAdded) out.push(`${plural(savedAdded, 'entry', 'entries')} added to your saved phrases`);
+  if (savedRemoved) out.push(`${plural(savedRemoved, 'entry', 'entries')} removed from them`);
+  if (!out.length) return 'Progress combined. ';
+  const text = out.length > 1 ? `${out.slice(0, -1).join(', ')} and ${out[out.length - 1]}` : out[0];
+  return `${text[0].toUpperCase()}${text.slice(1)}. `;
 }
 
 const sumXp = (game) => Object.values(game?.dev || {}).reduce((s, d) => s + (d.xp || 0), 0);
@@ -155,7 +189,7 @@ export default function sync(ctx) {
     const sameDevice = payload.device === store.deviceId();
     const lvBefore = levelFromXp(sumXp(local.game)).level;
     const lvAfter = levelFromXp(sumXp(merged.game)).level;
-    const rows = merged.summary.langs.filter((l) => languages[l.code] && (l.remoteWords > 0 || l.added || l.updated || l.removed));
+    const rows = merged.summary.langs.filter((l) => languages[l.code] && (l.remoteWords > 0 || l.added || l.updated || l.removed || l.savedAdded || l.savedRemoved));
     const nothing = !merged.summary.changed;
     // Words from before "Reset progress" on this device are left out on purpose: say so.
     const skipped = rows.some((l) => l.skipped);
@@ -165,8 +199,7 @@ export default function sync(ctx) {
         rows.length
           ? h('ul', { class: 'sync-langs' }, rows.map((l) => h('li', null,
             h('span', null, languages[l.code].flag, ' ', languages[l.code].name),
-            h('span', { class: 'muted small' }, `${l.remoteWords} words · `, h('b', null, `${l.added} new`), ` · ${l.updated} updated`,
-              l.removed ? ` · ${l.removed} removed` : '', l.skipped ? ` · ${l.skipped} from before your reset left out` : ''))))
+            h('span', { class: 'muted small' }, langChanges(l)))))
           : h('p', { class: 'hint' }, 'No words in this code yet.'),
         lvAfter > lvBefore ? h('p', null, `⭐ You’ll go from level ${lvBefore} to level ${lvAfter}.`) : null,
         nothing ? h('p', { class: 'hint' }, skipped
@@ -183,12 +216,9 @@ export default function sync(ctx) {
                 console.error(e); // the merge itself is saved; rewards are re-checked on the next answer
               }
               store.syncLog({ kind: 'merged', from: payload.device });
-              const added = rows.reduce((s, l) => s + l.added, 0);
-              const updated = rows.reduce((s, l) => s + l.updated, 0);
-              const removed = rows.reduce((s, l) => s + l.removed, 0);
               paste.value = '';
               set(preview, h('div', { class: 'banner sync-done' },
-                h('b', null, '✅ Merged! '), `${added} new and ${updated} updated words${removed ? `, ${removed} removed` : ''}. `,
+                h('b', null, '✅ Merged! '), mergedText(rows),
                 h('p', { class: 'hint' }, 'To finish a two-way sync, send this device’s progress back:'),
                 h('button', { type: 'button', class: 'btn small primary', onclick: () => { sendPass.input.value = recvPass.input.value; create(); sendCard.scrollIntoView({ behavior: 'smooth' }); } }, 'Create a code for the other device')));
               refreshLog();
@@ -214,7 +244,7 @@ export default function sync(ctx) {
     sendOut);
 
   return h('div', { class: 'view sync' },
-    h('a', { href: '#/settings', class: 'back-link' }, icon('back', 16), 'Settings'),
+    backLink(ctx, '#/me', 'Me'),
     h('h1', null, 'Sync between devices'),
     h('section', { class: 'card how' },
       h('ol', { class: 'steps' },
