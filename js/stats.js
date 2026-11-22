@@ -33,10 +33,88 @@ export function computeStats(ctx) {
   };
 }
 
-/** First category that still has unseen words. */
-export function nextCategory(ctx) {
+// ---------- What to learn next ----------
+
+const groupOf = (c) => c.group || 'words';
+const paths = new WeakMap();
+
+/**
+ * The suggested order of a pack's topics. A pack can give its own as `path`
+ * (category ids; topics it leaves out follow in pack order). Otherwise the
+ * groups take turns, so a learner who follows the main button meets ready-
+ * made phrases and everyday speech early instead of after every word topic:
+ * two word topics, then one phrase situation, over and over (each group in
+ * pack order, most common first), with the "Talk like a local" topics after
+ * the first phrase situation and then after every third.
+ */
+export function learningPath(lang) {
+  if (paths.has(lang)) return paths.get(lang);
+  const cats = lang.categories;
+  let path;
+  if (Array.isArray(lang.path)) {
+    const listed = lang.path.map((id) => cats.find((c) => c.id === id)).filter(Boolean);
+    path = [...new Set(listed)];
+    path.push(...cats.filter((c) => !path.includes(c)));
+  } else {
+    const of = (g) => cats.filter((c) => groupOf(c) === g);
+    const words = of('words');
+    const phrases = of('phrases');
+    const talk = of('talk');
+    path = [];
+    let w = 0;
+    let p = 0;
+    let t = 0;
+    while (w < words.length || p < phrases.length) {
+      for (let k = 0; k < 2 && w < words.length; k++) path.push(words[w++]);
+      if (p < phrases.length) {
+        path.push(phrases[p++]);
+        if (t < talk.length && (p === 1 || (p - 1) % 3 === 0)) path.push(talk[t++]);
+      }
+    }
+    path.push(...talk.slice(t), ...cats.filter((c) => !path.includes(c)));
+  }
+  paths.set(lang, path);
+  return path;
+}
+
+/** Learned (seen) and total entries per topic: Map id → { learned, total }. One pass over the words. */
+export function topicCounts(ctx) {
   const cards = ctx.store.getCards(ctx.lang.code);
-  return ctx.lang.categories.find((c) => ctx.lang.wordsIn(c.id).some((w) => !cards[w.id]));
+  const out = new Map(ctx.lang.categories.map((c) => [c.id, { learned: 0, total: 0 }]));
+  for (const w of ctx.lang.words) {
+    const n = out.get(w.cat);
+    if (!n) continue;
+    n.total++;
+    if (cards[w.id]) n.learned++;
+  }
+  return out;
+}
+
+/**
+ * What to learn next: `resume` is the topic of the last lesson started
+ * (progress[lang].lastCat) while it still has new words, `next` the first
+ * `count` other topics on the learning path that still have new words.
+ * @returns {{ resume: object|null, next: object[] }}
+ */
+export function nextTopics(ctx, { count = 3 } = {}) {
+  const { lang } = ctx;
+  const counts = topicCounts(ctx);
+  const open = (c) => { const n = counts.get(c.id); return !!n && n.learned < n.total; };
+  const lastId = ctx.store.getLastCat?.(lang.code);
+  const last = lastId ? lang.categories.find((c) => c.id === lastId) : null;
+  const resume = last && open(last) ? last : null;
+  const next = [];
+  for (const c of learningPath(lang)) {
+    if (next.length >= count) break;
+    if (c !== resume && open(c)) next.push(c);
+  }
+  return { resume, next };
+}
+
+/** The topic to learn next: the one to continue, else the next on the path (undefined when all are learned). */
+export function nextCategory(ctx) {
+  const { resume, next } = nextTopics(ctx, { count: 1 });
+  return resume || next[0];
 }
 
 const FAMILIAR = new Set(['familiar', 'mastered', 'known']);

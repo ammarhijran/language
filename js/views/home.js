@@ -1,68 +1,77 @@
+// Home = today: the daily goal, one thing to do next (review, continue a
+// topic or start the next one), what comes after it, shortcuts to the
+// phrasebook, everyday speech, texts and sentences, the word of the day and
+// this week's challenges. Every topic is one tap away on Learn.
 import { h, icon, storageBanner } from '../ui.js';
-import { categoryCard, voiceBanner, playButton, readingLine, categorySections, grammarLink } from '../components.js';
-import { computeStats, nextCategory, wordOfTheDay } from '../stats.js';
-import { levelCard, challengeList, repairBanner } from './journey.js';
+import { voiceBanner, playButton, readingLine, glyph } from '../components.js';
+import { computeStats, nextTopics, topicCounts, wordOfTheDay, learnedWords } from '../stats.js';
+import { challengeList, repairBanner } from './journey.js';
 
 export default function home(ctx) {
   const { lang } = ctx;
   const s = computeStats(ctx);
-  const next = nextCategory(ctx);
+  const { resume, next } = nextTopics(ctx, { count: 2 });
+  const counts = topicCounts(ctx);
   const wotd = wordOfTheDay(ctx);
   const a = lang.analyze(wotd);
+  const gameOn = ctx.settings.gameOn;
 
+  const countOf = (c) => counts.get(c.id) || { learned: 0, total: 0 };
+  const lessonLabel = (c) => `${c.emoji} ${c.name} · ${countOf(c).learned}/${countOf(c).total}`;
+
+  // One main thing to do, and what comes after it.
   let cta;
+  let after = null; // { cat, verb }
   if (s.due > 0) {
-    cta = h('a', { class: 'cta', href: '#/review' },
-      h('span', { class: 'cta-icon' }, icon('repeat', 26)),
-      h('span', null, h('b', null, `Review ${s.due} word${s.due === 1 ? '' : 's'}`), h('small', null, 'Keep them fresh with spaced repetition')),
-      icon('arrow'));
-  } else if (next) {
-    cta = h('a', { class: 'cta', href: `#/learn/${next.id}` },
-      h('span', { class: 'cta-icon' }, icon('book', 26)),
-      h('span', null, h('b', null, s.learned ? 'Learn new words' : 'Start your first lesson'), h('small', null, `${next.emoji} ${next.name}`)),
-      icon('arrow'));
+    cta = ctaLink('#/review', 'repeat', `Review ${s.due} word${s.due === 1 ? '' : 's'}`, 'Keep them fresh before you forget them');
+    const c = resume || next[0];
+    if (c) after = { cat: c, verb: resume ? 'Continue' : 'Learn' };
+  } else if (resume) {
+    cta = ctaLink(`#/learn/${encodeURIComponent(resume.id)}`, 'book', `Continue ${resume.name}`, `${resume.emoji} Next ${Math.min(ctx.settings.lessonSize, countOf(resume).total - countOf(resume).learned)} · ${countOf(resume).learned}/${countOf(resume).total} learned`);
+    if (next[0]) after = { cat: next[0], verb: 'Then' };
+  } else if (next[0]) {
+    const first = !s.learned;
+    cta = ctaLink(`#/learn/${encodeURIComponent(next[0].id)}`, 'book', first ? 'Start your first lesson' : `Learn: ${next[0].name}`, `${next[0].emoji} ${first ? next[0].name : `${countOf(next[0]).learned}/${countOf(next[0]).total} learned`}`);
+    if (next[1]) after = { cat: next[1], verb: 'Then' };
   } else {
-    cta = h('a', { class: 'cta', href: '#/practice' },
-      h('span', { class: 'cta-icon' }, icon('check', 26)),
-      h('span', null, h('b', null, 'All caught up!'), h('small', null, 'Practise anything you like')),
-      icon('arrow'));
+    cta = ctaLink('#/practice', 'check', 'All caught up!', 'Every topic learned — practise anything you like');
   }
 
   const goal = ctx.settings.dailyGoal;
   const done = ctx.store.dayTotal(s.today);
   const pct = Math.min(100, Math.round((done / goal) * 100));
+  const saved = ctx.store.getFavs(lang.code).filter((id) => lang.byId(id)).length;
+  const talk = lang.categories.find((c) => c.group === 'talk');
+  // Sentences from the words learned once there are enough, else from every phrase.
+  const buildScope = learnedWords(ctx).length >= 20 ? 'learned' : 'all';
 
-  return h('div', { class: 'view home' },
+  return h('div', { class: 'view home today' },
     h('section', { class: 'hello' },
       h('div', null,
         h('h1', null, h('span', { lang: lang.code }, `${lang.greeting}!`), ' 👋'),
-        h('p', { class: 'muted' }, done >= goal ? 'Daily goal met — nice work!' : done ? `${goal - done} more for today’s goal` : `Today’s goal: ${goal} exercises`)),
+        h('p', { class: 'muted' },
+          s.streak ? [icon('flame', 16), ` ${s.streak}-day streak · `] : null,
+          done >= goal ? 'Daily goal met — nice work!' : done ? `${goal - done} more for today’s goal` : `Today’s goal: ${goal} exercises`)),
       h('a', {
-        class: `goal-ring${done >= goal ? ' done' : ''}`, href: '#/settings', style: { '--pct': pct },
-        title: 'Daily goal — change it in Settings',
-        'aria-label': `Daily goal: ${Math.min(done, goal)} of ${goal} exercises done today`,
+        class: `goal-ring${done >= goal ? ' done' : ''}`, href: '#/journey', style: { '--pct': pct },
+        title: 'Daily goal — see your goals',
+        'aria-label': `Daily goal: ${Math.min(done, goal)} of ${goal} exercises done today. Open goals`,
       }, h('span', null, done >= goal ? icon('check', 22) : h('b', null, String(done)), h('small', null, done >= goal ? 'goal met' : `of ${goal} today`)))),
     storageBanner(ctx, { link: true }),
     voiceBanner(ctx),
-    h('div', { class: 'stat-row' },
-      stat(icon('flame'), s.streak, s.streak === 1 ? 'day streak' : 'day streak'),
-      stat(icon('book'), s.learned, `of ${s.total} learned`),
-      stat(icon('repeat'), s.due, 'due now'),
-    ),
     repairBanner(ctx),
     cta,
-    ctx.settings.gameOn ? levelCard(ctx, { compact: true }) : null,
-    h('div', { class: 'quick' },
-      quick('#/practice', 'shuffle', 'Practice', 'Quizzes on any topic'),
-      quick('#/speak', 'mic', 'Pronunciation', 'Sounds, ear training, speaking'),
-    ),
-    ctx.settings.gameOn
-      ? h('section', { class: 'card' },
-        h('div', { class: 'title-row' },
-          h('h2', { class: 'card-title' }, '⚔️ This week'),
-          h('a', { href: '#/journey', class: 'small' }, 'All goals')),
-        challengeList(ctx, { compact: true }))
+    after
+      ? h('a', { class: 'up-next', href: `#/learn/${encodeURIComponent(after.cat.id)}` },
+        h('span', { class: 'kicker' }, 'Up next'),
+        h('span', { class: 'up-next-name' }, after.verb === 'Continue' ? 'Continue ' : '', lessonLabel(after.cat)),
+        icon('arrow', 18))
       : null,
+    h('div', { class: 'shortcuts' },
+      shortcut('#/phrases', glyph('chat', 22), 'Phrasebook', saved ? `★ ${saved} saved` : 'Ready-made phrases'),
+      talk ? shortcut('#/learn/g/talk', h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🗣️'), 'Talk like a local', 'Slang & everyday speech') : null,
+      shortcut('#/read', h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🎧'), 'Read & Listen', 'Dialogues & stories'),
+      shortcut(`#/practice/build/${buildScope}`, icon('tiles', 22), 'Sentences', 'Put words in order')),
     h('section', { class: 'card wotd' },
       h('p', { class: 'kicker' }, 'Word of the day'),
       h('div', { class: 'wotd-row' },
@@ -71,19 +80,32 @@ export default function home(ctx) {
           readingLine(ctx, wotd),
           h('p', { class: 'muted' }, wotd.en),
           h('p', { class: 'respell small' }, a.respell, ' · ', h('span', { class: 'ipa' }, `/${a.ipa}/`))),
-        playButton(ctx, wotd.tr, { cls: 'big' }),
+        playButton(ctx, wotd, { cls: 'big' }),
       ),
     ),
-    h('section', null,
-      grammarLink(ctx),
-      categorySections(ctx)),
+    gameOn
+      ? h('section', { class: 'card' },
+        h('div', { class: 'title-row' },
+          h('h2', { class: 'card-title' }, '⚔️ This week'),
+          h('a', { href: '#/journey', class: 'small' }, levelLine(ctx))),
+        challengeList(ctx, { compact: true }))
+      : null,
+    h('a', { class: 'all-topics', href: '#/learn' }, `All ${lang.categories.length} topics, grammar and texts`, icon('arrow', 18)),
   );
 }
 
-function stat(ic, value, label) {
-  return h('div', { class: 'stat' }, ic, h('b', null, String(value)), h('span', null, label));
+function ctaLink(href, ic, title, sub) {
+  return h('a', { class: 'cta', href },
+    h('span', { class: 'cta-icon' }, icon(ic, 26)),
+    h('span', null, h('b', null, title), h('small', null, sub)),
+    icon('arrow'));
 }
 
-function quick(href, ic, title, sub) {
-  return h('a', { class: 'quick-link', href }, icon(ic, 22), h('span', null, h('b', null, title), h('small', null, sub)));
+function shortcut(href, ic, title, sub) {
+  return h('a', { class: 'shortcut', href }, ic, h('span', null, h('b', null, title), h('small', null, sub)));
+}
+
+function levelLine(ctx) {
+  const lv = ctx.game.level();
+  return `Level ${lv.level} · all goals`;
 }

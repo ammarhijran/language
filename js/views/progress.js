@@ -92,7 +92,7 @@ export default function progress(ctx, catFilter) {
         const ws = lang.wordsIn(c.id);
         const learned = ws.filter((w) => cards[w.id]).length;
         return h('li', null,
-          h('a', { href: `#/learn/${c.id}` }, `${c.emoji} ${c.name}`),
+          h('a', { href: `#/topic/${encodeURIComponent(c.id)}` }, `${c.emoji} ${c.name}`),
           meter(learned, ws.length),
           h('span', { class: 'muted small' }, `${learned}/${ws.length}`));
       }))),

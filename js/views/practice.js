@@ -1,6 +1,6 @@
 import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
-import { learnedWords } from '../stats.js';
+import { learnedWords, dueWords } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
 import { GROUPS } from '../components.js';
 import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
@@ -20,6 +20,7 @@ const ROUND = 10;
 function wordsFor(ctx, scope) {
   if (!scope || scope === 'learned') return learnedWords(ctx);
   if (scope === 'all') return ctx.lang.words;
+  if (scope === 'saved') return ctx.store.getFavs(ctx.lang.code).map((id) => ctx.lang.byId(id)).filter(Boolean);
   return ctx.lang.wordsIn(scope);
 }
 
@@ -120,6 +121,7 @@ function sentenceRound(ctx, scope = 'learned') {
 }
 
 function setup(ctx) {
+  const { lang } = ctx;
   const learned = learnedWords(ctx).length;
   let mode = 'mixed';
   let scope = learned >= 4 ? 'learned' : ctx.lang.categories[0].id;
@@ -134,59 +136,112 @@ function setup(ctx) {
     }, icon(m.icon, 20), h('b', null, m.name), h('small', null, disabled ? 'Not supported here' : m.desc));
   });
 
-  const scopes = [
+  // What to practise: three quick choices, or any one topic from a menu
+  // grouped like Learn (Words / Phrases / Talk like a local).
+  const savedCount = ctx.store.getFavs(lang.code).filter((id) => lang.byId(id)).length;
+  const pills = [
     { id: 'learned', name: `Words I’ve learned (${learned})`, disabled: learned < 4 },
-    { id: 'all', name: `All words (${ctx.lang.words.length})` },
-    ...ctx.lang.categories.map((c) => ({ id: c.id, name: `${c.emoji} ${c.name}` })),
+    { id: 'all', name: `All words (${lang.words.length})` },
+    { id: 'saved', name: `★ Saved (${savedCount})`, disabled: savedCount < 4, why: 'Save at least 4 words or phrases (☆) first' },
   ];
-  const scopeButtons = scopes.map((s) => h('button', {
-    type: 'button', class: `pill${s.id === scope ? ' selected' : ''}`, disabled: !!s.disabled,
-    'aria-pressed': String(s.id === scope),
-    onclick: (e) => { scope = s.id; select(scopeButtons, e.currentTarget); },
+  const isPill = (id) => pills.some((p) => p.id === id);
+  const pillButtons = pills.map((s) => h('button', {
+    type: 'button', class: 'pill', disabled: !!s.disabled, title: s.disabled ? s.why || null : null,
+    onclick: () => { scope = s.id; paintScope(); },
   }, s.name));
-  // Topic pills grouped like the Learn page (Words / Phrases / Talk like a local).
-  const pillFor = (id) => scopeButtons[scopes.findIndex((s) => s.id === id)];
-  const grouped = GROUPS.map((g) => ({ g, cats: ctx.lang.categories.filter((c) => (c.group || 'words') === g.id) }))
+  const grouped = GROUPS.map((g) => ({ g, cats: lang.categories.filter((c) => (c.group || 'words') === g.id) }))
     .filter(({ cats }) => cats.length);
-  const scopeTitle = h('h2', { class: 'section-title' }, 'Words');
-  const scopeRows = [h('div', { class: 'pill-row' }, pillFor('learned'), pillFor('all'))];
-  for (const { g, cats } of grouped) {
-    if (grouped.length > 1) scopeRows.push(h('h3', { class: 'kicker pill-group-title' }, g.title));
-    scopeRows.push(h('div', { class: 'pill-row' }, cats.map((c) => pillFor(c.id))));
+  const topicSelect = h('select', {
+    class: 'select topic-select', 'aria-label': 'Or one topic',
+    onchange: (e) => { if (e.target.value) { scope = e.target.value; paintScope(); } },
+  },
+    h('option', { value: '' }, 'Or one topic…'),
+    grouped.map(({ g, cats }) => h('optgroup', { label: g.title }, cats.map((c) => h('option', { value: c.id }, `${c.emoji} ${c.name}`)))));
+  function paintScope() {
+    pillButtons.forEach((b, i) => {
+      const on = pills[i].id === scope;
+      b.classList.toggle('selected', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    topicSelect.value = isPill(scope) ? '' : scope;
+    topicSelect.classList.toggle('chosen', !isPill(scope));
   }
+  const scopeTitle = h('h2', { class: 'section-title' }, 'What to practise');
+  const scopeRows = [h('div', { class: 'pill-row' }, pillButtons), topicSelect];
 
-  // Sentences mode: topics with too few sentences can't be picked (Japanese word
+  // Sentences mode: scopes with too few sentences can't be picked (Japanese word
   // topics have none — their example sentences have no kana reading to cut into tiles).
   let counts = null;
   const sentenceCount = (id) => {
     if (!counts) {
-      const cards = ctx.store.getCards(ctx.lang.code);
-      counts = new Map(scopes.map((s) => [s.id, sentencesFor(ctx.lang, s.id, { cards }).length]));
+      const cards = ctx.store.getCards(lang.code);
+      counts = new Map([...pills.map((p) => p.id), ...lang.categories.map((c) => c.id)]
+        .map((id) => [id, id === 'saved' ? 0 : sentencesFor(lang, id, { cards }).length]));
     }
     return counts.get(id);
   };
   function refreshScopes() {
     const build = mode === 'build';
-    scopeTitle.textContent = build ? 'Sentences from' : 'Words';
-    scopes.forEach((s, i) => {
+    scopeTitle.textContent = build ? 'Sentences from' : 'What to practise';
+    pills.forEach((s, i) => {
       const few = build && sentenceCount(s.id) < MIN_SENTENCES;
-      scopeButtons[i].disabled = !!s.disabled || few;
-      if (few) scopeButtons[i].title = 'Too few sentences to build';
-      else scopeButtons[i].removeAttribute('title');
+      pillButtons[i].disabled = !!s.disabled || few;
+      if (few) pillButtons[i].title = 'Too few sentences to build';
+      else if (s.disabled && s.why) pillButtons[i].title = s.why;
+      else pillButtons[i].removeAttribute('title');
     });
-    if (pillFor(scope).disabled) { scope = 'all'; select(scopeButtons, pillFor('all')); }
+    for (const opt of topicSelect.querySelectorAll('option[value]:not([value=""])')) {
+      const few = build && sentenceCount(opt.value) < MIN_SENTENCES;
+      opt.disabled = few;
+    }
+    const current = isPill(scope) ? pillButtons[pills.findIndex((p) => p.id === scope)].disabled
+      : topicSelect.querySelector(`option[value="${CSS.escape(scope)}"]`)?.disabled;
+    if (current) scope = 'all';
+    paintScope();
   }
+  paintScope();
 
-  return h('div', { class: 'view' },
+  return h('div', { class: 'view practice' },
     h('h1', null, 'Practice'),
-    h('p', { class: 'muted' }, `Quick rounds of ${ROUND} questions. Practice doesn’t affect your review schedule.`),
-    h('h2', { class: 'section-title' }, 'Mode'),
-    h('div', { class: 'choice-grid' }, modeButtons),
+    reviewCard(ctx),
+    h('h2', { class: 'section-title' }, 'Speak & listen'),
+    h('div', { class: 'shortcuts speak-links' },
+      speakLink('#/speak/drill', icon('mic', 22), 'Speak', 'Say words, get a score'),
+      speakLink('#/speak/ear', icon('ear', 22), 'Ear training', 'Hear the difference'),
+      speakLink('#/speak/alphabet', h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, lang.code === 'ja' ? 'あ' : lang.code === 'ar' ? 'ع' : lang.code === 'uk' ? 'Ї' : 'Ğ'), 'Alphabet', lang.code === 'ja' ? 'Kana chart' : 'Letters & sounds'),
+      speakLink('#/speak/sounds', icon('wave', 22), 'Sounds', 'Tricky sounds explained')),
+    h('h2', { class: 'section-title' }, 'Quick round'),
+    h('p', { class: 'hint' }, `${ROUND} questions in the mode you like. Practice doesn’t change your review schedule.`),
+    h('div', { class: 'choice-grid practice-modes' }, modeButtons),
     scopeTitle,
     scopeRows,
     h('div', { class: 'actions sticky' },
       h('button', { type: 'button', class: 'btn primary wide', onclick: () => ctx.go(`/practice/${mode}/${scope}`) }, 'Start', icon('arrow', 18))),
   );
+}
+
+/** Reviews come first: due words (spaced repetition), or when the next ones are due. */
+function reviewCard(ctx) {
+  const due = dueWords(ctx).length;
+  if (due) {
+    return h('a', { class: 'cta', href: '#/review' },
+      h('span', { class: 'cta-icon' }, icon('repeat', 26)),
+      h('span', null, h('b', null, `Review ${due} word${due === 1 ? '' : 's'}`), h('small', null, 'Due now · spaced repetition')),
+      icon('arrow'));
+  }
+  const cards = Object.values(ctx.store.getCards(ctx.lang.code));
+  const soonest = cards.reduce((m, c) => Math.min(m, c.due), Infinity);
+  const when = Number.isFinite(soonest)
+    ? new Date(soonest).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })
+    : null;
+  return h('a', { class: 'quick-link review-idle', href: '#/review' },
+    icon('check', 22),
+    h('span', null, h('b', null, 'No reviews due'), h('small', null, when ? `Next review: ${when}` : 'Learn a lesson and its words come back here')),
+    icon('arrow', 18));
+}
+
+function speakLink(href, ic, title, sub) {
+  return h('a', { class: 'shortcut', href, title: sub }, ic, h('span', null, h('b', null, title), h('small', null, sub)));
 }
 
 function select(buttons, el) {

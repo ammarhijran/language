@@ -2,15 +2,17 @@ import { h, icon, shuffle, pick, bindKeys, set } from '../ui.js';
 import { playButton, pronunciationPanel, speakPractice, voiceBanner, exampleBlock, readingLine, cleanupScope, sayLater } from '../components.js';
 import { learnedWords } from '../stats.js';
 
+// Doing first (speaking, ear training), then the reference (letters, sounds).
 const TABS = [
+  { id: 'drill', name: 'Speak' },
+  { id: 'ear', name: 'Ear training' },
   { id: 'alphabet', name: 'Alphabet' },
   { id: 'sounds', name: 'Sounds' },
-  { id: 'ear', name: 'Ear training' },
-  { id: 'drill', name: 'Speaking' },
 ];
 
-export default function pronounce(ctx, tab = 'alphabet', ...args) {
-  if (!TABS.some((t) => t.id === tab)) tab = 'alphabet';
+export default function pronounce(ctx, tab, ...args) {
+  // Without a section: speaking, once there are a few words to say; before that, the letters.
+  if (!TABS.some((t) => t.id === tab)) tab = learnedWords(ctx).length >= 5 ? 'drill' : 'alphabet';
   const body = { alphabet, sounds, ear, drill }[tab](ctx, ...args);
   return h('div', { class: 'view' },
     h('h1', null, 'Pronunciation'),

@@ -42,6 +42,10 @@
 //  - achievements, alphabet letters, well-spoken words, challenge completions:
 //    union
 //  - grammar lessons and Read & Listen texts: the best score per lesson / text
+//  - saved words and phrases (★, progress[lang].fav): per entry, the newest
+//    stamp wins; unsaving leaves a {deleted, last} tombstone, like a card
+//  - the last topic started (progress[lang].lastCat, for "Continue"): the
+//    newest one
 // Older builds read the codes of this one only partly (they don't know
 // tombstones or per-device day logs), so every device should be updated.
 
@@ -292,8 +296,27 @@ function sanitizeProgress(progress, legacyGoalMet) {
     // A reset can't be in the future: one that was would keep out everything learned until then.
     const resetAt = num(p.resetAt, Date.now());
     if (resetAt) out[code].resetAt = resetAt;
+    const fav = {};
+    for (const [id, f] of pairs(p.fav, 20000)) { const s = sanitizeFav(f); if (s) fav[id] = s; }
+    if (Object.keys(fav).length) out[code].fav = fav;
+    const lastCat = sanitizeLastCat(p.lastCat);
+    if (lastCat) out[code].lastCat = lastCat;
   }
   return out;
+}
+
+/** A saved entry: { last }, or a { deleted, last } tombstone once it was unsaved. */
+function sanitizeFav(f) {
+  if (!isObj(f)) return null;
+  const last = num(f.last, MAX_TIME);
+  if (last === undefined) return null;
+  return f.deleted === true ? { deleted: true, last } : { last };
+}
+
+/** The topic of the last lesson started: { id, at }. */
+function sanitizeLastCat(x) {
+  if (!isObj(x) || !okKey(x.id) || x.id.length > 60) return null;
+  return { id: x.id, at: num(x.at, MAX_TIME) ?? 0 };
 }
 
 function devEntry(d) {
@@ -422,7 +445,33 @@ function mergeLang(local = {}, remote = {}) {
   }
   const days = clone(local.days || {});
   for (const [k, d] of Object.entries(remote.days || {})) if (k >= resetDay) days[k] = mergeDay(days[k], d);
-  return { cards, days, ...(resetAt ? { resetAt } : {}), added, updated, removed, skipped };
+  // Saved entries: the newest stamp wins (a tombstone on a tie, so either
+  // merge order agrees). A reset doesn't touch them: they aren't progress.
+  const fav = clone(local.fav || {});
+  let savedAdded = 0;
+  let savedRemoved = 0;
+  for (const [id, rf] of Object.entries(remote.fav || {})) {
+    const lf = fav[id];
+    if (!lf || rf.last > lf.last || (rf.last === lf.last && rf.deleted && !lf.deleted)) {
+      const wasSaved = !!lf && !lf.deleted;
+      if (!rf.deleted && !wasSaved) savedAdded++;
+      else if (rf.deleted && wasSaved) savedRemoved++;
+      fav[id] = clone(rf);
+    }
+  }
+  const lastCat = newerLastCat(local.lastCat, remote.lastCat);
+  return {
+    cards, days, ...(resetAt ? { resetAt } : {}),
+    ...(Object.keys(fav).length ? { fav } : {}), ...(lastCat ? { lastCat: clone(lastCat) } : {}),
+    added, updated, removed, skipped, savedAdded, savedRemoved,
+  };
+}
+
+/** The more recent of two "last topic" stamps (on a tie, the smaller id, so either merge order agrees). */
+function newerLastCat(a, b) {
+  if (!a || !b) return a || b || null;
+  if (a.at !== b.at) return a.at > b.at ? a : b;
+  return a.id <= b.id ? a : b;
 }
 
 function maxMap(a = {}, b = {}) {
@@ -501,12 +550,19 @@ export function mergeAll(local, payload, { device = 'this' } = {}) {
   const progress = mine.progress;
   const langs = [];
   for (const [code, rp] of Object.entries(theirs.progress)) {
-    const empty = !Object.keys(rp.cards).length && !Object.keys(rp.days).length;
+    const empty = !Object.keys(rp.cards).length && !Object.keys(rp.days).length && !rp.fav && !rp.lastCat;
     if (empty && !progress[code]) continue; // a language the other device only opened (or reset)
     const m = mergeLang(progress[code], rp);
-    progress[code] = { cards: m.cards, days: m.days, ...(m.resetAt ? { resetAt: m.resetAt } : {}) };
+    progress[code] = {
+      cards: m.cards, days: m.days, ...(m.resetAt ? { resetAt: m.resetAt } : {}),
+      ...(m.fav ? { fav: m.fav } : {}), ...(m.lastCat ? { lastCat: m.lastCat } : {}),
+    };
     const remoteWords = Object.values(rp.cards).filter((c) => !c.deleted).length;
-    langs.push({ code, remoteWords, added: m.added, updated: m.updated, removed: m.removed, skipped: m.skipped });
+    langs.push({
+      code, remoteWords, added: m.added, updated: m.updated, removed: m.removed, skipped: m.skipped,
+      // ★ entries the merge saves / unsaves here (only when there are any)
+      ...(m.savedAdded ? { savedAdded: m.savedAdded } : {}), ...(m.savedRemoved ? { savedRemoved: m.savedRemoved } : {}),
+    });
   }
   const game = mergeGame(mine.game, theirs.game);
   const changed = JSON.stringify({ progress, game }) !== before;

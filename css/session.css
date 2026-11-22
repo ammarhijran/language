@@ -1,1 +1,200 @@
-/* Lesson / review / practice sessions: focus mode and the answer sheet. */
+/* Lesson / review / practice sessions: focus mode and the answer sheet.
+   Uses the tokens from styles.css. The answer sheet is fixed to the screen, so
+   nothing it sits in (the card, .session, .view, main) may get a transform,
+   filter, backdrop-filter or will-change: it would be pinned to that box instead. */
+
+/* ---------- Focus mode ---------- */
+
+/* js/session.js sets body.in-session while a session runs: no top bar, no tab
+   bar, nothing that leaves the session but the ✕. */
+body.in-session { padding-bottom: 0; }
+body.in-session .topbar,
+body.in-session .tabbar,
+body.in-session > header,
+body.in-session > nav,
+body.in-session .update-prompt { display: none; }
+body.in-session main { padding-top: 0; }
+/* Toasts (no voice for the language…) come down from the top, clear of the sheet. */
+body.in-session #toast {
+  top: calc(env(safe-area-inset-top) + 64px); bottom: auto; transform: translate(-50%, -12px);
+  width: max-content; border-radius: 16px; text-align: center;
+}
+body.in-session #toast.show { transform: translate(-50%, 0); }
+
+/* The session head stays at the top: ✕, progress, combo, XP, count. Its
+   background reaches the screen's edges whatever the page's side padding. */
+body.in-session .session-head {
+  position: sticky; top: 0; z-index: 20;
+  margin-bottom: .75rem;
+  padding: calc(.45rem + env(safe-area-inset-top)) 0 .45rem;
+  background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg);
+  clip-path: inset(0 -100vmax);
+}
+.session-exit { width: 44px; height: 44px; margin-inline-start: -10px; flex-shrink: 0; }
+/* The XP chip appears with the first XP earned. */
+.session-xp[data-xp="0"] { display: none; }
+.session-meter .meter-fill { transition: width .45s cubic-bezier(.3, 1.4, .5, 1); }
+
+/* Cards fade in and rise by `top`, not a transform (a transform would pin the
+   docked sheet to the card while it runs). */
+.session .exercise { position: relative; animation: session-card-in .25s ease; }
+@keyframes session-card-in { from { opacity: 0; top: 6px; } }
+
+.session-sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ---------- The docked sheet ---------- */
+
+/* exercises.js keeps --sheet-h at the sheet's height, so the end of the card
+   can always scroll clear of it. */
+.session { padding-bottom: calc(var(--sheet-h, 0px) + 8px); }
+
+.answer-sheet {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
+  display: flex; flex-direction: column; gap: .6rem;
+  /* Always leaves the head and a strip of the card (the answered options)
+     in view: on a small phone a long answer scrolls inside the sheet instead. */
+  max-height: 78vh;
+  max-height: clamp(50vh, 100vh - 15rem, 78vh);
+  max-height: clamp(50dvh, 100dvh - 15rem, 78dvh);
+  margin: 0 auto;
+  padding: .8rem 16px calc(.8rem + env(safe-area-inset-bottom));
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -6px 24px rgb(40 30 20 / 9%);
+}
+.answer-sheet > * { flex-shrink: 0; }
+.answer-sheet .actions { margin-top: 0; }
+.answer-sheet .feedback { margin-top: 0; }
+.answer-sheet .feedback .hint { margin: 0; text-align: center; }
+
+/* After an answer: tinted, with the verdict, the answer and a full-width Continue. */
+.answer-sheet.good { background: var(--good-soft); border-top: 2px solid var(--good); }
+.answer-sheet.bad { background: var(--bad-soft); border-top: 2px solid var(--bad); }
+.answer-sheet.warn { background: var(--warn-soft); border-top: 2px solid var(--warn); }
+.answer-sheet:is(.good, .bad, .warn) { animation: sheet-up .24s cubic-bezier(.2, .8, .2, 1); }
+@keyframes sheet-up { from { transform: translateY(100%); } }
+
+/* A long answer (a phrase with its everyday form, a typing hint) scrolls
+   inside the sheet; Continue below it never moves. */
+.answer-sheet .sheet-body { flex: 0 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.answer-sheet .reveal { background: none; padding: 0; border-radius: 0; }
+.answer-sheet .verdict { font-size: 1.1rem; margin-bottom: .4rem; gap: .55rem; }
+.answer-sheet .verdict > .icon {
+  display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--muted); color: var(--surface);
+}
+.answer-sheet.good .verdict { color: var(--good); }
+.answer-sheet.bad .verdict { color: var(--bad); }
+.answer-sheet.warn .verdict { color: var(--warn); }
+.answer-sheet.good .verdict > .icon { background: var(--good); }
+.answer-sheet.bad .verdict > .icon { background: var(--bad); }
+.answer-sheet.warn .verdict > .icon { background: var(--warn); }
+.answer-sheet .verdict small { color: var(--text); font-size: .95rem; font-weight: 600; }
+.answer-sheet > .verdict { margin: 0; }
+.answer-sheet .reveal-word { align-items: flex-start; }
+/* A right-to-left sentence starts where its transliteration and meaning start
+   (it stays right-to-left: only the line's alignment changes). */
+.answer-sheet .reveal-word p[lang] { text-align: left; }
+.answer-sheet .reveal .register { margin-top: .5rem; }
+
+.answer-sheet .continue { width: 100%; min-height: 52px; font-size: 1.05rem; }
+.answer-sheet.good .continue { background: var(--good); border-color: var(--good); color: var(--surface); }
+.answer-sheet.good .continue:hover { background: color-mix(in srgb, var(--good) 86%, var(--text)); }
+.answer-sheet:is(.bad, .warn) .continue { background: var(--text); border-color: var(--text); color: var(--surface); }
+.answer-sheet:is(.bad, .warn) .continue:hover { background: color-mix(in srgb, var(--text) 86%, var(--surface)); }
+.answer-sheet .btn.ghost { color: var(--text); }
+/* The keyboard focus ring in the sheet's own colour (the app's ring is the brand red). */
+.answer-sheet.good .continue:focus-visible { outline-color: color-mix(in srgb, var(--good) 55%, transparent); }
+.answer-sheet:is(.bad, .warn) .continue:focus-visible { outline-color: color-mix(in srgb, var(--text) 45%, transparent); }
+
+/* Flashcards: the rating row in the sheet. */
+.answer-sheet .sheet-question { margin: 0; }
+.answer-sheet .rate { min-height: 52px; justify-content: center; }
+
+/* Side by side: a secondary action keeps its width (Can’t speak now, Skip,
+   Already learned) and the main one takes the rest; when both can't fit on
+   one line (Start quick check at 320–360px), the main one gets its own line. */
+.answer-sheet .actions.split > .btn:first-child { flex: 1 1 auto; white-space: nowrap; padding-left: .8rem; padding-right: .8rem; }
+.answer-sheet .actions.split > .btn:last-child { flex: 1 1 9rem; white-space: nowrap; }
+
+/* Wider screens (tablets, desktop): the sheet is the card's footer, and stays
+   in view at the bottom of the screen while a long card scrolls under it. */
+@media (min-width: 600px) {
+  .session { padding-bottom: 8px; }
+  .answer-sheet {
+    position: sticky; bottom: env(safe-area-inset-bottom, 0px);
+    margin: 1.25rem -1.25rem -1.25rem;
+    padding: 1rem 1.25rem 1.1rem;
+    border-radius: 0 0 calc(var(--radius) - 1px) calc(var(--radius) - 1px);
+    box-shadow: 0 -8px 16px -12px rgb(40 30 20 / 18%);
+  }
+  .answer-sheet:is(.good, .bad, .warn) { animation-name: sheet-in; }
+  @keyframes sheet-in { from { opacity: 0; transform: translateY(10px); } }
+}
+
+@media (prefers-color-scheme: dark) {
+  .answer-sheet { box-shadow: 0 -6px 24px rgb(0 0 0 / 40%); }
+}
+
+/* ---------- Answer feedback ---------- */
+
+/* ✓ / ✕ in the answered options, so right and wrong never rely on colour alone. */
+.option .mark {
+  display: inline-grid; place-items: center; flex-shrink: 0; margin-inline-start: auto;
+  width: 26px; height: 26px; border-radius: 50%; color: var(--surface);
+}
+.option .mark.yes { background: var(--good); }
+.option .mark.no { background: var(--bad); }
+
+.answer-input.right { border-color: var(--good); background: var(--good-soft); }
+.answer-input.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.build-line.right { border-style: solid; border-color: var(--good); }
+.build-line.wrong { border-style: solid; border-color: var(--bad); }
+
+/* Motion: a pop and a glow for the right choice, a shake for a wrong one. */
+.option.correct.picked, .answer-input.right, .build-line.right { animation: answer-pop .45s ease-out; }
+.option.wrong, .answer-input.wrong, .build-line.wrong .tile.wrong { animation: answer-shake .4s ease; }
+@keyframes answer-pop {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 color-mix(in srgb, var(--good) 55%, transparent); }
+  35% { transform: scale(1.035); }
+  100% { transform: scale(1); box-shadow: 0 0 0 12px color-mix(in srgb, var(--good) 0%, transparent); }
+}
+@keyframes answer-shake {
+  0%, 100% { transform: none; }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+/* The XP chip pops (and glows) when XP comes in. */
+.session-xp.pop { animation: xp-pop .55s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes xp-pop {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 color-mix(in srgb, var(--xp) 65%, transparent); }
+  40% { transform: scale(1.3); }
+  100% { transform: scale(1); box-shadow: 0 0 0 10px color-mix(in srgb, var(--xp) 0%, transparent); }
+}
+
+/* ---------- Leave? (only for sessions that would lose answers) ---------- */
+
+.session-confirm {
+  position: fixed; inset: 0; z-index: 60;
+  display: flex; align-items: flex-end; justify-content: center;
+  background: rgb(20 16 12 / 45%);
+}
+.session-confirm-card {
+  width: 100%; max-width: 728px;
+  padding: 1.1rem 16px calc(1rem + env(safe-area-inset-bottom));
+  background: var(--surface); border-radius: 20px 20px 0 0; box-shadow: var(--shadow);
+  animation: sheet-up .24s cubic-bezier(.2, .8, .2, 1);
+}
+.session-confirm-q { font-weight: 700; font-size: 1.05rem; margin-bottom: .25rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .session .exercise, .answer-sheet, .session-confirm-card, .option, .tile, .answer-input, .build-line, .session-xp {
+    animation: none !important;
+  }
+  .session-meter .meter-fill { transition: none !important; }
+}

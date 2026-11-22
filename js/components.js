@@ -452,3 +452,297 @@ export function grammarLink(ctx) {
     h('span', null, h('b', null, `${ctx.lang.name} grammar`), h('small', null, `${lessons.length} short lessons with quizzes${done ? ` · ${done} done` : ''}`)),
     icon('arrow'));
 }
+
+// ---------- Navigation: icons, device preferences, back links ----------
+
+// Icons the shared set (ui.js) doesn't have: tab bar, Show mode.
+const GLYPHS = {
+  chat: '<path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 10.5h7"/><path d="M8.5 13.5h4.5"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  expand: '<path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/>',
+  swap: '<path d="m7 4-4 4 4 4"/><path d="M3 8h14"/><path d="m17 12 4 4-4 4"/><path d="M21 16H7"/>',
+  prev: '<path d="m15 18-6-6 6-6"/>',
+  next: '<path d="m9 18 6-6-6-6"/>',
+};
+
+/** An icon from GLYPHS (or, by name, from the shared set in ui.js). */
+export function glyph(name, size = 20) {
+  if (!GLYPHS[name]) return icon(name, size);
+  const span = h('span', { class: 'icon', 'aria-hidden': 'true' });
+  span.innerHTML = `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${GLYPHS[name]}</svg>`;
+  return span;
+}
+
+// Small per-device choices (the Learn section, the phrasebook switches, recent
+// searches): localStorage, never synced. Storage can be blocked or full, so
+// every read and write may fail quietly; the app works with the defaults.
+const PREFS_KEY = 'lisan:nav';
+const isPlainObj = (x) => x != null && typeof x === 'object' && !Array.isArray(x);
+function readPrefs() {
+  try {
+    const all = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
+    return isPlainObj(all) ? all : {};
+  } catch { return {}; }
+}
+export function devicePref(key, fallback) {
+  const all = readPrefs();
+  return Object.hasOwn(all, key) ? all[key] : fallback;
+}
+export function setDevicePref(key, value) {
+  const all = readPrefs();
+  all[key] = value;
+  try { localStorage.setItem(PREFS_KEY, JSON.stringify(all)); } catch { /* not kept: fine */ }
+}
+
+/**
+ * The back link of a screen: "← <previous screen>" when the learner came here
+ * from another screen of the app (it goes back there, like the system back
+ * button), otherwise a link to `href` labelled `label`.
+ */
+export function backLink(ctx, href, label) {
+  const prev = ctx.previous?.();
+  if (prev) {
+    return h('a', {
+      href: prev.href, class: 'back-link',
+      onclick: (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return;
+        e.preventDefault();
+        history.back();
+      },
+    }, icon('back', 16), prev.title);
+  }
+  return h('a', { href, class: 'back-link' }, icon('back', 16), label);
+}
+
+// ---------- Topic tiles ----------
+
+/**
+ * A compact tile for a topic: emoji, name, native name and progress (a check
+ * once every entry is learned). Opens the topic page. `counts`: { learned, total }.
+ */
+export function topicTile(ctx, cat, counts, { current = false, href } = {}) {
+  const { learned = 0, total = 0 } = counts || {};
+  const done = total > 0 && learned >= total;
+  const pct = total ? Math.round((learned / total) * 100) : 0;
+  return h('a', {
+    class: `topic-tile${done ? ' done' : ''}${current ? ' current' : ''}`,
+    href: href ?? `#/topic/${encodeURIComponent(cat.id)}`,
+    'aria-label': `${cat.name}: ${done ? 'all learned' : `${learned} of ${total} learned`}${current ? ', continue here' : ''}`,
+  },
+    h('span', { class: 'tt-emoji', 'aria-hidden': 'true' }, cat.emoji),
+    h('span', { class: 'tt-text', 'aria-hidden': 'true' },
+      h('span', { class: 'tt-name' }, cat.name),
+      h('span', { class: 'tt-native', lang: ctx.lang.code }, cat.native)),
+    h('span', { class: 'tt-meta', 'aria-hidden': 'true' },
+      done
+        ? h('span', { class: 'tt-done' }, icon('check', 14), 'Done')
+        : h('span', { class: 'tt-count' }, current ? 'Continue · ' : '', `${learned}/${total}`),
+      h('span', { class: 'mini-meter' }, h('span', { style: { width: `${pct}%` } }))));
+}
+
+// ---------- Saved entries and phrase rows ----------
+
+/**
+ * An entry's two registers when it has an other-register form: { everyday,
+ * proper, other } (`other` is the pair, `everyday` / `proper` are it or the
+ * entry). In Arabic the Egyptian side is the everyday one.
+ */
+export function pairSides(lang, word) {
+  if (!word?.pair) return null;
+  const me = { ...word, reg: word.reg || 'neutral' };
+  const other = { ...word.pair, en: word.pair.en || word.en };
+  let everyday;
+  if (!!me.dialect !== !!other.dialect) everyday = me.dialect ? me : other;
+  else everyday = CASUAL.has(me.reg) || (!CASUAL.has(other.reg) && me.reg !== 'formal' && other.reg === 'formal') ? me : other;
+  return { everyday, proper: everyday === me ? other : me, other };
+}
+
+/** The label of one side of a pair: 🗣️ Everyday / 🎩 Polite (Arabic: 🗣️ Egyptian / 📖 Standard Arabic). */
+export function sideLabel(lang, side, everyday) {
+  if (lang.code === 'ar' && (side.dialect || everyday === false)) return side.dialect ? `🗣️ ${side.dialect}` : '📖 Standard Arabic';
+  if (everyday) return side.reg === 'slang' ? '🗣️ Slang' : '🗣️ Everyday';
+  return side.reg === 'formal' ? '🎩 Formal' : side.reg === 'polite' ? '🎩 Polite' : '🎩 Proper';
+}
+
+/** The name of the switch that shows each entry's other-register form. */
+export const pairToggleLabel = (lang) => (lang.code === 'ar' ? 'MSA ⇄ Egyptian' : 'Polite ⇄ everyday');
+
+/** ★ Save an entry to the phrasebook (per language, synced); `aria-pressed` tells whether it is saved. */
+export function favButton(ctx, word, { toast = true } = {}) {
+  const { lang, store } = ctx;
+  const btn = h('button', {
+    type: 'button', class: 'icon-btn fav-btn', 'aria-label': `Save ${word.tr}`,
+    onclick: (e) => {
+      e.stopPropagation();
+      const on = store.setFav(lang.code, word.id, !store.isFav(lang.code, word.id));
+      paint(on);
+      if (toast) ctx.toast?.(on ? 'Saved to your phrasebook ★' : 'Removed from saved');
+      window.dispatchEvent(new CustomEvent('lisan:fav', { detail: { lang: lang.code, id: word.id, on } }));
+    },
+  }, icon('star'));
+  function paint(on) {
+    btn.setAttribute('aria-pressed', String(on));
+    btn.title = on ? 'Saved — tap to remove' : 'Save to your phrasebook';
+    btn.classList.toggle('on', on);
+  }
+  paint(store.isFav(lang.code, word.id));
+  return btn;
+}
+
+/**
+ * A reading (kana · rōmaji, a transliteration) for a list: a long one with
+ * several parts shows each part on its own line instead of wrapping at the dot.
+ */
+function readingNode(lang, entry, cls = 'pr-reading') {
+  const r = lang.reading(entry);
+  if (!r) return null;
+  const parts = String(r).split(' · ');
+  if (parts.length < 2 || [...r].length <= 26) return h('span', { class: cls }, r);
+  return h('span', { class: `${cls} parts` }, parts.map((t) => h('span', null, t)));
+}
+
+/** The other-register form of an entry, as a line under its row. */
+function pairLine(ctx, word, sides) {
+  const { lang } = ctx;
+  const { other } = sides;
+  const everyday = sides.everyday === other;
+  return h('div', { class: `pr-pair ${everyday ? 'everyday' : 'proper'}` },
+    playButton(ctx, other),
+    h('span', { class: 'pr-pair-text' },
+      h('span', { class: 'pr-pair-label' }, sideLabel(lang, other, everyday)),
+      h('b', { lang: lang.code }, other.tr),
+      readingNode(lang, other),
+      other.en && other.en !== word.en ? h('span', { class: 'pr-en' }, other.en) : null));
+}
+
+/**
+ * One entry as a row of a phrasebook or topic list: play, the entry with its
+ * reading, meaning and register (linking to its word page), ★ save, and
+ * optionally a Show button (`onShow(word)`), a status badge (`status`) and
+ * the other-register form underneath (`pairs`).
+ */
+export function phraseRow(ctx, word, { pairs = false, onShow = null, status = null } = {}) {
+  const { lang } = ctx;
+  const sides = pairs ? pairSides(lang, word) : null;
+  const badges = [regBadge(word), status && status !== 'new' ? h('span', { class: `badge ${status}` }, STATUS_NAMES[status] || status) : null].filter(Boolean);
+  return h('li', { class: `phrase-row${sides ? ' with-pair' : ''}` },
+    playButton(ctx, word),
+    h('a', { class: 'pr-main', href: `#/word/${encodeURIComponent(word.id)}` },
+      h('b', { class: 'pr-tr', lang: lang.code }, word.tr),
+      readingNode(lang, word),
+      h('span', { class: 'pr-en' }, word.en, badges.length ? ' ' : null, badges)),
+    h('span', { class: 'pr-tools' },
+      favButton(ctx, word),
+      onShow ? h('button', { type: 'button', class: 'icon-btn show-btn', 'aria-label': `Show big: ${word.tr}`, title: 'Show in big letters', onclick: () => onShow(word) }, glyph('expand', 18)) : null),
+    sides ? pairLine(ctx, word, sides) : null);
+}
+const STATUS_NAMES = { learning: 'Learning', familiar: 'Familiar', mastered: 'Mastered', known: 'Known' };
+
+/**
+ * Show mode: one entry at a time in very large type over the whole screen,
+ * to show the phone to someone (a waiter, a taxi driver). Arrow keys, swipes
+ * and the arrow buttons step through `words`; ⇄ shows the other-register
+ * form; Escape, the close button or Android back closes it.
+ */
+export function showMode(ctx, words, start = 0) {
+  const { lang } = ctx;
+  if (!words.length) return;
+  const opener = document.activeElement;
+  let i = Math.max(0, Math.min(start, words.length - 1));
+  let flipped = false;
+  const box = h('div', { class: 'show-mode', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Show this phrase', tabindex: '-1' });
+
+  function close() {
+    if (!box.isConnected) return;
+    box.remove();
+    document.removeEventListener('keydown', onKey, true);
+    document.body.classList.remove('showing');
+    ctx.speech?.cancelSpeech?.();
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
+  }
+  const step = (d) => {
+    if (words.length < 2) return;
+    i = (i + d + words.length) % words.length;
+    flipped = false;
+    paint();
+  };
+
+  function paint() {
+    // The control in use is rebuilt with the rest: keep keyboard focus on it.
+    const had = box.contains(document.activeElement) && document.activeElement !== box ? document.activeElement : null;
+    const focusKey = had && { cls: [...had.classList].find((c) => c.startsWith('show-')), label: had.getAttribute('aria-label') };
+    const w = words[i];
+    const sides = pairSides(lang, w);
+    const shown = flipped && sides ? sides.other : w;
+    // Which register is on screen: the entry's own, or (flipped) its pair's.
+    const mainEveryday = !!sides && sides.everyday !== sides.other;
+    const shownEveryday = flipped ? !mainEveryday : mainEveryday;
+    const len = [...shown.tr].length;
+    // As big as the text allows: a word fills the screen, a sentence wraps.
+    const size = len <= 8 ? 'xl' : len <= 16 ? 'l' : len <= 30 ? 'm' : len <= 60 ? 's' : 'xs';
+    const otherLabel = sides ? sideLabel(lang, flipped ? w : sides.other, !shownEveryday).replace(/^\S+\s/, '') : '';
+    set(box,
+      h('div', { class: 'show-top' },
+        h('span', { class: 'show-count' }, words.length > 1 ? `${i + 1} / ${words.length}` : ''),
+        h('button', { type: 'button', class: 'icon-btn show-close', 'aria-label': 'Close', onclick: close }, icon('x', 26))),
+      h('div', { class: 'show-body', 'aria-live': 'polite' },
+        sides ? h('p', { class: 'show-label' }, sideLabel(lang, shown, shownEveryday)) : null,
+        h('p', { class: `show-tr size-${size}`, lang: lang.code }, shown.tr),
+        readingNode(lang, shown, 'show-reading'),
+        h('p', { class: 'show-en' }, shown.en || w.en),
+        sides ? h('button', {
+          type: 'button', class: 'btn small show-flip', 'aria-label': `Show the ${otherLabel} form`,
+          title: 'Show the other way to say it', onclick: () => { flipped = !flipped; paint(); },
+        }, glyph('swap', 16), otherLabel) : null),
+      h('div', { class: 'show-actions' },
+        words.length > 1 ? h('button', { type: 'button', class: 'icon-btn show-step', 'aria-label': 'Previous', onclick: () => step(-1) }, glyph('prev', 28)) : null,
+        h('button', { type: 'button', class: 'btn primary show-play', onclick: () => ctx.say(shown) }, icon('volume'), 'Play'),
+        h('button', { type: 'button', class: 'btn show-slow', 'aria-label': 'Play slowly', title: 'Play slowly', onclick: () => ctx.say(shown, { slow: true }) }, icon('slow')),
+        words.length > 1 ? h('button', { type: 'button', class: 'icon-btn show-step', 'aria-label': 'Next', onclick: () => step(1) }, glyph('next', 28)) : null));
+    if (focusKey) {
+      const again = [...box.querySelectorAll(focusKey.cls ? `.${focusKey.cls}` : 'button')]
+        .find((el) => (el.getAttribute('aria-label') || null) === (focusKey.label || null)) || box;
+      again.focus({ preventScroll: true });
+    }
+  }
+
+  // Keys go to the dialog wherever focus is (the page underneath gets none):
+  // Escape closes (also Android back, which sends Escape to the open dialog),
+  // arrows step, Tab stays inside.
+  function onKey(e) {
+    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); close(); return; }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      if (e.target.matches?.('input, select, textarea')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      step(e.key === 'ArrowRight' ? 1 : -1);
+      return;
+    }
+    if (e.key === 'Tab') {
+      const items = [...box.querySelectorAll('button:not(:disabled)')];
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const inside = box.contains(document.activeElement) && document.activeElement !== box;
+      if (e.shiftKey && (!inside || document.activeElement === first)) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && (!inside || document.activeElement === last)) { e.preventDefault(); first.focus(); }
+      return;
+    }
+    // Other shortcuts of the screen underneath stay off while Show is open.
+    if (!box.contains(e.target)) e.stopPropagation();
+  }
+  let x0 = null;
+  box.addEventListener('pointerdown', (e) => { x0 = e.clientX; });
+  box.addEventListener('pointerup', (e) => {
+    if (x0 == null) return;
+    const dx = e.clientX - x0;
+    x0 = null;
+    if (Math.abs(dx) > 60) step(dx < 0 ? 1 : -1);
+  });
+
+  paint();
+  document.body.append(box);
+  document.addEventListener('keydown', onKey, true);
+  document.body.classList.add('showing');
+  box.querySelector('.show-play')?.focus({ preventScroll: true });
+  ctx.onCleanup(close);
+}

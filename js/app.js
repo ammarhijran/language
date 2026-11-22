@@ -3,6 +3,7 @@ import * as store from './store.js';
 import * as speech from './speech.js';
 import { h, icon, toast, set } from './ui.js';
 import { dueWords } from './stats.js';
+import { glyph } from './components.js';
 import { onBackButton, backAction, leaveApp } from './native.js';
 import { bootDone } from './boot.js';
 import home from './views/home.js';
@@ -22,6 +23,10 @@ import * as game from './game.js';
 import { initCelebrations } from './celebrate.js';
 import known from './views/known.js';
 import language from './views/language.js';
+import topic from './views/topic.js';
+import phrases from './views/phrases.js';
+import search from './views/search.js';
+import me from './views/me.js';
 
 // In the apps, progress (and with it the chosen language) may first have to be
 // restored from native storage, so wait for that before anything reads settings.
@@ -45,16 +50,31 @@ const ROUTES = {
   sync: syncView,
   grammar: grammarView,
   read: readView,
+  topic,
+  phrases,
+  search,
+  me,
 };
 
+// Bottom navigation: Home (today), Learn (topics, grammar, texts), Practice
+// (reviews, quick rounds, speaking), Phrasebook, Me (progress, goals, settings).
 const TABS = [
   { id: '', label: 'Home', icon: 'home' },
   { id: 'learn', label: 'Learn', icon: 'book' },
-  { id: 'review', label: 'Review', icon: 'repeat' },
-  { id: 'speak', label: 'Speak', icon: 'mic' },
-  { id: 'progress', label: 'Progress', icon: 'chart' },
+  { id: 'practice', label: 'Practice', icon: 'repeat', badge: true },
+  { id: 'phrases', label: 'Phrasebook', icon: 'chat' },
+  { id: 'me', label: 'Me', icon: 'user', dot: true },
 ];
-const TAB_OF = { practice: '', word: 'progress', settings: 'progress', known: 'learn', language: '', journey: '', sync: 'progress', grammar: 'learn', read: 'learn' };
+// The tab each screen belongs to (a screen with no entry is its own tab).
+const TAB_OF = {
+  topic: 'learn', grammar: 'learn', read: 'learn', known: 'learn', word: 'learn',
+  review: 'practice', speak: 'practice',
+  progress: 'me', journey: 'me', settings: 'me', sync: 'me', language: 'me',
+  search: null, welcome: null,
+};
+// Detail screens opened from many places: they light up the tab of the screen
+// they were opened from (a word from the phrasebook, Already learned from Me…).
+const INHERIT_TAB = new Set(['word', 'known', 'search', 'sync', 'language']);
 
 let cleanups = [];
 let lastView = null; // the route name rendered last; null before the first render
@@ -72,6 +92,23 @@ const ctx = {
     return speech.sayFor(lang, target, { slow, rate: s.rate, voices: s.voices, onNoVoice: auto ? null : toast });
   },
   go(path) { location.hash = path; },
+  /** Show `path` in place of the current screen, without a new history entry (e.g. a section of Learn). */
+  replace(path) {
+    history.replaceState(history.state, '', `#${path}`);
+    render();
+  },
+  /** Change the address of the current screen without re-rendering it (a search query typed in). */
+  setPath(path) {
+    history.replaceState(history.state, '', `#${path}`);
+    const entry = stack[here];
+    if (entry) { entry.path = path.replace(/^\/?/, ''); saveStack(); }
+  },
+  /** The screen the learner came from, for back links: { href, title }, or null. */
+  previous() {
+    const p = stack[here - 1];
+    if (!p || p.lang !== lang.code || p.session || p.path === currentPath()) return null;
+    return { href: `#/${p.path}`, title: p.title };
+  },
   onCleanup(fn) { cleanups.push(fn); },
   toast,
   rerender: () => render(),
@@ -82,8 +119,9 @@ const ctx = {
 function shell() {
   const tabbar = h('nav', { class: 'tabbar', 'aria-label': 'Main' },
     TABS.map((t) => h('a', { href: `#/${t.id}`, dataset: { tab: t.id } },
-      icon(t.icon, 22), h('span', null, t.label),
-      t.id === 'review' ? h('i', { class: 'tab-badge', hidden: true }) : null)));
+      glyph(t.icon, 22), h('span', null, t.label),
+      t.badge ? h('i', { class: 'tab-badge', hidden: true }) : null,
+      t.dot ? h('i', { class: 'tab-dot', hidden: true, title: 'New achievements' }) : null)));
 
   document.body.prepend(
     h('a', {
@@ -94,8 +132,7 @@ function shell() {
       h('a', { href: '#/', class: 'brand', 'aria-label': 'Lisan home' },
         h('img', { src: 'icons/icon.svg', alt: '', width: 28, height: 28 }), 'Lisan'),
       h('a', { class: 'lang-pill', href: '#/language', title: `Learning ${lang.name} — change language` }, h('span', { 'aria-hidden': 'true' }, lang.flag), ' ', h('span', { lang: lang.code }, lang.nativeName)),
-      h('a', { href: '#/journey', class: 'icon-btn trophy', 'aria-label': 'Journey: level, goals and achievements' }, icon('trophy'), h('i', { class: 'dot', hidden: true })),
-      h('a', { href: '#/settings', class: 'icon-btn', 'aria-label': 'Settings' }, icon('settings'))),
+      h('a', { href: '#/search', class: 'icon-btn top-search', 'aria-label': 'Search words, phrases and lessons' }, icon('search'))),
     h('main', { id: 'view', tabindex: '-1' }),
     // Tells screen readers which screen they're on when no heading is read out.
     h('p', { id: 'announcer', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true', style: VISUALLY_HIDDEN }),
@@ -186,9 +223,72 @@ function parse() {
   return { name: name in ROUTES ? name : '', params };
 }
 
+// ---------- Where the learner came from ----------
+// Every history entry the app shows gets an index (history.state.lisanIdx)
+// and a record { path, title, tab, lang, session }. The record of the entry
+// before the current one is the screen back links return to (history.back()
+// lands exactly there), and the tab detail screens inherit. Kept for the tab
+// (sessionStorage), so it survives a reload.
+const STACK_KEY = 'lisan:navstack';
+let stack = {}; // history index → record (only the last few dozen are kept)
+try { stack = JSON.parse(sessionStorage.getItem(STACK_KEY) || '{}'); } catch { /* none */ }
+if (!stack || typeof stack !== 'object' || Array.isArray(stack)) stack = {};
+let here = -1;
+const currentPath = () => location.hash.replace(/^#\/?/, '');
+function saveStack() {
+  for (const k of Object.keys(stack)) if (Number(k) < here - 40) delete stack[k];
+  try { sessionStorage.setItem(STACK_KEY, JSON.stringify(stack)); } catch { /* not kept */ }
+}
+/** Screens that run a lesson, review or round: going back to one would start it again. */
+const isSession = (name, params) => name === 'review' || (name === 'learn' && !!params[0] && params[0] !== 'g')
+  || (name === 'practice' && !!params[0]) || name === 'welcome';
+
+/**
+ * Move `here` to the history entry being shown and return its record from
+ * before (null for a new entry). A new entry follows the current one, and
+ * any entries after it (forward history) are gone.
+ */
+function enter() {
+  let idx = history.state?.lisanIdx;
+  if (!Number.isInteger(idx) || idx < 0) {
+    idx = here + 1;
+    try { history.replaceState({ ...(history.state || {}), lisanIdx: idx }, ''); } catch { /* keep going */ }
+    for (const k of Object.keys(stack)) if (Number(k) >= idx) delete stack[k];
+  }
+  here = idx;
+  const old = stack[idx];
+  return old && old.path === currentPath() && old.lang === lang.code ? old : null;
+}
+
+function track(name, params, title, tab) {
+  stack[here] = { path: currentPath(), title, tab, lang: lang.code, session: isSession(name, params) };
+  saveStack();
+}
+
+function titleOf(name, params) {
+  switch (name) {
+    case '': return 'Home';
+    case 'learn': {
+      const cat = params[0] !== 'g' && lang.categories.find((c) => c.id === params[0]);
+      return cat ? `Lesson: ${cat.name}` : 'Learn';
+    }
+    case 'topic': return lang.categories.find((c) => c.id === params[0])?.name || 'Topic';
+    case 'word': return lang.byId(params[0])?.tr || 'Word';
+    case 'journey': return ctx.settings.gameOn ? 'Journey' : 'Goals';
+    case 'grammar': return params[0] ? (lang.grammar || []).find((l) => l.id === params[0])?.title || 'Grammar' : 'Grammar';
+    default: return {
+      review: 'Review', practice: 'Practice', speak: 'Speak', progress: 'Progress', settings: 'Settings', welcome: 'Welcome',
+      known: 'Already learned', language: 'Languages', sync: 'Sync', read: 'Read & Listen', phrases: 'Phrasebook', search: 'Search', me: 'Me',
+    }[name];
+  }
+}
+
 function render() {
   const main = document.getElementById('view');
   const { name, params } = parse();
+  // The screen this one was opened from, and this entry's record if it was shown before.
+  const from = stack[here]?.lang === lang.code ? stack[here] : null;
+  const before = enter();
   // The same screen again (rerender(), a sub-tab, a menu that changes the
   // address): remember the focused control to put focus back on it.
   const restoreKey = name === lastView ? controlKey(main, document.activeElement) : null;
@@ -208,24 +308,27 @@ function render() {
   set(main, el);
   document.body.classList.toggle('bare', name === 'welcome');
 
-  const tab = TAB_OF[name] ?? name;
+  const staticTab = Object.hasOwn(TAB_OF, name) ? TAB_OF[name] : name;
+  const inherited = before ? before.tab : from?.tab;
+  const tab = INHERIT_TAB.has(name) ? inherited ?? staticTab : staticTab;
   document.querySelectorAll('.tabbar a').forEach((a) => {
     const active = a.dataset.tab === tab;
     a.classList.toggle('active', active);
     if (active) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
-  const trophy = document.querySelector('.trophy');
-  if (trophy) {
-    trophy.hidden = !ctx.settings.gameOn;
-    trophy.querySelector('.dot').hidden = game.unseenCount() === 0;
-  }
+  const searchBtn = document.querySelector('.top-search');
+  if (searchBtn) { if (name === 'search') searchBtn.setAttribute('aria-current', 'page'); else searchBtn.removeAttribute('aria-current'); }
+  const dot = document.querySelector('.tab-dot');
+  if (dot) dot.hidden = !ctx.settings.gameOn || game.unseenCount() === 0;
   const due = dueWords(ctx).length;
   const badge = document.querySelector('.tab-badge');
   if (badge) {
     badge.hidden = due === 0;
     badge.textContent = due > 99 ? '99+' : String(due);
+    badge.title = `${due} to review`;
   }
-  const title = { '': 'Home', learn: 'Learn', review: 'Review', practice: 'Practice', speak: 'Pronunciation', progress: 'Progress', settings: 'Settings', welcome: 'Welcome', known: 'Already learned', language: 'Languages', journey: 'Journey', sync: 'Sync', grammar: 'Grammar', read: 'Read & Listen', word: lang.byId(params[0])?.tr }[name];
+  const title = titleOf(name, params);
+  track(name, params, title || 'Lisan', tab);
   document.title = title ? `${title} · Lisan ${lang.name}` : `Lisan · ${lang.name}`;
   window.scrollTo(0, 0);
   // On first load the browser (or screen reader) starts at the top by itself.
@@ -254,9 +357,9 @@ if (!store.getSettings().onboarded) {
 initCelebrations(ctx);
 window.addEventListener('lisan:goal-reached', (e) => game.goalMet(e.detail?.lang || lang.code));
 window.addEventListener('lisan:activity', (e) => game.checkRepair(e.detail?.lang || lang.code));
-// Refresh the trophy dot when something is unlocked.
+// Show the dot on the Me tab when something is unlocked.
 game.onReward((r) => {
-  if (r.kind === 'achievement') document.querySelector('.trophy .dot')?.removeAttribute('hidden');
+  if (r.kind === 'achievement' && ctx.settings.gameOn) document.querySelector('.tab-dot')?.removeAttribute('hidden');
 });
 
 shell();

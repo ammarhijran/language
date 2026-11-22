@@ -6,6 +6,15 @@ It runs as a website (works offline, installable as a PWA) and as native **Andro
 
 ## Features
 
+### Getting around
+- **Five tabs:** Home (today: goal ring, one "what next" button, shortcuts, word of the day, weekly challenges) · Learn (Words, Phrases, Talk like a local, Grammar, Read & Listen) · Practice (reviews, modes, sentences, speaking and ear training) · Phrasebook · Me (progress, goals, settings, sync).
+- **Topic pages** list every entry with its reading, register, audio and ★, with Learn next 5 / Practise / Sentences / Say them.
+- **Phrasebook:** 220+ ready-to-use phrases in 22 situations, searchable, with a polite ⇄ everyday switch (MSA ⇄ Egyptian in Arabic), ★ favourites (synced between devices) and a big-text **Show** mode for showing your phone to someone.
+- **Search** (top bar) finds words, phrases, topics, grammar lessons and texts by script, reading or English.
+- **Continue where you left off:** the app remembers your topic, and the learning path mixes word topics, phrase situations and everyday speech. Leaving a lesson half-way keeps the words you've seen.
+- **Focused lessons:** sessions run full screen; after each answer a bottom sheet shows right/wrong with the answer, and Continue is always in reach.
+
+
 ### Languages
 | | Words | Pronunciation help | Typing accepts |
 | --- | --- | --- | --- |
@@ -52,7 +61,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
   - a personal goal per language ("learn 100 words by …") with a projection from your recent pace
 - **Streak repair:** missed a day? Do double your daily goal today to save the streak.
 - **Celebrations** for level-ups, badges and goals. They wait until a session ends, and rewards that arrive together share one card.
-- Everything is on the **Journey** page (the 🏆 in the top bar). Game features can be switched off in Settings; the daily goal, streaks and personal goals stay.
+- Everything is on the **Journey** page (under **Me**). Game features can be switched off in Settings; the daily goal, streaks and personal goals stay (the page is then called Goals).
 
 ### Sync between devices — without accounts or servers
 Lisan has no backend. To copy progress to another phone, tablet or computer, go to **Settings → Sync between devices**:

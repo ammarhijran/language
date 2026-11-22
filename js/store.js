@@ -307,6 +307,41 @@ export function deleteCard(lang, id) {
   save();
 }
 
+// ---------- Saved words and phrases (★), and the last topic ----------
+// progress[lang].fav: { id: { last } } for each saved entry. Unsaving leaves a
+// { deleted, last } tombstone stamped newer than what it replaces, so the
+// removal survives a sync like a card's (sync.js: the newest stamp wins).
+// progress[lang].lastCat: { id, at }, the topic of the last lesson started, so
+// the app can offer to continue it (sync: the newest one wins).
+
+/** The ids of the saved entries of a language, most recently saved first. */
+export function getFavs(lang) {
+  const fav = prog(lang).fav || {};
+  return Object.entries(fav).filter(([, f]) => live(f)).sort((a, b) => b[1].last - a[1].last).map(([id]) => id);
+}
+export function isFav(lang, id) {
+  const fav = prog(lang).fav;
+  return !!fav && Object.hasOwn(fav, id) && live(fav[id]);
+}
+/** Save (on) or unsave an entry. Returns whether it is saved now. */
+export function setFav(lang, id, on) {
+  const fav = (prog(lang).fav ||= {});
+  const old = Object.hasOwn(fav, id) ? fav[id] : null;
+  if (!!on === live(old)) return !!on;
+  const last = Math.max(Date.now(), (old?.last ?? 0) + 1);
+  fav[id] = on ? { last } : { deleted: true, last };
+  save();
+  return !!on;
+}
+
+/** The id of the topic whose lesson was started last, or null. */
+export const getLastCat = (lang) => prog(lang).lastCat?.id ?? null;
+export function setLastCat(lang, id) {
+  const p = prog(lang);
+  p.lastCat = { id, at: Math.max(Date.now(), (p.lastCat?.at ?? 0) + 1) };
+  save();
+}
+
 // ---------- Days ----------
 // Each day keeps one tally per device (days[k].dev[deviceId]) so that syncing
 // two devices that were both used on the same day adds their work up (tallies
@@ -415,7 +450,9 @@ export function importData(text) {
 export function resetProgress(lang) {
   const k = dayKey();
   const met = !!state.progress[lang]?.days?.[k]?.goalMet;
-  state.progress[lang] = { cards: {}, days: met ? { [k]: { goalMet: true } } : {}, resetAt: Date.now() };
+  // Saved words and phrases are a phrasebook, not progress: they stay.
+  const fav = state.progress[lang]?.fav;
+  state.progress[lang] = { cards: {}, days: met ? { [k]: { goalMet: true } } : {}, resetAt: Date.now(), ...(fav ? { fav } : {}) };
   save();
   flush();
 }

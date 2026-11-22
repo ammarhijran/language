@@ -16,6 +16,90 @@ function once(fn) {
   return (...args) => { if (!called) { called = true; fn(...args); } };
 }
 
+// ---------- Answer sheet, feedback and haptics ----------
+//
+// Every card's main actions sit in a sheet docked at the bottom of the screen
+// (css/session.css), so they are always in reach: before the answer, the
+// card's own buttons (Next word, Check, Show answer…) on a plain bar; after it,
+// a green or red sheet with the verdict, the right answer and Continue, which
+// takes the focus. The session is padded by the sheet's height (--sheet-h) so
+// the end of the card can always scroll clear of it.
+
+const reducedMotion = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** A very short buzz on a wrong answer where the device can (Android); a no-op elsewhere. */
+export function buzzWrong() {
+  if (reducedMotion()) return;
+  try { globalThis.navigator?.vibrate?.(35); } catch { /* not allowed here */ }
+}
+
+/** Visually hidden, polite: says right or wrong (and the answer) while focus moves to Continue. */
+function liveRegion() {
+  return h('p', { class: 'session-sr', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' });
+}
+
+/** Fill the live region a moment after the focus moves, so both are read out. */
+function announce(ctx, region, ...parts) {
+  const t = setTimeout(() => set(region, ...parts), 150);
+  ctx.onCleanup(() => clearTimeout(t));
+}
+
+/** What the live region says about an entry: the word in its own language, then its meaning. */
+const spoken = (ctx, tr, en) => [h('span', { lang: ctx.lang.code }, tr), ` — ${en}`];
+
+/**
+ * Pad the session by the sheet's height, and when `keep` is given (the options
+ * answered, the typed word…), scroll just enough to show it above the sheet,
+ * without pushing its top under the session head.
+ */
+function fitSheet(el, keep) {
+  if (!el.isConnected || typeof innerHeight !== 'number') return;
+  const height = el.offsetHeight;
+  el.closest('.session')?.style.setProperty('--sheet-h', `${height}px`);
+  const targets = [keep].flat().filter((k) => k?.isConnected);
+  if (!targets.length) return;
+  const head = document.querySelector('.session-head')?.getBoundingClientRect().bottom || 0;
+  const winTop = head + 8;
+  const winBottom = innerHeight - height - 12;
+  const rects = targets.map((k) => k.getBoundingClientRect());
+  const top = Math.min(...rects.map((r) => r.top));
+  const bottom = Math.max(...rects.map((r) => r.bottom));
+  const over = bottom - winBottom;
+  if (over <= 0) return;
+  // All of them if they fit, else as much as fits from the top-most down; the
+  // first one (the option picked, the mic) is always shown whole.
+  const [first] = rects;
+  const by = Math.min(Math.max(Math.min(over, top - winTop), first.bottom - winBottom), first.top - winTop);
+  if (by > 0) window.scrollBy({ top: by, behavior: reducedMotion() ? 'auto' : 'smooth' });
+}
+
+/**
+ * The docked sheet. `tone`: 'neutral' (a card's actions), 'good', 'bad' or
+ * 'warn' (after an answer). Returns the element; `refit(keep)` after changing
+ * what it holds.
+ */
+function sheet(ctx, tone, children, keep) {
+  const el = h('div', { class: `answer-sheet ${tone}` }, children);
+  const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(() => fitSheet(el)) : null;
+  ro?.observe(el);
+  el.refit = (k) => { if (typeof requestAnimationFrame === 'function') requestAnimationFrame(() => fitSheet(el, k)); };
+  /** Turn a card's action bar into the answer sheet. */
+  el.show = (t, kids, k) => { el.className = `answer-sheet ${t}`; set(el, kids); el.refit(k); };
+  el.refit(keep);
+  ctx.onCleanup(() => {
+    ro?.disconnect();
+    if (el.isConnected) el.closest('.session')?.style.removeProperty('--sheet-h');
+  });
+  return el;
+}
+
+/** After an answer: the verdict and the right answer (scrolls if long), then Continue. */
+const answerParts = (body, button) => [h('div', { class: 'sheet-body' }, body), h('div', { class: 'sheet-actions' }, button)];
+const answerSheet = (ctx, tone, body, button, keep) => sheet(ctx, tone, answerParts(body, button), keep);
+
+/** ✓ / ✕ inside an answered option, so right and wrong aren't told by colour alone. */
+const mark = (right) => h('span', { class: `mark ${right ? 'yes' : 'no'}` }, icon(right ? 'check' : 'x', 16));
+
 /**
  * Pick 4 options including the target, preferring the same category. A word
  * whose meaning overlaps the target's (“sorry” next to “sorry; excuse me”) is
@@ -59,8 +143,7 @@ function continueButton(onClick, label = 'Continue') {
 
 function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render }) {
   const opts = pickOptions(ctx.lang, word, label);
-  const feedback = h('div', { class: 'feedback', 'aria-live': 'polite' });
-  const actions = h('div', { class: 'actions' });
+  const live = liveRegion();
   let correct = false;
   let answered = false;
 
@@ -75,15 +158,20 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render }
     if (answered) return;
     answered = true;
     correct = opts[i].id === word.id;
+    const right = buttons[opts.findIndex((o) => o.id === word.id)];
     buttons.forEach((b, j) => {
       b.disabled = true;
-      if (opts[j].id === word.id) b.classList.add('correct');
-      else if (j === i) b.classList.add('wrong');
+      if (b === right) { b.classList.add('correct'); b.append(mark(true)); }
+      else if (j === i) { b.classList.add('wrong'); b.append(mark(false)); }
     });
-    set(feedback, reveal(ctx, word, correct));
-    ctx.say(word, { auto: true });
+    buttons[i].classList.add('picked');
+    el.classList.add('answered');
+    ctx.onAnswer?.({ correct, rating: correct ? GOOD : AGAIN });
+    if (!correct) buzzWrong();
     const btn = continueButton(finish);
-    set(actions, btn);
+    el.append(answerSheet(ctx, correct ? 'good' : 'bad', reveal(ctx, word, correct), btn, [buttons[i], right]));
+    announce(ctx, live, correct ? 'Right! ' : 'Not quite. The answer: ', spoken(ctx, word.tr, word.en));
+    ctx.say(word, { auto: true });
     btn.focus({ preventScroll: true });
   }
 
@@ -93,13 +181,13 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render }
   });
   ctx.onCleanup(unbind);
 
-  return h('div', { class: 'exercise' },
+  const el = h('div', { class: 'exercise' },
     h('p', { class: 'kicker' }, kicker),
     prompt,
     h('div', { class: 'options' }, buttons),
-    feedback,
-    actions,
+    live,
   );
+  return el;
 }
 
 export function listen(ctx, word, onDone) {
@@ -139,7 +227,9 @@ export function type(ctx, word, onDone) {
     autocorrect: 'off', spellcheck: 'false', enterkeyhint: 'done', 'aria-label': `Your answer in ${lang.name}`,
     placeholder: lang.typingHint, dir: 'auto',
   });
-  const feedback = h('div', { class: 'feedback', 'aria-live': 'polite' });
+  const live = liveRegion();
+  // Check stays under the field (a bar at the bottom would sit behind the
+  // phone's keyboard); the verdict and Continue then come up in the sheet.
   const submit = h('button', { type: 'submit', class: 'btn primary wide' }, 'Check');
   let result = null;
 
@@ -154,7 +244,7 @@ export function type(ctx, word, onDone) {
   const chars = h('div', { class: 'char-row', 'aria-label': 'Special letters', hidden: !lang.specialChars.length },
     lang.specialChars.map((c) => h('button', { type: 'button', class: 'char', lang: lang.code, onclick: () => insert(c) }, c)));
 
-  const finish = once(() => onDone(result));
+  const finish = once(() => { unbind(); onDone(result); });
 
   function check() {
     const v = input.value;
@@ -164,27 +254,42 @@ export function type(ctx, word, onDone) {
     // is never “almost” right (compare.js checkTyped).
     const verdict = checkTyped(lang, word, v);
     const rating = verdict.verdict === 'good' ? GOOD : verdict.verdict === 'almost' ? HARD : AGAIN;
+    const right = rating !== AGAIN;
     // A slip (special letters, spaces) still grows the interval less, but doesn't lower ease.
-    result = { correct: rating !== AGAIN, rating, ...(verdict.slip ? { slip: true } : {}) };
+    result = { correct: right, rating, ...(verdict.slip ? { slip: true } : {}) };
     input.readOnly = true;
+    input.classList.add(right ? 'right' : 'wrong');
     chars.hidden = true;
-    set(feedback, reveal(ctx, word, rating !== AGAIN, typedNote(lang, word, verdict, v)));
+    submit.hidden = true;
+    el.classList.add('answered');
+    ctx.onAnswer?.(result);
+    if (!right) buzzWrong();
+    const btn = continueButton(finish);
+    el.append(answerSheet(ctx, right ? 'good' : 'bad', reveal(ctx, word, right, typedNote(lang, word, verdict, v)), btn, input));
+    announce(ctx, live, right ? 'Right! ' : 'Not quite. The answer: ', spoken(ctx, word.tr, word.en));
     ctx.say(word, { auto: true });
-    set(submit, 'Continue', icon('arrow', 18));
+    // Moving focus off the field also closes the phone's keyboard.
+    btn.focus({ preventScroll: true });
   }
 
   const form = h('form', {
     class: 'type-form',
     onsubmit: (e) => { e.preventDefault(); if (result) finish(); else check(); },
-  }, input, chars, feedback, submit);
+  }, input, chars, submit);
 
-  setTimeout(() => input.focus({ preventScroll: true }), 50);
+  // Enter continues from anywhere once checked (in the field, the form does it).
+  const unbind = bindKeys({ Enter: () => { if (result) finish(); } });
+  ctx.onCleanup(unbind);
+  const t = setTimeout(() => { if (!result) input.focus({ preventScroll: true }); }, 50);
+  ctx.onCleanup(() => clearTimeout(t));
 
-  return h('div', { class: 'exercise' },
+  const el = h('div', { class: 'exercise' },
     h('p', { class: 'kicker' }, `Write it in ${lang.name}`),
     h('div', { class: 'prompt' }, h('p', { class: 'prompt-word en' }, word.en)),
     form,
+    live,
   );
+  return el;
 }
 
 /** The hint under a typed answer: which word it was, the spacing, or the letters to fix. */
@@ -225,25 +330,50 @@ export const speakRating = (score) => (score >= SPEAK_GOOD ? GOOD : score >= SPE
 
 export function speak(ctx, word, onDone) {
   let best = 0;
-  const actions = h('div', { class: 'actions split' });
-  const finish = once((r) => onDone(r));
+  const live = liveRegion();
+  const finish = once((r) => { unbind(); onDone(r); });
   const rate = () => speakRating(best);
 
   const cont = continueButton(() => finish({ correct: rate() !== AGAIN, rating: rate() }));
   cont.disabled = true;
-  actions.append(
-    h('button', { type: 'button', class: 'btn ghost', onclick: () => finish({ skipped: true }) }, 'Can’t speak now'),
-    cont,
-  );
+  // The best score so far, on the sheet next to Continue (the attempt's details stay on the card).
+  const verdict = h('p', { class: 'verdict', hidden: true });
+  const bar = sheet(ctx, 'neutral', [
+    verdict,
+    h('div', { class: 'actions split' },
+      h('button', { type: 'button', class: 'btn ghost', onclick: () => finish({ skipped: true }) }, 'Can’t speak now'),
+      cont),
+  ]);
 
   const practice = speakPractice(ctx, word, {
-    onResult: ({ best: b }) => { best = b; cont.disabled = false; },
+    onResult: ({ best: b, attempts = 1 }) => {
+      best = b;
+      cont.disabled = false;
+      const r = rate();
+      const [tone, text] = r === GOOD ? ['good', 'Well said!'] : r === HARD ? ['warn', 'Almost there'] : ['bad', 'Not yet — try again'];
+      const score = `${attempts > 1 ? 'best ' : ''}${Math.round(best * 100)}%`;
+      bar.className = `answer-sheet ${tone}`;
+      set(verdict, icon(r === AGAIN ? 'x' : 'check', 18), h('span', null, text, ' ', h('small', null, `· ${score}`)));
+      verdict.hidden = false;
+      if (r === AGAIN) buzzWrong();
+      announce(ctx, live, `${text} ${score}.`);
+      // Show the score, but keep the mic in view to try again.
+      bar.refit([practice.querySelector?.('.mic-btn'), practice.querySelector?.('.speak-result')]);
+      // Said well: the focus moves to Continue (Enter / Space go on). Otherwise
+      // it stays on the mic, so Enter / Space try again.
+      const at = document.activeElement;
+      if (r === GOOD && (!at || at === document.body || el.contains(at))) cont.focus({ preventScroll: true });
+    },
     onOverride: () => finish({ correct: true, rating: GOOD }),
   });
 
+  // Enter goes on once there is a score (on a focused button, the button acts: the mic tries again).
+  const unbind = bindKeys({ Enter: () => { if (!cont.disabled) cont.click(); } });
+  ctx.onCleanup(unbind);
+
   if (ctx.settings.autoplay) sayLater(ctx, word);
 
-  return h('div', { class: 'exercise' },
+  const el = h('div', { class: 'exercise' },
     h('p', { class: 'kicker' }, 'Say it out loud'),
     h('div', { class: 'prompt' },
       h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word), playButton(ctx, word, { slow: true })),
@@ -251,36 +381,41 @@ export function speak(ctx, word, onDone) {
       h('p', { class: 'prompt-sub' }, word.en)),
     pronunciationPanel(ctx, word, { compact: true }),
     practice,
-    actions,
+    live,
+    bar,
   );
+  return el;
 }
 
 export function flashcard(ctx, word, onDone) {
   const back = h('div', { class: 'card-back', hidden: true });
-  const actions = h('div', { class: 'actions' });
   let shown = false;
   const finish = once((rating) => { unbind(); onDone({ correct: rating !== AGAIN, rating }); });
 
   const ratings = [
     [AGAIN, 'Again', 'bad'], [HARD, 'Hard', 'warn'], [GOOD, 'Good', 'good'], [EASY, 'Easy', 'easy'],
   ];
+  const bar = sheet(ctx, 'neutral', h('button', { type: 'button', class: 'btn primary wide', onclick: show }, 'Show answer'));
 
   function show() {
     if (shown) return;
     shown = true;
     back.hidden = false;
-    set(back, 
+    set(back,
       h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word)),
       readingLine(ctx, word),
       pronunciationPanel(ctx, word, { compact: true }),
     );
     ctx.say(word, { auto: true });
-    set(actions, 
-      h('p', { class: 'hint center' }, 'How well did you remember it?'),
-      h('div', { class: 'rating-row' }, ratings.map(([r, label, cls], i) =>
+    // The question labels the group, which takes the focus (the button that had it is gone).
+    const row = h('div', { class: 'rating-row', role: 'group', 'aria-label': 'How well did you remember it?', tabindex: '-1' },
+      ratings.map(([r, label, cls], i) =>
         h('button', { type: 'button', class: `rate ${cls}`, onclick: () => finish(r) },
-          h('span', { class: 'kbd', 'aria-hidden': 'true' }, String(i + 1)), label))),
-    );
+          h('span', { class: 'kbd', 'aria-hidden': 'true' }, String(i + 1)), label)));
+    set(bar, h('p', { class: 'hint center sheet-question', 'aria-hidden': 'true' }, 'How well did you remember it?'), row);
+    bar.classList.add('rating');
+    row.focus({ preventScroll: true });
+    bar.refit(back);
   }
 
   const unbind = bindKeys({
@@ -288,13 +423,12 @@ export function flashcard(ctx, word, onDone) {
     1: () => shown && finish(AGAIN), 2: () => shown && finish(HARD), 3: () => shown && finish(GOOD), 4: () => shown && finish(EASY),
   });
   ctx.onCleanup(unbind);
-  actions.append(h('button', { type: 'button', class: 'btn primary wide', onclick: show }, 'Show answer'));
 
   return h('div', { class: 'exercise' },
     h('p', { class: 'kicker' }, `Do you remember the ${ctx.lang.name}?`),
     h('div', { class: 'prompt' }, h('p', { class: 'prompt-word en' }, word.en)),
     back,
-    actions,
+    bar,
   );
 }
 
@@ -320,12 +454,13 @@ export function intro(ctx, word, onDone, meta = {}) {
     h('details', { class: 'try-speak' },
       h('summary', null, icon('mic', 16), 'Try saying it'),
       speakPractice(ctx, word)),
-    h('div', { class: 'actions split intro-actions' },
+    // Next word stays in reach at the bottom of the screen however long the card is.
+    sheet(ctx, 'neutral', h('div', { class: 'actions split intro-actions' },
       h('button', {
         type: 'button', class: 'btn', title: 'Skip this word — it will only come back for a check in about a month',
         onclick: () => { unbind(); onDone({ intro: true, known: true }); },
       }, icon('check', 18), 'Already learned'),
-      continueButton(finish, meta.index + 1 === meta.total ? 'Start quick check' : 'Next word')),
+      continueButton(finish, meta.index + 1 === meta.total ? 'Start quick check' : 'Next word'))),
   );
 }
 
@@ -380,6 +515,7 @@ export function build(ctx, word, onDone, meta = {}) {
   let result = null;
 
   const finish = once((r) => { unbind(); onDone(r); });
+  const live = liveRegion();
   const feedback = h('div', { class: 'feedback', 'aria-live': 'polite' });
   const empty = h('span', { class: 'build-empty' }, 'Tap the words in order');
   const line = h('div', { class: 'build-line', role: 'group', 'aria-label': 'Your sentence', dir: lang.dir }, empty);
@@ -388,9 +524,14 @@ export function build(ctx, word, onDone, meta = {}) {
     t.text));
   const bank = h('div', { class: 'build-bank', role: 'group', 'aria-label': 'Words to use', dir: lang.dir }, slots);
   const checkBtn = h('button', { type: 'button', class: 'btn primary', onclick: check }, 'Check');
-  const actions = h('div', { class: 'actions split' },
-    h('button', { type: 'button', class: 'btn ghost', onclick: () => finish({ skipped: true }) }, 'Skip'),
-    checkBtn);
+  // Skip and Check on the bar at the bottom (a hint such as “2 left” right above
+  // them); after checking it becomes the answer sheet.
+  const bar = sheet(ctx, 'neutral', [
+    feedback,
+    h('div', { class: 'actions split' },
+      h('button', { type: 'button', class: 'btn ghost', onclick: () => finish({ skipped: true }) }, 'Skip'),
+      checkBtn),
+  ]);
 
   const hint = (text) => { if (!result) set(feedback, text ? h('p', { class: 'hint' }, text) : null); };
 
@@ -436,11 +577,15 @@ export function build(ctx, word, onDone, meta = {}) {
     const { correct, marks, usual } = checkOrder(lang, s, mine);
     result = { correct, rating: correct ? GOOD : AGAIN };
     lineEls.forEach((b, pos) => { b.disabled = true; b.classList.add(marks[pos] ? 'correct' : 'wrong'); });
+    line.classList.add(correct ? 'right' : 'wrong');
     bank.hidden = true;
-    set(feedback, sentenceReveal(ctx, s, correct, mine, usual));
-    ctx.say(s.audio ?? s.audioText, { auto: true });
+    el.classList.add('answered');
+    ctx.onAnswer?.(result);
+    if (!correct) buzzWrong();
     const btn = continueButton(() => finish(result));
-    set(actions, btn);
+    bar.show(correct ? 'good' : 'bad', answerParts(sentenceReveal(ctx, s, correct, mine, usual), btn), line);
+    announce(ctx, live, correct ? 'Right! ' : 'Not quite. The right order: ', spoken(ctx, s.display || s.text, s.en));
+    ctx.say(s.audio ?? s.audioText, { auto: true });
     btn.focus({ preventScroll: true });
   }
 
@@ -452,7 +597,7 @@ export function build(ctx, word, onDone, meta = {}) {
   const unbind = bindKeys(keys);
   ctx.onCleanup(unbind);
 
-  return h('div', { class: 'exercise build' },
+  const el = h('div', { class: 'exercise build' },
     h('p', { class: 'kicker' }, 'Put the words in order'),
     h('div', { class: 'prompt build-prompt' },
       h('p', { class: 'prompt-word en build-en' }, s.en, ' ', regBadge(s)),
@@ -462,9 +607,10 @@ export function build(ctx, word, onDone, meta = {}) {
         h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(s.audio ?? s.audioText, { slow: true }) }, icon('slow', 14), 'Slowly'))),
     line,
     bank,
-    feedback,
-    actions,
+    live,
+    bar,
   );
+  return el;
 }
 
 export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build };

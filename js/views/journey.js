@@ -146,7 +146,8 @@ export default function journey(ctx) {
   const xpBy = ctx.game.xpByLang();
 
   return h('div', { class: 'view journey' },
-    h('h1', null, 'Journey'),
+    // With game features off this page is only about goals, and says so.
+    h('h1', null, on ? 'Journey' : 'Goals'),
     repairBanner(ctx),
     on ? levelCard(ctx) : h('div', { class: 'banner' }, 'Game features (XP, levels, challenges and achievements) are turned off. ', h('a', { href: '#/settings' }, 'Turn them on in Settings.')),
     on && Object.keys(xpBy).length > 1
