@@ -87,10 +87,21 @@ export default function welcome(ctx, stepArg) {
         goalButtons.forEach((b) => { b.classList.toggle('selected', b === e.currentTarget); b.setAttribute('aria-pressed', String(b === e.currentTarget)); });
       },
     }, h('b', null, g.name), h('small', null, `${g.value} exercises`), h('small', null, g.time)));
+    // Ukrainian and Arabic change some “I …” phrases with the speaker: ask once, here.
+    const speakAs = store.getSettings().speakAs === 'f' ? 'f' : 'm';
+    const speaker = lang.feminine ? h('section', { class: 'welcome-speaker' },
+      h('h2', { class: 'section-title' }, 'How do you speak?'),
+      h('p', { class: 'hint' }, `${lang.name} changes some “I …” phrases with the speaker (${lang.code === 'uk' ? 'Я згоден / Я згодна' : 'آسِف / آسِفَة'}). You can change this in Settings.`),
+      h('div', { class: 'pill-row', role: 'group', 'aria-label': 'I speak as' }, [['m', 'As a man'], ['f', 'As a woman']].map(([value, label]) => h('button', {
+        type: 'button', class: `pill${speakAs === value ? ' selected' : ''}`, 'aria-pressed': String(speakAs === value),
+        // The choice changes the language pack, so the app reloads (and comes back to this step).
+        onclick: () => { if (value !== speakAs) { store.updateSettings({ speakAs: value }); store.flush?.(); location.reload(); } },
+      }, label)))) : null;
     body = [
       h('h1', { class: 'welcome-step-title' }, 'Set a daily goal'),
       h('p', { class: 'hint' }, 'Every review, new word and practice question counts. Small and steady beats long and rare — you can change it later.'),
       h('div', { class: 'choice-grid' }, goalButtons),
+      speaker,
     ];
     foot = [h('button', { type: 'button', class: 'btn primary wide step-next', onclick: () => goTo(2) }, 'Continue', icon('arrow', 18))];
   } else if (step === 2) {
@@ -134,6 +145,7 @@ export default function welcome(ctx, stepArg) {
     foot = [
       h('button', { type: 'button', class: 'btn primary wide step-next', onclick: () => finish(`/learn/${lang.categories[0].id}`) },
         'Start my first lesson', icon('arrow', 18)),
+      h('button', { type: 'button', class: 'btn wide', onclick: () => finish('/learn/kit') }, '🎒 Travelling soon? Start with the trip essentials'),
       h('button', { type: 'button', class: 'btn ghost wide', onclick: () => finish('/') }, 'Look around first'),
     ];
   }
