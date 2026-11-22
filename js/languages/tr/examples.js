@@ -1,6 +1,6 @@
 // Example sentences for core words that had none, keyed by word id:
-// [sentence, english]. Written by one linguist and checked one by one by
-// another; a word's own "ex" (in vocab.js / more.js) takes precedence. Edit freely.
+// [sentence, english]. Written and proofread with AI assistance (not yet
+// reviewed by native speakers); a word's own "ex" (in vocab.js / more.js) takes precedence. Edit freely.
 export const extraExamples = {
   "iyi-akşamlar": ["İyi akşamlar, size nasıl yardımcı olabilirim?","Good evening, how can I help you?"],
   "hoşça-kal": ["Hoşça kal, yarın görüşürüz!","Bye, see you tomorrow!"],

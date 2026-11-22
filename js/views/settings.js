@@ -178,6 +178,9 @@ export default function settings(ctx) {
       h('h2', { class: 'card-title', id: 'delete-all-title' }, 'Delete all my data'),
       h('p', { class: 'hint' }, 'Removes everything Lisan has stored on this device: all languages, XP, achievements, goals, settings, the device id and the sync log — including the copy the app keeps in the phone’s own storage. Backups or sync codes you saved elsewhere aren’t touched.'),
       h('button', { type: 'button', class: 'btn danger', onclick: deleteAll }, 'Delete all my data')),
+    h('section', { class: 'card form' },
+      h('h2', { class: 'card-title' }, 'About the lessons'),
+      h('p', { class: 'hint' }, 'Lisan’s words, phrases, grammar notes and texts were written and checked with AI help and automated tests. They haven’t been reviewed by native speakers yet — if a native speaker tells you something different, trust them.')),
     h('p', { class: 'hint center' }, 'Lisan · ', h('a', { href: 'privacy.html' }, 'Privacy policy')),
   );
 }

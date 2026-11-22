@@ -1,6 +1,6 @@
 // Example sentences for core words that had none, keyed by word id:
-// [sentence, english, kana reading]. Written by one linguist and checked one by one by
-// another; a word's own "ex" (in vocab.js / more.js) takes precedence. Edit freely.
+// [sentence, english, kana reading]. Written and proofread with AI assistance (not yet
+// reviewed by native speakers); a word's own "ex" (in vocab.js / more.js) takes precedence. Edit freely.
 export const extraExamples = {
   "こんにちは": ["こんにちは、お元気ですか。","Hello, how are you?","こんにち は おげんき です か"],
   "こんばんは": ["こんばんは。遅くにすみません。","Good evening. Sorry to bother you so late.","こんばん は おそく に すみません"],

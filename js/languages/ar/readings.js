@@ -1,5 +1,5 @@
 // Readings for example sentences (transliteration, pausal at the end of a sentence), keyed by the sentence as written.
-// Written by one linguist and checked sentence by sentence by another; edit freely.
+// Written and proofread with AI assistance; not yet reviewed by native speakers. Edit freely.
 export const exampleReadings = {
   "مَرْحَبًا، كَيْفَ حَالُكَ؟": "marḥaban kayfa ḥāluk",
   "أَنَا بِخَيْرٍ، شُكْرًا.": "ʾanā bi-khayrin shukran",

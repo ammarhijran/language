@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **About the lessons** (Settings): says plainly that the content was written and checked with AI help and automated tests and has not been reviewed by native speakers yet. The README and the content files’ headers now describe this accurately.
 - **Long reads in Read & Listen:** four longer texts per language (20–26 lines each, marked “Long read”): a folk tale (Nasreddin Hoca and the cauldron, The Mitten, Momotarō, Juha and the donkey), a “Why I’m learning …” talk written so any learner can adapt and give it, a letter to a friend about life in a new city, and a job interview. Each has a glossary and questions like the short texts. 20 texts per language now.
 - **Recording a whole speech** allows more time for longer texts (1:30 up to 5:00, about twice a native reading) instead of a fixed 1:30.
 - **Offline notice for speaking practice:** when the device is offline, the mic says before you speak that scores usually need a connection (you can still listen and record yourself).
@@ -37,7 +38,7 @@
   - **Phrases** (+80): Small Talk, Café & Restaurant, Shopping, Getting Around, Making Plans, Reactions, Problems & Help, Polite Requests.
   - **Talk like a local** (+45): everyday spoken forms and slang.
   - Totals: Turkish 561, Ukrainian 443, Japanese 429, Arabic 434 words and phrases.
-  - Every file was written by an author and then checked and corrected by a native-level editor (stress, readings, vowel marks, register labels, naturalness).
+  - Every file was drafted with AI assistance and then checked and corrected in a separate AI editing pass (stress, readings, vowel marks, register labels, naturalness). It has not yet been reviewed by native speakers.
 - **Polite vs everyday speech.** Entries carry a register (formal · polite · neutral · casual · slang) and, where people say it differently, the counterpart: lessons and word pages show **"What people say"** next to **"Proper / polite"**, both playable. Examples:
   - Turkish *Naber?* ↔ *Nasılsınız?*
   - Ukrainian ти ↔ ви forms
@@ -47,9 +48,9 @@
   - Lessons earn XP and sync between devices.
   - New achievements: First Rules, Grammar Geek, Grammarian, Rule Master and Talk Like a Local.
 - **Egyptian Arabic sounds like Cairo:** dialect entries are stressed by Cairene rules (*mush-KI-la*, *maʿ-LĒSH*), and typed answers accept Arabizi numbers (*ma3lesh*, *5alas*, *7abibi*).
-- **Independent content audit:** after the native-level edit, separate reviewers checked every new entry and lesson in each language again (form & pronunciation, usage & register, grammar), and every finding was re-checked before it was applied (Turkish 18, Japanese 6, Ukrainian 9, Arabic 15 fixes).
-- **Readings for example sentences:** every Japanese example now shows its kana and rōmaji, and every Arabic example its transliteration (178 + 172 sentences, written by one linguist and checked by another). Japanese example sentences can now be practised in Sentences mode too (394 sentences, up from 233).
-- **An example sentence for every core word:** 729 new everyday sentences (Turkish 242, Ukrainian 167, Japanese 159 with kana, Arabic 161 with transliteration), each written by one linguist and checked by another. Every word topic can now be practised in Sentences mode: 624 / 529 / 552 / 486 sentences to build.
+- **Second content audit:** after the editing pass, separate AI review passes checked every new entry and lesson in each language again (form & pronunciation, usage & register, grammar), and every finding was re-checked before it was applied (Turkish 18, Japanese 6, Ukrainian 9, Arabic 15 fixes).
+- **Readings for example sentences:** every Japanese example now shows its kana and rōmaji, and every Arabic example its transliteration (178 + 172 sentences, written in one AI pass and checked in another). Japanese example sentences can now be practised in Sentences mode too (394 sentences, up from 233).
+- **An example sentence for every core word:** 729 new everyday sentences (Turkish 242, Ukrainian 167, Japanese 159 with kana, Arabic 161 with transliteration), each written in one AI pass and checked in another. Every word topic can now be practised in Sentences mode: 624 / 529 / 552 / 486 sentences to build.
 - **Delete all my data** in Settings erases every language, XP, achievements, settings and sync history on the device.
 - **Android back button** goes to the previous screen (and closes a celebration first) instead of leaving the app.
 - **Sync between devices without storing any user data.**

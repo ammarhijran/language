@@ -1,5 +1,5 @@
 // Readings for example sentences (kana, words spaced, particles as separate tokens), keyed by the sentence as written.
-// Written by one linguist and checked sentence by sentence by another; edit freely.
+// Written and proofread with AI assistance; not yet reviewed by native speakers. Edit freely.
 export const exampleReadings = {
   "先生、おはようございます。": "せんせい おはよう ございます",
   "お水をお願いします。": "おみず を おねがい します",

@@ -1,6 +1,6 @@
 // Example sentences for core words that had none, keyed by word id:
-// [sentence, english]. Written by one linguist and checked one by one by
-// another; a word's own "ex" (in vocab.js / more.js) takes precedence. Edit freely.
+// [sentence, english]. Written and proofread with AI assistance (not yet
+// reviewed by native speakers); a word's own "ex" (in vocab.js / more.js) takes precedence. Edit freely.
 export const extraExamples = {
   "добрий-день": ["Добрий день, як ваші справи?","Good afternoon, how are you?"],
   "добрий-ранок": ["Добрий ранок, мамо! Що на сніданок?","Good morning, Mom! What's for breakfast?"],

@@ -1,6 +1,6 @@
 // Extra everyday words, phrases and "talk like a local" entries, in the
-// internal word format (see js/languages/common.js). Written by an author and
-// checked by a native-level editor in the content workflow; edit freely.
+// internal word format (see js/languages/common.js). Written and proofread
+// with AI assistance; not yet reviewed by native speakers. Edit freely.
 export const categories = [
   {
     "id": "verbs2",

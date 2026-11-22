@@ -93,7 +93,7 @@ A typical code is under 1 kB. Even every word in all four languages fits in abou
   - an English-friendly "say it like" respelling (e.g. *merhaba* → `MEHR-hah-bah`)
   - tips on surprising letters (c, ç, ğ, ı, ö, ş, ü, j)
 - **Speak & score:** say a word into the microphone. Speech recognition transcribes it, the app gives you a score, and the letters you missed are highlighted with tips. Scoring is word-aware: saying a different word (or the opposite, like *anlıyorum* for *anlamıyorum*) never counts as right, while valid spellings and homophones (多分/たぶん, hala/hâlâ, Egyptian spellings) do.
-- **Record yourself** and hear your attempt played straight after the native audio.
+- **Record yourself** and hear your attempt played straight after the voice’s version.
 - **Speak (pronunciation lab):**
   - **Alphabet:** all 29 letters with sounds and example words
   - **Sounds:** guides to ı, ö, ü, ğ, the tapped r, double consonants, word stress and vowel harmony
@@ -195,6 +195,10 @@ Optional hooks cover:
 - several spoken forms, such as kanji and kana (`spokenTargets`)
 
 Turkish and Ukrainian sounds are derived from spelling. Japanese is derived from kana. Arabic is derived from a stored transliteration, because short vowels aren't written in everyday Arabic. The test suite checks every pack: unique ids, script, analysis, accepted answers and alphabet.
+
+## How the content was made
+
+All vocabulary, phrases, grammar lessons and Read & Listen texts were written and proofread with AI assistance: a drafting pass, separate checking passes, and automated tests for the things a machine can verify (stress positions, kana readings against the kanji, transliteration against the vowelled Arabic, glossary items, duplicates). **They have not yet been reviewed by native speakers.** The app says so in Settings. Everything is plain data under `js/languages/<code>/`, so corrections are easy to make.
 
 ## Notes on the Turkish content
 

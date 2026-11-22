@@ -1,5 +1,5 @@
-// Grammar lessons (explanations, tables, examples, quiz). Written by an author
-// and checked by a native-level editor in the content workflow; edit freely.
+// Grammar lessons (explanations, tables, examples, quiz). Written and proofread
+// with AI assistance; not yet reviewed by native speakers. Edit freely.
 export const lessons = [
   {
     "id": "x-wa-y-desu",

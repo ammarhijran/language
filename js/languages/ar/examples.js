@@ -1,6 +1,6 @@
 // Example sentences for core words that had none, keyed by word id:
-// [sentence, english, transliteration]. Written by one linguist and checked one by one by
-// another; a word's own "ex" (in vocab.js / more.js) takes precedence. Edit freely.
+// [sentence, english, transliteration]. Written and proofread with AI assistance (not yet
+// reviewed by native speakers); a word's own "ex" (in vocab.js / more.js) takes precedence. Edit freely.
 export const extraExamples = {
   "السلامعليكم": ["السَّلَامُ عَلَيْكُمْ، كَيْفَ حَالُكُمْ؟","Peace be upon you, how are you all?","as-salāmu ʿalaykum kayfa ḥālukum"],
   "صباحالخير": ["صَبَاحُ الْخَيْرِ يَا أُمِّي!","Good morning, Mom!","ṣabāḥu-l-khayri yā ʾummī"],
