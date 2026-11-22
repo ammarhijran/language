@@ -13,7 +13,7 @@ import { newCard } from '../srs.js';
 import {
   KINDS, LEVELS, REGISTERS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, markGlossary, findWord, fadeLine, SHADOW_ROUNDS, createPlayer, listenTimeout,
-  scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead, ownText, splitIntoLines, OWN_LINES_MAX,
+  scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead, ownTextFor, splitIntoLines, OWN_LINES_MAX,
 } from '../reader.js';
 
 // The Learn screen's entry card lives in reader.js, so Learn doesn't load this view.
@@ -382,7 +382,7 @@ function glossSheet(ctx, text, host, { say = ctx.say, onOpen } = {}) {
       h('div', { class: 'sheet-backdrop', onclick: () => close() }),
       h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'sheet-word', 'aria-describedby': 'sheet-en' },
         h('button', { type: 'button', class: 'icon-btn sheet-close', 'aria-label': 'Close', onclick: () => close() }, icon('x')),
-        h('p', { class: 'kicker' }, 'Glossary'),
+        h('p', { class: 'kicker' }, text.own ? 'From your word lists' : 'Glossary'),
         h('h2', { id: 'sheet-word', class: 'sheet-word', ...textAttrs(lang) }, item.tr),
         readingText(reading),
         h('p', { id: 'sheet-en', class: 'sheet-en' }, item.en),
@@ -391,7 +391,8 @@ function glossSheet(ctx, text, host, { say = ctx.say, onOpen } = {}) {
           h('button', { type: 'button', class: 'btn small', onclick: () => say(sayable(ctx, text, item), { slow: true }) }, icon('slow', 16), 'Slowly')),
         word ? h('div', { class: 'sheet-word-info' },
           h('p', { class: 'hint' }, 'In your word lists: ', h('b', { ...textAttrs(lang) }, word.tr), ` — ${word.en}`),
-          vocab(word)) : null));
+          vocab(word)) : null,
+        text.own ? h('p', { class: 'hint' }, 'Matched by spelling with a word of the course — in your sentence it may mean something else.') : null));
     host.append(el);
     document.addEventListener('keydown', onKey, true);
     if (ctx.settings.autoplay !== false) say(sayable(ctx, text, item), { auto: true });
@@ -636,7 +637,7 @@ function readerView(ctx, texts, text) {
       h('h1', { ...(text.own ? textAttrs(lang) : {}) }, text.title),
       text.titleNative ? h('p', { class: 'read-native-title', ...textAttrs(lang) }, text.titleNative) : null,
       text.own
-        ? h('p', { class: 'muted read-summary' }, 'Your own text, read by the voice as written. ', h('a', { href: href(text.id, 'edit') }, 'Edit or delete'))
+        ? h('p', { class: 'muted read-summary' }, 'Your own text, read by the voice as written. ', text.glossary.length ? 'Underlined words are in the course: tap one for its meaning. ' : '', h('a', { href: href(text.id, 'edit') }, 'Edit or delete'))
         : h('p', { class: 'muted read-summary' }, text.summary, ' ', registerBadge(text.register), ' ', dialectBadge(text.dialect)),
       best != null ? h('p', { class: 'read-best' }, icon('check', 16), `Done · best score ${pct(best)}`) : null),
     voiceBanner(ctx),
@@ -645,7 +646,7 @@ function readerView(ctx, texts, text) {
     revealBtn,
     list,
     text.glossary?.length ? h('section', { class: 'card read-glossary' },
-      h('h2', { class: 'card-title' }, '📝 Glossary'),
+      h('h2', { class: 'card-title' }, text.own ? '📝 Words from the course' : '📝 Glossary'),
       h('ul', { class: 'read-gloss-list' }, text.glossary.map((g, gi) => {
         const reading = lang.reading(g);
         const btn = h('button', { type: 'button', class: 'read-gloss-item', 'aria-haspopup': 'dialog', onclick: () => sheet.open(gi, btn) },
@@ -1208,7 +1209,7 @@ function practiceView(ctx, texts, text, mode) {
 
 function routeView(ctx, texts, id, mode, arg) {
   const mine = ctx.store.getOwnTexts(ctx.lang.code);
-  const own = mine.map(ownText);
+  const own = mine.map((rec) => ownTextFor(ctx.lang, rec));
   if (!id) return listView(ctx, texts, own);
   if (id === 'new') return editor(ctx, null);
   const text = own.find((t) => t.id === id) || texts.find((t) => t.id === id);

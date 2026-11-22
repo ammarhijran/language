@@ -433,3 +433,36 @@ test('own texts: saved per language, kept in backups, never in sync data', () =>
   assert.deepEqual(store.getOwnTexts('tr').map((t) => [t.id, t.title, t.body]), [['my-ok', '', 'b']]);
   store._resetAll();
 });
+
+test('own texts: words of the course in them become a glossary — whole words only', async () => {
+  const { autoGlossary, ownTextFor } = await import('../js/reader.js');
+  const gloss = (code, body) => { const t = ownTextFor(languages[code], { id: 'my-1', body }); return { t, map: Object.fromEntries(t.glossary.map((g) => [g.tr, g.en])) }; };
+
+  const tr = gloss('tr', 'Merhaba! Teşekkür ederim, çok güzel bir gün. Evde kahve içiyorum, karşıda.');
+  assert.equal(tr.map.Merhaba, 'hello');
+  assert.equal(tr.map['Teşekkür ederim'], 'thank you', 'a phrase of the course is one item');
+  assert.ok(tr.map.kahve && tr.map['çok'] && !('Evde' in tr.map) && !('içiyorum' in tr.map), 'inflected forms are not guessed');
+  assert.ok(tr.t.glossary.every((g) => g.exact && g.wordId && languages.tr.byId(g.wordId)));
+
+  const ja = gloss('ja', '皆さん、こんにちは。私は学生です。日本語を勉強しています。目的は旅行です。コーヒーを飲みます。');
+  assert.deepEqual(Object.keys(ja.map), ['こんにちは', '私', '学生', '日本語', '旅行', 'コーヒー']);
+  assert.ok(ja.t.glossary.every((g) => g.kana), 'with the course’s reading');
+
+  const ar = gloss('ar', 'مرحبا! اسمي سام، وأنا من كندا. أدرس العربية في الجامعة والبيت قريب، وبالقهوة نبدأ.');
+  assert.equal(ar.map['والبيت'], 'house; home', 'behind و and the article');
+  assert.equal(ar.map['وبالقهوة'], 'coffee');
+  assert.ok(!('من' in ar.map) && !('في' in ar.map), 'two-letter words without vowels are not guessed');
+
+  const uk = gloss('uk', 'Добрий вечір, друзі! Мене звати Алекс. Дякую, це дуже гарний день.');
+  assert.equal(uk.map['Добрий вечір'], 'good evening');
+  assert.ok(uk.map['Дякую'] && uk.map['день']);
+
+  // marking keeps every line intact and finds every item
+  for (const { t } of [tr, ja, ar, uk]) {
+    const lang = languages[t.id === 'my-1' && t.lines[0].tr.startsWith('Merhaba') ? 'tr' : /[\u3040-\u30ff]/.test(t.lines[0].tr) ? 'ja' : /[\u0600-\u06ff]/.test(t.lines[0].tr) ? 'ar' : 'uk'];
+    for (const l of t.lines) assert.equal(joined(markGlossary(lang, l.tr, t.glossary)), l.tr.normalize('NFC'));
+    assert.equal(glossaryFound(lang, t).size, t.glossary.length);
+  }
+  assert.deepEqual(autoGlossary(languages.tr, []), []);
+  assert.ok(autoGlossary(languages.tr, [{ tr: languages.tr.words.filter((w) => !/\s/.test(w.tr)).slice(0, 200).map((w) => w.tr).join(' ') }]).length <= 60, 'capped');
+});

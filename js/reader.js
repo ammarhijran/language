@@ -149,7 +149,7 @@ function indexLine(lang, text) {
 }
 
 /** Every [startUnit, endUnit] where `needle` occurs in the line, by the language's word rules. */
-function findForm(lang, line, needle, mode) {
+function findForm(lang, line, needle, mode, exact = false) {
   const { units, norm, at } = line;
   const out = [];
   const sep = (i) => i < 0 || i >= units.length || !WORDISH.test(units[i].ch);
@@ -159,7 +159,7 @@ function findForm(lang, line, needle, mode) {
       // Words are separated by spaces in the normalised text.
       if (pos > 0 && norm[pos - 1] !== ' ') continue;
       if (end < norm.length && norm[end] !== ' ') {
-        if ([...needle].length < MIN_STEM) continue;
+        if (exact || [...needle].length < MIN_STEM) continue;
         while (end < norm.length && norm[end] !== ' ') end++;
       }
       out.push([at[pos], at[end - 1]]);
@@ -170,8 +170,8 @@ function findForm(lang, line, needle, mode) {
       let e = at[end - 1];
       let before = '';
       while (!sep(s - 1)) { s--; before = units[s].key + before; }
-      if (!ARABIC_PROCLITICS.has(before)) continue;
-      if (!sep(e + 1) && [...needle].length < 3) continue;
+      if (exact ? before !== '' : !ARABIC_PROCLITICS.has(before)) continue;
+      if (!sep(e + 1) && (exact || [...needle].length < 3)) continue;
       while (!sep(e + 1)) e++;
       out.push([s, e]);
     } else {
@@ -199,7 +199,7 @@ export function markGlossary(lang, text, glossary = []) {
   const hits = [];
   glossary.forEach((item, gi) => {
     for (const form of glossaryForms(lang, item)) {
-      for (const [s, e] of findForm(lang, line, form, mode)) hits.push({ s, e, gi });
+      for (const [s, e] of findForm(lang, line, form, mode, !!item.exact)) hits.push({ s, e, gi });
     }
   });
   hits.sort((a, b) => a.s - b.s || (b.e - b.s) - (a.e - a.s));
@@ -241,8 +241,7 @@ export function glossaryMissing(lang, text) {
 }
 
 const vocabIndex = new Map();
-/** The vocabulary entry a glossary item stands for (same normalised form), or null. */
-export function findWord(lang, item) {
+function indexOfVocab(lang) {
   let index = vocabIndex.get(lang.code);
   if (!index) {
     index = new Map();
@@ -254,9 +253,120 @@ export function findWord(lang, item) {
     }
     vocabIndex.set(lang.code, index);
   }
+  return index;
+}
+
+/** The vocabulary entry a glossary item stands for (its own word, or the same normalised form), or null. */
+export function findWord(lang, item) {
+  if (item.wordId) return lang.byId(item.wordId) || null;
+  const index = indexOfVocab(lang);
   const keys = [item.tr, item.kana ? item.kana.replace(/\s+/g, '') : ''].filter(Boolean).map((f) => lang.normalize(f));
   for (const k of keys) if (index.has(k)) return index.get(k);
   return null;
+}
+
+// Arabic: the word without what is written onto its front (و، ف، ب، ل، ك، ال، لل).
+function withoutProclitics(key) {
+  const out = [];
+  for (const head of [key, /^[وف]/.test(key) ? key.slice(1) : null].filter(Boolean)) {
+    if (head !== key) out.push(head);
+    if (head.startsWith('لل')) out.push(head.slice(2), `ال${head.slice(2)}`);
+    const rest = /^[بلك]/.test(head) ? head.slice(1) : null;
+    if (rest) out.push(rest);
+    for (const h of [head, rest].filter(Boolean)) if (h.startsWith('ال')) out.push(h.slice(2));
+  }
+  return out.filter((k) => [...k].length >= 2);
+}
+
+const EDGE_PUNCT = /^[^\p{L}\p{M}\p{N}]+|[^\p{L}\p{M}\p{N}]+$/gu;
+const KANJI = /\p{Script=Han}/u;
+
+// Every course word by its written forms (the headword and its other spellings): key → [words].
+const writtenIndex = new Map();
+function wordsByWritten(lang) {
+  let index = writtenIndex.get(lang.code);
+  if (!index) {
+    index = new Map();
+    for (const w of lang.words) {
+      for (const f of [w.tr, ...(w.alt || [])]) {
+        const k = f && lang.normalize(f);
+        if (!k) continue;
+        const list = index.get(k) || [];
+        if (!list.includes(w)) index.set(k, [...list, w]);
+      }
+    }
+    writtenIndex.set(lang.code, index);
+  }
+  return index;
+}
+
+/**
+ * A glossary for a text that has none (the learner's own): the words and
+ * phrases in it that are in the course, as written in the text. Only whole
+ * words count (plus, in Arabic, a word behind و، ب، ال…; in Japanese, the
+ * longest course word at each place), so an inflected form the course doesn't
+ * list is left alone rather than guessed. A spelling that is two course words
+ * lists both meanings; two-letter Arabic words are skipped.
+ */
+export function autoGlossary(lang, lines, max = 60) {
+  const index = wordsByWritten(lang);
+  const items = new Map();
+  const add = (written, words) => {
+    const k = lang.normalize(written);
+    if (items.has(k) || items.size >= max) return;
+    // Written with its vowel marks or accents, the text itself says which word it is.
+    const same = words.filter((w) => [w.tr, ...(w.alt || [])].some((f) => f.normalize('NFC') === written.normalize('NFC')));
+    const list = (same.length ? same : words).slice(0, 3);
+    const [word] = list;
+    const meanings = [...new Set(list.map((w) => w.en))];
+    items.set(k, {
+      tr: written, en: meanings.join(' · or: '), exact: true,
+      ...(meanings.length === 1 ? { wordId: word.id } : {}),
+      ...(list.length === 1 && word.kana ? { kana: word.kana } : {}),
+      ...(list.length === 1 && word.tl ? { tl: word.tl } : {}),
+    });
+  };
+  const arabic = lang.dir === 'rtl';
+  for (const { tr } of lines) {
+    if (lineMode(lang, tr) === 'chars') {
+      // Japanese: the longest course word starting at each character. Short
+      // kana strings turn up inside other words (さん in 皆さん, いま in しています),
+      // so a word written in hiragana needs three characters.
+      const chars = [...tr];
+      const wordish = (c) => !!c && WORDISH.test(c);
+      for (let i = 0; i < chars.length; i++) {
+        if (!wordish(chars[i])) continue;
+        for (let n = Math.min(10, chars.length - i); n >= 1; n--) {
+          const part = chars.slice(i, i + n);
+          if (!part.every(wordish)) continue;
+          const piece = part.join('');
+          const kanji = KANJI.test(piece);
+          if (!kanji && n < (/^\p{Script=Katakana}/u.test(piece) ? 2 : 3)) break;
+          // one kanji inside a longer kanji word is part of that word, not this one
+          if (n === 1 && (KANJI.test(chars[i - 1] || '') || KANJI.test(chars[i + 1] || ''))) break;
+          const found = index.get(lang.normalize(piece));
+          if (found) { add(piece, found); i += n - 1; break; }
+        }
+      }
+      continue;
+    }
+    const tokens = tr.split(/\s+/).map((t) => t.replace(EDGE_PUNCT, '')).filter(Boolean);
+    for (let i = 0; i < tokens.length; i++) {
+      let n = Math.min(4, tokens.length - i);
+      for (; n >= 2; n--) {
+        const phrase = tokens.slice(i, i + n).join(' ');
+        const found = index.get(lang.normalize(phrase));
+        if (found) { add(phrase, found); break; }
+      }
+      if (n >= 2) { i += n - 1; continue; }
+      const key = lang.normalize(tokens[i]);
+      // Two-letter Arabic words without their vowels are too many things (من: from, who) to guess.
+      if (arabic && [...key].length <= 2) continue;
+      const found = index.get(key) || (arabic ? withoutProclitics(key).map((k) => index.get(k)).find(Boolean) : null);
+      if (found) add(tokens[i], found);
+    }
+  }
+  return [...items.values()];
 }
 
 // ---------- Shadowing ----------
@@ -361,6 +471,9 @@ export function ownText(rec) {
     titleNative: '', summary: 'Your own text.', lines, glossary: [], questions: [],
   };
 }
+
+/** The same text with the course's words in it as its glossary (see autoGlossary). */
+export const ownTextFor = (lang, rec) => { const t = ownText(rec); return { ...t, glossary: autoGlossary(lang, t.lines) }; };
 
 // ---------- Player ----------
 
