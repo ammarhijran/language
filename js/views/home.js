@@ -1,4 +1,4 @@
-import { h, icon } from '../ui.js';
+import { h, icon, storageBanner } from '../ui.js';
 import { categoryCard, voiceBanner, playButton, readingLine, categorySections, grammarLink } from '../components.js';
 import { computeStats, nextCategory, wordOfTheDay } from '../stats.js';
 import { levelCard, challengeList, repairBanner } from './journey.js';
@@ -42,6 +42,7 @@ export default function home(ctx) {
         title: 'Daily goal — change it in Settings',
         'aria-label': `Daily goal: ${Math.min(done, goal)} of ${goal} exercises done today`,
       }, h('span', null, done >= goal ? icon('check', 22) : h('b', null, String(done)), h('small', null, done >= goal ? 'goal met' : `of ${goal} today`)))),
+    storageBanner(ctx, { link: true }),
     voiceBanner(ctx),
     h('div', { class: 'stat-row' },
       stat(icon('flame'), s.streak, s.streak === 1 ? 'day streak' : 'day streak'),

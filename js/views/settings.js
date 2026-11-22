@@ -1,4 +1,4 @@
-import { h, icon, set } from '../ui.js';
+import { h, icon, set, storageBanner } from '../ui.js';
 import * as speech from '../speech.js';
 import { voiceBanner } from '../components.js';
 import { GOALS } from './welcome.js';
@@ -81,6 +81,7 @@ export default function settings(ctx) {
 
   return h('div', { class: 'view' },
     h('h1', null, 'Settings'),
+    storageBanner(ctx),
     voiceBanner(ctx),
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'Language'),

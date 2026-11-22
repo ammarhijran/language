@@ -6,16 +6,21 @@ import {
   playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge,
   praiseLine, diffLine, sayLater,
 } from './components.js';
-import { similarity } from './compare.js';
+import { checkTyped, overlaps } from './compare.js';
 import { AGAIN, HARD, GOOD, EASY } from './srs.js';
-import { phraseSentence, checkOrder, tileKey } from './sentences.js';
+import { phraseSentence, checkOrder, tileKey, acceptedOrders } from './sentences.js';
+import { canSpeak } from './speech.js';
 
 function once(fn) {
   let called = false;
   return (...args) => { if (!called) { called = true; fn(...args); } };
 }
 
-/** Pick 4 options including the target, preferring the same category. */
+/**
+ * Pick 4 options including the target, preferring the same category. A word
+ * whose meaning overlaps the target's (“sorry” next to “sorry; excuse me”) is
+ * never offered: it would be a second right answer.
+ */
 export function pickOptions(lang, word, label, n = 4) {
   const same = shuffle(lang.wordsIn(word.cat).filter((w) => w.id !== word.id));
   const others = shuffle(lang.words.filter((w) => w.cat !== word.cat));
@@ -24,7 +29,7 @@ export function pickOptions(lang, word, label, n = 4) {
   for (const w of [...same, ...others]) {
     if (out.length >= n) break;
     const l = label(w);
-    if (seen.has(l)) continue;
+    if (seen.has(l) || overlaps(w.en, word.en)) continue;
     seen.add(l);
     out.push(w);
   }
@@ -36,7 +41,7 @@ function reveal(ctx, word, correct, extra) {
   return h('div', { class: `reveal ${correct ? 'good' : 'bad'}` },
     h('p', { class: 'verdict' }, icon(correct ? 'check' : 'x', 18), correct ? praiseLine(ctx.lang, pick(ctx.lang.praise)) : 'Not quite — here’s the answer:'),
     h('div', { class: 'reveal-word' },
-      playButton(ctx, word.tr),
+      playButton(ctx, word),
       h('div', null,
         h('p', null, h('span', { class: 'tr', lang: ctx.lang.code }, word.tr), h('span', { class: 'en' }, ` — ${word.en}`)),
         readingLine(ctx, word, 'reading small'),
@@ -76,7 +81,7 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render }
       else if (j === i) b.classList.add('wrong');
     });
     set(feedback, reveal(ctx, word, correct));
-    ctx.say(word.tr);
+    ctx.say(word, { auto: true });
     const btn = continueButton(finish);
     set(actions, btn);
     btn.focus({ preventScroll: true });
@@ -98,18 +103,20 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render }
 }
 
 export function listen(ctx, word, onDone) {
-  sayLater(ctx, word.tr);
+  // Without a voice for the language there is nothing to listen to: read it instead.
+  if (canSpeak(ctx.lang.speech(word).lang) === false) return meaning(ctx, word, onDone);
+  sayLater(ctx, word);
   const prompt = h('div', { class: 'prompt listen-prompt' },
-    h('button', { type: 'button', class: 'big-play', 'aria-label': 'Play the word again', onclick: () => ctx.say(word.tr) }, icon('volume', 40)),
-    h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(word.tr, { slow: true }) }, icon('slow', 14), 'Slowly'),
+    h('button', { type: 'button', class: 'big-play', 'aria-label': 'Play the word again', onclick: () => ctx.say(word) }, icon('volume', 40)),
+    h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(word, { slow: true }) }, icon('slow', 14), 'Slowly'),
   );
   return choice(ctx, word, onDone, { kicker: 'Listen — what does it mean?', prompt, label: (w) => w.en });
 }
 
 export function meaning(ctx, word, onDone) {
-  if (ctx.settings.autoplay) sayLater(ctx, word.tr);
+  if (ctx.settings.autoplay) sayLater(ctx, word);
   const prompt = h('div', { class: 'prompt' },
-    h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word.tr)),
+    h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word)),
     readingLine(ctx, word));
   return choice(ctx, word, onDone, { kicker: 'What does this mean?', prompt, label: (w) => w.en });
 }
@@ -153,35 +160,16 @@ export function type(ctx, word, onDone) {
     const v = input.value;
     if (!v.trim()) { input.focus(); return; }
     // Accepted forms include romanisations (rōmaji, transliteration) for scripts
-    // that are hard to type on a phone keyboard.
-    const accepted = lang.acceptedAnswers(word);
-    const n = lang.normalize(v);
-    let rating;
-    let extra = null;
-    // Kana and rōmaji forms can both be close: show the one nearest to what was
-    // typed, so “kohi” is marked against “koohii”, not as an all-wrong コーヒー.
-    const close = accepted
-      .filter((a) => lang.stripDiacritics(a) === lang.stripDiacritics(v))
-      .sort((a, b) => similarity(lang.normalize(b), n) - similarity(lang.normalize(a), n))[0];
-    if (accepted.some((a) => lang.normalize(a) === n)) {
-      rating = GOOD;
-    } else if (close) {
-      rating = HARD;
-      // The accepted answer as written (its own script, spaces and marks), letters to fix marked.
-      const diff = lang.diffAsWritten(close, n);
-      const latin = /^[\p{Script=Latin}\s'ʾʿ’-]+$/u.test(close);
-      extra = h('div', null,
-        h('p', { class: 'hint' }, lang.almostHint),
-        diffLine(diff, { lang: latin ? null : lang.code }));
-    } else {
-      rating = AGAIN;
-      extra = h('p', { class: 'hint' }, 'You wrote: ', h('q', { lang: lang.code }, v));
-    }
-    result = { correct: rating !== AGAIN, rating };
+    // that are hard to type on a phone keyboard; a different word of the course
+    // is never “almost” right (compare.js checkTyped).
+    const verdict = checkTyped(lang, word, v);
+    const rating = verdict.verdict === 'good' ? GOOD : verdict.verdict === 'almost' ? HARD : AGAIN;
+    // A slip (special letters, spaces) still grows the interval less, but doesn't lower ease.
+    result = { correct: rating !== AGAIN, rating, ...(verdict.slip ? { slip: true } : {}) };
     input.readOnly = true;
     chars.hidden = true;
-    set(feedback, reveal(ctx, word, rating !== AGAIN, extra));
-    ctx.say(word.tr);
+    set(feedback, reveal(ctx, word, rating !== AGAIN, typedNote(lang, word, verdict, v)));
+    ctx.say(word, { auto: true });
     set(submit, 'Continue', icon('arrow', 18));
   }
 
@@ -199,11 +187,47 @@ export function type(ctx, word, onDone) {
   );
 }
 
+/** The hint under a typed answer: which word it was, the spacing, or the letters to fix. */
+function typedNote(lang, word, v, typed) {
+  const q = (text, l = lang.code) => h('q', { lang: l }, text);
+  const roman = (text) => (/^[\p{Script=Latin}\s'ʾʿ’-]+$/u.test(text) ? null : lang.code);
+  const pairName = (p) => (p.dialect ? `the ${p.dialect} form` : p.reg ? `the ${p.reg} form` : 'another way to say it');
+  switch (v.kind) {
+    case 'also':
+      return h('p', { class: 'hint' }, 'Also right! ',
+        v.other.id === word.id ? [q(v.form), ` is ${pairName(word.pair || {})}. `] : [q(v.other.tr), ` means “${v.other.en}” too. `],
+        'This card’s word is ', q(word.tr), '.');
+    case 'spelling':
+      return h('p', { class: 'hint' }, 'Right — the course spells it ', q(v.form, roman(v.form)), '.');
+    case 'spaces':
+      return h('p', { class: 'hint' }, 'Almost! Check the spaces: ', q(v.form, roman(v.form)));
+    case 'letters':
+    case 'loose':
+      // The accepted answer as written (its own script, spaces and marks), letters to fix marked.
+      return h('div', null,
+        h('p', { class: 'hint' }, v.kind === 'loose' ? 'Almost! The usual spelling is:' : lang.almostHint),
+        diffLine(lang.diffAsWritten(v.form, lang.normalize(typed)), { lang: roman(v.form) }));
+    case 'other': {
+      const other = v.pair ? { tr: v.form, en: v.other.pair.en || v.other.en } : v.other;
+      return h('p', { class: 'hint' }, 'That’s ', q(other.tr), ` — “${other.en}”, a different word. You wrote: `, q(typed, roman(typed)));
+    }
+    default:
+      // What was typed, in its own script (Latin quotes stay Latin in Arabic).
+      return h('p', { class: 'hint' }, 'You wrote: ', q(typed, roman(typed)));
+  }
+}
+
+// Speech scores: GOOD from 85 %, HARD from 70 %. A different word or the
+// opposite meaning scores at most 50 % (compare.js scoreWord), so it never counts.
+export const SPEAK_GOOD = 0.85;
+export const SPEAK_HARD = 0.7;
+export const speakRating = (score) => (score >= SPEAK_GOOD ? GOOD : score >= SPEAK_HARD ? HARD : AGAIN);
+
 export function speak(ctx, word, onDone) {
   let best = 0;
   const actions = h('div', { class: 'actions split' });
   const finish = once((r) => onDone(r));
-  const rate = () => (best >= 0.8 ? GOOD : best >= 0.55 ? HARD : AGAIN);
+  const rate = () => speakRating(best);
 
   const cont = continueButton(() => finish({ correct: rate() !== AGAIN, rating: rate() }));
   cont.disabled = true;
@@ -217,12 +241,12 @@ export function speak(ctx, word, onDone) {
     onOverride: () => finish({ correct: true, rating: GOOD }),
   });
 
-  if (ctx.settings.autoplay) sayLater(ctx, word.tr);
+  if (ctx.settings.autoplay) sayLater(ctx, word);
 
   return h('div', { class: 'exercise' },
     h('p', { class: 'kicker' }, 'Say it out loud'),
     h('div', { class: 'prompt' },
-      h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word.tr), playButton(ctx, word.tr, { slow: true })),
+      h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word), playButton(ctx, word, { slow: true })),
       readingLine(ctx, word),
       h('p', { class: 'prompt-sub' }, word.en)),
     pronunciationPanel(ctx, word, { compact: true }),
@@ -246,11 +270,11 @@ export function flashcard(ctx, word, onDone) {
     shown = true;
     back.hidden = false;
     set(back, 
-      h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word.tr)),
+      h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word)),
       readingLine(ctx, word),
       pronunciationPanel(ctx, word, { compact: true }),
     );
-    ctx.say(word.tr);
+    ctx.say(word, { auto: true });
     set(actions, 
       h('p', { class: 'hint center' }, 'How well did you remember it?'),
       h('div', { class: 'rating-row' }, ratings.map(([r, label, cls], i) =>
@@ -276,7 +300,7 @@ export function flashcard(ctx, word, onDone) {
 
 /** Teaching card used when a word is first introduced. */
 export function intro(ctx, word, onDone, meta = {}) {
-  if (ctx.settings.autoplay) sayLater(ctx, word.tr);
+  if (ctx.settings.autoplay) sayLater(ctx, word);
   const finish = once(() => { unbind(); onDone({ intro: true }); });
   const unbind = bindKeys({ Enter: finish });
   ctx.onCleanup(unbind);
@@ -288,7 +312,7 @@ export function intro(ctx, word, onDone, meta = {}) {
       readingLine(ctx, word),
       h('p', { class: 'hero-en' }, word.en, ' ', regBadge(word)),
     ),
-    audioControls(ctx, word.tr),
+    audioControls(ctx, word),
     pronunciationPanel(ctx, word),
     registerBlock(ctx, word),
     exampleBlock(ctx, word),
@@ -307,22 +331,32 @@ export function intro(ctx, word, onDone, meta = {}) {
 
 // ---------- Sentence builder ----------
 
-/** The tiles in a random order that isn't already the answer (when the words allow one). */
-function scramble(lang, tokens) {
-  const tiles = tokens.map((text) => ({ text, key: tileKey(lang, text) }));
+/**
+ * The tiles (words without punctuation or a sentence-initial capital) in a
+ * random order that isn't already a right answer, when the words allow one.
+ */
+function scramble(lang, s) {
+  const tiles = (s.tiles || s.tokens).map((text) => ({ text, key: tileKey(lang, text) }));
+  const right = new Set(acceptedOrders(lang, s).map((o) => o.join(' ')));
+  const isRight = (ts) => right.has(ts.map((t) => t.key).join(' '));
   let out = shuffle(tiles);
-  for (let n = 0; n < 12 && out.every((t, i) => t.key === tiles[i].key); n++) out = shuffle(tiles);
+  for (let n = 0; n < 12 && isRight(out); n++) out = shuffle(tiles);
   return out;
 }
 
-/** After checking: the sentence as written, its reading and meaning, and (when wrong) the learner's order. */
-function sentenceReveal(ctx, s, correct, mine) {
+/**
+ * After checking: the sentence as written (capitals and punctuation back),
+ * its reading and meaning, and the learner's order when it was wrong or a
+ * valid order other than the usual one.
+ */
+function sentenceReveal(ctx, s, correct, mine, usual = true) {
   const { lang } = ctx;
   return h('div', { class: `reveal ${correct ? 'good' : 'bad'}` },
     h('p', { class: 'verdict' }, icon(correct ? 'check' : 'x', 18),
       correct ? praiseLine(lang, pick(lang.praise)) : 'Not quite — here’s the right order:'),
+    correct && !usual ? h('p', { class: 'hint build-also' }, 'Also right — the usual order is:') : null,
     h('div', { class: 'reveal-word' },
-      playButton(ctx, s.audioText),
+      playButton(ctx, s.audio ?? s.audioText),
       h('div', null,
         h('p', { class: 'tr', lang: lang.code }, s.display || s.text),
         s.reading ? h('p', { class: 'reading small' }, s.reading) : null,
@@ -340,7 +374,7 @@ export function build(ctx, word, onDone, meta = {}) {
   const { lang } = ctx;
   const s = meta.sentence || phraseSentence(lang, word);
   if (!s) return produce(ctx, word, onDone);
-  const tiles = scramble(lang, s.tokens);
+  const tiles = scramble(lang, s);
   const placed = []; // indexes into tiles, in the learner's order
   let lineEls = [];
   let result = null;
@@ -399,12 +433,12 @@ export function build(ctx, word, onDone, meta = {}) {
     const left = tiles.length - placed.length;
     if (left) { hint(`Use all the words first — ${left} left.`); return; }
     const mine = placed.map((i) => tiles[i].text);
-    const { correct, marks } = checkOrder(lang, s, mine);
+    const { correct, marks, usual } = checkOrder(lang, s, mine);
     result = { correct, rating: correct ? GOOD : AGAIN };
     lineEls.forEach((b, pos) => { b.disabled = true; b.classList.add(marks[pos] ? 'correct' : 'wrong'); });
     bank.hidden = true;
-    set(feedback, sentenceReveal(ctx, s, correct, mine));
-    ctx.say(s.audioText);
+    set(feedback, sentenceReveal(ctx, s, correct, mine, usual));
+    ctx.say(s.audio ?? s.audioText, { auto: true });
     const btn = continueButton(() => finish(result));
     set(actions, btn);
     btn.focus({ preventScroll: true });
@@ -424,8 +458,8 @@ export function build(ctx, word, onDone, meta = {}) {
       h('p', { class: 'prompt-word en build-en' }, s.en, ' ', regBadge(s)),
       // Labelled buttons, not playButton(): its label would read the answer out to screen readers.
       h('div', { class: 'build-audio' },
-        h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(s.audioText) }, icon('volume', 14), 'Listen'),
-        h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(s.audioText, { slow: true }) }, icon('slow', 14), 'Slowly'))),
+        h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(s.audio ?? s.audioText) }, icon('volume', 14), 'Listen'),
+        h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(s.audio ?? s.audioText, { slow: true }) }, icon('slow', 14), 'Slowly'))),
     line,
     bank,
     feedback,

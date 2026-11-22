@@ -66,6 +66,16 @@ export function onBackButton(fn) {
 }
 
 /**
+ * Run fn when the app goes to the background (the App plugin's 'pause'
+ * event), e.g. to save before the OS may stop it. Does nothing in a browser:
+ * there, use visibilitychange and pagehide.
+ */
+export function onAppPause(fn) {
+  if (!hasPlugin('App')) return;
+  App.addListener('pause', () => fn()).catch(() => {});
+}
+
+/**
  * Leave the app from its home screen. Like Android 12+ does by itself, this
  * moves the app to the background instead of closing it, so it reopens
  * where the learner left it.

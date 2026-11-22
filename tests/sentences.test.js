@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { languages } from '../js/languages/index.js';
 import {
-  tokenize, checkOrder, makeSentence, phraseSentence, sentencesFor, tileKey, MIN_TOKENS, MAX_TOKENS, MIN_SENTENCES,
+  tokenize, checkOrder, makeSentence, phraseSentence, sentencesFor, tileKey, tileTexts, acceptedOrders, MIN_TOKENS, MAX_TOKENS, MIN_SENTENCES,
 } from '../js/sentences.js';
 import { chooseReviewType } from '../js/stats.js';
 import { newCard, markKnown } from '../js/srs.js';
@@ -84,6 +84,9 @@ test(`every sentence has ${MIN_TOKENS}–${MAX_TOKENS} tiles, each with a letter
       for (const t of s.tokens) assert.match(t, /[\p{L}\p{N}]/u, `${L.code} ${s.id}`);
       assert.equal(s.text, s.tokens.join(' '));
       assert.ok(s.en && s.audioText && s.id, `${L.code} ${s.id}`);
+      // The voice reads the source entry (its override, reading, dialect), not the tiles.
+      assert.equal(s.audio.tr, s.audioText, `${L.code} ${s.id}`);
+      assert.equal(L.speech(s.audio).lang.slice(0, 2), L.code);
     }
   }
   const short = makeSentence(tr, { tr: 'Çok güzel!', en: 'Very nice!' }, {}, 'x');
@@ -96,7 +99,7 @@ test(`every sentence has ${MIN_TOKENS}–${MAX_TOKENS} tiles, each with a letter
 
 test('the right order is correct; a wrong one marks the misplaced words', () => {
   const s = find(tr, 'p-cafe', 'phrase:iki-kişilik-bir-masanız-var-mı');
-  assert.deepEqual(checkOrder(tr, s, s.tokens), { correct: true, marks: [true, true, true, true, true, true] });
+  assert.deepEqual(checkOrder(tr, s, s.tokens), { correct: true, marks: [true, true, true, true, true, true], usual: true });
   const r = checkOrder(tr, s, swap(s.tokens, 4, 5));
   assert.equal(r.correct, false);
   assert.deepEqual(r.marks, [true, true, true, true, false, false]);
@@ -234,4 +237,110 @@ test('every word topic can be practised in Sentences mode, and every core word h
       for (const w of L.wordsIn(c.id)) assert.ok(w.ex, `${L.code}: core word ${w.tr} has no example`);
     }
   }
+});
+
+// ---------- Tiles give nothing away ----------
+
+test('tiles have no punctuation and no sentence-initial capital; the reveal keeps both', () => {
+  const s = find(uk, 'p-cafe', 'phrase:мені-будь-ласка-капучино-без-цукру')
+    || sentencesFor(uk, 'all').find((x) => x.audioText === 'Мені, будь ласка, капучино без цукру.');
+  assert.ok(s, 'the café sentence');
+  assert.deepEqual([...s.tiles].sort(), ['без', 'будь', 'капучино', 'ласка', 'мені', 'цукру']);
+  assert.equal(s.text, 'Мені, будь ласка, капучино без цукру.');
+  for (const L of [tr, uk, ja, ar]) {
+    for (const x of sentencesFor(L, 'all')) {
+      assert.equal(x.tiles.length, x.tokens.length);
+      x.tiles.forEach((t, i) => {
+        assert.match(t, /^[\p{L}\p{M}\p{N}](?:.*[\p{L}\p{M}\p{N}])?$/u, `${L.code} ${x.id}: “${t}”`);
+        assert.equal(tileKey(L, t), tileKey(L, x.tokens[i]), `${L.code} ${x.id}: ${t}`);
+      });
+    }
+  }
+});
+
+test('the first tile is lowercase unless it is a name; names keep their capitals', () => {
+  assert.deepEqual(tileTexts(tr, tokenize('Bugün hava çok güzel.')), ['bugün', 'hava', 'çok', 'güzel']);
+  assert.deepEqual(tileTexts(tr, tokenize('İyi geceler!')), ['iyi', 'geceler'], 'Turkish İ → i');
+  assert.deepEqual(tileTexts(tr, tokenize("Yarın İzmir'e gidiyorum.")), ['yarın', "İzmir'e", 'gidiyorum']);
+  assert.deepEqual(tileTexts(tr, tokenize('Merhaba Ali, nasılsın?')), ['merhaba', 'Ali', 'nasılsın']);
+  assert.equal(tileTexts(tr, tokenize("İstanbul'a gidiyorum."))[0], "İstanbul'a");
+  // A dialogue: each line's first word too.
+  assert.deepEqual(tileTexts(tr, tokenize('— Nasılsın? — İyiyim.')), ['nasılsın', 'iyiyim']);
+  assert.equal(tileTexts(uk, tokenize('Київ дуже гарний.'))[0], 'Київ');
+  // How often a capital still marks the first tile in tr/uk phrases: only for names.
+  for (const L of [tr, uk]) {
+    const phrases = L.categories.filter((c) => c.group === 'phrases').flatMap((c) => sentencesFor(L, c.id));
+    const capital = phrases.filter((x) => /^\p{Lu}/u.test(x.tiles[0]));
+    assert.ok(capital.length <= phrases.length * 0.1, `${L.code}: ${capital.length}/${phrases.length} start with a capital tile`);
+  }
+});
+
+// ---------- Other valid orders ----------
+
+const sentenceOf = (L, text) => sentencesFor(L, 'all').find((x) => x.audioText === text) || makeSentence(L, { tr: text, en: text }, {}, 'test');
+
+test('valid other orders count: “please”, time words, Ukrainian object pronouns, vocatives', () => {
+  const right = [
+    [uk, 'Мені, будь ласка, капучино без цукру.', 'мені капучино без цукру будь ласка'],
+    [uk, 'Мені, будь ласка, капучино без цукру.', 'будь ласка мені капучино без цукру'],
+    [uk, 'Я тебе люблю.', 'я люблю тебе'],
+    [uk, 'Я сьогодні працюю з дому.', 'сьогодні я працюю з дому'],
+    [uk, 'Я сьогодні працюю з дому.', 'я працюю з дому сьогодні'],
+    [uk, 'Доброго ранку, колеги!', 'колеги доброго ранку'],
+    [tr, 'Bugün hava çok güzel.', 'hava bugün çok güzel'],
+    [tr, 'Lütfen bir doktor çağırın!', 'bir doktor çağırın lütfen'],
+    [tr, 'Bir çay, lütfen.', 'lütfen bir çay'],
+    [tr, 'Bebek uyuyor, lütfen sessiz olun.', 'bebek uyuyor sessiz olun lütfen'],
+    [ar, 'الْحِسَابُ مِنْ فَضْلِكَ.', 'مِنْ فَضْلِكَ الْحِسَابُ'],
+    [ar, 'الْجَوُّ حَارٌّ جِدًّا الْيَوْمَ.', 'الْيَوْمَ الْجَوُّ حَارٌّ جِدًّا'],
+    [ja, '母は毎朝お弁当を作ります。', 'まいあさ はは は おべんとう を つくります'], // a time word before or after the topic
+    [ja, 'お父さんは今、家にいますか。', 'いま おとうさん は いえ に います か'],
+  ];
+  for (const [L, text, answer] of right) {
+    const r = checkOrder(L, sentenceOf(L, text), tokenize(answer));
+    assert.equal(r.correct, true, `${L.code} ${text} ← ${answer}`);
+    assert.equal(r.usual, false, 'the reveal shows the usual order');
+  }
+});
+
+test('orders the rules must not accept', () => {
+  const wrong = [
+    [uk, 'Столик на двох, будь ласка.', 'на столик двох будь ласка'],
+    [uk, 'На добраніч, до завтра!', 'завтра на добраніч до'], // до завтра stays together
+    [uk, 'Батько навчив мене плавати.', 'батько навчив плавати мене'],
+    [uk, 'Це моя дружина, Оксана.', 'оксана це моя дружина'], // an apposition, not a vocative
+    [uk, 'Вибачте, я не розумію. Повторіть, будь ласка.', 'будь ласка вибачте я не розумію повторіть'], // two sentences
+    [tr, 'Bugün çok yorgunum.', 'çok bugün yorgunum'],
+    [tr, 'Yarın sabah erken kalkmam lazım.', 'erken yarın sabah kalkmam lazım'],
+    [tr, 'Yemekten sonra çay içelim.', 'sonra yemekten çay içelim'], // a postposition
+    [tr, 'Bu akşam müsait misiniz?', 'müsait bu akşam misiniz'], // the question particle
+    [tr, 'Yarın diş hekimine gitmem lazım.', 'diş yarın hekimine gitmem lazım'], // a compound
+    [tr, 'Daha yavaş lütfen, çok hızlı konuşuyorsunuz.', 'daha yavaş çok hızlı konuşuyorsunuz lütfen'], // lütfen stays in its clause
+    [ar, 'أَظُنُّ أَنَّ الْمَطْعَمَ مُغْلَقٌ الْيَوْمَ.', 'الْيَوْمَ أَظُنُّ أَنَّ الْمَطْعَمَ مُغْلَقٌ'], // out of the subordinate clause
+    [ja, '母は毎朝お弁当を作ります。', 'はは まいあさ は おべんとう を つくります'], // between a noun and its particle
+    [ja, '今日の晩ご飯は魚です。', 'の きょう ばんごはん は さかな です'], // 今日 is tied to its の
+  ];
+  for (const [L, text, answer] of wrong) {
+    const s = sentenceOf(L, text);
+    assert.equal(checkOrder(L, s, tokenize(answer)).correct, false, `${L.code} ${text} ← ${answer}`);
+  }
+});
+
+test('every accepted order uses exactly the sentence’s tiles, the usual one first', () => {
+  for (const L of [tr, uk, ja, ar]) {
+    for (const s of sentencesFor(L, 'all')) {
+      const orders = acceptedOrders(L, s);
+      const keys = s.tokens.map((t) => tileKey(L, t));
+      assert.deepEqual(orders[0], keys);
+      const bag = [...keys].sort().join(' ');
+      for (const o of orders) assert.equal([...o].sort().join(' '), bag, `${L.code} ${s.id}`);
+      assert.deepEqual(checkOrder(L, s, s.tiles), { correct: true, marks: s.tiles.map(() => true), usual: true });
+    }
+  }
+});
+
+test('an order listed on the entry, or another course sentence with the same words and meaning, counts', () => {
+  const s = makeSentence(uk, { tr: 'Я йду додому.', en: 'I am going home.', orders: ['Додому я йду'] }, {}, 'x');
+  assert.equal(checkOrder(uk, s, tokenize('додому я йду')).correct, true);
+  assert.equal(checkOrder(uk, s, tokenize('йду я додому')).correct, false);
 });

@@ -3,7 +3,8 @@ import * as store from './store.js';
 import * as speech from './speech.js';
 import { h, icon, toast, set } from './ui.js';
 import { dueWords } from './stats.js';
-import { isNative, onBackButton, backAction, leaveApp } from './native.js';
+import { onBackButton, backAction, leaveApp } from './native.js';
+import { bootDone } from './boot.js';
 import home from './views/home.js';
 import learn from './views/learn.js';
 import review from './views/review.js';
@@ -63,9 +64,12 @@ const ctx = {
   store,
   speech,
   get settings() { return store.getSettings(); },
-  say(text, { slow = false } = {}) {
+  // Speaks an entry, a display string or { text, lang } through the pack
+  // (lang.speech: say.js overrides, Arabic pausal forms, Egyptian voices).
+  // With no voice for the language it stays silent and says why (not for autoplay).
+  say(target, { slow = false, auto = false } = {}) {
     const s = store.getSettings();
-    return speech.speak(text, { lang: lang.speechLang, rate: slow ? Math.min(0.6, s.rate * 0.7) : s.rate, voiceURI: s.voices?.[lang.code] ?? '' });
+    return speech.sayFor(lang, target, { slow, rate: s.rate, voices: s.voices, onNoVoice: auto ? null : toast });
   },
   go(path) { location.hash = path; },
   onCleanup(fn) { cleanups.push(fn); },
@@ -259,8 +263,6 @@ shell();
 window.addEventListener('hashchange', render);
 onBackButton(onBack);
 render();
-
-// Offline caching for the website. The native apps already ship their files.
-if (!isNative() && 'serviceWorker' in navigator && location.protocol !== 'file:') {
-  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
-}
+// The first screen is up: drop the loading screen; on the website, also
+// register the service worker (offline files, update prompt).
+bootDone(ctx);

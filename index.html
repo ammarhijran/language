@@ -15,8 +15,156 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/read.css">
   <script type="module" src="js/app.js"></script>
+  <!-- Loading screen: painted as soon as the page arrives, before the app's
+       modules. Its colours are the light/dark tokens of css/styles.css
+       (tests/perf.test.js keeps them in step); they are inline so the
+       screen, and its error message, also work if a stylesheet fails. -->
+  <style>
+    .boot {
+      --boot-bg: #faf7f2; --boot-surface: #ffffff; --boot-text: #1f1b16; --boot-muted: #6c645a;
+      --boot-border: #e7e0d5; --boot-accent: #c8102e; --boot-accent-ink: #ffffff;
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+      padding: 24px 16px; text-align: center;
+      background: var(--boot-bg); color: var(--boot-text);
+      font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      .boot {
+        --boot-bg: #14120f; --boot-surface: #1e1b17; --boot-text: #f3eee6; --boot-muted: #a89f93;
+        --boot-border: #38322b; --boot-accent: #ff4d63; --boot-accent-ink: #1b0207;
+      }
+    }
+    .boot-brand { display: flex; align-items: center; gap: .6rem; margin: 0; font: 700 1.6rem/1.2 ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    .boot-spinner {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 3px solid var(--boot-border); border-top-color: var(--boot-accent);
+      animation: boot-spin .9s linear infinite;
+    }
+    @keyframes boot-spin { to { transform: rotate(1turn); } }
+    @media (prefers-reduced-motion: reduce) { .boot-spinner { animation-duration: 3s; } }
+    .boot-text { margin: 0; max-width: 24rem; color: var(--boot-muted); }
+    .boot-text b { display: block; color: var(--boot-text); font-size: 1.1rem; }
+    .boot-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
+    .boot-actions[hidden], .boot [hidden] { display: none; }
+    .boot-btn {
+      min-height: 44px; padding: .55rem 1.1rem; border-radius: 12px; cursor: pointer;
+      font: inherit; font-weight: 600;
+      border: 1px solid var(--boot-border); background: var(--boot-surface); color: var(--boot-text);
+    }
+    .boot-btn.primary { background: var(--boot-accent); border-color: var(--boot-accent); color: var(--boot-accent-ink); }
+    .boot-btn:focus-visible { outline: 3px solid var(--boot-accent); outline-offset: 2px; }
+    .boot.failed .boot-spinner { display: none; }
+  </style>
+  <noscript><style>#boot { display: none; }</style></noscript>
 </head>
 <body>
+  <div id="boot" class="boot" role="status" aria-live="polite">
+    <p class="boot-brand"><img src="icons/icon.svg" alt="" width="40" height="40">Lisan</p>
+    <div class="boot-spinner" aria-hidden="true"></div>
+    <p class="boot-text" id="boot-text">Loading…</p>
+    <div class="boot-actions" id="boot-actions" hidden>
+      <button type="button" class="boot-btn primary" id="boot-retry">Try again</button>
+      <button type="button" class="boot-btn" id="boot-repair" hidden>Repair offline files</button>
+    </div>
+  </div>
+  <script>
+    // Start-up watchdog. A classic script, so it runs even when the app's
+    // modules can't: if a file fails to load, or starting throws, the loading
+    // screen shows what happened and a way out instead of staying blank.
+    // js/boot.js sets window.__lisanBooted and removes the screen once the
+    // first view is on.
+    (function () {
+      var failed = false;
+      var $ = function (id) { return document.getElementById(id); };
+      var sw = navigator.serviceWorker;
+
+      function show(title, text, slow) {
+        if (window.__lisanBooted || !$('boot')) return;
+        if (!slow) $('boot').className = 'boot failed';
+        $('boot-text').innerHTML = '';
+        var b = document.createElement('b');
+        b.textContent = title;
+        $('boot-text').appendChild(b);
+        $('boot-text').appendChild(document.createTextNode(text));
+        $('boot-actions').hidden = false;
+        // Offline files that are broken or outdated can be fetched afresh.
+        $('boot-repair').hidden = !(sw && sw.controller);
+        if (!slow) $('boot-retry').focus();
+      }
+
+      function fail(err) {
+        if (failed || window.__lisanBooted) return;
+        failed = true;
+        console.error('Lisan could not start:', err);
+        var load = err && err.lisanLoad;
+        show('Lisan couldn’t start',
+          navigator.onLine === false ? 'You’re offline, and part of the app isn’t saved on this device yet. Connect to the internet and try again.'
+            : load ? 'Part of the app didn’t load. Check your connection and try again.'
+            : 'Something went wrong while starting. Try again — your progress on this device is safe.');
+      }
+      // An error thrown while starting may also come from something that
+      // doesn't stop the app: give it a moment to start anyway.
+      function failSoon(err) {
+        setTimeout(function () { fail(err); }, 1000);
+      }
+
+      $('boot-retry').onclick = function () { location.reload(); };
+      $('boot-repair').onclick = function () {
+        this.disabled = true;
+        var jobs = [];
+        if (sw && sw.getRegistrations) {
+          jobs.push(sw.getRegistrations().then(function (regs) {
+            return Promise.all(regs.map(function (r) { return r.unregister(); }));
+          }));
+        }
+        if (window.caches) {
+          jobs.push(caches.keys().then(function (keys) {
+            return Promise.all(keys.filter(function (k) { return k.indexOf('lisan-') === 0; }).map(function (k) { return caches.delete(k); }));
+          }));
+        }
+        var reload = function () { location.reload(); };
+        Promise.all(jobs).then(reload, reload);
+      };
+
+      // A script (an app module) that can't be fetched fires 'error' on its
+      // element, seen here in the capture phase; one that throws while
+      // starting reports to window.
+      window.addEventListener('error', function (e) {
+        var t = e.target;
+        if (t && t.tagName === 'SCRIPT') {
+          var err = new Error('Could not load ' + (t.src || 'a script'));
+          err.lisanLoad = true;
+          fail(err);
+        } else if (t === window || !t || !t.tagName) {
+          failSoon(e.error || e.message);
+        }
+      }, true);
+      window.addEventListener('unhandledrejection', function (e) { failSoon(e.reason); });
+
+      if (!('noModule' in document.createElement('script'))) {
+        failed = true;
+        show('This browser can’t run Lisan', 'Please update it, or open Lisan in a current version of Chrome, Edge, Firefox or Safari.');
+        $('boot-actions').hidden = true;
+        return;
+      }
+      setTimeout(function () {
+        if (!failed) show('Still loading…', 'This is taking longer than usual. Check your connection, or try again.', true);
+      }, 15000);
+      // js/boot.js removes the screen as soon as the first view is on. Also
+      // remove it once any first view is on: right after a deploy the browser
+      // may run scripts from its cache that are older than this page and
+      // don't know about the screen.
+      var poll = setInterval(function () {
+        if (window.__lisanBooted) { clearInterval(poll); return; }
+        if (!document.querySelector('#view > *')) return;
+        clearInterval(poll);
+        window.__lisanBooted = true;
+        var el = $('boot');
+        if (el) el.parentNode.removeChild(el);
+      }, 250);
+    })();
+  </script>
   <noscript><p style="padding:2rem">Lisan needs JavaScript to run.</p></noscript>
   <div id="toast" role="status" aria-live="polite"></div>
 </body>

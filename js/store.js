@@ -2,13 +2,23 @@
 // Browser: localStorage. Android/iOS apps: localStorage plus a mirror in
 // native storage (Capacitor Preferences), because the OS may clear WebView
 // storage when the device runs low on space.
-import { hasPlugin, plugin } from './native.js';
+//
+// Writes are batched: a change only marks the state as unsaved, and one write
+// then saves everything a tap changed (a review answer touches the card, the
+// day log and the game state). localStorage is written at most every
+// WRITE_GAP ms, the native mirror at most every MIRROR_GAP ms, and both at
+// once when the app is hidden, closed or paused, so closing it loses nothing.
+import { hasPlugin, plugin, isNative, onAppPause } from './native.js';
 import { sanitize, stamp, DAY_FIELDS } from './sync.js';
 
 const KEY = 'lisan:v1';
 const DEVICE_KEY = 'lisan:device';
 const LOG_KEY = 'lisan:synclog';
+const PERSIST_KEY = 'lisan:persist'; // persistent storage was asked for (web, once per device)
 const prefs = hasPlugin('Preferences') ? plugin('Preferences') : null;
+
+const WRITE_GAP = 300;
+const MIRROR_GAP = 10000;
 
 const DEFAULTS = {
   lang: 'tr',
@@ -32,6 +42,7 @@ const fresh = () => ({ settings: { ...DEFAULTS }, progress: {}, game: {} });
 
 let memDeviceId = null;
 let wiped = false; // set by deleteAllData(): nothing may be written back before the reload
+let problem = null; // why progress can't be saved: null, 'blocked' (no storage) or 'full'
 let state = load();
 
 /**
@@ -71,35 +82,160 @@ function fromData(d) {
 }
 
 function load() {
+  let raw = null;
   try {
-    const raw = localStorage.getItem(KEY);
+    raw = localStorage.getItem(KEY);
+  } catch {
+    problem = 'blocked'; // storage blocked (privacy settings, some private modes)
+    return fresh();
+  }
+  try {
     if (raw) return fromData(JSON.parse(raw));
-  } catch { /* private mode or corrupt data: start fresh */ }
+  } catch { /* corrupt data: start fresh */ }
   return fresh();
+}
+
+// ---------- Saving (batched) ----------
+
+let gen = 0; // bumped by every change; the serialized copy is reused while it matches
+let jsonGen = -1;
+let json = '';
+let dirty = false; // localStorage is behind the in-memory state
+let mirrorDirty = false; // the native mirror is behind
+let writeTimer = null;
+let mirrorTimer = null;
+let lastWrite = -Infinity;
+let lastMirror = -Infinity;
+let localOk = 0; // counts localStorage writes that worked
+
+function serialized() {
+  if (jsonGen !== gen) {
+    json = JSON.stringify(state);
+    jsonGen = gen;
+  }
+  return json;
+}
+
+// A clock that only goes forward (Date.now() jumps when the device's time is
+// changed, which could push a write far into the future).
+const clock = () => (typeof performance !== 'undefined' && typeof performance.now === 'function' ? performance.now() : Date.now());
+
+function later(fn, ms) {
+  const t = setTimeout(fn, Math.max(0, ms));
+  t?.unref?.(); // Node (tests): a pending write never keeps the process alive
+  return t;
 }
 
 function save() {
   if (wiped) return;
-  const json = JSON.stringify(state);
-  try {
-    localStorage.setItem(KEY, json);
-  } catch { /* storage full or unavailable */ }
-  prefs?.set({ key: KEY, value: json }).catch(() => {});
+  gen++;
+  dirty = true;
+  if (prefs) mirrorDirty = true;
+  if (writeTimer == null) writeTimer = later(writeNow, lastWrite + WRITE_GAP - clock());
+  if (prefs && mirrorTimer == null) mirrorTimer = later(mirrorNow, lastMirror + MIRROR_GAP - clock());
 }
+
+const isQuota = (err) => err?.name === 'QuotaExceededError' || err?.name === 'NS_ERROR_DOM_QUOTA_REACHED' || err?.code === 22 || err?.code === 1014;
+
+function setProblem(p) {
+  if (p === problem) return;
+  problem = p;
+  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+    window.dispatchEvent(new CustomEvent('lisan:storage', { detail: { problem } }));
+  }
+}
+
+function writeNow() {
+  clearTimeout(writeTimer);
+  writeTimer = null;
+  if (!dirty || wiped) return;
+  dirty = false;
+  lastWrite = clock();
+  try {
+    localStorage.setItem(KEY, serialized());
+    localOk++;
+    setProblem(null);
+  } catch (err) {
+    const kind = isQuota(err) ? 'full' : 'blocked';
+    if (!prefs) { setProblem(kind); return; }
+    // The native mirror is the only up-to-date copy now: bring it up to date
+    // straight away, then drop the WebView's outdated copy, which init() would
+    // otherwise prefer at the next launch (this also frees its space).
+    mirrorDirty = true;
+    const okBefore = localOk;
+    mirrorNow()?.then(() => {
+      // (unless a later WebView write worked in the meantime: that copy is newer)
+      if (!wiped && localOk === okBefore) try { localStorage.removeItem(KEY); } catch { /* blocked: nothing kept there anyway */ }
+      setProblem(null);
+    }, () => setProblem(kind));
+  }
+}
+
+function mirrorNow() {
+  clearTimeout(mirrorTimer);
+  mirrorTimer = null;
+  if (!mirrorDirty || wiped || !prefs) return null;
+  mirrorDirty = false;
+  lastMirror = clock();
+  const done = prefs.set({ key: KEY, value: serialized() });
+  done.catch(() => {});
+  return done;
+}
+
+/** Write everything that isn't saved yet, now (the app is being hidden, closed or reloaded). */
+export function flush() {
+  writeNow();
+  mirrorNow();
+}
+
+/** Why progress can't be saved on this device right now: null (it can), 'blocked' or 'full'. */
+export const storageProblem = () => problem;
+export const saveOk = () => !problem;
+
+// Save before the page goes away: closing the tab or app, reloading, switching
+// apps (mobile browsers may kill a hidden page without another event), and the
+// native apps' pause event.
+if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') window.addEventListener('pagehide', flush);
+if (typeof document !== 'undefined' && typeof document.addEventListener === 'function') {
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); });
+}
+onAppPause(flush);
 
 /** In the native apps, restore from native storage if the WebView's copy was lost. */
 export async function init() {
   if (!prefs) return;
   try {
-    const hasLocal = !!localStorage.getItem(KEY);
+    let local = null;
+    try { local = localStorage.getItem(KEY); } catch { /* WebView storage unavailable: the mirror is all we have */ }
     const { value } = await prefs.get({ key: KEY });
-    if (!hasLocal && value) {
-      localStorage.setItem(KEY, value);
-      state = load();
-    } else if (hasLocal && !value) {
-      save();
+    if (!local && value) {
+      try { localStorage.setItem(KEY, value); } catch { /* keep going from the mirror */ }
+      state = fromData(JSON.parse(value));
+      gen++;
+    } else if (local && !value) {
+      mirrorDirty = true;
+      mirrorNow();
     }
   } catch { /* keep whatever we have */ }
+}
+
+/**
+ * Web only, once per device, when there is progress worth keeping: ask the
+ * browser to keep this site's storage when space runs low instead of
+ * clearing it (Safari also clears unvisited sites' storage after a while).
+ * Resolves to whether storage is persistent, or null when nothing was asked.
+ */
+export async function requestPersistence() {
+  const sm = typeof navigator !== 'undefined' ? navigator.storage : undefined;
+  if (prefs || isNative() || wiped || problem || !sm?.persist || !hasAnyProgress()) return null;
+  try {
+    if (localStorage.getItem(PERSIST_KEY)) return null;
+    localStorage.setItem(PERSIST_KEY, String(Date.now()));
+    if (await sm.persisted?.()) return true;
+    return await sm.persist();
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -137,6 +273,7 @@ export function updateSettings(patch) {
   const goalBefore = state.settings.dailyGoal;
   Object.assign(state.settings, patch);
   save();
+  writeNow(); // settings are rare and some are read right after (a language switch reloads the app)
   // A new daily goal may already be met today: credit it now (once per day).
   if (state.settings.dailyGoal !== goalBefore) Object.keys(state.progress).forEach(checkGoal);
 }
@@ -267,6 +404,7 @@ export function importData(text) {
   if (!isObj(d) || !isObj(d.progress)) throw new Error('That file is not a Lisan backup.');
   state = fromData(d);
   save();
+  flush();
 }
 
 /**
@@ -279,6 +417,7 @@ export function resetProgress(lang) {
   const met = !!state.progress[lang]?.days?.[k]?.goalMet;
   state.progress[lang] = { cards: {}, days: met ? { [k]: { goalMet: true } } : {}, resetAt: Date.now() };
   save();
+  flush();
 }
 
 /**
@@ -290,6 +429,7 @@ export async function deleteAllData() {
   wiped = true;
   state = fresh();
   memDeviceId = null;
+  cancelWrites();
   try {
     const keys = [KEY, DEVICE_KEY, LOG_KEY];
     for (let i = 0; i < localStorage.length; i++) {
@@ -311,6 +451,7 @@ export function applySync({ progress, game }) {
   state.game = clean.game;
   if (hasAnyProgress()) state.settings.onboarded = true;
   save();
+  flush();
   // Work done on the other device today may complete today's goal here.
   Object.keys(state.progress).forEach(checkGoal);
 }
@@ -327,8 +468,19 @@ export function syncLog(entry) {
   return log;
 }
 
-/** Tests only: start from a clean in-memory state. */
+function cancelWrites() {
+  clearTimeout(writeTimer);
+  clearTimeout(mirrorTimer);
+  writeTimer = mirrorTimer = null;
+  dirty = mirrorDirty = false;
+}
+
+/** Tests only: start from a clean in-memory state (nothing waiting to be written). */
 export function _resetAll() {
   wiped = false;
   state = fresh();
+  cancelWrites();
+  lastWrite = lastMirror = -Infinity;
+  problem = null;
+  gen++;
 }

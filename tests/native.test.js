@@ -26,8 +26,9 @@ globalThis.window = {
 };
 globalThis.document = Object.assign(new EventTarget(), { visibilityState: 'visible' });
 
-const voice = (voiceURI, lang) => ({ voiceURI, name: voiceURI, lang, localService: true, default: false });
-const TR = voice('tr-tr-x-cfs-local', 'tr-TR');
+// Like the Android plugin: every voice of a locale has the same display name.
+const voice = (voiceURI, lang, name = voiceURI) => ({ voiceURI, name, lang, localService: true, default: false });
+const TR = voice('tr-tr-x-cfs-local', 'tr-TR', 'Turkish Turkey');
 const EN = voice('en-us-x-sfg-local', 'en-US');
 const AR = voice('ar-xa-x-ard-local', 'ar');
 
@@ -87,6 +88,37 @@ test('speak() picks the voice index from the engine\'s current list', async () =
   const spoke = calls.slice(before).find((c) => c.method === 'speak');
   assert.equal(spoke.options.voice, 2, 'index of the Turkish voice in the fresh list, not the old one');
   assert.equal(spoke.options.lang, 'tr-TR');
+});
+
+test('speak() with no voice for the language stays silent (Android would keep its last voice)', async () => {
+  engineVoices = [TR, EN];
+  document.dispatchEvent(new Event('visibilitychange'));
+  await flush();
+  const before = countCalls('TextToSpeech', 'speak');
+  assert.equal(await speech.speak('привіт', { lang: 'uk-UA' }), false);
+  assert.equal(countCalls('TextToSpeech', 'speak'), before, 'not read by the Turkish voice');
+  assert.equal(speech.canSpeak('uk-UA'), false);
+  assert.equal(speech.canSpeak('tr-TR'), true);
+});
+
+test('Android voices of one locale get told apart by their code', () => {
+  assert.deepEqual(speech.voicesFor('tr-TR').map((v) => v.name), ['Turkish Turkey · cfs']);
+});
+
+test('speak() on an engine that lists no voices asks whether it supports the language', async () => {
+  engineVoices = [];
+  document.dispatchEvent(new Event('visibilitychange'));
+  await flush();
+  handlers.TextToSpeech.isLanguageSupported = ({ lang }) => ({ supported: lang === 'tr-TR' });
+  const before = countCalls('TextToSpeech', 'speak');
+  assert.equal(await speech.speak('привіт', { lang: 'uk-UA' }), false);
+  assert.equal(countCalls('TextToSpeech', 'speak'), before);
+  assert.equal(await speech.speak('merhaba', { lang: 'tr-TR' }), true);
+  const spoke = calls.filter((c) => c.method === 'speak').at(-1);
+  assert.equal(spoke.options.voice, undefined, 'no voice index: the engine picks its Turkish voice');
+  engineVoices = [TR, EN];
+  document.dispatchEvent(new Event('visibilitychange'));
+  await flush();
 });
 
 test('speak() cancelled while the voice list loads stays silent', async () => {

@@ -61,7 +61,9 @@ function moraRomaji(m) {
  */
 export function romanize(kana, mode = 'hepburn') {
   // A particle written as its own token is read differently: は → wa, へ → e.
-  const words = kana.trim().split(/\s+/).map((w) => (w === 'は' ? 'わ' : w === 'へ' ? 'え' : w));
+  // A reading that is a single は is the word itself (歯, tooth), not a particle.
+  const tokens = kana.trim().split(/\s+/);
+  const words = tokens.length < 2 ? tokens : tokens.map((w) => (w === 'は' ? 'わ' : w === 'へ' ? 'え' : w));
   return words.map((word) => {
     const ms = morae(word);
     const out = [];
@@ -140,4 +142,176 @@ export function analyzeKana(kana) {
     } else ipa = moraIpa(wap[wi][i].rom);
     return { kana: m.kana, rom: m.rom, ipa, kind: m.kind };
   }));
+}
+
+// ---- What the voice reads ----
+
+const KANJI = /[\p{Script=Han}々〆ヶ\p{N}\p{Script=Latin}]/u;
+const KANA_CH = /[ぁ-ゖァ-ヺー]/u;
+const READING_NOISE = /[\s、。・，．,.!?！？「」『』（）()〜~'’"“”…:：;；\-]/gu;
+
+/** The written text cut into runs of kanji (with digits and Latin letters, which the kana spells out), kana and the rest. */
+function runs(text) {
+  const out = [];
+  for (const ch of text) {
+    const kind = KANJI.test(ch) ? 'kanji' : KANA_CH.test(ch) ? 'kana' : 'other';
+    if (out.length && out[out.length - 1].kind === kind) out[out.length - 1].text += ch;
+    else out.push({ kind, text: ch });
+  }
+  return out;
+}
+
+/**
+ * Line the kana reading up with the written text: each run of kanji gets the
+ * kana it is read with ({ kind, text, kana }). null when they don't fit.
+ * Often more than one split fits (母は → はは|は or は|はは; 先月、家族 →
+ * せんげつ|かぞく or せ|んげつかぞく), so the one whose kanji start and end
+ * where the spaced reading has word breaks wins.
+ */
+export function alignReading(text, kana) {
+  if (!text || !kana) return null;
+  // Runs keep the text as written (full-width ？ stays): only the matching is normalised.
+  const rs = runs(text);
+  const kanaOf = (r) => [...toHiragana(r.text.normalize('NFKC'))];
+  const chars = [];
+  const wordStart = [];
+  for (const [w] of toHiragana(kana.normalize('NFKC')).replace(READING_NOISE, ' ').matchAll(/\S+/gu)) {
+    [...w].forEach((ch, i) => { chars.push(ch); wordStart.push(i === 0); });
+  }
+  const n = chars.length;
+  const isBreak = (i) => i === n || wordStart[i];
+  // A kanji is read with 1–3 kana: when the breaks can't decide (三年前、彼
+  // → さんねん まえ|かれ, not さんねん|まえ かれ), the split closer to that wins.
+  const misfit = (count, len) => Math.max(0, len - 3 * count) + Math.max(0, count - len);
+  // best(k, i): the best split of runs k… over chars i…, as { score, ends } (memoised).
+  const memo = new Map();
+  const best = (k, i) => {
+    if (k === rs.length) return i === n ? { score: 0, ends: [] } : null;
+    const key = k * (n + 1) + i;
+    if (memo.has(key)) return memo.get(key);
+    const r = rs[k];
+    let out = null;
+    if (r.kind === 'other') out = best(k + 1, i);
+    else if (r.kind === 'kana') {
+      const s = kanaOf(r);
+      out = s.every((ch, j) => chars[i + j] === ch) ? best(k + 1, i + s.length) : null;
+    } else {
+      for (let j = i + 1; j <= n; j++) {
+        const rest = best(k + 1, j);
+        const score = rest && rest.score + 100 * (isBreak(i) + isBreak(j)) - misfit([...r.text].length, j - i);
+        if (rest && (!out || score > out.score)) out = { score, ends: [j, ...rest.ends] };
+      }
+    }
+    memo.set(key, out);
+    return out;
+  };
+  const fit = best(0, 0);
+  if (!fit) return null;
+  let at = 0;
+  let g = 0;
+  return rs.map((r) => {
+    if (r.kind === 'other') return { ...r, kana: '' };
+    if (r.kind === 'kana') { at += kanaOf(r).length; return { ...r, kana: kanaOf(r).join('') }; }
+    const end = fit.ends[g++];
+    const read = chars.slice(at, end).join('');
+    at = end;
+    return { ...r, kana: read };
+  });
+}
+
+// Kanji a voice often reads differently from the course: counters, and words
+// with two everyday readings ([written, the readings a voice tends to miss]).
+// Where the kana reading says one of these, the voice gets that kana instead.
+// Only the ambiguous token is replaced: voices use the other kanji to choose
+// the pitch accent (雨/飴, 橋/箸).
+const AMBIGUOUS = [
+  ['二十歳', ['はたち']], ['一人', ['ひとり']], ['二人', ['ふたり']], ['四人', ['よにん']], ['何人', ['なんにん']],
+  ['四時', ['よじ']], ['七時', ['しちじ']], ['九時', ['くじ']], ['何時', ['なんじ']], ['十分', ['じゅっぷん', 'じっぷん']],
+  ['一回', ['いっかい']], ['一日', ['ついたち', 'いちにち']], ['何名', ['なんめい']], ['明日', ['あした']],
+  ['開', ['あ'], /^[かきくいこ]/], ['辛', ['から']], ['降', ['ふ']], ['角', ['かど']], ['何', ['なん']],
+];
+
+/** One kanji run respelled where it holds an ambiguous token read as its kana says (else unchanged). */
+function readRun(run, after) {
+  // 開く (あく, not ひらく), but 開ける is only ever あける: `okuri` says which endings are ambiguous.
+  for (const [key, readings, okuri] of AMBIGUOUS) {
+    if (run.text === key && readings.includes(run.kana) && (!okuri || okuri.test(after))) return run.kana;
+  }
+  for (const [key, readings] of AMBIGUOUS) {
+    if (key.length < 2) continue;
+    for (const rd of readings) {
+      if (run.text.startsWith(key) && run.kana.startsWith(rd)) return rd + run.text.slice(key.length);
+      if (run.text.endsWith(key) && run.kana.endsWith(rd)) return run.text.slice(0, -key.length) + rd;
+    }
+  }
+  return run.text;
+}
+
+/**
+ * The text for the voice: as written, with the ambiguous kanji (see
+ * AMBIGUOUS) replaced by the kana the reading gives them, e.g.
+ * 店は十時に開きます。 + みせ は じゅうじ に あきます → 店は十時にあきます。
+ */
+export function readAmbiguous(text, kana) {
+  const al = alignReading(text, kana);
+  return al ? al.map((r, i) => (r.kind === 'kanji' ? readRun(r, al[i + 1]?.kana ?? '') : r.text)).join('') : text;
+}
+
+// Particles and endings that belong to the word before them: slow playback
+// pauses after 店は, not between 店 and は (a lone は could be read “ha”).
+const ATTACHED = new Set(['は', 'が', 'を', 'に', 'で', 'と', 'も', 'の', 'へ', 'や', 'か', 'ね', 'よ', 'な', 'わ', 'ぞ', 'さ',
+  'から', 'まで', 'より', 'だけ', 'しか', 'って', 'ので', 'のに', 'けど', 'けれど', 'ても', 'でも', 'ば', 'です', 'でした',
+  'ます', 'ました', 'ません', 'ませんか', 'でしょう', 'だ', 'だった', 'じゃない', 'ない', 'ください', 'なさい', 'ございます',
+  'さま', 'さん', 'ちゃん', 'くん', 'たち', 'ぐらい', 'くらい', 'ごろ', 'など', 'ずつ', 'とか', 'だろう']);
+// …an auxiliary after a て-form (あいて います “is open”, かいて あります,
+// いって きます), and する after a noun (べんきょう する: one verb).
+const AUXILIARY = /^(い(る|ます|ました|ません|ない|た|く|きます)|あ(る|ります|りました|りません|った)|お(く|きます|いた)|き(ます|ました|た)|く(る|れる|れます|れました)|み(る|ます|た|ましょう)|しま(う|います|いました|った))ん?$/;
+const SURU = /^(する|します|しました|しません|しない|した|して|しよう|しましょう)$/;
+const attaches = (prev, next) => ATTACHED.has(next)
+  || (/[てで]$/.test(prev) && AUXILIARY.test(next))
+  || (SURU.test(next) && !ATTACHED.has(prev));
+
+/**
+ * `text` (as the voice reads it) with "、" between the phrases of its spaced
+ * kana reading, for slow playback; null for a single phrase or when the
+ * reading doesn't line up with the text.
+ */
+export function pausedJapanese(text, kana) {
+  if (!kana) return null;
+  const words = toHiragana(kana.normalize('NFKC')).replace(/[、。・，．,.!?！？「」『』（）()〜~'’"“”…]/g, ' ').trim().split(/\s+/).filter(Boolean);
+  const ends = [];
+  let at = 0;
+  words.forEach((w, i) => {
+    at += [...w].length;
+    const next = words[i + 1];
+    if (next && !attaches(w, next)) ends.push(at);
+  });
+  if (!ends.length) return null;
+  const al = alignReading(text, kana);
+  if (!al) return null;
+  // Walk the text with a position in the reading: a kanji run takes its whole
+  // reading at once (a pause never splits it), kana go one by one.
+  const pieces = al.flatMap((r) => (r.kind === 'kana' ? [...r.text].map((ch) => ({ text: ch, n: 1, kind: 'kana' })) : [{ text: r.text, n: [...r.kana].length, kind: r.kind }]));
+  let pos = 0;
+  let out = '';
+  let pauses = 0;
+  pieces.forEach((p, i) => {
+    out += p.text;
+    pos += p.n;
+    const next = pieces[i + 1];
+    // A pause where a phrase ends, unless the text already has punctuation there.
+    if (ends.includes(pos) && next && next.kind !== 'other' && p.kind !== 'other') { out += '、'; pauses++; }
+  });
+  return pauses ? out : null;
+}
+
+/** What a mora chip sounds like on its own: っ, ー and ん lean on a neighbour, a particle は is わ. */
+export function moraSay(ms, i) {
+  const m = ms[i];
+  const prev = ms[i - 1]?.kana ?? '';
+  const next = ms[i + 1]?.kana ?? '';
+  if (m.kind === 'gem') return prev + m.kana + next;
+  if (m.kind === 'long') return prev + m.kana;
+  if (m.kind === 'n') return prev ? prev + m.kana : m.kana + next;
+  return toHiragana(m.kana) === 'を' ? 'お' : m.kana;
 }

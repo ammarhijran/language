@@ -112,7 +112,12 @@ test('ar: the article and other proclitics are never stressed', () => {
   // No word in the pack is stressed on its article or proclitic (always its first syllable).
   for (const w of ar.words) {
     for (const x of ar.analyze(w).words) {
-      if (/^(?:wa|fa|bi|li|ka|a[a-zṣḍṭẓ]{1,2})-/.test(x.text)) assert.ok(x.stressIndex > 0, `${w.tl}: ${x.text}`);
+      if (!/^(?:wa|fa|bi|li|ka|a[a-zṣḍṭẓ]{1,2})-/.test(x.text)) continue;
+      // A first syllable that also holds stem sounds may carry the stress: bi-smi is BIS-mi
+      // (hamzat al-waṣl), but al-, wal-, bi- on their own never do.
+      const procLen = x.text.split('-').slice(0, -1).join('').length;
+      if (x.syllables[0].text.replace(/-/g, '').length > procLen) continue;
+      assert.ok(x.stressIndex > 0, `${w.tl}: ${x.text}`);
     }
   }
 });

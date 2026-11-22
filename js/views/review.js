@@ -27,7 +27,7 @@ export default function review(ctx) {
       // missed word back, just reschedule it.
       const seen = firstTry.has(item.word.id);
       const retry = seen || missedToday(card, now);
-      store.setCard(lang.code, item.word.id, schedule(card, r.rating, now, { retry }));
+      store.setCard(lang.code, item.word.id, schedule(card, r.rating, now, { retry, slip: r.slip, id: item.word.id }));
       store.logActivity(lang.code, { reviews: 1, correct: r.correct ? 1 : 0 });
       if (!seen) firstTry.set(item.word.id, r.correct);
       if (r.rating === AGAIN) {

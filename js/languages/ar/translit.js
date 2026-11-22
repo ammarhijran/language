@@ -149,3 +149,214 @@ export function analyzeTranslit(tl, stress, dialect) {
 const ASCII = { ḥ: 'h', ṣ: 's', ḍ: 'd', ṭ: 't', ẓ: 'z', ā: 'a', ī: 'i', ū: 'u', ē: 'e', ō: 'o' };
 /** Plain-ASCII version of a transliteration, as people type it: "ṣabāḥ al-khayr" → "sabah al-khayr". */
 export const asciiTranslit = (tl) => tl.replace(/[ḥṣḍṭẓāīūēō]/g, (c) => ASCII[c]).replace(/[ʾʿ'’]/g, '');
+
+// ---------- What the voice reads ----------
+//
+// Fully vowelled script tells a voice to pronounce every case ending
+// (أَفْهَمُ ʾafhamu, مِنْ فَضْلِكَ min faḍlika), while the transliteration,
+// like people in conversation, leaves most of them out (ʾafham, min faḍlik).
+// These helpers line the script's words up with the transliteration's and
+// make the spoken text say what the transliteration shows.
+
+const HARAKA = /[\u064B-\u0650]/gu; // tanwīn and the short vowels a, u, i
+const HAS_HARAKA = /[\u064B-\u0650]/u;
+const MARK = /[\u064B-\u0652\u0670]/u;
+const AN_ENDING = /\u064B\u0651?[اى]$|[اى]\u064B$/u; // ـًا: -an (shukran, jiddan) is kept
+const HAS_LETTER = /\p{Script=Arabic}/u;
+
+// A hyphenated part that leans on the next one in the same written word:
+// the article (al-, il-, ash-, l-…), wa-/wi-, fa-, bi-, li-, ka-, sa- and the
+// fused bil-, lil-, wal-, wish-. Anything else ends a written word
+// (maʿa-s-salāma is مَعَ + السَّلَامَة).
+const LEANS = /^(?:(?:wa|wi|fa|bi|li|ka|la)?(?:[aiue]?l|[aie]?(?:th|dh|sh|[tdrzsnṣḍṭẓ]))|wa|wi|fa|bi|li|ka|la|sa|[wfbl])$/;
+
+/**
+ * The transliteration cut into one piece per written word, each with the
+ * index of the space-separated transliteration word it is part of (for
+ * pauses in slow playback): "maʿa-s-salāma" → [maʿa, s-salāma].
+ */
+export function translitWords(tl) {
+  const out = [];
+  String(tl).trim().split(/\s+/).forEach((spaced, wi) => {
+    let lead = '';
+    for (const part of spaced.split(/[-‐]/)) {
+      const bare = part.toLowerCase().replace(/^[ʾ'’]/, '');
+      if (LEANS.test(bare)) { lead += `${part}-`; continue; }
+      out.push({ tl: lead + part, word: wi });
+      lead = '';
+    }
+    if (lead) out.push({ tl: lead.slice(0, -1), word: wi });
+  });
+  return out.filter((w) => /\p{L}/u.test(w.tl));
+}
+
+/** The words of the Arabic text (tokens with letters) with their surroundings, or [] */
+const scriptWords = (tr) => String(tr).split(/(\s+)/).map((t, i) => ({ t, i })).filter(({ t }) => HAS_LETTER.test(t));
+
+/**
+ * Pair each written word with its transliteration word, or null when the two
+ * don't have the same number of words. Returns { tokens, pairs:[{ at, tl, word }] }
+ * where `at` is the word's index in `tokens` (tr split on spaces, spaces kept).
+ */
+export function alignTranslit(tr, tl) {
+  if (!tr || !tl) return null;
+  const tokens = String(tr).split(/(\s+)/);
+  const ws = scriptWords(tr);
+  const tls = translitWords(tl);
+  if (!ws.length || ws.length !== tls.length) return null;
+  return { tokens, pairs: ws.map(({ i }, k) => ({ at: i, ...tls[k] })) };
+}
+
+/** How the transliteration of a word ends: 'tanwin' (-an/-un/-in), 'vowel', 'long' or 'consonant'. */
+function translitEnding(tlWord) {
+  const s = tlWord.toLowerCase().replace(/[^\p{L}ʾʿ]+$/u, '');
+  if (/[aiu]n$/.test(s)) return 'tanwin';
+  if (/[āīūēō]$/.test(s)) return 'long';
+  if (/[aiueo]$/.test(s)) return 'vowel';
+  return 'consonant';
+}
+
+/**
+ * One written word in its pausal form where the transliteration has one:
+ * a word whose transliteration ends in a consonant loses its final case
+ * vowel or tanwīn and gets a sukūn (أَفْهَمُ → أَفْهَمْ), and tā marbūṭa
+ * read -a loses its case ending (السَّلَامَةِ → السَّلَامَةْ). The -an ending
+ * (شُكْرًا) and endings the transliteration shows (bi-khayrin) are kept.
+ */
+export function pausalWord(word, tlWord) {
+  const [, body, punct] = word.match(/^(.*?)([^\p{L}\p{M}]*)$/su);
+  if (AN_ENDING.test(body)) return word;
+  const tail = body.match(/[\u064B-\u0652\u0670]*$/u)[0];
+  const base = body.slice(0, body.length - tail.length);
+  if (!HAS_HARAKA.test(tail)) return word;
+  const end = translitEnding(tlWord);
+  const s = tlWord.toLowerCase().replace(/[^\p{L}]+$/u, '');
+  // ة read -at before the next word (maḥaṭṭat al-mitrū) keeps its vowel: a
+  // sukūn would make the voice say -ah.
+  if (base.endsWith('ة') && s.endsWith('t')) return word;
+  const pausal = end === 'consonant'
+    || (end === 'vowel' && base.endsWith('ة') && s.endsWith('a') && !s.endsWith('ta'));
+  if (!pausal) return word;
+  const kept = tail.replace(HARAKA, '');
+  return base + (/[\u0651\u0652]/u.test(kept) ? kept : `${kept}\u0652`) + punct;
+}
+
+const FATHA = '\u064E';
+const DAMMA = '\u064F';
+const KASRA = '\u0650';
+const SUKUN = '\u0652';
+
+/** The hamza letter for a glottal stop at position `i` of `letters` ([{ ch, marks }]). */
+function hamzaSeat(letters, i) {
+  const own = letters[i].marks;
+  if (i === 0) return own.includes(KASRA) ? 'إ' : 'أ';
+  const prev = letters[i - 1];
+  // ا, and ي / و without a mark of their own, are the long vowels ā / ī / ū.
+  const long = !/[\u064E-\u0652]/u.test(prev.marks) && /[اوي]/.test(prev.ch);
+  const last = i === letters.length - 1 || !/\p{L}/u.test(letters[i + 1].ch);
+  if (last && (long || prev.marks.includes(SUKUN))) return 'ء'; // السُّوء, شَيْء
+  if (long && prev.ch === 'ا') return own.includes(KASRA) ? 'ئ' : 'ء'; // قِرَاءَة
+  const before = prev.marks.includes(KASRA) || (prev.ch === 'ي' && long) ? KASRA
+    : prev.marks.includes(DAMMA) || (prev.ch === 'و' && long) ? DAMMA
+      : prev.marks.includes(FATHA) ? FATHA : SUKUN;
+  if (own.includes(KASRA) || before === KASRA) return 'ئ';
+  if (own.includes(DAMMA) || before === DAMMA) return 'ؤ';
+  if (own.includes(FATHA) || before === FATHA) return 'أ';
+  return 'ء';
+}
+
+/**
+ * An Egyptian word respelled for a voice that only speaks Standard Arabic:
+ * ق said as a glottal stop (ʾawi) becomes a hamza (قَوِي → أَوِي, مَقْفُول →
+ * مَأْفُول), and ذ said z or d (tazkara) becomes ز or د — only where the
+ * transliteration shows that sound and not the Standard one.
+ */
+export function egyptianRespell(word, tlWord) {
+  const tl = tlWord.toLowerCase();
+  const letters = [];
+  for (const ch of word) {
+    if (MARK.test(ch) && letters.length) letters[letters.length - 1].marks += ch;
+    else letters.push({ ch, marks: '' });
+  }
+  const qAsHamza = !tl.includes('q') && /[ʾ'’]/.test(tl);
+  const dh = tl.includes('dh') ? null : tl.includes('z') && !tl.includes('d') ? 'ز' : tl.includes('d') && !tl.includes('z') ? 'د' : null;
+  let skip = -1;
+  return letters.map((l, i) => {
+    if (i === skip) return '';
+    if (l.ch === 'ق' && qAsHamza) {
+      const seat = hamzaSeat(letters, i);
+      // ʾā is written آ, not أَا (زَهْقَان → زَهْآن).
+      const next = letters[i + 1];
+      if (seat === 'أ' && l.marks === FATHA && next?.ch === 'ا' && !next.marks) { skip = i + 1; return 'آ'; }
+      return seat + l.marks;
+    }
+    if (l.ch === 'ذ' && dh) return dh + l.marks;
+    return l.ch + l.marks;
+  }).join('');
+}
+
+/** Long ē/ō written as kasra/damma + ي/و: without the mark an Egyptian voice says them its own way (فِين fēn). */
+const egyptianVowels = (word, tlWord) => {
+  let w = word;
+  if (/ē/.test(tlWord)) w = w.replace(/\u0650(?=ي)/gu, '');
+  if (/ō/.test(tlWord)) w = w.replace(/\u064F(?=و)/gu, '');
+  return w;
+};
+
+/**
+ * What the voice reads for Arabic `tr` with transliteration `tl`:
+ * { text, slow } where `slow` has a pause ("، ") between the words of the
+ * transliteration (words joined with hyphens stay together).
+ *   voice: 'msa' (default) — pausal forms; 'egyptian' — for an Egyptian
+ *   voice; 'msa-for-egyptian' — Egyptian respelled for a Standard Arabic voice.
+ */
+export function spokenArabic(tr, tl, { voice = 'msa' } = {}) {
+  const al = alignTranslit(tr, tl);
+  const fix = (w, t) => {
+    let out = pausalWord(w, t);
+    if (voice === 'egyptian') out = egyptianVowels(out, t);
+    if (voice === 'msa-for-egyptian') out = egyptianRespell(out, t);
+    return out;
+  };
+  let tokens;
+  let groups;
+  const spaced = String(tl || '').trim().split(/\s+/);
+  if (al) {
+    tokens = [...al.tokens];
+    for (const p of al.pairs) tokens[p.at] = fix(tokens[p.at], p.tl);
+    // A particle or preposition goes with the next word (lā ʾafham, law samaḥt).
+    groups = al.pairs.map((p) => p.word);
+    for (let k = groups.length - 2; k >= 0; k--) {
+      if (groups[k] !== groups[k + 1] && LEANS_ON_NEXT.has(asciiTranslit(spaced[groups[k]].toLowerCase()).replace(/[^a-z]/g, ''))) {
+        const from = groups[k + 1];
+        for (let j = k + 1; j < groups.length && groups[j] === from; j++) groups[j] = groups[k];
+      }
+    }
+  } else {
+    tokens = String(tr).split(/(\s+)/);
+    // Without a word-by-word match, only the last word is sure to be before a pause.
+    const ws = scriptWords(tr);
+    const last = ws.at(-1);
+    const tlLast = String(tl || '').trim().split(/\s+/).at(-1);
+    if (last && tlLast && /\p{L}/u.test(tlLast)) tokens[last.i] = fix(tokens[last.i], tlLast.split(/[-‐]/).at(-1));
+    groups = ws.map((_, k) => k);
+  }
+  const text = tokens.join('');
+  return { text, slow: pausedArabic(tokens, groups) };
+}
+
+// Particles and prepositions that are said with the next word (in plain transliteration).
+const LEANS_ON_NEXT = new Set(['la', 'lan', 'lam', 'ma', 'mish', 'mush', 'fi', 'min', 'ala', 'ila', 'an', 'inna', 'ya', 'qad', 'hal', 'wa', 'wi', 'law', 'bi', 'li', 'ka', 'ba']);
+
+/** Script words joined with "، " between transliteration words, for slow playback (null for one word). */
+function pausedArabic(tokens, groups) {
+  const ws = tokens.map((t, i) => ({ t, i })).filter(({ t }) => HAS_LETTER.test(t));
+  if (new Set(groups).size < 2) return null;
+  const out = [];
+  ws.forEach(({ t }, k) => {
+    const word = t.replace(/[،,؛;:—–-]+$/u, '');
+    const pause = k < ws.length - 1 && groups[k] !== groups[k + 1];
+    out.push(pause ? `${word}،` : t);
+  });
+  return out.join(' ');
+}

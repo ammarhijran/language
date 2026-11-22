@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { newCard, review, markKnown, isDue, missedToday, status, AGAIN, HARD, GOOD, EASY, startOfDay, KNOWN_INTERVAL } from '../js/srs.js';
+import { newCard, review, markKnown, isDue, missedToday, status, fuzz, AGAIN, HARD, GOOD, EASY, startOfDay, KNOWN_INTERVAL, DAY } from '../js/srs.js';
 
 const NOW = new Date(2026, 0, 10, 15, 0).getTime();
 
@@ -227,4 +227,62 @@ test('startOfDay copes with a day that has no 00:00 (DST at midnight)', () => {
   assert.deepEqual(r.gapDay, [2018, 11, 4, 1, 0]); // the earliest time that day has
   assert.deepEqual(r.intoGapDay, [2018, 11, 4, 1, 0]);
   assert.deepEqual(r.outOfGapDay, [2018, 11, 5, 0, 0]);
+});
+
+// ---------- Late reviews, fuzz, typing slips ----------
+
+const card = (interval, daysAgo, extra = {}) => ({ ease: 2.5, interval, reps: 4, lapses: 0, due: NOW, added: 0, last: startOfDay(NOW, -daysAgo) + 9 * 3600000, ...extra });
+
+test('a word recalled long after it was due gets credit for the time it held', () => {
+  // Due after 8 days, recalled after 68: grows from 8 + (68 − 8) / 2 = 38 days, not from 8.
+  const late = review(card(8, 68), GOOD, NOW, { fuzzy: false });
+  assert.equal(late.interval, Math.round(38 * 2.5));
+  // On time, the same as before.
+  assert.equal(review(card(8, 8), GOOD, NOW, { fuzzy: false }).interval, 20);
+  // Early (reviewed in practice before it was due): never less than the plain interval.
+  assert.equal(review(card(8, 2), GOOD, NOW, { fuzzy: false }).interval, 20);
+  const easy = review(card(8, 68), EASY, NOW, { fuzzy: false });
+  assert.ok(easy.interval > late.interval);
+  // Forgetting is still forgetting, however late.
+  assert.equal(review(card(8, 68), AGAIN, NOW).interval, 0);
+});
+
+test('HARD always grows the interval by at least a day', () => {
+  let c = card(2, 2);
+  const seen = [];
+  for (let i = 0; i < 4; i++) { c = review(c, HARD, NOW, { fuzzy: false }); seen.push(c.interval); }
+  assert.deepEqual(seen, [3, 4, 5, 6]);
+  assert.equal(review(card(20, 20), HARD, NOW, { fuzzy: false }).interval, 24);
+});
+
+test('a typing slip (HARD with slip) does not lower ease; a real HARD does', () => {
+  const c = card(10, 10);
+  assert.equal(review(c, HARD, NOW, { slip: true }).ease, 2.5);
+  assert.equal(review(c, HARD, NOW).ease, 2.35);
+  // A slip still grows the interval less than GOOD.
+  assert.ok(review(c, HARD, NOW, { slip: true }).interval < review(c, GOOD, NOW).interval);
+});
+
+test('fuzz spreads a batch over a few days, deterministically', () => {
+  const ivs = Array.from({ length: 40 }, (_, i) => review(card(8, 8), GOOD, NOW, { id: `w${i}` }).interval);
+  assert.ok(new Set(ivs).size >= 2, 'not all on one day');
+  for (const iv of ivs) assert.ok(iv >= 19 && iv <= 21, `±5 % (at least a day) of 20: ${iv}`);
+  // Same word, same day → same date on every device.
+  assert.equal(review(card(8, 8), GOOD, NOW, { id: 'w1' }).interval, review(card(8, 8), GOOD, NOW, { id: 'w1' }).interval);
+  // Short intervals are left alone, and fuzz never undoes the growth.
+  assert.equal(fuzz(3, 'x'), 3);
+  for (let i = 0; i < 50; i++) assert.ok(review(card(4, 4), GOOD, NOW, { id: `s${i}` }).interval >= 5);
+  for (let i = 0; i < 50; i++) assert.ok(Math.abs(fuzz(100, `k${i}`) - 100) <= 5);
+});
+
+test('cards stored before these changes keep working, and gain no new fields', () => {
+  const old = { ease: 2.2, interval: 15, reps: 6, lapses: 1, due: NOW - DAY, added: 1, last: NOW - 16 * DAY };
+  for (const r of [AGAIN, HARD, GOOD, EASY]) {
+    const next = review(old, r, NOW, { id: 'merhaba' });
+    assert.deepEqual(Object.keys(next).sort(), [...Object.keys(old), 'known'].filter((k) => k !== 'known' || r === AGAIN).sort());
+    for (const k of ['ease', 'interval', 'reps', 'lapses', 'due', 'last']) assert.ok(Number.isFinite(next[k]), `${k} for rating ${r}`);
+    assert.ok(Number.isInteger(next.interval));
+  }
+  // A card that never had `last` (an import) grows from its interval.
+  assert.equal(review({ ...old, last: null }, GOOD, NOW, { fuzzy: false }).interval, Math.round(15 * 2.2));
 });

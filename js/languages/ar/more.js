@@ -113,6 +113,174 @@ export const categories = [
     "native": "تَعْبِيرَات شَعْبِيَّة",
     "emoji": "😎",
     "group": "talk"
+  },
+  {
+    "id": "months",
+    "name": "Months, Dates & Seasons",
+    "native": "الشُّهُور وَالتَّوَارِيخ وَالْفُصُول",
+    "emoji": "📆",
+    "group": "words"
+  },
+  {
+    "id": "family2",
+    "name": "Family & Relationships",
+    "native": "الْعَائِلَة وَالْعَلَاقَات",
+    "emoji": "💞",
+    "group": "words"
+  },
+  {
+    "id": "clothes",
+    "name": "Clothes & Getting Dressed",
+    "native": "الْمَلَابِس",
+    "emoji": "👕",
+    "group": "words"
+  },
+  {
+    "id": "hobbies",
+    "name": "Free Time & Hobbies",
+    "native": "وَقْت الْفَرَاغ وَالْهِوَايَات",
+    "emoji": "🎸",
+    "group": "words"
+  },
+  {
+    "id": "countries",
+    "name": "Countries & Languages",
+    "native": "الْبُلْدَان وَاللُّغَات",
+    "emoji": "🌍",
+    "group": "words"
+  },
+  {
+    "id": "weather",
+    "name": "Weather",
+    "native": "الطَّقْس",
+    "emoji": "🌦️",
+    "group": "words"
+  },
+  {
+    "id": "groceries",
+    "name": "Fruit, Vegetables & Groceries",
+    "native": "الْفَوَاكِه وَالْخُضَار وَالْبِقَالَة",
+    "emoji": "🍎",
+    "group": "words"
+  },
+  {
+    "id": "health",
+    "name": "Doctor & Pharmacy",
+    "native": "الطَّبِيب وَالصَّيْدَلِيَّة",
+    "emoji": "💊",
+    "group": "words"
+  },
+  {
+    "id": "tech",
+    "name": "Phone & Internet",
+    "native": "الْهَاتِف وَالْإِنْتَرْنِت",
+    "emoji": "📱",
+    "group": "words"
+  },
+  {
+    "id": "town",
+    "name": "Around Town",
+    "native": "فِي الْمَدِينَة",
+    "emoji": "🏙️",
+    "group": "words"
+  },
+  {
+    "id": "kitchen",
+    "name": "Kitchen & Cooking",
+    "native": "الْمَطْبَخ وَالطَّبْخ",
+    "emoji": "🍳",
+    "group": "words"
+  },
+  {
+    "id": "jobs",
+    "name": "Jobs",
+    "native": "الْمِهَن",
+    "emoji": "👩‍⚕️",
+    "group": "words"
+  },
+  {
+    "id": "p-language",
+    "name": "Language Help",
+    "native": "مُسَاعَدَة فِي اللُّغَة",
+    "emoji": "🗨️",
+    "group": "phrases"
+  },
+  {
+    "id": "p-intro",
+    "name": "Introducing Yourself",
+    "native": "التَّعَارُف",
+    "emoji": "🤝",
+    "group": "phrases"
+  },
+  {
+    "id": "p-guest",
+    "name": "At Someone's Home",
+    "native": "فِي بَيْت الْمُضِيف",
+    "emoji": "🏠",
+    "group": "phrases"
+  },
+  {
+    "id": "p-wishes",
+    "name": "Wishes & Occasions",
+    "native": "التَّهَانِي وَالْمُنَاسَبَات",
+    "emoji": "🎉",
+    "group": "phrases"
+  },
+  {
+    "id": "p-doctor",
+    "name": "At the Doctor & Pharmacy",
+    "native": "عِنْد الطَّبِيب وَفِي الصَّيْدَلِيَّة",
+    "emoji": "🩺",
+    "group": "phrases"
+  },
+  {
+    "id": "p-phone",
+    "name": "Phone & Messages",
+    "native": "الْهَاتِف وَالرَّسَائِل",
+    "emoji": "📞",
+    "group": "phrases"
+  },
+  {
+    "id": "p-hotel",
+    "name": "Hotel & Staying",
+    "native": "فِي الْفُنْدُق",
+    "emoji": "🏨",
+    "group": "phrases"
+  },
+  {
+    "id": "p-emergency",
+    "name": "Emergencies",
+    "native": "حَالَات الطَّوَارِئ",
+    "emoji": "🚨",
+    "group": "phrases"
+  },
+  {
+    "id": "p-transport",
+    "name": "Trains, Planes & Taxis",
+    "native": "الْقِطَار وَالطَّائِرَة وَالتَّاكْسِي",
+    "emoji": "🚆",
+    "group": "phrases"
+  },
+  {
+    "id": "p-work",
+    "name": "At Work",
+    "native": "فِي الْعَمَل",
+    "emoji": "💼",
+    "group": "phrases"
+  },
+  {
+    "id": "p-opinions",
+    "name": "Opinions & Discussion",
+    "native": "الْآرَاء وَالنِّقَاش",
+    "emoji": "💭",
+    "group": "phrases"
+  },
+  {
+    "id": "p-social",
+    "name": "Friends & Compliments",
+    "native": "الْأَصْدِقَاء وَالْمُجَامَلَات",
+    "emoji": "😊",
+    "group": "phrases"
   }
 ];
 
@@ -3709,6 +3877,5242 @@ export const vocab = [
       "reg": "formal",
       "en": "With health and enjoyment.",
       "tl": "bil-hanāʾ wash-shifāʾ"
+    }
+  },
+  {
+    "tr": "يَنَايِر",
+    "en": "January",
+    "cat": "months",
+    "tl": "yanāyir",
+    "ex": [
+      "الْجَوُّ بَارِدٌ فِي يَنَايِرَ.",
+      "It’s cold in January."
+    ],
+    "note": "These month names are used in Egypt and much of the Arab world. In the Levant and Iraq: كَانُون الثَّانِي (kānūn ath-thānī)."
+  },
+  {
+    "tr": "فِبْرَايِر",
+    "en": "February",
+    "cat": "months",
+    "tl": "fibrāyir",
+    "ex": [
+      "عِيدُ مِيلَادِي فِي فِبْرَايِرَ.",
+      "My birthday is in February."
+    ],
+    "note": "In the Levant and Iraq: شُبَاط (shubāṭ)."
+  },
+  {
+    "tr": "مَارِس",
+    "en": "March",
+    "cat": "months",
+    "tl": "māris",
+    "ex": [
+      "يَبْدَأُ الرَّبِيعُ فِي مَارِسَ.",
+      "Spring starts in March."
+    ],
+    "note": "In the Levant and Iraq: آذَار (ʾādhār)."
+  },
+  {
+    "tr": "أَبْرِيل",
+    "en": "April",
+    "cat": "months",
+    "tl": "ʾabrīl",
+    "ex": [
+      "سَنُسَافِرُ إِلَى الْأُقْصُرِ فِي أَبْرِيلَ.",
+      "We’re traveling to Luxor in April."
+    ],
+    "note": "Also spelled إِبْرِيل. In the Levant and Iraq: نِيسَان (nīsān).",
+    "alt": [
+      "إبريل"
+    ]
+  },
+  {
+    "tr": "مَايُو",
+    "en": "May",
+    "cat": "months",
+    "tl": "māyū",
+    "ex": [
+      "عِنْدِي امْتِحَانَاتٌ فِي مَايُو.",
+      "I have exams in May."
+    ],
+    "note": "In the Levant and Iraq: أَيَّار (ʾayyār)."
+  },
+  {
+    "tr": "يُونْيُو",
+    "en": "June",
+    "cat": "months",
+    "tl": "yūnyū",
+    "ex": [
+      "سَنَتَزَوَّجُ فِي يُونْيُو.",
+      "We’re getting married in June."
+    ],
+    "note": "Also written يُونْيَه in Egypt. In the Levant and Iraq: حَزِيرَان (ḥazīrān).",
+    "alt": [
+      "يونيه"
+    ]
+  },
+  {
+    "tr": "يُولْيُو",
+    "en": "July",
+    "cat": "months",
+    "tl": "yūlyū",
+    "ex": [
+      "نَذْهَبُ إِلَى الْبَحْرِ فِي يُولْيُو.",
+      "We go to the seaside in July."
+    ],
+    "note": "Also written يُولْيَه in Egypt. In the Levant and Iraq: تَمُّوز (tammūz).",
+    "alt": [
+      "يوليه"
+    ]
+  },
+  {
+    "tr": "أُغُسْطُس",
+    "en": "August",
+    "cat": "months",
+    "tl": "ʾughusṭus",
+    "ex": [
+      "وُلِدْتُ فِي أُغُسْطُسَ.",
+      "I was born in August."
+    ],
+    "note": "In the Levant and Iraq: آب (ʾāb)."
+  },
+  {
+    "tr": "سِبْتَمْبِر",
+    "en": "September",
+    "cat": "months",
+    "tl": "sibtambir",
+    "ex": [
+      "تَبْدَأُ الْمَدَارِسُ فِي سِبْتَمْبِرَ.",
+      "School starts in September."
+    ],
+    "note": "In the Levant and Iraq: أَيْلُول (ʾaylūl)."
+  },
+  {
+    "tr": "أُكْتُوبَر",
+    "en": "October",
+    "cat": "months",
+    "tl": "ʾuktūbar",
+    "ex": [
+      "سَأَزُورُ الْقَاهِرَةَ فِي أُكْتُوبَرَ.",
+      "I’ll visit Cairo in October."
+    ],
+    "note": "In the Levant and Iraq: تِشْرِين الْأَوَّل (tishrīn al-ʾawwal)."
+  },
+  {
+    "tr": "نُوفَمْبِر",
+    "en": "November",
+    "cat": "months",
+    "tl": "nūfambir",
+    "ex": [
+      "سَنَنْتَقِلُ إِلَى بَيْتٍ جَدِيدٍ فِي نُوفَمْبِرَ.",
+      "We’re moving to a new house in November."
+    ],
+    "note": "In the Levant and Iraq: تِشْرِين الثَّانِي (tishrīn ath-thānī)."
+  },
+  {
+    "tr": "دِيسَمْبِر",
+    "en": "December",
+    "cat": "months",
+    "tl": "dīsambir",
+    "ex": [
+      "دِيسَمْبِرُ آخِرُ شَهْرٍ فِي السَّنَةِ.",
+      "December is the last month of the year."
+    ],
+    "note": "In the Levant and Iraq: كَانُون الْأَوَّل (kānūn al-ʾawwal)."
+  },
+  {
+    "tr": "صَيْف",
+    "en": "summer",
+    "cat": "months",
+    "tl": "ṣayf",
+    "ex": [
+      "أُحِبُّ الصَّيْفَ وَالْبَحْرَ.",
+      "I love summer and the sea."
+    ],
+    "note": "A season is فَصْل (faṣl). ‘In (the) summer’: فِي الصَّيْفِ (fī-ṣ-ṣayf)."
+  },
+  {
+    "tr": "شِتَاء",
+    "en": "winter",
+    "cat": "months",
+    "tl": "shitāʾ",
+    "ex": [
+      "الشِّتَاءُ قَصِيرٌ فِي مِصْرَ.",
+      "Winter is short in Egypt."
+    ],
+    "note": "A sun letter: الشِّتَاء (ash-shitāʾ). Egyptians say ish-shita."
+  },
+  {
+    "tr": "رَبِيع",
+    "en": "spring",
+    "cat": "months",
+    "tl": "rabīʿ",
+    "ex": [
+      "الرَّبِيعُ أَجْمَلُ فَصْلٍ.",
+      "Spring is the most beautiful season."
+    ],
+    "note": "Egypt’s spring festival, شَمّ النَّسِيم (shamm an-nasīm), means ‘smelling the breeze’."
+  },
+  {
+    "tr": "خَرِيف",
+    "en": "autumn; fall",
+    "cat": "months",
+    "tl": "kharīf",
+    "ex": [
+      "تَسْقُطُ الْأَوْرَاقُ فِي الْخَرِيفِ.",
+      "The leaves fall in autumn."
+    ]
+  },
+  {
+    "tr": "تَارِيخ",
+    "en": "date",
+    "cat": "months",
+    "tl": "tārīkh",
+    "ex": [
+      "مَا تَارِيخُ الْيَوْمِ؟",
+      "What’s the date today?"
+    ],
+    "note": "Also ‘history’. Formal dates use ordinals: الْخَامِسُ مِنْ مَايُو ‘5 May’; in speech just خَمْسَة مَايُو."
+  },
+  {
+    "tr": "عِيدُ مِيلَادٍ",
+    "en": "birthday",
+    "cat": "months",
+    "tl": "ʿīd mīlād",
+    "ex": [
+      "مَتَى عِيدُ مِيلَادِكَ؟",
+      "When is your birthday?"
+    ],
+    "note": "‘Happy birthday!’: عِيدُ مِيلَادٍ سَعِيدٌ, or in Egypt كُلّ سَنَة وِانْتَ طَيِّب (kull sana w-inta ṭayyib)."
+  },
+  {
+    "tr": "أَوَّل",
+    "en": "first",
+    "cat": "months",
+    "tl": "ʾawwal",
+    "ex": [
+      "هَذِهِ أَوَّلُ مَرَّةٍ لِي هُنَا.",
+      "This is my first time here."
+    ],
+    "note": "Before a noun: أَوَّلُ مَرَّةٍ ‘the first time’. After one: الْيَوْمُ الْأَوَّلُ; feminine الْأُولَى (al-ʾūlā)."
+  },
+  {
+    "tr": "ثَانٍ",
+    "en": "second (2nd)",
+    "cat": "months",
+    "tl": "thānī",
+    "ex": [
+      "أَسْكُنُ فِي الطَّابِقِ الثَّانِي.",
+      "I live on the second floor."
+    ],
+    "note": "With ‘the’: الثَّانِي. Then ثَالِث (thālith) 3rd, رَابِع (rābiʿ) 4th, خَامِس (khāmis) 5th.",
+    "alt": [
+      "ثاني"
+    ]
+  },
+  {
+    "tr": "الْأُسْبُوعُ الْقَادِمُ",
+    "en": "next week",
+    "cat": "months",
+    "tl": "al-ʾusbūʿ al-qādim",
+    "ex": [
+      "سَأُسَافِرُ الْأُسْبُوعَ الْقَادِمَ.",
+      "I’m traveling next week."
+    ],
+    "note": "Next year: السَّنَةُ الْقَادِمَةُ. You’ll also hear الْمُقْبِل (al-muqbil), ‘coming’.",
+    "pair": {
+      "tr": "الْأُسْبُوع الْجَايّ",
+      "reg": "casual",
+      "tl": "il-ʾusbūʿ il-gayy",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "السَّنَةُ الْمَاضِيَةُ",
+    "en": "last year",
+    "cat": "months",
+    "tl": "as-sana-l-māḍiya",
+    "ex": [
+      "زُرْتُ مِصْرَ السَّنَةَ الْمَاضِيَةَ.",
+      "I visited Egypt last year."
+    ],
+    "note": "Last week: الْأُسْبُوعُ الْمَاضِي (al-ʾusbūʿ al-māḍī).",
+    "pair": {
+      "tr": "السَّنَة اللِّي فَاتِت",
+      "reg": "casual",
+      "tl": "is-sana-lli fātit",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "زَوْجَة",
+    "en": "wife",
+    "cat": "family2",
+    "tl": "zawja",
+    "ex": [
+      "هَذِهِ زَوْجَتِي مَرْيَمُ.",
+      "This is my wife, Maryam."
+    ],
+    "note": "‘My wife’ is زَوْجَتِي (zawjatī): the t of ة is heard before an ending.",
+    "pair": {
+      "tr": "مِرَاتِي",
+      "reg": "casual",
+      "en": "my wife",
+      "tl": "mirāti",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "زَوْج",
+    "en": "husband",
+    "cat": "family2",
+    "tl": "zawj",
+    "ex": [
+      "زَوْجِي لَا يَتَكَلَّمُ الْعَرَبِيَّةَ.",
+      "My husband doesn’t speak Arabic."
+    ],
+    "note": "Also ‘a pair’. A married couple: زَوْجَانِ (zawjān).",
+    "pair": {
+      "tr": "جُوزِي",
+      "reg": "casual",
+      "en": "my husband",
+      "tl": "gōzi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "جَدّ",
+    "en": "grandfather",
+    "cat": "family2",
+    "tl": "jadd",
+    "ex": [
+      "جَدِّي عُمْرُهُ ثَمَانُونَ سَنَةً.",
+      "My grandfather is eighty."
+    ],
+    "note": "Grandparents: أَجْدَاد (ʾajdād). A grandchild: حَفِيد (ḥafīd).",
+    "pair": {
+      "tr": "جِدُّو",
+      "reg": "casual",
+      "en": "grandpa",
+      "tl": "giddu",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "جَدَّة",
+    "en": "grandmother",
+    "cat": "family2",
+    "tl": "jadda",
+    "ex": [
+      "أَزُورُ جَدَّتِي كُلَّ يَوْمِ جُمُعَةٍ.",
+      "I visit my grandmother every Friday."
+    ],
+    "note": "Not to be confused with جِدَّة (jidda), the Saudi city of Jeddah.",
+    "pair": {
+      "tr": "تِيتَة",
+      "reg": "casual",
+      "en": "grandma",
+      "tl": "tēta",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عَمّ",
+    "en": "uncle (father’s brother)",
+    "cat": "family2",
+    "tl": "ʿamm",
+    "ex": [
+      "عَمِّي يَسْكُنُ فِي الْإِسْكَنْدَرِيَّةِ.",
+      "My uncle lives in Alexandria."
+    ],
+    "note": "In Egypt يَا عَمّ (ya ʿamm) is also a friendly way to address an older man, or a mate."
+  },
+  {
+    "tr": "خَال",
+    "en": "uncle (mother’s brother)",
+    "cat": "family2",
+    "tl": "khāl",
+    "ex": [
+      "خَالِي طَبِيبٌ فِي الْقَاهِرَةِ.",
+      "My uncle is a doctor in Cairo."
+    ],
+    "note": "Arabic has no single word for ‘uncle’: عَمّ is on your father’s side, خَال on your mother’s."
+  },
+  {
+    "tr": "عَمَّة",
+    "en": "aunt (father’s sister)",
+    "cat": "family2",
+    "tl": "ʿamma",
+    "ex": [
+      "عَمَّتِي تَطْبُخُ أَكْلًا لَذِيذًا.",
+      "My aunt cooks delicious food."
+    ],
+    "note": "Father’s side: عَمّ and عَمَّة. Mother’s side: خَال and خَالَة."
+  },
+  {
+    "tr": "خَالَة",
+    "en": "aunt (mother’s sister)",
+    "cat": "family2",
+    "tl": "khāla",
+    "ex": [
+      "خَالَتِي تَسْكُنُ قَرِيبًا مِنَّا.",
+      "My aunt lives near us."
+    ],
+    "note": "Children often call any older woman they know خَالَة or, in Egypt, طَنْط (ṭanṭ)."
+  },
+  {
+    "tr": "ابْنُ عَمٍّ",
+    "en": "cousin (son of your father’s brother)",
+    "cat": "family2",
+    "tl": "ibn ʿamm",
+    "ex": [
+      "هَذَا ابْنُ عَمِّي أَحْمَدُ.",
+      "This is my cousin Ahmed."
+    ],
+    "note": "There’s no one word for ‘cousin’: also ابْنُ خَالٍ, بِنْتُ عَمٍّ, بِنْتُ خَالَةٍ… ‘son/daughter of my uncle/aunt’."
+  },
+  {
+    "tr": "طِفْل",
+    "en": "child; baby",
+    "cat": "family2",
+    "tl": "ṭifl",
+    "ex": [
+      "عِنْدَهُمْ طِفْلٌ صَغِيرٌ.",
+      "They have a small child."
+    ],
+    "note": "Plural أَطْفَال (ʾaṭfāl), ‘children’. A newborn: مَوْلُود (mawlūd).",
+    "pair": {
+      "tr": "عَيِّل",
+      "reg": "casual",
+      "en": "kid",
+      "tl": "ʿayyil",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "وَالِدَانِ",
+    "en": "parents",
+    "cat": "family2",
+    "tl": "wālidān",
+    "ex": [
+      "وَالِدَايَ يَسْكُنَانِ فِي لَنْدَنَ.",
+      "My parents live in London."
+    ],
+    "note": "Formal. ‘My parents’: وَالِدَايَ (wālidāya). Father: وَالِد (wālid); mother: وَالِدَة (wālida).",
+    "pair": {
+      "tr": "أَهْلِي",
+      "reg": "casual",
+      "en": "my parents; my folks",
+      "tl": "ʾahli",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُتَزَوِّج",
+    "en": "married",
+    "cat": "family2",
+    "tl": "mutazawwij",
+    "ex": [
+      "هَلْ أَنْتَ مُتَزَوِّجٌ؟",
+      "Are you married?"
+    ],
+    "note": "Female: مُتَزَوِّجَة (mutazawwija). A wedding: عُرْس (ʿurs); in Egypt فَرَح (faraḥ).",
+    "pair": {
+      "tr": "مِتْجَوِّز",
+      "reg": "casual",
+      "tl": "mitgawwiz",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَعْزَب",
+    "en": "single (not married)",
+    "cat": "family2",
+    "tl": "ʾaʿzab",
+    "ex": [
+      "لَا، أَنَا أَعْزَبُ.",
+      "No, I’m single."
+    ],
+    "note": "Female: عَزْبَاء (ʿazbāʾ). Many young people just say سِنْجِل (single)."
+  },
+  {
+    "tr": "حَبِيب",
+    "en": "boyfriend; darling",
+    "cat": "family2",
+    "tl": "ḥabīb",
+    "ex": [
+      "صَدِيقَتِي لَهَا حَبِيبٌ جَدِيدٌ.",
+      "My friend has a new boyfriend."
+    ],
+    "note": "Girlfriend: حَبِيبَة (ḥabība). يَا حَبِيبِي (ya ḥabībī), ‘my dear’, is also said warmly to friends and family."
+  },
+  {
+    "tr": "أَقَارِب",
+    "en": "relatives",
+    "cat": "family2",
+    "tl": "ʾaqārib",
+    "ex": [
+      "عِنْدِي أَقَارِبُ فِي مِصْرَ.",
+      "I have relatives in Egypt."
+    ],
+    "note": "One relative: قَرِيب (qarīb), which also means ‘near’.",
+    "pair": {
+      "tr": "قَرَايِب",
+      "reg": "casual",
+      "tl": "ʾarāyib",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "قَمِيص",
+    "en": "shirt",
+    "cat": "clothes",
+    "tl": "qamīṣ",
+    "ex": [
+      "أُرِيدُ قَمِيصًا بِأَكْمَامٍ طَوِيلَةٍ.",
+      "I’d like a long-sleeved shirt."
+    ],
+    "note": "Plural قُمْصَان (qumṣān). In Egypt it’s pronounced ʾamīṣ."
+  },
+  {
+    "tr": "تِي شِيرْت",
+    "en": "T-shirt",
+    "cat": "clothes",
+    "tl": "tī shirt",
+    "ex": [
+      "سَأَلْبَسُ تِي شِيرْت أَبْيَضَ.",
+      "I’ll wear a white T-shirt."
+    ],
+    "note": "Borrowed from English, so its ending never changes. Also written تِيشِيرْت.",
+    "alt": [
+      "تيشيرت"
+    ]
+  },
+  {
+    "tr": "بَنْطَلُون",
+    "en": "trousers; pants",
+    "cat": "clothes",
+    "tl": "banṭalūn",
+    "ex": [
+      "هَذَا الْبَنْطَلُونُ طَوِيلٌ جِدًّا.",
+      "These trousers are too long."
+    ],
+    "note": "Singular in Arabic: ‘this trouser’. Also بِنْطَال (binṭāl). Egyptians say banṭalōn."
+  },
+  {
+    "tr": "فُسْتَان",
+    "en": "dress",
+    "cat": "clothes",
+    "tl": "fustān",
+    "ex": [
+      "اِشْتَرَيْتُ فُسْتَانًا جَدِيدًا لِلْعُرْسِ.",
+      "I bought a new dress for the wedding."
+    ],
+    "note": "Plural فَسَاتِين (fasātīn)."
+  },
+  {
+    "tr": "تَنُّورَة",
+    "en": "skirt",
+    "cat": "clothes",
+    "tl": "tannūra",
+    "ex": [
+      "هَذِهِ التَّنُّورَةُ قَصِيرَةٌ.",
+      "This skirt is short."
+    ],
+    "note": "In Egypt a skirt is جِيبَة (jība), from French jupe."
+  },
+  {
+    "tr": "بَدْلَة",
+    "en": "suit",
+    "cat": "clothes",
+    "tl": "badla",
+    "ex": [
+      "يَلْبَسُ بَدْلَةً سَوْدَاءَ فِي الْعَمَلِ.",
+      "He wears a black suit at work."
+    ],
+    "note": "A man’s suit. In careful writing also spelled بِذْلَة (bidhla).",
+    "alt": [
+      "بذلة"
+    ]
+  },
+  {
+    "tr": "مِعْطَف",
+    "en": "coat",
+    "cat": "clothes",
+    "tl": "miʿṭaf",
+    "ex": [
+      "اِلْبَسْ مِعْطَفَكَ لِأَنَّ الْجَوَّ بَارِدٌ.",
+      "Put your coat on, it’s cold."
+    ],
+    "note": "Plural مَعَاطِف (maʿāṭif).",
+    "pair": {
+      "tr": "بَالْطُو",
+      "reg": "casual",
+      "tl": "balṭo",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سُتْرَة",
+    "en": "jacket",
+    "cat": "clothes",
+    "tl": "sutra",
+    "ex": [
+      "هَذِهِ السُّتْرَةُ دَافِئَةٌ جِدًّا.",
+      "This jacket is very warm."
+    ],
+    "note": "Many people simply say جَاكِيت, from English ‘jacket’."
+  },
+  {
+    "tr": "حِذَاء",
+    "en": "shoe; shoes",
+    "cat": "clothes",
+    "tl": "ḥidhāʾ",
+    "ex": [
+      "هَذَا الْحِذَاءُ مُرِيحٌ جِدًّا.",
+      "These shoes are very comfortable."
+    ],
+    "note": "One word covers the pair: هَذَا الْحِذَاءُ ‘these shoes’. Plural أَحْذِيَة (ʾaḥdhiya).",
+    "pair": {
+      "tr": "جَزْمَة",
+      "reg": "casual",
+      "tl": "gazma",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "جَوَارِب",
+    "en": "socks",
+    "cat": "clothes",
+    "tl": "jawārib",
+    "ex": [
+      "أَلْبَسُ جَوَارِبَ صُوفٍ فِي الشِّتَاءِ.",
+      "I wear wool socks in winter."
+    ],
+    "note": "Plural; one sock is جَوْرَب (jawrab).",
+    "pair": {
+      "tr": "شُرَاب",
+      "reg": "casual",
+      "tl": "shurāb",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "قُبَّعَة",
+    "en": "hat; cap",
+    "cat": "clothes",
+    "tl": "qubbaʿa",
+    "ex": [
+      "هَذِهِ الْقُبَّعَةُ تَحْمِينِي مِنَ الشَّمْسِ.",
+      "This hat protects me from the sun."
+    ],
+    "note": "A baseball cap is often just كَاب (kāb). In Egypt a brimmed hat is also بَرْنِيطَة (barnīṭa)."
+  },
+  {
+    "tr": "حَقِيبَة",
+    "en": "bag",
+    "cat": "clothes",
+    "tl": "ḥaqība",
+    "ex": [
+      "حَقِيبَتِي ثَقِيلَةٌ جِدًّا.",
+      "My bag is really heavy."
+    ],
+    "note": "Any bag: a handbag, a schoolbag, a suitcase (حَقِيبَةُ سَفَرٍ). A plastic bag is كِيس.",
+    "pair": {
+      "tr": "شَنْطَة",
+      "reg": "casual",
+      "tl": "shanṭa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "نَظَّارَة",
+    "en": "glasses",
+    "cat": "clothes",
+    "tl": "naẓẓāra",
+    "ex": [
+      "لَا أَرَى جَيِّدًا بِدُونِ نَظَّارَتِي.",
+      "I can’t see well without my glasses."
+    ],
+    "note": "Singular in Arabic. Sunglasses: نَظَّارَةٌ شَمْسِيَّةٌ (naẓẓāra shamsiyya)."
+  },
+  {
+    "tr": "حِزَام",
+    "en": "belt",
+    "cat": "clothes",
+    "tl": "ḥizām",
+    "ex": [
+      "أَحْتَاجُ إِلَى حِزَامٍ لِهَذَا الْبَنْطَلُونِ.",
+      "I need a belt for these trousers."
+    ],
+    "note": "A seat belt: حِزَامُ الْأَمَانِ (ḥizām al-ʾamān), literally ‘the safety belt’."
+  },
+  {
+    "tr": "حِجَاب",
+    "en": "headscarf; hijab",
+    "cat": "clothes",
+    "tl": "ḥijāb",
+    "ex": [
+      "أُخْتِي تَلْبَسُ الْحِجَابَ.",
+      "My sister wears the hijab."
+    ],
+    "note": "In Egypt a headscarf is also called طَرْحَة (ṭarḥa)."
+  },
+  {
+    "tr": "أَخْلَعُ",
+    "en": "I take off (clothes)",
+    "cat": "clothes",
+    "tl": "ʾakhlaʿ",
+    "ex": [
+      "أَخْلَعُ حِذَائِي قَبْلَ الدُّخُولِ.",
+      "I take my shoes off before going in."
+    ],
+    "note": "The opposite of أَلْبَسُ (I put on). Past: خَلَعْتُ (khalaʿtu).",
+    "pair": {
+      "tr": "بَقْلَع",
+      "reg": "casual",
+      "tl": "baʾlaʿ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُغَيِّرُ مَلَابِسِي",
+    "en": "I get changed",
+    "cat": "clothes",
+    "tl": "ʾughayyir malābisī",
+    "ex": [
+      "سَأُغَيِّرُ مَلَابِسِي وَأَنْزِلُ.",
+      "I’ll get changed and come down."
+    ],
+    "note": "Literally ‘I change my clothes’. أُغَيِّرُ on its own means ‘I change’ anything.",
+    "pair": {
+      "tr": "بَغَيَّر هُدُومِي",
+      "reg": "casual",
+      "tl": "baghayyar hudūmi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "ضَيِّق",
+    "en": "tight; narrow",
+    "cat": "clothes",
+    "tl": "ḍayyiq",
+    "ex": [
+      "هَذَا الْقَمِيصُ ضَيِّقٌ عَلَيَّ.",
+      "This shirt is too tight on me."
+    ],
+    "note": "‘On me’ is عَلَيَّ (ʿalayya). Also ‘narrow’: شَارِعٌ ضَيِّقٌ ‘a narrow street’."
+  },
+  {
+    "tr": "وَاسِع",
+    "en": "loose; wide; roomy",
+    "cat": "clothes",
+    "tl": "wāsiʿ",
+    "ex": [
+      "الْفُسْتَانُ وَاسِعٌ قَلِيلًا.",
+      "The dress is a bit loose."
+    ],
+    "note": "Also ‘spacious’: غُرْفَةٌ وَاسِعَةٌ ‘a spacious room’."
+  },
+  {
+    "tr": "يَلِيقُ بِكَ",
+    "en": "it suits you",
+    "cat": "clothes",
+    "tl": "yalīqu bik",
+    "ex": [
+      "هَذَا اللَّوْنُ يَلِيقُ بِكَ.",
+      "This color suits you."
+    ],
+    "note": "To a woman: يَلِيقُ بِكِ. For a feminine thing: تَلِيقُ بِكَ, e.g. هَذِهِ الْقُبَّعَةُ تَلِيقُ بِكَ.",
+    "pair": {
+      "tr": "لَايِق عَلِيك",
+      "reg": "casual",
+      "tl": "lāyiʾ ʿalēk",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هِوَايَة",
+    "en": "hobby",
+    "cat": "hobbies",
+    "tl": "hiwāya",
+    "ex": [
+      "هِوَايَاتِي الْقِرَاءَةُ وَالسَّفَرُ.",
+      "My hobbies are reading and travel."
+    ],
+    "note": "Plural هِوَايَات (hiwāyāt). ‘What are your hobbies?’: مَا هِوَايَاتُكَ؟ (mā hiwāyātuk)."
+  },
+  {
+    "tr": "وَقْتُ الْفَرَاغِ",
+    "en": "free time",
+    "cat": "hobbies",
+    "tl": "waqt al-farāgh",
+    "ex": [
+      "مَاذَا تَفْعَلُ فِي وَقْتِ الْفَرَاغِ؟",
+      "What do you do in your free time?"
+    ],
+    "note": "‘In my free time’: فِي وَقْتِ فَرَاغِي (fī waqt farāghī)."
+  },
+  {
+    "tr": "مُوسِيقَى",
+    "en": "music",
+    "cat": "hobbies",
+    "tl": "mūsīqā",
+    "ex": [
+      "أَيَّ نَوْعٍ مِنَ الْمُوسِيقَى تُحِبُّ؟",
+      "What kind of music do you like?"
+    ],
+    "note": "Feminine and never changes its ending: الْمُوسِيقَى الْعَرَبِيَّةُ ‘Arabic music’."
+  },
+  {
+    "tr": "أُغْنِيَة",
+    "en": "song",
+    "cat": "hobbies",
+    "tl": "ʾughniya",
+    "ex": [
+      "مَا أُغْنِيَتُكَ الْمُفَضَّلَةُ؟",
+      "What’s your favorite song?"
+    ],
+    "note": "Plural أَغَانٍ; with ‘the’: الْأَغَانِي (al-ʾaghānī). Favorite: مُفَضَّل (mufaḍḍal)."
+  },
+  {
+    "tr": "فِيلْم",
+    "en": "film; movie",
+    "cat": "hobbies",
+    "tl": "fīlm",
+    "ex": [
+      "هَذَا الْفِيلْمُ مُضْحِكٌ جِدًّا.",
+      "This film is really funny."
+    ],
+    "note": "Plural أَفْلَام (ʾaflām). In speech it’s usually said film."
+  },
+  {
+    "tr": "سِينِمَا",
+    "en": "cinema; movie theater",
+    "cat": "hobbies",
+    "tl": "sīnimā",
+    "ex": [
+      "هَلْ تُرِيدُ أَنْ نَذْهَبَ إِلَى السِّينِمَا؟",
+      "Do you want to go to the cinema?"
+    ],
+    "note": "Feminine, and its ending never changes."
+  },
+  {
+    "tr": "مَسْرَح",
+    "en": "theater",
+    "cat": "hobbies",
+    "tl": "masraḥ",
+    "ex": [
+      "ذَهَبْنَا إِلَى الْمَسْرَحِ يَوْمَ الْخَمِيسِ.",
+      "We went to the theater on Thursday."
+    ],
+    "note": "A play: مَسْرَحِيَّة (masraḥiyya)."
+  },
+  {
+    "tr": "حَفْلَة",
+    "en": "party; concert",
+    "cat": "hobbies",
+    "tl": "ḥafla",
+    "ex": [
+      "هَلْ سَتَأْتِي إِلَى الْحَفْلَةِ اللَّيْلَةَ؟",
+      "Are you coming to the party tonight?"
+    ],
+    "note": "A concert: حَفْلَةٌ مُوسِيقِيَّةٌ (ḥafla mūsīqiyya). The more formal word is حَفْل (ḥafl)."
+  },
+  {
+    "tr": "رِيَاضَة",
+    "en": "sport; exercise",
+    "cat": "hobbies",
+    "tl": "riyāḍa",
+    "ex": [
+      "أُمَارِسُ الرِّيَاضَةَ كُلَّ يَوْمٍ.",
+      "I exercise every day."
+    ],
+    "note": "‘To do sport, to exercise’: أُمَارِسُ الرِّيَاضَةَ. Maths is رِيَاضِيَّات (riyāḍiyyāt)."
+  },
+  {
+    "tr": "كُرَةُ الْقَدَمِ",
+    "en": "football; soccer",
+    "cat": "hobbies",
+    "tl": "kurat al-qadam",
+    "ex": [
+      "أَلْعَبُ كُرَةَ الْقَدَمِ مَعَ أَصْدِقَائِي.",
+      "I play football with my friends."
+    ],
+    "note": "Literally ‘the ball of the foot’. Basketball: كُرَةُ السَّلَّةِ (kurat as-salla).",
+    "pair": {
+      "tr": "الْكُورَة",
+      "reg": "casual",
+      "en": "football",
+      "tl": "il-kōra",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُبَارَاة",
+    "en": "match; game",
+    "cat": "hobbies",
+    "tl": "mubārāh",
+    "ex": [
+      "هَلْ شَاهَدْتَ الْمُبَارَاةَ أَمْسِ؟",
+      "Did you watch the match yesterday?"
+    ],
+    "note": "Plural مُبَارَيَات (mubārayāt).",
+    "pair": {
+      "tr": "مَاتْش",
+      "reg": "casual",
+      "tl": "mātsh",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "نَادٍ",
+    "en": "club; sports club",
+    "cat": "hobbies",
+    "tl": "nādī",
+    "ex": [
+      "أَذْهَبُ إِلَى النَّادِي مَرَّتَيْنِ فِي الْأُسْبُوعِ.",
+      "I go to the club twice a week."
+    ],
+    "note": "With ‘the’: النَّادِي (an-nādī). Many Egyptian families belong to a sports club. A gym: جِيم.",
+    "alt": [
+      "نادي"
+    ]
+  },
+  {
+    "tr": "لُعْبَة",
+    "en": "game; toy",
+    "cat": "hobbies",
+    "tl": "luʿba",
+    "ex": [
+      "هَذِهِ لُعْبَةٌ سَهْلَةٌ.",
+      "This is an easy game."
+    ],
+    "note": "Video games: أَلْعَابُ الْفِيدْيُو (ʾalʿāb al-fīdyū)."
+  },
+  {
+    "tr": "أَلْعَبُ",
+    "en": "I play",
+    "cat": "hobbies",
+    "tl": "ʾalʿab",
+    "ex": [
+      "هَلْ تَلْعَبُ التِّنِسَ؟",
+      "Do you play tennis?"
+    ],
+    "note": "For games and sports. For instruments use أَعْزِفُ. Past: لَعِبْتُ (laʿibtu).",
+    "pair": {
+      "tr": "بَلْعَب",
+      "reg": "casual",
+      "tl": "balʿab",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَعْزِفُ",
+    "en": "I play (an instrument)",
+    "cat": "hobbies",
+    "tl": "ʾaʿzif",
+    "ex": [
+      "أَعْزِفُ عَلَى الْعُودِ مُنْذُ سَنَوَاتٍ.",
+      "I’ve played the oud for years."
+    ],
+    "note": "Takes عَلَى: أَعْزِفُ عَلَى الْجِيتَارِ ‘I play the guitar’. The عُود is the Arab lute."
+  },
+  {
+    "tr": "أَسْبَحُ",
+    "en": "I swim",
+    "cat": "hobbies",
+    "tl": "ʾasbaḥ",
+    "ex": [
+      "أَسْبَحُ فِي الْبَحْرِ كُلَّ صَيْفٍ.",
+      "I swim in the sea every summer."
+    ],
+    "note": "Swimming: السِّبَاحَة (as-sibāḥa). A pool: حَمَّامُ سِبَاحَةٍ (ḥammām sibāḥa).",
+    "pair": {
+      "tr": "بَعُوم",
+      "reg": "casual",
+      "tl": "baʿūm",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَرْكُضُ",
+    "en": "I run",
+    "cat": "hobbies",
+    "tl": "ʾarkuḍ",
+    "ex": [
+      "أَرْكُضُ خَمْسَةَ كِيلُومِتْرَاتٍ فِي الصَّبَاحِ.",
+      "I run five kilometers in the morning."
+    ],
+    "note": "Also أَجْرِي (ʾajrī), the everyday word in most dialects.",
+    "pair": {
+      "tr": "بَجْرِي",
+      "reg": "casual",
+      "tl": "bagri",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَرْقُصُ",
+    "en": "I dance",
+    "cat": "hobbies",
+    "tl": "ʾarquṣ",
+    "ex": [
+      "هَلْ تُحِبُّ أَنْ تَرْقُصَ؟",
+      "Do you like to dance?"
+    ],
+    "note": "Dancing: الرَّقْص (ar-raqṣ). Belly dance is الرَّقْصُ الشَّرْقِيُّ, ‘eastern dance’.",
+    "pair": {
+      "tr": "بَرْقُص",
+      "reg": "casual",
+      "tl": "barʾuṣ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُغَنِّي",
+    "en": "I sing",
+    "cat": "hobbies",
+    "tl": "ʾughannī",
+    "ex": [
+      "أُغَنِّي دَائِمًا فِي الْحَمَّامِ.",
+      "I always sing in the shower."
+    ],
+    "note": "A singer: مُطْرِب (muṭrib) or مُغَنٍّ (mughannī)."
+  },
+  {
+    "tr": "أَرْسُمُ",
+    "en": "I draw; I paint",
+    "cat": "hobbies",
+    "tl": "ʾarsum",
+    "ex": [
+      "أَرْسُمُ الطَّبِيعَةَ بِالْأَلْوَانِ الْمَائِيَّةِ.",
+      "I paint nature in watercolors."
+    ],
+    "note": "Drawing or painting: الرَّسْم (ar-rasm). A painting: لَوْحَة (lawḥa)."
+  },
+  {
+    "tr": "صُورَة",
+    "en": "photo; picture",
+    "cat": "hobbies",
+    "tl": "ṣūra",
+    "ex": [
+      "هَلْ يُمْكِنُنِي أَنْ آخُذَ صُورَةً؟",
+      "May I take a photo?"
+    ],
+    "note": "Plural صُوَر (ṣuwar). Also ‘image’."
+  },
+  {
+    "tr": "أُصَوِّرُ",
+    "en": "I take photos; I film",
+    "cat": "hobbies",
+    "tl": "ʾuṣawwir",
+    "ex": [
+      "أُصَوِّرُ كُلَّ شَيْءٍ بِهَاتِفِي.",
+      "I take photos of everything with my phone."
+    ],
+    "note": "Photography: التَّصْوِير (at-taṣwīr). On signs: مَمْنُوعُ التَّصْوِيرِ ‘no photos’."
+  },
+  {
+    "tr": "أَسْتَمِعُ إِلَى",
+    "en": "I listen to",
+    "cat": "hobbies",
+    "tl": "ʾastamiʿ ʾilā",
+    "ex": [
+      "أَسْتَمِعُ إِلَى الْمُوسِيقَى فِي السَّيَّارَةِ.",
+      "I listen to music in the car."
+    ],
+    "note": "Listening on purpose; أَسْمَعُ is ‘I hear’.",
+    "pair": {
+      "tr": "بَسْمَع",
+      "reg": "casual",
+      "en": "I listen to; I hear",
+      "tl": "basmaʿ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَتَمَشَّى",
+    "en": "I go for a walk",
+    "cat": "hobbies",
+    "tl": "ʾatamashshā",
+    "ex": [
+      "نَتَمَشَّى عَلَى الْكُورْنِيشِ مَسَاءً.",
+      "We go for a walk on the corniche in the evening."
+    ],
+    "note": "A walk or outing: نُزْهَة (nuzha). The كُورْنِيش is a seafront or riverside promenade.",
+    "pair": {
+      "tr": "بَتْمَشَّى",
+      "reg": "casual",
+      "tl": "batmashsha",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُمْتِع",
+    "en": "fun; enjoyable",
+    "cat": "hobbies",
+    "tl": "mumtiʿ",
+    "ex": [
+      "كَانَ الْفِيلْمُ مُمْتِعًا جِدًّا.",
+      "The film was really enjoyable."
+    ],
+    "note": "The opposite of مُمِلّ (boring). Feminine: مُمْتِعَة."
+  },
+  {
+    "tr": "بَلَد",
+    "en": "country",
+    "cat": "countries",
+    "tl": "balad",
+    "ex": [
+      "مِصْرُ بَلَدٌ جَمِيلٌ.",
+      "Egypt is a beautiful country."
+    ],
+    "note": "Plural بُلْدَان (buldān) or بِلَاد (bilād). In Egypt بَلَد can also mean your hometown."
+  },
+  {
+    "tr": "لُغَة",
+    "en": "language",
+    "cat": "countries",
+    "tl": "lugha",
+    "ex": [
+      "كَمْ لُغَةً تَتَكَلَّمُ؟",
+      "How many languages do you speak?"
+    ],
+    "note": "Plural لُغَات (lughāt). After كَمْ the noun is singular: كَمْ لُغَةً."
+  },
+  {
+    "tr": "أَجْنَبِيّ",
+    "en": "foreign; foreigner",
+    "cat": "countries",
+    "tl": "ʾajnabī",
+    "ex": [
+      "أَنَا أَجْنَبِيٌّ، لَسْتُ مِنْ هُنَا.",
+      "I’m a foreigner, I’m not from here."
+    ],
+    "note": "Female: أَجْنَبِيَّة. A foreign language: لُغَةٌ أَجْنَبِيَّةٌ. Egyptians may call a Westerner خَوَاجَة (khawāga)."
+  },
+  {
+    "tr": "جِنْسِيَّة",
+    "en": "nationality",
+    "cat": "countries",
+    "tl": "jinsiyya",
+    "ex": [
+      "مَا جِنْسِيَّتُكَ، مِنْ فَضْلِكَ؟",
+      "What’s your nationality, please?"
+    ],
+    "note": "You’ll see it on forms. Nationalities end in ـِيّ: مِصْرِيّ, أَمْرِيكِيّ."
+  },
+  {
+    "tr": "مِصْر",
+    "en": "Egypt",
+    "cat": "countries",
+    "tl": "miṣr",
+    "ex": [
+      "أَعِيشُ فِي مِصْرَ مُنْذُ سَنَةٍ.",
+      "I’ve been living in Egypt for a year."
+    ],
+    "note": "Egyptians say maṣr, which can also mean Cairo itself.",
+    "pair": {
+      "tr": "مَصْر",
+      "reg": "casual",
+      "tl": "maṣr",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مِصْرِيّ",
+    "en": "Egyptian",
+    "cat": "countries",
+    "tl": "miṣrī",
+    "ex": [
+      "أُحِبُّ الطَّعَامَ الْمِصْرِيَّ.",
+      "I love Egyptian food."
+    ],
+    "note": "Female: مِصْرِيَّة (miṣriyya). Egyptian Arabic: الْعَامِّيَّةُ الْمِصْرِيَّةُ.",
+    "pair": {
+      "tr": "مَصْرِي",
+      "reg": "casual",
+      "tl": "maṣri",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "السُّعُودِيَّة",
+    "en": "Saudi Arabia",
+    "cat": "countries",
+    "tl": "as-suʿūdiyya",
+    "ex": [
+      "زُرْتُ السُّعُودِيَّةَ مَعَ عَائِلَتِي.",
+      "I visited Saudi Arabia with my family."
+    ],
+    "note": "Short for الْمَمْلَكَةُ الْعَرَبِيَّةُ السُّعُودِيَّةُ. A Saudi: سُعُودِيّ (suʿūdī)."
+  },
+  {
+    "tr": "الْمَغْرِب",
+    "en": "Morocco",
+    "cat": "countries",
+    "tl": "al-maghrib",
+    "ex": [
+      "سَافَرْتُ إِلَى الْمَغْرِبِ الصَّيْفَ الْمَاضِيَ.",
+      "I traveled to Morocco last summer."
+    ],
+    "note": "Moroccan: مَغْرِبِيّ (maghribī). The word also means ‘sunset’ and the sunset prayer."
+  },
+  {
+    "tr": "لُبْنَان",
+    "en": "Lebanon",
+    "cat": "countries",
+    "tl": "lubnān",
+    "ex": [
+      "جِبَالُ لُبْنَانَ جَمِيلَةٌ جِدًّا.",
+      "Lebanon’s mountains are very beautiful."
+    ],
+    "note": "Lebanese: لُبْنَانِيّ (lubnānī)."
+  },
+  {
+    "tr": "سُورِيَا",
+    "en": "Syria",
+    "cat": "countries",
+    "tl": "sūriyā",
+    "ex": [
+      "زَوْجَتِي مِنْ سُورِيَا.",
+      "My wife is from Syria."
+    ],
+    "note": "Officially spelled سُورِيَة. Syrian: سُورِيّ (sūrī).",
+    "alt": [
+      "سورية"
+    ]
+  },
+  {
+    "tr": "الْأُرْدُنّ",
+    "en": "Jordan",
+    "cat": "countries",
+    "tl": "al-ʾurdunn",
+    "ex": [
+      "الْبَتْرَاءُ فِي الْأُرْدُنِّ.",
+      "Petra is in Jordan."
+    ],
+    "note": "Jordanian: أُرْدُنِيّ (ʾurdunī). The capital is عَمَّان (ʿammān)."
+  },
+  {
+    "tr": "الْإِمَارَات",
+    "en": "the (United Arab) Emirates",
+    "cat": "countries",
+    "tl": "al-ʾimārāt",
+    "ex": [
+      "سَأَعْمَلُ فِي الْإِمَارَاتِ السَّنَةَ الْقَادِمَةَ.",
+      "I’ll be working in the Emirates next year."
+    ],
+    "note": "Short for الْإِمَارَاتُ الْعَرَبِيَّةُ الْمُتَّحِدَةُ. Emirati: إِمَارَاتِيّ (ʾimārātī)."
+  },
+  {
+    "tr": "إِنْجِلْتِرَا",
+    "en": "England",
+    "cat": "countries",
+    "tl": "ʾinjiltirā",
+    "ex": [
+      "أَنَا مِنْ إِنْجِلْتِرَا.",
+      "I’m from England."
+    ],
+    "note": "Britain: بِرِيطَانِيَا (birīṭāniyā). English (person): إِنْجِلِيزِيّ. Egyptians say ingiltira."
+  },
+  {
+    "tr": "أَمْرِيكَا",
+    "en": "America; the USA",
+    "cat": "countries",
+    "tl": "ʾamrīkā",
+    "ex": [
+      "سَافَرَ صَدِيقِي إِلَى أَمْرِيكَا لِلدِّرَاسَةِ.",
+      "My friend went to America to study."
+    ],
+    "note": "Formally الْوِلَايَاتُ الْمُتَّحِدَةُ (the United States). American: أَمْرِيكِيّ (ʾamrīkī)."
+  },
+  {
+    "tr": "أَلْمَانِيَا",
+    "en": "Germany",
+    "cat": "countries",
+    "tl": "ʾalmāniyā",
+    "ex": [
+      "سَيَّارَتِي مِنْ أَلْمَانِيَا.",
+      "My car is from Germany."
+    ],
+    "note": "German: أَلْمَانِيّ (ʾalmānī). The German language: الْأَلْمَانِيَّة."
+  },
+  {
+    "tr": "فَرَنْسَا",
+    "en": "France",
+    "cat": "countries",
+    "tl": "faransā",
+    "ex": [
+      "بَارِيسُ عَاصِمَةُ فَرَنْسَا.",
+      "Paris is the capital of France."
+    ],
+    "note": "French: فَرَنْسِيّ (faransī). French, الْفَرَنْسِيَّة, is widely spoken in North Africa and Lebanon."
+  },
+  {
+    "tr": "الصِّين",
+    "en": "China",
+    "cat": "countries",
+    "tl": "aṣ-ṣīn",
+    "ex": [
+      "هَذَا الْهَاتِفُ مَصْنُوعٌ فِي الصِّينِ.",
+      "This phone is made in China."
+    ],
+    "note": "Chinese: صِينِيّ (ṣīnī). The Chinese language: الصِّينِيَّة."
+  },
+  {
+    "tr": "الْيَابَان",
+    "en": "Japan",
+    "cat": "countries",
+    "tl": "al-yābān",
+    "ex": [
+      "أُرِيدُ أَنْ أَزُورَ الْيَابَانَ.",
+      "I want to visit Japan."
+    ],
+    "note": "Japanese: يَابَانِيّ (yābānī). The Japanese language: الْيَابَانِيَّة."
+  },
+  {
+    "tr": "الْعَرَبِيَّة",
+    "en": "Arabic (language)",
+    "cat": "countries",
+    "tl": "al-ʿarabiyya",
+    "ex": [
+      "اللُّغَةُ الْعَرَبِيَّةُ لَيْسَتْ صَعْبَةً جِدًّا.",
+      "Arabic isn’t very difficult."
+    ],
+    "note": "Short for اللُّغَةُ الْعَرَبِيَّةُ, ‘the Arabic language’. An Arab: عَرَبِيّ (ʿarabī).",
+    "pair": {
+      "tr": "عَرَبِي",
+      "reg": "casual",
+      "en": "Arabic",
+      "tl": "ʿarabi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "الْإِنْجِلِيزِيَّة",
+    "en": "English (language)",
+    "cat": "countries",
+    "tl": "al-ʾinjilīziyya",
+    "ex": [
+      "أُخْتِي تُدَرِّسُ الْإِنْجِلِيزِيَّةَ.",
+      "My sister teaches English."
+    ],
+    "note": "Also spelled الْإِنْكِلِيزِيَّة. An English person: إِنْجِلِيزِيّ (ʾinjilīzī).",
+    "alt": [
+      "الانكليزية"
+    ],
+    "pair": {
+      "tr": "إِنْجِلِيزِي",
+      "reg": "casual",
+      "en": "English",
+      "tl": "ʾingilīzi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "جَوّ",
+    "en": "weather; atmosphere",
+    "cat": "weather",
+    "tl": "jaww",
+    "ex": [
+      "كَيْفَ الْجَوُّ عِنْدَكُمْ؟",
+      "What’s the weather like where you are?"
+    ],
+    "note": "More everyday than طَقْس. Also ‘vibe’: الْجَوُّ جَمِيلٌ هُنَا. Egyptians say il-gaww."
+  },
+  {
+    "tr": "مُشْمِس",
+    "en": "sunny",
+    "cat": "weather",
+    "tl": "mushmis",
+    "ex": [
+      "الْيَوْمُ مُشْمِسٌ وَجَمِيلٌ.",
+      "It’s a sunny, beautiful day."
+    ],
+    "note": "From شَمْس (shams), sun."
+  },
+  {
+    "tr": "غَائِم",
+    "en": "cloudy",
+    "cat": "weather",
+    "tl": "ghāʾim",
+    "ex": [
+      "الْجَوُّ غَائِمٌ قَلِيلًا.",
+      "It’s a bit cloudy."
+    ],
+    "note": "Clouds: غُيُوم (ghuyūm) or سُحُب (suḥub).",
+    "pair": {
+      "tr": "مِغَيِّم",
+      "reg": "casual",
+      "tl": "mighayyim",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "رِيح",
+    "en": "wind",
+    "cat": "weather",
+    "tl": "rīḥ",
+    "ex": [
+      "الرِّيحُ قَوِيَّةٌ جِدًّا الْيَوْمَ.",
+      "It’s very windy today."
+    ],
+    "note": "Feminine. Plural رِيَاح (riyāḥ). ‘It’s windy’ is said as ‘the wind is strong’.",
+    "pair": {
+      "tr": "هَوَا",
+      "reg": "casual",
+      "en": "wind; air",
+      "tl": "hawa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "تُمْطِرُ",
+    "en": "it’s raining; it rains",
+    "cat": "weather",
+    "tl": "tumṭir",
+    "ex": [
+      "تُمْطِرُ كَثِيرًا فِي الشِّتَاءِ.",
+      "It rains a lot in winter."
+    ],
+    "note": "Rain is مَطَر (maṭar). The unspoken subject is السَّمَاء (the sky), so the verb is feminine.",
+    "pair": {
+      "tr": "بِتْمَطَّر",
+      "reg": "casual",
+      "tl": "bitmaṭṭar",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عَاصِفَة",
+    "en": "storm",
+    "cat": "weather",
+    "tl": "ʿāṣifa",
+    "ex": [
+      "كَانَتْ هُنَاكَ عَاصِفَةٌ رَمْلِيَّةٌ أَمْسِ.",
+      "There was a sandstorm yesterday."
+    ],
+    "note": "A sandstorm: عَاصِفَةٌ رَمْلِيَّةٌ. In Egypt’s spring, hot dusty winds are called الْخَمَاسِين (al-khamāsīn)."
+  },
+  {
+    "tr": "ثَلْج",
+    "en": "snow; ice",
+    "cat": "weather",
+    "tl": "thalj",
+    "ex": [
+      "لَا يَنْزِلُ الثَّلْجُ فِي الْقَاهِرَةِ.",
+      "It doesn’t snow in Cairo."
+    ],
+    "note": "Also ‘ice’: مَاءٌ بِثَلْجٍ ‘water with ice’.",
+    "pair": {
+      "tr": "تَلْج",
+      "reg": "casual",
+      "tl": "talg",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "ضَبَاب",
+    "en": "fog; mist",
+    "cat": "weather",
+    "tl": "ḍabāb",
+    "ex": [
+      "هُنَاكَ ضَبَابٌ كَثِيفٌ فِي الصَّبَاحِ.",
+      "There’s thick fog in the morning."
+    ],
+    "pair": {
+      "tr": "شَبُّورَة",
+      "reg": "casual",
+      "tl": "shabbūra",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "رَطْب",
+    "en": "humid",
+    "cat": "weather",
+    "tl": "raṭb",
+    "ex": [
+      "الْجَوُّ رَطْبٌ جِدًّا فِي الْإِسْكَنْدَرِيَّةِ.",
+      "It’s very humid in Alexandria."
+    ],
+    "note": "Humidity: رُطُوبَة (ruṭūba). Don’t confuse it with رُطَب (ruṭab), fresh ripe dates.",
+    "pair": {
+      "tr": "فِيه رُطُوبَة",
+      "reg": "casual",
+      "en": "it’s humid",
+      "tl": "fīh ruṭūba",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "دَافِئ",
+    "en": "warm",
+    "cat": "weather",
+    "tl": "dāfiʾ",
+    "ex": [
+      "الْمَاءُ دَافِئٌ، تَعَالَ!",
+      "The water’s warm, come in!"
+    ],
+    "note": "Female: دَافِئَة (dāfiʾa). Warmer than مُعْتَدِل, cooler than حَارّ.",
+    "pair": {
+      "tr": "دَافِي",
+      "reg": "casual",
+      "tl": "dāfi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُعْتَدِل",
+    "en": "mild",
+    "cat": "weather",
+    "tl": "muʿtadil",
+    "ex": [
+      "الطَّقْسُ مُعْتَدِلٌ فِي الْخَرِيفِ.",
+      "The weather is mild in autumn."
+    ],
+    "note": "Also ‘moderate’ in general.",
+    "pair": {
+      "tr": "الْجَوّ لَطِيف",
+      "reg": "casual",
+      "en": "the weather’s nice",
+      "tl": "il-gaww laṭīf",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "دَرَجَةُ الْحَرَارَةِ",
+    "en": "temperature",
+    "cat": "weather",
+    "tl": "darajat al-ḥarāra",
+    "ex": [
+      "دَرَجَةُ الْحَرَارَةِ الْيَوْمَ أَرْبَعُونَ!",
+      "It’s forty degrees today!"
+    ],
+    "note": "دَرَجَة alone is ‘degree’: عِشْرُونَ دَرَجَةً ‘twenty degrees’. حَرَارَة is ‘heat’."
+  },
+  {
+    "tr": "النَّشْرَةُ الْجَوِّيَّةُ",
+    "en": "weather forecast",
+    "cat": "weather",
+    "tl": "an-nashra-l-jawwiyya",
+    "ex": [
+      "مَاذَا قَالَتِ النَّشْرَةُ الْجَوِّيَّةُ؟",
+      "What did the forecast say?"
+    ],
+    "note": "The weather report on TV or radio. In writing also تَوَقُّعَاتُ الطَّقْسِ, ‘weather forecast’."
+  },
+  {
+    "tr": "مِظَلَّة",
+    "en": "umbrella",
+    "cat": "weather",
+    "tl": "miẓalla",
+    "ex": [
+      "لَا تَنْسَ الْمِظَلَّةَ!",
+      "Don’t forget the umbrella!"
+    ],
+    "note": "Also a sunshade.",
+    "pair": {
+      "tr": "شَمْسِيَّة",
+      "reg": "casual",
+      "tl": "shamsiyya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سَمَاء",
+    "en": "sky",
+    "cat": "weather",
+    "tl": "samāʾ",
+    "ex": [
+      "السَّمَاءُ زَرْقَاءُ وَصَافِيَةٌ.",
+      "The sky is blue and clear."
+    ],
+    "note": "Feminine, so its adjectives are too: زَرْقَاء (blue), صَافِيَة (clear)."
+  },
+  {
+    "tr": "خُضَار",
+    "en": "vegetables",
+    "cat": "groceries",
+    "tl": "khuḍār",
+    "ex": [
+      "أَشْتَرِي الْخُضَارَ مِنَ السُّوقِ.",
+      "I buy vegetables at the market."
+    ],
+    "note": "A more formal word is خَضْرَاوَات (khaḍrāwāt)."
+  },
+  {
+    "tr": "بُرْتُقَال",
+    "en": "oranges",
+    "cat": "groceries",
+    "tl": "burtuqāl",
+    "ex": [
+      "أَشْرَبُ عَصِيرَ الْبُرْتُقَالِ كُلَّ صَبَاحٍ.",
+      "I drink orange juice every morning."
+    ],
+    "note": "Collective noun; one orange: بُرْتُقَالَة. The color orange: بُرْتُقَالِيّ.",
+    "pair": {
+      "tr": "بُرْتُقَان",
+      "reg": "casual",
+      "tl": "burtuʾān",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَوْز",
+    "en": "bananas",
+    "cat": "groceries",
+    "tl": "mawz",
+    "ex": [
+      "الْمَوْزُ رَخِيصٌ هَذَا الْأُسْبُوعَ.",
+      "Bananas are cheap this week."
+    ],
+    "note": "Collective; one banana: مَوْزَة (mawza). Egyptians say mōz."
+  },
+  {
+    "tr": "عِنَب",
+    "en": "grapes",
+    "cat": "groceries",
+    "tl": "ʿinab",
+    "ex": [
+      "نَأْكُلُ الْعِنَبَ فِي الصَّيْفِ.",
+      "We eat grapes in summer."
+    ],
+    "note": "Collective; one grape: حَبَّةُ عِنَبٍ. Raisins: زَبِيب (zabīb)."
+  },
+  {
+    "tr": "بِطِّيخ",
+    "en": "watermelon",
+    "cat": "groceries",
+    "tl": "biṭṭīkh",
+    "ex": [
+      "الْبِطِّيخُ بَارِدٌ وَلَذِيذٌ.",
+      "The watermelon is cold and delicious."
+    ],
+    "note": "One watermelon: بِطِّيخَة. In the Levant: بَطِّيخ (baṭṭīkh)."
+  },
+  {
+    "tr": "لَيْمُون",
+    "en": "lemons; limes",
+    "cat": "groceries",
+    "tl": "laymūn",
+    "ex": [
+      "أُرِيدُ عَصِيرَ لَيْمُونٍ بِالنَّعْنَاعِ.",
+      "I’d like a lemon and mint juice."
+    ],
+    "note": "Lemon with mint (لَيْمُون بِالنَّعْنَاع) is a café favorite.",
+    "pair": {
+      "tr": "لَمُون",
+      "reg": "casual",
+      "tl": "lamūn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَانْجُو",
+    "en": "mango",
+    "cat": "groceries",
+    "tl": "mānjū",
+    "ex": [
+      "الْمَانْجُو الْمِصْرِيُّ لَذِيذٌ جِدًّا.",
+      "Egyptian mango is really delicious."
+    ],
+    "note": "Egypt’s favorite summer fruit. The word never changes its ending.",
+    "pair": {
+      "tr": "مَنْجَة",
+      "reg": "casual",
+      "tl": "manga",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "طَمَاطِم",
+    "en": "tomatoes",
+    "cat": "groceries",
+    "tl": "ṭamāṭim",
+    "ex": [
+      "كَمْ سِعْرُ كِيلُو الطَّمَاطِمِ؟",
+      "How much is a kilo of tomatoes?"
+    ],
+    "note": "In the Levant: بَنَدُورَة (banadūra).",
+    "pair": {
+      "tr": "قُوطَة",
+      "reg": "casual",
+      "tl": "ʾūṭa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بَطَاطِس",
+    "en": "potatoes",
+    "cat": "groceries",
+    "tl": "baṭāṭis",
+    "ex": [
+      "أُحِبُّ الْبَطَاطِسَ الْمَقْلِيَّةَ.",
+      "I love fries."
+    ],
+    "note": "Also بَطَاطَا (baṭāṭā) in many countries. Fries: بَطَاطِسُ مَقْلِيَّةٌ, ‘fried potatoes’."
+  },
+  {
+    "tr": "بَصَل",
+    "en": "onions",
+    "cat": "groceries",
+    "tl": "baṣal",
+    "ex": [
+      "نَحْتَاجُ إِلَى بَصَلٍ وَثُومٍ.",
+      "We need onions and garlic."
+    ],
+    "note": "Collective; one onion: بَصَلَة (baṣala)."
+  },
+  {
+    "tr": "ثُوم",
+    "en": "garlic",
+    "cat": "groceries",
+    "tl": "thūm",
+    "ex": [
+      "أَضِفْ قَلِيلًا مِنَ الثُّومِ.",
+      "Add a little garlic."
+    ],
+    "note": "Egyptians say tōm."
+  },
+  {
+    "tr": "خِيَار",
+    "en": "cucumber",
+    "cat": "groceries",
+    "tl": "khiyār",
+    "ex": [
+      "قَطِّعِ الْخِيَارَ لِلسَّلَطَةِ.",
+      "Cut up the cucumber for the salad."
+    ],
+    "note": "Also means ‘choice’: لَيْسَ عِنْدِي خِيَارٌ ‘I have no choice’."
+  },
+  {
+    "tr": "جَزَر",
+    "en": "carrots",
+    "cat": "groceries",
+    "tl": "jazar",
+    "ex": [
+      "الْجَزَرُ مُفِيدٌ لِلْعُيُونِ.",
+      "Carrots are good for your eyes."
+    ],
+    "note": "Collective; one carrot: جَزَرَة (jazara). Egyptians say gazar."
+  },
+  {
+    "tr": "فُول",
+    "en": "fava beans; ful",
+    "cat": "groceries",
+    "tl": "fūl",
+    "ex": [
+      "الْفُولُ فُطُورٌ مِصْرِيٌّ تَقْلِيدِيٌّ.",
+      "Ful is a traditional Egyptian breakfast."
+    ],
+    "note": "Stewed fava beans, eaten with oil and bread. Egyptian falafel, طَعْمِيَّة (ṭaʿmiyya), is made from them too."
+  },
+  {
+    "tr": "بَيْض",
+    "en": "eggs",
+    "cat": "groceries",
+    "tl": "bayḍ",
+    "ex": [
+      "كَمْ بَيْضَةً تُرِيدُ؟",
+      "How many eggs do you want?"
+    ],
+    "note": "Collective; one egg: بَيْضَة (bayḍa). Egyptians say bēḍ."
+  },
+  {
+    "tr": "جُبْن",
+    "en": "cheese",
+    "cat": "groceries",
+    "tl": "jubn",
+    "ex": [
+      "هَلْ عِنْدَكُمْ جُبْنٌ أَبْيَضُ؟",
+      "Do you have white cheese?"
+    ],
+    "note": "Also جُبْنَة (jubna). Egypt’s salty white cheese is جِبْنَة بِيضَا (gibna bēḍa).",
+    "pair": {
+      "tr": "جِبْنَة",
+      "reg": "casual",
+      "tl": "gibna",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "زَبَادِي",
+    "en": "yogurt",
+    "cat": "groceries",
+    "tl": "zabādī",
+    "ex": [
+      "آكُلُ الزَّبَادِي مَعَ الْعَسَلِ.",
+      "I eat yogurt with honey."
+    ],
+    "note": "Careful: لَبَن (laban) is milk in Egypt but yogurt in the Levant."
+  },
+  {
+    "tr": "زُبْدَة",
+    "en": "butter",
+    "cat": "groceries",
+    "tl": "zubda",
+    "ex": [
+      "آكُلُ الْخُبْزَ بِالزُّبْدَةِ وَالْمُرَبَّى.",
+      "I eat bread with butter and jam."
+    ],
+    "note": "Jam: مُرَبَّى (murabbā)."
+  },
+  {
+    "tr": "زَيْت",
+    "en": "oil",
+    "cat": "groceries",
+    "tl": "zayt",
+    "ex": [
+      "نَطْبُخُ بِزَيْتِ الزَّيْتُونِ.",
+      "We cook with olive oil."
+    ],
+    "note": "Olive oil: زَيْتُ الزَّيْتُونِ (zayt az-zaytūn). Egyptians say zēt."
+  },
+  {
+    "tr": "مِلْح",
+    "en": "salt",
+    "cat": "groceries",
+    "tl": "milḥ",
+    "ex": [
+      "الطَّعَامُ يَحْتَاجُ إِلَى قَلِيلٍ مِنَ الْمِلْحِ.",
+      "The food needs a little salt."
+    ],
+    "note": "Pepper: فِلْفِل (filfil).",
+    "pair": {
+      "tr": "مَلْح",
+      "reg": "casual",
+      "tl": "malḥ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عَصِير",
+    "en": "juice",
+    "cat": "groceries",
+    "tl": "ʿaṣīr",
+    "ex": [
+      "عَصِيرُ مَانْجُو كَبِيرٌ، مِنْ فَضْلِكَ.",
+      "A large mango juice, please."
+    ],
+    "note": "In Egypt try عَصِيرُ قَصَبٍ (ʿaṣīr qaṣab), fresh sugar-cane juice."
+  },
+  {
+    "tr": "مَعْكَرُونَة",
+    "en": "pasta",
+    "cat": "groceries",
+    "tl": "maʿkarūna",
+    "ex": [
+      "سَأَطْبُخُ الْمَعْكَرُونَةَ لِلْعَشَاءِ.",
+      "I’ll cook pasta for dinner."
+    ],
+    "note": "Also spelled مَكَرُونَة.",
+    "alt": [
+      "مكرونة"
+    ],
+    "pair": {
+      "tr": "مَكَرُونَة",
+      "reg": "casual",
+      "tl": "makarōna",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كِيلُو",
+    "en": "kilo",
+    "cat": "groceries",
+    "tl": "kīlū",
+    "ex": [
+      "كِيلُو تُفَّاحٍ، مِنْ فَضْلِكَ.",
+      "A kilo of apples, please."
+    ],
+    "note": "Half a kilo: نِصْفُ كِيلُو (niṣf kīlū). A quarter: رُبْعُ كِيلُو (rubʿ kīlū)."
+  },
+  {
+    "tr": "طَازَج",
+    "en": "fresh",
+    "cat": "groceries",
+    "tl": "ṭāzaj",
+    "ex": [
+      "هَلِ السَّمَكُ طَازَجٌ؟",
+      "Is the fish fresh?"
+    ],
+    "note": "Female: طَازَجَة (ṭāzaja).",
+    "pair": {
+      "tr": "طَازَة",
+      "reg": "casual",
+      "tl": "ṭāza",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بِقَالَة",
+    "en": "grocery shop",
+    "cat": "groceries",
+    "tl": "biqāla",
+    "ex": [
+      "الْبِقَالَةُ فِي آخِرِ الشَّارِعِ.",
+      "The grocery shop is at the end of the street."
+    ],
+    "note": "A small corner shop. A supermarket: سُوبَرْمَارْكِت (sūbarmārkit)."
+  },
+  {
+    "tr": "حُمَّى",
+    "en": "fever",
+    "cat": "health",
+    "tl": "ḥummā",
+    "ex": [
+      "عِنْدَ ابْنِي حُمًّى مُنْذُ أَمْسِ.",
+      "My son has had a fever since yesterday."
+    ],
+    "note": "In speech also حَرَارَة (ḥarāra), ‘temperature’: عِنْدِي حَرَارَةٌ ‘I have a temperature’.",
+    "pair": {
+      "tr": "سُخُونِيَّة",
+      "reg": "casual",
+      "tl": "sukhuniyya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سُعَال",
+    "en": "cough",
+    "cat": "health",
+    "tl": "suʿāl",
+    "ex": [
+      "عِنْدِي سُعَالٌ مُنْذُ أُسْبُوعٍ.",
+      "I’ve had a cough for a week."
+    ],
+    "note": "Don’t mix it up with سُؤَال (suʾāl), ‘question’.",
+    "pair": {
+      "tr": "كُحَّة",
+      "reg": "casual",
+      "tl": "kuḥḥa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "صُدَاع",
+    "en": "headache",
+    "cat": "health",
+    "tl": "ṣudāʿ",
+    "ex": [
+      "عِنْدِي صُدَاعٌ شَدِيدٌ.",
+      "I have a bad headache."
+    ],
+    "note": "For illnesses Arabic says ‘I have’: عِنْدِي صُدَاعٌ ‘I have a headache’."
+  },
+  {
+    "tr": "زُكَام",
+    "en": "a cold",
+    "cat": "health",
+    "tl": "zukām",
+    "ex": [
+      "أَظُنُّ أَنَّ عِنْدِي زُكَامًا.",
+      "I think I have a cold."
+    ],
+    "note": "Flu: إِنْفِلْوَنْزَا (ʾinfilwanzā).",
+    "pair": {
+      "tr": "بَرْد",
+      "reg": "casual",
+      "tl": "bard",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "حَسَاسِيَّة",
+    "en": "allergy",
+    "cat": "health",
+    "tl": "ḥasāsiyya",
+    "ex": [
+      "عِنْدِي حَسَاسِيَّةٌ مِنَ الْبِنِسِلِينِ.",
+      "I’m allergic to penicillin."
+    ],
+    "note": "‘Allergic to’ uses مِنْ (min). Also means ‘sensitivity’."
+  },
+  {
+    "tr": "يُؤْلِمُنِي",
+    "en": "it hurts (me)",
+    "cat": "health",
+    "tl": "yuʾlimunī",
+    "ex": [
+      "رَأْسِي يُؤْلِمُنِي كَثِيرًا.",
+      "My head really hurts."
+    ],
+    "note": "The part that hurts is the subject. For a feminine part use تُؤْلِمُنِي: يَدِي تُؤْلِمُنِي ‘my hand hurts’.",
+    "pair": {
+      "tr": "بِيِوْجَعْنِي",
+      "reg": "casual",
+      "tl": "biyiwgaʿni",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَشْعُرُ بِالدُّوَارِ",
+    "en": "I feel dizzy",
+    "cat": "health",
+    "tl": "ʾashʿur bi-d-duwār",
+    "ex": [
+      "أَشْعُرُ بِالدُّوَارِ عِنْدَمَا أَقِفُ.",
+      "I feel dizzy when I stand up."
+    ],
+    "note": "Literally ‘I feel dizziness’.",
+    "pair": {
+      "tr": "أَنَا دَايِخ",
+      "reg": "casual",
+      "en": "I’m dizzy",
+      "tl": "ʾana dāyikh",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "غَثَيَان",
+    "en": "nausea",
+    "cat": "health",
+    "tl": "ghathayān",
+    "ex": [
+      "أَشْعُرُ بِغَثَيَانٍ بَعْدَ الْأَكْلِ.",
+      "I feel sick after eating."
+    ],
+    "note": "Vomiting: تَقَيُّؤ (taqayyuʾ).",
+    "pair": {
+      "tr": "نِفْسِي غَامَّة عَلَيَّا",
+      "reg": "casual",
+      "en": "I feel sick (nauseous)",
+      "tl": "nifsi ghāmma ʿalayya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "إِسْهَال",
+    "en": "diarrhea",
+    "cat": "health",
+    "tl": "ʾishāl",
+    "ex": [
+      "هَلْ عِنْدَكَ دَوَاءٌ لِلْإِسْهَالِ؟",
+      "Do you have anything for diarrhea?"
+    ],
+    "note": "Common for travelers; any صَيْدَلِيَّة can help. Constipation: إِمْسَاك (ʾimsāk)."
+  },
+  {
+    "tr": "مَعِدَة",
+    "en": "stomach",
+    "cat": "health",
+    "tl": "maʿida",
+    "ex": [
+      "عِنْدِي أَلَمٌ فِي الْمَعِدَةِ.",
+      "I have a stomach ache."
+    ],
+    "note": "In speech people often just say بَطْن (baṭn), ‘belly’.",
+    "pair": {
+      "tr": "بَطْن",
+      "reg": "casual",
+      "en": "belly; stomach",
+      "tl": "baṭn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "جُرْح",
+    "en": "wound; cut",
+    "cat": "health",
+    "tl": "jurḥ",
+    "ex": [
+      "عِنْدِي جُرْحٌ فِي يَدِي.",
+      "I have a cut on my hand."
+    ],
+    "note": "Plural جُرُوح (jurūḥ). A bandage: ضِمَادَة (ḍimāda)."
+  },
+  {
+    "tr": "مَكْسُور",
+    "en": "broken",
+    "cat": "health",
+    "tl": "maksūr",
+    "ex": [
+      "أَظُنُّ أَنَّ رِجْلِي مَكْسُورَةٌ.",
+      "I think my leg is broken."
+    ],
+    "note": "A machine that’s out of order is مُعَطَّل (muʿaṭṭal); Egyptians say بَايِظ (bāyiẓ)."
+  },
+  {
+    "tr": "وَصْفَةٌ طِبِّيَّةٌ",
+    "en": "prescription",
+    "cat": "health",
+    "tl": "waṣfa ṭibbiyya",
+    "ex": [
+      "هَلْ أَحْتَاجُ إِلَى وَصْفَةٍ طِبِّيَّةٍ؟",
+      "Do I need a prescription?"
+    ],
+    "note": "Literally ‘a medical recipe’: وَصْفَة alone is also a cooking recipe.",
+    "pair": {
+      "tr": "رُوشِتَّة",
+      "reg": "casual",
+      "tl": "roshetta",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "قُرْص",
+    "en": "tablet; pill",
+    "cat": "health",
+    "tl": "qurṣ",
+    "ex": [
+      "خُذْ قُرْصًا بَعْدَ الْأَكْلِ.",
+      "Take one tablet after meals."
+    ],
+    "note": "Plural أَقْرَاص (ʾaqrāṣ). Also حَبَّة (ḥabba). Three times a day: ثَلَاثَ مَرَّاتٍ يَوْمِيًّا.",
+    "pair": {
+      "tr": "حَبَّايَة",
+      "reg": "casual",
+      "en": "a pill",
+      "tl": "ḥabbāya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُسَكِّن",
+    "en": "painkiller",
+    "cat": "health",
+    "tl": "musakkin",
+    "ex": [
+      "هَلْ عِنْدَكَ مُسَكِّنٌ لِلْأَلَمِ؟",
+      "Do you have a painkiller?"
+    ],
+    "note": "In full مُسَكِّنُ أَلَمٍ, ‘something that calms pain’."
+  },
+  {
+    "tr": "مُضَادٌّ حَيَوِيٌّ",
+    "en": "antibiotic",
+    "cat": "health",
+    "tl": "muḍādd ḥayawī",
+    "ex": [
+      "يَجِبُ أَنْ تَأْخُذَ مُضَادًّا حَيَوِيًّا.",
+      "You need to take an antibiotic."
+    ],
+    "note": "Plural مُضَادَّاتٌ حَيَوِيَّةٌ. Literally ‘anti-biotic’."
+  },
+  {
+    "tr": "الطَّوَارِئ",
+    "en": "emergency department; ER",
+    "cat": "health",
+    "tl": "aṭ-ṭawāriʾ",
+    "ex": [
+      "أَيْنَ قِسْمُ الطَّوَارِئِ؟",
+      "Where is the emergency department?"
+    ],
+    "note": "Seen on hospital signs. An emergency: حَالَةٌ طَارِئَةٌ (ḥāla ṭāriʾa)."
+  },
+  {
+    "tr": "عِيَادَة",
+    "en": "clinic; doctor’s office",
+    "cat": "health",
+    "tl": "ʿiyāda",
+    "ex": [
+      "عِيَادَةُ الطَّبِيبِ فِي الطَّابِقِ الثَّالِثِ.",
+      "The doctor’s office is on the third floor."
+    ],
+    "note": "Usually a doctor’s private practice. Its opening hours: مَوَاعِيدُ الْعِيَادَةِ."
+  },
+  {
+    "tr": "سَيَّارَةُ إِسْعَافٍ",
+    "en": "ambulance",
+    "cat": "health",
+    "tl": "sayyārat ʾisʿāf",
+    "ex": [
+      "وَصَلَتْ سَيَّارَةُ الْإِسْعَافِ بِسُرْعَةٍ.",
+      "The ambulance arrived quickly."
+    ],
+    "note": "Often just الْإِسْعَاف (al-ʾisʿāf), ‘first aid’. In Egypt the ambulance number is 123."
+  },
+  {
+    "tr": "شِفَاءً عَاجِلًا",
+    "en": "get well soon",
+    "cat": "health",
+    "tl": "shifāʾan ʿājilan",
+    "ex": [
+      "سَمِعْتُ أَنَّكَ مَرِيضٌ، شِفَاءً عَاجِلًا!",
+      "I heard you’re ill, get well soon!"
+    ],
+    "note": "Literally ‘(I wish you) a quick recovery’. Also سَلَامَتُكَ (salāmatuk).",
+    "pair": {
+      "tr": "أَلْف سَلَامَة",
+      "reg": "casual",
+      "tl": "ʾalf salāma",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَاحِن",
+    "en": "charger",
+    "cat": "tech",
+    "tl": "shāḥin",
+    "ex": [
+      "هَلْ عِنْدَكَ شَاحِنٌ؟ بَطَّارِيَّتِي فَارِغَةٌ.",
+      "Do you have a charger? My battery’s dead."
+    ],
+    "note": "From شَحَنَ (shaḥana), ‘to charge’."
+  },
+  {
+    "tr": "بَطَّارِيَّة",
+    "en": "battery",
+    "cat": "tech",
+    "tl": "baṭṭāriyya",
+    "ex": [
+      "بَطَّارِيَّةُ هَاتِفِي ضَعِيفَةٌ.",
+      "My phone battery is low."
+    ],
+    "note": "Low is ضَعِيفَة (‘weak’); dead is فَارِغَة (‘empty’).",
+    "pair": {
+      "tr": "الْبَطَّارِيَّة خِلْصِت",
+      "reg": "casual",
+      "en": "the battery’s dead",
+      "tl": "il-baṭṭariyya khilṣit",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَشْحَنُ",
+    "en": "I charge (a phone)",
+    "cat": "tech",
+    "tl": "ʾashḥan",
+    "ex": [
+      "أَيْنَ يُمْكِنُنِي أَنْ أَشْحَنَ هَاتِفِي؟",
+      "Where can I charge my phone?"
+    ],
+    "note": "Past: شَحَنْتُ (shaḥantu). Also ‘I ship (goods)’.",
+    "pair": {
+      "tr": "بَشْحِن",
+      "reg": "casual",
+      "tl": "bashḥin",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "وَاي فَاي",
+    "en": "Wi-Fi",
+    "cat": "tech",
+    "tl": "wāy fāy",
+    "ex": [
+      "مَا كَلِمَةُ سِرِّ الْوَاي فَاي؟",
+      "What’s the Wi-Fi password?"
+    ],
+    "note": "Formally شَبَكَةٌ لَاسِلْكِيَّةٌ (‘wireless network’), but everyone says wāy fāy.",
+    "alt": [
+      "وايفاي"
+    ]
+  },
+  {
+    "tr": "كَلِمَةُ السِّرِّ",
+    "en": "password",
+    "cat": "tech",
+    "tl": "kalimat as-sirr",
+    "ex": [
+      "اُكْتُبْ كَلِمَةَ السِّرِّ هُنَا.",
+      "Type the password here."
+    ],
+    "note": "Literally ‘the secret word’. Also كَلِمَةُ الْمُرُورِ (kalimat al-murūr).",
+    "pair": {
+      "tr": "الْبَاسْوُورْد",
+      "reg": "casual",
+      "tl": "il-baswōrd",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "إِنْتَرْنِت",
+    "en": "internet",
+    "cat": "tech",
+    "tl": "ʾintarnit",
+    "ex": [
+      "الْإِنْتَرْنِتُ بَطِيءٌ جِدًّا هُنَا.",
+      "The internet is really slow here."
+    ],
+    "note": "Usually with ‘the’: الْإِنْتَرْنِت. Online: عَلَى الْإِنْتَرْنِت.",
+    "pair": {
+      "tr": "النِّت",
+      "reg": "casual",
+      "tl": "in-net",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَبَكَة",
+    "en": "network; signal",
+    "cat": "tech",
+    "tl": "shabaka",
+    "ex": [
+      "لَا تُوجَدُ شَبَكَةٌ هُنَا.",
+      "There’s no signal here."
+    ],
+    "note": "Phone signal or any network. Also a net.",
+    "pair": {
+      "tr": "مَفِيش شَبَكَة",
+      "reg": "casual",
+      "en": "there’s no signal",
+      "tl": "mafīsh shabaka",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "رِسَالَة",
+    "en": "message",
+    "cat": "tech",
+    "tl": "risāla",
+    "ex": [
+      "وَصَلَتْنِي رِسَالَةٌ مِنْ أُمِّي.",
+      "I got a message from my mom."
+    ],
+    "note": "Also a (paper) letter. Plural رَسَائِل (rasāʾil)."
+  },
+  {
+    "tr": "أُرْسِلُ",
+    "en": "I send",
+    "cat": "tech",
+    "tl": "ʾursil",
+    "ex": [
+      "سَأُرْسِلُ لَكَ الْعُنْوَانَ.",
+      "I’ll send you the address."
+    ],
+    "note": "Past: أَرْسَلْتُ (ʾarsaltu). ‘Send me…’: أَرْسِلْ لِي (ʾarsil lī).",
+    "pair": {
+      "tr": "بَبْعَت",
+      "reg": "casual",
+      "tl": "babʿat",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "رِسَالَةٌ صَوْتِيَّةٌ",
+    "en": "voice message",
+    "cat": "tech",
+    "tl": "risāla ṣawtiyya",
+    "ex": [
+      "أَرْسَلْتُ لَكَ رِسَالَةً صَوْتِيَّةً.",
+      "I sent you a voice message."
+    ],
+    "note": "From صَوْت (ṣawt), ‘voice, sound’. In Egypt people often just say فُويْس (‘voice’)."
+  },
+  {
+    "tr": "مُكَالَمَة",
+    "en": "(phone) call",
+    "cat": "tech",
+    "tl": "mukālama",
+    "ex": [
+      "عِنْدِي مُكَالَمَةٌ مُهِمَّةٌ بَعْدَ قَلِيلٍ.",
+      "I have an important call in a bit."
+    ],
+    "note": "A video call: مُكَالَمَةُ فِيدْيُو. A missed call: مُكَالَمَةٌ فَائِتَةٌ."
+  },
+  {
+    "tr": "رَقْمُ الْهَاتِفِ",
+    "en": "phone number",
+    "cat": "tech",
+    "tl": "raqm al-hātif",
+    "ex": [
+      "مَا رَقْمُ هَاتِفِكَ؟",
+      "What’s your phone number?"
+    ],
+    "note": "رَقْم alone is ‘number’ (a figure or a code).",
+    "pair": {
+      "tr": "نِمْرِتَك كَام؟",
+      "reg": "casual",
+      "en": "What’s your number?",
+      "tl": "nimritak kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "تَطْبِيق",
+    "en": "app",
+    "cat": "tech",
+    "tl": "taṭbīq",
+    "ex": [
+      "هَذَا التَّطْبِيقُ مُفِيدٌ جِدًّا.",
+      "This app is really useful."
+    ],
+    "note": "Plural تَطْبِيقَات (taṭbīqāt).",
+    "pair": {
+      "tr": "أَبْلِكِيشِن",
+      "reg": "casual",
+      "tl": "ʾablikēshin",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُحَمِّلُ",
+    "en": "I download",
+    "cat": "tech",
+    "tl": "ʾuḥammil",
+    "ex": [
+      "أُحَمِّلُ فِيلْمًا لِلرِّحْلَةِ.",
+      "I’m downloading a film for the trip."
+    ],
+    "note": "Download: تَحْمِيل (taḥmīl). Upload: رَفْع (rafʿ).",
+    "pair": {
+      "tr": "بَنَزِّل",
+      "reg": "casual",
+      "tl": "banazzil",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "حِسَاب",
+    "en": "account",
+    "cat": "tech",
+    "tl": "ḥisāb",
+    "ex": [
+      "نَسِيتُ كَلِمَةَ سِرِّ حِسَابِي.",
+      "I forgot my account password."
+    ],
+    "note": "The same word as الْحِسَاب, ‘the bill’. A bank account: حِسَابٌ بَنْكِيٌّ."
+  },
+  {
+    "tr": "رَابِط",
+    "en": "link",
+    "cat": "tech",
+    "tl": "rābiṭ",
+    "ex": [
+      "أَرْسِلْ لِي الرَّابِطَ، مِنْ فَضْلِكَ.",
+      "Send me the link, please."
+    ],
+    "note": "Plural رَوَابِط (rawābiṭ).",
+    "pair": {
+      "tr": "لِينْك",
+      "reg": "casual",
+      "tl": "link",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَقْطَةُ شَاشَةٍ",
+    "en": "screenshot",
+    "cat": "tech",
+    "tl": "laqṭat shāsha",
+    "ex": [
+      "خُذْ لَقْطَةَ شَاشَةٍ وَأَرْسِلْهَا لِي.",
+      "Take a screenshot and send it to me."
+    ],
+    "note": "Literally ‘a snapshot of the screen’.",
+    "pair": {
+      "tr": "إِسْكْرِين",
+      "reg": "casual",
+      "tl": "ʾiskrīn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَاشَة",
+    "en": "screen",
+    "cat": "tech",
+    "tl": "shāsha",
+    "ex": [
+      "شَاشَةُ هَاتِفِي مَكْسُورَةٌ.",
+      "My phone screen is broken."
+    ],
+    "note": "Also a TV or cinema screen."
+  },
+  {
+    "tr": "بَرِيدٌ إِلِكْتْرُونِيٌّ",
+    "en": "email",
+    "cat": "tech",
+    "tl": "barīd ʾiliktrūnī",
+    "ex": [
+      "مَا عُنْوَانُ بَرِيدِكَ الْإِلِكْتْرُونِيِّ؟",
+      "What’s your email address?"
+    ],
+    "note": "بَرِيد alone is ‘post, mail’.",
+    "pair": {
+      "tr": "إِيمِيل",
+      "reg": "casual",
+      "tl": "ʾīmēl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَا يَعْمَلُ",
+    "en": "it doesn’t work; it’s not working",
+    "cat": "tech",
+    "tl": "lā yaʿmal",
+    "ex": [
+      "هَاتِفِي لَا يَعْمَلُ.",
+      "My phone isn’t working."
+    ],
+    "note": "For a feminine thing: لَا تَعْمَلُ, e.g. السَّيَّارَةُ لَا تَعْمَلُ.",
+    "pair": {
+      "tr": "مِش شَغَّال",
+      "reg": "casual",
+      "en": "it’s not working",
+      "tl": "mish shaghghāl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَكْتَبُ الْبَرِيدِ",
+    "en": "post office",
+    "cat": "town",
+    "tl": "maktab al-barīd",
+    "ex": [
+      "أَيْنَ مَكْتَبُ الْبَرِيدِ؟",
+      "Where is the post office?"
+    ],
+    "note": "Literally ‘the office of the post’.",
+    "pair": {
+      "tr": "الْبُوسْطَة",
+      "reg": "casual",
+      "tl": "il-bosṭa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَكْتَبَة",
+    "en": "library; bookshop",
+    "cat": "town",
+    "tl": "maktaba",
+    "ex": [
+      "أَدْرُسُ فِي الْمَكْتَبَةِ كُلَّ يَوْمٍ.",
+      "I study in the library every day."
+    ],
+    "note": "Don’t confuse it with مَكْتَب (maktab), ‘office, desk’. Both come from كَتَبَ, ‘to write’."
+  },
+  {
+    "tr": "حَدِيقَة",
+    "en": "park; garden",
+    "cat": "town",
+    "tl": "ḥadīqa",
+    "ex": [
+      "الْأَطْفَالُ يَلْعَبُونَ فِي الْحَدِيقَةِ.",
+      "The children are playing in the park."
+    ],
+    "note": "A zoo: حَدِيقَةُ الْحَيَوَانَاتِ, ‘the animals’ garden’.",
+    "pair": {
+      "tr": "جِنِينَة",
+      "reg": "casual",
+      "tl": "genēna",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَيْدَان",
+    "en": "(town) square",
+    "cat": "town",
+    "tl": "maydān",
+    "ex": [
+      "نَلْتَقِي فِي مَيْدَانِ التَّحْرِيرِ.",
+      "We’ll meet in Tahrir Square."
+    ],
+    "note": "The usual word in Egypt. In the Levant a square is سَاحَة (sāḥa)."
+  },
+  {
+    "tr": "جِسْر",
+    "en": "bridge",
+    "cat": "town",
+    "tl": "jisr",
+    "ex": [
+      "اُعْبُرِ الْجِسْرَ ثُمَّ انْعَطِفْ يَسَارًا.",
+      "Cross the bridge, then turn left."
+    ],
+    "note": "Plural جُسُور (jusūr).",
+    "pair": {
+      "tr": "كُوبْرِي",
+      "reg": "casual",
+      "tl": "kubri",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "إِشَارَةُ الْمُرُورِ",
+    "en": "traffic light",
+    "cat": "town",
+    "tl": "ʾishārat al-murūr",
+    "ex": [
+      "تَوَقَّفْ عِنْدَ إِشَارَةِ الْمُرُورِ.",
+      "Stop at the traffic light."
+    ],
+    "note": "Often just الْإِشَارَة (al-ʾishāra), ‘the signal’. مُرُور is ‘traffic’."
+  },
+  {
+    "tr": "صَرَّافٌ آلِيٌّ",
+    "en": "ATM; cash machine",
+    "cat": "town",
+    "tl": "ṣarrāf ʾālī",
+    "ex": [
+      "أَيْنَ أَقْرَبُ صَرَّافٍ آلِيٍّ؟",
+      "Where’s the nearest ATM?"
+    ],
+    "note": "Literally ‘automatic cashier’. Many people just say ATM."
+  },
+  {
+    "tr": "مَسْجِد",
+    "en": "mosque",
+    "cat": "town",
+    "tl": "masjid",
+    "ex": [
+      "هَذَا الْمَسْجِدُ قَدِيمٌ جِدًّا.",
+      "This mosque is very old."
+    ],
+    "note": "Take your shoes off before going in. A large mosque is also جَامِع.",
+    "pair": {
+      "tr": "جَامِع",
+      "reg": "casual",
+      "tl": "gāmiʿ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كَنِيسَة",
+    "en": "church",
+    "cat": "town",
+    "tl": "kanīsa",
+    "ex": [
+      "هُنَاكَ كَنِيسَةٌ قَدِيمَةٌ فِي هَذَا الشَّارِعِ.",
+      "There’s an old church on this street."
+    ],
+    "note": "Plural كَنَائِس (kanāʾis). Egypt’s Coptic Church is الْكَنِيسَةُ الْقِبْطِيَّةُ (al-kanīsa-l-qibṭiyya)."
+  },
+  {
+    "tr": "مَحَطَّة",
+    "en": "station",
+    "cat": "town",
+    "tl": "maḥaṭṭa",
+    "ex": [
+      "كَمْ تَبْعُدُ الْمَحَطَّةُ عَنْ هُنَا؟",
+      "How far is the station from here?"
+    ],
+    "note": "Train station: مَحَطَّةُ الْقِطَارِ. Petrol station: مَحَطَّةُ بَنْزِينٍ."
+  },
+  {
+    "tr": "مَتْحَف",
+    "en": "museum",
+    "cat": "town",
+    "tl": "matḥaf",
+    "ex": [
+      "زُرْنَا الْمَتْحَفَ الْمِصْرِيَّ أَمْسِ.",
+      "We visited the Egyptian Museum yesterday."
+    ],
+    "note": "Plural مَتَاحِف (matāḥif)."
+  },
+  {
+    "tr": "سِفَارَة",
+    "en": "embassy",
+    "cat": "town",
+    "tl": "sifāra",
+    "ex": [
+      "أَيْنَ السِّفَارَةُ الْبِرِيطَانِيَّةُ؟",
+      "Where is the British Embassy?"
+    ],
+    "note": "A consulate: قُنْصُلِيَّة (qunṣuliyya)."
+  },
+  {
+    "tr": "مَرْكَزُ الشُّرْطَةِ",
+    "en": "police station",
+    "cat": "town",
+    "tl": "markaz ash-shurṭa",
+    "ex": [
+      "يَجِبُ أَنْ نَذْهَبَ إِلَى مَرْكَزِ الشُّرْطَةِ.",
+      "We have to go to the police station."
+    ],
+    "note": "Also قِسْمُ الشُّرْطَةِ. Egypt also has a tourist police: شُرْطَةُ السِّيَاحَةِ.",
+    "pair": {
+      "tr": "الْقِسْم",
+      "reg": "casual",
+      "tl": "il-ʾism",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَخْبَز",
+    "en": "bakery",
+    "cat": "town",
+    "tl": "makhbaz",
+    "ex": [
+      "الْمَخْبَزُ يَفْتَحُ فِي السَّادِسَةِ صَبَاحًا.",
+      "The bakery opens at six in the morning."
+    ],
+    "note": "From خُبْز (khubz), bread.",
+    "pair": {
+      "tr": "فُرْن",
+      "reg": "casual",
+      "tl": "furn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَرْكَزٌ تِجَارِيٌّ",
+    "en": "shopping mall",
+    "cat": "town",
+    "tl": "markaz tijārī",
+    "ex": [
+      "نَتَسَوَّقُ فِي الْمَرْكَزِ التِّجَارِيِّ.",
+      "We shop at the mall."
+    ],
+    "note": "Literally ‘commercial center’.",
+    "pair": {
+      "tr": "مُول",
+      "reg": "casual",
+      "tl": "mōl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "رَصِيف",
+    "en": "pavement; sidewalk; platform",
+    "cat": "town",
+    "tl": "raṣīf",
+    "ex": [
+      "اِمْشِ عَلَى الرَّصِيفِ!",
+      "Walk on the pavement!"
+    ],
+    "note": "Also a station platform."
+  },
+  {
+    "tr": "حَيّ",
+    "en": "neighborhood; district",
+    "cat": "town",
+    "tl": "ḥayy",
+    "ex": [
+      "أَسْكُنُ فِي حَيٍّ هَادِئٍ.",
+      "I live in a quiet neighborhood."
+    ],
+    "note": "Plural أَحْيَاء (ʾaḥyāʾ). Also means ‘alive’.",
+    "pair": {
+      "tr": "مَنْطِقَة",
+      "reg": "casual",
+      "en": "area; neighborhood",
+      "tl": "manṭiʾa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَبْنًى",
+    "en": "building",
+    "cat": "town",
+    "tl": "mabnā",
+    "ex": [
+      "مَكْتَبِي فِي هَذَا الْمَبْنَى.",
+      "My office is in this building."
+    ],
+    "note": "Plural مَبَانٍ; with ‘the’: الْمَبَانِي. An apartment block is عِمَارَة (ʿimāra).",
+    "pair": {
+      "tr": "عِمَارَة",
+      "reg": "casual",
+      "en": "(apartment) building",
+      "tl": "ʿimāra",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَوْقِفُ سَيَّارَاتٍ",
+    "en": "car park; parking lot",
+    "cat": "town",
+    "tl": "mawqif sayyārāt",
+    "ex": [
+      "لَا يُوجَدُ مَوْقِفُ سَيَّارَاتٍ هُنَا.",
+      "There’s no parking here."
+    ],
+    "note": "مَوْقِف alone is a stop or a stand: مَوْقِفُ الْحَافِلَاتِ ‘the bus stop’."
+  },
+  {
+    "tr": "قَرِيبٌ مِنْ",
+    "en": "near; close to",
+    "cat": "town",
+    "tl": "qarīb min",
+    "ex": [
+      "الْفُنْدُقُ قَرِيبٌ مِنَ الْمَحَطَّةِ.",
+      "The hotel is close to the station."
+    ],
+    "note": "The opposite is بَعِيدٌ عَنْ (baʿīd ʿan), ‘far from’.",
+    "pair": {
+      "tr": "قُرَيِّب مِن",
+      "reg": "casual",
+      "tl": "ʾurayyib min",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مِقْلَاة",
+    "en": "frying pan",
+    "cat": "kitchen",
+    "tl": "miqlāh",
+    "ex": [
+      "سَخِّنِ الزَّيْتَ فِي الْمِقْلَاةِ.",
+      "Heat the oil in the frying pan."
+    ],
+    "note": "From قَلَى, ‘to fry’.",
+    "pair": {
+      "tr": "طَاسَة",
+      "reg": "casual",
+      "tl": "ṭāsa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "قِدْر",
+    "en": "pot; saucepan",
+    "cat": "kitchen",
+    "tl": "qidr",
+    "ex": [
+      "ضَعِ الْأَرُزَّ فِي الْقِدْرِ.",
+      "Put the rice in the pot."
+    ],
+    "note": "Usually feminine: قِدْرٌ كَبِيرَةٌ ‘a big pot’.",
+    "pair": {
+      "tr": "حَلَّة",
+      "reg": "casual",
+      "tl": "ḥalla",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "فُرْن",
+    "en": "oven",
+    "cat": "kitchen",
+    "tl": "furn",
+    "ex": [
+      "الدَّجَاجُ فِي الْفُرْنِ الْآنَ.",
+      "The chicken is in the oven now."
+    ],
+    "note": "Also a bakery, especially in Egypt."
+  },
+  {
+    "tr": "مَوْقِد",
+    "en": "stove; cooker",
+    "cat": "kitchen",
+    "tl": "mawqid",
+    "ex": [
+      "أَطْفِئِ الْمَوْقِدَ، مِنْ فَضْلِكَ.",
+      "Turn off the stove, please."
+    ],
+    "note": "A gas stove: مَوْقِدُ غَازٍ.",
+    "pair": {
+      "tr": "بُوتَاجَاز",
+      "reg": "casual",
+      "tl": "butagāz",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "ثَلَّاجَة",
+    "en": "fridge",
+    "cat": "kitchen",
+    "tl": "thallāja",
+    "ex": [
+      "الْحَلِيبُ فِي الثَّلَّاجَةِ.",
+      "The milk is in the fridge."
+    ],
+    "note": "From ثَلْج (thalj), ‘ice’.",
+    "pair": {
+      "tr": "تَلَّاجَة",
+      "reg": "casual",
+      "tl": "tallāga",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سِكِّين",
+    "en": "knife",
+    "cat": "kitchen",
+    "tl": "sikkīn",
+    "ex": [
+      "أَحْتَاجُ إِلَى سِكِّينٍ حَادٍّ.",
+      "I need a sharp knife."
+    ],
+    "note": "Plural سَكَاكِين (sakākīn).",
+    "pair": {
+      "tr": "سِكِّينَة",
+      "reg": "casual",
+      "tl": "sikkīna",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَوْكَة",
+    "en": "fork",
+    "cat": "kitchen",
+    "tl": "shawka",
+    "ex": [
+      "آكُلُ الْمَعْكَرُونَةَ بِالشَّوْكَةِ.",
+      "I eat pasta with a fork."
+    ],
+    "note": "Also ‘thorn’. Plural شُوَك (shuwak)."
+  },
+  {
+    "tr": "مِلْعَقَة",
+    "en": "spoon",
+    "cat": "kitchen",
+    "tl": "milʿaqa",
+    "ex": [
+      "أُرِيدُ مِلْعَقَةً صَغِيرَةً، مِنْ فَضْلِكَ.",
+      "I’d like a teaspoon, please."
+    ],
+    "note": "A teaspoon: مِلْعَقَةٌ صَغِيرَةٌ, literally ‘a small spoon’.",
+    "pair": {
+      "tr": "مَعْلَقَة",
+      "reg": "casual",
+      "tl": "maʿlaʾa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "صَحْن",
+    "en": "plate",
+    "cat": "kitchen",
+    "tl": "ṣaḥn",
+    "ex": [
+      "ضَعِ الصُّحُونَ عَلَى الطَّاوِلَةِ.",
+      "Put the plates on the table."
+    ],
+    "note": "Plural صُحُون (ṣuḥūn). Also طَبَق (ṭabaq), which also means ‘a dish’ of food.",
+    "pair": {
+      "tr": "طَبَق",
+      "reg": "casual",
+      "tl": "ṭabaʾ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كُوب",
+    "en": "glass; cup",
+    "cat": "kitchen",
+    "tl": "kūb",
+    "ex": [
+      "كُوبُ مَاءٍ، مِنْ فَضْلِكَ.",
+      "A glass of water, please."
+    ],
+    "note": "Also كَأْس (kaʾs), ‘a glass’ or a sports cup.",
+    "pair": {
+      "tr": "كُبَّايَة",
+      "reg": "casual",
+      "tl": "kubbāya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "وَصْفَة",
+    "en": "recipe",
+    "cat": "kitchen",
+    "tl": "waṣfa",
+    "ex": [
+      "هَذِهِ وَصْفَةُ جَدَّتِي.",
+      "This is my grandmother’s recipe."
+    ],
+    "note": "Plural وَصَفَات (waṣafāt). A doctor’s prescription is وَصْفَةٌ طِبِّيَّةٌ."
+  },
+  {
+    "tr": "أَغْلِي",
+    "en": "I boil",
+    "cat": "kitchen",
+    "tl": "ʾaghlī",
+    "ex": [
+      "أَغْلِي الْمَاءَ لِلشَّايِ.",
+      "I boil water for the tea."
+    ],
+    "note": "Past: غَلَيْتُ (ghalaytu). ‘The water is boiling’: الْمَاءُ يَغْلِي.",
+    "pair": {
+      "tr": "بَغْلِي",
+      "reg": "casual",
+      "tl": "baghli",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَقْلِي",
+    "en": "I fry",
+    "cat": "kitchen",
+    "tl": "ʾaqlī",
+    "ex": [
+      "أَقْلِي الْبَطَاطِسَ فِي الزَّيْتِ.",
+      "I fry the potatoes in oil."
+    ],
+    "note": "Fried: مَقْلِيّ (maqlī). Past: قَلَيْتُ (qalaytu).",
+    "pair": {
+      "tr": "بَقْلِي",
+      "reg": "casual",
+      "tl": "baʾli",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُقَطِّعُ",
+    "en": "I cut up; I chop",
+    "cat": "kitchen",
+    "tl": "ʾuqaṭṭiʿ",
+    "ex": [
+      "أُقَطِّعُ الْبَصَلَ وَالطَّمَاطِمَ.",
+      "I’m chopping the onions and tomatoes."
+    ],
+    "note": "Cutting once is أَقْطَعُ (ʾaqṭaʿ); the doubled form أُقَطِّعُ means cutting into pieces.",
+    "pair": {
+      "tr": "بَقَطَّع",
+      "reg": "casual",
+      "tl": "baʾaṭṭaʿ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَخْلِطُ",
+    "en": "I mix",
+    "cat": "kitchen",
+    "tl": "ʾakhliṭ",
+    "ex": [
+      "أَخْلِطُ الدَّقِيقَ بِالْبَيْضِ.",
+      "I mix the flour with the eggs."
+    ],
+    "note": "Flour: دَقِيق (daqīq). Past: خَلَطْتُ (khalaṭtu).",
+    "pair": {
+      "tr": "بَخْلَط",
+      "reg": "casual",
+      "tl": "bakhlaṭ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَشْوِي",
+    "en": "I grill; I roast",
+    "cat": "kitchen",
+    "tl": "ʾashwī",
+    "ex": [
+      "نَشْوِي اللَّحْمَ فِي الْحَدِيقَةِ.",
+      "We grill meat in the garden."
+    ],
+    "note": "Grilled: مَشْوِيّ (mashwī), as in مَشْوِيَّات, ‘mixed grill’."
+  },
+  {
+    "tr": "أُسَخِّنُ",
+    "en": "I heat up; I warm up",
+    "cat": "kitchen",
+    "tl": "ʾusakhkhin",
+    "ex": [
+      "سَأُسَخِّنُ لَكَ الطَّعَامَ.",
+      "I’ll heat the food up for you."
+    ],
+    "note": "Past: سَخَّنْتُ (sakhkhantu).",
+    "pair": {
+      "tr": "بَسَخَّن",
+      "reg": "casual",
+      "tl": "basakhkhan",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "طَعْم",
+    "en": "taste; flavor",
+    "cat": "kitchen",
+    "tl": "ṭaʿm",
+    "ex": [
+      "طَعْمُ هَذَا الطَّبَقِ رَائِعٌ.",
+      "This dish tastes great."
+    ],
+    "note": "‘It tastes good’ is literally ‘its taste is delicious’: طَعْمُهُ لَذِيذٌ."
+  },
+  {
+    "tr": "حُلْو",
+    "en": "sweet",
+    "cat": "kitchen",
+    "tl": "ḥulw",
+    "ex": [
+      "الشَّايُ حُلْوٌ جِدًّا.",
+      "The tea is very sweet."
+    ],
+    "note": "Desserts: حَلَوِيَّات (ḥalawiyyāt). In speech حِلْو also means ‘nice, pretty’.",
+    "pair": {
+      "tr": "حِلْو",
+      "reg": "casual",
+      "en": "sweet; nice",
+      "tl": "ḥilw",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَالِح",
+    "en": "salty",
+    "cat": "kitchen",
+    "tl": "māliḥ",
+    "ex": [
+      "الْأَكْلُ مَالِحٌ قَلِيلًا.",
+      "The food is a little salty."
+    ],
+    "note": "From مِلْح (milḥ), salt. Sea water is مَاءٌ مَالِحٌ."
+  },
+  {
+    "tr": "مُدَرِّس",
+    "en": "teacher",
+    "cat": "jobs",
+    "tl": "mudarris",
+    "ex": [
+      "أَخِي مُدَرِّسُ رِيَاضِيَّاتٍ.",
+      "My brother is a maths teacher."
+    ],
+    "note": "Female: مُدَرِّسَة. The usual word in Egypt; مُعَلِّم (muʿallim) means the same."
+  },
+  {
+    "tr": "مُهَنْدِس",
+    "en": "engineer",
+    "cat": "jobs",
+    "tl": "muhandis",
+    "ex": [
+      "زَوْجِي مُهَنْدِسٌ فِي شَرِكَةٍ كَبِيرَةٍ.",
+      "My husband is an engineer at a big company."
+    ],
+    "note": "Female: مُهَنْدِسَة. In Egypt يَا بَشْمُهَنْدِس (ya bashmuhandis) is a polite way to address a man."
+  },
+  {
+    "tr": "طَبِيبُ أَسْنَانٍ",
+    "en": "dentist",
+    "cat": "jobs",
+    "tl": "ṭabīb ʾasnān",
+    "ex": [
+      "عِنْدِي مَوْعِدٌ مَعَ طَبِيبِ الْأَسْنَانِ.",
+      "I have an appointment with the dentist."
+    ],
+    "note": "Literally ‘doctor of teeth’. In speech a doctor is دُكْتُور (doktōr).",
+    "pair": {
+      "tr": "دُكْتُور سِنَان",
+      "reg": "casual",
+      "tl": "doktōr sinān",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُمَرِّض",
+    "en": "nurse",
+    "cat": "jobs",
+    "tl": "mumarriḍ",
+    "ex": [
+      "الْمُمَرِّضَةُ لَطِيفَةٌ جِدًّا.",
+      "The nurse is very kind."
+    ],
+    "note": "Female: مُمَرِّضَة (mumarriḍa)."
+  },
+  {
+    "tr": "سَائِق",
+    "en": "driver",
+    "cat": "jobs",
+    "tl": "sāʾiq",
+    "ex": [
+      "السَّائِقُ يَنْتَظِرُنَا فِي الْخَارِجِ.",
+      "The driver is waiting for us outside."
+    ],
+    "note": "A taxi driver: سَائِقُ تَاكْسِي (sāʾiq tāksī).",
+    "pair": {
+      "tr": "سَوَّاق",
+      "reg": "casual",
+      "tl": "sawwāʾ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "طَبَّاخ",
+    "en": "cook; chef",
+    "cat": "jobs",
+    "tl": "ṭabbākh",
+    "ex": [
+      "أَبِي طَبَّاخٌ فِي فُنْدُقٍ.",
+      "My father is a cook in a hotel."
+    ],
+    "note": "From طَبَخَ, ‘to cook’. In restaurants you’ll also hear شِيف (chef)."
+  },
+  {
+    "tr": "نَادِل",
+    "en": "waiter",
+    "cat": "jobs",
+    "tl": "nādil",
+    "ex": [
+      "أَحْضَرَ النَّادِلُ الْقَائِمَةَ.",
+      "The waiter brought the menu."
+    ],
+    "note": "To call a waiter, just say لَوْ سَمَحْتَ (law samaḥt), ‘excuse me’.",
+    "pair": {
+      "tr": "جَرْسُون",
+      "reg": "casual",
+      "tl": "garsōn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بَائِع",
+    "en": "shop assistant; seller",
+    "cat": "jobs",
+    "tl": "bāʾiʿ",
+    "ex": [
+      "الْبَائِعُ سَاعَدَنِي كَثِيرًا.",
+      "The shop assistant helped me a lot."
+    ],
+    "note": "Female: بَائِعَة (bāʾiʿa). Also a street vendor.",
+    "pair": {
+      "tr": "بَيَّاع",
+      "reg": "casual",
+      "tl": "bayyāʿ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شُرْطِيّ",
+    "en": "police officer",
+    "cat": "jobs",
+    "tl": "shurṭī",
+    "ex": [
+      "اِسْأَلِ الشُّرْطِيَّ عَنِ الطَّرِيقِ.",
+      "Ask the police officer for directions."
+    ],
+    "note": "The police: الشُّرْطَة (ash-shurṭa); in Egypt also الْبُولِيس (il-bolīs)."
+  },
+  {
+    "tr": "مُحَامٍ",
+    "en": "lawyer",
+    "cat": "jobs",
+    "tl": "muḥāmī",
+    "ex": [
+      "أَحْتَاجُ إِلَى مُحَامٍ جَيِّدٍ.",
+      "I need a good lawyer."
+    ],
+    "note": "With ‘the’: الْمُحَامِي (al-muḥāmī). Female: مُحَامِيَة (muḥāmiya).",
+    "alt": [
+      "محامي"
+    ]
+  },
+  {
+    "tr": "مُحَاسِب",
+    "en": "accountant",
+    "cat": "jobs",
+    "tl": "muḥāsib",
+    "ex": [
+      "أَعْمَلُ مُحَاسِبًا فِي بَنْكٍ.",
+      "I work as an accountant in a bank."
+    ],
+    "note": "‘I work as a…’ puts the job in the -an form: أَعْمَلُ مُحَاسِبًا."
+  },
+  {
+    "tr": "مُبَرْمِج",
+    "en": "programmer",
+    "cat": "jobs",
+    "tl": "mubarmij",
+    "ex": [
+      "أُخْتِي مُبَرْمِجَةٌ وَتَعْمَلُ مِنَ الْبَيْتِ.",
+      "My sister is a programmer and works from home."
+    ],
+    "note": "Female: مُبَرْمِجَة. Programming: الْبَرْمَجَة (al-barmaja)."
+  },
+  {
+    "tr": "صَحَفِيّ",
+    "en": "journalist",
+    "cat": "jobs",
+    "tl": "ṣaḥafī",
+    "ex": [
+      "يَعْمَلُ صَحَفِيًّا فِي جَرِيدَةٍ.",
+      "He works as a journalist for a newspaper."
+    ],
+    "note": "Also صُحُفِيّ (ṣuḥufī). A newspaper: جَرِيدَة (jarīda) or صَحِيفَة (ṣaḥīfa)."
+  },
+  {
+    "tr": "رَبَّةُ بَيْتٍ",
+    "en": "housewife; homemaker",
+    "cat": "jobs",
+    "tl": "rabbat bayt",
+    "ex": [
+      "أُمِّي رَبَّةُ بَيْتٍ.",
+      "My mother is a homemaker."
+    ],
+    "note": "Literally ‘lady of a house’. Egyptians also say سِتّ بِيت (sitt bēt)."
+  },
+  {
+    "tr": "مُتَقَاعِد",
+    "en": "retired",
+    "cat": "jobs",
+    "tl": "mutaqāʿid",
+    "ex": [
+      "جَدِّي مُتَقَاعِدٌ الْآنَ.",
+      "My grandfather is retired now."
+    ],
+    "note": "Female: مُتَقَاعِدَة. Retirement: التَّقَاعُد (at-taqāʿud)."
+  },
+  {
+    "tr": "كَيْفَ نَقُولُ هَذَا بِالْعَرَبِيَّةِ؟",
+    "en": "How do you say this in Arabic?",
+    "cat": "p-language",
+    "tl": "kayfa naqūl hādhā bi-l-ʿarabiyya",
+    "ex": [
+      "— كَيْفَ نَقُولُ هَذَا بِالْعَرَبِيَّةِ؟ — مِلْعَقَةٌ.",
+      "— How do you say this in Arabic? — Spoon."
+    ],
+    "note": "Point at the thing as you ask. For an English word, say it after نَقُولُ: kayfa naqūl ‘spoon’ bi-l-ʿarabiyya?",
+    "pair": {
+      "tr": "دَه اسْمُه إِيه بِالْعَرَبِي؟",
+      "reg": "casual",
+      "en": "What's this called in Arabic?",
+      "tl": "da-smu ʾēh bi-l-ʿarabi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا مَعْنَى هَذِهِ الْكَلِمَةِ؟",
+    "en": "What does this word mean?",
+    "cat": "p-language",
+    "tl": "mā maʿnā hādhihi-l-kalima",
+    "note": "For a word you just heard, say it first, then ask مَا مَعْنَاهَا؟ (mā maʿnāhā) — ‘what does it mean?’",
+    "pair": {
+      "tr": "يَعْنِي إِيه الْكِلْمَة دِي؟",
+      "reg": "casual",
+      "tl": "yaʿni ʾēh il-kilma di",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُمْكِنُ أَنْ تَكْتُبَهَا لِي؟",
+    "en": "Could you write it down for me?",
+    "cat": "p-language",
+    "tl": "hal yumkin ʾan taktubahā lī",
+    "note": "هَا (‘it’) stands for a word, كَلِمَة, which is feminine. For a name or a number: تَكْتُبَهُ لِي (taktubah lī).",
+    "reg": "polite",
+    "pair": {
+      "tr": "مُمْكِن تِكْتِبْهَالِي؟",
+      "reg": "casual",
+      "tl": "mumkin tiktibhāli",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ هَذَا صَحِيحٌ؟",
+    "en": "Is this right?",
+    "cat": "p-language",
+    "tl": "hal hādhā ṣaḥīḥ",
+    "note": "Handy after you try out a word or sentence. Right: صَحّ (ṣaḥḥ); wrong: غَلَط (ghalaṭ) — both used everywhere.",
+    "pair": {
+      "tr": "كِدَه صَحّ؟",
+      "reg": "casual",
+      "en": "Is it right like this?",
+      "tl": "kida ṣaḥḥ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "صَحِّحْنِي إِذَا أَخْطَأْتُ، مِنْ فَضْلِكَ.",
+    "en": "Please correct me if I make a mistake.",
+    "cat": "p-language",
+    "tl": "ṣaḥḥiḥnī ʾidhā ʾakhṭaʾtu, min faḍlik",
+    "note": "People are often too polite to correct learners — asking this gets you real feedback.",
+    "reg": "polite",
+    "pair": {
+      "tr": "لَوْ غِلِطْت صَحَّحْنِي.",
+      "reg": "casual",
+      "en": "If I get it wrong, correct me.",
+      "tl": "law ghiliṭt ṣaḥḥaḥni",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا الْفَرْقُ بَيْنَ هَاتَيْنِ الْكَلِمَتَيْنِ؟",
+    "en": "What's the difference between these two words?",
+    "cat": "p-language",
+    "tl": "mā-l-farq bayna hātayni-l-kalimatayn",
+    "pair": {
+      "tr": "إِيه الْفَرْق بِين الْكِلْمِتِين دُول؟",
+      "reg": "casual",
+      "tl": "ʾēh il-farʾ bēn il-kilmitēn dōl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ هَذِهِ فُصْحَى أَمْ عَامِّيَّةٌ؟",
+    "en": "Is that standard Arabic or dialect?",
+    "cat": "p-language",
+    "tl": "hal hādhihi fuṣḥā ʾam ʿāmmiyya",
+    "note": "فُصْحَى = Modern Standard Arabic (news, books, signs); عَامِّيَّة = the everyday dialect people speak at home.",
+    "pair": {
+      "tr": "دِي فُصْحَى وَلَّا عَامِّيَّة؟",
+      "reg": "casual",
+      "tl": "di fuṣḥa walla ʿammiyya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَاذَا تُسَمُّونَ هَذَا فِي مِصْرَ؟",
+    "en": "What do you call this in Egypt?",
+    "cat": "p-language",
+    "tl": "mādhā tusammūn hādhā fī miṣr",
+    "note": "Words vary by country: ‘room’ is غُرْفَة in MSA but أُوضَة (ʾōḍa) in Egypt. Egyptians call their country maṣr, not miṣr.",
+    "pair": {
+      "tr": "بِتْقُولُوا عَلِيه إِيه فِي مَصْر؟",
+      "reg": "casual",
+      "tl": "bitʾūlu ʿalēh ʾēh fi maṣr",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُمْكِنُ أَنْ تُتَرْجِمَ لِي هَذَا؟",
+    "en": "Could you translate this for me?",
+    "cat": "p-language",
+    "tl": "hal yumkin ʾan tutarjim lī hādhā",
+    "reg": "polite",
+    "pair": {
+      "tr": "مُمْكِن تِتَرْجِمْلِي دَه؟",
+      "reg": "casual",
+      "tl": "mumkin titargimli da",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لُغَتِي الْعَرَبِيَّةُ مَا زَالَتْ ضَعِيفَةً.",
+    "en": "My Arabic is still weak.",
+    "cat": "p-language",
+    "tl": "lughatī-l-ʿarabiyya mā zālat ḍaʿīfa",
+    "note": "People will slow down and help. Expect encouragement like شَاطِر! (shāṭir) ‘clever!’ — to a woman شَاطْرَة (shaṭra).",
+    "pair": {
+      "tr": "الْعَرَبِي بِتَاعِي لِسَّه مِش كْوَيِّس.",
+      "reg": "casual",
+      "tl": "il-ʿarabi bitāʿi lissa mish kwayyis",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ تَفْهَمُ قَصْدِي؟",
+    "en": "Do you see what I mean?",
+    "cat": "p-language",
+    "tl": "hal tafham qaṣdī",
+    "note": "قَصْد (qaṣd) is ‘intention, meaning’. ‘That’s not what I meant’: مِش قَصْدِي (mish ʾaṣdi).",
+    "pair": {
+      "tr": "إِنْتَ فَاهِم قَصْدِي؟",
+      "reg": "casual",
+      "tl": "ʾinta fāhim ʾaṣdi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "نَسِيتُ الْكَلِمَةَ.",
+    "en": "I've forgotten the word.",
+    "cat": "p-language",
+    "tl": "nasītu-l-kalima",
+    "note": "Stuck mid-sentence? Egyptians fill the gap with اِسْمُه إِيه (ismu ʾēh), ‘what’s-it-called’.",
+    "pair": {
+      "tr": "نِسِيت الْكِلْمَة.",
+      "reg": "casual",
+      "tl": "nisīt il-kilma",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِسْمَحْ لِي أَنْ أُعَرِّفَكَ بِنَفْسِي.",
+    "en": "Let me introduce myself.",
+    "cat": "p-intro",
+    "tl": "ismaḥ lī ʾan ʾuʿarrifak bi-nafsī",
+    "note": "Then give your name: أَنَا… (ʾanā…). To a group: أُعَرِّفُكُمْ بِنَفْسِي (ʾuʿarrifukum bi-nafsī).",
+    "reg": "polite",
+    "pair": {
+      "tr": "خَلِّينِي أَعَرَّفَك بِنَفْسِي.",
+      "reg": "casual",
+      "tl": "khallīni ʾaʿarrafak bi-nafsi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنَا أَمْرِيكِيٌّ.",
+    "en": "I'm American.",
+    "cat": "p-intro",
+    "tl": "ʾanā ʾamrīkī",
+    "note": "A woman says أَمْرِيكِيَّة (ʾamrīkiyya). British: بِرِيطَانِيّ (birīṭānī), though Egyptians often say إِنْجِلِيزِي.",
+    "pair": {
+      "tr": "أَنَا أَمْرِيكَانِي.",
+      "reg": "casual",
+      "tl": "ʾana ʾamrikāni",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَعِيشُ فِي الْقَاهِرَةِ مُنْذُ سَنَتَيْنِ.",
+    "en": "I've been living in Cairo for two years.",
+    "cat": "p-intro",
+    "tl": "ʾaʿīsh fī-l-qāhira mundhu sanatayn",
+    "note": "Arabic uses the present here: ‘I live … since two years’. Egyptian بَقَالِي (baʾāli) means ‘it’s been … for me’.",
+    "pair": {
+      "tr": "بَقَالِي سَنَتِين عَايِش فِي الْقَاهِرَة.",
+      "reg": "casual",
+      "tl": "baʾāli sanatēn ʿāyish fi-l-ʾāhira",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَعْمَلُ مُدَرِّسًا لِلْإِنْجِلِيزِيَّةِ.",
+    "en": "I work as an English teacher.",
+    "cat": "p-intro",
+    "tl": "ʾaʿmal mudarrisan li-l-ʾinjilīziyya",
+    "note": "After أَعْمَلُ the job ends in -an (mudarrisan) in MSA; in speech it’s just mudarris.",
+    "pair": {
+      "tr": "بَشْتَغَل مُدَرِّس إِنْجِلِيزِي.",
+      "reg": "casual",
+      "tl": "bashtaghal mudarris ʾingilīzi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنَا هُنَا فِي إِجَازَةٍ.",
+    "en": "I'm here on holiday.",
+    "cat": "p-intro",
+    "tl": "ʾanā hunā fī ʾijāza",
+    "note": "On business: فِي رِحْلَةِ عَمَلٍ (fī riḥlat ʿamal); Egyptian عَشَان الشُّغْل (ʿashān ish-shughl).",
+    "pair": {
+      "tr": "أَنَا جَاي أَجَازَة.",
+      "reg": "casual",
+      "en": "I've come on holiday.",
+      "tl": "ʾana gayy ʾagāza",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كَمْ عُمْرُكَ؟",
+    "en": "How old are you? (to a man)",
+    "cat": "p-intro",
+    "tl": "kam ʿumruk",
+    "note": "To a woman: كَمْ عُمْرُكِ؟ (kam ʿumruki). Fine with young people; with older adults, especially women, it can feel personal.",
+    "pair": {
+      "tr": "عَنْدَك كَام سَنَة؟",
+      "reg": "casual",
+      "tl": "ʿandak kām sana",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عُمْرِي ثَلَاثُونَ سَنَةً.",
+    "en": "I'm thirty (years old).",
+    "cat": "p-intro",
+    "tl": "ʿumrī thalāthūn sana",
+    "note": "Literally ‘my age is thirty years’. Egyptians say ‘I have thirty years’, as in French or Spanish.",
+    "pair": {
+      "tr": "عَنْدِي تَلَاتِين سَنَة.",
+      "reg": "casual",
+      "tl": "ʿandi talatīn sana",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ أَنْتَ مُتَزَوِّجٌ؟",
+    "en": "Are you married? (to a man)",
+    "cat": "p-intro",
+    "tl": "hal ʾanta mutazawwij",
+    "note": "A normal, friendly question in Egypt. To a woman: هَلْ أَنْتِ مُتَزَوِّجَةٌ؟ / إِنْتِي مِتْجَوِّزَة؟",
+    "pair": {
+      "tr": "إِنْتَ مِتْجَوِّز؟",
+      "reg": "casual",
+      "tl": "ʾinta mitgawwiz",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَا، لَمْ أَتَزَوَّجْ بَعْدُ.",
+    "en": "No, I'm not married yet.",
+    "cat": "p-intro",
+    "tl": "lā, lam ʾatazawwaj baʿd",
+    "note": "Expect a warm wish in reply, like إِن شَاء اللَّه قُرَيِّب (ʾin shāʾ allāh ʾurayyib) — ‘soon, God willing’.",
+    "pair": {
+      "tr": "لَأ، لِسَّه مَتْجَوِّزْتِش.",
+      "reg": "casual",
+      "tl": "laʾ, lissa matgawwiztish",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ عِنْدَكَ إِخْوَةٌ؟",
+    "en": "Do you have any brothers or sisters?",
+    "cat": "p-intro",
+    "tl": "hal ʿindak ʾikhwa",
+    "ex": [
+      "— هَلْ عِنْدَكَ إِخْوَةٌ؟ — نَعَمْ، عِنْدِي أَخٌ وَأُخْتَانِ.",
+      "— Do you have any brothers or sisters? — Yes, I have a brother and two sisters."
+    ],
+    "pair": {
+      "tr": "عَنْدَك إِخْوَات؟",
+      "reg": "casual",
+      "tl": "ʿandak ʾikhwāt",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَذِهِ زَوْجَتِي.",
+    "en": "This is my wife.",
+    "cat": "p-intro",
+    "tl": "hādhihi zawjatī",
+    "note": "My husband: زَوْجِي (zawjī), Egyptian جُوزِي (gōzi). My friend: هَذَا صَدِيقِي (hādhā ṣadīqī).",
+    "pair": {
+      "tr": "دِي مِرَاتِي.",
+      "reg": "casual",
+      "tl": "di mirāti",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "الشَّرَفُ لِي.",
+    "en": "The pleasure is mine.",
+    "cat": "p-intro",
+    "tl": "ash-sharaf lī",
+    "note": "The classic reply to تَشَرَّفْنَا (‘nice to meet you’). Literally ‘the honour is mine’.",
+    "reg": "polite",
+    "pair": {
+      "tr": "الشَّرَف لِيَّا.",
+      "reg": "casual",
+      "tl": "ish-sharaf liyya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "نَوَّرْتَ الْبَيْتَ!",
+    "en": "Welcome! (lit. you’ve lit up the house)",
+    "cat": "p-guest",
+    "tl": "nawwarta-l-bayt",
+    "ex": [
+      "— نَوَّرْتَ الْبَيْتَ! — الْبَيْتُ مُنَوَّرٌ بِأَهْلِهِ.",
+      "— Welcome! — It’s the people who light it up."
+    ],
+    "note": "What hosts say to a guest. The usual reply in Egypt: دَه نُورَك (da nūrak), ‘that’s your light’.",
+    "pair": {
+      "tr": "نَوَّرْتِنَا!",
+      "reg": "casual",
+      "en": "So good to have you! (lit. you’ve lit us up)",
+      "tl": "nawwartina",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ أَخْلَعُ حِذَائِي؟",
+    "en": "Should I take my shoes off?",
+    "cat": "p-guest",
+    "tl": "hal ʾakhlaʿ ḥidhāʾī",
+    "note": "Many homes don’t expect it; if you see shoes by the door, ask. Hosts often say خَلِّيك (khallīk), ‘don’t bother’.",
+    "pair": {
+      "tr": "أَقْلَع الْجَزْمَة؟",
+      "reg": "casual",
+      "tl": "ʾaʾlaʿ il-gazma",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَذِهِ هَدِيَّةٌ بَسِيطَةٌ.",
+    "en": "Just a little something for you.",
+    "cat": "p-guest",
+    "tl": "hādhihi hadiyya basīṭa",
+    "note": "Sweets, pastries or fruit are typical. The host may put the gift aside unopened — that’s normal and polite.",
+    "reg": "polite",
+    "pair": {
+      "tr": "دِي حَاجَة بَسِيطَة.",
+      "reg": "casual",
+      "tl": "di ḥāga basīṭa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِعْتَبِرْ نَفْسَكَ فِي بَيْتِكَ.",
+    "en": "Make yourself at home.",
+    "cat": "p-guest",
+    "tl": "iʿtabir nafsak fī baytik",
+    "note": "What a host says. Thank them with تِسْلَم (tislam) — literally ‘be safe’, an everyday thank-you.",
+    "reg": "polite",
+    "pair": {
+      "tr": "الْبِيت بِيتَك.",
+      "reg": "casual",
+      "en": "The house is yours.",
+      "tl": "il-bēt bētak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "تَفَضَّلْ، كُلْ!",
+    "en": "Go ahead, help yourself!",
+    "cat": "p-guest",
+    "tl": "tafaḍḍal, kul",
+    "note": "Hosts urge food on guests more than once; it’s good manners to accept at least a little.",
+    "reg": "polite",
+    "pair": {
+      "tr": "مِدّ إِيدَك!",
+      "reg": "casual",
+      "en": "Dig in! (lit. reach out your hand)",
+      "tl": "midd ʾīdak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بِسْمِ اللَّهِ.",
+    "en": "In the name of God (before eating)",
+    "cat": "p-guest",
+    "tl": "bismi-llāh",
+    "note": "Said before eating, drinking or starting a task — you’ll hear it all the time. Usually pronounced bismillāh."
+  },
+  {
+    "tr": "سَلِمَتْ يَدَاكِ! الطَّعَامُ لَذِيذٌ جِدًّا.",
+    "en": "Bless your hands! The food is delicious. (to a woman)",
+    "cat": "p-guest",
+    "tl": "salimat yadāki, aṭ-ṭaʿām ladhīdh jiddan",
+    "note": "Said to whoever cooked. To a man: سَلِمَتْ يَدَاكَ / تِسْلَم إِيدَك. The reply is وِإِيدَك (wi-ʾīdak), ‘and yours’.",
+    "reg": "polite",
+    "pair": {
+      "tr": "تِسْلَم إِيدِك، الْأَكْل تُحْفَة!",
+      "reg": "casual",
+      "en": "Bless your hands, the food is amazing!",
+      "tl": "tislam ʾīdik, il-ʾakl tuḥfa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَبِعْتُ، شُكْرًا جَزِيلًا.",
+    "en": "I'm full, thank you very much.",
+    "cat": "p-guest",
+    "tl": "shabiʿtu, shukran jazīlan",
+    "note": "Hosts insist: كُل كَمَان! (kul kamān) ‘eat more!’. A firm الْحَمْدُ لِلَّه shows you really are done.",
+    "reg": "polite",
+    "pair": {
+      "tr": "الْحَمْدُ لِلَّه، شِبِعْت.",
+      "reg": "casual",
+      "tl": "il-ḥamdu lillāh, shibiʿt",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سُفْرَةٌ دَائِمَةٌ!",
+    "en": "Thank you for the meal! (lit. may your table always be laid)",
+    "cat": "p-guest",
+    "tl": "sufra dāʾima",
+    "ex": [
+      "— سُفْرَةٌ دَائِمَةٌ! — بِالْهَنَاءِ وَالشِّفَاءِ.",
+      "— Thank you for the meal! — Enjoy, and good health!"
+    ],
+    "note": "Said by the guest after eating; سُفْرَة is the dining table. Egyptians drop the hamza: sufra dayma.",
+    "pair": {
+      "tr": "سُفْرَة دَايْمَة!",
+      "reg": "casual",
+      "tl": "sufra dayma",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شُكْرًا عَلَى الضِّيَافَةِ.",
+    "en": "Thank you for your hospitality.",
+    "cat": "p-guest",
+    "tl": "shukran ʿalā-ḍ-ḍiyāfa",
+    "note": "عَزُومَة (ʿazūma) is Egyptian for an invitation to a meal — and the meal itself. A woman says مِتْشَكِّرَة (mitshakkira).",
+    "reg": "polite",
+    "pair": {
+      "tr": "مِتْشَكِّر أَوِي عَلَى الْعَزُومَة.",
+      "reg": "casual",
+      "en": "Thanks so much for having me.",
+      "tl": "mitshakkir ʾawi ʿala-l-ʿazūma",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "نَسْتَأْذِنُ الْآنَ.",
+    "en": "We'd better be going now.",
+    "cat": "p-guest",
+    "tl": "nastaʾdhin al-ʾān",
+    "note": "Literally ‘we ask your leave’. On your own: أَسْتَأْذِنُ (ʾastaʾdhin); Egyptian أَسْتَأْذِن (ʾastaʾzin).",
+    "reg": "polite",
+    "pair": {
+      "tr": "نِسْتَأْذِن إِحْنَا بَقَى.",
+      "reg": "casual",
+      "tl": "nistaʾzin ʾiḥna baʾa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا زَالَ الْوَقْتُ مُبَكِّرًا!",
+    "en": "Stay a bit longer! (lit. it’s still early)",
+    "cat": "p-guest",
+    "tl": "mā zāla-l-waqt mubakkiran",
+    "note": "What Egyptian hosts say when guests get up to leave. It’s a courtesy: thank them and go, or stay a little.",
+    "pair": {
+      "tr": "لِسَّه بَدْرِي!",
+      "reg": "casual",
+      "tl": "lissa badri",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عِيدُ مِيلَادٍ سَعِيدٌ!",
+    "en": "Happy birthday!",
+    "cat": "p-wishes",
+    "tl": "ʿīd mīlād saʿīd",
+    "note": "The Egyptian line is also how the Arabic birthday song begins. People add كُلّ سَنَة وِإِنْتَ طَيِّب too.",
+    "pair": {
+      "tr": "سَنَة حِلْوَة يَا جَمِيل!",
+      "reg": "casual",
+      "en": "Happy birthday! (lit. a sweet year, lovely one)",
+      "tl": "sana ḥilwa ya gamīl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كُلُّ عَامٍ وَأَنْتَ بِخَيْرٍ!",
+    "en": "Happy holidays! / Many happy returns!",
+    "cat": "p-wishes",
+    "tl": "kull ʿām wa-ʾanta bi-khayr",
+    "ex": [
+      "— كُلُّ عَامٍ وَأَنْتَ بِخَيْرٍ! — وَأَنْتَ بِخَيْرٍ.",
+      "— Happy holidays! — And to you!"
+    ],
+    "note": "The all-purpose wish for any holiday, birthday or new year. To a woman: وَأَنْتِ بِخَيْرٍ / وِإِنْتِي طَيِّبَة.",
+    "pair": {
+      "tr": "كُلّ سَنَة وِإِنْتَ طَيِّب!",
+      "reg": "casual",
+      "tl": "kull sana wi-inta ṭayyib",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عِيدٌ مُبَارَكٌ!",
+    "en": "Eid Mubarak! (blessed holiday)",
+    "cat": "p-wishes",
+    "tl": "ʿīd mubārak",
+    "note": "For both Eids: al-Fiṭr, after Ramadan, and al-Aḍḥā. Egyptians also say كُلّ سَنَة وِإِنْتَ طَيِّب."
+  },
+  {
+    "tr": "رَمَضَانُ كَرِيمٌ!",
+    "en": "Happy Ramadan! (lit. Ramadan is generous)",
+    "cat": "p-wishes",
+    "tl": "ramaḍān karīm",
+    "note": "The greeting all through Ramadan. The reply is اللَّهُ أَكْرَمُ (allāhu ʾakram), ‘God is more generous’."
+  },
+  {
+    "tr": "عِيدُ مِيلَادٍ مَجِيدٌ!",
+    "en": "Merry Christmas!",
+    "cat": "p-wishes",
+    "tl": "ʿīd mīlād majīd",
+    "note": "مَجِيد = ‘glorious’ — compare سَعِيد in ‘happy birthday’. Egypt’s Copts celebrate Christmas on 7 January."
+  },
+  {
+    "tr": "عَامٌ سَعِيدٌ!",
+    "en": "Happy New Year!",
+    "cat": "p-wishes",
+    "tl": "ʿām saʿīd",
+    "note": "Also عَامٌ جَدِيدٌ سَعِيدٌ (ʿām jadīd saʿīd). Many Egyptians simply say كُلّ سَنَة وِإِنْتَ طَيِّب.",
+    "pair": {
+      "tr": "سَنَة سَعِيدَة!",
+      "reg": "casual",
+      "tl": "sana saʿīda",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بَارَكَ اللَّهُ فِيكَ.",
+    "en": "Thank you! (reply to مَبْرُوك)",
+    "cat": "p-wishes",
+    "tl": "bāraka-llāhu fīk",
+    "ex": [
+      "— مَبْرُوكٌ عَلَى الْبَيْتِ الْجَدِيدِ! — بَارَكَ اللَّهُ فِيكَ.",
+      "— Congratulations on the new house! — Thank you!"
+    ],
+    "note": "Literally ‘God bless you’ — the standard answer to مَبْرُوك (congratulations), and a warm thank-you for any kindness.",
+    "pair": {
+      "tr": "اللَّه يِبَارِك فِيك.",
+      "reg": "casual",
+      "tl": "allāh yibārik fīk",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَتَمَنَّى لَكَ الشِّفَاءَ الْعَاجِلَ.",
+    "en": "I wish you a speedy recovery.",
+    "cat": "p-wishes",
+    "tl": "ʾatamannā lak ash-shifāʾ al-ʿājil",
+    "note": "Also أَلْف سَلَامَة (ʾalf salāma), ‘a thousand safeties’. The patient replies اللَّه يِسَلِّمَك (allāh yisallimak), ‘God keep you safe’.",
+    "reg": "polite",
+    "pair": {
+      "tr": "سَلَامْتَك!",
+      "reg": "casual",
+      "en": "Get well soon! (lit. your safety)",
+      "tl": "salamtak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "الْبَقَاءُ لِلَّهِ.",
+    "en": "My condolences. (lit. only God is everlasting)",
+    "cat": "p-wishes",
+    "tl": "al-baqāʾu lillāh",
+    "note": "Said to the bereaved; the reply is وَنِعْمَ بِاللَّه (wa-niʿma billāh). To الْبَقِيَّة فِي حَيَاتَك, reply حَيَاتَك الْبَاقْيَة (ḥayātak il-bāʾya).",
+    "reg": "polite",
+    "pair": {
+      "tr": "الْبَقِيَّة فِي حَيَاتَك.",
+      "reg": "neutral",
+      "en": "My condolences. (lit. may the rest be added to your life)",
+      "tl": "il-baʾiyya fi ḥayātak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "رَحِمَهُ اللَّهُ.",
+    "en": "May God rest his soul.",
+    "cat": "p-wishes",
+    "tl": "raḥimahu-llāh",
+    "note": "Said whenever someone who has died is mentioned. For a woman: رَحِمَهَا اللَّهُ / اللَّه يِرْحَمْهَا (allāh yirḥamha).",
+    "pair": {
+      "tr": "اللَّه يِرْحَمُه.",
+      "reg": "neutral",
+      "tl": "allāh yirḥamu",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بِالتَّوْفِيقِ!",
+    "en": "Good luck!",
+    "cat": "p-wishes",
+    "tl": "bi-t-tawfīq",
+    "note": "Before an exam, an interview or a new job. Literally ‘with success (from God)’.",
+    "pair": {
+      "tr": "رَبِّنَا يِوَفَّقَك!",
+      "reg": "casual",
+      "en": "May God help you succeed!",
+      "tl": "rabbina yiwaffaʾak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "رِحْلَةً سَعِيدَةً!",
+    "en": "Have a good trip!",
+    "cat": "p-wishes",
+    "tl": "riḥla saʿīda",
+    "note": "Egyptians add اِبْقَى طَمِّنِّي (ibʾa ṭamminni) — ‘let me know you got there safely’.",
+    "pair": {
+      "tr": "تِوْصَل بِالسَّلَامَة!",
+      "reg": "casual",
+      "en": "Get there safely!",
+      "tl": "tiwṣal bi-s-salāma",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَسْتُ عَلَى مَا يُرَامُ.",
+    "en": "I don't feel well.",
+    "cat": "p-doctor",
+    "tl": "lastu ʿalā mā yurām",
+    "note": "Literally ‘I’m not as one would wish’. تَعْبَان (taʿbān) means both ‘tired’ and ‘ill’; a woman says تَعْبَانَة.",
+    "pair": {
+      "tr": "أَنَا تَعْبَان شْوَيَّة.",
+      "reg": "casual",
+      "en": "I'm a bit unwell.",
+      "tl": "ʾana taʿbān shwayya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عِنْدِي صُدَاعٌ.",
+    "en": "I have a headache.",
+    "cat": "p-doctor",
+    "tl": "ʿindī ṣudāʿ",
+    "note": "Pain elsewhere: عِنْدِي أَلَمٌ فِي… + the body part, e.g. فِي ظَهْرِي (fī ẓahrī) ‘in my back’.",
+    "pair": {
+      "tr": "عَنْدِي صُدَاع جَامِد.",
+      "reg": "casual",
+      "en": "I've got a bad headache.",
+      "tl": "ʿandi ṣudāʿ gāmid",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عِنْدِي حُمَّى.",
+    "en": "I have a fever.",
+    "cat": "p-doctor",
+    "tl": "ʿindī ḥummā",
+    "note": "Also عِنْدِي حَرَارَة (ʿindī ḥarāra), ‘I have a temperature’, said everywhere.",
+    "pair": {
+      "tr": "عَنْدِي سُخُونِيَّة.",
+      "reg": "casual",
+      "tl": "ʿandi sukhuniyya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عِنْدِي سُعَالٌ وَأَلَمٌ فِي الْحَلْقِ.",
+    "en": "I have a cough and a sore throat.",
+    "cat": "p-doctor",
+    "tl": "ʿindī suʿāl wa-ʾalam fī-l-ḥalq",
+    "note": "Egyptian words: كُحَّة (kuḥḥa) ‘cough’ and زُور (zōr) ‘throat’.",
+    "pair": {
+      "tr": "عَنْدِي كُحَّة وِالْتِهَاب فِي الزُّور.",
+      "reg": "casual",
+      "tl": "ʿandi kuḥḥa wi-ltihāb fi-z-zōr",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "يُؤْلِمُنِي هُنَا.",
+    "en": "It hurts here.",
+    "cat": "p-doctor",
+    "tl": "yuʾlimunī hunā",
+    "note": "Point to the spot. ‘It hurts a lot’: يُؤْلِمُنِي كَثِيرًا (yuʾlimunī kathīran).",
+    "pair": {
+      "tr": "الْوَجَع هِنَا.",
+      "reg": "casual",
+      "en": "The pain is here.",
+      "tl": "il-wagaʿ hina",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُنْذُ مَتَى تَشْعُرُ بِهَذَا؟",
+    "en": "How long have you felt like this?",
+    "cat": "p-doctor",
+    "tl": "mundhu matā tashʿur bi-hādhā",
+    "ex": [
+      "— مُنْذُ مَتَى تَشْعُرُ بِهَذَا؟ — مُنْذُ ثَلَاثَةِ أَيَّامٍ.",
+      "— How long have you felt like this? — For three days."
+    ],
+    "pair": {
+      "tr": "بَقَالَك قَدّ إِيه تَعْبَان؟",
+      "reg": "casual",
+      "en": "How long have you been ill?",
+      "tl": "baʾālak ʾadd ʾēh taʿbān",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُنْذُ يَوْمَيْنِ.",
+    "en": "For two days.",
+    "cat": "p-doctor",
+    "tl": "mundhu yawmayn",
+    "note": "A week: مُنْذُ أُسْبُوعٍ (mundhu ʾusbūʿ); Egyptian بَقَالِي أُسْبُوع (baʾāli ʾusbūʿ).",
+    "pair": {
+      "tr": "بَقَالِي يُومِين.",
+      "reg": "casual",
+      "tl": "baʾāli yomēn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ عِنْدَكَ حَسَاسِيَّةٌ مِنْ أَيِّ دَوَاءٍ؟",
+    "en": "Are you allergic to any medicine?",
+    "cat": "p-doctor",
+    "tl": "hal ʿindak ḥasāsiyya min ʾayy dawāʾ",
+    "note": "To answer: عِنْدِي حَسَاسِيَّةٌ مِنَ الْبِنِسِلِينِ (… mina-l-binisilīn), ‘I’m allergic to penicillin’.",
+    "pair": {
+      "tr": "عَنْدَك حَسَاسِيَّة مِن أَيّ دَوَا؟",
+      "reg": "casual",
+      "tl": "ʿandak ḥasasiyya min ʾayy dawa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ أَحْتَاجُ إِلَى وَصْفَةٍ طِبِّيَّةٍ؟",
+    "en": "Do I need a prescription?",
+    "cat": "p-doctor",
+    "tl": "hal ʾaḥtāj ʾilā waṣfa ṭibbiyya",
+    "note": "رُوشِتَّة (from Italian ricetta) is the everyday Egyptian word. Pharmacists in Egypt often advise on minor problems.",
+    "pair": {
+      "tr": "مِحْتَاج رُوشِتَّة؟",
+      "reg": "casual",
+      "tl": "miḥtāg rushetta",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ عِنْدَكُمْ شَيْءٌ لِلزُّكَامِ؟",
+    "en": "Do you have anything for a cold?",
+    "cat": "p-doctor",
+    "tl": "hal ʿindakum shayʾ li-z-zukām",
+    "note": "دُور بَرْد (dōr bard) is Egyptian for ‘a cold’: عَنْدِي دُور بَرْد ‘I’ve got a cold’.",
+    "pair": {
+      "tr": "عَنْدَك حَاجَة لِدُور الْبَرْد؟",
+      "reg": "casual",
+      "tl": "ʿandak ḥāga li-dōr il-bard",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كَمْ مَرَّةً فِي الْيَوْمِ؟",
+    "en": "How many times a day?",
+    "cat": "p-doctor",
+    "tl": "kam marra fī-l-yawm",
+    "ex": [
+      "— كَمْ مَرَّةً فِي الْيَوْمِ؟ — حَبَّةٌ وَاحِدَةٌ ثَلَاثَ مَرَّاتٍ.",
+      "— How many times a day? — One tablet three times a day."
+    ],
+    "note": "Typical answers: مَرَّةً وَاحِدَةً (once), مَرَّتَيْنِ (marratayn, twice), ثَلَاثَ مَرَّاتٍ (three times).",
+    "pair": {
+      "tr": "كَام مَرَّة فِي الْيُوم؟",
+      "reg": "casual",
+      "tl": "kām marra fi-l-yōm",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "قَبْلَ الْأَكْلِ أَمْ بَعْدَهُ؟",
+    "en": "Before or after meals?",
+    "cat": "p-doctor",
+    "tl": "qabl al-ʾakl ʾam baʿdah",
+    "note": "On an empty stomach: عَلَى الرِّيقِ (ʿalā-r-rīq) — the same in Egyptian (ʿala-r-rīʾ).",
+    "pair": {
+      "tr": "قَبْل الْأَكْل وَلَّا بَعْدُه؟",
+      "reg": "casual",
+      "tl": "ʾabl il-ʾakl walla baʿdu",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَلُو، مَنْ مَعِي؟",
+    "en": "Hello, who's calling?",
+    "cat": "p-phone",
+    "tl": "ʾalū, man maʿī",
+    "ex": [
+      "— أَلُو، مَنْ مَعِي؟ — مَعَكَ سَارَةُ.",
+      "— Hello, who's calling? — It's Sara."
+    ],
+    "note": "أَلُو (from French allô) is used all over the Arab world. Literally ‘who is with me?’.",
+    "pair": {
+      "tr": "أَلُو، مِين مَعَايَا؟",
+      "reg": "casual",
+      "tl": "ʾalō, mīn maʿāya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُمْكِنُنِي أَنْ أَتَكَلَّمَ مَعَ أَحْمَدَ؟",
+    "en": "Can I speak to Ahmed?",
+    "cat": "p-phone",
+    "tl": "hal yumkinunī ʾan ʾatakallam maʿa ʾaḥmad",
+    "note": "If he isn’t there you may hear: مِش مَوْجُود (mish mawgūd) — ‘he’s not in’.",
+    "reg": "polite",
+    "pair": {
+      "tr": "مُمْكِن أَكَلِّم أَحْمَد؟",
+      "reg": "casual",
+      "tl": "mumkin ʾakallim ʾaḥmad",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سَأُعَاوِدُ الِاتِّصَالَ بِكَ.",
+    "en": "I'll call you back.",
+    "cat": "p-phone",
+    "tl": "saʾuʿāwid al-ittiṣāl bik",
+    "note": "Can’t talk? Start with أَنَا مَشْغُولٌ الْآنَ (ʾanā mashghūl al-ʾān) — ‘I’m busy right now’.",
+    "pair": {
+      "tr": "هَرْجَع أَكَلِّمَك.",
+      "reg": "casual",
+      "tl": "hargaʿ ʾakallimak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ تَسْمَعُنِي؟",
+    "en": "Can you hear me?",
+    "cat": "p-phone",
+    "tl": "hal tasmaʿunī",
+    "note": "No ‘can’ in Arabic here — just ‘do you hear me?’.",
+    "pair": {
+      "tr": "إِنْتَ سَامِعْنِي؟",
+      "reg": "casual",
+      "tl": "ʾinta samiʿni",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "الشَّبَكَةُ ضَعِيفَةٌ هُنَا.",
+    "en": "The signal is bad here.",
+    "cat": "p-phone",
+    "tl": "ash-shabaka ḍaʿīfa hunā",
+    "note": "شَبَكَة (shabaka) means ‘network’. ‘You’re breaking up’: صَوْتُكَ يَتَقَطَّعُ (ṣawtuk yataqaṭṭaʿ).",
+    "pair": {
+      "tr": "الشَّبَكَة وِحْشَة هِنَا.",
+      "reg": "casual",
+      "tl": "ish-shabaka wiḥsha hina",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا رَقْمُ هَاتِفِكَ؟",
+    "en": "What's your phone number?",
+    "cat": "p-phone",
+    "tl": "mā raqm hātifik",
+    "note": "Egyptians ask ‘how much’ (kām) a number is. You’ll also hear نِمْرِتَك كَام؟ (nimritak kām), with نِمْرَة, ‘number’.",
+    "pair": {
+      "tr": "رَقَمَك كَام؟",
+      "reg": "casual",
+      "en": "What's your number?",
+      "tl": "raʾamak kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَحْنُ هَاتِفِي يَكَادُ يَنْفَدُ.",
+    "en": "My phone's about to die.",
+    "cat": "p-phone",
+    "tl": "shaḥn hātifī yakād yanfad",
+    "note": "‘My phone died’: الْمُوبَايِل فَصَل شَحْن (il-mobāyl faṣal shaḥn). A charger is شَاحِن (shāḥin).",
+    "pair": {
+      "tr": "الْمُوبَايِل هَيِفْصِل شَحْن.",
+      "reg": "casual",
+      "tl": "il-mobāyl hayifṣil shaḥn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "إِلَى اللِّقَاءِ.",
+    "en": "Bye! / See you.",
+    "cat": "p-phone",
+    "tl": "ʾilā-l-liqāʾ",
+    "note": "Egyptians end most calls with يَلَّا سَلَام, or a quick سَلَام سَلَام.",
+    "pair": {
+      "tr": "يَلَّا، سَلَام!",
+      "reg": "casual",
+      "en": "OK, bye!",
+      "tl": "yalla, salām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِتَّصِلْ بِي عِنْدَمَا تَصِلُ.",
+    "en": "Call me when you get there.",
+    "cat": "p-phone",
+    "tl": "ittaṣil bī ʿindamā taṣil",
+    "note": "رِنّ عَلَيَّا can also mean ‘give me a missed call’ — a free way to say ‘I’m here’ or ‘call me back’.",
+    "pair": {
+      "tr": "رِنّ عَلَيَّا لَمَّا تِوْصَل.",
+      "reg": "casual",
+      "en": "Give me a ring when you arrive.",
+      "tl": "rinn ʿalayya lamma tiwṣal",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِبْعَتْلِي عَ الْوَاتْس.",
+    "en": "Message me on WhatsApp.",
+    "cat": "p-phone",
+    "tl": "ibʿatli ʿa-l-wats",
+    "dialect": "Egyptian",
+    "note": "Chat shorthand: عَ for عَلَى, الْوَاتْس for WhatsApp. اِبْعَت (ibʿat) is Egyptian for ‘send’.",
+    "reg": "slang",
+    "alt": [
+      "eb3atli 3al wats"
+    ],
+    "pair": {
+      "tr": "أَرْسِلْ لِي رِسَالَةً عَلَى الْوَاتْسَابِ.",
+      "reg": "formal",
+      "en": "Send me a message on WhatsApp.",
+      "tl": "ʾarsil lī risāla ʿalā-l-wātsāb"
+    }
+  },
+  {
+    "tr": "ثَوَانِي وِرَاجِع.",
+    "en": "Back in a sec. (brb)",
+    "cat": "p-phone",
+    "tl": "sawāni wi-rāgiʿ",
+    "dialect": "Egyptian",
+    "ex": [
+      "اِسْتَنَّى، ثَوَانِي وِرَاجِع!",
+      "Hang on, back in a sec!"
+    ],
+    "note": "Said aloud or typed, like ‘brb’. In Arabizi (Arabic in Latin letters): sawany w rage3 — 3 = ع, 7 = ح, 2 = ء, 5 = خ.",
+    "reg": "casual",
+    "alt": [
+      "sawani w rage3"
+    ],
+    "pair": {
+      "tr": "سَأَعُودُ بَعْدَ قَلِيلٍ.",
+      "reg": "formal",
+      "en": "I'll be back shortly.",
+      "tl": "saʾaʿūd baʿd qalīl"
+    }
+  },
+  {
+    "tr": "سَابْنِي عَ السِّين.",
+    "en": "He left me on read.",
+    "cat": "p-phone",
+    "tl": "sabni ʿa-s-sīn",
+    "dialect": "Egyptian",
+    "note": "سِين is English ‘seen’, the read receipt; عَ is chat shorthand for عَلَى. About a woman: سَابِتْنِي (sabitni).",
+    "reg": "slang",
+    "alt": [
+      "sabni 3al seen"
+    ],
+    "pair": {
+      "tr": "قَرَأَ رِسَالَتِي وَلَمْ يَرُدَّ.",
+      "reg": "formal",
+      "en": "He read my message and didn't reply.",
+      "tl": "qaraʾa risālatī wa-lam yarudd"
+    }
+  },
+  {
+    "tr": "هَلْ عِنْدَكُمْ غُرْفَةٌ شَاغِرَةٌ؟",
+    "en": "Do you have a room available?",
+    "cat": "p-hotel",
+    "tl": "hal ʿindakum ghurfa shāghira",
+    "ex": [
+      "— هَلْ عِنْدَكُمْ غُرْفَةٌ شَاغِرَةٌ؟ — نَعَمْ، لِكَمْ لَيْلَةً؟",
+      "— Do you have a room available? — Yes, for how many nights?"
+    ],
+    "note": "For two nights: لِلَيْلَتَيْنِ (li-laylatayn); Egyptian لِلِيلْتِين (li-leltēn).",
+    "pair": {
+      "tr": "عَنْدُكُم أُوضَة فَاضْيَة؟",
+      "reg": "casual",
+      "tl": "ʿandukum ʾōḍa faḍya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كَمْ سِعْرُ اللَّيْلَةِ؟",
+    "en": "How much is it per night?",
+    "cat": "p-hotel",
+    "tl": "kam siʿr al-layla",
+    "pair": {
+      "tr": "اللِّيلَة بِكَام؟",
+      "reg": "casual",
+      "tl": "il-lēla bi-kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عِنْدِي حَجْزٌ بِاسْمِ سَارَةَ.",
+    "en": "I have a reservation under the name Sara.",
+    "cat": "p-hotel",
+    "tl": "ʿindī ḥajz bi-smi sāra",
+    "note": "A man says أَنَا حَاجِز (ʾana ḥāgiz). Have your booking number ready: رَقْمُ الْحَجْزِ (raqm al-ḥajz).",
+    "pair": {
+      "tr": "أَنَا حَاجْزَة بِاسْم سَارَة.",
+      "reg": "casual",
+      "en": "I booked under the name Sara. (woman speaking)",
+      "tl": "ʾana ḥagza bism sāra",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُرِيدُ تَسْجِيلَ الدُّخُولِ، مِنْ فَضْلِكَ.",
+    "en": "I'd like to check in, please.",
+    "cat": "p-hotel",
+    "tl": "ʾurīd tasjīl ad-dukhūl, min faḍlik",
+    "note": "Hotel staff often just say ‘check-in’ and ‘check-out’ in English. Check-out is تَسْجِيلُ الْمُغَادَرَةِ.",
+    "reg": "polite",
+    "pair": {
+      "tr": "عَايِز أَسْتِلِم الْأُوضَة لَوْ سَمَحْت.",
+      "reg": "polite",
+      "en": "I'd like to get my room, please.",
+      "tl": "ʿāyiz ʾastilim il-ʾōḍa law samaḥt",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَتَى يَجِبُ أَنْ أُغَادِرَ الْغُرْفَةَ؟",
+    "en": "What time is check-out?",
+    "cat": "p-hotel",
+    "tl": "matā yajib ʾan ʾughādir al-ghurfa",
+    "pair": {
+      "tr": "لَازِم أَسَلِّم الْأُوضَة السَّاعَة كَام؟",
+      "reg": "casual",
+      "en": "What time do I have to give the room back?",
+      "tl": "lāzim ʾasallim il-ʾōḍa is-sāʿa kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَتَى يُقَدَّمُ الْفُطُورُ؟",
+    "en": "What time is breakfast?",
+    "cat": "p-hotel",
+    "tl": "matā yuqaddam al-fuṭūr",
+    "ex": [
+      "— مَتَى يُقَدَّمُ الْفُطُورُ؟ — مِنَ السَّابِعَةِ إِلَى الْعَاشِرَةِ.",
+      "— What time is breakfast? — From seven to ten."
+    ],
+    "note": "Egyptians say فِطَار (fiṭār). In Ramadan the same word means the meal that breaks the fast at sunset.",
+    "pair": {
+      "tr": "الْفِطَار السَّاعَة كَام؟",
+      "reg": "casual",
+      "tl": "il-fiṭār is-sāʿa kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلِ السِّعْرُ يَشْمَلُ الْفُطُورَ؟",
+    "en": "Is breakfast included?",
+    "cat": "p-hotel",
+    "tl": "hali-s-siʿr yashmal al-fuṭūr",
+    "pair": {
+      "tr": "الْفِطَار دَاخِل فِي السِّعْر؟",
+      "reg": "casual",
+      "tl": "il-fiṭār dākhil fi-s-siʿr",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا كَلِمَةُ مُرُورِ الْوَايْ فَايْ؟",
+    "en": "What's the Wi-Fi password?",
+    "cat": "p-hotel",
+    "tl": "mā kalimat murūr al-wāy fāy",
+    "note": "كَلِمَةُ الْمُرُورِ (kalimat al-murūr) is the formal word; in speech everyone says الْبَاسْوُورْد.",
+    "pair": {
+      "tr": "الْبَاسْوُورْد بِتَاع الْوَاي فَاي إِيه؟",
+      "reg": "casual",
+      "tl": "il-baswōrd bitāʿ il-wāy fāy ʾēh",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "الْمُكَيِّفُ لَا يَعْمَلُ.",
+    "en": "The air conditioning isn't working.",
+    "cat": "p-hotel",
+    "tl": "al-mukayyif lā yaʿmal",
+    "note": "Works for anything broken: التِّلِفِزْيُون مِش شَغَّال (it-tilifizyōn mish shaghghāl) ‘the TV isn’t working’.",
+    "pair": {
+      "tr": "التَّكْيِيف مِش شَغَّال.",
+      "reg": "casual",
+      "tl": "it-takyīf mish shaghghāl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَا يُوجَدُ مَاءٌ سَاخِنٌ.",
+    "en": "There's no hot water.",
+    "cat": "p-hotel",
+    "tl": "lā yūjad māʾ sākhin",
+    "pair": {
+      "tr": "مَفِيش مَيَّة سُخْنَة.",
+      "reg": "casual",
+      "tl": "mafīsh mayya sukhna",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُمْكِنُنِي الْحُصُولُ عَلَى مِنْشَفَةٍ أُخْرَى؟",
+    "en": "Could I have another towel?",
+    "cat": "p-hotel",
+    "tl": "hal yumkinunī-l-ḥuṣūl ʿalā minshafa ʾukhrā",
+    "note": "Egyptian تَانْيَة (tanya), ‘another’, works for any request: كُبَّايَة تَانْيَة (kubbāya tanya) ‘another glass’.",
+    "reg": "polite",
+    "pair": {
+      "tr": "مُمْكِن فُوطَة تَانْيَة؟",
+      "reg": "casual",
+      "tl": "mumkin fūṭa tanya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُمْكِنُنِي أَنْ أَتْرُكَ حَقَائِبِي هُنَا؟",
+    "en": "Can I leave my bags here?",
+    "cat": "p-hotel",
+    "tl": "hal yumkinunī ʾan ʾatruk ḥaqāʾibī hunā",
+    "note": "Useful before check-in or after check-out. Bags: حَقَائِب (ḥaqāʾib); Egyptian شُنَط (shunaṭ).",
+    "reg": "polite",
+    "pair": {
+      "tr": "يِنْفَع أَسِيب الشُّنَط هِنَا؟",
+      "reg": "casual",
+      "tl": "yinfaʿ ʾasīb ish-shunaṭ hina",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سَاعِدُونِي!",
+    "en": "Help me!",
+    "cat": "p-emergency",
+    "tl": "sāʿidūnī",
+    "note": "Shouted to the people around you (plural ‘you’). النَّجْدَة! (an-najda) is the classic cry for help.",
+    "pair": {
+      "tr": "اِلْحَقُونِي!",
+      "reg": "casual",
+      "en": "Help! (lit. come quick)",
+      "tl": "ilḥaʾūni",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِتَّصِلْ بِالشُّرْطَةِ!",
+    "en": "Call the police!",
+    "cat": "p-emergency",
+    "tl": "ittaṣil bi-sh-shurṭa",
+    "note": "Egypt: police 122, ambulance 123, fire 180, tourist police 126.",
+    "pair": {
+      "tr": "كَلِّم الْبُولِيس!",
+      "reg": "casual",
+      "tl": "kallim il-bulīs",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سُرِقَ هَاتِفِي.",
+    "en": "My phone has been stolen.",
+    "cat": "p-emergency",
+    "tl": "suriqa hātifī",
+    "ex": [
+      "سُرِقَ هَاتِفِي فِي الْمِتْرُو.",
+      "My phone was stolen on the metro."
+    ],
+    "note": "For insurance you’ll need a police report, مَحْضَر (maḥḍar), from the nearest station.",
+    "pair": {
+      "tr": "الْمُوبَايِل بِتَاعِي اتْسَرَق.",
+      "reg": "casual",
+      "tl": "il-mobāyl bitāʿi-tsaraʾ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "وَقَعَ حَادِثٌ!",
+    "en": "There's been an accident!",
+    "cat": "p-emergency",
+    "tl": "waqaʿa ḥādith",
+    "pair": {
+      "tr": "فِيه حَادْثَة!",
+      "reg": "casual",
+      "tl": "fīh ḥadsa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هُنَاكَ شَخْصٌ مُصَابٌ.",
+    "en": "Someone is hurt.",
+    "cat": "p-emergency",
+    "tl": "hunāka shakhṣ muṣāb",
+    "pair": {
+      "tr": "فِيه حَدّ اتْعَوَّر.",
+      "reg": "casual",
+      "en": "Someone got hurt.",
+      "tl": "fīh ḥadd itʿawwar",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "حَرِيقٌ! اُخْرُجُوا بِسُرْعَةٍ!",
+    "en": "Fire! Get out, quick!",
+    "cat": "p-emergency",
+    "tl": "ḥarīq, ukhrujū bi-surʿa",
+    "pair": {
+      "tr": "حَرِيقَة! اِطْلَعُوا بَرَّه بِسُرْعَة!",
+      "reg": "casual",
+      "tl": "ḥarīʾa, iṭlaʿu barra bi-surʿa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَيْنَ مَرْكَزُ الشُّرْطَةِ؟",
+    "en": "Where's the police station?",
+    "cat": "p-emergency",
+    "tl": "ʾayna markaz ash-shurṭa",
+    "note": "In Egypt it’s قِسْم الشُّرْطَة, or just الْقِسْم (il-ʾism), ‘the precinct’.",
+    "pair": {
+      "tr": "فِين الْقِسْم؟",
+      "reg": "casual",
+      "tl": "fēn il-ʾism",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اُتْرُكْنِي وَشَأْنِي!",
+    "en": "Leave me alone!",
+    "cat": "p-emergency",
+    "tl": "utruknī wa-shaʾnī",
+    "note": "For someone bothering you in the street. Firmer: اِبْعِد عَنِّي! (ibʿid ʿanni) ‘get away from me!’",
+    "pair": {
+      "tr": "سِيبْنِي فِي حَالِي!",
+      "reg": "casual",
+      "tl": "sibni fi ḥāli",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَا أَجِدُ ابْنِي!",
+    "en": "I can't find my son!",
+    "cat": "p-emergency",
+    "tl": "lā ʾajidu-bnī",
+    "note": "My daughter: ابْنَتِي (ibnatī); Egyptian بِنْتِي (binti).",
+    "pair": {
+      "tr": "مِش لَاقِي ابْنِي!",
+      "reg": "casual",
+      "tl": "mish lāʾi-bni",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُرِيدُ الِاتِّصَالَ بِسِفَارَتِي.",
+    "en": "I need to contact my embassy.",
+    "cat": "p-emergency",
+    "tl": "ʾurīd al-ittiṣāl bi-sifāratī",
+    "pair": {
+      "tr": "عَايِز أَكَلِّم السِّفَارَة بِتَاعْتِي.",
+      "reg": "casual",
+      "tl": "ʿāyiz ʾakallim is-sifāra bitaʿti",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِنْتَبِهْ!",
+    "en": "Watch out! / Be careful!",
+    "cat": "p-emergency",
+    "tl": "intabih",
+    "ex": [
+      "اِنْتَبِهْ! سَيَّارَةٌ قَادِمَةٌ.",
+      "Watch out! There’s a car coming."
+    ],
+    "note": "To a woman: اِنْتَبِهِي (intabihī) / خُدِي بَالِك (khudi bālik).",
+    "pair": {
+      "tr": "خُد بَالَك!",
+      "reg": "casual",
+      "tl": "khud bālak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَذِهِ حَالَةٌ طَارِئَةٌ!",
+    "en": "It's an emergency!",
+    "cat": "p-emergency",
+    "tl": "hādhihi ḥāla ṭāriʾa",
+    "note": "At a hospital, head for الطَّوَارِئ (aṭ-ṭawāriʾ), the emergency department.",
+    "pair": {
+      "tr": "دِي حَالَة طَوَارِئ!",
+      "reg": "casual",
+      "tl": "di ḥālit ṭawāriʾ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مِنْ أَيِّ رَصِيفٍ يَنْطَلِقُ الْقِطَارُ؟",
+    "en": "Which platform does the train leave from?",
+    "cat": "p-transport",
+    "tl": "min ʾayy raṣīf yanṭaliq al-qiṭār",
+    "note": "Egyptians say قَطْر (ʾaṭr) for ‘train’ and أَنْهِي (ʾanhi) for ‘which’.",
+    "pair": {
+      "tr": "الْقَطْر بِيْقُوم مِن أَنْهِي رَصِيف؟",
+      "reg": "casual",
+      "tl": "il-ʾaṭr biyʾūm min ʾanhi raṣīf",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "الرِّحْلَةُ مُتَأَخِّرَةٌ.",
+    "en": "The flight is delayed.",
+    "cat": "p-transport",
+    "tl": "ar-riḥla mutaʾakhkhira",
+    "note": "رِحْلَة is a flight (or a trip). Cancelled: أُلْغِيَتْ (ʾulghiyat); Egyptian اتْلَغِت (itlaghit).",
+    "pair": {
+      "tr": "الطَّيَّارَة مِتْأَخَّرَة.",
+      "reg": "casual",
+      "en": "The plane is late.",
+      "tl": "iṭ-ṭayyāra mitʾakhkhara",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَقْعَدٌ بِجَانِبِ النَّافِذَةِ، مِنْ فَضْلِكَ.",
+    "en": "A window seat, please.",
+    "cat": "p-transport",
+    "tl": "maqʿad bi-jānib an-nāfidha, min faḍlik",
+    "note": "An aisle seat: بِجَانِبِ الْمَمَرِّ (bi-jānib al-mamarr).",
+    "reg": "polite",
+    "pair": {
+      "tr": "كُرْسِي جَنْب الشِّبَّاك لَوْ سَمَحْت.",
+      "reg": "polite",
+      "tl": "kursi gamb ish-shibbāk law samaḥt",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَتَى يَبْدَأُ الصُّعُودُ إِلَى الطَّائِرَةِ؟",
+    "en": "When does boarding start?",
+    "cat": "p-transport",
+    "tl": "matā yabdaʾ aṣ-ṣuʿūd ʾilā-ṭ-ṭāʾira",
+    "note": "A boarding pass is بِطَاقَةُ الصُّعُودِ (biṭāqat aṣ-ṣuʿūd); the gate is الْبَوَّابَة (al-bawwāba).",
+    "pair": {
+      "tr": "هَنِرْكَب إِمْتَى؟",
+      "reg": "casual",
+      "en": "When do we board?",
+      "tl": "hanirkab ʾimta",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "تَذْكِرَةُ ذَهَابٍ وَعَوْدَةٍ، مِنْ فَضْلِكَ.",
+    "en": "A return ticket, please.",
+    "cat": "p-transport",
+    "tl": "tadhkirat dhahāb wa-ʿawda, min faḍlik",
+    "note": "One way: ذَهَابٌ فَقَطْ (dhahāb faqaṭ); Egyptian رَايِح بَسّ (rāyiḥ bass).",
+    "reg": "polite",
+    "pair": {
+      "tr": "تَذْكَرَة رَايِح جَاي لَوْ سَمَحْت.",
+      "reg": "polite",
+      "en": "A there-and-back ticket, please.",
+      "tl": "tazkara rāyiḥ gayy law samaḥt",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كَمْ تَسْتَغْرِقُ الرِّحْلَةُ؟",
+    "en": "How long does the journey take?",
+    "cat": "p-transport",
+    "tl": "kam tastaghriq ar-riḥla",
+    "pair": {
+      "tr": "الطَّرِيق بِيَاخُد قَدّ إِيه؟",
+      "reg": "casual",
+      "en": "How long is the trip?",
+      "tl": "iṭ-ṭarīʾ biyākhud ʾadd ʾēh",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَغِّلِ الْعَدَّادَ، مِنْ فَضْلِكَ.",
+    "en": "Please turn on the meter.",
+    "cat": "p-transport",
+    "tl": "shaghghili-l-ʿaddād, min faḍlik",
+    "note": "No meter? Agree on the fare before you get in. Ride-hailing apps are widely used in Egyptian cities.",
+    "reg": "polite",
+    "pair": {
+      "tr": "شَغَّل الْعَدَّاد لَوْ سَمَحْت.",
+      "reg": "polite",
+      "tl": "shaghghal il-ʿaddād law samaḥt",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ هَذَا الْمَقْعَدُ شَاغِرٌ؟",
+    "en": "Is this seat free?",
+    "cat": "p-transport",
+    "tl": "hal hādhā-l-maqʿad shāghir",
+    "ex": [
+      "— هَلْ هَذَا الْمَقْعَدُ شَاغِرٌ؟ — نَعَمْ، تَفَضَّلْ.",
+      "— Is this seat free? — Yes, go ahead."
+    ],
+    "pair": {
+      "tr": "الْكُرْسِي دَه فَاضِي؟",
+      "reg": "casual",
+      "tl": "il-kursi da fāḍi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سَأَنْزِلُ فِي الْمَحَطَّةِ الْقَادِمَةِ.",
+    "en": "I'm getting off at the next stop.",
+    "cat": "p-transport",
+    "tl": "saʾanzil fī-l-maḥaṭṭa-l-qādima",
+    "note": "On a microbus, just call out نَازِل! (nāzil) or عَلَى جَنْب! (ʿala gamb) and the driver will stop.",
+    "pair": {
+      "tr": "نَازِل الْمَحَطَّة الْجَايَّة.",
+      "reg": "casual",
+      "tl": "nāzil il-maḥaṭṭa-l-gayya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مِنْ أَيْنَ أَشْتَرِي التَّذْكِرَةَ؟",
+    "en": "Where do I buy a ticket?",
+    "cat": "p-transport",
+    "tl": "min ʾayna ʾashtarī-t-tadhkira",
+    "note": "Egyptians ‘cut’ (يِقْطَع) a ticket. The ticket window is الشِّبَّاك (ish-shibbāk).",
+    "pair": {
+      "tr": "أَقْطَع التَّذْكَرَة مِنِين؟",
+      "reg": "casual",
+      "tl": "ʾaʾṭaʿ it-tazkara minēn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "فَاتَنِي الْقِطَارُ.",
+    "en": "I missed the train.",
+    "cat": "p-transport",
+    "tl": "fātanī-l-qiṭār",
+    "ex": [
+      "فَاتَنِي الْقِطَارُ، سَأَنْتَظِرُ التَّالِيَ.",
+      "I missed the train, I’ll wait for the next one."
+    ],
+    "note": "Literally ‘the train passed me by’ — the train is the subject. For a plane: فَاتَتْنِي الطَّائِرَةُ (fātatnī-ṭ-ṭāʾira).",
+    "pair": {
+      "tr": "الْقَطْر فَاتْنِي.",
+      "reg": "casual",
+      "tl": "il-ʾaṭr fatni",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَمْ تَصِلْ حَقِيبَتِي.",
+    "en": "My suitcase hasn't arrived.",
+    "cat": "p-transport",
+    "tl": "lam taṣil ḥaqībatī",
+    "note": "Look for the lost-luggage desk: الْأَمْتِعَةُ الْمَفْقُودَةُ (al-ʾamtiʿa al-mafqūda).",
+    "pair": {
+      "tr": "الشَّنْطَة بِتَاعْتِي مَوْصِلِتْش.",
+      "reg": "casual",
+      "tl": "ish-shanṭa bitaʿti mawṣilitsh",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "صَبَاحُ الْخَيْرِ جَمِيعًا.",
+    "en": "Good morning, everyone.",
+    "cat": "p-work",
+    "tl": "ṣabāḥ al-khayr jamīʿan",
+    "note": "Reply: صَبَاحُ النُّورِ (ṣabāḥ an-nūr). In an Egyptian office you’ll also hear صَبَاح الْفُلّ.",
+    "pair": {
+      "tr": "صَبَاح الْخِير يَا جَمَاعَة.",
+      "reg": "casual",
+      "tl": "ṣabāḥ il-khēr ya gamāʿa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "آسِفٌ عَلَى التَّأْخِيرِ.",
+    "en": "Sorry I'm late.",
+    "cat": "p-work",
+    "tl": "ʾāsif ʿalā-t-taʾkhīr",
+    "note": "Literally ‘sorry for the delay’ — also good in emails. A woman says آسِفَةٌ (ʾāsifa).",
+    "reg": "polite",
+    "pair": {
+      "tr": "مَعْلِش، اتْأَخَّرْت.",
+      "reg": "casual",
+      "tl": "maʿlēsh, itʾakhkhart",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "الِاجْتِمَاعُ فِي السَّاعَةِ الْعَاشِرَةِ.",
+    "en": "The meeting is at ten.",
+    "cat": "p-work",
+    "tl": "al-ijtimāʿ fī-s-sāʿa-l-ʿāshira",
+    "pair": {
+      "tr": "الِاجْتِمَاع السَّاعَة عَشَرَة.",
+      "reg": "casual",
+      "tl": "il-igtimāʿ is-sāʿa ʿashara",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنَا فِي اجْتِمَاعٍ الْآنَ.",
+    "en": "I'm in a meeting right now.",
+    "cat": "p-work",
+    "tl": "ʾanā fī-jtimāʿ al-ʾān",
+    "note": "A quick text when you can’t pick up. Egyptians also write عَنْدِي اجْتِمَاع (ʿandi-gtimāʿ), ‘I’ve got a meeting’.",
+    "pair": {
+      "tr": "أَنَا فِي اجْتِمَاع دِلْوَقْتِي.",
+      "reg": "casual",
+      "tl": "ʾana fi-gtimāʿ dilwaʾti",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُمْكِنُ أَنْ نُغَيِّرَ مَوْعِدَ الِاجْتِمَاعِ؟",
+    "en": "Can we reschedule the meeting?",
+    "cat": "p-work",
+    "tl": "hal yumkin ʾan nughayyir mawʿid al-ijtimāʿ",
+    "note": "To postpone it: نُؤَجِّلَ الِاجْتِمَاعَ (nuʾajjil al-ijtimāʿ); Egyptian نِأَجِّل (niʾaggil).",
+    "reg": "polite",
+    "pair": {
+      "tr": "مُمْكِن نِغَيَّر مِيعَاد الِاجْتِمَاع؟",
+      "reg": "casual",
+      "tl": "mumkin nighayyar miʿād il-igtimāʿ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَتَى آخِرُ مَوْعِدٍ لِلتَّسْلِيمِ؟",
+    "en": "When's the deadline?",
+    "cat": "p-work",
+    "tl": "matā ʾākhir mawʿid li-t-taslīm",
+    "note": "Literally ‘when is the last date for handing in?’. Offices often use the English word: الدِّيدْلَايْن (id-dedlāyn).",
+    "pair": {
+      "tr": "آخِر مِيعَاد إِمْتَى؟",
+      "reg": "casual",
+      "tl": "ʾākhir miʿād ʾimta",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سَأُرْسِلُهُ لَكَ الْيَوْمَ.",
+    "en": "I'll send it to you today.",
+    "cat": "p-work",
+    "tl": "saʾursiluh lak al-yawm",
+    "ex": [
+      "— هَلْ أَنْهَيْتَ التَّقْرِيرَ؟ — تَقْرِيبًا، سَأُرْسِلُهُ لَكَ الْيَوْمَ.",
+      "— Have you finished the report? — Almost, I’ll send it to you today."
+    ],
+    "note": "‘Right away’ is حَالًا (ḥālan), the same in Egyptian: هَبْعَتْهُولَك حَالًا.",
+    "pair": {
+      "tr": "هَبْعَتْهُولَك النَّهَارْدَه.",
+      "reg": "casual",
+      "tl": "habʿathūlak in-nahārda",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ وَصَلَتْكَ رِسَالَتِي؟",
+    "en": "Did you get my message?",
+    "cat": "p-work",
+    "tl": "hal waṣalatka risālatī",
+    "note": "رِسَالَة (risāla) is any message — email, text or letter. In the office most people just say الْإِيمِيل (il-ʾīmēl).",
+    "pair": {
+      "tr": "الْإِيمِيل وِصِلَك؟",
+      "reg": "casual",
+      "en": "Did you get the email?",
+      "tl": "il-ʾīmēl wiṣilak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِنْتَهَيْتُ مِنَ التَّقْرِيرِ.",
+    "en": "I've finished the report.",
+    "cat": "p-work",
+    "tl": "intahaytu mina-t-taqrīr",
+    "pair": {
+      "tr": "خَلَّصْت التَّقْرِير.",
+      "reg": "casual",
+      "tl": "khallaṣt it-taʾrīr",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عِنْدِي عَمَلٌ كَثِيرٌ الْيَوْمَ.",
+    "en": "I've got a lot of work today.",
+    "cat": "p-work",
+    "tl": "ʿindī ʿamal kathīr al-yawm",
+    "note": "وَرَايَا (warāya), literally ‘behind me’, means ‘I’ve got … to do’: وَرَايَا مِشْوَار ‘I’ve got an errand to run’.",
+    "pair": {
+      "tr": "وَرَايَا شُغْل كِتِير النَّهَارْدَه.",
+      "reg": "casual",
+      "tl": "warāya shughl kitīr in-nahārda",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَعَانَكَ اللَّهُ!",
+    "en": "Good luck with it all! (lit. may God help you)",
+    "cat": "p-work",
+    "tl": "ʾaʿānaka-llāh",
+    "note": "For someone with a lot on their plate. The usual reply is يَا رَبّ (ya rabb), ‘God willing’, or just a thank-you.",
+    "pair": {
+      "tr": "رَبِّنَا يِقَوِّيك!",
+      "reg": "casual",
+      "en": "More power to you! (lit. may God give you strength)",
+      "tl": "rabbina yiʾawwīk",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سَأَنْصَرِفُ الْآنَ، أَرَاكُمْ غَدًا.",
+    "en": "I'm off now, see you tomorrow.",
+    "cat": "p-work",
+    "tl": "saʾanṣarif al-ʾān, ʾarākum ghadan",
+    "note": "مِرَوَّح (mirawwaḥ) means ‘heading home’, from رَوَّح (rawwaḥ), to go home.",
+    "pair": {
+      "tr": "أَنَا مِرَوَّح، أَشُوفْكُم بُكْرَة.",
+      "reg": "casual",
+      "tl": "ʾana mirawwaḥ, ʾashufkum bukra",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا رَأْيُكَ؟",
+    "en": "What do you think?",
+    "cat": "p-opinions",
+    "tl": "mā raʾyuk",
+    "ex": [
+      "— مَا رَأْيُكَ فِي الْفِيلْمِ؟ — جَمِيلٌ جِدًّا.",
+      "— What did you think of the film? — Really good."
+    ],
+    "note": "About something: مَا رَأْيُكَ فِي…؟ (mā raʾyuk fī…). To a woman: مَا رَأْيُكِ؟ / إِيه رَأْيِك؟",
+    "pair": {
+      "tr": "إِيه رَأْيَك؟",
+      "reg": "casual",
+      "tl": "ʾēh raʾyak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَا أَظُنُّ ذَلِكَ.",
+    "en": "I don't think so.",
+    "cat": "p-opinions",
+    "tl": "lā ʾaẓunn dhālik",
+    "note": "‘I think so’: أَظُنُّ ذَلِكَ (ʾaẓunn dhālik); Egyptian أَعْتَقِد كِدَه (ʾaʿtaʾid kida).",
+    "pair": {
+      "tr": "مَظُنِّش.",
+      "reg": "casual",
+      "tl": "maẓunnish",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَسْتُ مُتَأَكِّدًا.",
+    "en": "I'm not sure.",
+    "cat": "p-opinions",
+    "tl": "lastu mutaʾakkidan",
+    "note": "A woman says لَسْتُ مُتَأَكِّدَةً (mutaʾakkida) / مِش مِتْأَكِّدَة (mish mitʾakkida).",
+    "pair": {
+      "tr": "مِش مِتْأَكِّد.",
+      "reg": "casual",
+      "tl": "mish mitʾakkid",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنَا مُوَافِقٌ تَمَامًا.",
+    "en": "I completely agree.",
+    "cat": "p-opinions",
+    "tl": "ʾanā muwāfiq tamāman",
+    "pair": {
+      "tr": "مُوَافِق مِيَّة فِي الْمِيَّة.",
+      "reg": "casual",
+      "en": "I agree a hundred percent.",
+      "tl": "muwāfiʾ miyya fi-l-miyya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَا أَتَّفِقُ مَعَكَ.",
+    "en": "I don't agree with you.",
+    "cat": "p-opinions",
+    "tl": "lā ʾattafiq maʿak",
+    "note": "A woman says in Egyptian مِش مِتَّفْقَة (mish mittifʾa).",
+    "pair": {
+      "tr": "أَنَا مِش مِتَّفِق مَعَاك.",
+      "reg": "casual",
+      "tl": "ʾana mish mittifiʾ maʿāk",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَذَا يَعْتَمِدُ عَلَى الظُّرُوفِ.",
+    "en": "It depends (on the situation).",
+    "cat": "p-opinions",
+    "tl": "hādhā yaʿtamid ʿalā-ẓ-ẓurūf",
+    "note": "Egyptians just say عَلَى حَسَب, or add what it depends on: عَلَى حَسَب الْجَوّ ‘depends on the weather’.",
+    "pair": {
+      "tr": "عَلَى حَسَب.",
+      "reg": "casual",
+      "en": "It depends.",
+      "tl": "ʿala ḥasab",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَذِهِ نُقْطَةٌ مُهِمَّةٌ.",
+    "en": "That's an important point.",
+    "cat": "p-opinions",
+    "tl": "hādhihi nuqṭa muhimma",
+    "pair": {
+      "tr": "دِي نُقْطَة حِلْوَة.",
+      "reg": "casual",
+      "en": "That's a good point.",
+      "tl": "di nuʾṭa ḥilwa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَفْهَمُ قَصْدَكَ، لَكِنْ لِي رَأْيٌ آخَرُ.",
+    "en": "I see what you mean, but I see it differently.",
+    "cat": "p-opinions",
+    "tl": "ʾafham qaṣdak, lākin lī raʾy ʾākhar",
+    "note": "A polite way to disagree: show you’ve understood first. شَايِف (shāyif), ‘seeing’, is Egyptian for ‘I think’.",
+    "pair": {
+      "tr": "فَاهِم قَصْدَك، بَسّ أَنَا شَايِف غِير كِدَه.",
+      "reg": "casual",
+      "tl": "fāhim ʾaṣdak, bass ʾana shāyif ghēr kida",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بِالضَّبْطِ!",
+    "en": "Exactly!",
+    "cat": "p-opinions",
+    "tl": "bi-ḍ-ḍabṭ",
+    "note": "Egyptians pronounce this ض like ظ and often write it that way: بِالظَّبْط.",
+    "pair": {
+      "tr": "بِالظَّبْط!",
+      "reg": "casual",
+      "tl": "bi-ẓ-ẓabṭ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بِالتَّأْكِيدِ!",
+    "en": "Definitely!",
+    "cat": "p-opinions",
+    "tl": "bi-t-taʾkīd",
+    "note": "Also طَبْعًا (ṭabʿan), ‘of course’, used everywhere.",
+    "pair": {
+      "tr": "أَكِيد!",
+      "reg": "casual",
+      "tl": "ʾakīd",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بِصَرَاحَةٍ، لَا يُعْجِبُنِي.",
+    "en": "Honestly, I don't like it.",
+    "cat": "p-opinions",
+    "tl": "bi-ṣarāḥa, lā yuʿjibunī",
+    "note": "For something feminine: لَا تُعْجِبُنِي / مِش عَاجْبَانِي (mish ʿagbāni).",
+    "pair": {
+      "tr": "بِصَرَاحَة، مِش عَاجِبْنِي.",
+      "reg": "casual",
+      "tl": "bi-ṣarāḥa, mish ʿagibni",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لِمَاذَا تَقُولُ ذَلِكَ؟",
+    "en": "Why do you say that?",
+    "cat": "p-opinions",
+    "tl": "limādhā taqūl dhālik",
+    "pair": {
+      "tr": "لِيه بِتْقُول كِدَه؟",
+      "reg": "casual",
+      "tl": "lēh bitʾūl kida",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِشْتَقْتُ إِلَيْكَ!",
+    "en": "I missed you!",
+    "cat": "p-social",
+    "tl": "ishtaqtu ʾilayk",
+    "ex": [
+      "— اِشْتَقْتُ إِلَيْكَ! — وَأَنَا أَيْضًا!",
+      "— I missed you! — Me too!"
+    ],
+    "note": "To a woman: اِشْتَقْتُ إِلَيْكِ / وَحَشْتِينِي (waḥashtīni). Egyptians answer وِإِنْتَ كَمَان (w-inta kamān) ‘you too’.",
+    "pair": {
+      "tr": "وَحَشْتِنِي!",
+      "reg": "casual",
+      "en": "Missed you!",
+      "tl": "waḥashtini",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَمْ أَرَكَ مُنْذُ زَمَنٍ طَوِيلٍ!",
+    "en": "Long time no see!",
+    "cat": "p-social",
+    "tl": "lam ʾarak mundhu zaman ṭawīl",
+    "pair": {
+      "tr": "فِينَك مِن زَمَان؟",
+      "reg": "casual",
+      "en": "Where have you been all this time?",
+      "tl": "fēnak min zamān",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "تَبْدُو رَائِعًا!",
+    "en": "You look great!",
+    "cat": "p-social",
+    "tl": "tabdū rāʾiʿan",
+    "note": "To a woman: تَبْدِينَ رَائِعَةً (tabdīna rāʾiʿa). Egyptians often add مَا شَاءَ اللَّه to a compliment.",
+    "pair": {
+      "tr": "إِيه الْحَلَاوَة دِي!",
+      "reg": "casual",
+      "en": "Look at you! (lit. what’s all this beauty?)",
+      "tl": "ʾēh il-ḥalāwa di",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا شَاءَ اللَّهُ!",
+    "en": "How wonderful! (praise without envy)",
+    "cat": "p-social",
+    "tl": "mā shāʾa-llāh",
+    "note": "Said when admiring a baby, a home or someone’s success; it shows the praise comes without envy.",
+    "alt": [
+      "mashallah"
+    ],
+    "pair": {
+      "tr": "مَا شَاء اللَّه عَلِيك!",
+      "reg": "casual",
+      "en": "Wow, well done you!",
+      "tl": "mā shāʾ allāh ʿalēk",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنْتَ قَادِرٌ عَلَى ذَلِكَ!",
+    "en": "You can do it!",
+    "cat": "p-social",
+    "tl": "ʾanta qādir ʿalā dhālik",
+    "note": "قَدَّهَا (ʾaddaha) means ‘up to it’. To a woman it stays the same: إِنْتِي قَدَّهَا.",
+    "pair": {
+      "tr": "إِنْتَ قَدَّهَا!",
+      "reg": "casual",
+      "en": "You've got this!",
+      "tl": "ʾinta ʾaddaha",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَحْسَنْتَ!",
+    "en": "Well done!",
+    "cat": "p-social",
+    "tl": "ʾaḥsant",
+    "note": "To a woman: أَحْسَنْتِ (ʾaḥsanti) / بْرَافُو عَلِيكِي (brāfo ʿalēki).",
+    "pair": {
+      "tr": "بْرَافُو عَلِيك!",
+      "reg": "casual",
+      "tl": "brāfo ʿalēk",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَا تَقْلَقْ، كُلُّ شَيْءٍ سَيَكُونُ بِخَيْرٍ.",
+    "en": "Don't worry, everything will be fine.",
+    "cat": "p-social",
+    "tl": "lā taqlaq, kull shayʾ sayakūn bi-khayr",
+    "pair": {
+      "tr": "مَتِقْلَقْش، كُلُّه هَيِبْقَى تَمَام.",
+      "reg": "casual",
+      "tl": "matiʾlaʾsh, kullu hayibʾa tamām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَدْعُوكَ إِلَى الْعَشَاءِ عِنْدَنَا.",
+    "en": "I'd like to invite you to dinner at our place.",
+    "cat": "p-social",
+    "tl": "ʾadʿūk ʾilā-l-ʿashāʾ ʿindanā",
+    "note": "Invitations can be insistent. To decline kindly: مَرَّة تَانْيَة إِن شَاء اللَّه (marra tanya ʾin shāʾ allāh), ‘another time’.",
+    "reg": "polite",
+    "pair": {
+      "tr": "تَعَالَى اتْعَشَّى مَعَانَا.",
+      "reg": "casual",
+      "en": "Come and have dinner with us.",
+      "tl": "taʿāla-tʿashsha maʿāna",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "الْحِسَابُ عَلَيَّ.",
+    "en": "It's on me.",
+    "cat": "p-social",
+    "tl": "al-ḥisāb ʿalayya",
+    "note": "Expect a friendly tug-of-war over the bill — insisting on paying is part of the ritual.",
+    "pair": {
+      "tr": "الْمَرَّادِي عَلَيَّا.",
+      "reg": "casual",
+      "en": "This one's on me.",
+      "tl": "il-marrādi ʿalayya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنْتَ لَطِيفٌ جِدًّا.",
+    "en": "You're very kind.",
+    "cat": "p-social",
+    "tl": "ʾanta laṭīf jiddan",
+    "note": "ذُوق (zōʾ, ‘taste’) praises thoughtfulness and good manners. It stays the same for a woman: إِنْتِي ذُوق.",
+    "pair": {
+      "tr": "إِنْتَ ذُوق أَوِي.",
+      "reg": "casual",
+      "en": "That's so thoughtful of you.",
+      "tl": "ʾinta zōʾ ʾawi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سَعِدْتُ كَثِيرًا بِرُؤْيَتِكَ.",
+    "en": "It was really good to see you.",
+    "cat": "p-social",
+    "tl": "saʿidtu kathīran bi-ruʾyatik",
+    "note": "قَعْدَة (ʾaʿda) — a long sit-down chat over tea — is at the heart of Egyptian social life.",
+    "pair": {
+      "tr": "كَانِت قَعْدَة حِلْوَة أَوِي.",
+      "reg": "casual",
+      "en": "That was a lovely get-together.",
+      "tl": "kānit ʾaʿda ḥilwa ʾawi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِعْتَنِ بِنَفْسِكَ.",
+    "en": "Take care of yourself.",
+    "cat": "p-social",
+    "tl": "iʿtani bi-nafsik",
+    "note": "A warm goodbye. To a woman: اِعْتَنِي بِنَفْسِكِ / خَلِّي بَالِك مِن نَفْسِك.",
+    "pair": {
+      "tr": "خَلِّي بَالَك مِن نَفْسَك.",
+      "reg": "casual",
+      "tl": "khalli bālak min nafsak",
+      "dialect": "Egyptian"
     }
   }
 ];

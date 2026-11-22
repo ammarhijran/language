@@ -198,6 +198,18 @@ main { max-width: 760px; margin: 0 auto; padding: 8px 16px 24px; outline: none; 
 }
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+/* Website: a new version is ready (js/boot.js). Sits above the toast. */
+.update-prompt {
+  position: fixed; left: 50%; transform: translateX(-50%); z-index: 45;
+  bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 64px);
+  display: flex; align-items: center; gap: .4rem; max-width: calc(100% - 32px);
+  padding: .3rem .3rem .3rem 1rem; border-radius: 999px;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); box-shadow: var(--shadow);
+  font-size: .9rem; font-weight: 600; white-space: nowrap;
+}
+.update-prompt > span { margin-right: .3rem; }
+body.bare .update-prompt { bottom: calc(env(safe-area-inset-bottom) + 64px); }
+
 /* ---------- Buttons ---------- */
 
 .btn {
@@ -704,6 +716,7 @@ body.bare { padding-bottom: 24px; }
 .word-list li { display: flex; align-items: center; gap: .25rem; padding: .25rem .75rem .25rem .25rem; border-top: 1px solid var(--border); }
 .word-list li:first-child { border-top: 0; }
 .word-list li.empty { padding: 1rem; justify-content: center; }
+.word-list li.list-more { justify-content: center; padding: .6rem; }
 .word-row { flex: 1; display: flex; flex-direction: column; min-width: 0; padding: .35rem 0; color: var(--text); text-decoration: none; }
 .word-row span { font-size: .85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 

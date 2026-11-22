@@ -9,17 +9,17 @@ It runs as a website (works offline, installable as a PWA) and as native **Andro
 ### Languages
 | | Words | Pronunciation help | Typing accepts |
 | --- | --- | --- | --- |
-| 🇹🇷 Turkish | 561 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
-| 🇺🇦 Ukrainian | 443 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
-| 🇯🇵 Japanese | 429 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
-| 🇸🇦 Arabic (MSA + Egyptian) | 434 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
+| 🇹🇷 Turkish | 942 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
+| 🇺🇦 Ukrainian | 824 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
+| 🇯🇵 Japanese | 809 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
+| 🇸🇦 Arabic (MSA + Egyptian) | 815 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
 
 Each language has its own alphabet/kana chart, sound guides and minimal-pair ear training. Progress, streak and daily goal are kept separately for each language. Switch from the language pill in the top bar.
 
 ### Vocabulary
-- **28 topics per language, chosen by everyday frequency**, in three groups:
-  - **Words** (18 topics): Essentials, Numbers, People & Family, Food & Drink, Time & Days, Colors & Descriptions, Places & Travel, Home & Things, Body & Health, Common Verbs, Questions & Little Words, Nature & Animals, plus More Everyday Verbs, Daily Routine, Feelings & Opinions, Shopping & Money, Connecting Words and Work & Study.
-  - **Phrases** (8 topics, 80 ready-to-use sentences): Small Talk, Café & Restaurant, Shopping, Getting Around, Making Plans, Reactions, Problems & Help, Polite Requests.
+- **52 topics per language, chosen by everyday frequency**, in three groups:
+  - **Words** (30 topics, 540–670 words): Essentials, Numbers, People & Family, Food & Drink, Time & Days, Colors & Descriptions, Places & Travel, Home & Things, Body & Health, Common Verbs, Questions & Little Words, Nature & Animals, More Everyday Verbs, Daily Routine, Feelings & Opinions, Shopping & Money, Connecting Words, Work & Study, Months & Dates, Family & Relationships, Clothes, Free Time & Hobbies, Countries & Languages, Weather, Fruit/Vegetables & Groceries, Doctor & Pharmacy, Phone & Internet, Around Town, Kitchen & Cooking and Jobs.
+  - **Phrases** (20 situations, about 224 ready-to-use sentences): Small Talk, Café & Restaurant, Shopping, Getting Around, Making Plans, Reactions, Problems & Help, Polite Requests, Language Help, Introducing Yourself, At Someone's Home, Wishes & Occasions, Doctor & Pharmacy, Phone & Messages (including real texting forms), Hotel, Emergencies, Trains/Planes/Taxis, At Work, Opinions, Friends & Compliments.
   - **Talk like a local** (2 topics, 45 entries): everyday spoken forms and slang — Turkish *naber, kanka, aynen*; Ukrainian *норм, класно*; Japanese *やばい, マジで, めっちゃ*; Egyptian Arabic *يلا، خلاص، معلش*.
   Most entries have an example sentence and a usage note.
 - **Polite vs everyday speech, side by side.** Words and phrases carry a register (formal, polite, neutral, casual, slang) and, where people say it differently, the other version: *"What people say"* next to *"Proper / polite"* (in Arabic: the Egyptian everyday form next to Modern Standard Arabic). Both sides can be played.
@@ -32,13 +32,20 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Sentence builder:** see the English, hear the sentence if you like, and put shuffled word tiles in the right order. It practises the phrases, example sentences and grammar examples (Practice → Sentences, "Practise these sentences" at the end of a grammar lesson, and now and then in reviews of phrases you know well). Japanese is built from kana tiles; Arabic reads right to left.
 - **Progress:** streak, a 14-day activity chart, mastery per topic, and a searchable word list.
 
+### Read & Listen — longer texts and speeches
+- **16 graded texts per language** (A1 → B1): dialogues, short stories, everyday texts (text messages, signs, a café menu) and short speeches (introducing yourself, a toast, a short talk). Arabic includes everyday Egyptian dialogues. Every line has a translation, and Japanese and Arabic lines their kana / transliteration.
+- **Player:** Play all (line by line, current line highlighted), slow mode, translation shown / on tap / hidden, readings on or off, "Listen first" with the text hidden, and tap any line to hear it.
+- **Tap-a-word glossary:** key words are underlined in the text; tap one for its meaning, reading and audio, and add it to your reviews.
+- **Comprehension questions** with XP and achievements, synced between devices.
+- **Speech practice:** listen & repeat line by line (scored by speech recognition, or record yourself), shadowing with the text fading out over three rounds, and recording the whole speech (up to 1:30) to compare with the model. Dialogues have a **role-play** mode: pick a speaker and say your lines.
+
 ### Game mechanics, achievements and goals
 - **XP and levels**:
   - Every answer earns XP: 10 for right, 6 for "almost", 2 for trying.
   - A combo of 5+ right answers in a row adds a bonus.
   - Bonuses for new words, finished and flawless sessions, the daily goal, speaking drills and ear training.
   - Levels come with titles: Beginner → Explorer → Word Collector → … → Polyglot.
-- **39 achievements** in five groups: Learning, Habits, Pronunciation, Skill and Grammar. Locked ones show "X of Y" progress.
+- **44 achievements** in six groups: Learning, Habits, Pronunciation, Skill, Grammar and Reading. Locked ones show "X of Y" progress.
 - **Goals**:
   - a daily goal
   - three weekly challenges, new every Monday, +100 XP each
@@ -64,13 +71,17 @@ Every code is checked before merging: malformed or absurd values are dropped, so
 A typical code is under 1 kB. Even every word in all four languages fits in about 20 kB.
 
 ### Pronunciation
-- **Native-voice audio** at normal and slow speed, using your device's Turkish text-to-speech voice.
+- **Native-voice audio** at normal and slow speed, using your device's text-to-speech voices — chosen carefully:
+  - the best installed voice for the language (enhanced/neural voices first; robotic novelty voices never), and **never a voice of another language** — if none is installed you get a clear hint instead of the word read in English or Russian;
+  - **Arabic** is spoken in the pausal form the transliteration shows (no unspoken case endings), and Egyptian entries use an Egyptian voice when the device has one;
+  - **Japanese** words whose kanji have several readings (counters, 開く, 辛い, 明日…) are given to the voice with the right reading;
+  - slow mode keeps the voice natural and adds pauses between words in phrases instead of stretching every sound.
 - **Breakdown for every word:**
   - syllables, with the stressed syllable highlighted (tap any syllable to hear it alone)
   - IPA
   - an English-friendly "say it like" respelling (e.g. *merhaba* → `MEHR-hah-bah`)
   - tips on surprising letters (c, ç, ğ, ı, ö, ş, ü, j)
-- **Speak & score:** say a word into the microphone. Speech recognition transcribes it, the app gives you a score, and the letters you missed are highlighted with tips.
+- **Speak & score:** say a word into the microphone. Speech recognition transcribes it, the app gives you a score, and the letters you missed are highlighted with tips. Scoring is word-aware: saying a different word (or the opposite, like *anlıyorum* for *anlamıyorum*) never counts as right, while valid spellings and homophones (多分/たぶん, hala/hâlâ, Egyptian spellings) do.
 - **Record yourself** and hear your attempt played straight after the native audio.
 - **Pronunciation lab:**
   - **Alphabet:** all 29 letters with sounds and example words

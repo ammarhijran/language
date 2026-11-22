@@ -138,6 +138,12 @@ export function analyze(text, stress) {
     const stressIndex = syllables.length > 1 && sw ? Math.min(sw, syllables.length) - 1 : -1;
     return { text: w, syllables, stressIndex };
   });
+  // A preposition with no vowel (в, з, к, й) is read as a letter name on its
+  // own: a tap says it with the word it belongs to (“з собою”).
+  words.forEach((w, wi) => {
+    const next = words[wi + 1];
+    if (next && w.syllables.length === 1 && ![...lower(w.text)].some((c) => VOWELS.has(c))) w.syllables[0].say = `${w.text} ${next.text}`;
+  });
 
   const ipa = words
     .map((w) => w.syllables.map((s, i) => (i === w.stressIndex ? 'ˈ' : i > 0 ? '.' : '') + s.ipa).join(''))

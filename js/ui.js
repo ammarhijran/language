@@ -64,12 +64,89 @@ const ICONS = {
   shuffle: '<path d="M2 18h3.5a5 5 0 0 0 4-2l5-8a5 5 0 0 1 4-2H22"/><path d="m19 3 3 3-3 3"/><path d="M2 6h3.5a5 5 0 0 1 3.8 1.8"/><path d="M14.7 16.2a5 5 0 0 0 3.8 1.8H22"/><path d="m19 15 3 3-3 3"/>',
 };
 
+// Each icon is parsed once and then cloned (a long list has one per row).
+const iconCache = new Map();
+
 export function icon(name, size = 20) {
+  const key = `${name} ${size}`;
+  const cached = iconCache.get(key);
+  if (cached) return cached.cloneNode(true);
   const span = document.createElement('span');
   span.className = 'icon';
   span.setAttribute('aria-hidden', 'true');
   span.innerHTML = `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[name] || ''}</svg>`;
-  return span;
+  if (typeof span.cloneNode !== 'function') return span; // minimal DOMs (tests)
+  iconCache.set(key, span);
+  return span.cloneNode(true);
+}
+
+/**
+ * Fill a list with one row per item, a screenful at a time: `first` rows now,
+ * then `step` more whenever its end comes near the screen, or when the
+ * "Show more" button at the end is pressed. Returns stop(), to call before
+ * the list is filled again and when the screen goes away.
+ */
+export function growList(list, items, row, { first = 60, step = 120, label = 'Show more' } = {}) {
+  let shown = 0;
+  const button = h('button', { type: 'button', class: 'btn small', onclick: () => grow(step, true) });
+  const more = h('li', { class: 'list-more' }, button);
+  const io = typeof IntersectionObserver === 'function'
+    ? new IntersectionObserver((entries) => { if (entries.some((e) => e.isIntersecting)) grow(step); }, { rootMargin: '0px 0px 600px 0px' })
+    : null;
+
+  function grow(n, pressed = false) {
+    const rows = items.slice(shown, shown + n).map(row);
+    shown += rows.length;
+    if (more.isConnected) more.before(...rows); else list.append(...rows);
+    if (shown < items.length) {
+      button.textContent = `${label} (${items.length - shown} more)`;
+      if (!more.isConnected) list.append(more);
+      // Observing again reports at once if the end is still near the screen.
+      io?.unobserve(more);
+      io?.observe(more);
+    } else {
+      io?.disconnect();
+      more.remove();
+    }
+    // Keyboard users continue at the first new row.
+    if (pressed) rows[0]?.querySelector('a[href], button')?.focus({ preventScroll: true });
+  }
+
+  list.replaceChildren();
+  grow(first);
+  return () => io?.disconnect();
+}
+
+/** Debounce: fn runs once calls have paused for `ms`. Has .cancel(). */
+export function debounce(fn, ms) {
+  let t;
+  const run = (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+  run.cancel = () => clearTimeout(t);
+  return run;
+}
+
+/**
+ * A warning while progress can't be saved on this device (storage full or
+ * blocked), kept up to date. `link`: show the way to Settings (for Home).
+ */
+export function storageBanner(ctx, { link = false } = {}) {
+  const el = h('div', { class: 'banner storage-banner', role: 'note', hidden: true });
+  const update = () => {
+    const problem = ctx.store.storageProblem();
+    el.hidden = !problem;
+    if (!problem) return;
+    set(el,
+      h('b', null, 'Your progress can’t be saved on this device. '),
+      problem === 'full'
+        ? 'Its storage for Lisan is full. Free up some space. '
+        : 'This browser is blocking storage for Lisan (private browsing or a privacy setting). Allow site data for Lisan. ',
+      'Until then, what you learn is lost when Lisan closes — export a backup or make a sync code to keep it.',
+      link ? h('div', null, h('a', { class: 'btn small', href: '#/settings' }, 'Back up in Settings')) : null);
+  };
+  update();
+  window.addEventListener('lisan:storage', update);
+  ctx.onCleanup(() => window.removeEventListener('lisan:storage', update));
+  return el;
 }
 
 export function shuffle(arr) {

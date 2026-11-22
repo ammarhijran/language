@@ -4,6 +4,7 @@ import { runSession } from '../session.js';
 import { newCard, review, markKnown, GOOD, AGAIN } from '../srs.js';
 import { recognitionSupported } from '../speech.js';
 import { lessonDrillHref } from './pronounce.js';
+import { readLink } from '../reader.js';
 
 export default function learn(ctx, catId) {
   const { lang, store } = ctx;
@@ -90,6 +91,7 @@ function picker(ctx) {
     h('h1', null, 'Learn'),
     h('p', { class: 'muted' }, `Pick a topic. Each lesson introduces ${ctx.settings.lessonSize} words or phrases with audio and pronunciation tips, then checks you remember them.`),
     grammarLink(ctx),
+    readLink(ctx),
     categorySections(ctx),
     h('a', { class: 'quick-link known-link', href: '#/known' },
       icon('check', 22),

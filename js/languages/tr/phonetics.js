@@ -112,7 +112,11 @@ export function analyze(text, stress) {
       const n = [...t].length;
       const seg = ph.slice(idx, idx + n);
       idx += n;
-      return { text: t, ipa: seg.map((p) => p[0]).join(''), respell: seg.map((p) => p[1]).join('') };
+      const syl = { text: t, ipa: seg.map((p) => p[0]).join(''), respell: seg.map((p) => p[1]).join('') };
+      // No Turkish word starts with ğ, so a voice spells “ğil” out: say what it
+      // sounds like instead — a y between front vowels (değil → “yil”), else nothing (soğuk → “uk”).
+      if (lower(t).startsWith('ğ')) syl.say = (seg[0][0] === 'j' ? 'y' : '') + [...t].slice(1).join('');
+      return syl;
     });
     let stressIndex = -1;
     if (single && syllables.length > 1 && stress !== 0) {

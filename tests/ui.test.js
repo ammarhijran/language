@@ -98,7 +98,7 @@ URL.revokeObjectURL = (u) => { urls.revoked++; revokeUrl(u); };
 
 const { languages } = await import('../js/languages/index.js');
 const { makePack, writtenUnits } = await import('../js/languages/common.js');
-const { recorder, speakPractice, praiseLine, cleanupScope, sayLater } = await import('../js/components.js');
+const { recorder, speakPractice, praiseLine, cleanupScope, sayLater, pronunciationPanel, exampleBlock, playButton, registerBlock } = await import('../js/components.js');
 const { tr, uk, ja, ar } = languages;
 
 const wait = (ms = 5) => new Promise((r) => setTimeout(r, ms));
@@ -111,7 +111,7 @@ function fakeCtx(lang) {
     said: [],
     spoken: [],
     toasts: [],
-    say(text) { this.said.push(text); return Promise.resolve(); },
+    say(text, opts) { this.said.push(text); this.sayOpts = opts; return Promise.resolve(); },
     onCleanup(fn) { cleanups.push(fn); },
     toast(msg) { this.toasts.push(msg); },
     game: { spoke(x) { this.owner.spoken.push(x); } },
@@ -336,4 +336,52 @@ test('speakPractice: a good attempt gets the pack’s title and the word as writ
   assert.equal(title.textContent, 'すばらしい！ Excellent.');
   assert.equal(el.find((e) => e.className === 'diff').textContent, 'コーヒー');
   ctx.leave();
+});
+
+// ---------- Audio speaks entries, not display strings ----------
+
+const buttons = (el) => {
+  const out = [];
+  const walk = (e) => { for (const c of e.children || []) { if (c.tagName === 'BUTTON') out.push(c); if (c.children) walk(c); } };
+  walk(el);
+  return out;
+};
+
+test('play buttons hand ctx.say the entry (its example, its pair), labelled with the text', () => {
+  const ctx = ctxFor(ja);
+  const w = ja.byId('十');
+  const b = playButton(ctx, w.example, { label: 'Play example' });
+  assert.equal(b.getAttribute('aria-label'), 'Play example: 店は十時に開きます。');
+  b.click();
+  assert.equal(ctx.said[0], w.example, 'the example object, so its say.js override and kana reach the voice');
+  exampleBlock(ctx, w).find((e) => e.tagName === 'BUTTON').click();
+  assert.equal(ctx.said[1], w.example);
+  const arCtx = ctxFor(ar);
+  const word = ar.words.find((x) => x.pair?.dialect === 'Egyptian');
+  for (const btn of buttons(registerBlock(arCtx, word))) btn.click();
+  assert.ok(arCtx.said.some((x) => x.dialect === 'Egyptian' && x.tr === word.pair.tr), 'the Egyptian side plays as Egyptian');
+});
+
+test('syllable chips say what they sound like; Arabic chips say their word', () => {
+  const ctx = ctxFor(ja);
+  const chips = buttons(pronunciationPanel(ctx, ja.words.find((w) => w.tr === 'こんにちは'))).filter((b) => b.className.startsWith('syl'));
+  chips.at(-1).click();
+  assert.deepEqual(ctx.said.at(-1), { text: 'わ' }, 'the particle は chip says わ');
+  assert.deepEqual(ctx.sayOpts, { slow: true });
+  const arCtx = ctxFor(ar);
+  const w = ar.words.find((x) => x.tr === 'صَبَاحُ الْخَيْرِ');
+  buttons(pronunciationPanel(arCtx, w)).filter((b) => b.className.startsWith('syl')).at(-1).click();
+  assert.equal(ar.speech(arCtx.said.at(-1)).text, 'الْخَيْرْ');
+});
+
+test('speakPractice listens for Egyptian Arabic in Egyptian entries', () => {
+  const ctx = ctxFor(ar);
+  const el = speakPractice(ctx, ar.words.find((w) => w.dialect === 'Egyptian'));
+  el.find((e) => e.getAttribute('aria-label') === 'Speak now').click();
+  assert.equal(recognitions.at(-1).lang, 'ar-EG');
+  ctx.leave();
+  const msa = ctxFor(ar);
+  speakPractice(msa, ar.words.find((w) => !w.dialect)).find((e) => e.getAttribute('aria-label') === 'Speak now').click();
+  assert.equal(recognitions.at(-1).lang, 'ar-SA');
+  msa.leave();
 });

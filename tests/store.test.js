@@ -15,14 +15,17 @@ globalThis.localStorage = {
 const native = new Map();
 const events = [];
 const handlers = {};
+const appListeners = {};
+let nativeSets = 0;
 globalThis.CustomEvent = class { constructor(type, init) { this.type = type; this.detail = init?.detail; } };
 globalThis.window = {
   Capacitor: {
     isNativePlatform: () => true,
     getPlatform: () => 'android',
-    PluginHeaders: [{ name: 'Preferences' }],
+    PluginHeaders: [{ name: 'Preferences' }, { name: 'App' }],
+    addListener: (name, event, fn) => { appListeners[`${name}.${event}`] = fn; return { remove() {} }; },
     nativePromise: async (name, method, { key, value } = {}) => {
-      if (method === 'set') native.set(key, value);
+      if (method === 'set') { nativeSets++; native.set(key, value); }
       if (method === 'get') return { value: native.get(key) ?? null };
       if (method === 'remove') native.delete(key);
       return {};
@@ -248,4 +251,69 @@ test('native mirror: restores the WebView copy when it was cleared', async () =>
   store._resetAll();
   await store.init();
   assert.ok(store.getCard('tr', 'kedi'));
+});
+
+test('native mirror: written at most every 10 s while the app is used, and when it is left', async () => {
+  const tick = (ms = 0) => new Promise((r) => setTimeout(r, ms));
+  nativeSets = 0;
+  store.setCard('tr', 'a', { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: T, added: T, last: T });
+  await tick();
+  assert.equal(nativeSets, 1, 'the first change goes across straight away');
+  store.setCard('tr', 'b', { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: T, added: T, last: T });
+  await tick(350);
+  assert.ok(JSON.parse(local.get('lisan:v1')).progress.tr.cards.b, 'localStorage has it');
+  assert.equal(nativeSets, 1, 'the native copy waits');
+  appListeners['App.pause']();
+  assert.equal(nativeSets, 2, 'the app going to the background writes it');
+  assert.ok(JSON.parse(native.get('lisan:v1')).progress.tr.cards.b);
+  store.setCard('tr', 'c', { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: T, added: T, last: T });
+  handlers.pagehide.forEach((f) => f());
+  assert.equal(nativeSets, 3, 'so does closing the page');
+  assert.ok(JSON.parse(local.get('lisan:v1')).progress.tr.cards.c);
+});
+
+test('native mirror: when the WebView can’t store anything, the mirror keeps the progress', async () => {
+  const set = globalThis.localStorage.setItem;
+  globalThis.localStorage.setItem = () => { throw Object.assign(new Error('full'), { name: 'QuotaExceededError' }); };
+  try {
+    store.setCard('tr', 'kedi', { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: T, added: T, last: T });
+    await new Promise((r) => setTimeout(r, 0));
+    await new Promise((r) => setTimeout(r, 0));
+    assert.ok(JSON.parse(native.get('lisan:v1')).progress.tr.cards.kedi);
+    assert.equal(store.storageProblem(), null, 'nothing to warn about: it is saved natively');
+  } finally {
+    globalThis.localStorage.setItem = set;
+  }
+  // Next launch: the WebView copy is gone, the mirror brings it back.
+  local.delete('lisan:v1');
+  store._resetAll();
+  await store.init();
+  assert.ok(store.getCard('tr', 'kedi'));
+});
+
+test('native mirror: when the WebView storage fills up, the next launch gets the newest progress, not its outdated copy', async () => {
+  const card = { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: T, added: T, last: T };
+  store.setCard('tr', 'before', card);
+  store.flush();
+  await new Promise((r) => setTimeout(r, 0));
+  assert.ok(JSON.parse(local.get('lisan:v1')).progress.tr.cards.before, 'an older copy is in the WebView');
+  const set = globalThis.localStorage.setItem;
+  globalThis.localStorage.setItem = (k, v) => {
+    if (k === 'lisan:v1') throw Object.assign(new Error('full'), { name: 'QuotaExceededError' });
+    return set(k, v);
+  };
+  try {
+    store.setCard('tr', 'after', card);
+    store.flush();
+    await new Promise((r) => setTimeout(r, 0));
+    await new Promise((r) => setTimeout(r, 0));
+    assert.ok(JSON.parse(native.get('lisan:v1')).progress.tr.cards.after, 'the mirror has it');
+  } finally {
+    globalThis.localStorage.setItem = set;
+  }
+  // Next launch: load() reads the WebView, then init() checks the mirror.
+  store._resetAll();
+  await store.init();
+  assert.ok(store.getCard('tr', 'after'), 'the outdated WebView copy did not win');
+  assert.ok(store.getCard('tr', 'before'));
 });

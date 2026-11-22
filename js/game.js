@@ -34,6 +34,9 @@ export const XP = {
   dailyGoal: 50,
   challenge: 100,
   personalGoal: 150,
+  textFirst: 40, // first completion of a Read & Listen text
+  textCorrect: 5, // per right comprehension answer, once per text per day
+  textPractice: 15, // a finished speech practice or role-play, once per text and mode per day
 };
 
 // ---------- Levels ----------
@@ -102,6 +105,12 @@ export const ACHIEVEMENTS = [
   A('grammar-perfect', '💯', 'Rule Master', 'Score 4/4 on 10 grammar quizzes', 'grammarPerfect', 10, 'Grammar'),
   A('talk-local', '🗣️', 'Talk Like a Local', 'Learn 20 everyday or slang expressions', 'talkWords', 20, 'Learning'),
 
+  A('text-1', '📜', 'First Read', 'Finish a text in Read & Listen', 'texts', 1, 'Reading'),
+  A('texts-5', '🔖', 'Bookworm', 'Finish 5 texts in Read & Listen', 'texts', 5, 'Reading'),
+  A('texts-all', '🎖️', 'Well Read', 'Finish every text in one language', 'textsAll', 1, 'Reading'),
+  A('speech-1', '🎤', 'Public Speaker', 'Practise a speech: repeat it, shadow it or record it', 'speechPractice', 1, 'Reading'),
+  A('roleplay-1', '🎭', 'On Stage', 'Play a part in a dialogue', 'rolePlays', 1, 'Reading'),
+
   A('combo-10', '⚡', 'Hot Streak', 'Get 10 answers right in a row', 'bestCombo', 10, 'Skill'),
   A('combo-25', '☄️', 'On Fire', 'Get 25 answers right in a row', 'bestCombo', 25, 'Skill'),
   A('flawless', '✨', 'Flawless', 'Finish a session of 10+ with every answer right first time', 'flawless', 1, 'Skill'),
@@ -148,7 +157,7 @@ export function challengesForWeek(key) {
 // ---------- State ----------
 
 const COUNTERS = ['lessons', 'answers', 'correct', 'sessions', 'flawless', 'speakGreat', 'speakPerfect', 'earQuizzes', 'earPerfect',
-  'goalsMet', 'challenges', 'bestCombo', 'bestStreak', 'early', 'night', 'personalGoals'];
+  'goalsMet', 'challenges', 'bestCombo', 'bestStreak', 'early', 'night', 'personalGoals', 'speechPractice', 'rolePlays'];
 
 // Counters where the best value counts, rather than the sum across devices.
 const BEST = new Set(['bestCombo', 'bestStreak']);
@@ -180,6 +189,7 @@ function g() {
   s.spoken.best ??= {};
   s.said ??= { great: [], perfect: [] }; // 'lang:wordId' ever said with 90%+ / 100%
   s.grammar ??= {}; // { lang: { lessonId: best score 0..1 } }
+  s.texts ??= {}; // Read & Listen: { lang: { textId: best quiz score 0..1 } }
   const wk = weekKey();
   if (!s.week || s.week.key !== wk) s.week = { key: wk, picks: challengesForWeek(wk), p: {}, done: {}, goalDays: [] };
   if (Object.values(s.week.p).some((v) => typeof v === 'number')) s.week.p = { [me]: s.week.p }; // old format
@@ -261,7 +271,7 @@ function maxWeek(key, v) { const p = weekOwn(); p[key] = Math.max(p[key] || 0, v
 export function metrics() {
   const s = g();
   let words = 0; let mastered = 0; let langs = 0; let topics = 0; let topicsInLang = 0; let streakNow = 0; let alphabet = 0;
-  let grammar = 0; let grammarAll = 0; let grammarPerfect = 0; let talkWords = 0;
+  let grammar = 0; let grammarAll = 0; let grammarPerfect = 0; let talkWords = 0; let texts = 0; let textsAll = 0;
   for (const [code, L] of Object.entries(languages)) {
     const cards = store.getCards(code);
     const ids = Object.keys(cards);
@@ -281,6 +291,9 @@ export function metrics() {
     grammarPerfect += doneIds.filter((id) => g[id] >= 1).length;
     if (L.grammar?.length && doneIds.length >= L.grammar.length) grammarAll++;
     talkWords += L.words.filter((w) => (w.reg === 'casual' || w.reg === 'slang') && cards[w.id] && !cards[w.id].known).length;
+    const t = textsDone(s, code);
+    texts += t.length;
+    if (textIds[code]?.size && t.length >= textIds[code].size) textsAll++;
   }
   c().bestStreak = Math.max(c().bestStreak, streakNow);
   const all = counters();
@@ -288,7 +301,7 @@ export function metrics() {
   // (one per word per day) are kept as a floor so progress never goes back.
   const speakGreat = Math.max(all.speakGreat, s.said.great.length);
   const speakPerfect = Math.max(all.speakPerfect, s.said.perfect.length);
-  return { ...all, speakGreat, speakPerfect, words, mastered, langs, topics, topicsInLang, streak: all.bestStreak, level: level().level, alphabet, grammar, grammarAll, grammarPerfect, talkWords };
+  return { ...all, speakGreat, speakPerfect, words, mastered, langs, topics, topicsInLang, streak: all.bestStreak, level: level().level, alphabet, grammar, grammarAll, grammarPerfect, talkWords, texts, textsAll };
 }
 
 /**
@@ -459,6 +472,70 @@ export function grammarDone({ lang, id, correct, total }) {
   if (!today.ids.includes(key)) {
     today.ids.push(key);
     xp += addXp(lang, 5 * correct, 'grammar');
+  }
+  evaluate(lang);
+  return xp;
+}
+
+// ---------- Read & Listen ----------
+
+// Texts are loaded on demand (not at start-up), so the game only knows a
+// language's texts once the reader has registered them. Until then, finished
+// texts count as they are (sync codes are sanitized), and "every text in one
+// language" waits until the list is known.
+const textIds = {};
+
+/** The reader loaded a language's texts: their ids, for "every text" and to ignore stale ids. */
+export function registerTexts(lang, ids) {
+  textIds[lang] = new Set(ids);
+}
+
+/** Ids of the finished texts in a language (only ones that still exist, once the list is known). */
+function textsDone(s, lang) {
+  const ids = Object.keys(s.texts[lang] || {});
+  return textIds[lang] ? ids.filter((id) => textIds[lang].has(id)) : ids;
+}
+
+export const textBest = (lang, id) => g().texts[lang]?.[id] ?? null;
+
+/**
+ * A finished Read & Listen text (its comprehension questions answered).
+ * Like grammarDone: +40 XP the first time a text is completed, and +5 per
+ * right answer once per text per day, so re-reading is welcome but can't be
+ * farmed. The best score is kept (and synced).
+ */
+export function textDone({ lang, id, correct, total }) {
+  const s = g();
+  const map = (s.texts[lang] ||= {});
+  const first = map[id] == null;
+  map[id] = Math.max(map[id] ?? 0, total ? Math.min(correct, total) / total : 0);
+  const today = spokenToday(s);
+  const key = `text:${lang}:${id}`;
+  let xp = 0;
+  if (first) xp += addXp(lang, XP.textFirst, 'text');
+  if (!today.ids.includes(key)) {
+    today.ids.push(key);
+    xp += addXp(lang, XP.textCorrect * Math.max(0, Math.min(correct, total)), 'text');
+  }
+  evaluate(lang);
+  return xp;
+}
+
+/**
+ * A finished speech practice ('repeat', 'shadow', 'record') or dialogue
+ * role-play ('roleplay'). Counts towards the achievements every time; XP
+ * once per text and mode per day.
+ */
+export function textPractised({ lang, id, mode }) {
+  const s = g();
+  if (mode === 'roleplay') c().rolePlays++;
+  else c().speechPractice++;
+  const today = spokenToday(s);
+  const key = `practice:${lang}:${id}:${mode}`;
+  let xp = 0;
+  if (!today.ids.includes(key)) {
+    today.ids.push(key);
+    xp = addXp(lang, XP.textPractice, 'text-practice');
   }
   evaluate(lang);
   return xp;

@@ -41,6 +41,7 @@
 //    wins, so a goal another device already finished is not paid again.
 //  - achievements, alphabet letters, well-spoken words, challenge completions:
 //    union
+//  - grammar lessons and Read & Listen texts: the best score per lesson / text
 // Older builds read the codes of this one only partly (they don't know
 // tombstones or per-device day logs), so every device should be updated.
 
@@ -347,6 +348,9 @@ function sanitizeGame(g, device) {
   for (const [lang, goal] of pairs(g.goals, 50)) { const s = sanitizeGoal(goal); if (s) out.goals[lang] = s; }
   out.grammar = {};
   for (const [lang, lessons] of pairs(g.grammar, 50)) out.grammar[lang] = numMap(lessons, 1);
+  // Read & Listen: best comprehension score (0..1) per text, like grammar.
+  out.texts = {};
+  for (const [lang, texts] of pairs(g.texts, 50)) out.texts[lang] = numMap(texts, 1);
   const week = sanitizeWeek(g.week, device);
   if (week) out.week = week;
   if (isObj(g.spoken) && typeof g.spoken.day === 'string' && (DATE_RE.test(g.spoken.day) || g.spoken.day === '')) {
@@ -466,6 +470,9 @@ export function mergeGame(local = {}, remote = {}) {
   // grammar lessons: best score per lesson
   out.grammar = clone(local.grammar) || {};
   for (const [lang, lessons] of Object.entries(remote.grammar || {})) out.grammar[lang] = maxMap(out.grammar[lang], lessons);
+  // Read & Listen texts: best score per text
+  out.texts = clone(local.texts) || {};
+  for (const [lang, texts] of Object.entries(remote.texts || {})) out.texts[lang] = maxMap(out.texts[lang], texts);
   // weekly challenges: same week → merge progress; otherwise the newer week
   const lw = local.week;
   const rw = remote.week;

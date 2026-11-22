@@ -1,4 +1,4 @@
-import { h, icon, meter, set } from '../ui.js';
+import { h, icon, meter, set, growList, debounce } from '../ui.js';
 import { computeStats } from '../stats.js';
 import { status, STATUS_LABEL } from '../srs.js';
 import { playButton } from '../components.js';
@@ -22,26 +22,40 @@ export default function progress(ctx, catFilter) {
   let cat = lang.categories.some((c) => c.id === catFilter) ? catFilter : 'all';
   const list = h('ul', { class: 'word-list' });
 
+  const row = (w) => {
+    const st = status(cards[w.id]);
+    return h('li', null,
+      playButton(ctx, w),
+      h('a', { href: `#/word/${encodeURIComponent(w.id)}`, class: 'word-row' },
+        h('b', { lang: lang.code }, w.tr),
+        h('span', { class: 'muted' }, w.en)),
+      h('span', { class: `badge ${st}` }, STATUS_LABEL[st]));
+  };
+
+  // The list sits below the stats, so it is built a screenful at a time
+  // (hundreds of rows at once made opening Progress and every search slow).
+  let stopList = () => {};
   function renderList() {
+    searchLater.cancel(); // a filter changed: no need to redo it for the search too
+    stopList();
     const rows = lang.words.filter((w) => {
       if (cat !== 'all' && w.cat !== cat) return false;
       if (filter !== 'all' && status(cards[w.id]) !== filter) return false;
       return lang.matches(w, query);
     });
-    set(list, ...(rows.length ? rows.map((w) => {
-      const st = status(cards[w.id]);
-      return h('li', null,
-        playButton(ctx, w.tr),
-        h('a', { href: `#/word/${encodeURIComponent(w.id)}`, class: 'word-row' },
-          h('b', { lang: lang.code }, w.tr),
-          h('span', { class: 'muted' }, w.en)),
-        h('span', { class: `badge ${st}` }, STATUS_LABEL[st]));
-    }) : [h('li', { class: 'muted empty' }, 'No words match.')]));
+    if (!rows.length) {
+      stopList = () => {};
+      set(list, h('li', { class: 'muted empty' }, 'No words match.'));
+      return;
+    }
+    stopList = growList(list, rows, row, { first: 60, step: 120, label: 'Show more words' });
   }
+  const searchLater = debounce(renderList, 150);
+  ctx.onCleanup(() => { searchLater.cancel(); stopList(); });
 
   const search = h('input', {
     type: 'search', class: 'search', placeholder: `Search ${lang.name} or English…`, 'aria-label': 'Search words',
-    oninput: (e) => { query = e.target.value.trim(); renderList(); },
+    oninput: (e) => { query = e.target.value.trim(); searchLater(); },
   });
   const statusSelect = h('select', { class: 'select', 'aria-label': 'Filter by status', onchange: (e) => { filter = e.target.value; renderList(); } },
     h('option', { value: 'all' }, 'All statuses'),

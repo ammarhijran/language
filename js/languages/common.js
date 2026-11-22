@@ -18,8 +18,32 @@
 //   displayUnits(text)           — see writtenUnits() below
 //   sentenceTiles(entry)         — the text cut into word tiles by the sentence builder
 //                                  (js/sentences.js), or null when it can't be built
+//   say                          — per-entry text for the voice (the pack's say.js), see speech below
+//   speech(entry, said)          — what the voice reads for an entry, see pack.speech()
+//   speechRegions                — voice locales to prefer, best first (default [speechLang])
+//   slowText(text, entry)        — the text with pauses between words, for slow playback
+// Telling words apart (js/compare.js scoreWord / checkTyped):
+//   negation                     — RegExp for a negative, tested on normalize(text); or
+//   negative(text)               — true when the text is negative (overrides `negation`)
+//   strictNormalize(text)        — finer than normalize() for typed answers (Arabic keeps ʾ/ʿ)
+//   typedVariants(input)         — other readings of what was typed (Turkish: a US-keyboard I as i)
+//   romanKey(text) / looseKey    — Latin text folded across romanisation conventions (null
+//                                  when not Latin): equal keys are right / almost right
+//   sameSound(a, b)              — two entries sound exactly alike (Japanese: same kana)
+//   soundsLike(heard, word)      — { score, note? } when a transcript is the word's sound
+//                                  written another way (Japanese kanji for kana), else null
+//   foreignWord(heard, word)     — the transcript holds a word the target doesn't (Japanese:
+//                                  a kanji it is never written with), so it is another word
+//   wordOrder                    — sentence-builder rules for valid other orders (js/sentences.js)
 
 import { alignDiff } from '../compare.js';
+
+// Scripts a recogniser writes: an alt spelling in another script (a Latin
+// transliteration among Arabic or Cyrillic forms) is for typing only.
+const SCRIPTS = ['Arabic', 'Cyrillic', 'Latin'].map((name) => [name, new RegExp(`\\p{Script=${name}}`, 'u')]);
+const scriptOf = (s) => SCRIPTS.find(([, re]) => re.test(s))?.[0] ?? 'other';
+/** The alt spellings of `w` written in the same script as its headword. */
+export const sameScriptAlts = (w) => (w.alt || []).filter((a) => scriptOf(a) === scriptOf(w.tr));
 
 const DIGITS = /[٠-٩۰-۹０-９]/g;
 
@@ -31,6 +55,31 @@ export function asciiDigits(s) {
     if (c >= 0x06F0) return String(c - 0x06F0);
     return String(c - 0x0660);
   });
+}
+
+/**
+ * A phrase with a pause after each word (", " or the script's own comma), for
+ * slow playback: the voice keeps its natural speed and each word stays clear.
+ * null for a single word. A word that `leans` on the next one (a one-letter
+ * preposition, Ukrainian не) or `clings` to the one before (Turkish mi) is
+ * kept with it, so a pause never splits “не їм” or “alabilir miyiz”.
+ */
+export function pauseBetweenWords(text, comma = ',', { leans = () => false, clings = () => false } = {}) {
+  const words = String(text).trim().split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w));
+  const bare = (w) => w.toLocaleLowerCase().replace(/[^\p{L}\p{M}'’]/gu, '');
+  const chunks = [];
+  let lead = '';
+  words.forEach((w, i) => {
+    const b = bare(w);
+    const open = !/[,;:.!?…،؛]$/u.test(w); // no punctuation after it already
+    if (i < words.length - 1 && open && (/^\p{L}$/u.test(b) || leans(b))) { lead += `${w} `; return; }
+    if (chunks.length && !lead && clings(b) && !/[,;:.!?…،؛]$/u.test(chunks.at(-1))) { chunks[chunks.length - 1] += ` ${w}`; return; }
+    chunks.push(lead + w);
+    lead = '';
+  });
+  if (chunks.length < 2) return null;
+  // The pause goes where a comma or dash already is, or is added; the end keeps its ? or !.
+  return chunks.map((c, i) => (i < chunks.length - 1 ? `${c.replace(/[,;:—–\-،؛]+$/u, '')}${comma}` : c)).join(' ');
 }
 
 // One unit per letter as the learner sees it: a base character plus any
@@ -81,12 +130,32 @@ export function makePack(def) {
     const dialect = w.dialect ? { dialect: w.dialect } : {};
     return reading ? { tr, en, [def.exampleReadingKey]: reading, ...dialect } : { tr, en, ...dialect };
   };
+  // say.js: id → what the voice reads for the headword, or { tr?, ex?, pair? }
+  // for the headword, its example sentence and its other-register form.
+  const sayOf = (id) => {
+    const o = def.say?.[id];
+    return typeof o === 'string' ? { tr: o } : o || {};
+  };
+  // An override that no longer fits its entry (the sentence was rewritten
+  // since) is left out, so the voice never reads an old sentence.
+  const staleSay = [];
+  const fits = (e, text) => {
+    if (!def.sayFits || def.sayFits(text, e)) return true;
+    staleSay.push({ tr: e.tr, say: text });
+    return false;
+  };
+  const withSay = (e, text) => (e && text && fits(e, text) ? { ...e, say: text } : e);
   const words = def.vocab.map((w, index) => {
     const id = w.id ?? normalize(w.tr).replace(/\s+/g, '-');
     // Core words without their own example get one from the pack's examples.js.
     const extra = w.ex ? null : def.extraExamples?.[id];
     const word = extra ? { ...w, ex: [extra[0], extra[1]] } : w;
-    return { ...word, id, index, example: exampleOf(word, extra) };
+    const say = sayOf(id);
+    return {
+      ...word, id, index, example: withSay(exampleOf(word, extra), say.ex),
+      ...(word.pair ? { pair: withSay(word.pair, say.pair) } : {}),
+      ...(say.tr && fits(word, say.tr) ? { say: say.tr } : {}),
+    };
   });
   const byId = new Map(words.map((w) => [w.id, w]));
   const letterInfo = new Map(def.alphabet.map((l) => [l.key ?? l.lower, l]));
@@ -111,7 +180,8 @@ export function makePack(def) {
     voiceHelp: {},
     reading: () => null,
     acceptedAnswers: (w) => [w.tr, ...(w.alt || [])],
-    spokenTargets: (w) => [w.tr],
+    // Other spellings the authors listed count when spoken, if a recogniser could write them.
+    spokenTargets: (w) => [w.tr, ...sameScriptAlts(w)],
     noteSource: (w) => w.tr,
     sentenceTiles: (w) => w.tr,
     // Feedback in English unless the pack has native words for it.
@@ -124,6 +194,7 @@ export function makePack(def) {
     normalizeSpoken,
     words,
     byId: (id) => byId.get(id),
+    staleSay,
     wordsIn: (cat) => words.filter((w) => w.cat === cat),
     letterHint: (ch) => letterInfo.get(ch),
   };
@@ -162,6 +233,93 @@ export function makePack(def) {
     const forms = [w.tr, ...pack.acceptedAnswers(w), pack.reading(w) || ''];
     w.searchKey = [...new Set(forms.flatMap((f) => [normalize(f), stripDiacritics(f)]))].join(' ');
   }
+  // ---------- What the voice reads ----------
+
+  // Display strings passed to ctx.say() (views, older callers) are looked up
+  // here, so they are spoken like the entry, example or grammar example they
+  // came from: its say.js override, Arabic pausal form, Egyptian voice…
+  let textIndex = null;
+  const entryForText = (text) => {
+    if (!textIndex) {
+      textIndex = new Map();
+      const add = (e) => { if (e?.tr && !textIndex.has(e.tr)) textIndex.set(e.tr, e); };
+      for (const w of words) { add(w); add(w.pair && { ...w.pair, en: w.pair.en || w.en }); add(w.example); }
+      for (const l of def.grammar || []) for (const sec of l.sections || []) (sec.examples || []).forEach(add);
+    }
+    return textIndex.get(text) || textIndex.get(text.trim()) || { tr: text };
+  };
+  const speechOf = def.speech || ((e, said) => ({ text: said ?? e.tr, lang: def.speechLang }));
+  const slowText = def.slowText || ((text) => pauseBetweenWords(text));
+
+  /**
+   * What the voice reads for `target` — an entry-like object ({ tr, kana?,
+   * tl?, dialect?, say? }), a display string, or an already resolved
+   * { text, lang }: { text, lang, regions, slow?, alt? }.
+   *   text     the text for the voice: `say` (never shown) or the pack's reading of `tr`
+   *   lang     the locale for the voice and for speech recognition
+   *   regions  voice locales to prefer, best first
+   *   slow     the text with pauses between the words (phrases only), for slow playback
+   *   alt      what to say instead when no voice exists for `lang` itself (Egyptian
+   *            Arabic read by a Standard Arabic voice)
+   */
+  pack.speech = (target) => {
+    if (target == null) return { text: '', lang: def.speechLang, regions: [def.speechLang], slow: null };
+    if (typeof target === 'object' && 'text' in target) return { lang: def.speechLang, ...target };
+    const entry = typeof target === 'string' ? entryForText(target) : target;
+    const said = entry.say ?? def.saySentences?.[entry.tr];
+    const r = { regions: def.speechRegions || [def.speechLang], ...speechOf(entry, said) };
+    if (r.slow === undefined) r.slow = slowText(r.text, entry);
+    return r;
+  };
+
+  // ---------- Every written form of every entry ----------
+
+  // Answers are checked against the whole course, not only the target: a
+  // form that belongs to another entry is that word, however few letters it
+  // differs by (su/şu, там/так, مطار/مطر). Keys are normalize() without
+  // spaces; with strictNormalize, a second, finer map for typed answers.
+  // Built on first use, not at startup.
+  const keyOf = (s, norm = normalize) => norm(String(s)).replace(/\s+/g, '');
+  let lexicon = null;
+  const formsOf = (e) => {
+    const forms = [e.tr];
+    // A pack's own form lists may expect fields an other-register pair lacks.
+    try { forms.push(...pack.acceptedAnswers(e), ...pack.spokenTargets(e)); } catch { /* the headword is enough */ }
+    return forms;
+  };
+  const buildLexicon = () => {
+    const maps = { normal: new Map(), strict: def.strictNormalize ? new Map() : null };
+    const add = (map, norm, form, word, pair) => {
+      const k = keyOf(form, norm);
+      if (!k) return;
+      const list = map.get(k) || [];
+      if (!list.some((x) => x.word === word && x.pair === pair)) list.push({ word, pair, form });
+      map.set(k, list);
+    };
+    for (const w of words) {
+      for (const [e, pair] of [[w, false], ...(w.pair ? [[{ ...w.pair, en: w.pair.en || w.en, cat: w.cat }, true]] : [])]) {
+        for (const f of formsOf(e)) {
+          add(maps.normal, normalize, f, w, pair);
+          if (maps.strict) add(maps.strict, def.strictNormalize, f, w, pair);
+        }
+      }
+    }
+    return maps;
+  };
+  /** [key, [{ word, pair, form }]] for every written form in the course (normalised, no spaces). */
+  pack.lexicon = () => (lexicon ||= buildLexicon()).normal;
+  /**
+   * The entries written `text`: [{ word, pair, form }], `pair` when it is the
+   * entry's other-register form. `normalized`: `text` is already a key.
+   */
+  pack.entriesWritten = (text, { strict = false, normalized = false } = {}) => {
+    lexicon ||= buildLexicon();
+    const map = strict && lexicon.strict ? lexicon.strict : lexicon.normal;
+    const norm = strict && def.strictNormalize ? def.strictNormalize : normalize;
+    return map.get(normalized ? String(text) : keyOf(text, norm)) || [];
+  };
+  if (!def.negative && def.negation) pack.negative = (text) => def.negation.test(normalize(String(text)));
+
   pack.matches = (w, query) => {
     const q = query.trim();
     if (!q) return true;
