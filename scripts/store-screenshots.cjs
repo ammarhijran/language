@@ -4,7 +4,7 @@
 //   node scripts/store-screenshots.cjs
 //
 // Requires Playwright with Chromium (npm i -D playwright && npx playwright install chromium).
-// Speech APIs are mocked so the screens show audio, a Turkish voice and a
+// Speech APIs are mocked so the screens show audio, voices and a
 // pronunciation score without a microphone.
 const { chromium } = require('playwright');
 const fs = require('fs');
@@ -14,12 +14,12 @@ const BASE = process.env.LISAN_URL || 'http://localhost:8000/';
 const OUT = path.join(__dirname, '..', 'store');
 
 const SHOTS = [
-  { id: '01-home', title: 'Learn Turkish words that stick', sub: '306 everyday words in 12 topics', go: '#/' },
-  { id: '02-lesson', title: 'Hear every word, syllable by syllable', sub: 'Native audio, stress, IPA and “say it like” hints', go: '#/learn/essentials' },
-  { id: '03-speak', title: 'Say it — and get instant feedback', sub: 'Pronunciation scores show exactly which letters to fix', go: 'speak' },
-  { id: '04-ear', title: 'Train your ear for tricky sounds', sub: 'ı or i? o or ö? Minimal-pair listening quizzes', go: 'ear' },
-  { id: '05-alphabet', title: 'Master ı, ö, ü, ş and ğ', sub: 'The whole alphabet with sounds and examples', go: '#/speak/alphabet' },
-  { id: '06-progress', title: 'Spaced repetition keeps you on track', sub: 'Reviews arrive right before you’d forget', go: '#/progress' },
+  { id: '01-home', lang: 'tr', title: 'Turkish, Ukrainian, Japanese or Arabic', sub: 'Words, phrases, grammar and pronunciation — works offline', go: '#/' },
+  { id: '02-lesson', lang: 'ja', title: 'Every word with its sound and reading', sub: 'Kana, rōmaji, syllables and an example sentence', go: 'lesson' },
+  { id: '03-speak', lang: 'tr', title: 'Say it — and see what to fix', sub: 'Pronunciation scores show which letters to work on', go: 'speak' },
+  { id: '04-phrasebook', lang: 'ar', title: 'A phrasebook for real situations', sub: 'Polite and everyday forms — Standard and Egyptian Arabic', go: '#/phrases' },
+  { id: '05-read', lang: 'uk', title: 'Read and listen, line by line', sub: 'Dialogues, stories and speeches with a tap-a-word glossary', go: '#/read/uk-the-mitten-tale' },
+  { id: '06-progress', lang: 'tr', title: 'Reviews arrive right before you’d forget', sub: 'Spaced repetition, streaks and daily goals', go: '#/progress' },
 ];
 
 const TARGETS = [
@@ -30,10 +30,13 @@ const TARGETS = [
 ];
 
 function mocks(state) {
+  if (location.protocol === 'about:') return;
   localStorage.setItem('lisan:v1', state);
   const s = window.speechSynthesis;
-  const voice = { name: 'Yelda', lang: 'tr-TR', voiceURI: 'yelda', localService: true, default: false };
-  s.getVoices = () => [voice];
+  const voices = [['Yelda', 'tr-TR'], ['Lesya', 'uk-UA'], ['Kyoko', 'ja-JP'], ['Maged', 'ar-SA'], ['Salma', 'ar-EG']]
+    .map(([name, lang]) => ({ name, lang, voiceURI: name, localService: true, default: false }));
+  window.SpeechSynthesisUtterance = class { constructor(t) { this.text = t; } };
+  s.getVoices = () => voices;
   s.speak = (u) => setTimeout(() => u.onend && u.onend(), 20);
   s.cancel = () => {};
   window.SpeechRecognition = class {
@@ -42,7 +45,7 @@ function mocks(state) {
   };
 }
 
-function seedState() {
+function seedState(lang) {
   const now = Date.now();
   const day = 864e5;
   const learned = ['merhaba', 'selam', 'günaydın', 'iyi-akşamlar', 'iyi-geceler', 'hoşça-kal', 'güle-güle', 'görüşürüz', 'nasılsın', 'iyiyim',
@@ -60,11 +63,11 @@ function seedState() {
     const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     days[key] = { reviews: 8 + ((k * 7) % 13), learned: k % 3 ? 0 : 5, practiced: 4, correct: 8 };
   }
-  return JSON.stringify({ settings: { autoplay: false }, progress: { tr: { cards, days } } });
+  return JSON.stringify({ settings: { autoplay: false, onboarded: true, lang }, progress: { tr: { cards, days } } });
 }
 
 async function capture(browser, t, shot, state) {
-  const ctx = await browser.newContext({ viewport: t.viewport, deviceScaleFactor: t.scale, colorScheme: 'light' });
+  const ctx = await browser.newContext({ viewport: t.viewport, deviceScaleFactor: t.scale, colorScheme: 'light', serviceWorkers: 'block' });
   await ctx.addInitScript(mocks, state);
   const page = await ctx.newPage();
   if (shot.go === 'speak') {
@@ -73,28 +76,31 @@ async function capture(browser, t, shot, state) {
     await page.evaluate(() => { window.__heard = 'günaydin'; });
     await page.click('.speak .mic-btn');
     await page.waitForSelector('.speak-result:not([hidden])');
-    // Show the whole "Practise saying it" card just below the top bar.
-    await page.evaluate(() => {
-      const card = document.querySelector('.speak').closest('.card');
-      const top = card.getBoundingClientRect().top + window.scrollY - document.querySelector('.topbar').offsetHeight - 12;
-      window.scrollTo(0, top);
-    });
-  } else if (shot.go === 'ear') {
-    await page.goto(`${BASE}#/speak/ear`);
-    await page.click('text=Quiz me');
-    await page.waitForSelector('.options.two');
-    await page.waitForTimeout(400);
-    // Pick the right answer so the screen shows a success state.
-    const target = await page.evaluate(() => {
-      const btns = [...document.querySelectorAll('.options.two .option')];
-      return btns.length;
-    });
-    if (target) await page.click('.options.two .option >> nth=0');
+  } else if (shot.go === 'lesson') {
+    await page.goto(`${BASE}#/learn/essentials`);
+    await page.waitForSelector('.intro');
   } else {
     await page.goto(BASE + shot.go);
-    await page.waitForTimeout(300);
+    await page.waitForSelector('.tabbar');
+    await page.waitForTimeout(600);
   }
   await page.waitForTimeout(500);
+  // Achievement pop-ups (the seeded progress earns a few) would cover the screen.
+  for (let i = 0; i < 8 && await page.$('.celebrate'); i++) {
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(350);
+  }
+  // Bring the interesting part of the screen just below the top bar.
+  const focus = { speak: '.speak', '#/phrases': '.chip-scroll', '#/read/uk-the-mitten-tale': '.read-tr' }[shot.go];
+  if (focus) {
+    await page.evaluate((sel) => {
+      const el = document.querySelector(sel);
+      const box = sel === '.speak' ? el.closest('.card') : el;
+      const top = box.getBoundingClientRect().top + window.scrollY - document.querySelector('.topbar').offsetHeight - 12;
+      window.scrollTo(0, top);
+    }, focus);
+    await page.waitForTimeout(300);
+  }
   const buf = await page.screenshot();
   await ctx.close();
   return buf;
@@ -143,8 +149,8 @@ async function graphics(browser) {
     <div style="flex-shrink:0;width:170px;height:170px;border-radius:40px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.3)">${logo.replace('<svg ', '<svg width="170" height="170" ')}</div>
     <div style="color:#fff">
       <div style="font-size:88px;font-weight:800;letter-spacing:-.02em;line-height:1">Lisan</div>
-      <div style="font-size:36px;font-weight:600;margin-top:14px;opacity:.95">Turkish vocabulary &amp; pronunciation</div>
-      <div style="font-size:26px;margin-top:18px;opacity:.85">Merhaba · Teşekkürler · Günaydın</div>
+      <div style="font-size:36px;font-weight:600;margin-top:14px;opacity:.95">Turkish · Ukrainian · Japanese · Arabic</div>
+      <div style="font-size:26px;margin-top:18px;opacity:.85">Merhaba · Привіт · こんにちは · مرحبا</div>
     </div></body>`);
   await page.screenshot({ path: path.join(dir, 'play-feature-graphic-1024x500.png') });
   await page.close();
@@ -152,10 +158,9 @@ async function graphics(browser) {
 
 (async () => {
   const browser = await chromium.launch();
-  const state = seedState();
   for (const t of TARGETS) {
     for (const shot of SHOTS) {
-      const png = await capture(browser, t, shot, state);
+      const png = await capture(browser, t, shot, seedState(shot.lang));
       await compose(browser, t, shot, png);
       process.stdout.write('.');
     }

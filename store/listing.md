@@ -2,7 +2,7 @@
 
 Copy each field into App Store Connect / Google Play Console. The character counts are shown against each store's limit.
 
-> The app now teaches four languages, so this text was rewritten from the Turkish-only version. The **app name** is a suggestion — it is your branding decision (the previous name was “Lisan: Learn Turkish Words”). The screenshots in `store/screenshots/` still show the older design and should be retaken before a store submission.
+> The app now teaches four languages, so this text was rewritten from the Turkish-only version. The **app name** is a suggestion — it is your branding decision (the previous name was “Lisan: Learn Turkish Words”). The screenshots and the feature graphic in `store/` show the current design and all four languages (regenerate them with `node scripts/store-screenshots.cjs`).
 
 ## App name (App Store & Google Play)
 _24 / 30 characters_
