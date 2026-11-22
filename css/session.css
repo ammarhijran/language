@@ -206,3 +206,7 @@ body.in-session .session-head {
 .hf-controls { display: flex; align-items: center; justify-content: center; gap: var(--sp-4); }
 .hf-play { min-width: 9.5rem; justify-content: center; }
 .hf-pause { display: inline-block; width: 14px; height: 16px; border-left: 5px solid currentColor; border-right: 5px solid currentColor; box-sizing: border-box; }
+
+/* Sentence builder by ear (dictation): bigger audio buttons, no meaning until the answer */
+.exercise.by-ear .build-audio .btn { min-height: var(--tap); padding-inline: 1rem; font-size: var(--fs-md); }
+.build-ear-hint { margin: 0 0 var(--sp-2); text-align: center; }

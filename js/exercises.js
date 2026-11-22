@@ -597,10 +597,19 @@ export function build(ctx, word, onDone, meta = {}) {
   const unbind = bindKeys(keys);
   ctx.onCleanup(unbind);
 
-  const el = h('div', { class: 'exercise build' },
-    h('p', { class: 'kicker' }, 'Put the words in order'),
+  // By ear (dictation): the sentence is only heard — its meaning shows with the
+  // answer. Without a voice for the language it falls back to the meaning.
+  const byEar = !!meta.byEar && canSpeak(lang.speech(s.audio ?? s.audioText).lang) !== false;
+  const meaning = h('p', { class: 'prompt-word en build-en', hidden: byEar }, s.en, ' ', regBadge(s));
+  if (byEar) {
+    const t = setTimeout(() => Promise.resolve(ctx.say(s.audio ?? s.audioText)).then((ok) => { if (ok === false) meaning.hidden = false; }), 350);
+    ctx.onCleanup(() => clearTimeout(t));
+  }
+  const el = h('div', { class: `exercise build${byEar ? ' by-ear' : ''}` },
+    h('p', { class: 'kicker' }, byEar ? 'Build what you hear' : 'Put the words in order'),
     h('div', { class: 'prompt build-prompt' },
-      h('p', { class: 'prompt-word en build-en' }, s.en, ' ', regBadge(s)),
+      meaning,
+      byEar ? h('p', { class: 'hint build-ear-hint' }, 'Listen as often as you like — the meaning comes with the answer.') : null,
       // Labelled buttons, not playButton(): its label would read the answer out to screen readers.
       h('div', { class: 'build-audio' },
         h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(s.audio ?? s.audioText) }, icon('volume', 14), 'Listen'),

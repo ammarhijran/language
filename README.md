@@ -40,6 +40,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Spaced-repetition reviews** (an SM-2-style scheduler, like Anki) bring each word back just before you're likely to forget it.
 - **Exercises get harder as you learn:** listening → reading → choosing the Turkish → flashcards → typing → speaking. The typing exercise has buttons for ç ğ ı ö ş ü. If you only get a special letter wrong, you're told exactly which one.
 - **Practice mode** gives you free rounds on any topic, in any mode. It doesn't change your review schedule. It can also drill your ★ saved phrases or your **tricky words** — the ones you keep forgetting in reviews.
+- **Dictation:** the sentence builder by ear — hear a sentence and build it from tiles; the meaning comes with the answer.
 - **Hands-free listening:** a round that plays by itself — the word, a pause to say it aloud, the word again, then its meaning in English. For walking, cooking or commuting.
 - **Sentence builder:** see the English, hear the sentence if you like, and put shuffled word tiles in the right order. It practises the phrases, example sentences and grammar examples (Practice → Sentences, "Practise these sentences" at the end of a grammar lesson, and now and then in reviews of phrases you know well). Japanese is built from kana tiles; Arabic reads right to left.
 - **Progress:** streak, a 14-day activity chart, mastery per topic, and a searchable word list.

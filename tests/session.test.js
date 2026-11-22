@@ -358,6 +358,24 @@ test('build: Skip and Check sit on the bar, which becomes the answer sheet', () 
   ctx.leave?.();
 });
 
+test('build by ear: the meaning stays hidden until the answer (when the device can speak the language)', () => {
+  const ctx = exCtx(tr);
+  const phrase = tr.words.find((w) => w.tr.split(' ').length >= 3 && phraseSentence(tr, w));
+  const el = EXERCISES.build(ctx, phrase, () => {}, { byEar: true });
+  const meaning = el.find(cls('build-en'));
+  const byEar = el.classList.contains('by-ear');
+  assert.equal(meaning.hidden, byEar, 'hidden exactly when the round is by ear');
+  assert.match(el.find(cls('kicker')).textContent, byEar ? /Build what you hear/ : /Put the words in order/);
+  const bar = sheetOf(el);
+  for (const t of el.find(cls('build-bank')).findAll(cls('tile'))) t.click();
+  byText(bar, 'Check').click();
+  assert.ok(bar.textContent.includes(phrase.en), 'the answer sheet gives the meaning');
+  ctx.leave?.();
+  // the plain builder always shows it
+  const plain = EXERCISES.build(exCtx(tr), phrase, () => {});
+  assert.equal(plain.find(cls('build-en')).hidden, false);
+});
+
 test('flashcard: Show answer on the bar, then the rating row in it', () => {
   const ctx = exCtx(ja);
   const [w] = words(ja, 1);

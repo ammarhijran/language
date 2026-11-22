@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Dictation** (Practice → Dictation): the sentence builder by ear — you hear a sentence (normal or slow, as often as you like) and build it from the word tiles; its meaning appears with the answer. Works with every sentence set the builder has, in all four languages.
 - **Compare voices** (Settings → Audio): when the device has more than one voice for the language, each is listed with its quality (Enhanced, Premium, needs internet) — tap ▶ to hear the same sentence in each and keep the most natural one.
 - **Two more long speeches per language:** a farewell speech to colleagues, and a short class presentation about a holiday — Ramazan Bayramı, Ukrainian Easter, the Japanese New Year and Eid al-Fitr — each with glossary and questions, and practised like the other speeches (listen & repeat, shadowing, recording). 22 texts per language, 6 of them speeches.
 - **More words to tap in every text:** besides a text’s own glossary, any other word or phrase of the course in it can be tapped for its meaning, audio and “Add to reviews” (a quieter underline; whole words only). About three times as many tappable words per text.

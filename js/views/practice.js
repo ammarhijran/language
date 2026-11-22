@@ -14,6 +14,7 @@ const MODES = [
   { id: 'meaning', name: 'Reading', desc: 'See it, pick the meaning', icon: 'search' },
   { id: 'flashcard', name: 'Flashcards', desc: 'Recall and self-rate', icon: 'repeat' },
   { id: 'build', name: 'Sentences', desc: 'Put the words in order', icon: 'tiles' },
+  { id: 'dictation', name: 'Dictation', desc: 'Hear a sentence, build it', icon: 'ear' },
   { id: 'handsfree', name: 'Hands-free', desc: 'Listen and repeat, no tapping', icon: 'volume' },
 ];
 
@@ -42,7 +43,7 @@ function typeFor(mode, word) {
 
 export default function practice(ctx, mode, scope) {
   if (!mode || !MODES.some((m) => m.id === mode)) return setup(ctx);
-  if (mode === 'build') return sentenceRound(ctx, scope);
+  if (mode === 'build' || mode === 'dictation') return sentenceRound(ctx, scope, mode === 'dictation');
   const pool = wordsFor(ctx, scope);
   if (pool.length < 4) return notEnough('Not enough words yet', 'Learn a lesson first, or pick a topic to practise from.');
   if (mode === 'handsfree') return handsFree(ctx, pool);
@@ -89,7 +90,7 @@ function summary(ctx, right, answered, back = null) {
 }
 
 /** Sentences mode: build up to ROUND sentences of the scope from shuffled word tiles. */
-function sentenceRound(ctx, scope = 'learned') {
+function sentenceRound(ctx, scope = 'learned', byEar = false) {
   const { lang } = ctx;
   const pool = sentencesFor(lang, scope, { cards: ctx.store.getCards(lang.code) });
   const lesson = scope.startsWith('grammar:') ? (lang.grammar || []).find((l) => `grammar:${l.id}` === scope) : null;
@@ -100,15 +101,15 @@ function sentenceRound(ctx, scope = 'learned') {
       : lesson ? 'This lesson has too few example sentences to build.'
         : 'This topic has too few example sentences to build. Phrases topics have plenty — or try all of them.';
     return notEnough('Not enough sentences yet', hint,
-      h('a', { class: 'btn primary wide', href: '#/practice/build/all' }, 'Practise all sentences', icon('arrow', 18)));
+      h('a', { class: 'btn primary wide', href: `#/practice/${byEar ? 'dictation' : 'build'}/all` }, 'Practise all sentences', icon('arrow', 18)));
   }
 
-  const items = shuffle(pool).slice(0, ROUND).map((s) => ({ word: s, type: 'build', meta: { sentence: s } }));
+  const items = shuffle(pool).slice(0, ROUND).map((s) => ({ word: s, type: 'build', meta: { sentence: s, byEar } }));
   let right = 0;
   let answered = 0;
 
   return h('div', { class: 'view' }, runSession(ctx, {
-    label: 'Sentence practice',
+    label: byEar ? 'Dictation' : 'Sentence practice',
     exitHref: lessonHref || '#/practice',
     items,
     onResult(item, r) {
@@ -188,7 +189,7 @@ function setup(ctx) {
     return counts.get(id);
   };
   function refreshScopes() {
-    const build = mode === 'build';
+    const build = mode === 'build' || mode === 'dictation';
     scopeTitle.textContent = build ? 'Sentences from' : 'What to practise';
     pills.forEach((s, i) => {
       const few = build && sentenceCount(s.id) < MIN_SENTENCES;
