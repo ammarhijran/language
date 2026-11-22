@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- **Daily reminder** in the Android and iOS apps (Settings → Daily reminder): a local notification at the time you choose that says what is waiting, skips today once your goal is met, and stops by itself after two weeks without opening the app. No exact-alarm permission is used; nothing leaves the device.
 - **Design pass:**
   - Arabic and Japanese render in proper Naskh / Japanese fonts at readable sizes, Arabic examples line up with their transliteration, and Japanese readings never leave a dangling "·".
   - Separate colours for actions (indigo), progress and success (green), the brand (logo red) and errors, so finished topics no longer look like alerts; better dark-mode surfaces and visible progress tracks.

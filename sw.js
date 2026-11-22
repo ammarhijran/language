@@ -44,6 +44,7 @@ const ASSETS = [
   'js/exercises.js',
   'js/native.js',
   'js/reader.js',
+  'js/reminders.js',
   'js/sentences.js',
   'js/session.js',
   'js/speech.js',

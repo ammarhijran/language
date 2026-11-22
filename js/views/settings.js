@@ -3,6 +3,7 @@ import * as speech from '../speech.js';
 import { voiceBanner } from '../components.js';
 import { GOALS } from './welcome.js';
 import { languageCards } from './language.js';
+import { remindersSupported, askPermission, parseTime, DEFAULT_TIME } from '../reminders.js';
 
 export default function settings(ctx) {
   const { lang, store } = ctx;
@@ -79,6 +80,39 @@ export default function settings(ctx) {
     location.reload();
   }
 
+  // Daily reminder: a local notification scheduled on the device (apps only).
+  const reminderNote = h('p', { class: 'hint', 'aria-live': 'polite' });
+  const timeOk = (t) => { const { hour, minute } = parseTime(t); return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`; };
+  const reminderTime = h('input', {
+    type: 'time', class: 'select', id: 'reminder-time', value: timeOk(s.reminderTime || DEFAULT_TIME), disabled: !s.reminder,
+    onchange: (e) => { store.updateSettings({ reminderTime: timeOk(e.target.value) }); ctx.planReminders?.(); },
+  });
+  const reminderOn = h('input', {
+    type: 'checkbox', checked: !!s.reminder,
+    onchange: async (e) => {
+      const box = e.target;
+      if (box.checked && !(await askPermission())) {
+        box.checked = false;
+        reminderNote.textContent = 'Notifications are turned off for Lisan. Allow them in your phone’s Settings → Apps → Lisan → Notifications, then switch this on again.';
+      } else {
+        reminderNote.textContent = box.checked ? `You’ll get one reminder a day at ${reminderTime.value} — skipped once you’ve met your goal.` : '';
+      }
+      store.updateSettings({ reminder: box.checked });
+      reminderTime.disabled = !box.checked;
+      ctx.planReminders?.();
+    },
+  });
+  const reminderCard = h('section', { class: 'card form' },
+    h('h2', { class: 'card-title' }, 'Daily reminder'),
+    remindersSupported()
+      ? [
+        h('label', { class: 'field inline' }, reminderOn, h('span', null, `Remind me to practise ${lang.name}`)),
+        h('label', { class: 'field', for: 'reminder-time' }, h('span', null, 'At'), reminderTime),
+        h('p', { class: 'hint' }, 'Reminders are scheduled on this phone — nothing is sent anywhere. Today’s is skipped once you reach your daily goal, and they stop by themselves if you don’t open the app for two weeks.'),
+        reminderNote,
+      ]
+      : h('p', { class: 'hint' }, 'Daily reminders are available in the Lisan app for Android and iOS. A website can’t reliably notify you while it is closed.'));
+
   return h('div', { class: 'view' },
     h('h1', null, 'Settings'),
     storageBanner(ctx),
@@ -99,6 +133,7 @@ export default function settings(ctx) {
       h('h2', { class: 'card-title' }, 'Motivation'),
       h('label', { class: 'field inline' }, gameOn, h('span', null, 'Game features — XP, levels, weekly challenges, achievements and celebrations')),
       h('p', { class: 'hint' }, 'Daily goal, streaks and personal goals stay on either way.')),
+    reminderCard,
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'Lessons'),
       h('label', { class: 'field' }, h('span', null, 'Daily goal'),

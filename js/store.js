@@ -30,6 +30,8 @@ const DEFAULTS = {
   dailyGoal: 20, // exercises per day (reviews + new words + practice)
   onboarded: false,
   gameOn: true, // XP, levels, achievements, challenges and celebrations
+  reminder: false, // daily study reminder (Android / iOS apps)
+  reminderTime: '19:00',
 };
 
 // Allowed ranges for numeric settings (the same limits the Settings view uses).

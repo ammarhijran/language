@@ -15,6 +15,10 @@
       "launchAutoHide": true,
       "backgroundColor": "#c8102e",
       "showSpinner": false
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_lisan",
+      "iconColor": "#c8102e"
     }
   }
 }

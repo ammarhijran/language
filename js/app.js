@@ -6,6 +6,7 @@ import { dueWords } from './stats.js';
 import { glyph } from './components.js';
 import { onBackButton, backAction, leaveApp } from './native.js';
 import { bootDone } from './boot.js';
+import { syncReminders, onReminderTap } from './reminders.js';
 import { sessionBack } from './session.js';
 import home from './views/home.js';
 import learn from './views/learn.js';
@@ -361,6 +362,22 @@ if (!store.getSettings().onboarded) {
 }
 initCelebrations(ctx);
 window.addEventListener('lisan:goal-reached', (e) => game.goalMet(e.detail?.lang || lang.code));
+
+// Daily reminders (apps only): re-planned at start, when settings change and
+// when today's goal is met, so each message says what is really waiting.
+function planReminders() {
+  const cards = Object.values(store.getCards(lang.code));
+  return syncReminders({
+    settings: store.getSettings(),
+    langName: lang.name,
+    dueAt: (t) => cards.filter((c) => c.due <= t).length,
+    streak: store.streak(lang.code),
+    goalMetToday: store.getDay(lang.code).goalMet,
+  });
+}
+ctx.planReminders = planReminders;
+window.addEventListener('lisan:goal-reached', planReminders);
+onReminderTap((route) => ctx.go(route));
 window.addEventListener('lisan:activity', (e) => game.checkRepair(e.detail?.lang || lang.code));
 // Show the dot on the Me tab when something is unlocked.
 game.onReward((r) => {
@@ -374,3 +391,4 @@ render();
 // The first screen is up: drop the loading screen; on the website, also
 // register the service worker (offline files, update prompt).
 bootDone(ctx);
+planReminders();

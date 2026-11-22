@@ -11,6 +11,7 @@ It runs as a website (works offline, installable as a PWA) and as native **Andro
 - **Topic pages** list every entry with its reading, register, audio and ★, with Learn next 5 / Practise / Sentences / Say them.
 - **Phrasebook:** 220+ ready-to-use phrases in 22 situations, searchable, with a polite ⇄ everyday switch (MSA ⇄ Egyptian in Arabic), ★ favourites (synced between devices) and a big-text **Show** mode for showing your phone to someone.
 - **Search** (top bar) finds words, phrases, topics, grammar lessons and texts by script, reading or English.
+- **Daily reminder** (Android and iOS apps): one notification a day at the time you choose, saying what's waiting ("12 Turkish words are ready for review"), skipped once you've met your goal. Scheduled on the device; nothing is sent anywhere.
 - **Continue where you left off:** the app remembers your topic, and the learning path mixes word topics, phrase situations and everyday speech. Leaving a lesson half-way keeps the words you've seen.
 - **Focused lessons:** sessions run full screen; after each answer a bottom sheet shows right/wrong with the answer, and Continue is always in reach.
 

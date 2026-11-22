@@ -90,6 +90,7 @@ To build the bundle on your own computer, set the same four values as `LISAN_KEY
    > - **Device backups.** The app allows Android's own backup (`android:allowBackup="true"`), so Android may copy Lisan's data into the user's Google account backup and restore it when the app is reinstalled. Android does this under the user's account; you never receive the data. The privacy policy says so.
    > - **Deleting data.** *Settings → Reset progress* clears only the current language's words and daily history. *Settings → Delete all my data* erases everything Lisan stored on that device. There's no data on your side to delete.
    > - **Speech.** Speech is turned into text by Android's own speech-recognition service, and the app only keeps the resulting text in memory to score it. If you'd rather be conservative, you can declare *Audio → Voice or sound recordings*, processed ephemerally, not shared, for app functionality.
+   > - **Reminders.** The optional daily reminder is a local notification scheduled on the device (`POST_NOTIFICATIONS`, asked for only when the learner switches it on). No push service, no server, and no exact-alarm permission.
 4. **Testing → Internal testing:**
    1. Create a release and upload the `.aab`.
    2. Accept **Play App Signing** when asked. Google keeps the final signing key and your upload key can be reset if lost.
