@@ -2,6 +2,7 @@
 import { categories as baseCategories, vocab as baseVocab } from './vocab.js';
 import { categories as moreCategories, vocab as moreVocab } from './more.js';
 import { lessons } from './grammar.js';
+import { exampleReadings } from './readings.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyzeKana, romaji, toHiragana, hasKana, morae } from './kana.js';
 import { makePack } from '../common.js';
@@ -35,6 +36,8 @@ const plainKana = (w) => w.kana.replace(/\s+/g, '');
 const romanOf = (w) => w.rom ?? romaji(w.kana);
 
 export default makePack({
+  exampleReadings,
+  exampleReadingKey: 'kana',
   code: 'ja',
   name: 'Japanese',
   nativeName: '日本語',
@@ -90,7 +93,7 @@ export default makePack({
   spokenTargets: (w) => [...new Set([w.tr, plainKana(w)])],
   noteSource: (w) => plainKana(w),
   // Written Japanese has no spaces between words: sentence-builder tiles are the
-  // spaced kana reading, so sentences without one (example sentences) are skipped.
+  // spaced kana reading, so a sentence without one is skipped.
   sentenceTiles: (w) => w.kana || null,
   normalize,
   stripDiacritics,

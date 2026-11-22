@@ -7,6 +7,7 @@
 import { categories as baseCategories, vocab as baseVocab } from './vocab.js';
 import { categories as moreCategories, vocab as moreVocab } from './more.js';
 import { lessons } from './grammar.js';
+import { exampleReadings } from './readings.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
 import { analyzeTranslit, asciiTranslit } from './translit.js';
 import { makePack } from '../common.js';
@@ -41,6 +42,8 @@ export function stripDiacritics(s) {
 }
 
 export default makePack({
+  exampleReadings,
+  exampleReadingKey: 'tl',
   code: 'ar',
   name: 'Arabic',
   nativeName: 'العربية',

@@ -70,10 +70,20 @@ export function makePack(def) {
   const normalize = def.normalize;
   const stripDiacritics = def.stripDiacritics || normalize;
 
+  // Example sentences as entry-like objects, with their reading (Japanese kana,
+  // Arabic transliteration) when the pack provides one: shown under the example
+  // and used for sentence-builder tiles.
+  const exampleOf = (w) => {
+    if (!w.ex) return undefined;
+    const [tr, en] = w.ex;
+    const reading = def.exampleReadings?.[tr];
+    return reading ? { tr, en, [def.exampleReadingKey]: reading } : { tr, en };
+  };
   const words = def.vocab.map((w, index) => ({
     ...w,
     id: w.id ?? normalize(w.tr).replace(/\s+/g, '-'),
     index,
+    example: exampleOf(w),
   }));
   const byId = new Map(words.map((w) => [w.id, w]));
   const letterInfo = new Map(def.alphabet.map((l) => [l.key ?? l.lower, l]));

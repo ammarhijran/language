@@ -105,8 +105,8 @@ export function wordSentences(lang, word, group = lang.categories.find((c) => c.
     }
   }
   if (word.ex) {
-    const [tr, en] = word.ex;
-    out.push(makeSentence(lang, { tr, en }, { kind: 'example', wordId: word.id }, `example:${word.id}`));
+    const example = word.example || { tr: word.ex[0], en: word.ex[1] };
+    out.push(makeSentence(lang, example, { kind: 'example', wordId: word.id }, `example:${word.id}`));
   }
   return out.filter(Boolean);
 }

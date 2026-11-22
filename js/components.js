@@ -63,10 +63,15 @@ export function readingLine(ctx, word, cls = 'reading') {
 
 export function exampleBlock(ctx, word) {
   if (!word.ex) return null;
-  const [tr, en] = word.ex;
+  const ex = word.example || { tr: word.ex[0], en: word.ex[1] };
+  // Kana · rōmaji (Japanese) or transliteration (Arabic) when the pack has one.
+  const reading = ex.kana || ex.tl ? ctx.lang.reading(ex) : null;
   return h('div', { class: 'example' },
-    playButton(ctx, tr, { label: 'Play example' }),
-    h('div', null, h('p', { class: 'ex-tr', lang: ctx.lang.code }, tr), h('p', { class: 'ex-en' }, en)),
+    playButton(ctx, ex.tr, { label: 'Play example' }),
+    h('div', null,
+      h('p', { class: 'ex-tr', lang: ctx.lang.code }, ex.tr),
+      reading ? h('p', { class: 'reading small' }, reading) : null,
+      h('p', { class: 'ex-en' }, ex.en)),
   );
 }
 
