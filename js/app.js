@@ -13,6 +13,7 @@ import learn from './views/learn.js';
 import review from './views/review.js';
 import practice from './views/practice.js';
 import numbersView from './views/numbers.js';
+import placementView from './views/placement.js';
 import pronounce from './views/pronounce.js';
 import progress from './views/progress.js';
 import settingsView from './views/settings.js';
@@ -69,6 +70,7 @@ const ROUTES = {
   search,
   me,
   numbers: numbersView,
+  placement: placementView,
 };
 
 // Bottom navigation: Home (today), Learn (topics, grammar, texts), Practice
@@ -82,7 +84,7 @@ const TABS = [
 ];
 // The tab each screen belongs to (a screen with no entry is its own tab).
 const TAB_OF = {
-  topic: 'learn', grammar: 'learn', read: 'learn', known: 'learn', word: 'learn',
+  topic: 'learn', grammar: 'learn', read: 'learn', known: 'learn', word: 'learn', placement: 'learn',
   review: 'practice', speak: 'practice', numbers: 'practice',
   progress: 'me', journey: 'me', settings: 'me', sync: 'me', language: 'me',
   search: null, welcome: null,
@@ -256,7 +258,7 @@ function saveStack() {
 }
 /** Screens that run a lesson, review or round: going back to one would start it again. */
 const isSession = (name, params) => name === 'review' || (name === 'learn' && !!params[0] && params[0] !== 'g')
-  || (name === 'practice' && !!params[0]) || name === 'welcome';
+  || (name === 'practice' && !!params[0]) || name === 'welcome' || (name === 'placement' && params[0] === 'go');
 
 /**
  * Move `here` to the history entry being shown and return its record from
@@ -293,7 +295,7 @@ function titleOf(name, params) {
     case 'grammar': return params[0] ? (lang.grammar || []).find((l) => l.id === params[0])?.title || 'Grammar' : 'Grammar';
     default: return {
       review: 'Review', practice: 'Practice', speak: 'Speak', progress: 'Progress', settings: 'Settings', welcome: 'Welcome',
-      known: 'Already learned', language: 'Languages', sync: 'Sync', read: 'Read & Listen', phrases: 'Phrasebook', search: 'Search', me: 'Me', numbers: 'Numbers',
+      known: 'Already learned', language: 'Languages', sync: 'Sync', read: 'Read & Listen', phrases: 'Phrasebook', search: 'Search', me: 'Me', numbers: 'Numbers', placement: 'Placement check',
     }[name];
   }
 }

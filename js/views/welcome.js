@@ -147,6 +147,7 @@ export default function welcome(ctx, stepArg) {
         'Start my first lesson', icon('arrow', 18)),
       h('button', { type: 'button', class: 'btn wide', onclick: () => finish('/learn/kit') }, '🎒 Travelling soon? Start with the trip essentials'),
       h('button', { type: 'button', class: 'btn ghost wide', onclick: () => finish('/') }, 'Look around first'),
+      h('button', { type: 'button', class: 'link-btn', onclick: () => finish('/placement') }, `Already know some ${lang.name}? Take a quick placement check`),
     ];
   }
 
