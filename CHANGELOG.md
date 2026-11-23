@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Changed
+- **Smaller, faster-loading language packs in the built app:** the word lists, lessons, texts and readings stay readable (indented) in the repository, and the build writes them compactly — the same values, checked file by file — which makes the packs about 20 % smaller (around 650 kB in total).
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added

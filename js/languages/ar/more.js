@@ -14447,7 +14447,7 @@ export const vocab = [
     "en": "I had a great time.",
     "cat": "p-friends",
     "tl": "qaḍaytu waqtan mumtiʿan jiddan",
-    "note": "مُمْتِع (mumtiʿ) is ‘enjoyable, fun’. The Egyptian verb comes from مَبْسُوط (mabsūṭ), ‘happy’.",
+    "note": "مُمْتِع (mumtiʿ) is ‘enjoyable, fun’. The Egyptian verb is related to مَبْسُوط (mabsūṭ), ‘happy’.",
     "pair": {
       "tr": "اِتْبَسَطْت أَوِي.",
       "reg": "casual",

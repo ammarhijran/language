@@ -1,10 +1,12 @@
 // Copies the static web app into www/ — the folder the native apps (Capacitor)
 // and the GitHub Pages deploy are built from. No bundling: the app is plain
-// ES modules.
-import { cp, rm, mkdir, readFile, writeFile } from 'node:fs/promises';
+// ES modules. The only change to the files is that the language packs' data
+// files are written compactly (see below).
+import { cp, rm, mkdir, readFile, writeFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const out = resolve(root, process.argv[2] || 'www');
@@ -13,6 +15,35 @@ const FILES = ['index.html', 'privacy.html', 'manifest.webmanifest', 'sw.js', 'c
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
 for (const f of FILES) await cp(join(root, f), join(out, f), { recursive: true });
+
+// The language packs' data files (word lists, lessons, texts, readings) are
+// kept readable in the repository: indented JSON after `export const … =`.
+// In the build they are written compactly — the same values, about a third
+// smaller, so they download and parse faster. Only files that are pure data
+// are touched: no imports, and every export survives JSON unchanged.
+let saved = 0;
+for (const code of await readdir(join(out, 'js', 'languages'), { withFileTypes: true })) {
+  if (!code.isDirectory()) continue;
+  const dir = join(out, 'js', 'languages', code.name);
+  for (const name of await readdir(dir)) {
+    if (!name.endsWith('.js')) continue;
+    const file = join(dir, name);
+    const src = await readFile(file, 'utf8');
+    if (/^\s*import\s/m.test(src) || /\bimport\(/.test(src)) continue;
+    const mod = await import(`${pathToFileURL(file).href}?build=${Date.now()}`);
+    const names = Object.keys(mod);
+    if (!names.length || !names.every((k) => mod[k] !== null && typeof mod[k] === 'object' && isDeepStrictEqual(JSON.parse(JSON.stringify(mod[k])), mod[k]))) continue;
+    // The file's opening comment (what it is, how it was made) stays.
+    const head = src.match(/^(?:\/\/[^\n]*\n)+/)?.[0] || '';
+    const compact = `${head}${names.map((k) => `export const ${k} = ${JSON.stringify(mod[k])};`).join('\n')}\n`;
+    if (compact.length >= src.length) continue;
+    await writeFile(file, compact);
+    const again = await import(`${pathToFileURL(file).href}?check=${Date.now()}`);
+    for (const k of names) if (!isDeepStrictEqual(again[k], mod[k])) throw new Error(`${file}: compacting changed export ${k}`);
+    if (Object.keys(again).length !== names.length) throw new Error(`${file}: compacting changed the exports`);
+    saved += src.length - compact.length;
+  }
+}
 
 // Preload the app's own modules: without hints the browser discovers them one
 // import level at a time (a 4-deep waterfall on a slow connection). Language
@@ -54,4 +85,4 @@ const stamped = sw
 if (!stamped.includes(`'${version}'`) || stamped.includes('const HASHES = null;')) throw new Error('sw.js: VERSION or HASHES line not found');
 await writeFile(swPath, stamped);
 
-console.log(`Web app copied to ${out} (offline version ${version}, ${graph.size - 1} modules preloaded)`);
+console.log(`Web app copied to ${out} (offline version ${version}, ${graph.size - 1} modules preloaded, data files ${Math.round(saved / 1024)} kB smaller)`);

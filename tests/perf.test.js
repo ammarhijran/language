@@ -4,12 +4,12 @@
 // loading screen in index.html.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, mkdtempSync, rmSync } from 'node:fs';
+import { readFileSync, readdirSync, mkdtempSync, rmSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import vm from 'node:vm';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -295,6 +295,32 @@ test('the build stamps the service worker with its version and file hashes', () 
   }
   const src = readFileSync(join(root, 'sw.js'), 'utf8');
   assert.match(src, /const VERSION = 'dev';/, 'the source stays unstamped');
+});
+
+test('the build writes the packs\' data files compactly, with exactly the same values', async () => {
+  let before = 0;
+  let after = 0;
+  let compacted = 0;
+  for (const code of ['tr', 'uk', 'ja', 'ar']) {
+    for (const name of readdirSync(join(root, 'js/languages', code))) {
+      const rel = `js/languages/${code}/${name}`;
+      const srcText = readFileSync(join(root, rel), 'utf8');
+      const outText = readFileSync(join(out, rel), 'utf8');
+      before += srcText.length;
+      after += outText.length;
+      if (outText === srcText) continue;
+      compacted++;
+      const a = await import(pathToFileURL(join(root, rel)).href);
+      const b = await import(pathToFileURL(join(out, rel)).href);
+      assert.deepEqual(Object.keys(b), Object.keys(a), rel);
+      for (const k of Object.keys(a)) assert.deepStrictEqual(b[k], a[k], `${rel}: ${k}`);
+      assert.equal(outText.split('\n')[0], srcText.split('\n')[0], `${rel}: the opening comment stays`);
+    }
+    // The code of a pack (its index, phonetics…) is shipped as written.
+    assert.equal(readFileSync(join(out, `js/languages/${code}/index.js`), 'utf8'), readFileSync(join(root, `js/languages/${code}/index.js`), 'utf8'));
+  }
+  assert.ok(compacted >= 12, `${compacted} data files compacted`);
+  assert.ok(after < before * 0.9, `packs: ${before} → ${after} characters`);
 });
 
 test('service worker: a version installs completely or not at all', async () => {

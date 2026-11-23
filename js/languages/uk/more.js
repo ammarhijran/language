@@ -14973,7 +14973,7 @@ export const vocab = [
     "cat": "p-friends",
     "s": [
       1,
-      1,
+      2,
       1,
       1
     ],
@@ -14981,14 +14981,14 @@ export const vocab = [
       "— Може, якось вип’ємо кави? — Із задоволенням! Я вільна в суботу.",
       "— Shall we have a coffee sometime? — I’d love to! I’m free on Saturday."
     ],
-    "note": "Я́кось = sometime (with the other stress, яко́сь means ‘somehow’). Кави is genitive: ‘some coffee’. Going на каву is the classic way to meet up.",
+    "note": "Яко́сь = sometime (with the other stress, я́кось means ‘somehow’). Кави is genitive: ‘some coffee’. Going на каву is the classic way to meet up.",
     "pair": {
       "tr": "Ходімо якось на каву!",
       "reg": "casual",
       "en": "Let’s go for a coffee sometime!",
       "s": [
         2,
-        1,
+        2,
         0,
         1
       ]

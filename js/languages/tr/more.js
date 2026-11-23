@@ -9943,7 +9943,7 @@ export const vocab = [
       "Gelinle damadın şerefine kadeh kaldırdık.",
       "We raised a glass to the bride and groom."
     ],
-    "note": "Kadeh = a stemmed glass (for wine, rakı…). “Şerefe!” = Cheers! (lit. to honour). Birinin şerefine = in someone's honour."
+    "note": "Kadeh = a glass for alcoholic drinks (wine, rakı…). “Şerefe!” = Cheers! (lit. to honour). Birinin şerefine = in someone's honour."
   },
   {
     "tr": "süslemek",
@@ -10239,7 +10239,7 @@ export const vocab = [
       "Cam şişeleri geri dönüşüm kutusuna at.",
       "Put the glass bottles in the recycling bin."
     ],
-    "note": "Lit. “turning back”. Geri dönüşüm kutusu = recycling bin. To recycle = geri dönüştürmek: Kâğıtları geri dönüştürüyoruz."
+    "note": "Lit. “transforming back” (dönüşüm = transformation). Geri dönüşüm kutusu = recycling bin. To recycle = geri dönüştürmek: Kâğıtları geri dönüştürüyoruz."
   },
   {
     "tr": "iklim",
@@ -10682,7 +10682,7 @@ export const vocab = [
     "tr": "Öğleden sonra benim için daha uygun.",
     "en": "The afternoon suits me better.",
     "cat": "p-appointments",
-    "note": "Sabah = morning; öğlen = midday; öğleden sonra = afternoon; akşamüstü = late afternoon; akşam = evening."
+    "note": "Sabah = morning; öğle = midday (colloquially also öğlen); öğleden sonra = afternoon; akşamüstü = late afternoon; akşam = evening."
   },
   {
     "tr": "Saat üçte randevum var.",
@@ -10805,9 +10805,9 @@ export const vocab = [
     "note": "Gelip almak = to come and collect: -ip links two actions. They may give you a slip (fiş) — keep it.",
     "reg": "polite",
     "pair": {
-      "tr": "Yarın uğrayıp alırım.",
+      "tr": "Yarın uğrayıp alsam olur mu?",
       "reg": "casual",
-      "en": "I'll drop by and get it tomorrow."
+      "en": "OK if I drop by and get it tomorrow?"
     }
   },
   {
