@@ -10,7 +10,7 @@ import { sanitize, mergeGame, mergeAll } from '../js/sync.js';
 import {
   KINDS, LEVELS, REGISTERS, canPractise, practiceModes, gapItems, MIN_GAPS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, markGlossary, glossaryForms, glossaryFound, glossaryMissing, findWord, fadeLine,
-  createPlayer, listenTimeout, scoreLine, verdict, clock, recordLimit,
+  createPlayer, listenTimeout, scoreLine, verdict, clock, recordLimit, newWords, ownTextFor,
 } from '../js/reader.js';
 
 const ALL = {};
@@ -592,4 +592,24 @@ test('fill the gaps: no capital-letter giveaway, repeated words skipped, too few
   assert.deepEqual(gapItems(L.tr, text(['Kedi uyuyor.', 'Bu bir köpek.', 'Balık yüzüyor.'], ['kedi', 'köpek', 'balık'])), [], 'three words are not enough for four options');
   assert.deepEqual(gapItems(L.tr, text(['Kedi uyuyor.'], [])), []);
   assert.equal(gapItems(L.tr, t, { max: 2, random: seeded() }).length, 2);
+});
+
+test('own texts: the words that are in no word list yet, each once and in order', () => {
+  const tr = languages.tr;
+  const text = { lines: [{ tr: 'Merhaba! Benim adım Zzqa, zzqb’de oturuyorum.' }, { tr: 'Zzqa bir a, tek-zzqc ve MERHABA.' }] };
+  const found = newWords(tr, text);
+  assert.ok(!found.some((w) => /^merhaba$/i.test(w)), 'a course word is not listed');
+  assert.deepEqual(found.filter((w) => /zzq/i.test(w)), ['Zzqa', 'zzqb’de', 'tek-zzqc'], 'made-up words: once each, as written, apostrophes and hyphens kept');
+  assert.ok(!found.includes('a'), 'single letters are left out');
+  assert.deepEqual(newWords(tr, text, 1).length, 1, 'no more than asked for');
+  // The learner's own words count as known.
+  try {
+    tr.setOwnWords([{ id: 'mw-1', tr: 'zzqa', en: 'made up' }]);
+    assert.ok(!newWords(tr, text).some((w) => /^zzqa$/i.test(w)));
+  } finally {
+    tr.setOwnWords([]);
+  }
+  // Japanese has no spaces between words: nothing is listed.
+  assert.deepEqual(newWords(languages.ja, { lines: [{ tr: '私はここに住んでいます。' }] }), []);
+  assert.deepEqual(newWords(tr, { lines: [] }), []);
 });

@@ -708,3 +708,29 @@ export const clock = (ms) => {
   const s = Math.max(0, Math.round(ms / 1000));
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 };
+
+/** How many "new words" of an own text are listed at most. */
+export const NEW_WORDS_MAX = 60;
+/**
+ * The words of a text that are in none of the learner's word lists as
+ * written (the course's entries and their own words), in the order they
+ * first appear and each once — what could be added to My words. Only for
+ * languages that put spaces between words; inflected forms of course words
+ * count as new, because only the written form is compared.
+ */
+export function newWords(lang, text, max = NEW_WORDS_MAX) {
+  if (lang.code === 'ja') return [];
+  const seen = new Set();
+  const out = [];
+  for (const line of text.lines || []) {
+    for (const m of String(line.tr).matchAll(/[\p{L}\p{M}]+(?:['’ʼ-][\p{L}\p{M}]+)*/gu)) {
+      const key = lang.normalize(m[0]);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      if ([...key].length < 2 || lang.entriesWritten(m[0]).length) continue;
+      out.push(m[0]);
+      if (out.length >= max) return out;
+    }
+  }
+  return out;
+}

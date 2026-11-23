@@ -126,7 +126,11 @@ export function parseWordList(text, lang) {
   return { entries, unread };
 }
 
-export default function myWords(ctx, editId) {
+/**
+ * #/mywords — the list and the form; #/mywords/<id> — changing an entry;
+ * #/mywords/new/<word> — the form with a word filled in (from a text).
+ */
+export default function myWords(ctx, editId, prefill = '') {
   const { lang, store } = ctx;
   const reading = readingField(lang);
   const limits = store.OWN_WORD_LIMITS;
@@ -310,7 +314,12 @@ export default function myWords(ctx, editId) {
     message,
     h('div', { class: 'button-row' }, submit, cancel));
 
-  edit(editId ? store.getOwnWords(lang.code).find((o) => o.id === editId) || null : null);
+  edit(editId && editId !== 'new' ? store.getOwnWords(lang.code).find((o) => o.id === editId) || null : null);
+  if (editId === 'new' && prefill) {
+    fields.tr.value = String(prefill).slice(0, limits.tr);
+    drawPicker();
+    setTimeout(() => fields.en.focus(), 0); // the meaning is what is left to type
+  }
   paint();
 
   return h('div', { class: 'view my-words' },

@@ -15,7 +15,7 @@ import { newCard } from '../srs.js';
 import {
   KINDS, LEVELS, REGISTERS, canPractise, practiceModes, gapItems, MIN_GAPS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, findWord, fadeLine, SHADOW_ROUNDS, createPlayer, listenTimeout,
-  scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead, ownTextFor, splitIntoLines, OWN_LINES_MAX, markAll, extraGlossary,
+  scoreLine, verdict, recordClip, playClip, clock, recordLimit, isLongRead, ownTextFor, splitIntoLines, OWN_LINES_MAX, markAll, extraGlossary, newWords, NEW_WORDS_MAX,
 } from '../reader.js';
 
 // The Learn screen's entry card lives in reader.js, so Learn doesn't load this view.
@@ -531,6 +531,7 @@ function readerView(ctx, texts, text) {
   // Besides the text's own glossary, the course's other words in it can be tapped.
   const extra = extraGlossary(lang, text);
   const sheet = glossSheet(ctx, text, host, { say: sayAside, onOpen: pausePlayer, items: [...text.glossary, ...extra] });
+  const fresh = text.own ? newWords(lang, text) : [];
   let listenFirst = false;
   let current = -1;
 
@@ -684,6 +685,15 @@ function readerView(ctx, texts, text) {
         const play = h('button', { type: 'button', class: 'icon-btn play', 'aria-label': `Listen: ${g.tr}`, onclick: () => sayAside(sayable(ctx, text, g)) }, icon('volume'));
         return h('li', null, play, btn);
       }))) : null,
+    // An own text: its words that are in no word list yet, to listen to and add to My words.
+    text.own && fresh.length ? h('section', { class: 'card read-glossary read-new-words' },
+      h('h2', { class: 'card-title' }, '🆕 Words to add'),
+      h('p', { class: 'hint' }, `Not in your word lists as written here${fresh.length >= NEW_WORDS_MAX ? ` (the first ${NEW_WORDS_MAX})` : ''}. Add the ones you want to learn to My words — you type the meaning.`),
+      h('ul', { class: 'read-gloss-list' }, fresh.map((w) => h('li', null,
+        h('button', { type: 'button', class: 'icon-btn play', 'aria-label': `Listen: ${w}`, onclick: () => sayAside(w) }, icon('volume')),
+        h('a', { class: 'read-gloss-item', href: `#/mywords/new/${encodeURIComponent(w)}` },
+          h('b', { ...textAttrs(lang) }, w),
+          h('span', { class: 'read-gloss-en' }, '＋ Add to My words')))))) : null,
     gapItems(lang, text).length >= MIN_GAPS
       ? h('a', { class: 'quick-link read-gaps-link', href: href(text.id, 'gaps') },
         h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🧩'),
