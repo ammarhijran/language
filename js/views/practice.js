@@ -20,9 +20,12 @@ const MODES = [
   // For scripts that are new to the learner (not Turkish, which is written in Latin letters).
   { id: 'script', name: 'Read the script', desc: 'See it, pick how it’s read', icon: 'book', langs: ['ja', 'ar', 'uk'] },
   // Stress is free and unwritten in Ukrainian, and the phone's voice sometimes puts it on the wrong syllable.
-  { id: 'stress', name: 'Word stress', desc: 'Tap the stressed syllable', icon: 'target', langs: ['uk'] },
+  { id: 'stress', name: 'Word stress', desc: 'Tap the stressed syllable', icon: 'target', when: (lang) => lang.stressPractice },
   { id: 'handsfree', name: 'Hands-free', desc: 'Listen and repeat, no tapping', icon: 'volume' },
 ];
+
+/** Whether a mode is for this language: some are only for new scripts (`langs`) or for packs with a feature (`when`). */
+const offered = (m, lang) => (!m.langs || m.langs.includes(lang.code)) && (!m.when || !!m.when(lang));
 
 const ROUND = 10;
 
@@ -50,7 +53,7 @@ function typeFor(mode, word) {
 
 export default function practice(ctx, mode, scope) {
   const modeDef = MODES.find((m) => m.id === mode);
-  if (!modeDef || (modeDef.langs && !modeDef.langs.includes(ctx.lang.code))) return setup(ctx);
+  if (!modeDef || !offered(modeDef, ctx.lang)) return setup(ctx);
   if (mode === 'build' || mode === 'dictation') return sentenceRound(ctx, scope, mode === 'dictation');
   // Reading the script is for words and short phrases, not whole sentences.
   const pool = wordsFor(ctx, scope).filter((w) => (mode !== 'script' || w.tr.trim().split(/\s+/).length <= 3)
@@ -142,7 +145,7 @@ function setup(ctx) {
   let mode = 'mixed';
   let scope = learned >= 4 ? 'learned' : ctx.lang.categories[0].id;
 
-  const modes = MODES.filter((m) => !m.langs || m.langs.includes(lang.code));
+  const modes = MODES.filter((m) => offered(m, lang));
   const modeButtons = modes.map((m) => {
     const disabled = m.needsMic && !recognitionSupported();
     return h('button', {

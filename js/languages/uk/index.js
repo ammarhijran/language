@@ -70,6 +70,9 @@ export default makePack({
   sampleSentence: 'Привіт! Давай вчити українську!',
   specialChars: ['і', 'ї', 'є', 'ґ', 'и', 'щ', 'ь', '’'],
   typingHint: 'Type in Ukrainian (or Latin letters)…',
+  // Stress is free and unwritten, and phone voices sometimes misplace it: the
+  // course asks for it (Practice → Word stress, and now and then in reviews).
+  stressPractice: true,
   almostHint: 'So close! Just a letter or two off:',
   // Feedback: Ukrainian words with an English gloss.
   praise: [['Правильно!', 'Correct.'], ['Чудово!', 'Great.'], ['Молодець!', 'Well done.'], ['Супер!', 'Nice.']],

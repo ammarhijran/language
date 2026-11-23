@@ -141,7 +141,7 @@ function continueButton(onClick, label = 'Continue') {
   return h('button', { type: 'button', class: 'btn primary wide continue', onclick: onClick }, label, icon('arrow', 18));
 }
 
-function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, options = null, cls = '' }) {
+function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, options = null, cls = '', wrong = AGAIN }) {
   const opts = options || pickOptions(ctx.lang, word, label);
   const live = liveRegion();
   let correct = false;
@@ -152,7 +152,7 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, 
       h('span', { class: 'kbd', 'aria-hidden': 'true' }, String(i + 1)),
       render ? render(w) : h('span', { class: 'option-label' }, label(w))));
 
-  const finish = once(() => { unbind(); onDone({ correct, rating: correct ? GOOD : AGAIN }); });
+  const finish = once(() => { unbind(); onDone({ correct, rating: correct ? GOOD : wrong }); });
 
   function answer(i) {
     if (answered) return;
@@ -166,7 +166,7 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, 
     });
     buttons[i].classList.add('picked');
     el.classList.add('answered');
-    ctx.onAnswer?.({ correct, rating: correct ? GOOD : AGAIN });
+    ctx.onAnswer?.({ correct, rating: correct ? GOOD : wrong });
     if (!correct) buzzWrong();
     const btn = continueButton(finish);
     el.append(answerSheet(ctx, correct ? 'good' : 'bad', reveal(ctx, word, correct), btn, [buttons[i], right]));
@@ -283,6 +283,9 @@ export function stress(ctx, word, onDone) {
     h('p', { class: 'prompt-gloss' }, word.en));
   return choice(ctx, word, onDone, {
     kicker: 'Which syllable is stressed?', prompt, cls: 'syllables', optionLang: ctx.lang.code,
+    // Knowing the word but not its stress is a slip, not a forgotten word: in a
+    // review it comes back sooner (Hard) without starting again from the first step.
+    wrong: HARD,
     // The stressed syllable stands for the entry itself: that is what choice() counts as right.
     options: item.syllables.map((text, i) => ({ id: i === item.stressed ? word.id : `${word.id}#${i}`, text })),
     label: (o) => o.text,

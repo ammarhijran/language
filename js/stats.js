@@ -144,6 +144,9 @@ export function chooseReviewType(card, word, lang) {
   // A phrase the learner already knows fairly well is sometimes built from
   // shuffled words instead: recall of its word order, not just its meaning.
   if (lang && word && FAMILIAR.has(status(card)) && phraseSentence(lang, word)) pool.push('build');
+  // Where stress is unwritten and has to be learned with the word (Ukrainian),
+  // a single word the learner already knows is sometimes asked for its stress.
+  if (lang?.stressPractice && word && FAMILIAR.has(status(card)) && !/\s/.test(word.tr.trim())) pool.push('stress');
   return pool[Math.floor(Math.random() * pool.length)];
 }
 

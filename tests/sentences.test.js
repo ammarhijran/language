@@ -223,6 +223,12 @@ test('reviews sometimes build a familiar phrase, never a new one or a single wor
   assert.ok(!types(familiar, word).has('build'));
   // Without the language pack (older callers) nothing changes.
   assert.ok(!Array.from({ length: 300 }, () => chooseReviewType(familiar, phrase)).includes('build'));
+  // Ukrainian: a familiar single word is sometimes asked for its stress; phrases and other languages never are.
+  const ukWord = uk.words.find((w) => w.tr === 'молоко');
+  assert.ok(types(familiar, ukWord, uk).has('stress'));
+  assert.ok(!types({ ...newCard(), reps: 1, interval: 1 }, ukWord, uk).has('stress'), 'not while the word is new');
+  assert.ok(!types(familiar, uk.words.find((w) => /\s/.test(w.tr)), uk).has('stress'));
+  assert.ok(!types(familiar, word).has('stress'));
   // Japanese phrases are built from their kana.
   const jp = ja.byId('お名前は何ですか');
   assert.ok(types(familiar, jp, ja).has('build'));

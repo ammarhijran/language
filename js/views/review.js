@@ -3,7 +3,7 @@ import { runSession } from '../session.js';
 import { newCard, review as schedule, missedToday, AGAIN, startOfDay } from '../srs.js';
 import { dueWords, chooseReviewType, nextCategory } from '../stats.js';
 
-const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce', build: 'produce' };
+const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce', build: 'produce', stress: 'meaning' };
 
 export default function review(ctx) {
   const { lang, store } = ctx;
