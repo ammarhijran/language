@@ -68,7 +68,8 @@ for (const code of codes) {
   page.on('dialog', (d) => (rnd() < 0.5 ? d.accept() : d.dismiss()).catch(() => {}));
   await page.goto(`${BASE}#/`);
   await page.waitForSelector('.view');
-  const starts = ['', 'learn', 'practice', 'phrases', 'me', 'review', 'read', 'settings', 'mywords', 'progress', 'speak', 'search/a', 'grammar', 'sync', 'journey'];
+  const starts = ['', 'learn', 'practice', 'phrases', 'me', 'review', 'read', 'settings', 'mywords', 'progress', 'speak', 'search/a', 'grammar', 'sync', 'journey', 'help', 'numbers/phone', 'review/ahead', 'grammar/review',
+    'speak/alphabet', 'speak/alphabet/quiz', 'speak/alphabet/harmony', 'speak/alphabet/iotated', 'speak/alphabet/particles', 'speak/alphabet/sun'];
   let clicks = 0;
   for (let step = 0; step < CLICKS; step++) {
     if (step % 30 === 0) {

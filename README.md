@@ -9,7 +9,7 @@ It runs as a website (works offline, installable as a PWA) and as native **Andro
 ### Getting around
 - **Five tabs:** Home (today: goal ring, one "what next" button, shortcuts, word of the day, weekly challenges) · Learn (Words, Phrases, Talk like a local, Grammar, Read & Listen) · Practice (reviews, modes, sentences, speaking and ear training) · Phrasebook · Me (progress, goals, settings, sync).
 - **Topic pages** list every entry with its reading, register, audio and ★, with Learn next 5 / Practise / Sentences / Say them.
-- **Phrasebook:** 220+ ready-to-use phrases in 22 situations, searchable, with a polite ⇄ everyday switch (MSA ⇄ Egyptian in Arabic), ★ favourites (synced between devices) and a big-text **Show** mode for showing your phone to someone.
+- **Phrasebook:** about 400 ready-to-use phrases and everyday expressions in 33 situations, searchable, with a polite ⇄ everyday switch (MSA ⇄ Egyptian in Arabic), ★ favourites (synced between devices) and a big-text **Show** mode for showing your phone to someone.
 - **Search** (top bar) finds words, phrases, topics, grammar lessons and texts by script, reading or English.
 - **Speaking as a woman:** in Ukrainian and Arabic, “I …” phrases that depend on the speaker’s gender can be shown, spoken and checked in the feminine form (Settings → Display).
 - **My words:** add your own words and phrases to a language and learn, review and practise them like the course’s (kept on the device, in backups and in sync codes).
@@ -25,10 +25,10 @@ It runs as a website (works offline, installable as a PWA) and as native **Andro
 ### Languages
 | | Words | Pronunciation help | Typing accepts |
 | --- | --- | --- | --- |
-| 🇹🇷 Turkish | 1171 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
-| 🇺🇦 Ukrainian | 1050 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
-| 🇯🇵 Japanese | 1038 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
-| 🇸🇦 Arabic (MSA + Egyptian) | 1041 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
+| 🇹🇷 Turkish | 1315 | Syllables, stress, IPA, respelling (rule-based) | Turkish, with ç ğ ı ö ş ü keys |
+| 🇺🇦 Ukrainian | 1194 | Syllables, stress on every word, IPA, respelling | Cyrillic or Latin transliteration (`dyakuyu`) |
+| 🇯🇵 Japanese | 1182 | Morae (beats), IPA, Hepburn rōmaji, kana reading under kanji | Kanji, kana or rōmaji (`tōkyō` / `toukyou`) |
+| 🇸🇦 Arabic (MSA + Egyptian) | 1185 | Fully vowelled script, transliteration, syllables, MSA stress, IPA; right-to-left | Arabic with or without vowel marks, or transliteration (`shukran`) |
 
 Each language has its own alphabet/kana chart, sound guides and minimal-pair ear training. Progress, streak and daily goal are kept separately for each language. Switch from the language pill in the top bar.
 
@@ -52,15 +52,21 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Tricky letters** (Turkish): pick how a word is read — the wrong answers are c, ç, ş, ı, ğ, ö, ü read the English way.
 - **Count the beats** (Japanese): say how many beats (morae) a word has — small っ, ん and long vowels each take one.
 - **Word stress** (Ukrainian, Arabic): see a word in syllables and tap the stressed one — stress is unwritten in both, and in Ukrainian phone voices sometimes misplace it. Reviews of known words ask for it now and then too.
-- **Numbers by ear:** hear a number, type its digits — from 0–10 up to 10,000.
+- **Numbers by ear:** hear a number, type its digits — from 0–10 up to 10,000, plus years and phone numbers said digit by digit.
 - **Dictation:** the sentence builder by ear — hear a sentence and build it from tiles; the meaning comes with the answer.
-- **Hands-free listening:** a round that plays by itself — the word, a pause to say it aloud, the word again, then its meaning in English. For walking, cooking or commuting.
+- **Hands-free listening:** a round that plays by itself — the word, a pause to say it aloud, the word again, then its meaning in English. For walking, cooking or commuting. Options: add each word’s example sentence, **meaning first** (hear the English, say the word, then hear it — audio flashcards), and **keep going** (round follows round, up to eight).
+- **Letter quizzes** (Speak → Alphabet): kana (hiragana, katakana, the two against each other, voiced and combined kana), Arabic letters and their joined shapes, Ukrainian letters — by sight both ways and by ear (hear a word, pick the letter it starts with); missed letters come back next round.
+- **Rule quizzes**, one per language, on rules without exceptions: Turkish vowel harmony (-lar/-ler, mı/mi/mu/mü, -da/-de/-ta/-te), Ukrainian я ю є (two sounds or one), Japanese は and へ (particle or part of a word, on the course’s own sentences), Arabic sun and moon letters (how al- is said).
+- **Review ahead:** with nothing due, tomorrow’s words can be reviewed today. **Practise these again:** a round of just the words missed in the last session.
+- **Lesson options** (Settings → Lessons): switch typing or speaking questions off, flip flashcards (word first), and go on by itself after a right multiple-choice answer.
+- **Grammar mixed review:** ten questions drawn from the lessons already done.
 - **Sentence builder:** see the English, hear the sentence if you like, and put shuffled word tiles in the right order. It practises the phrases, example sentences and grammar examples (Practice → Sentences, "Practise these sentences" at the end of a grammar lesson, and now and then in reviews of phrases you know well). Japanese is built from kana tiles; Arabic reads right to left.
-- **Progress:** streak, a 14-day activity chart, mastery per topic, and a searchable word list.
+- **Progress:** streak, a 14-day activity chart, a six-week calendar, the reviews coming up, **Your skills** (how the last answers of each kind went — listening, reading, recall, spelling, speaking, sentences, sounds, letters, numbers — with a round of the weakest one tap away), mastery per topic, and a searchable word list with filters (status, missed before, with a note). A word’s page shows its record and can start it over.
+- **Copy and share:** a word or phrase, the saved phrases, a topic, or My words as text (My words pastes back in on another device).
 
 ### Read & Listen — longer texts and speeches
 - **27 graded texts per language** (A1 → B1): dialogues, short stories, everyday texts (text messages, signs, a café menu), short speeches (introducing yourself, a toast, a short talk), a set of **proverbs** people really use and a set of classic **tongue twisters** (traditional sayings, each with a word-for-word translation and a note on what it means or which sounds it trains) — plus nine **long reads** of 20–26 lines each: two folk tales (Nasreddin Hoca and Keloğlan; The Mitten and Kolobok; Momotarō and Urashima Tarō; Juha and Ali Baba), a letter to a friend, a job interview, viewing a flat to rent, and four longer speeches: a talk about a dish and how to make it (menemen, borscht, onigiri, hummus), a “Why I’m learning …” talk you can adapt and give yourself, a farewell speech to colleagues, and a short presentation about a holiday (Bayram, Ukrainian Easter, Japanese New Year, Eid al-Fitr). Arabic includes everyday Egyptian dialogues. Every line has a translation, and Japanese and Arabic lines their kana / transliteration.
-- **Player:** Play all (line by line, current line highlighted), slow mode, translation shown / on tap / hidden, readings on or off, "Listen first" with the text hidden, and tap any line to hear it.
+- **Player:** Play all (line by line, current line highlighted), slow mode, a speed control, translation shown / on tap / hidden, readings on or off, "Listen first" with the text hidden, tap any line to hear it, **Keep playing** on to the next text, a **sleep timer**, and **continue where you stopped** (in the text, in the list and from Home).
 - **Tap-a-word glossary:** key words are underlined in the text; tap one for its meaning, reading and audio, and add it to your reviews.
 - **Fill the gaps:** each line with one glossary word left out and four words of the text to choose from — up to ten gaps a round, different ones each time; also for your own texts.
 - **Comprehension questions** with XP and achievements, synced between devices.
@@ -73,7 +79,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
   - A combo of 5+ right answers in a row adds a bonus.
   - Bonuses for new words, finished and flawless sessions, the daily goal, speaking drills and ear training.
   - Levels come with titles: Beginner → Explorer → Word Collector → … → Polyglot.
-- **52 achievements** in six groups: Learning, Habits, Pronunciation, Skill, Grammar and Reading. Locked ones show "X of Y" progress.
+- **54 achievements** in six groups: Learning, Habits, Pronunciation, Skill, Grammar and Reading. Locked ones show "X of Y" progress.
 - **Goals**:
   - a daily goal
   - three weekly challenges, new every Monday, +100 XP each
@@ -104,7 +110,9 @@ A typical code is under 1 kB. Even every word in all four languages fits in abou
   - the best installed voice for the language (enhanced/neural voices first; robotic novelty voices never), and **never a voice of another language** — if none is installed you get a clear hint instead of the word read in English or Russian;
   - **Arabic** is spoken in the pausal form the transliteration shows (no unspoken case endings), and Egyptian entries use an Egyptian voice when the device has one;
   - **Japanese** words whose kanji have several readings (counters, 開く, 辛い, 明日…) are given to the voice with the right reading;
-  - slow mode keeps the voice natural and adds pauses between words in phrases instead of stretching every sound.
+  - slow mode keeps the voice natural and adds pauses between words in phrases instead of stretching every sound;
+  - **Voice says it wrong?** — on a word’s page, under its example sentence and for any line of a text (🔧 in the player), respell it for the voice only; kept on the device and in backups, listed in Settings → Audio;
+  - two switches to try in Settings → Audio: **Ukrainian** entries sent with their stress marked (молоко́), **Japanese** single words sent in kana so the reading is always the course’s.
 - **Breakdown for every word:**
   - syllables, with the stressed syllable highlighted (tap any syllable to hear it alone)
   - IPA
@@ -181,14 +189,17 @@ See **[STORE.md](STORE.md)**. It's a step-by-step checklist for Google Play and 
 ## Project layout
 
 ```
-index.html, css/styles.css     app shell & styles
+index.html, css/               app shell & styles (styles.css, dark.css and one file per area)
 js/app.js                      router + app context
 js/views/                      one file per screen: home, learn, topic, review, practice, phrases, read, pronounce, numbers,
-                               handsfree, placement, progress, grammar, journey, sync, settings, word, welcome…
+                               handsfree, placement, progress, grammar, journey, sync, settings, word, mywords, help,
+                               letterquiz, and the rule quizzes (harmony, iotated, particles, sunquiz), welcome…
 js/exercises.js, session.js    exercise types and the session runner
 js/sentences.js                practice sentences for the sentence builder and dictation (tiles, answer check)
 js/reader.js                   Read & Listen: texts, glossary matching, the line player, your own texts
 js/handsfree.js, numbers.js    hands-free listening rounds · numbers by ear
+js/skills.js, letterquiz.js    which exercise trains which skill (Progress → Your skills) · letter quizzes
+js/themes.js, wordlist.js      themes (accent colours, backgrounds) · word lists as CSV and text
 js/kit.js, placement.js        the trip-essentials list · the placement check
 js/sounddrill.js               which course words contain the sound of a sound tip
 js/reminders.js, news.js       daily reminders (apps) · the “New in Lisan” card
