@@ -165,3 +165,39 @@ test('Ukrainian stress marks fit their words: one value per word, never past the
     if (w.pair) check(w.pair, `${w.id} (pair)`);
   }
 });
+
+test('no letters of the wrong script inside words, in any language', async () => {
+  const { languages } = await import('./all-languages.js');
+  const lines = async (code) => {
+    const L = languages[code];
+    const { texts } = await import(`../js/languages/${code}/texts.js`);
+    const out = [];
+    for (const w of L.words) { out.push(w.tr); if (w.example) out.push(w.example.tr); if (w.pair) out.push(w.pair.tr); }
+    for (const t of texts) for (const l of t.lines) out.push(l.tr);
+    for (const l of L.grammar || []) for (const s of l.sections || []) for (const e of s.examples || []) out.push(e.tr);
+    return out.filter(Boolean).map(String);
+  };
+  const words = (text) => text.split(/[\s,.!?;:«»"“”()—–-]+/).filter(Boolean);
+  // Ukrainian: no Latin look-alikes in Cyrillic words, no Russian-only letters, one kind of apostrophe
+  for (const text of await lines('uk')) {
+    for (const w of words(text)) {
+      assert.ok(!(/[A-Za-z]/.test(w) && /[Ѐ-ӿ]/.test(w)), `Latin and Cyrillic mixed in ${w}: ${text}`);
+      assert.ok(!/[ыэъё]/i.test(w), `a Russian letter in ${w}: ${text}`);
+      assert.ok(!/['ʼ`´]/.test(w), `an apostrophe other than ’ in ${w}: ${text}`);
+    }
+  }
+  // Arabic: no Latin letters inside Arabic words, no Persian or Urdu look-alikes (ی ک ە ہ ھ)
+  for (const text of await lines('ar')) {
+    for (const w of text.split(/\s+/)) {
+      assert.ok(!(/[A-Za-z]/.test(w) && /[؀-ۿ]/.test(w)), `Latin and Arabic mixed in ${w}: ${text}`);
+      assert.ok(!/[یکەہھ]/.test(w), `a non-Arabic letter in ${w}: ${text}`);
+    }
+  }
+  // Turkish: Latin letters only
+  for (const text of await lines('tr')) assert.ok(!/[Ͱ-ϿЀ-ӿ]/.test(text), `a Greek or Cyrillic letter in: ${text}`);
+  // Japanese: no half-width kana, no dash standing in for the long-vowel mark
+  for (const text of await lines('ja')) {
+    assert.ok(!/[｡-ﾟ]/.test(text), `half-width kana in: ${text}`);
+    assert.ok(!/[゠-ヿ][-—–―‐]/.test(text), `a dash for ー in: ${text}`);
+  }
+});
