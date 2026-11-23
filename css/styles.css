@@ -852,6 +852,9 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .bar.none .bar-fill { background: var(--track); }
 .bar-val { position: absolute; bottom: calc(var(--h) * 1% + 2px); font-size: var(--fs-2xs); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text); }
 .bar-days { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: var(--sp-1); margin-top: var(--sp-1); }
+.bars.week, .bar-days.week { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.bars.week { height: 110px; }
+.bars.week .bar-fill { max-width: 30px; }
 .bar-days small { text-align: center; font-size: var(--fs-2xs); color: var(--muted); }
 .bar-days small.today { color: var(--text); font-weight: 700; }
 .chart-note { margin: var(--sp-2) 0 0; }

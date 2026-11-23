@@ -1,5 +1,5 @@
 // Derived numbers used across views.
-import { isDue, status } from './srs.js';
+import { isDue, status, startOfDay } from './srs.js';
 import { recognitionSupported } from './speech.js';
 import { phraseSentence } from './sentences.js';
 
@@ -170,4 +170,21 @@ export function stagesOf(cats) {
     g.cats.push(c);
   }
   return out.sort((a, b) => a.stage - b.stage);
+}
+
+/**
+ * How many of the language's words fall due for review on each of the next
+ * `days` days, by the calendar: [{ d: Date, n }], today first. Today's
+ * number includes what is overdue.
+ */
+export function reviewForecast(lang, cards, { days = 7, now = Date.now() } = {}) {
+  const out = Array.from({ length: days }, (_, i) => ({ d: new Date(startOfDay(now, i)), n: 0 }));
+  const end = out.map((_, i) => startOfDay(now, i + 1)); // each day ends where the next starts
+  for (const w of lang.words) {
+    const c = cards[w.id];
+    if (!c || !Number.isFinite(c.due)) continue;
+    const i = end.findIndex((t) => c.due < t);
+    if (i >= 0) out[i].n++;
+  }
+  return out;
 }

@@ -438,3 +438,28 @@ test('search finds words by the learner’s notes on them', async () => {
   assert.deepEqual(searchNotes(tr, notes, 'bazaar', new Set(), 1).length, 1);
   assert.deepEqual(searchNotes(tr, {}, 'bazaar'), []);
 });
+
+test('reviews coming up: due words per calendar day, overdue ones counted today', async () => {
+  const { reviewForecast } = await import('../js/stats.js');
+  const { startOfDay } = await import('../js/srs.js');
+  const tr = languages.tr;
+  const now = new Date(2026, 10, 23, 15, 30).getTime();
+  const at = (days, hours = 12) => startOfDay(now, days) + hours * 3600000;
+  const [a, b, c, d, e, f] = tr.words;
+  const cards = {
+    [a.id]: { due: at(-3) }, // overdue
+    [b.id]: { due: at(0, 23) }, // later today
+    [c.id]: { due: at(1, 0) }, // midnight: tomorrow
+    [d.id]: { due: at(6, 23) }, // the last day shown
+    [e.id]: { due: at(7, 1) }, // beyond the week
+    [f.id]: { due: 'soon' }, // not a time
+    'not-a-word': { due: at(0) },
+  };
+  const week = reviewForecast(tr, cards, { now });
+  assert.deepEqual(week.map((x) => x.n), [2, 1, 0, 0, 0, 0, 1]);
+  assert.equal(week.length, 7);
+  assert.equal(week[0].d.getDate(), 23);
+  assert.equal(week[6].d.getDate(), 29);
+  assert.deepEqual(reviewForecast(tr, {}, { now }).map((x) => x.n), [0, 0, 0, 0, 0, 0, 0]);
+  assert.equal(reviewForecast(tr, cards, { now, days: 3 }).length, 3);
+});

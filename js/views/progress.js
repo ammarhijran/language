@@ -1,5 +1,5 @@
 import { h, icon, meter, set, growList, debounce } from '../ui.js';
-import { computeStats, nextCategory } from '../stats.js';
+import { computeStats, nextCategory, reviewForecast } from '../stats.js';
 import { status, STATUS_LABEL } from '../srs.js';
 import { playButton } from '../components.js';
 
@@ -69,6 +69,10 @@ export default function progress(ctx, catFilter) {
   renderList();
 
   const next = nextCategory(ctx);
+  // Reviews coming up: what falls due on each of the next seven days.
+  const ahead = reviewForecast(lang, cards);
+  const aheadMax = Math.max(1, ...ahead.map((x) => x.n));
+  const aheadTotal = ahead.reduce((n, x) => n + x.n, 0);
   const dayName = (d) => d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
   // The busiest day and today carry their numbers; the rest is the shape.
   const labelled = new Set([13, busiest ? history.findIndex((x) => x.n === busiest) : -1]);
@@ -102,6 +106,19 @@ export default function progress(ctx, catFilter) {
           h('p', { class: 'hint chart-note' }, history[13].n
             ? `Today: ${history[13].n} exercise${history[13].n === 1 ? '' : 's'}${busiest > history[13].n ? ` · best day: ${busiest}` : ''}.`
             : `Nothing yet today${busiest ? ` · best day: ${busiest}` : ''}.`)),
+        aheadTotal ? h('section', { class: 'card' },
+          h('h2', { class: 'card-title' }, 'Reviews coming up'),
+          h('div', { class: 'bars week', role: 'img', 'aria-label': `Words due for review over the next 7 days: ${ahead.map((x, k) => `${k === 0 ? 'today' : dayName(x.d)} ${x.n}`).join(', ')}` },
+            ahead.map((x, k) => {
+              const pct = Math.round((x.n / aheadMax) * 100);
+              return h('div', { class: `bar${k === 0 ? ' today' : ''}${x.n ? '' : ' none'}`, title: `${k === 0 ? 'Today' : dayName(x.d)}: ${x.n}`, style: { '--h': pct } },
+                x.n ? h('b', { class: 'bar-val', 'aria-hidden': 'true' }, String(x.n)) : null,
+                h('span', { class: 'bar-fill', style: { height: `${pct}%` } }));
+            })),
+          h('div', { class: 'bar-days week', 'aria-hidden': 'true' }, ahead.map((x, k) => h('small', { class: k === 0 ? 'today' : null }, k === 0 ? 'Today' : x.d.toLocaleDateString(undefined, { weekday: 'short' })))),
+          h('p', { class: 'hint chart-note' }, ahead[0].n
+            ? `${ahead[0].n} due today (overdue ones included) · ${aheadTotal} in the next 7 days.`
+            : `Nothing due today · ${aheadTotal} in the next 7 days.`)) : null,
         h('section', { class: 'card' },
           h('h2', { class: 'card-title' }, 'Mastery'),
           h('div', { class: 'stack-bar', role: 'img', 'aria-label': Object.entries(s.counts).map(([k, v]) => `${STATUS_LABEL[k]} ${v}`).join(', ') },

@@ -8,6 +8,7 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **Reviews coming up** (Progress): a seven-day chart of how many words fall due on each day — today’s bar includes anything overdue — so a heavy day is visible before it arrives.
 - **Worth another look:** the summary after a review or a practice round lists the words you missed, each a link to its page — to hear it again, or to add a note of your own. (A wrong tap you marked as a slip is not listed.)
 - **My note** on any course word or phrase (its page → “📝 Add a note of my own”): a memory hook, where you heard it, a sentence of your own — up to 300 characters. It is shown on the word’s page and under every answer about that word, kept in backups and merged by sync (the newest version wins; removing it on one device removes it on the other), and it survives “Reset progress”. Search finds words by what you wrote about them (“In your notes”), and “Export my words (CSV)” has a “My note” column.
 - **“I mis-tapped — I knew this one”** on the wrong-answer sheet of multiple-choice questions: the word is not treated as forgotten — in a review it counts as Hard (it comes back sooner than after Good, without starting over and without lowering its ease). The points and the combo of that answer stay as they fell.
