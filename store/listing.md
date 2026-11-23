@@ -4,7 +4,7 @@ Copy each field into App Store Connect / Google Play Console. The character coun
 
 > The app now teaches four languages, so this text was rewritten from the Turkish-only version. The **app name** is a suggestion — it is your branding decision (the previous name was “Lisan: Learn Turkish Words”). The screenshots and the feature graphic in `store/` show the current design and all four languages (regenerate them with `node scripts/store-screenshots.cjs`).
 >
-> **Your call before submitting:** the lessons were written and checked with AI help and have not been reviewed by native speakers yet. The app says so in Settings → About the lessons; decide whether the store description should say it too (one honest line near the end is enough).
+> **Decided:** the store description says the lessons were written and checked with AI help and have not been reviewed by native speakers yet (its last section), as the app does in Settings → About the lessons.
 
 ## App name (App Store & Google Play)
 _24 / 30 characters_
@@ -42,7 +42,7 @@ turkish,ukrainian,japanese,arabic,learn,vocabulary,pronunciation,phrases,flashca
 ```
 
 ## Full description (App Store & Google Play)
-_2856 / 4000 characters_
+_3064 / 4000 characters_
 
 ```
 Learn Turkish, Ukrainian, Japanese or Arabic — the words people really use, and how to say them properly.
@@ -91,6 +91,9 @@ MADE TO FIT YOU
 
 PRIVATE BY DESIGN
 No account. No ads. No tracking. Lisan saves your progress on your device and never sends it to us or to any server we run. You can export it any time.
+
+HOW THE LESSONS WERE MADE
+The words, phrases, grammar lessons and texts were written and checked with AI assistance, and have not yet been reviewed by native speakers. If you spot a mistake, please tell us.
 ```
 
 ## App Review notes (App Store Connect → App Review Information)
