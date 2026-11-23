@@ -40,7 +40,11 @@ test('the word list: only started words, in course order, with readings and safe
   };
   const { count, text } = wordsCsv(ja, cards);
   assert.equal(count, 3);
-  assert.ok(text.startsWith('﻿Word,Reading,Meaning,Example,Example meaning,Topic,Status\r\n'), 'byte-order mark and header');
+  assert.ok(text.startsWith('﻿Word,Reading,Meaning,Example,Example meaning,Topic,Status,My note\r\n'), 'byte-order mark and header');
+  // The learner's own notes fill the last column.
+  const noted = wordsCsv(ja, cards, { [a.id]: 'my hook, with a comma', toString: 'x' }).text.trim().split('\r\n');
+  assert.ok(noted[1].endsWith(',"my hook, with a comma"'), noted[1]);
+  assert.ok(noted[2].endsWith(','), 'no note: an empty cell');
   const lines = text.trim().split('\r\n');
   assert.equal(lines.length, 4);
   assert.ok(lines[1].startsWith(`${a.tr},`), 'course order, not the order of the cards');

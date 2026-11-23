@@ -104,7 +104,7 @@ export default function settings(ctx) {
       .catch((e) => { if (!cancelled(e)) ctx.toast('Couldn’t save the file.'); });
   }
   function exportWords() {
-    const { count, text } = wordsCsv(lang, store.getCards(lang.code));
+    const { count, text } = wordsCsv(lang, store.getCards(lang.code), store.getNotes(lang.code));
     if (!count) { ctx.toast('Learn a few words first — then there is a list to export.'); return; }
     saveTextFile(`lisan-${lang.code}-words-${store.dayKey()}.csv`, text, { type: 'text/csv', dialogTitle: `Save your ${lang.name} word list` })
       .catch((e) => { if (!cancelled(e)) ctx.toast('Couldn’t save the file.'); });

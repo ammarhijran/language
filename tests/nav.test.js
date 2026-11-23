@@ -425,3 +425,16 @@ test('my notes on entries: kept per language, trimmed, synced like saved entries
   assert.equal(store.getNote('tr', 'merhaba'), 'sounds like “mare-haba”');
   store._resetAll();
 });
+
+test('search finds words by the learner’s notes on them', async () => {
+  const { searchNotes } = await import('../js/views/search.js');
+  const tr = languages.tr;
+  const [a, b, c] = tr.words;
+  const notes = { [a.id]: 'Heard it in the Bazaar', [b.id]: 'bazaar again', [c.id]: 'something else', nothere: 'bazaar' };
+  assert.deepEqual(searchNotes(tr, notes, 'BAZAAR').map((r) => r.word.id), [a.id, b.id], 'any case, course order, only real entries');
+  assert.deepEqual(searchNotes(tr, notes, 'bazaar', new Set([a.id])).map((r) => r.word.id), [b.id], 'entries already found are left out');
+  assert.equal(searchNotes(tr, notes, 'bazaar')[0].note, 'Heard it in the Bazaar');
+  assert.deepEqual(searchNotes(tr, notes, 'b'), [], 'one letter is not a search');
+  assert.deepEqual(searchNotes(tr, notes, 'bazaar', new Set(), 1).length, 1);
+  assert.deepEqual(searchNotes(tr, {}, 'bazaar'), []);
+});

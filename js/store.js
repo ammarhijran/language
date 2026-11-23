@@ -387,6 +387,12 @@ export function getNote(lang, id) {
   const n = notes && Object.hasOwn(notes, id) ? notes[id] : null;
   return live(n) ? n.text || '' : '';
 }
+/** Every note in a language: { id: text }. */
+export function getNotes(lang) {
+  const out = {};
+  for (const [id, n] of Object.entries(prog(lang).notes || {})) if (live(n) && n.text) out[id] = n.text;
+  return out;
+}
 /** Write, change or (with empty text) remove the note on an entry. Returns the note as kept. */
 export function setNote(lang, id, text) {
   const clean = noteText(text);

@@ -216,6 +216,24 @@ export function searchLines(lang, texts, query, limit = 8) {
 }
 
 /** Topics whose name (English or in the language) contains the query. */
+/**
+ * Entries whose note — the learner's own (`notes`: id → text) — contains the
+ * query (two letters or more, any case), in course order, without the
+ * entries in `skip`: [{ word, note }].
+ */
+export function searchNotes(lang, notes, query, skip = new Set(), limit = 20) {
+  const q = String(query || '').trim().toLowerCase();
+  if ([...q].length < 2) return [];
+  const out = [];
+  for (const w of lang.words) {
+    const note = Object.hasOwn(notes, w.id) ? notes[w.id] : '';
+    if (!note || skip.has(w.id) || !note.toLowerCase().includes(q)) continue;
+    out.push({ word: w, note });
+    if (out.length >= limit) break;
+  }
+  return out;
+}
+
 export function searchTopics(lang, query) {
   const q = String(query || '').trim();
   if (!q) return [];
@@ -297,8 +315,9 @@ export default function search(ctx, initial = '') {
     const entries = rankEntries(lang, q);
     const topics = searchTopics(lang, q);
     const lessons = searchGrammar(lang, q);
+    const noted = searchNotes(lang, store.getNotes(lang.code), q, new Set(entries.map((e) => e.word.id)));
     const textBox = h('section', { class: 'search-group', hidden: true });
-    found = entries.length + topics.length + lessons.length;
+    found = entries.length + topics.length + lessons.length + noted.length;
     tell(q);
     const cards = store.getCards(lang.code);
     const counts = topics.length ? topicCounts(ctx) : null;
@@ -312,6 +331,16 @@ export default function search(ctx, initial = '') {
       h('section', { class: 'search-group' },
         h('h2', { class: 'section-title' }, entries.length ? `Words & phrases (${entries.length})` : 'Words & phrases'),
         entries.length ? list : h('p', { class: 'muted' }, `Nothing found for “${q}”.`)),
+      // Words found by what the learner wrote about them.
+      noted.length
+        ? h('section', { class: 'search-group' },
+          h('h2', { class: 'section-title' }, `In your notes (${noted.length})`),
+          h('ul', { class: 'link-list' }, noted.map(({ word, note }) => h('li', null, h('a', { href: `#/word/${encodeURIComponent(word.id)}` },
+            h('span', { class: 'll-icon', 'aria-hidden': 'true' }, '📝'),
+            h('span', { class: 'll-text' },
+              h('b', null, h('span', { lang: lang.code }, word.tr), ` — ${word.en}`),
+              h('small', null, note)))))))
+        : null,
       lessons.length
         ? h('section', { class: 'search-group' },
           h('h2', { class: 'section-title' }, `Grammar (${lessons.length})`),
