@@ -375,12 +375,32 @@ function glossSheet(ctx, text, host, { say = ctx.say, onOpen, items = text.gloss
     return box;
   }
 
+  // A glossary word that is not in the course can be kept: it joins "My words"
+  // with its meaning and reading, and from then on is learned like any entry.
+  function keep(item) {
+    const box = h('div', { class: 'sheet-word-info' });
+    const add = () => {
+      const id = store.saveOwnWord(lang.code, { tr: item.tr, en: item.en, read: item.kana || item.tl || '', note: text.title ? `From “${text.title}”` : '' });
+      if (!id) { ctx.toast(`You can keep ${store.OWN_WORDS_MAX} words of your own per language.`); return; }
+      ctx.refreshOwnWords?.();
+      const word = lang.byId(id);
+      ctx.toast(`Added “${item.tr}” to My words`);
+      set(box, h('p', { class: 'hint' }, 'In My words: ', h('b', { ...textAttrs(lang) }, word.tr), ` — ${word.en}`), vocab(word));
+      box.querySelector('button, a')?.focus({ preventScroll: true });
+    };
+    set(box, h('button', { type: 'button', class: 'btn small', onclick: add }, '＋ Add to My words'),
+      h('p', { class: 'hint' }, 'Not one of the course’s words. Add it to learn and review it like them.'));
+    return box;
+  }
+
   function open(gi, from) {
     close({ restore: false });
     onOpen?.();
     opener = from;
     const item = items[gi];
-    const word = findWord(lang, item);
+    // The course's entry for it — or the learner's own, or a course word written the same way.
+    const key = lang.normalize(item.tr);
+    const word = findWord(lang, item) || (key ? lang.words.find((w) => lang.normalize(w.tr) === key) : null) || null;
     const reading = lang.reading(item);
     const listen = h('button', { type: 'button', class: 'btn small', onclick: () => say(sayable(ctx, text, item)) }, icon('volume', 16), 'Listen');
     el = h('div', { class: 'sheet-wrap' },
@@ -396,7 +416,7 @@ function glossSheet(ctx, text, host, { say = ctx.say, onOpen, items = text.gloss
           h('button', { type: 'button', class: 'btn small', onclick: () => say(sayable(ctx, text, item), { slow: true }) }, icon('slow', 16), 'Slowly')),
         word ? h('div', { class: 'sheet-word-info' },
           h('p', { class: 'hint' }, 'In your word lists: ', h('b', { ...textAttrs(lang) }, word.tr), ` — ${word.en}`),
-          vocab(word)) : null,
+          vocab(word)) : keep(item),
         item.exact ? h('p', { class: 'hint' }, 'Matched by spelling with a word of the course — in this sentence it may mean something else.') : null));
     host.append(el);
     document.addEventListener('keydown', onKey, true);

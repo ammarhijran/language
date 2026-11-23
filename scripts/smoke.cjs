@@ -114,6 +114,26 @@ async function walk(browser, lang, pack, texts) {
   await page.click('.own-words button[aria-label^="Delete"]');
   if (await page.locator('.own-words li').count()) problems.push(`${lang} my words: the word was not deleted`);
 
+  // Read & Listen: a glossary word that is not in the course can be added to My words.
+  const withGloss = texts.find((t) => t.glossary?.length >= 3);
+  if (withGloss) {
+    await open(`read/${enc(withGloss.id)}`, { selector: '.read-gloss-item' });
+    let kept = false;
+    for (let i = 0; i < withGloss.glossary.length && !kept; i++) {
+      await page.locator('.read-gloss-item').nth(i).click();
+      await page.waitForSelector('.sheet', { timeout: 8000 });
+      const add = page.locator('.sheet button:has-text("Add to My words")');
+      if (await add.count()) {
+        await add.click();
+        kept = await page.locator('.sheet .sheet-word-info:has-text("In My words")').count() > 0;
+      }
+      await page.keyboard.press('Escape');
+      await page.waitForSelector('.sheet', { state: 'detached', timeout: 8000 }).catch(() => {});
+    }
+    if (!kept) problems.push(`${lang} ${withGloss.id}: no glossary word could be added to My words`);
+    await open('topic/my-words', { selector: '.phrase-row' });
+  }
+
   // Every topic: its page, the first and last entry, and the phrasebook page of phrase topics.
   for (const c of pack.categories) {
     const words = pack.wordsIn(c.id);
