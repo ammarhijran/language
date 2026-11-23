@@ -332,7 +332,10 @@ export default function search(ctx, initial = '') {
         : null,
       h('section', { class: 'search-group' },
         h('h2', { class: 'section-title' }, entries.length ? `Words & phrases (${entries.length})` : 'Words & phrases'),
-        entries.length ? list : h('p', { class: 'muted' }, `Nothing found for “${q}”.`)),
+        entries.length ? list : h('p', { class: 'muted' }, `Nothing found for “${q}”. `,
+          // A word met elsewhere: it can be added and learned like the course's own. Typed in the
+          // language's script, it is filled in; typed in Latin letters it may be English, so it is not.
+          h('a', { id: 'search-add', href: lang.code !== 'tr' && /[^\u0000-\u024F]/.test(q) ? `#/mywords/new/${encodeURIComponent(q)}` : '#/mywords' }, 'Add it to My words'))),
       // Words found by what the learner wrote about them.
       noted.length
         ? h('section', { class: 'search-group' },
