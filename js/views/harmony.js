@@ -1,6 +1,7 @@
 // Speak → Alphabet → "Vowel harmony" (Turkish): which form of an ending a
 // word takes. The ending copies the word's last vowel — two forms for the
-// plural (-lar / -ler), four for the question word (mı / mi / mu / mü). The
+// plural (-lar / -ler), four for the question word (mı / mi / mu / mü), and
+// -da / -de / -ta / -te for "in, at", where the consonant matters too. The
 // words are everyday course nouns that follow the rule; a few borrowed words
 // that do not (saat → saatler) are deliberately not among them.
 import { h, icon, set, shuffle, bindKeys } from '../ui.js';
@@ -18,14 +19,23 @@ export const pluralOf = (word) => `${word}${'aıou'.includes(lastVowel(word)) ? 
 /** The question word after a word: mı (a ı), mi (e i), mu (o u), mü (ö ü). */
 export const questionOf = (word) => ({ a: 'mı', ı: 'mı', e: 'mi', i: 'mi', o: 'mu', u: 'mu', ö: 'mü', ü: 'mü' }[lastVowel(word)] || '');
 
+/**
+ * "In / at / on" after a word: -da or -de by the last vowel (back / front) —
+ * and with t instead of d after a voiceless consonant (p ç t k f h s ş):
+ * evde, okulda, kitapta, sütte.
+ */
+export const locativeOf = (word) => `${word}${'pçtkfhsş'.includes([...String(word).toLowerCase()].pop()) ? 't' : 'd'}${'aıou'.includes(lastVowel(word)) ? 'a' : 'e'}`;
+
 const KIND = { a: 'back, unrounded', ı: 'back, unrounded', o: 'back, rounded', u: 'back, rounded', e: 'front, unrounded', i: 'front, unrounded', ö: 'front, rounded', ü: 'front, rounded' };
 
-/** A round: [{ word, kind: 'plural' | 'question', answer, options }], on course words only. */
+/** A round: [{ word, kind: 'plural' | 'question' | 'place', answer, options }], on course words only. */
 export function harmonyQuestions(lang, count = COUNT, mix = shuffle) {
   const words = HARMONY_WORDS.map((tr) => lang.words.find((w) => w.tr === tr)).filter(Boolean);
-  return mix(words).slice(0, count).map((word, i) => (i % 2
-    ? { word, kind: 'question', answer: `${word.tr} ${questionOf(word.tr)}?`, options: ['mı', 'mi', 'mu', 'mü'].map((q) => `${word.tr} ${q}?`) }
-    : { word, kind: 'plural', answer: pluralOf(word.tr), options: ['lar', 'ler'].map((s) => `${word.tr}${s}`) }));
+  return mix(words).slice(0, count).map((word, i) => [
+    { word, kind: 'plural', answer: pluralOf(word.tr), options: ['lar', 'ler'].map((s) => `${word.tr}${s}`) },
+    { word, kind: 'question', answer: `${word.tr} ${questionOf(word.tr)}?`, options: ['mı', 'mi', 'mu', 'mü'].map((q) => `${word.tr} ${q}?`) },
+    { word, kind: 'place', answer: locativeOf(word.tr), options: ['da', 'de', 'ta', 'te'].map((s) => `${word.tr}${s}`) },
+  ][i % 3]);
 }
 
 export default function harmony(ctx) {
@@ -72,7 +82,8 @@ export default function harmony(ctx) {
           h('p', { class: 'verdict' }, icon(ok ? 'check' : 'x', 18), ok ? 'Right!' : 'Not quite:'),
           h('div', { class: 'letter-quiz-ex' }, playButton(ctx, { text: q.answer, lang: lang.speechLang }),
             h('span', { class: 'letter-answer' }, h('b', { lang: lang.code }, q.answer))),
-          h('p', { class: 'small' }, `The last vowel of ${q.word.tr} is ${v} (${KIND[v]}), so the ending has ${q.kind === 'plural' ? ('aıou'.includes(v) ? 'a: -lar' : 'e: -ler') : `${questionOf(q.word.tr).slice(1)}: ${questionOf(q.word.tr)}`}.`)),
+          h('p', { class: 'small' }, `The last vowel of ${q.word.tr} is ${v} (${KIND[v]}), so the ending has ${q.kind === 'question' ? `${questionOf(q.word.tr).slice(1)}: ${questionOf(q.word.tr)}` : 'aıou'.includes(v) ? 'a' : 'e'}${q.kind === 'plural' ? `: -${q.answer.slice(q.word.tr.length)}` : ''}.`,
+            q.kind === 'place' ? ` ${q.word.tr} ends in ${[...q.word.tr].pop()}, ${q.answer.slice(q.word.tr.length)[0] === 't' ? 'a voiceless consonant, so the d becomes t' : 'so the d stays'}: -${q.answer.slice(q.word.tr.length)}.` : '')),
         next);
       if (ctx.settings.autoplay) ctx.say({ text: q.answer, lang: lang.speechLang }, { auto: true });
       next.focus({ preventScroll: true });
@@ -88,7 +99,7 @@ export default function harmony(ctx) {
       h('div', { class: 'exercise' },
         h('p', { class: 'kicker' }, `Vowel harmony · ${i + 1} of ${qs.length}`),
         h('p', { class: 'letter-quiz-prompt', lang: lang.code }, q.word.tr),
-        h('p', { class: 'muted letter-quiz-ask' }, q.kind === 'plural' ? `${q.word.en} — more than one?` : `${q.word.en} — “Is it a …?”`),
+        h('p', { class: 'muted letter-quiz-ask' }, q.kind === 'plural' ? `${q.word.en} — more than one?` : q.kind === 'place' ? `${q.word.en} — “in / at / on it”?` : `${q.word.en} — “Is it a …?”`),
         h('div', { class: 'options two' }, buttons),
         feedback));
     window.scrollTo(0, 0);
@@ -106,7 +117,7 @@ export default function harmony(ctx) {
           ? [h('p', { class: 'muted' }, 'Worth another look:'),
             h('ul', { class: 'word-chips letter-missed' }, unique.map((q) => h('li', null, h('span', null, h('b', { lang: lang.code }, q.answer)))))]
           : h('p', { class: 'muted' }, 'Every one right.'),
-        h('p', { class: 'hint' }, 'After a, ı, o, u the plural is -lar; after e, i, ö, ü it is -ler. The question word copies the vowel more closely: mı after a ı, mi after e i, mu after o u, mü after ö ü. A few borrowed words go their own way (saat → saatler).'),
+        h('p', { class: 'hint' }, 'After a, ı, o, u the plural is -lar; after e, i, ö, ü it is -ler. The question word copies the vowel more closely: mı after a ı, mi after e i, mu after o u, mü after ö ü. “In / at” is -da or -de, with t for d after p, ç, t, k, f, h, s, ş. A few borrowed words go their own way (saat → saatler).'),
         h('div', { class: 'actions stack' },
           h('button', { type: 'button', class: 'btn primary wide', onclick: () => ctx.rerender() }, 'Another round'),
           h('a', { class: 'btn ghost wide', href: '#/speak/alphabet' }, 'Back to the chart'))));

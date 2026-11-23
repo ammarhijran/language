@@ -207,6 +207,15 @@ test('Turkish vowel harmony: the endings follow the last vowel, on course words 
     assert.equal(q.options.filter((o) => o === q.answer).length, 1);
     assert.equal(q.options.length, q.kind === 'plural' ? 2 : 4);
   }
+  const { locativeOf } = await import('../js/views/harmony.js');
+  for (const [word, loc] of [['ev', 'evde'], ['okul', 'okulda'], ['kitap', 'kitapta'], ['süt', 'sütte'], ['sokak', 'sokakta'], ['ağaç', 'ağaçta'], ['göl', 'gölde'], ['deniz', 'denizde'],
+    ['masa', 'masada'], ['köprü', 'köprüde'], ['kuş', 'kuşta'], ['baş', 'başta'], ['yıldız', 'yıldızda'], ['gömlek', 'gömlekte'], ['orman', 'ormanda'], ['dağ', 'dağda']]) {
+    assert.equal(locativeOf(word), loc);
+  }
+  assert.ok(qs.some((q) => q.kind === 'place'));
+  for (const q of qs) {
+    if (q.kind === 'place') assert.equal(q.answer, locativeOf(q.word.tr));
+  }
   assert.ok(qs.some((q) => q.kind === 'plural') && qs.some((q) => q.kind === 'question'));
 });
 
