@@ -133,6 +133,14 @@ function soundsLike(pack, heard, w) {
 // Settings → Audio → “Read words from their kana”: see `speech` below.
 const voice = { kana: false };
 
+// が…ぽ with their katakana, for the letter quiz. ぢ and づ sound like じ and ず.
+const VOICED_KANA = [...'がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ'].map((k) => ({
+  upper: k,
+  lower: String.fromCharCode(k.charCodeAt(0) + 0x60),
+  hint: { ぢ: 'rare — it sounds the same as じ', づ: 'rare — it sounds the same as ず' }[k]
+    || ('ぱぴぷぺぽ'.includes(k) ? 'the small circle ゜ turns h into p' : 'the two strokes ゛ make the sound voiced: k → g, s → z, t → d, h → b'),
+}));
+
 const pack = makePack({
   extraExamples,
   exampleReadings,
@@ -176,10 +184,12 @@ const pack = makePack({
   grammar: lessons,
   alphabet,
   // The letter quiz: each kana by its rōmaji, hiragana and katakana as two sets. (っ and ー have no reading of their own.)
-  letterName: (l) => (l.upper === 'を' ? 'o (wo)' : romaji(l.upper) || null),
+  letterName: (l) => ({ を: 'o (wo)', ぢ: 'ji (di)', づ: 'zu (du)' }[l.upper] || romaji(l.upper) || null),
   letterSets: [
     { id: 'hiragana', name: 'Hiragana', glyph: (l) => l.upper },
     { id: 'katakana', name: 'Katakana', glyph: (l) => l.lower },
+    // The kana with ゛ and ゜ (が, ぱ…): not in the chart, shown in both scripts at once.
+    { id: 'voiced', name: 'Voiced kana', glyph: (l) => `${l.upper} ${l.lower}`, letters: VOICED_KANA },
   ],
   soundTips,
   minimalPairs,

@@ -17,7 +17,8 @@ const mix = (list, random) => {
  * `glyph` is what is shown in the script, `label` how it is read (rōmaji, a
  * letter's name, a transliteration). One set per pack.letterSets entry
  * ({ id, name, glyph(letter) } — hiragana and katakana), else one set of
- * all letters. Letters the pack gives no name (っ, ー) are left out.
+ * all letters. A set may bring letters of its own (`letters`: the voiced kana,
+ * which the chart does not list). Letters the pack gives no name (っ, ー) are left out.
  */
 export function letterSets(lang) {
   if (typeof lang?.letterName !== 'function' || !Array.isArray(lang.alphabet)) return [];
@@ -25,7 +26,7 @@ export function letterSets(lang) {
   return defs.map((d) => ({
     id: d.id,
     name: d.name,
-    items: lang.alphabet
+    items: (d.letters || lang.alphabet)
       .map((letter) => ({ letter, glyph: d.glyph(letter), label: lang.letterName(letter) }))
       .filter((x) => x.glyph && x.label && x.glyph !== x.label),
   })).filter((set) => set.items.length >= 8);

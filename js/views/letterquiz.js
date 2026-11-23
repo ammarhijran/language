@@ -58,7 +58,7 @@ export default function letterQuiz(ctx, setId) {
       set(feedback,
         h('div', { class: `reveal ${ok ? 'good' : 'bad'}` },
           h('p', { class: 'verdict' }, icon(ok ? 'check' : 'x', 18), ok ? 'Right!' : 'Not quite:'),
-          h('p', { class: 'letter-answer' }, pair(q.item), h('span', { class: 'ipa' }, ` /${l.ipa}/`)),
+          h('p', { class: 'letter-answer' }, pair(q.item), l.ipa ? h('span', { class: 'ipa' }, ` /${l.ipa}/`) : null),
           // What was picked instead: the two side by side are what to tell apart.
           ok ? null : h('p', { class: 'hint' }, 'You picked ', pair(q.options[k]), '.'),
           l.hint ? h('p', { class: 'small' }, rich(l.hint, lang.code)) : null,

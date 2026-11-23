@@ -9,7 +9,7 @@ const { tr, uk, ja, ar } = languages;
 test('the scripts that are new have a letter quiz; Turkish has none', () => {
   assert.deepEqual(letterSets(tr), []);
   assert.deepEqual(letterSets(null), []);
-  assert.deepEqual(letterSets(ja).map((s) => s.id), ['hiragana', 'katakana']);
+  assert.deepEqual(letterSets(ja).map((s) => s.id), ['hiragana', 'katakana', 'voiced']);
   assert.deepEqual(letterSets(ar).map((s) => s.id), ['letters']);
   assert.deepEqual(letterSets(uk).map((s) => s.id), ['letters']);
   for (const lang of [uk, ja, ar]) {
@@ -20,7 +20,6 @@ test('the scripts that are new have a letter quiz; Turkish has none', () => {
       assert.equal(new Set(glyphs).size, glyphs.length, 'no glyph twice');
       for (const x of set.items) {
         assert.ok(x.label && x.glyph && x.label !== x.glyph, `${lang.code}: ${x.glyph}`);
-        assert.ok(lang.alphabet.includes(x.letter));
         assert.ok(/^[\x20-\x7Eāīūēōḥṣḍṭẓʾʿ—“”]+$/.test(x.label), `a reading in Latin letters: ${x.label}`);
       }
     }
@@ -104,4 +103,18 @@ test('letters missed last time are asked again', () => {
   }
   // more missed than a round holds: still one round
   assert.equal(letterQuestions(hira, 10, Math.random, hira.items.map((x) => x.glyph)).length, 10);
+});
+
+test('Japanese: the voiced kana are a set of their own, in both scripts', () => {
+  const voiced = letterSets(ja).find((s) => s.id === 'voiced');
+  assert.equal(voiced.items.length, 25);
+  const of = (glyph) => voiced.items.find((x) => x.glyph === glyph)?.label;
+  assert.equal(of('が ガ'), 'ga');
+  assert.equal(of('じ ジ'), 'ji');
+  assert.equal(of('ぢ ヂ'), 'ji (di)');
+  assert.equal(of('づ ヅ'), 'zu (du)');
+  assert.equal(of('ぽ ポ'), 'po');
+  const labels = voiced.items.map((x) => x.label);
+  assert.equal(new Set(labels).size, 25);
+  assert.ok(voiced.items.every((x) => x.letter.hint && /^[ぁ-ん] [ァ-ヶ]$/.test(x.glyph)));
 });
