@@ -5,6 +5,7 @@ import { h, icon, set } from '../ui.js';
 import { backLink, playButton, readingText } from '../components.js';
 import { status } from '../srs.js';
 import { OWN_CATEGORY } from '../languages/common.js';
+import { copyText } from '../native.js';
 
 const STATUS_NAMES = { learning: 'Learning', familiar: 'Familiar', mastered: 'Mastered', known: 'Known' };
 const KANA = /^[\p{Script=Hiragana}\p{Script=Katakana}ー\s、。！？!?・〜~]+$/u;
@@ -129,6 +130,17 @@ export function parseWordList(text, lang) {
 }
 
 /**
+ * The learner's own words as text, one a line, in the columns a pasted list
+ * is read from (word, meaning, reading, note — separated by tabs): what is
+ * copied here can be pasted into a spreadsheet, or back into "Paste a list"
+ * on another device.
+ */
+export function ownWordsText(list) {
+  const cell = (v) => String(v || '').replace(/[\t\r\n]+/g, ' ').trim();
+  return list.map((o) => [o.tr, o.en, o.read, o.note].map(cell).join('\t').replace(/\t+$/, '')).join('\n');
+}
+
+/**
  * #/mywords — the list and the form; #/mywords/<id> — changing an entry;
  * #/mywords/new/<word> — the form with a word filled in (from a text).
  */
@@ -238,7 +250,11 @@ export default function myWords(ctx, editId, prefill = '') {
       words.length ? h('div', { class: 'button-row' },
         unseen ? h('a', { class: 'btn primary', href: `#/learn/${OWN_CATEGORY.id}` }, `Learn ${size === unseen ? (unseen === 1 ? 'it' : `all ${unseen}`) : `the next ${size}`}`, icon('arrow', 16)) : null,
         words.length >= 4 ? h('a', { class: 'btn', href: `#/practice/mixed/${OWN_CATEGORY.id}` }, icon('repeat', 16), 'Practise') : null,
-        h('a', { class: 'btn', href: `#/topic/${OWN_CATEGORY.id}` }, 'Open as a topic')) : null,
+        h('a', { class: 'btn', href: `#/topic/${OWN_CATEGORY.id}` }, 'Open as a topic'),
+        h('button', {
+          type: 'button', class: 'btn', id: 'own-copy',
+          onclick: async () => ctx.toast(await copyText(ownWordsText(store.getOwnWords(lang.code))) ? `Copied ${words.length} — paste them into a spreadsheet, or into “Paste a list” on another device` : 'Couldn’t copy the list.'),
+        }, 'Copy the list')) : null,
       words.length && words.length < 4 ? h('p', { class: 'hint' }, 'With four or more words you can practise them on their own; until then they are mixed in with the course’s.') : null);
     // Newest first: the word just added is at the top.
     set(list, [...words].reverse().map((w) => {

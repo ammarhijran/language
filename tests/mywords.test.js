@@ -461,3 +461,27 @@ test('the learning path and “up next” are about the course; a pasted list is
     store._resetAll();
   }
 });
+
+test('the copied list reads back as the same words', async () => {
+  const { ownWordsText, parseWordList } = await import('../js/views/mywords.js');
+  const { languages } = await import('./all-languages.js');
+  const list = [
+    { id: 'mw-1', tr: '蝶', en: 'butterfly', read: 'ちょう', note: 'seen in\tthe park' },
+    { id: 'mw-2', tr: '図書館', en: 'library', read: '', note: '' },
+    { id: 'mw-3', tr: 'ねこ', en: 'cat; kitty', read: '', note: 'my = favourite' },
+  ];
+  const text = ownWordsText(list);
+  assert.equal(text.split('\n').length, 3);
+  assert.equal(text.split('\n')[1], '図書館\tlibrary', 'no empty columns at the end');
+  const back = parseWordList(text, languages.ja);
+  assert.deepEqual(back.unread, []);
+  assert.deepEqual(back.entries.map((e) => [e.tr, e.en, e.read, e.note]), [
+    ['蝶', 'butterfly', 'ちょう', 'seen in the park'],
+    ['図書館', 'library', '', ''],
+    ['ねこ', 'cat; kitty', '', 'my = favourite'],
+  ]);
+  // a language without a reading field: the note is the third column on the way back
+  const tr = parseWordList(ownWordsText([{ tr: 'uğur böceği', en: 'ladybird', read: '', note: 'brings luck' }]), languages.tr);
+  assert.deepEqual(tr.entries.map((e) => [e.tr, e.en, e.note]), [['uğur böceği', 'ladybird', 'brings luck']]);
+  assert.equal(ownWordsText([]), '');
+});
