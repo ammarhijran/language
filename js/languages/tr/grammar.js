@@ -106,12 +106,12 @@ export const lessons = [
           {
             "tr": "Ev büyük mü?",
             "en": "Is the house big?",
-            "note": "büyük ends in ü, so the question word is mü."
+            "note": "the last vowel of büyük is ü, so the question word is mü."
           },
           {
             "tr": "Okul uzak mı?",
             "en": "Is the school far?",
-            "note": "uzak ends in a, so the question word is mı."
+            "note": "the last vowel of uzak is a, so the question word is mı."
           }
         ]
       },
@@ -1902,7 +1902,7 @@ export const lessons = [
     "sections": [
       {
         "heading": "sen or siz?",
-        "body": "**sen** is the informal “you”: for friends, family, children and people your own age in relaxed settings. **siz** is the plural “you” and also the polite singular “you”: for strangers, older people, shop staff, officials, teachers and colleagues you don't know well. When in doubt, start with **siz**; people will tell you if they'd like you to switch (**Bana “sen” diyebilirsin.** — You can call me “sen”).\n\nThe verb changes too: polite commands add **-in / -ın / -un / -ün** (**Gelin!**). On signs and in announcements you'll see the even more formal **-iniz**: **Lütfen bekleyiniz.** (Please wait.)",
+        "body": "**sen** is the informal “you”: for friends, family, children and people your own age in relaxed settings. **siz** is the plural “you” and also the polite singular “you”: for strangers, older people, shop staff, officials, teachers and colleagues you don't know well. When in doubt, start with **siz**; people will tell you if they'd like you to switch (**Bana “sen” diyebilirsin.** — You can call me “sen”).\n\nThe verb changes too: polite commands add **-(y)in / -(y)ın / -(y)un / -(y)ün** (**Gelin!**). On signs and in announcements you'll see the even more formal **-(y)iniz**: **Lütfen bekleyiniz.** (Please wait.)",
         "table": {
           "head": [
             "Informal (sen)",

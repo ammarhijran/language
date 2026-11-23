@@ -856,7 +856,7 @@ export const lessons = [
       {
         "q": "How do you say “I am a teacher” (said by a man)?",
         "options": [
-          "Я є вчитель.",
+          "Я бути вчитель.",
           "Я буду вчитель.",
           "Я вчитель.",
           "Мене вчитель."
@@ -1398,7 +1398,7 @@ export const lessons = [
       },
       {
         "heading": "з + instrumental: “with”",
-        "body": "**З** + the **instrumental** means “with”: together with someone, or containing something. Feminine nouns take **-ою**, masculine and neuter nouns take **-ом**; soft stems and stems in ж, ч, ш, щ use **-ею / -єю** and **-ем / -єм** instead (**з картоплею**, **з чаєм**). Before some consonant clusters з becomes **зі**: **зі мною** (with me).\n\nCareful: **з + genitive** means “from”: **з Києва** (from Kyiv), but **з мамою** means “with mom”.",
+        "body": "**З** + the **instrumental** means “with”: together with someone, or containing something. Feminine nouns take **-ою**, masculine and neuter nouns take **-ом**; soft stems and stems in ж, ч, ш, щ use **-ею / -єю** and **-ем / -єм** instead (**з картоплею**, **з чаєм**). Feminine nouns ending in a consonant are different: **сіль → з сіллю**. Before some consonant clusters з becomes **зі**: **зі мною** (with me).\n\nCareful: **з + genitive** means “from”: **з Києва** (from Kyiv), but **з мамою** means “with mom”.",
         "table": {
           "head": [
             "",

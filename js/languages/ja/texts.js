@@ -4012,7 +4012,7 @@ export const texts = [
       {
         "tr": "初めての会議では、話の半分も分かりませんでした。",
         "en": "In my first meeting I didn’t understand even half of what was said.",
-        "kana": "はじめて の かいぎ で は はなし の はんぶん も わかりません でした"
+        "kana": "はじめて の かいぎ で は はなし の はんぶん も わかりませんでした"
       },
       {
         "tr": "それでも、皆さんはいつも親切に教えてくださいました。",
@@ -4022,7 +4022,7 @@ export const texts = [
       {
         "tr": "私が間違えても、だれも笑いませんでした。",
         "en": "Even when I made mistakes, nobody laughed.",
-        "kana": "わたし が まちがえて も だれ も わらいません でした"
+        "kana": "わたし が まちがえて も だれ も わらいませんでした"
       },
       {
         "tr": "おかげで、少しずつ自信が持てるようになりました。",

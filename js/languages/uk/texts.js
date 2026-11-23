@@ -534,7 +534,7 @@ export const texts = [
       },
       {
         "speaker": "Shop assistant",
-        "tr": "Ось, будь ласка, примірочна праворуч.",
+        "tr": "Ось, будь ласка, примірювальна праворуч.",
         "en": "Here you are; the fitting room is on the right."
       },
       {
@@ -584,7 +584,7 @@ export const texts = [
         "en": "to give you a refund"
       },
       {
-        "tr": "примірочна",
+        "tr": "примірювальна",
         "en": "fitting room"
       },
       {
@@ -1571,7 +1571,7 @@ export const texts = [
       },
       {
         "speaker": "Ostap",
-        "tr": "Я ще на тренуванні, мам.",
+        "tr": "Я ще на тренуванні, мамо.",
         "en": "Still at practice, Mum."
       },
       {

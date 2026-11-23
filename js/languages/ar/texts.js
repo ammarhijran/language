@@ -562,7 +562,7 @@ export const texts = [
     "level": "A2",
     "title": "Haggling at the Market",
     "titleNative": "الْفِصَال فِي السُّوق",
-    "summary": "A woman bargains for a cotton shawl at a Cairo market stall and asks about returns and paying by card.",
+    "summary": "A woman bargains for a cotton shawl at a Cairo market stall and is told she can return it and asks about paying by card.",
     "dialect": "Egyptian",
     "register": "mixed",
     "lines": [
@@ -2008,9 +2008,9 @@ export const texts = [
     "register": "polite",
     "lines": [
       {
-        "tr": "مَمْنُوعُ التَّدْخِينِ.",
+        "tr": "مَمْنُوعٌ التَّدْخِينُ.",
         "en": "No smoking.",
-        "tl": "mamnūʿu-t-tadkhīn"
+        "tl": "mamnūʿun at-tadkhīn"
       },
       {
         "tr": "الْمَحَلُّ مُغْلَقٌ يَوْمَ الْجُمُعَةِ.",
@@ -2075,7 +2075,7 @@ export const texts = [
     ],
     "glossary": [
       {
-        "tr": "مَمْنُوعُ",
+        "tr": "مَمْنُوعٌ",
         "en": "forbidden, not allowed",
         "tl": "mamnūʿ"
       },
@@ -4307,7 +4307,7 @@ export const texts = [
       {
         "tr": "يُحِبُّ الْأَطْفَالُ الْعِيدَ كَثِيرًا، لِأَنَّ الْكِبَارَ يُعْطُونَهُمُ «الْعِيدِيَّةَ».",
         "en": "Children love Eid very much, because the grown-ups give them the “ʿīdiyya”.",
-        "tl": "yuḥibbu-l-ʾaṭfālu-l-ʿīda kathīran liʾanna-l-kibāra yuʿṭūnahumu-l-ʿīdiyya"
+        "tl": "yuḥibbu-l-ʾaṭfālu-l-ʿīda kathīran li-ʾanna-l-kibāra yuʿṭūnahumu-l-ʿīdiyya"
       },
       {
         "tr": "وَهِيَ مَالٌ قَلِيلٌ يَشْتَرِي بِهِ الطِّفْلُ مَا يُرِيدُ.",
@@ -4571,7 +4571,7 @@ export const texts = [
       {
         "tr": "فِي الصَّبَاحِ ذَهَبَ قَاسِمٌ إِلَى الْمَغَارَةِ وَمَعَهُ عَشَرَةُ حَمِيرٍ، لِأَنَّهُ أَرَادَ أَنْ يَأْخُذَ كُلَّ الذَّهَبِ.",
         "en": "In the morning Qasim went to the cave with ten donkeys, because he wanted to take all the gold.",
-        "tl": "fī-ṣ-ṣabāḥi dhahaba qāsimun ʾilā-l-maghārati wa-maʿahu ʿasharatu ḥamīrin liʾannahu ʾarāda ʾan yaʾkhudha kulla-dh-dhahab"
+        "tl": "fī-ṣ-ṣabāḥi dhahaba qāsimun ʾilā-l-maghārati wa-maʿahu ʿasharatu ḥamīrin li-ʾannahu ʾarāda ʾan yaʾkhudha kulla-dh-dhahab"
       },
       {
         "tr": "قَالَ: «اِفْتَحْ يَا سِمْسِمُ!» فَدَخَلَ وَمَلَأَ أَكْيَاسَهُ بِالذَّهَبِ وَهُوَ سَعِيدٌ جِدًّا.",
