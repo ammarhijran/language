@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Changed
+- **Sharper multiple choice:** when a word has look-alikes (one letter apart: *kış / kız / kuş*, *سَنَة / سِتَّة*…), up to two of them are among the wrong answers — in listening, reading and “choose the word” questions — instead of unrelated words from the topic. Telling those apart is what the question should test.
 - **Privacy policy:** now lists the words, phrases and texts you add yourself among what is stored on the device, and says that sync codes carry your own words (My words) and your notes on words besides your progress — never your own texts or settings. The sync screen’s “not encrypted” note says the same.
 - **Smaller, faster-loading language packs in the built app:** the word lists, lessons, texts and readings stay readable (indented) in the repository, and the build writes them compactly — the same values, checked file by file — which makes the packs about 20 % smaller (around 650 kB in total).
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.

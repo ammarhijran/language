@@ -79,6 +79,33 @@ test('multiple choice never offers a second right answer', () => {
   for (let i = 0; i < 50; i++) assert.ok(pickOptions(ja, gomen, (x) => x.en).filter((o) => /\bsorry\b/i.test(o.en)).length === 1);
 });
 
+test('multiple choice puts a word next to the ones it is easily mixed up with', async () => {
+  const { lookalikes } = await import('../js/stats.js');
+  const kis = tr.words.find((w) => w.tr === 'kış');
+  const near = lookalikes(tr, kis, 6).map((w) => w.id);
+  assert.ok(near.length >= 2);
+  for (const label of [(x) => x.en, (x) => x.tr]) {
+    for (let i = 0; i < 20; i++) {
+      const opts = pickOptions(tr, kis, label).filter((o) => o.id !== kis.id);
+      const alike = opts.filter((o) => near.includes(o.id)).length;
+      assert.equal(alike, 2, 'two look-alikes among the wrong answers');
+      assert.equal(opts.length, 3);
+    }
+  }
+  // A word without look-alikes is asked as before: from its own topic first.
+  const lonely = tr.words.find((w) => !/\s/.test(w.tr) && !lookalikes(tr, w).length && tr.wordsIn(w.cat).length >= 6);
+  const opts = pickOptions(tr, lonely, (x) => x.en).filter((o) => o.id !== lonely.id);
+  assert.ok(opts.every((o) => o.cat === lonely.cat), lonely.tr);
+  // The learner's own words are compared too, as soon as they are added.
+  try {
+    tr.setOwnWords([{ id: 'mw-1', tr: 'kaş', en: 'eyebrow (made-up entry)' }]);
+    assert.ok(lookalikes(tr, kis, 99).some((w) => w.id === 'mw-1'));
+  } finally {
+    tr.setOwnWords([]);
+  }
+  assert.ok(!lookalikes(tr, kis, 99).some((w) => w.id === 'mw-1'));
+});
+
 // ---------- js/languages/ja/homophones.js ----------
 
 /** kana → the course's headwords read that way, for readings shared by 2+ entries. */

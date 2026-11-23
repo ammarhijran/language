@@ -285,6 +285,7 @@ export function makePack(def) {
     }
     if (words.some((w) => w.own)) cats.push({ ...OWN_CATEGORY });
     // Whatever was built from the word list is built again when next needed.
+    pack.wordsVersion = (pack.wordsVersion || 0) + 1;
     keysBuilt = false;
     textIndex = null;
     lexicon = null;

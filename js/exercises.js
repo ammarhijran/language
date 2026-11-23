@@ -10,6 +10,7 @@ import { checkTyped, overlaps } from './compare.js';
 import { AGAIN, HARD, GOOD, EASY } from './srs.js';
 import { phraseSentence, checkOrder, tileKey, acceptedOrders } from './sentences.js';
 import { canSpeak } from './speech.js';
+import { lookalikes } from './stats.js';
 
 function once(fn) {
   let called = false;
@@ -106,11 +107,14 @@ const mark = (right) => h('span', { class: `mark ${right ? 'yes' : 'no'}` }, ico
  * never offered: it would be a second right answer.
  */
 export function pickOptions(lang, word, label, n = 4) {
-  const same = shuffle(lang.wordsIn(word.cat).filter((w) => w.id !== word.id));
-  const others = shuffle(lang.words.filter((w) => w.cat !== word.cat));
+  // Up to two entries that are easy to mix up with it (kış / kız / kuş) come
+  // first: telling those apart is the hard part. Then its topic, then the rest.
+  const near = shuffle(lookalikes(lang, word, 6)).slice(0, 2);
+  const same = shuffle(lang.wordsIn(word.cat).filter((w) => w.id !== word.id && !near.includes(w)));
+  const others = shuffle(lang.words.filter((w) => w.cat !== word.cat && !near.includes(w)));
   const seen = new Set([label(word)]);
   const out = [word];
-  for (const w of [...same, ...others]) {
+  for (const w of [...near, ...same, ...others]) {
     if (out.length >= n) break;
     const l = label(w);
     if (seen.has(l) || overlaps(w.en, word.en)) continue;

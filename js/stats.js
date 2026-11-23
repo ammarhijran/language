@@ -201,24 +201,35 @@ export function oneApart(a, b) {
   return Math.max(x.length, y.length) - i - j <= 1;
 }
 
+// The form each entry is compared in, per pack: built once, and again when
+// the learner's own words change (pack.wordsVersion).
+const likeForms = new WeakMap();
+function formsOf(lang) {
+  const kept = likeForms.get(lang);
+  const version = `${lang.wordsVersion || 0}:${lang.words.length}`;
+  if (kept?.version === version) return kept.forms;
+  // Arabic is compared in transliteration: without its vowels almost every short word has neighbours.
+  const form = (w) => (/\s/.test(w.tr.trim()) ? '' : w.tl ? String(w.tl).toLowerCase() : lang.normalize(w.kana ? w.kana.replace(/\s+/g, '') : w.tr));
+  const forms = lang.words.map((w) => { const k = form(w); return { w, k, n: [...k].length }; }).filter((x) => x.n >= 3);
+  likeForms.set(lang, { version, forms });
+  return forms;
+}
+
 /**
  * Other one-word entries that look or sound almost like `word`: the same
  * form (a homonym) or one letter away — kuş / kış, おばさん / おばあさん.
  * Compared in the form the language is read in (kana for Japanese, the
- * transliteration for Arabic). Words of
- * fewer than three letters have too many neighbours to be worth listing.
+ * transliteration for Arabic). Words of fewer than three letters have too
+ * many neighbours to be worth listing.
  */
 export function lookalikes(lang, word, max = 4) {
-  // Arabic is compared in transliteration: without its vowels almost every short word has neighbours.
-  const form = (w) => (/\s/.test(w.tr.trim()) ? '' : w.tl ? String(w.tl).toLowerCase() : lang.normalize(w.kana ? w.kana.replace(/\s+/g, '') : w.tr));
-  const key = form(word);
-  if ([...key].length < 3) return [];
+  const forms = formsOf(lang);
+  const own = forms.find((x) => x.w.id === word.id);
+  if (!own) return [];
   const out = [];
-  for (const w of lang.words) {
-    if (w.id === word.id) continue;
-    const k = form(w);
-    if ([...k].length < 3 || !oneApart(key, k)) continue;
-    out.push(w);
+  for (const x of forms) {
+    if (x.w.id === word.id || Math.abs(x.n - own.n) > 1 || !oneApart(own.k, x.k)) continue;
+    out.push(x.w);
     if (out.length >= max) break;
   }
   return out;
