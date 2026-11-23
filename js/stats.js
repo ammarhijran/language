@@ -188,3 +188,38 @@ export function reviewForecast(lang, cards, { days = 7, now = Date.now() } = {})
   }
   return out;
 }
+
+/** Whether two strings are the same or one letter apart (one changed, added or left out). */
+export function oneApart(a, b) {
+  const x = [...a];
+  const y = [...b];
+  if (Math.abs(x.length - y.length) > 1) return false;
+  let i = 0;
+  while (i < x.length && i < y.length && x[i] === y[i]) i++;
+  let j = 0;
+  while (j < x.length - i && j < y.length - i && x[x.length - 1 - j] === y[y.length - 1 - j]) j++;
+  return Math.max(x.length, y.length) - i - j <= 1;
+}
+
+/**
+ * Other one-word entries that look or sound almost like `word`: the same
+ * form (a homonym) or one letter away — kuş / kış, おばさん / おばあさん.
+ * Compared in the form the language is read in (kana for Japanese, the
+ * transliteration for Arabic). Words of
+ * fewer than three letters have too many neighbours to be worth listing.
+ */
+export function lookalikes(lang, word, max = 4) {
+  // Arabic is compared in transliteration: without its vowels almost every short word has neighbours.
+  const form = (w) => (/\s/.test(w.tr.trim()) ? '' : w.tl ? String(w.tl).toLowerCase() : lang.normalize(w.kana ? w.kana.replace(/\s+/g, '') : w.tr));
+  const key = form(word);
+  if ([...key].length < 3) return [];
+  const out = [];
+  for (const w of lang.words) {
+    if (w.id === word.id) continue;
+    const k = form(w);
+    if ([...k].length < 3 || !oneApart(key, k)) continue;
+    out.push(w);
+    if (out.length >= max) break;
+  }
+  return out;
+}

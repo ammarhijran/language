@@ -463,3 +463,29 @@ test('reviews coming up: due words per calendar day, overdue ones counted today'
   assert.deepEqual(reviewForecast(tr, {}, { now }).map((x) => x.n), [0, 0, 0, 0, 0, 0, 0]);
   assert.equal(reviewForecast(tr, cards, { now, days: 3 }).length, 3);
 });
+
+test('easy to mix up: entries that are the same or one letter apart in the form they are read in', async () => {
+  const { lookalikes, oneApart } = await import('../js/stats.js');
+  for (const [a, b, yes] of [['kuş', 'kış', true], ['kuş', 'kuşu', true], ['kuş', 'uş', true], ['kuş', 'kuş', true], ['kuş', 'kaşı', false], ['kedi', 'kadi', true], ['kedi', 'kadı', false],
+    ['kedi', 'dedik', false], ['', 'a', true], ['abc', 'cba', false], ['おばさん', 'おばあさん', true]]) {
+    assert.equal(oneApart(a, b), yes, `${a} / ${b}`);
+    assert.equal(oneApart(b, a), yes, `${b} / ${a}`);
+  }
+  for (const L of Object.values(languages)) {
+    let withSome = 0;
+    for (const w of L.words) {
+      const near = lookalikes(L, w);
+      if (!near.length) continue;
+      withSome++;
+      assert.ok(near.length <= 4 && !near.includes(w), w.tr);
+      assert.ok(near.every((x) => !/\s/.test(x.tr.trim())), `${w.tr}: only single words are listed`);
+      // It goes both ways: each of them lists this word too (unless it is past the limit there).
+      assert.ok(near.every((x) => lookalikes(L, x, 999).includes(w)), w.tr);
+    }
+    assert.ok(withSome >= 10, `${L.code}: ${withSome} words with a look-alike`);
+    assert.deepEqual(lookalikes(L, { id: 'a-phrase', tr: `${L.words[0].tr} ${L.words[1].tr}` }), [], 'phrases have none');
+  }
+  const tr = languages.tr;
+  const kis = tr.words.find((w) => w.tr === 'kış');
+  assert.ok(lookalikes(tr, kis).some((w) => w.tr === 'kuş'), 'kış (winter) / kuş (bird)');
+});

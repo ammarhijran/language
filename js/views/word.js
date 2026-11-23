@@ -3,6 +3,7 @@ import { audioControls, pronunciationPanel, speakPractice, exampleBlock, reading
 import { status, STATUS_LABEL, markKnown } from '../srs.js';
 import { rich } from './grammar.js';
 import { loadTexts, textsWithWord } from '../reader.js';
+import { lookalikes } from '../stats.js';
 
 export default function word(ctx, id) {
   const { lang, store } = ctx;
@@ -16,6 +17,7 @@ export default function word(ctx, id) {
   const card = store.getCard(lang.code, w.id);
   const st = status(card);
   const cat = lang.categories.find((c) => c.id === w.cat);
+  const alike = lookalikes(lang, w);
   const stressNote = !/\s/.test(w.tr.trim()) ? lang.stressNote?.(w) || null : null;
   if (ctx.settings.autoplay) sayLater(ctx, w.tr);
 
@@ -76,6 +78,11 @@ export default function word(ctx, id) {
     h('section', { class: 'card' },
       h('h2', { class: 'card-title' }, 'Practise saying it'),
       speakPractice(ctx, w)),
+    // Entries that are one letter away: worth telling apart on purpose.
+    alike.length ? h('section', { class: 'card lookalikes' },
+      h('h2', { class: 'card-title' }, '👀 Easy to mix up'),
+      h('ul', { class: 'word-chips' }, alike.map((x) => h('li', null,
+        h('a', { href: `#/word/${encodeURIComponent(x.id)}` }, h('b', { lang: lang.code }, x.tr), ' ', h('span', null, x.en)))))) : null,
     seen,
   );
 }

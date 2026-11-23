@@ -115,7 +115,19 @@ function sounds(ctx) {
   const { lang } = ctx;
   const cards = ctx.store.getCards(lang.code);
   const learned = (w) => !!cards[w.id];
-  return h('section', { class: 'tips' }, lang.soundTips.map((t) => {
+  // The language's own quick exercise about how words sound: its letters, its stress or its beats.
+  const quiz = lang.misread ? ['letters', '🔤', 'Tricky letters', 'c, ç, ş, ı, ğ, ö, ü: pick how a word is read']
+    : lang.stressPractice ? ['stress', '🎯', 'Word stress', 'Tap the syllable that is stressed']
+      : lang.beatPractice ? ['beats', '🥁', 'Count the beats', 'How many beats does a word have?']
+        : null;
+  // Among the words already learned once there are enough of them, else from the whole course.
+  const scope = Object.keys(cards).length >= 40 ? 'learned' : 'all';
+  return h('section', { class: 'tips' },
+    quiz ? h('a', { class: 'quick-link sound-quiz', href: `#/practice/${quiz[0]}/${scope}` },
+      h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, quiz[1]),
+      h('span', null, h('b', null, quiz[2]), h('small', null, quiz[3])),
+      icon('arrow', 18)) : null,
+    lang.soundTips.map((t) => {
     // The course's words with this sound, the learner's own first, for the speaking drill.
     const words = soundWords(lang, t.id, { learned });
     return h('article', { class: 'card tip' },

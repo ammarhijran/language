@@ -8,6 +8,8 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **Easy to mix up** (a word’s page): the other entries that are spelled or read almost the same — one letter apart — are listed with their meanings: *kış* (winter) next to *kız* (girl) and *kuş* (bird), おばさん next to おばあさん. Compared in kana for Japanese and in transliteration for Arabic.
+- **Speak → Sounds** starts with a shortcut to the language’s own sound exercise: Tricky letters (Turkish), Word stress (Ukrainian, Arabic) or Count the beats (Japanese).
 - **Tricky letters** (Practice, Turkish; also now and then in Mixed rounds): a word is shown with no audio and you pick how it is read. The wrong answers are what it would sound like with c, ç, ş, ı, ğ, ö, ü or j read the English way — *çocuk*: choh-JOOK, not koh-KOOK or choh-SOOK — and the answer says what each of those letters is. 370 one-word entries; words with two or more ways to misread them come first.
 - **Reviews coming up** (Progress): a seven-day chart of how many words fall due on each day — today’s bar includes anything overdue — so a heavy day is visible before it arrives.
 - **Worth another look:** the summary after a review or a practice round lists the words you missed, each a link to its page — to hear it again, or to add a note of your own. (A wrong tap you marked as a slip is not listed.)
