@@ -68,7 +68,7 @@ async function walk(browser, lang, pack, texts) {
   const enc = encodeURIComponent;
 
   // The main screens.
-  for (const r of ['', 'learn', 'learn/g/phrases', 'learn/g/talk', 'learn/g/grammar', 'learn/g/read', 'review', 'practice', 'phrases', 'phrases/kit', 'me',
+  for (const r of ['', 'learn', 'learn/g/phrases', 'learn/g/talk', 'learn/g/grammar', 'learn/g/read', 'review', 'practice', 'phrases', 'phrases/kit', 'phrases/mine', 'me',
     'progress', 'journey', 'settings', 'sync', 'search', 'known', 'speak', 'speak/drill', 'speak/ear', 'speak/alphabet', 'speak/sounds', 'grammar', 'read']) await open(r, { wait: 220 });
 
   // Speak → Sounds: "Practise this sound" opens the speaking drill with its words.
@@ -132,6 +132,7 @@ async function walk(browser, lang, pack, texts) {
     }
     if (!kept) problems.push(`${lang} ${withGloss.id}: no glossary word could be added to My words`);
     await open('topic/my-words', { selector: '.phrase-row' });
+    await open('phrases/mine', { selector: '.phrase-row' }); // the phrasebook lists own entries too
   }
 
   // Every topic: its page, the first and last entry, and the phrasebook page of phrase topics.

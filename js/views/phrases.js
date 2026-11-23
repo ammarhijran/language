@@ -5,6 +5,7 @@ import { h, icon, set, debounce } from '../ui.js';
 import { phraseRow, showMode, devicePref, setDevicePref, pairToggleLabel, glyph } from '../components.js';
 import { rankEntries } from './search.js';
 import { tripKit } from '../kit.js';
+import { OWN_CATEGORY } from '../languages/common.js';
 
 const PHRASE_GROUPS = new Set(['phrases', 'talk']);
 
@@ -14,7 +15,9 @@ export default function phrases(ctx, chipArg, queryArg = '') {
   const entries = lang.words.filter((w) => cats.some((c) => c.id === w.cat));
   const saved = () => store.getFavs(lang.code).map((id) => lang.byId(id)).filter(Boolean);
   const kit = tripKit(lang);
-  const valid = (id) => id === 'saved' || id === 'kit' || cats.some((c) => c.id === id);
+  // The learner's own words and phrases (My words) have a place here too.
+  const mine = () => lang.wordsIn(OWN_CATEGORY.id);
+  const valid = (id) => id === 'saved' || id === 'kit' || id === 'mine' || cats.some((c) => c.id === id);
   const remembered = devicePref('phraseChip', null);
   let chip = valid(chipArg) ? chipArg : valid(remembered) ? remembered : saved().length ? 'saved' : kit.length ? 'kit' : cats[0]?.id || 'saved';
   let query = String(queryArg || '');
@@ -47,6 +50,7 @@ export default function phrases(ctx, chipArg, queryArg = '') {
   const chips = h('div', { class: 'chip-scroll', role: 'group', 'aria-label': 'Situations' },
     chipFor('saved', savedLabel(), { class: 'pill chip-tab saved-chip' }),
     kit.length ? chipFor('kit', '🎒 Trip essentials') : null,
+    chipFor('mine', `${OWN_CATEGORY.emoji} Mine`),
     cats.map((c) => chipFor(c.id, `${c.emoji} ${c.name}`)));
 
   const input = h('input', {
@@ -83,14 +87,21 @@ export default function phrases(ctx, chipArg, queryArg = '') {
     chipButtons.forEach((b, id) => b.setAttribute('aria-pressed', String(!q && id === chip)));
     ctx.setPath(`/phrases/${encodeURIComponent(chip)}${q ? `/${encodeURIComponent(q)}` : ''}`);
     if (q) {
-      const favs = saved().filter((w) => !entries.includes(w));
-      current = rankEntries(lang, q, { among: [...entries, ...favs] }).map((r) => r.word);
+      const favs = saved().filter((w) => !entries.includes(w) && !w.own);
+      current = rankEntries(lang, q, { among: [...entries, ...mine(), ...favs] }).map((r) => r.word);
       set(heading, current.length ? `${current.length} found for “${q}”` : `Nothing in the phrasebook for “${q}”`);
       set(note, h('a', { class: 'small', href: `#/search/${encodeURIComponent(q)}` }, icon('search', 14), ` Search all words for “${q}”`));
     } else if (chip === 'saved') {
       current = saved();
       set(heading, '★ Saved');
       set(note, current.length >= 4 ? h('p', { class: 'hint' }, h('a', { href: '#/practice/handsfree/saved' }, 'Listen to them hands-free')) : current.length ? null : h('p', { class: 'muted empty-note' }, 'Nothing saved yet. Tap ☆ next to any phrase (or any word in a topic) to keep it here — handy before a trip.'));
+    } else if (chip === 'mine') {
+      current = mine();
+      set(heading, `${OWN_CATEGORY.emoji} My words and phrases`);
+      set(note, h('p', { class: current.length ? 'hint' : 'muted empty-note' },
+        current.length ? null : 'Nothing of your own yet. A phrase from a friend, a sign, a song? ',
+        h('a', { href: '#/mywords' }, current.length ? 'Add or change them' : 'Add it here'),
+        current.length >= 4 ? [' · ', h('a', { href: `#/practice/mixed/${OWN_CATEGORY.id}` }, 'Practise'), ' · ', h('a', { href: `#/practice/handsfree/${OWN_CATEGORY.id}` }, 'Listen hands-free')] : null));
     } else if (chip === 'kit') {
       current = kit;
       set(heading, '🎒 Trip essentials');
