@@ -130,6 +130,9 @@ function soundsLike(pack, heard, w) {
   return morae(kana).length >= 3 && fixed * 2 >= [...kana].length ? { score: 0.9 } : null;
 }
 
+// Settings → Audio → “Read words from their kana”: see `speech` below.
+const voice = { kana: false };
+
 const pack = makePack({
   extraExamples,
   exampleReadings,
@@ -137,6 +140,14 @@ const pack = makePack({
   code: 'ja',
   // Rhythm: every beat (mora) takes the same time — Practice → Count the beats.
   beatPractice: true,
+  // Settings → Audio → “Read words from their kana” (see speech() below).
+  voiceOption: {
+    setting: 'voiceKana',
+    label: 'Read words from their kana (try it)',
+    hint: 'Kanji can be read in more than one way, and a voice sometimes picks the wrong reading. With this on, single words are sent to the voice in kana, so the reading is always the course’s. The melody of a word may change a little; phrases and sentences are still read as written.',
+    sample: '今日',
+    set: (on) => { voice.kana = !!on; },
+  },
   // A word the learner adds: its reading in kana, as typed — or the word
   // itself when it is written in kana. Kanji without a reading get none.
   ownReading: (o) => {
@@ -237,8 +248,13 @@ const pack = makePack({
   // Voices read kanji with their own default reading: counters and words
   // with two readings are given the kana the course teaches (say.js, or the
   // kana reading where there is one), and slow playback pauses between phrases.
+  // With “Read words from their kana” on, every single word is sent in kana,
+  // not only the ambiguous ones: the reading is then always the course's.
+  // Phrases and sentences stay as written — without kanji a voice loses where
+  // the words end and how the particles は and へ are read.
   speech(e, said) {
-    const text = said ?? (e.kana ? readAmbiguous(e.tr, e.kana) : e.tr);
+    const single = voice.kana && e.kana && !/\s/.test(e.kana.trim());
+    const text = said ?? (single ? e.kana.trim() : e.kana ? readAmbiguous(e.tr, e.kana) : e.tr);
     return { text, lang: 'ja-JP', slow: e.kana ? pausedJapanese(text, e.kana) : null };
   },
   voiceHelp: {

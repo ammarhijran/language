@@ -75,9 +75,9 @@ export default function settings(ctx) {
 
   const gameOn = h('input', { type: 'checkbox', checked: s.gameOn, onchange: (e) => { store.updateSettings({ gameOn: e.target.checked }); ctx.toast(e.target.checked ? 'Game features on' : 'Game features off'); } });
   const toggle = (key) => h('input', { type: 'checkbox', checked: s[key] !== false, onchange: (e) => store.updateSettings({ [key]: e.target.checked }) });
-  // A word to hear the stress setting with: three syllables or more, stressed at the end.
-  const stressSample = lang.setVoiceStress ? lang.words.find((w) => w.tr === 'молоко') || lang.words.find((w) => Number(w.s) >= 3 && !/\s/.test(w.tr)) || null : null;
-  const markedSample = stressSample ? stressSample.tr.replace(/([аеєиіїоуюя])([^аеєиіїоуюя]*)$/i, '$1\u0301$2') : '';
+  // The pack's voice switch, and an entry to hear it with.
+  const voiceOption = lang.voiceOption || null;
+  const voiceSample = voiceOption ? lang.words.find((w) => w.tr === voiceOption.sample) || null : null;
   const autoplay = h('input', { type: 'checkbox', checked: s.autoplay, onchange: (e) => store.updateSettings({ autoplay: e.target.checked }) });
 
   const fileInput = h('input', {
@@ -266,21 +266,21 @@ export default function settings(ctx) {
       h('label', { class: 'field', for: 'rate' }, h('span', null, 'Speaking speed ', rateOut), rate),
       h('label', { class: 'field inline' }, autoplay, h('span', null, 'Play words automatically')),
       h('button', { type: 'button', class: 'btn small', onclick: () => ctx.say(lang.sampleSentence) }, icon('volume', 16), 'Test voice'),
-      // A language whose voice can be told where the stress is (Ukrainian).
-      lang.setVoiceStress ? [
+      // The pack's own way of helping the voice (Ukrainian stress marks, Japanese kana): a switch to try.
+      voiceOption ? [
         h('label', { class: 'field inline' },
           h('input', {
-            type: 'checkbox', id: 'set-voiceStress', checked: s.voiceStress === true,
+            type: 'checkbox', id: 'set-voiceOption', checked: s[voiceOption.setting] === true,
             onchange: (e) => {
-              store.updateSettings({ voiceStress: e.target.checked });
+              store.updateSettings({ [voiceOption.setting]: e.target.checked });
               ctx.applyDisplaySettings?.();
-              if (stressSample) ctx.say(stressSample); // hear the difference at once
+              if (voiceSample) ctx.say(voiceSample); // hear the difference at once
             },
           }),
-          h('span', null, 'Mark the stress for the voice (try it)')),
-        h('p', { class: 'hint' }, `Phone voices sometimes stress a ${lang.name} word on the wrong syllable. Lisan knows the stress of its words: with this on, a word is sent to the voice with its stress marked${stressSample ? ` (${markedSample})` : ''}. Some voices then say it right; others ignore the mark or stumble over it. `,
-          stressSample ? h('button', { type: 'button', class: 'link-btn', onclick: () => ctx.say(stressSample) }, `Listen to “${stressSample.tr}”`) : null,
-          ' and keep the setting that sounds better.'),
+          h('span', null, voiceOption.label)),
+        h('p', { class: 'hint' }, voiceOption.hint, voiceSample ? ' Listen with it on and off, and keep what sounds better.' : ''),
+        voiceSample ? h('button', { type: 'button', class: 'btn small', id: 'voiceOption-listen', onclick: () => ctx.say(voiceSample) },
+          icon('volume', 16), h('span', { lang: lang.code }, `“${voiceSample.tr}”`)) : null,
       ] : null,
       h('p', { class: 'hint' }, 'Speech recognition: ', speech.recognitionSupported()
         ? 'available ✓ (it may send your audio to an online service — Google, Apple or your browser maker — to transcribe it).'

@@ -88,7 +88,14 @@ export default makePack({
   // (молоко́), which some voices read the stress from. Off by default: other
   // voices ignore the mark, or stumble over it. A `say` override is sent as it is.
   speech: (e, said) => ({ text: said ?? (voice.stress && e.s ? withStressMarks(e.tr, e.s) : e.tr), lang: 'uk-UA' }),
-  setVoiceStress: (on) => { voice.stress = !!on; },
+  // The switch in Settings → Audio (stored as settings.voiceStress); `sample` is said when it is toggled.
+  voiceOption: {
+    setting: 'voiceStress',
+    label: 'Mark the stress for the voice (try it)',
+    hint: 'Phone voices sometimes stress a Ukrainian word on the wrong syllable. Lisan knows the stress of its words: with this on, a word is sent to the voice with its stress marked (молоко́). Some voices then say it right; others ignore the mark or stumble over it.',
+    sample: 'молоко',
+    set: (on) => { voice.stress = !!on; },
+  },
   almostHint: 'So close! Just a letter or two off:',
   // Feedback: Ukrainian words with an English gloss.
   praise: [['Правильно!', 'Correct.'], ['Чудово!', 'Great.'], ['Молодець!', 'Well done.'], ['Супер!', 'Nice.']],

@@ -51,7 +51,8 @@ function applyDisplaySettings() {
   const aid = { ja: s.aidJa, ar: s.aidAr }[lang.code];
   lang.readingAid = ['full', 'script', 'off'].includes(aid) ? aid : 'full';
   lang.speakAs?.(s.speakAs === 'f' ? 'f' : 'm');
-  lang.setVoiceStress?.(s.voiceStress === true);
+  // A pack's own voice switch (Ukrainian stress marks, Japanese kana): see its voiceOption.
+  lang.voiceOption?.set(s[lang.voiceOption.setting] === true);
   document.documentElement.dataset.textSize = ['l', 'xl'].includes(s.textSize) ? s.textSize : 'm';
   applyTheme(s);
   systemBars(s.theme); // the phone's clock and battery icons, when the app's theme differs from the phone's

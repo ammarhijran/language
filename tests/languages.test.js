@@ -344,15 +344,44 @@ test('Ukrainian: a word can be sent to the voice with its stress marked', async 
   const moloko = pack.words.find((w) => w.tr === 'молоко');
   assert.equal(pack.speech(moloko).text, 'молоко');
   try {
-    pack.setVoiceStress(true);
+    pack.voiceOption.set(true);
     assert.equal(pack.speech(moloko).text, `молоко${A}`);
     assert.equal(pack.speech('молоко').text, `молоко${A}`, 'a display string is looked up like the entry');
     assert.equal(pack.speech({ tr: 'молоко', s: 3, say: 'молоко!' }).text, 'молоко!');
     assert.equal(pack.speech({ tr: 'Це молоко.' }).text, 'Це молоко.', 'a sentence without stress data is sent as written');
     assert.equal(pack.speech(moloko).lang, 'uk-UA');
   } finally {
-    pack.setVoiceStress(false);
+    pack.voiceOption.set(false);
   }
   assert.equal(pack.speech(moloko).text, 'молоко');
-  for (const other of [tr, ja, ar]) assert.equal(other.setVoiceStress, undefined);
+  assert.equal(pack.voiceOption.setting, 'voiceStress');
+  assert.ok(pack.words.some((w) => w.tr === pack.voiceOption.sample), 'the sample is an entry');
+  pack.voiceOption.set(true);
+  assert.equal(pack.speech(moloko).text, `молоко${A}`, 'the switch Settings uses');
+  pack.voiceOption.set(false);
+  assert.equal(pack.speech(moloko).text, 'молоко');
+});
+
+test('Japanese: single words can be sent to the voice in kana', () => {
+  const pack = ja;
+  const word = pack.words.find((w) => w.tr === '今日'); // きょう: a single word with no override
+  const phrase = pack.words.find((w) => w.kana && /\s/.test(w.kana.trim()) && !w.say);
+  const fixed = pack.words.find((w) => w.say);
+  assert.equal(pack.speech(word).text, word.tr);
+  assert.equal(pack.voiceOption.setting, 'voiceKana');
+  const sample = pack.words.find((w) => w.tr === pack.voiceOption.sample);
+  assert.ok(sample && !sample.say && sample.kana !== sample.tr, 'the sample is an entry the switch changes');
+  try {
+    pack.voiceOption.set(true);
+    assert.equal(pack.speech(word).text, word.kana.trim(), 'a single word: its kana');
+    assert.equal(pack.speech(word.tr).text, word.kana.trim(), 'a display string is looked up like the entry');
+    assert.equal(pack.speech(phrase).text, phrase.tr, 'a phrase is read as written');
+    assert.equal(pack.speech(fixed).text, fixed.say, 'an override stays');
+    assert.equal(pack.speech({ tr: '今日は暑いです。' }).text, '今日は暑いです。', 'a sentence without a reading is sent as written');
+    assert.equal(pack.speech(word).lang, 'ja-JP');
+  } finally {
+    pack.voiceOption.set(false);
+  }
+  assert.equal(pack.speech(word).text, word.tr);
+  for (const other of [tr, ar]) assert.equal(other.voiceOption, undefined);
 });
