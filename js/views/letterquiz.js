@@ -28,7 +28,7 @@ export default function letterQuiz(ctx, setId) {
   let pickOption = () => {};
   let goOn = () => {};
 
-  const pair = (x) => [h('b', { lang: lang.code }, x.glyph), ' ', x.label];
+  const pair = (x) => [h('b', { lang: lang.code }, x.glyph), ' ', chosen.native ? h('span', { lang: lang.code }, `${x.label} · ${lang.letterName(x.letter)}`) : x.label];
 
   function show() {
     answered = false;
@@ -37,10 +37,10 @@ export default function letterQuiz(ctx, setId) {
     const feedback = h('div', { class: 'feedback', 'aria-live': 'polite' });
     const buttons = q.options.map((o, k) => h('button', {
       type: 'button', class: 'option', onclick: () => pickOption(k),
-      ...(read ? {} : { lang: lang.code }),
+      ...(read && !chosen.native ? {} : { lang: lang.code }),
     },
       h('span', { class: 'kbd', 'aria-hidden': 'true' }, String(k + 1)),
-      h('span', { class: `option-label${read ? '' : ' letter-option'}` }, read ? o.label : o.glyph)));
+      h('span', { class: `option-label${read && !chosen.native ? '' : ' letter-option'}` }, read ? o.label : o.glyph)));
     pickOption = (k) => {
       if (answered || !q.options[k]) return;
       answered = true;
@@ -78,8 +78,8 @@ export default function letterQuiz(ctx, setId) {
       backLink(ctx, '#/speak/alphabet', lang.code === 'ja' ? 'Kana' : 'Alphabet'),
       h('div', { class: 'exercise' },
         h('p', { class: 'kicker' }, `${chosen.name} · ${i + 1} of ${qs.length}`),
-        h('p', { class: `letter-quiz-prompt${read ? '' : ' as-label'}`, ...(read ? { lang: lang.code } : {}) }, read ? q.item.glyph : q.item.label),
-        h('p', { class: 'muted letter-quiz-ask' }, read ? 'How is it read?' : 'Which one is it?'),
+        h('p', { class: `letter-quiz-prompt${read || chosen.native ? '' : ' as-label'}`, ...(read || chosen.native ? { lang: lang.code } : {}) }, read ? q.item.glyph : q.item.label),
+        h('p', { class: 'muted letter-quiz-ask' }, chosen.asks ? chosen.asks[read ? 0 : 1] : read ? 'How is it read?' : 'Which one is it?'),
         h('div', { class: 'options two' }, buttons),
         feedback));
     window.scrollTo(0, 0);

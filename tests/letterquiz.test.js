@@ -9,7 +9,7 @@ const { tr, uk, ja, ar } = languages;
 test('the scripts that are new have a letter quiz; Turkish has none', () => {
   assert.deepEqual(letterSets(tr), []);
   assert.deepEqual(letterSets(null), []);
-  assert.deepEqual(letterSets(ja).map((s) => s.id), ['hiragana', 'katakana', 'voiced']);
+  assert.deepEqual(letterSets(ja).map((s) => s.id), ['hiragana', 'katakana', 'match', 'voiced']);
   assert.deepEqual(letterSets(ar).map((s) => s.id), ['letters', 'shapes']);
   assert.deepEqual(letterSets(uk).map((s) => s.id), ['letters']);
   for (const lang of [uk, ja, ar]) {
@@ -20,7 +20,7 @@ test('the scripts that are new have a letter quiz; Turkish has none', () => {
       assert.equal(new Set(glyphs).size, glyphs.length, 'no glyph twice');
       for (const x of set.items) {
         assert.ok(x.label && x.glyph && x.label !== x.glyph, `${lang.code}: ${x.glyph}`);
-        assert.ok(/^[\x20-\x7Eāīūēōḥṣḍṭẓʾʿ—“”]+$/.test(x.label), `a reading in Latin letters: ${x.label}`);
+        if (!set.native) assert.ok(/^[\x20-\x7Eāīūēōḥṣḍṭẓʾʿ—“”]+$/.test(x.label), `a reading in Latin letters: ${x.label}`);
       }
     }
   }
@@ -124,4 +124,14 @@ test('Japanese: the voiced kana are a set of their own, in both scripts', () => 
   const labels = voiced.items.map((x) => x.label);
   assert.equal(new Set(labels).size, 25);
   assert.ok(voiced.items.every((x) => x.letter.hint && /^[ぁ-ん] [ァ-ヶ]$/.test(x.glyph)));
+});
+
+test('Japanese: katakana against hiragana, 46 pairs', () => {
+  const match = letterSets(ja).find((s) => s.id === 'match');
+  assert.equal(match.native, true);
+  assert.equal(match.items.length, 46);
+  assert.equal(match.asks.length, 2);
+  assert.equal(match.items.find((x) => x.glyph === 'シ').label, 'し');
+  assert.ok(match.items.every((x) => /^[ァ-ヶ]$/.test(x.glyph) && /^[ぁ-ん]$/.test(x.label)));
+  assert.ok(letterSets(ja).filter((s) => s.id !== 'match').every((s) => s.native === false));
 });

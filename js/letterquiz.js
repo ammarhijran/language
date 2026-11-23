@@ -26,9 +26,13 @@ export function letterSets(lang) {
   return defs.map((d) => ({
     id: d.id,
     name: d.name,
+    // A set that pairs two scripts (katakana with hiragana) says so: its "readings" are in the script too.
+    native: !!d.label,
+    asks: d.asks || null,
     items: (d.letters || lang.alphabet)
-      .map((letter) => ({ letter, glyph: d.glyph(letter), label: lang.letterName(letter) }))
-      .filter((x) => x.glyph && x.label && x.glyph !== x.label),
+      .map((letter) => ({ letter, glyph: d.glyph(letter), label: d.label ? d.label(letter) : lang.letterName(letter) }))
+      // (a set's own label still needs the letter to have a name: っ and ー stay out)
+      .filter((x) => x.glyph && x.label && x.glyph !== x.label && lang.letterName(x.letter)),
   })).filter((set) => set.items.length >= 8);
 }
 

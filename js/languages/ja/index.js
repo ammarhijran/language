@@ -188,6 +188,8 @@ const pack = makePack({
   letterSets: [
     { id: 'hiragana', name: 'Hiragana', glyph: (l) => l.upper },
     { id: 'katakana', name: 'Katakana', glyph: (l) => l.lower },
+    // The two scripts against each other: a katakana is shown, its hiragana is picked — and the other way round.
+    { id: 'match', name: 'Hiragana ↔ katakana', glyph: (l) => l.lower, label: (l) => l.upper, asks: ['Which hiragana is it?', 'Which katakana is it?'] },
     // The kana with ゛ and ゜ (が, ぱ…): not in the chart, shown in both scripts at once.
     { id: 'voiced', name: 'Voiced kana', glyph: (l) => `${l.upper} ${l.lower}`, letters: VOICED_KANA },
   ],
