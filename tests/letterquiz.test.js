@@ -174,3 +174,28 @@ test('Arabic: sun and moon letters — the fourteen, and how al- is said before 
   assert.equal(consonantOf('alif'), '');
   assert.equal(new Set(items.map((x) => x.tl)).size, items.length, 'no two letters share a Latin spelling');
 });
+
+test('Turkish vowel harmony: the endings follow the last vowel, on course words only', async () => {
+  const { HARMONY_WORDS, lastVowel, pluralOf, questionOf, harmonyQuestions } = await import('../js/views/harmony.js');
+  for (const [word, plural, q] of [['ev', 'evler', 'mi'], ['kitap', 'kitaplar', 'mı'], ['göz', 'gözler', 'mü'], ['okul', 'okullar', 'mu'], ['kız', 'kızlar', 'mı'],
+    ['gün', 'günler', 'mü'], ['yol', 'yollar', 'mu'], ['köprü', 'köprüler', 'mü'], ['yıldız', 'yıldızlar', 'mı'], ['pencere', 'pencereler', 'mi'], ['yağmur', 'yağmurlar', 'mu'], ['güneş', 'güneşler', 'mi']]) {
+    assert.equal(pluralOf(word), plural);
+    assert.equal(questionOf(word), q, word);
+  }
+  assert.equal(lastVowel('ÇOCUK'), 'u');
+  assert.equal(lastVowel('brr'), '');
+  assert.equal(new Set(HARMONY_WORDS).size, HARMONY_WORDS.length);
+  for (const w of HARMONY_WORDS) {
+    assert.ok(tr.words.some((x) => x.tr === w), `${w} is a course word`);
+    assert.ok(!/\s/.test(w) && lastVowel(w));
+  }
+  for (const bad of ['saat', 'hal', 'gol', 'kalp', 'rol', 'harf', 'alkol', 'dikkat', 'meşgul']) assert.ok(!HARMONY_WORDS.includes(bad), `${bad} does not follow the rule`);
+  const qs = harmonyQuestions(tr, 10);
+  assert.equal(qs.length, 10);
+  assert.equal(new Set(qs.map((q) => q.word.id)).size, 10);
+  for (const q of qs) {
+    assert.equal(q.options.filter((o) => o === q.answer).length, 1);
+    assert.equal(q.options.length, q.kind === 'plural' ? 2 : 4);
+  }
+  assert.ok(qs.some((q) => q.kind === 'plural') && qs.some((q) => q.kind === 'question'));
+});

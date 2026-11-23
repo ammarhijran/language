@@ -5,6 +5,7 @@ import { rich } from './grammar.js';
 import { soundWords } from '../sounddrill.js';
 import letterQuiz from './letterquiz.js';
 import sunQuiz from './sunquiz.js';
+import harmony from './harmony.js';
 import { letterSets } from '../letterquiz.js';
 
 // Doing first (speaking, ear training), then the reference (letters, sounds).
@@ -20,6 +21,7 @@ export default function pronounce(ctx, tab, ...args) {
   // The letter quiz is a screen of its own (no tabs): #/speak/alphabet/quiz/<set>.
   if (tab === 'alphabet' && args[0] === 'quiz') return letterQuiz(ctx, args[1]);
   if (tab === 'alphabet' && args[0] === 'sun') return sunQuiz(ctx);
+  if (tab === 'alphabet' && args[0] === 'harmony') return harmony(ctx);
   // Without a section: speaking, once there are a few words to say; before that, the letters.
   if (!TABS.some((t) => t.id === tab)) tab = learnedWords(ctx).length >= 5 ? 'drill' : 'alphabet';
   const body = { alphabet, sounds, ear, drill }[tab](ctx, ...args);
@@ -113,6 +115,9 @@ function alphabet(ctx) {
   const quizzes = letterSets(lang);
   return h('section', null,
     h('p', { class: 'muted' }, lang.alphabetIntro),
+    // Turkish: its letters are familiar, its endings are not — they follow the word's last vowel.
+    code === 'tr' ? h('div', { class: 'button-row letter-quiz-links' },
+      h('a', { class: 'btn small', href: '#/speak/alphabet/harmony' }, h('span', { 'aria-hidden': 'true' }, '🎶'), 'Vowel harmony: -lar or -ler?')) : null,
     quizzes.length ? h('div', { class: 'button-row letter-quiz-links' }, quizzes.map((s) =>
       h('a', { class: 'btn small', href: `#/speak/alphabet/quiz/${s.id}` }, icon('target', 16), quizzes.length > 1 ? `Quiz: ${s.name}` : 'Quiz me on the letters')),
       // Arabic: how the article al- is said before each letter.
