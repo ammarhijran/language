@@ -37,6 +37,8 @@ const DEFAULTS = {
   newsSeen: '', // id of the last “What’s new” list the learner has seen (see news.js)
   aidJa: 'full', // Japanese readings: 'full' (kana · rōmaji), 'script' (kana only), 'off'
   aidAr: 'full', // Arabic transliteration: 'full' or 'off'
+  typing: true, // typing questions in reviews and Mixed rounds
+  speaking: true, // speaking questions in reviews and Mixed rounds
   textSize: 'm', // 'm', 'l' or 'xl'
   theme: 'system', // 'system' (follow the device), 'light' or 'dark' — see js/themes.js
   accent: 'indigo', // a key of ACCENTS, or 'custom' (then accentHue, 0–359, is the colour)

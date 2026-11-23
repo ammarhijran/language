@@ -74,6 +74,7 @@ export default function settings(ctx) {
   });
 
   const gameOn = h('input', { type: 'checkbox', checked: s.gameOn, onchange: (e) => { store.updateSettings({ gameOn: e.target.checked }); ctx.toast(e.target.checked ? 'Game features on' : 'Game features off'); } });
+  const toggle = (key) => h('input', { type: 'checkbox', checked: s[key] !== false, onchange: (e) => store.updateSettings({ [key]: e.target.checked }) });
   const autoplay = h('input', { type: 'checkbox', checked: s.autoplay, onchange: (e) => store.updateSettings({ autoplay: e.target.checked }) });
 
   const fileInput = h('input', {
@@ -277,7 +278,10 @@ export default function settings(ctx) {
         h('select', { class: 'select', onchange: (e) => store.updateSettings({ dailyGoal: Number(e.target.value) }) },
           GOALS.map((g) => h('option', { value: String(g.value), selected: g.value === s.dailyGoal }, `${g.name} — ${g.value} exercises (${g.time})`)))),
       h('label', { class: 'field inline' }, number('lessonSize', 3, 15), h('span', null, 'New words per lesson')),
-      h('label', { class: 'field inline' }, number('sessionSize', 5, 100), h('span', null, 'Max words per review session'))),
+      h('label', { class: 'field inline' }, number('sessionSize', 5, 100), h('span', null, 'Max words per review session')),
+      h('label', { class: 'field inline' }, toggle('typing'), h('span', null, 'Typing questions')),
+      h('label', { class: 'field inline' }, toggle('speaking'), h('span', null, 'Speaking questions')),
+      h('p', { class: 'hint' }, `In reviews and Mixed practice. Switch typing off if you have no ${lang.name} keyboard, speaking off when you can’t talk — the words are then asked by choosing or as flashcards. Spelling and Speaking practice stay available when you pick them yourself.`)),
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'Your data'),
       h('a', { class: 'btn primary', href: '#/sync' }, icon('repeat', 16), 'Sync between devices'),

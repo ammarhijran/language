@@ -131,9 +131,13 @@ export function nextCategory(ctx) {
 
 const FAMILIAR = new Set(['familiar', 'mastered', 'known']);
 
-/** Exercise type for a review, based on how well the word is known (pass `lang` to allow sentence building). */
-export function chooseReviewType(card, word, lang) {
-  const speak = recognitionSupported();
+/**
+ * Exercise type for a review, based on how well the word is known (pass `lang`
+ * to allow sentence building). `typing` / `speaking` false leave those out
+ * (Settings → Lessons).
+ */
+export function chooseReviewType(card, word, lang, { typing = true, speaking = true } = {}) {
+  const speak = speaking && recognitionSupported();
   // Typing a whole sentence is tedious: phrases are practised by choice, recall and speaking.
   const long = word && (word.tr.trim().split(/\s+/).length > 3 || word.tr.length > 24);
   let pool;
@@ -149,6 +153,8 @@ export function chooseReviewType(card, word, lang) {
   if (lang?.stressPractice && word && FAMILIAR.has(status(card)) && !/\s/.test(word.tr.trim())) pool.push('stress');
   // Past the first steps, a word whose example sentence has it as written is sometimes asked in that sentence.
   if (lang && word && card.reps >= 2 && clozable(lang, word)) pool.push('cloze');
+  // Typing switched off in Settings: recall by choosing or by flashcard instead.
+  if (!typing) pool = pool.map((t) => (t === 'type' ? 'flashcard' : t));
   return pool[Math.floor(Math.random() * pool.length)];
 }
 

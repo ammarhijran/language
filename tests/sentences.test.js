@@ -229,6 +229,15 @@ test('reviews sometimes build a familiar phrase, never a new one or a single wor
   assert.ok(!types({ ...newCard(), reps: 1, interval: 1 }, ukWord, uk).has('stress'), 'not while the word is new');
   assert.ok(!types(familiar, uk.words.find((w) => /\s/.test(w.tr)), uk).has('stress'));
   assert.ok(!types(familiar, word).has('stress'));
+  // Settings → Lessons: typing or speaking questions can be left out of reviews.
+  const anyWord = tr.words.find((w) => !w.tr.includes(' ') && w.tr.length < 10);
+  const old = { ...newCard(), reps: 6, interval: 30 };
+  const kinds = (opts) => new Set(Array.from({ length: 400 }, () => chooseReviewType(old, anyWord, tr, opts)));
+  assert.ok(kinds({}).has('type'));
+  assert.ok(!kinds({ typing: false }).has('type'), 'typing switched off');
+  assert.ok(kinds({ typing: false }).has('flashcard'));
+  assert.ok(!kinds({ speaking: false }).has('speak'), 'speaking switched off');
+  assert.ok(!kinds({ typing: false, speaking: false }).has('type') && !kinds({ typing: false, speaking: false }).has('speak'));
   // Japanese phrases are built from their kana.
   const jp = ja.byId('お名前は何ですか');
   assert.ok(types(familiar, jp, ja).has('build'));

@@ -47,12 +47,12 @@ function wordsFor(ctx, scope) {
 // choice, recall and speaking instead (Spelling mode still types them on request).
 const isLong = (word) => word.tr.trim().split(/\s+/).length > 3 || word.tr.length > 24;
 
-export function typeFor(mode, word, lang = null) {
+export function typeFor(mode, word, lang = null, { typing = true, speaking = true } = {}) {
   // Without speech recognition a speaking round would be all disabled buttons:
   // fall back to flashcards (hear it, say it aloud, self-rate).
   if (mode === 'speak' && !recognitionSupported()) return 'flashcard';
   if (mode !== 'mixed') return mode;
-  const pool = ['listen', 'meaning', 'produce', ...(isLong(word) ? [] : ['type']), ...(recognitionSupported() ? ['speak'] : []),
+  const pool = ['listen', 'meaning', 'produce', ...(isLong(word) || !typing ? [] : ['type']), ...(speaking && recognitionSupported() ? ['speak'] : []),
     // …and the word in its example sentence, when it stands there as written.
     ...(lang && clozeItem(lang, word) ? ['cloze'] : []),
     // A mixed round also asks how a word sounds, where the course teaches that: its stress, or its beats.
@@ -77,7 +77,7 @@ export default function practice(ctx, mode, scope) {
   // Tricky letters: words with a real choice (two or more ways to misread them) come first.
   const rich = mode === 'letters' ? pool.filter((w) => misreadItem(ctx.lang, w).wrong.length >= 2) : [];
 
-  const items = shuffle(rich.length >= ROUND ? rich : pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word, ctx.lang) }));
+  const items = shuffle(rich.length >= ROUND ? rich : pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word, ctx.lang, { typing: ctx.settings.typing !== false, speaking: ctx.settings.speaking !== false }) }));
   let right = 0;
   let answered = 0;
   const missed = [];

@@ -234,6 +234,10 @@ test('a mixed practice round also asks for stress (Ukrainian, Arabic) or beats (
   assert.ok(!kinds('mixed', moloko, uk).has('letters'));
   assert.ok(!kinds('mixed', moloko).has('stress'), 'without the pack nothing changes');
   assert.deepEqual([...kinds('listen', moloko, uk)], ['listen'], 'a chosen mode stays that mode');
+  // Settings → Lessons: no typing questions in a Mixed round; a mode chosen on purpose is not affected.
+  const off = new Set(Array.from({ length: 400 }, () => typeFor('mixed', moloko, uk, { typing: false, speaking: false })));
+  assert.ok(!off.has('type') && !off.has('speak'));
+  assert.equal(typeFor('type', moloko, uk, { typing: false }), 'type');
 });
 
 test('tricky letters (Turkish): the wrong readings are the special letters read the English way', async () => {

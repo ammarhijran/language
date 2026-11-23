@@ -9,6 +9,7 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **Typing and speaking questions can be switched off** (Settings → Lessons): for reviews and Mixed practice — when there is no keyboard for the language, or no way to talk. The words are then asked by choosing or as flashcards. Spelling and Speaking practice stay available when picked on purpose.
 - **In context** (Practice → In context; also in Mixed rounds and in reviews of words past their first steps): the word’s own example sentence is shown with a gap where the word goes, with its translation, and you choose the word; the answer shows and plays the whole sentence. Asked only when the sentence has the word exactly as the entry writes it, once — 533 Turkish, 613 Ukrainian, 719 Japanese and 248 Arabic entries.
 - **Copy** on every word and phrase page: puts the word on the clipboard, to paste into a message, a search or a note.
 - **My note** also shows on the back of flashcards and on new-word cards, not only under multiple-choice and typed answers.
