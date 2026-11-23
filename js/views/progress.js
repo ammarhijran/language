@@ -65,11 +65,16 @@ export default function progress(ctx, catFilter) {
   function renderList() {
     searchLater.cancel(); // a filter changed: no need to redo it for the search too
     stopList();
+    const notes = filter === 'noted' ? store.getNotes(lang.code) : null;
     const rows = lang.words.filter((w) => {
       if (cat !== 'all' && w.cat !== cat) return false;
-      if (filter !== 'all' && status(cards[w.id]) !== filter) return false;
+      if (filter === 'missed') { if (!(cards[w.id]?.lapses > 0)) return false; }
+      else if (filter === 'noted') { if (!Object.hasOwn(notes, w.id)) return false; }
+      else if (filter !== 'all' && status(cards[w.id]) !== filter) return false;
       return lang.matches(w, query);
     });
+    // The words missed most come first.
+    if (filter === 'missed') rows.sort((a, b) => cards[b.id].lapses - cards[a.id].lapses);
     if (!rows.length) {
       stopList = () => {};
       set(list, h('li', { class: 'muted empty' }, 'No words match.'));
@@ -86,7 +91,10 @@ export default function progress(ctx, catFilter) {
   });
   const statusSelect = h('select', { class: 'select', 'aria-label': 'Filter by status', onchange: (e) => { filter = e.target.value; renderList(); } },
     h('option', { value: 'all' }, 'All statuses'),
-    Object.entries(STATUS_LABEL).map(([k, v]) => h('option', { value: k }, v)));
+    Object.entries(STATUS_LABEL).map(([k, v]) => h('option', { value: k }, v)),
+    // Not statuses, but the two other ways to pick words out of the list.
+    h('option', { value: 'missed' }, 'Missed before (most first)'),
+    h('option', { value: 'noted' }, 'With a note of mine'));
   const catSelect = h('select', { class: 'select', 'aria-label': 'Filter by topic', onchange: (e) => { cat = e.target.value; renderList(); } },
     h('option', { value: 'all' }, 'All topics'),
     lang.categories.map((c) => h('option', { value: c.id, selected: c.id === cat }, `${c.emoji} ${c.name}`)));
