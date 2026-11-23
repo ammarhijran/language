@@ -469,6 +469,8 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 /* word page: the learner's own spelling for the voice */
 .voice-fix { margin: var(--sp-2) 0; }
 .voice-fix .field { margin-bottom: var(--sp-1); }
+.voice-fix-form { margin: 0; }
+.voice-fix-form > .hint { margin-top: var(--sp-2); }
 .voice-fix .button-row { margin-top: var(--sp-2); flex-wrap: wrap; }
 .voice-fix > .hint { margin-top: var(--sp-2); }
 .voice-fixes { margin: var(--sp-3) 0; }

@@ -183,17 +183,17 @@ export function voiceFix(ctx, w, { ask = 'Voice says it wrong?', idBase = 'voice
       back();
       ctx.toast(lang.ownSay(w) ? 'The voice will read your spelling.' : 'The voice reads the course’s spelling.');
     };
-    set(box,
+    // A form, so that Enter in the field saves — also inside a sheet, which keeps key events to itself.
+    set(box, h('form', { class: 'voice-fix-form', onsubmit: (e) => { e.preventDefault(); save(); } },
       h('label', { class: 'field', for: `${idBase}-input` }, h('span', null, 'Spell it for the voice')),
       input,
       h('div', { class: 'button-row' },
         h('button', { type: 'button', class: 'btn small', onclick: () => { if (input.value.trim()) ctx.say(spoken(input.value.trim())); } }, icon('volume', 16), 'Listen'),
-        h('button', { type: 'button', class: 'btn small primary', onclick: save }, 'Use this'),
+        h('button', { type: 'submit', class: 'btn small primary' }, 'Use this'),
         mine ? h('button', { type: 'button', class: 'btn small', onclick: () => { apply(''); back(); ctx.toast('The voice reads the course’s spelling.'); } }, 'Back to the course’s') : null,
         h('button', { type: 'button', class: 'btn small', onclick: () => back() }, 'Cancel')),
       h('p', { class: 'hint' }, 'Only the voice gets this: the word on screen and the answers that count stay the same. ',
-        VOICE_FIX_TIPS[lang.code] || '', ' Kept on this device, for its voice.'));
-    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); save(); } });
+        VOICE_FIX_TIPS[lang.code] || '', ' Kept on this device, for its voice.')));
     input.focus();
   }
   show();
