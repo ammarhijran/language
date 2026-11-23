@@ -37,6 +37,7 @@ const DEFAULTS = {
   newsSeen: '', // id of the last “What’s new” list the learner has seen (see news.js)
   aidJa: 'full', // Japanese readings: 'full' (kana · rōmaji), 'script' (kana only), 'off'
   aidAr: 'full', // Arabic transliteration: 'full' or 'off'
+  voiceStress: false, // Ukrainian: send words to the voice with their stress marked (молоко́)
   typing: true, // typing questions in reviews and Mixed rounds
   speaking: true, // speaking questions in reviews and Mixed rounds
   textSize: 'm', // 'm', 'l' or 'xl'

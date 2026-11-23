@@ -315,3 +315,44 @@ test('Arabic: every rule-placed stress comes with the rule that placed it', () =
   }
   assert.ok(asked >= 600);
 });
+
+test('Ukrainian: a word can be sent to the voice with its stress marked', async () => {
+  const { withStressMarks } = await import('../js/languages/uk/phonetics.js');
+  const A = '\u0301';
+  assert.equal(withStressMarks('молоко', 3), `молоко${A}`);
+  assert.equal(withStressMarks('привіт', 2), `приві${A}т`);
+  assert.equal(withStressMarks('Справді?', 1), `Спра${A}вді?`, 'punctuation and capitals stay');
+  assert.equal(withStressMarks('добрий день', [1, 0]), `до${A}брий день`, 'a word whose stress is not marked is left alone');
+  assert.equal(withStressMarks('добрий ранок', [1, 1]), `до${A}брий ра${A}нок`);
+  assert.equal(withStressMarks('так', 1), 'так', 'one syllable needs no mark');
+  assert.equal(withStressMarks('молоко'), 'молоко');
+  assert.equal(withStressMarks('п’ятниця', 1), `п’я${A}тниця`);
+  // Taking the marks out again gives the text back, for every entry of the course.
+  const pack = uk;
+  let marked = 0;
+  for (const w of pack.words) {
+    if (!w.s) continue;
+    const out = withStressMarks(w.tr, w.s);
+    assert.equal(out.replaceAll(A, ''), w.tr, w.tr);
+    const want = (Array.isArray(w.s) ? w.s : [w.s]).filter(Boolean).length;
+    const got = out.split(A).length - 1;
+    assert.ok(got <= want, `${w.tr}: ${got} marks for ${want} stresses`);
+    if (got) marked++;
+  }
+  assert.ok(marked >= 900, `${marked} entries get a mark`);
+  // The pack sends the marks only when the setting is on, and never changes a say override.
+  const moloko = pack.words.find((w) => w.tr === 'молоко');
+  assert.equal(pack.speech(moloko).text, 'молоко');
+  try {
+    pack.setVoiceStress(true);
+    assert.equal(pack.speech(moloko).text, `молоко${A}`);
+    assert.equal(pack.speech('молоко').text, `молоко${A}`, 'a display string is looked up like the entry');
+    assert.equal(pack.speech({ tr: 'молоко', s: 3, say: 'молоко!' }).text, 'молоко!');
+    assert.equal(pack.speech({ tr: 'Це молоко.' }).text, 'Це молоко.', 'a sentence without stress data is sent as written');
+    assert.equal(pack.speech(moloko).lang, 'uk-UA');
+  } finally {
+    pack.setVoiceStress(false);
+  }
+  assert.equal(pack.speech(moloko).text, 'молоко');
+  for (const other of [tr, ja, ar]) assert.equal(other.setVoiceStress, undefined);
+});

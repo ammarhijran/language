@@ -154,3 +154,28 @@ export function analyze(text, stress) {
     .join(' ');
   return { words, ipa, respell, stressMarked: words.some((w) => w.stressIndex >= 0) };
 }
+
+/**
+ * `text` with an acute accent on the stressed vowel of each word whose stress
+ * is known (`stress` as for analyze): молоко + 3 → молоко́. Words without a
+ * known stress, and everything between the words, are left as they are.
+ * This is how dictionaries print stress — and what some voices read it from.
+ */
+export function withStressMarks(text, stress) {
+  let out = '';
+  let from = 0;
+  for (const w of analyze(text, stress).words) {
+    const at = text.indexOf(w.text, from);
+    if (at < 0) continue;
+    out += text.slice(from, at);
+    from = at + w.text.length;
+    if (w.stressIndex < 0 || w.syllables.map((x) => x.text).join('') !== w.text) { out += w.text; continue; }
+    out += w.syllables.map((syl, k) => {
+      if (k !== w.stressIndex) return syl.text;
+      const chars = [...syl.text];
+      const v = chars.findIndex((c) => VOWELS.has(lower(c)));
+      return v < 0 ? syl.text : `${chars.slice(0, v + 1).join('')}\u0301${chars.slice(v + 1).join('')}`;
+    }).join('');
+  }
+  return out + text.slice(from);
+}

@@ -5,7 +5,7 @@ import { lessons } from './grammar.js';
 import { extraExamples } from './examples.js';
 import { feminine } from './feminine.js';
 import { alphabet, soundTips, minimalPairs } from './sounds.js';
-import { analyze, lower, transliterate } from './phonetics.js';
+import { analyze, lower, transliterate, withStressMarks } from './phonetics.js';
 import { makePack, pauseBetweenWords } from '../common.js';
 
 const APOS = /['’ʼ`]/g;
@@ -56,6 +56,9 @@ const PRONOUNS = ['я', 'ти', 'він', 'вона', 'воно', 'ми', 'ви'
 const OBJECT_PRONOUNS = ['мене', 'тебе', 'нас', 'вас'];
 const QUESTION_WORDS = ['що', 'де', 'коли', 'як', 'чому', 'хто', 'куди', 'звідки', 'скільки', 'який', 'яка', 'яке', 'які', 'чи', 'котра', 'котрій', 'навіщо'];
 
+// Settings → Audio → “Mark the stress for the voice”: see `speech` below.
+const voice = { stress: false };
+
 export default makePack({
   extraExamples,
   feminine,
@@ -79,6 +82,13 @@ export default makePack({
   // Stress is free and unwritten, and phone voices sometimes misplace it: the
   // course asks for it (Practice → Word stress, and now and then in reviews).
   stressPractice: true,
+  // What the voice is given. Phone voices sometimes stress a Ukrainian word on
+  // the wrong syllable; the course knows the stress of its entries. With the
+  // setting on, an entry is sent with an acute accent on its stressed vowel
+  // (молоко́), which some voices read the stress from. Off by default: other
+  // voices ignore the mark, or stumble over it. A `say` override is sent as it is.
+  speech: (e, said) => ({ text: said ?? (voice.stress && e.s ? withStressMarks(e.tr, e.s) : e.tr), lang: 'uk-UA' }),
+  setVoiceStress: (on) => { voice.stress = !!on; },
   almostHint: 'So close! Just a letter or two off:',
   // Feedback: Ukrainian words with an English gloss.
   praise: [['Правильно!', 'Correct.'], ['Чудово!', 'Great.'], ['Молодець!', 'Well done.'], ['Супер!', 'Nice.']],
