@@ -28,7 +28,7 @@ export function tips(lang, { reminders = false, scope = '' } = {}) {
       title: 'Learn and review',
       items: [
         item('📚', 'Lessons', 'Open a topic and learn its words a few at a time: each is introduced, then asked.', '#/learn'),
-        item('🔁', 'Reviews', 'Words come back just before you would forget them. A wrong tap that was only a slip? “I mis-tapped” on the answer keeps the word’s schedule.', '#/review'),
+        item('🔁', 'Reviews', 'Words come back just before you would forget them. A wrong tap that was only a slip? “I mis-tapped” on the answer keeps the word’s schedule. With nothing due, “Review ahead” does tomorrow’s words today.', '#/review'),
         item('✅', 'Already know some words?', 'Mark them, or take the placement check, and lessons skip them.', '#/known'),
         item('📈', 'Progress', 'Your last six weeks as a calendar, the reviews coming up this week, your skills side by side — listening, reading, recall, spelling, speaking — and every word with its status.', '#/progress'),
       ],

@@ -612,3 +612,22 @@ test('a word’s record in a line', async () => {
   assert.equal(cardHistory({ reps: 0, lapses: 1, interval: 0 }), 'Missed once.');
   assert.equal(cardHistory({ reps: 9, lapses: 3, interval: 95 }), 'Answered right 9 times in a row · missed 3 times · now comes back after 3 months.');
 });
+
+test('review ahead: the words due by the end of tomorrow, soonest first', async () => {
+  const { dueWords, dueSoonWords } = await import('../js/stats.js');
+  const { startOfDay } = await import('../js/srs.js');
+  const lang = languages.tr;
+  const now = new Date(2026, 10, 23, 21, 0).getTime();
+  const card = (due) => ({ ease: 2.5, interval: 3, reps: 2, lapses: 0, due });
+  const [a, b, c, d] = lang.words.slice(0, 4).map((w) => w.id);
+  const cards = {
+    [a]: card(now - 1000), // due now
+    [b]: card(startOfDay(now, 1) + 3600e3), // tomorrow morning
+    [c]: card(startOfDay(now, 2) - 1000), // late tomorrow
+    [d]: card(startOfDay(now, 2) + 1000), // the day after: not yet
+  };
+  const ctx = { lang, store: { getCards: () => cards } };
+  assert.deepEqual(dueWords(ctx, now).map((x) => x.word.id), [a]);
+  assert.deepEqual(dueSoonWords(ctx, now).map((x) => x.word.id), [a, b, c]);
+  assert.deepEqual(dueSoonWords({ lang, store: { getCards: () => ({}) } }, now), []);
+});
