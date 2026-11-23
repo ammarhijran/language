@@ -2978,7 +2978,7 @@ export const vocab = [
     "note": "In speech everyone says mabrūk. The reply is allāh yibārik fīk, “God bless you”.",
     "reg": "formal",
     "pair": {
-      "tr": "مَبْرُوكٌ!",
+      "tr": "مَبْرُوك!",
       "reg": "neutral",
       "tl": "mabrūk"
     }
@@ -7590,7 +7590,7 @@ export const vocab = [
     "tl": "ʾanā hunā fī ʾijāza",
     "note": "On business: فِي رِحْلَةِ عَمَلٍ (fī riḥlat ʿamal); Egyptian عَشَان الشُّغْل (ʿashān ish-shughl).",
     "pair": {
-      "tr": "أَنَا جَاي أَجَازَة.",
+      "tr": "أَنَا جَايّ أَجَازَة.",
       "reg": "casual",
       "en": "I've come on holiday.",
       "tl": "ʾana gayy ʾagāza",
@@ -8687,7 +8687,7 @@ export const vocab = [
     "tl": "hādhihi ḥāla ṭāriʾa",
     "note": "At a hospital, head for الطَّوَارِئ (aṭ-ṭawāriʾ), the emergency department.",
     "pair": {
-      "tr": "دِي حَالَة طَوَارِئ!",
+      "tr": "دِي حَالِة طَوَارِئ!",
       "reg": "casual",
       "tl": "di ḥālit ṭawāriʾ",
       "dialect": "Egyptian"
@@ -8756,7 +8756,7 @@ export const vocab = [
     "note": "One way: ذَهَابٌ فَقَطْ (dhahāb faqaṭ); Egyptian رَايِح بَسّ (rāyiḥ bass).",
     "reg": "polite",
     "pair": {
-      "tr": "تَذْكَرَة رَايِح جَاي لَوْ سَمَحْت.",
+      "tr": "تَذْكَرَة رَايِح جَايّ لَوْ سَمَحْت.",
       "reg": "polite",
       "en": "A there-and-back ticket, please.",
       "tl": "tazkara rāyiḥ gayy law samaḥt",
