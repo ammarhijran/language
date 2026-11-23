@@ -4,6 +4,7 @@ import { status, STATUS_LABEL, markKnown } from '../srs.js';
 import { rich } from './grammar.js';
 import { loadTexts, textsWithWord } from '../reader.js';
 import { lookalikes } from '../stats.js';
+import { copyText } from '../native.js';
 
 export default function word(ctx, id) {
   const { lang, store } = ctx;
@@ -50,6 +51,11 @@ export default function word(ctx, id) {
         readingLine(ctx, w, 'reading', { full: true }),
         h('p', { class: 'hero-en' }, w.en, ' ', regBadge(w))),
       audioControls(ctx, w),
+      // To paste it into a message, a search, a note.
+      h('button', {
+        type: 'button', class: 'link-btn copy-btn',
+        onclick: async () => ctx.toast((await copyText(w.tr)) ? `Copied “${w.tr}”` : 'Couldn’t copy — select the word and copy it by hand.'),
+      }, 'Copy'),
       pronunciationPanel(ctx, w),
       // Where stress follows rules (Arabic): the rule behind this word's stress.
       stressNote ? h('p', { class: 'hint stress-note' }, h('b', null, 'Why the stress is there: '), stressNote) : null,

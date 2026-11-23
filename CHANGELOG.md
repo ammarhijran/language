@@ -9,6 +9,8 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **Copy** on every word and phrase page: puts the word on the clipboard, to paste into a message, a search or a note.
+- **My note** also shows on the back of flashcards and on new-word cards, not only under multiple-choice and typed answers.
 - **Ear training with the course’s own words:** besides the hand-picked pairs, Speak → Ear training now has a group “From the course: words one sound apart” — twelve pairs such as *kış / kuş*, *так / там*, *وَلَد / بَلَد*, the ones you have learned first — and the quiz draws from them too. For Japanese the pairs that matter most come first: voiced against unvoiced (あける / あげる) and words one beat longer (a long vowel, っ or ん).
 - **Easy to mix up** (a word’s page): the other entries that are spelled or read almost the same — one letter apart — are listed with their meanings: *kış* (winter) next to *kız* (girl) and *kuş* (bird), おばさん next to おばあさん. Compared in kana for Japanese and in transliteration for Arabic.
 - **Speak → Sounds** starts with a shortcut to the language’s own sound exercise: Tricky letters (Turkish), Word stress (Ukrainian, Arabic) or Count the beats (Japanese).

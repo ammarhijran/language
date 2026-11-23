@@ -124,9 +124,14 @@ export function pickOptions(lang, word, label, n = 4) {
   return shuffle(out);
 }
 
+/** The learner's own note on the word (a memory hook), when there is one. */
+function myNoteLine(ctx, word) {
+  const note = ctx.store?.getNote?.(ctx.lang.code, word.id) || '';
+  return note ? h('p', { class: 'my-note-text' }, h('span', { 'aria-hidden': 'true' }, '📝 '), h('span', { class: 'sr-only' }, 'My note: '), note) : null;
+}
+
 function reveal(ctx, word, correct, extra) {
   const a = ctx.lang.analyze(word);
-  const note = ctx.store?.getNote?.(ctx.lang.code, word.id) || '';
   return h('div', { class: `reveal ${correct ? 'good' : 'bad'}` },
     h('p', { class: 'verdict' }, icon(correct ? 'check' : 'x', 18), correct ? praiseLine(ctx.lang, pick(ctx.lang.praise)) : 'Not quite — here’s the answer:'),
     h('div', { class: 'reveal-word' },
@@ -138,8 +143,7 @@ function reveal(ctx, word, correct, extra) {
       ),
     ),
     registerBlock(ctx, word, { compact: true }),
-    // The learner's own note on the word (a memory hook), when there is one.
-    note ? h('p', { class: 'my-note-text' }, h('span', { 'aria-hidden': 'true' }, '📝 '), h('span', { class: 'sr-only' }, 'My note: '), note) : null,
+    myNoteLine(ctx, word),
     extra,
   );
 }
@@ -602,6 +606,7 @@ export function flashcard(ctx, word, onDone) {
       h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word)),
       readingLine(ctx, word, 'reading', { full: true }),
       pronunciationPanel(ctx, word, { compact: true }),
+      myNoteLine(ctx, word),
     );
     ctx.say(word, { auto: true });
     // The question labels the group, which takes the focus (the button that had it is gone).
@@ -648,6 +653,7 @@ export function intro(ctx, word, onDone, meta = {}) {
     registerBlock(ctx, word),
     exampleBlock(ctx, word),
     word.note ? h('p', { class: 'note' }, word.note) : null,
+    myNoteLine(ctx, word),
     h('details', { class: 'try-speak' },
       h('summary', null, icon('mic', 16), 'Try saying it'),
       speakPractice(ctx, word)),

@@ -58,6 +58,29 @@ export async function saveTextFile(name, text, { type = 'text/plain', dialogTitl
   return undefined;
 }
 
+/**
+ * Put text on the clipboard. Resolves to whether it worked: the Clipboard API
+ * where there is one, else the old select-and-copy through a hidden field.
+ */
+export async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch { /* no permission or no Clipboard API: try the old way */ }
+  try {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.append(area);
+    area.select();
+    const ok = document.execCommand('copy');
+    area.remove();
+    return !!ok;
+  } catch { return false; }
+}
+
 let webLock = null;
 /**
  * Keep the screen on while something plays by itself (hands-free listening,
