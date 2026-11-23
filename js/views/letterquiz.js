@@ -20,6 +20,7 @@ export default function letterQuiz(ctx, setId) {
   // The letters missed in the last round of this set come up again in this one.
   const prefKey = `letterMissed:${lang.code}:${chosen.id}`;
   const before = devicePref(prefKey, []);
+  const wideGlyphs = chosen.items.some((x) => [...x.glyph].length > 3);
   const qs = letterQuestions(chosen, COUNT, Math.random, Array.isArray(before) ? before.filter((g) => typeof g === 'string').slice(0, COUNT) : []);
   const missed = [];
   let i = 0;
@@ -82,7 +83,8 @@ export default function letterQuiz(ctx, setId) {
         h('p', { class: 'kicker' }, `${chosen.name} · ${i + 1} of ${qs.length}`),
         h('p', { class: `letter-quiz-prompt${read || chosen.native ? '' : ' as-label'}`, ...(read || chosen.native ? { lang: lang.code } : {}) }, read ? q.item.glyph : q.item.label),
         h('p', { class: 'muted letter-quiz-ask' }, chosen.asks ? chosen.asks[read ? 0 : 1] : read ? 'How is it read?' : 'Which one is it?'),
-        h('div', { class: 'options two' }, buttons),
+        // Two columns, unless the glyphs are long (きゃ キャ) and are what is being picked: then one, so none is cut off.
+        h('div', { class: `options${!read && wideGlyphs ? '' : ' two'}` }, buttons),
         feedback));
     window.scrollTo(0, 0);
   }

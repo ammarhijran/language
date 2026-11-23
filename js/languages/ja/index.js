@@ -133,6 +133,14 @@ function soundsLike(pack, heard, w) {
 // Settings → Audio → “Read words from their kana”: see `speech` below.
 const voice = { kana: false };
 
+// きゃ…ぴょ with their katakana, for the letter quiz.
+const toKatakana = (s) => [...s].map((ch) => String.fromCharCode(ch.charCodeAt(0) + 0x60)).join('');
+const COMBINED_KANA = [...'きしちにひみりぎじびぴ'].flatMap((k) => [...'ゃゅょ'].map((y) => ({
+  upper: k + y,
+  lower: toKatakana(k + y),
+  hint: `${k} with a small ${y}: one beat, read together — not ${k} and then ${{ ゃ: 'や', ゅ: 'ゆ', ょ: 'よ' }[y]}`,
+})));
+
 // が…ぽ with their katakana, for the letter quiz. ぢ and づ sound like じ and ず.
 const VOICED_KANA = [...'がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ'].map((k) => ({
   upper: k,
@@ -192,6 +200,8 @@ const pack = makePack({
     { id: 'match', name: 'Hiragana ↔ katakana', glyph: (l) => l.lower, label: (l) => l.upper, asks: ['Which hiragana is it?', 'Which katakana is it?'] },
     // The kana with ゛ and ゜ (が, ぱ…): not in the chart, shown in both scripts at once.
     { id: 'voiced', name: 'Voiced kana', glyph: (l) => `${l.upper} ${l.lower}`, letters: VOICED_KANA },
+    // A kana of the i-row with a small や, ゆ or よ: one beat, read together (きゃ kya).
+    { id: 'combined', name: 'Combined kana', glyph: (l) => `${l.upper} ${l.lower}`, letters: COMBINED_KANA },
   ],
   soundTips,
   minimalPairs,

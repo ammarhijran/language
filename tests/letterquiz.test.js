@@ -9,7 +9,7 @@ const { tr, uk, ja, ar } = languages;
 test('the scripts that are new have a letter quiz; Turkish has none', () => {
   assert.deepEqual(letterSets(tr), []);
   assert.deepEqual(letterSets(null), []);
-  assert.deepEqual(letterSets(ja).map((s) => s.id), ['hiragana', 'katakana', 'match', 'voiced']);
+  assert.deepEqual(letterSets(ja).map((s) => s.id), ['hiragana', 'katakana', 'match', 'voiced', 'combined']);
   assert.deepEqual(letterSets(ar).map((s) => s.id), ['letters', 'shapes']);
   assert.deepEqual(letterSets(uk).map((s) => s.id), ['letters']);
   for (const lang of [uk, ja, ar]) {
@@ -134,4 +134,17 @@ test('Japanese: katakana against hiragana, 46 pairs', () => {
   assert.equal(match.items.find((x) => x.glyph === 'シ').label, 'し');
   assert.ok(match.items.every((x) => /^[ァ-ヶ]$/.test(x.glyph) && /^[ぁ-ん]$/.test(x.label)));
   assert.ok(letterSets(ja).filter((s) => s.id !== 'match').every((s) => s.native === false));
+});
+
+test('Japanese: the combined kana (きゃ, しゅ…) are a set too', () => {
+  const set = letterSets(ja).find((s) => s.id === 'combined');
+  assert.equal(set.items.length, 33);
+  const of = (glyph) => set.items.find((x) => x.glyph === glyph)?.label;
+  assert.equal(of('きゃ キャ'), 'kya');
+  assert.equal(of('しゅ シュ'), 'shu');
+  assert.equal(of('ちょ チョ'), 'cho');
+  assert.equal(of('じゃ ジャ'), 'ja');
+  assert.equal(of('りょ リョ'), 'ryo');
+  assert.equal(new Set(set.items.map((x) => x.label)).size, 33);
+  assert.ok(set.items.every((x) => /^[ぁ-ん]{2} [ァ-ヶ]{2}$/.test(x.glyph) && x.letter.hint));
 });
