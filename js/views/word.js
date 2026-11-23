@@ -16,6 +16,7 @@ export default function word(ctx, id) {
   const card = store.getCard(lang.code, w.id);
   const st = status(card);
   const cat = lang.categories.find((c) => c.id === w.cat);
+  const stressNote = !/\s/.test(w.tr.trim()) ? lang.stressNote?.(w) || null : null;
   if (ctx.settings.autoplay) sayLater(ctx, w.tr);
 
   // "In Read & Listen": the texts that use this word, filled in once the texts are loaded.
@@ -48,6 +49,8 @@ export default function word(ctx, id) {
         h('p', { class: 'hero-en' }, w.en, ' ', regBadge(w))),
       audioControls(ctx, w),
       pronunciationPanel(ctx, w),
+      // Where stress follows rules (Arabic): the rule behind this word's stress.
+      stressNote ? h('p', { class: 'hint stress-note' }, h('b', null, 'Why the stress is there: '), stressNote) : null,
       registerBlock(ctx, w),
       exampleBlock(ctx, w, { links: true }),
       w.note ? h('p', { class: 'note' }, rich(w.note, lang.code)) : null,
