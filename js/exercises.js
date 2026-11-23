@@ -146,13 +146,14 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, 
   const live = liveRegion();
   let correct = false;
   let answered = false;
+  let slipped = false; // the learner says the wrong tap was a slip of the finger
 
   const buttons = opts.map((w, i) =>
     h('button', { type: 'button', class: 'option', lang: optionLang, onclick: () => answer(i) },
       h('span', { class: 'kbd', 'aria-hidden': 'true' }, String(i + 1)),
       render ? render(w) : h('span', { class: 'option-label' }, label(w))));
 
-  const finish = once(() => { unbind(); onDone({ correct, rating: correct ? GOOD : wrong }); });
+  const finish = once(() => { unbind(); onDone({ correct, rating: slipped ? HARD : correct ? GOOD : wrong, ...(slipped ? { slip: true } : {}) }); });
 
   function answer(i) {
     if (answered) return;
@@ -169,7 +170,14 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, 
     ctx.onAnswer?.({ correct, rating: correct ? GOOD : wrong });
     if (!correct) buzzWrong();
     const btn = continueButton(finish);
-    el.append(answerSheet(ctx, correct ? 'good' : 'bad', reveal(ctx, word, correct, extra), btn, [buttons[i], right]));
+    // A wrong tap that was only a slip: the word is not treated as forgotten
+    // (in a review it counts as Hard — sooner than Good, but no starting over).
+    // The points and the combo of this answer stay as they fell.
+    const slip = !correct && wrong === AGAIN ? h('button', {
+      type: 'button', class: 'link-btn slip-btn',
+      onclick: () => { slipped = true; correct = true; finish(); },
+    }, 'I mis-tapped — I knew this one') : null;
+    el.append(answerSheet(ctx, correct ? 'good' : 'bad', reveal(ctx, word, correct, [extra, slip]), btn, [buttons[i], right]));
     announce(ctx, live, correct ? 'Right! ' : 'Not quite. The answer: ', spoken(ctx, word.tr, word.en));
     ctx.say(word, { auto: true });
     btn.focus({ preventScroll: true });
