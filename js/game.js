@@ -35,9 +35,10 @@ function packSummary(code, cards) {
     const s = all[code];
     return s && Number.isFinite(s.topics) ? s : { topics: 0, complete: false, talk: 0 };
   }
-  const topics = L.categories.filter((c) => topicLearned(L.wordsIn(c.id), cards)).length;
+  const course = L.categories.filter((c) => !c.own); // the learner's own words are not part of the course
+  const topics = course.filter((c) => topicLearned(L.wordsIn(c.id), cards)).length;
   const talk = L.words.filter((w) => (w.reg === 'casual' || w.reg === 'slang') && cards[w.id] && !cards[w.id].known).length;
-  const sum = { topics, complete: topics === L.categories.length, talk };
+  const sum = { topics, complete: topics === course.length, talk };
   const old = all[code];
   if (!old || old.topics !== sum.topics || old.complete !== sum.complete || old.talk !== sum.talk) {
     all[code] = sum;

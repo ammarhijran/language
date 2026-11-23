@@ -174,10 +174,20 @@ function picker(ctx, wanted) {
   else if (section === 'read') body = readSection(ctx);
   else {
     const g = GROUPS.find((x) => x.id === section);
-    const cats = lang.categories.filter((c) => (c.group || 'words') === section);
+    const cats = lang.categories.filter((c) => !c.own && (c.group || 'words') === section);
+    const own = section === 'words' ? lang.categories.find((c) => c.own) : null;
     body = h('section', { class: 'learn-section' },
       h('p', { class: 'hint' }, g.hint, section === 'words' ? '' : ' · ', section === 'words' ? null : h('a', { href: section === 'talk' ? `#/phrases/${encodeURIComponent(cats[0]?.id || '')}` : '#/phrases' }, 'Open the phrasebook')),
       stagedTopics(cats, (list) => h('div', { class: 'topic-grid' }, list.map((c) => topicTile(ctx, c, counts.get(c.id), { current: resume?.id === c.id })))),
+      // The learner's own words: their topic once there are some, and where to add more.
+      section === 'words' ? [
+        own ? h('h2', { class: 'stage-title' }, 'Your own') : null,
+        own ? h('div', { class: 'topic-grid' }, topicTile(ctx, own, counts.get(own.id), { current: resume?.id === own.id })) : null,
+        h('a', { class: 'quick-link own-link', href: '#/mywords' },
+          h('span', { class: 'quick-emoji', 'aria-hidden': 'true' }, '📝'),
+          h('span', null, h('b', null, own ? 'Add or change your words' : 'Add your own words'), h('small', null, 'Words and phrases you met elsewhere — learn and review them like the course’s')),
+          icon('arrow', 18)),
+      ] : null,
       section === 'words'
         ? h('a', { class: 'quick-link known-link', href: '#/known' },
           icon('check', 22),
@@ -202,7 +212,7 @@ function sectionAvailable(ctx, id) {
 function sectionCount(ctx, id) {
   if (id === 'grammar') return ctx.lang.grammar?.length || 0;
   if (id === 'read') return cachedTexts(ctx.lang.code)?.length || 0;
-  return ctx.lang.categories.filter((c) => (c.group || 'words') === id).length;
+  return ctx.lang.categories.filter((c) => !c.own && (c.group || 'words') === id).length;
 }
 
 /** Learn → Grammar: the lessons in order, ticked once their quiz is done. */

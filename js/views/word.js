@@ -51,6 +51,7 @@ export default function word(ctx, id) {
       registerBlock(ctx, w),
       exampleBlock(ctx, w, { links: true }),
       w.note ? h('p', { class: 'note' }, rich(w.note, lang.code)) : null,
+      w.own ? h('p', { class: 'hint' }, 'One of your own words. ', h('a', { href: `#/mywords/${encodeURIComponent(w.id)}` }, 'Change or delete it')) : null,
       st === 'new'
         ? h('button', {
           type: 'button', class: 'btn small',

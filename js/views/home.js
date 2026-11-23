@@ -117,7 +117,7 @@ export default function home(ctx) {
           h('a', { href: '#/journey', class: 'small' }, levelLine(ctx))),
         challengeList(ctx, { compact: true }))
       : null,
-    h('a', { class: 'all-topics', href: '#/learn' }, `All ${lang.categories.length} topics, grammar and texts`, icon('arrow', 18)),
+    h('a', { class: 'all-topics', href: '#/learn' }, `All ${lang.categories.filter((c) => !c.own).length} topics, grammar and texts`, icon('arrow', 18)),
   );
 }
 

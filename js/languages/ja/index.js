@@ -135,6 +135,14 @@ const pack = makePack({
   exampleReadings,
   exampleReadingKey: 'kana',
   code: 'ja',
+  // A word the learner adds: its reading in kana, as typed — or the word
+  // itself when it is written in kana. Kanji without a reading get none.
+  ownReading: (o) => {
+    const kana = /^[\p{Script=Hiragana}\p{Script=Katakana}ー\s]+$/u;
+    const strip = (t) => String(t || '').replace(/[、。！？!?・〜~「」]/g, ' ').replace(/\s+/g, ' ').trim();
+    const read = [strip(o.read), strip(o.tr)].find((t) => t && kana.test(t));
+    return read ? { kana: read } : {};
+  },
   name: 'Japanese',
   nativeName: '日本語',
   flag: '🇯🇵',

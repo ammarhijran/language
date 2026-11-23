@@ -12,6 +12,7 @@ It runs as a website (works offline, installable as a PWA) and as native **Andro
 - **Phrasebook:** 220+ ready-to-use phrases in 22 situations, searchable, with a polite ⇄ everyday switch (MSA ⇄ Egyptian in Arabic), ★ favourites (synced between devices) and a big-text **Show** mode for showing your phone to someone.
 - **Search** (top bar) finds words, phrases, topics, grammar lessons and texts by script, reading or English.
 - **Speaking as a woman:** in Ukrainian and Arabic, “I …” phrases that depend on the speaker’s gender can be shown, spoken and checked in the feminine form (Settings → Display).
+- **My words:** add your own words and phrases to a language and learn, review and practise them like the course’s (kept on the device and in backups).
 - **Themes:** light or dark (or whatever the device uses), eight colours for buttons and links — seven presets or any hue of your own — and five page backgrounds, including true black for OLED screens. Every combination is checked for readable contrast.
 - **Display settings:** larger text for the whole app, and reading aids you can turn down as you learn the script — hide rōmaji (kana only) or all readings in Japanese, or the transliteration in Arabic. New words and answers always show the full reading.
 - **Daily reminder** (Android and iOS apps): one notification a day at the time you choose, saying what's waiting ("12 Turkish words are ready for review"), skipped once you've met your goal. Scheduled on the device; nothing is sent anywhere.

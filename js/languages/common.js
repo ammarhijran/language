@@ -115,6 +115,9 @@ export function writtenUnits(text, normalize) {
   return units;
 }
 
+/** The topic the learner's own words live in (see pack.setOwnWords). */
+export const OWN_CATEGORY = { id: 'my-words', name: 'My words', native: '', emoji: '📝', group: 'words', own: true };
+
 export function makePack(def) {
   const normalize = def.normalize;
   const stripDiacritics = def.stripDiacritics || normalize;
@@ -242,6 +245,52 @@ export function makePack(def) {
     return parts.length > 1 ? parts[0] : null;
   };
 
+  // ---------- The learner's own words ("My words") ----------
+  // Entries added by hand (store.getOwnWords) join the pack as one more topic,
+  // so lessons, reviews, practice, search and the word page work for them like
+  // for the course's own. They carry `own: true`, and so does their topic:
+  // whatever is about the course itself (finishing it, its topic list) leaves
+  // them out. Called when the app starts and whenever the list changes.
+  const analyzeEntry = pack.analyze;
+  // A word without the reading its script needs (kanji without kana, Arabic
+  // without a transliteration) has no syllables to show: it stays one piece.
+  const inOnePiece = (w) => ({
+    words: String(w.tr).split(/\s+/).filter(Boolean).map((text) => ({ text, syllables: [{ text, ipa: '', respell: '' }], stressIndex: -1 })),
+    ipa: '', respell: '', stressMarked: false,
+  });
+  pack.analyze = (w) => {
+    if (!w?.own) return analyzeEntry(w);
+    try {
+      const a = analyzeEntry(w);
+      // Letters of another script (a brand name, a loan in Latin letters) give no syllables.
+      return a.words.length && a.words.every((x) => x.syllables.length) ? a : inOnePiece(w);
+    } catch { return inOnePiece(w); }
+  };
+  pack.setOwnWords = (list = []) => {
+    for (let i = words.length - 1; i >= 0; i--) {
+      if (words[i].own) { byId.delete(words[i].id); words.splice(i, 1); }
+    }
+    const cats = pack.categories;
+    const at = cats.findIndex((c) => c.own);
+    if (at >= 0) cats.splice(at, 1);
+    for (const o of list) {
+      if (!o || typeof o.id !== 'string' || !o.tr || !o.en || byId.has(o.id)) continue;
+      const w = {
+        id: o.id, tr: o.tr, en: o.en, cat: OWN_CATEGORY.id, own: true, index: words.length,
+        ...(o.note ? { note: o.note } : {}),
+        ...(def.ownReading ? def.ownReading(o) : {}),
+      };
+      words.push(w);
+      byId.set(w.id, w);
+    }
+    if (words.some((w) => w.own)) cats.push({ ...OWN_CATEGORY });
+    // Whatever was built from the word list is built again when next needed.
+    keysBuilt = false;
+    textIndex = null;
+    lexicon = null;
+    return pack;
+  };
+
   // Who is speaking. The course gives first-person phrases in the form a man
   // says; a pack with a `feminine` map (id → { tr, s?, tl?, en?, pair? }) can
   // show, speak and check the form a woman says instead. The other form stays
@@ -272,6 +321,7 @@ export function makePack(def) {
     if (keysBuilt) return;
     keysBuilt = true;
     for (const w of words) {
+      if (w.searchKey != null) continue; // built before the learner's own words changed
       const forms = [w.tr, ...pack.acceptedAnswers(w), pack.fullReading(w) || ''];
       w.searchKey = [...new Set(forms.flatMap((f) => [normalize(f), stripDiacritics(f)]))].join(' ');
     }

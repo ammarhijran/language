@@ -83,6 +83,7 @@ export default function settings(ctx) {
       try {
         store.importData(await file.text());
         ctx.applyDisplaySettings?.(); // the file's theme, text size and reading aids
+        ctx.refreshOwnWords?.(); // and its "My words"
         ctx.summariseLanguages?.({ fresh: true });
         ctx.toast('Progress imported.');
         ctx.rerender();

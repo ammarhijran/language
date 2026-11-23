@@ -49,7 +49,7 @@ const RANGES = { rate: [0.5, 1.2, false], lessonSize: [3, 15, true], sessionSize
 const isObj = (x) => x != null && typeof x === 'object' && !Array.isArray(x);
 const BAD_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 
-const fresh = () => ({ settings: { ...DEFAULTS }, progress: {}, game: {}, mine: {} });
+const fresh = () => ({ settings: { ...DEFAULTS }, progress: {}, game: {}, mine: {}, words: {} });
 
 // The learner's own texts for Read & Listen ("My texts"): kept on this device
 // and in backup files, not in sync codes (they are personal, and can be long).
@@ -72,6 +72,35 @@ function cleanMine(raw) {
       if (texts.length >= OWN_TEXTS_MAX) break;
     }
     if (texts.length) out[lang] = texts;
+  }
+  return out;
+}
+
+// The learner's own words and phrases ("My words"): added by hand, learned,
+// reviewed and practised like the course's. Like own texts they are kept on
+// this device and in backup files, not in sync codes.
+export const OWN_WORDS_MAX = 300; // entries per language
+export const OWN_WORD_LIMITS = { tr: 80, en: 120, read: 120, note: 200 }; // characters per field
+const OWN_WORD_ID = /^mw-[a-z0-9]{1,12}$/;
+const oneLine = (v, max) => (typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, max).trim() : '');
+/** { tr, en, read, note } trimmed to one line each and to their limits. */
+const ownWordFields = (w) => Object.fromEntries(Object.entries(OWN_WORD_LIMITS).map(([k, max]) => [k, oneLine(w?.[k], max)]));
+function cleanOwnWords(raw) {
+  const out = {};
+  if (!isObj(raw)) return out;
+  for (const [lang, list] of Object.entries(raw)) {
+    if (BAD_KEYS.has(lang) || !/^[a-z]{2,3}$/.test(lang) || !Array.isArray(list)) continue;
+    const seen = new Set();
+    const words = [];
+    for (const w of list) {
+      if (!isObj(w) || typeof w.id !== 'string' || !OWN_WORD_ID.test(w.id) || seen.has(w.id)) continue;
+      const fields = ownWordFields(w);
+      if (!fields.tr || !fields.en) continue;
+      seen.add(w.id);
+      words.push({ id: w.id, ...fields, at: Number.isFinite(w.at) ? w.at : 0 });
+      if (words.length >= OWN_WORDS_MAX) break;
+    }
+    if (words.length) out[lang] = words;
   }
   return out;
 }
@@ -114,7 +143,7 @@ function cleanSettings(raw) {
 function fromData(d) {
   const settings = cleanSettings(d?.settings);
   const { progress, game } = sanitize(d, { device: deviceId(), dailyGoal: settings.dailyGoal });
-  return { settings, progress, game, mine: cleanMine(d?.mine) };
+  return { settings, progress, game, mine: cleanMine(d?.mine), words: cleanOwnWords(d?.words) };
 }
 
 function load() {
@@ -372,7 +401,7 @@ export function setFav(lang, id, on) {
 
 /** The id of the topic whose lesson was started last, or null. */
 /** The learner's own texts in a language, newest first: [{ id, title, body, at }]. */
-export const getOwnTexts = (lang) => [...(state.mine?.[lang] || [])].sort((a, b) => b.at - a.at);
+export const getOwnTexts = (lang) => [...(state.mine && Object.hasOwn(state.mine, lang) ? state.mine[lang] : [])].sort((a, b) => b.at - a.at);
 
 /**
  * Add a text, or replace the one with `id`. Returns its id, or null when the
@@ -401,6 +430,43 @@ export function deleteOwnText(lang, id) {
   if (!list?.some((t) => t.id === id)) return;
   state.mine[lang] = list.filter((t) => t.id !== id);
   if (!state.mine[lang].length) delete state.mine[lang];
+  save();
+}
+
+/** The learner's own words in a language, in the order they were added: [{ id, tr, en, read, note, at }]. */
+export const getOwnWords = (lang) => (state.words && Object.hasOwn(state.words, lang) ? state.words[lang] : []).map((w) => ({ ...w }));
+
+/**
+ * Add a word or phrase, or change the one with `id`. Returns its id, or null
+ * when the word or its meaning is missing, or the language already has
+ * OWN_WORDS_MAX entries. `read` is an optional reading (kana, transliteration).
+ */
+export function saveOwnWord(lang, { id = null, ...input }) {
+  const fields = ownWordFields(input);
+  if (!fields.tr || !fields.en) return null;
+  state.words ||= {};
+  const list = (state.words[lang] ||= []);
+  let rec = id ? list.find((w) => w.id === id) : null;
+  if (!rec) {
+    if (list.length >= OWN_WORDS_MAX) { if (!list.length) delete state.words[lang]; return null; }
+    let n = Date.now().toString(36).slice(-8);
+    while (list.some((w) => w.id === `mw-${n}`)) n = (parseInt(n, 36) + 1).toString(36);
+    rec = { id: `mw-${n}`, at: Date.now() };
+    list.push(rec);
+  }
+  Object.assign(rec, fields);
+  save();
+  return rec.id;
+}
+
+/** Remove one of the learner's own words, with what was learned about it. */
+export function deleteOwnWord(lang, id) {
+  const list = state.words?.[lang];
+  if (!list?.some((w) => w.id === id)) return;
+  state.words[lang] = list.filter((w) => w.id !== id);
+  if (!state.words[lang].length) delete state.words[lang];
+  if (Object.hasOwn(prog(lang).cards, id)) deleteCard(lang, id);
+  if (prog(lang).fav && Object.hasOwn(prog(lang).fav, id)) setFav(lang, id, false);
   save();
 }
 

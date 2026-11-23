@@ -138,6 +138,8 @@ export default makePack({
   exampleReadings,
   exampleReadingKey: 'tl',
   code: 'ar',
+  // A word the learner adds: its transliteration, when they typed one in Latin letters.
+  ownReading: (o) => (o.read && /\p{Script=Latin}/u.test(o.read) && !/\p{Script=Arabic}/u.test(o.read) ? { tl: o.read } : {}),
   name: 'Arabic',
   nativeName: 'العربية',
   flag: '🇸🇦',

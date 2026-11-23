@@ -444,6 +444,13 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .quick-link span { display: flex; flex-direction: column; min-width: 0; }
 .quick-link b { overflow-wrap: anywhere; hyphens: auto; }
 .quick-link small { color: var(--muted); font-size: var(--fs-xs); line-height: 1.3; }
+.quick-link .quick-emoji { font-size: var(--fs-xl); }
+.own-link > .icon:last-child { margin-inline-start: auto; flex: none; }
+/* My words: the form's message, and the list's Edit / Delete. */
+.form-message { margin: 0 0 var(--sp-3); font-weight: 600; }
+.form-message:empty { display: none; }
+.own-summary { margin-top: var(--sp-4); }
+.own-words .pr-tools { gap: var(--sp-1); }
 /* On phones a half-width tile is too narrow for the icon and a long title side by
    side, so the icon goes on top and the title gets the tile's full width. */
 @media (max-width: 400px) {

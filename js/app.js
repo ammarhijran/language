@@ -27,6 +27,7 @@ import readView from './views/read.js';
 import * as game from './game.js';
 import { initCelebrations } from './celebrate.js';
 import known from './views/known.js';
+import myWords from './views/mywords.js';
 import language from './views/language.js';
 import topic from './views/topic.js';
 import phrases from './views/phrases.js';
@@ -39,6 +40,9 @@ await store.init();
 
 // Only the language being learned is loaded (the others' names and counts are in languages/meta.js).
 const lang = await loadLanguage(store.getSettings().lang);
+// The learner's own words join the pack as one more topic ("My words").
+const refreshOwnWords = () => lang.setOwnWords(store.getOwnWords(lang.code));
+refreshOwnWords();
 
 // Settings that change how everything is shown: reading aids and text size.
 function applyDisplaySettings() {
@@ -63,6 +67,7 @@ const ROUTES = {
   word: wordView,
   welcome,
   known,
+  mywords: myWords,
   language,
   journey,
   sync: syncView,
@@ -87,7 +92,7 @@ const TABS = [
 ];
 // The tab each screen belongs to (a screen with no entry is its own tab).
 const TAB_OF = {
-  topic: 'learn', grammar: 'learn', read: 'learn', known: 'learn', word: 'learn', placement: 'learn',
+  topic: 'learn', grammar: 'learn', read: 'learn', known: 'learn', word: 'learn', placement: 'learn', mywords: 'learn',
   review: 'practice', speak: 'practice', numbers: 'practice',
   progress: 'me', journey: 'me', settings: 'me', sync: 'me', language: 'me',
   search: null, welcome: null,
@@ -298,7 +303,7 @@ function titleOf(name, params) {
     case 'grammar': return params[0] ? (lang.grammar || []).find((l) => l.id === params[0])?.title || 'Grammar' : 'Grammar';
     default: return {
       review: 'Review', practice: 'Practice', speak: 'Speak', progress: 'Progress', settings: 'Settings', welcome: 'Welcome',
-      known: 'Already learned', language: 'Languages', sync: 'Sync', read: 'Read & Listen', phrases: 'Phrasebook', search: 'Search', me: 'Me', numbers: 'Numbers', placement: 'Placement check',
+      known: 'Already learned', mywords: 'My words', language: 'Languages', sync: 'Sync', read: 'Read & Listen', phrases: 'Phrasebook', search: 'Search', me: 'Me', numbers: 'Numbers', placement: 'Placement check',
     }[name];
   }
 }
@@ -398,6 +403,7 @@ function planReminders() {
 }
 ctx.planReminders = planReminders;
 ctx.applyDisplaySettings = applyDisplaySettings;
+ctx.refreshOwnWords = refreshOwnWords;
 
 // Achievements such as "learn a topic in every language" need numbers from
 // the other languages' packs. They are remembered per device; load a pack only

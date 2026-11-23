@@ -97,6 +97,23 @@ async function walk(browser, lang, pack, texts) {
   await page.click('.swatch[aria-label="Warm"]');
   if ((await look()) !== before) problems.push(`${lang} settings: the standard look did not come back (“${await look()}” for “${before}”)`);
 
+  // My words: add one, see it as a topic and a word page, learn it, delete it.
+  await open('mywords', { selector: '#mw-tr' });
+  const mine = { tr: ['zzqa kelime', ''], uk: ['ззюа слово', ''], ja: ['図書館員', 'としょかんいん'], ar: ['ززقا كلمة', 'zazqa kalima'] }[lang];
+  await page.fill('#mw-tr', mine[0]);
+  await page.fill('#mw-en', 'smoke-test word');
+  if (mine[1]) await page.fill('#mw-read', mine[1]);
+  await page.click('form button[type=submit]');
+  if ((await page.locator('.own-words li').count()) !== 1) problems.push(`${lang} my words: the word was not added (${await page.locator('.form-message').innerText()})`);
+  await open('topic/my-words', { selector: '.topic-head' });
+  await page.click('.phrase-row a.pr-main');
+  await page.waitForSelector('.word-detail', { timeout: 8000 }).catch(() => problems.push(`${lang} my words: its word page did not open`));
+  await open('learn/my-words', { selector: '.exercise' });
+  await open('learn/g/words', { selector: '.own-link' });
+  await open('mywords', { selector: '.own-words li' });
+  await page.click('.own-words button[aria-label^="Delete"]');
+  if (await page.locator('.own-words li').count()) problems.push(`${lang} my words: the word was not deleted`);
+
   // Every topic: its page, the first and last entry, and the phrasebook page of phrase topics.
   for (const c of pack.categories) {
     const words = pack.wordsIn(c.id);

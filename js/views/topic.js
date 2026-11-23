@@ -64,6 +64,7 @@ export default function topic(ctx, catId) {
         : [h('b', null, String(learned)), ` of ${words.length} learned`]),
       meter(learned, words.length, done ? 'done' : '')),
     group.id === 'talk' ? h('p', { class: 'hint' }, group.hint) : null,
+    cat.own ? h('p', { class: 'hint' }, 'The words and phrases you added yourself. ', h('a', { href: '#/mywords' }, 'Add or change them')) : null,
     h('div', { class: 'topic-actions' },
       primary,
       h('div', { class: 'button-row' },
