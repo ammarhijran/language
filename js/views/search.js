@@ -187,6 +187,34 @@ export function searchTexts(lang, texts, query) {
     || (nq && t.titleNative && (lang.normalize(t.titleNative).includes(nq) || lang.stripDiacritics(t.titleNative).includes(lang.stripDiacritics(q)))));
 }
 
+/**
+ * Lines of the Read & Listen texts that contain the query, in the language or
+ * in their translation: [{ text, index, line }], at most `limit`, and at most
+ * two per text so one long text does not fill the list. Needs three letters
+ * (two in scripts without spaces between words), or it would match everywhere.
+ */
+export function searchLines(lang, texts, query, limit = 8) {
+  const q = String(query || '').trim();
+  const nq = lang.normalize(q).replace(/\s+/g, ' ');
+  const spaced = lang.normalize('a b') === 'a b';
+  if ([...nq.replace(/\s/g, '')].length < (spaced ? 3 : 2)) return [];
+  const en = q.toLowerCase();
+  const out = [];
+  for (const text of texts || []) {
+    let here = 0;
+    for (const [index, line] of text.lines.entries()) {
+      if (here >= 2 || out.length >= limit) break;
+      const inLang = lang.normalize(line.tr).replace(/\s+/g, ' ').includes(nq);
+      if (inLang || (en.length >= 3 && String(line.en || '').toLowerCase().includes(en))) {
+        out.push({ text, index, line });
+        here++;
+      }
+    }
+    if (out.length >= limit) break;
+  }
+  return out;
+}
+
 /** Topics whose name (English or in the language) contains the query. */
 export function searchTopics(lang, query) {
   const q = String(query || '').trim();
@@ -300,15 +328,27 @@ export default function search(ctx, initial = '') {
     const fillTexts = (texts) => {
       if (query.trim() !== q || !textBox.isConnected) return;
       const hits = searchTexts(lang, texts, q);
-      found += hits.length;
-      if (hits.length) tell(q);
-      textBox.hidden = !hits.length;
+      const lines = searchLines(lang, texts, q);
+      found += hits.length + lines.length;
+      if (hits.length || lines.length) tell(q);
+      textBox.hidden = !hits.length && !lines.length;
       set(textBox,
-        h('h2', { class: 'section-title' }, `Read & Listen (${hits.length})`),
-        h('ul', { class: 'link-list' }, hits.map((t) => h('li', null, h('a', { href: `#/read/${encodeURIComponent(t.id)}` },
-          h('span', { class: 'll-icon', 'aria-hidden': 'true' }, '🎧'),
-          h('span', { class: 'll-text' }, h('b', null, t.title), t.titleNative ? h('small', { lang: lang.code }, t.titleNative) : null),
-          h('span', { class: `badge level-${t.level}` }, t.level))))));
+        hits.length ? [
+          h('h2', { class: 'section-title' }, `Read & Listen (${hits.length})`),
+          h('ul', { class: 'link-list' }, hits.map((t) => h('li', null, h('a', { href: `#/read/${encodeURIComponent(t.id)}` },
+            h('span', { class: 'll-icon', 'aria-hidden': 'true' }, '🎧'),
+            h('span', { class: 'll-text' }, h('b', null, t.title), t.titleNative ? h('small', { lang: lang.code }, t.titleNative) : null),
+            h('span', { class: `badge level-${t.level}` }, t.level))))),
+        ] : null,
+        // Sentences inside the texts (a proverb, a line of a dialogue).
+        lines.length ? [
+          h('h2', { class: 'section-title' }, `In the texts (${lines.length}${lines.length >= 8 ? '+' : ''})`),
+          h('ul', { class: 'link-list' }, lines.map(({ text, line }) => h('li', null, h('a', { href: `#/read/${encodeURIComponent(text.id)}` },
+            h('span', { class: 'll-icon', 'aria-hidden': 'true' }, '💬'),
+            h('span', { class: 'll-text' },
+              h('b', { lang: lang.code, dir: lang.dir === 'rtl' ? 'rtl' : null }, line.tr),
+              h('small', null, `${line.en} · ${text.title}`)))))),
+        ] : null);
     };
     const cached = cachedTexts(lang.code);
     if (cached) fillTexts(cached);

@@ -9,7 +9,7 @@ import { sanitize, mergeAll } from '../js/sync.js';
 import * as store from '../js/store.js';
 import { tripKit } from '../js/kit.js';
 import { NEWS, newsToShow } from '../js/news.js';
-import { rankEntries, scoreEntry, searchGrammar, searchTexts, searchTopics, glossesOf } from '../js/views/search.js';
+import { rankEntries, scoreEntry, searchGrammar, searchTexts, searchLines, searchTopics, glossesOf } from '../js/views/search.js';
 
 const card = (t = Date.now()) => ({ ease: 2.5, interval: 1, reps: 1, lapses: 0, due: t + 86400000, added: t, last: t });
 const group = (c) => c.group || 'words';
@@ -340,4 +340,27 @@ test('What’s new: shown once to a learner with progress, never to a new one', 
 
   assert.ok(NEWS.items.length >= 4 && NEWS.items.every((n) => n.text && n.where && /^#\//.test(n.href)));
   store._resetAll();
+});
+
+test('search: sentences inside the Read & Listen texts', async () => {
+  const { loadTexts } = await import('../js/reader.js');
+  const tr = languages.tr;
+  const texts = await loadTexts('tr');
+  const hits = searchLines(tr, texts, 'damlaya');
+  assert.equal(hits[0].text.id, 'tr-proverbs');
+  assert.match(hits[0].line.tr, /Damlaya damlaya göl olur/);
+  assert.ok(searchLines(tr, texts, 'DAMLAYA DAMLAYA').length >= 1, 'case and spacing do not matter');
+  assert.ok(searchLines(tr, texts, 'water bottle').some((h) => h.text.id === 'tr-tongue-twisters'), 'by the translation');
+  assert.deepEqual(searchLines(tr, texts, 'bi'), [], 'too short to be useful');
+  assert.deepEqual(searchLines(tr, texts, ''), []);
+  // Never more than the limit, and at most two lines of one text.
+  const many = searchLines(tr, texts, 'bir', 6);
+  assert.equal(many.length, 6);
+  const per = new Map();
+  for (const h of many) per.set(h.text.id, (per.get(h.text.id) || 0) + 1);
+  assert.ok([...per.values()].every((n) => n <= 2));
+  // Scripts without spaces: two characters are enough; Arabic is found without its vowel marks.
+  assert.ok(searchLines(languages.ja, await loadTexts('ja'), '団子').some((h) => h.text.id === 'ja-proverbs'));
+  assert.ok(searchLines(languages.ar, await loadTexts('ar'), 'الصبر مفتاح').some((h) => h.text.id === 'ar-proverbs'));
+  assert.ok(searchLines(languages.uk, await loadTexts('uk'), 'далі будеш').some((h) => h.text.id === 'uk-proverbs'));
 });
