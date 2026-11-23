@@ -512,4 +512,14 @@ test('ear training pairs from the course: one sound apart, the learner’s words
   const first = coursePairs(tr, { [last.a.id]: {}, [last.b.id]: {} })[0];
   assert.deepEqual([first.a.id, first.b.id], [last.a.id, last.b.id]);
   for (const L of Object.values(languages)) assert.ok(coursePairs(L, {}).length >= 10, L.code);
+  // Japanese: voiced / unvoiced pairs and words one beat longer come first, and only there may the lengths differ.
+  const ja = languages.ja;
+  const jp = coursePairs(ja, {}, 999);
+  const kana = (w) => (w.kana || w.tr).replace(/\s+/g, '');
+  assert.ok(jp.some(({ a, b }) => [kana(a), kana(b)].sort().join() === ['あける', 'あげる'].sort().join()), 'あける / あげる');
+  assert.equal(jp[0].contrast, 'け / げ');
+  for (const { a, b, contrast } of jp) {
+    const d = [...ja.normalize(kana(a))].length - [...ja.normalize(kana(b))].length;
+    assert.ok(d === 0 || (d === -1 && /^– \/ [っんーあいうえお]$/.test(contrast)), `${kana(a)} / ${kana(b)} ${contrast}`);
+  }
 });

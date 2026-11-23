@@ -237,7 +237,8 @@ export function lookalikes(lang, word, max = 4) {
 
 /**
  * Pairs of the course's own words that are one sound apart — the same length,
- * one letter different (kış / kuş) — for ear training: [{ a, b, contrast }],
+ * one letter different (kış / kuş); in Japanese also one beat longer (a long
+ * vowel, っ, ん) — for ear training: [{ a, b, contrast }],
  * `contrast` being the two letters ("ı / u"). Pairs the learner has learned
  * (`cards`) come first, then pairs with one learned word, then the rest; in
  * course order within each, and no word in more than two pairs. Words read
@@ -246,22 +247,37 @@ export function lookalikes(lang, word, max = 4) {
 export function coursePairs(lang, cards = {}, max = 12) {
   const forms = formsOf(lang);
   const out = [];
+  const japanese = lang.code === 'ja';
+  const plain = (c) => c.normalize('NFD').replace(/[\u3099\u309a]/g, ''); // か for が, は for ぱ
   for (let i = 0; i < forms.length; i++) {
     const x = forms[i];
     const xs = [...x.k];
     for (let j = i + 1; j < forms.length; j++) {
       const y = forms[j];
-      if (y.n !== x.n || y.k === x.k || !oneApart(x.k, y.k)) continue;
+      if (y.k === x.k || Math.abs(y.n - x.n) > (japanese ? 1 : 0) || !oneApart(x.k, y.k)) continue;
       const ys = [...y.k];
-      const at = xs.findIndex((c, k) => c !== ys[k]);
       const known = (cards[x.w.id] ? 1 : 0) + (cards[y.w.id] ? 1 : 0);
-      out.push({ a: x.w, b: y.w, contrast: `${xs[at]} / ${ys[at]}`, known });
+      if (y.n === x.n) {
+        const at = xs.findIndex((c, k) => c !== ys[k]);
+        // Japanese: a voiced / unvoiced pair (か / が) is the one worth training; others come after.
+        const telling = japanese && plain(xs[at]) === plain(ys[at]) ? 1 : 0;
+        out.push({ a: x.w, b: y.w, contrast: `${xs[at]} / ${ys[at]}`, known, telling });
+        continue;
+      }
+      // Japanese only: one beat more — a long vowel, a small っ or ん (おばさん / おばあさん, きて / きって).
+      const [short, long, a, b] = x.n < y.n ? [xs, ys, x.w, y.w] : [ys, xs, y.w, x.w];
+      const at = long.findIndex((c, k) => c !== short[k]);
+      const extra = long[at];
+      // (a vowel only after another kana: at the start it is a different word, not a longer sound)
+      if (!/^[っッんンー]$/.test(extra) && !(at > 0 && /^[あいうえおアイウエオ]$/.test(extra))) continue;
+      out.push({ a, b, contrast: `– / ${extra}`, known, telling: 1 });
     }
   }
+  out.sort((p, q) => q.known - p.known || q.telling - p.telling);
   // No word in more than two pairs: twelve pairs should not be one word against six others.
   const used = new Map();
   const picked = [];
-  for (const p of out.sort((x, y) => y.known - x.known)) {
+  for (const p of out) {
     if (picked.length >= max) break;
     if ((used.get(p.a.id) || 0) >= 2 || (used.get(p.b.id) || 0) >= 2) continue;
     used.set(p.a.id, (used.get(p.a.id) || 0) + 1);
