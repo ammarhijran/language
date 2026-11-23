@@ -437,3 +437,27 @@ test('sync: the words survive being packed into a code and read back, encrypted 
   assert.deepEqual(none.words, {}, 'a code from a version without My words');
   store._resetAll();
 });
+
+test('the learning path and “up next” are about the course; a pasted list is checked against one index', async () => {
+  const { learningPath, nextTopics } = await import('../js/stats.js');
+  store._resetAll();
+  try {
+    uk.setOwnWords([{ id: 'mw-1', tr: 'ззюх', en: 'made up' }]);
+    assert.ok(!learningPath(uk).some((c) => c.own), 'own words are not a step of the course');
+    const ctx = { lang: uk, store };
+    assert.ok(!nextTopics(ctx, { count: 200 }).next.some((c) => c.own));
+    // …but a lesson started on them is resumed like any other.
+    store.setLastCat('uk', OWN_CATEGORY.id);
+    assert.equal(nextTopics(ctx).resume?.own, true);
+    // The index a pasted list is checked against gives the same answers as scanning the pack.
+    const known = new Map();
+    for (const w of uk.words) { const k = uk.normalize(w.tr); if (k && !known.has(k)) known.set(k, w); }
+    const course = uk.words.find((w) => !w.own && !/\s/.test(w.tr));
+    for (const entry of [{ tr: 'ЗЗЮХ', en: 'x' }, { tr: course.tr, en: 'x' }, { tr: 'ззюц', en: 'new' }, { id: 'mw-1', tr: 'ззюх', en: 'edit' }, { tr: '', en: 'x' }]) {
+      assert.deepEqual(ownWordProblem(uk, entry, known), ownWordProblem(uk, entry), JSON.stringify(entry));
+    }
+  } finally {
+    uk.setOwnWords([]);
+    store._resetAll();
+  }
+});

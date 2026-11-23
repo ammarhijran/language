@@ -73,8 +73,9 @@ export function stressFromAccents(lang, text) {
  * has to be in the right script, and the word must not be in the list — or in
  * the course — already. `id` is the entry being edited, if any.
  * Returns { field, message, word? } — `word` is the course entry it repeats.
+ * @param {Map} [known] normalised form → entry, to check many entries without scanning the pack each time
  */
-export function ownWordProblem(lang, { id = null, tr = '', en = '', read = '' }) {
+export function ownWordProblem(lang, { id = null, tr = '', en = '', read = '' }, known = null) {
   const word = tr.replace(/\s+/g, ' ').trim();
   if (!word) return { field: 'tr', message: `Type the word or phrase in ${lang.name}.` };
   if (!en.trim()) return { field: 'en', message: 'Type what it means.' };
@@ -82,7 +83,8 @@ export function ownWordProblem(lang, { id = null, tr = '', en = '', read = '' })
   const problem = read.trim() && reading ? reading.check(read.trim()) : null;
   if (problem) return { field: 'read', message: problem };
   const key = lang.normalize(word);
-  const same = key && lang.words.find((w) => w.id !== id && lang.normalize(w.tr) === key);
+  // `known` (a pasted list checks many entries): the pack's words by their normalised form.
+  const same = key && (known ? [known.get(key)].find((w) => w && w.id !== id) : lang.words.find((w) => w.id !== id && lang.normalize(w.tr) === key));
   if (same?.own) return { field: 'tr', message: `“${same.tr}” is already in your words.` };
   if (same) return { field: 'tr', message: `“${same.tr}” (${same.en}) is already in the course.`, word: same };
   return null;
@@ -265,19 +267,27 @@ export default function myWords(ctx, editId, prefill = '') {
     let added = 0;
     const skipped = unread.map((u) => `line ${u.line} (no meaning found)`);
     const done = new Set(); // lines that were added
+    const known = new Map();
+    for (const w of lang.words) { const k = lang.normalize(w.tr); if (k && !known.has(k)) known.set(k, w); }
     for (const e of entries) {
       if (reading?.picked) { // accent marks in a pasted word (мете́лик) are its stress
         const t = stressFromAccents(lang, e.tr);
         e.tr = t.tr;
         e.read = t.stress?.some(Boolean) ? t.stress.join(' ') : '';
       }
-      const problem = ownWordProblem(lang, e);
+      const problem = ownWordProblem(lang, e, known);
       const id = problem ? null : store.saveOwnWord(lang.code, e);
-      if (id) { added++; done.add(e.line); ctx.refreshOwnWords?.(); continue; } // refreshed each time, so a word twice in the list is caught
+      if (id) { // remembered, so the same word further down the list is caught
+        added++;
+        done.add(e.line);
+        known.set(lang.normalize(e.tr.replace(/\s+/g, ' ').trim()), { id, tr: e.tr, en: e.en, own: true });
+        continue;
+      }
       skipped.push(`“${e.tr}” (${problem ? (/already/.test(problem.message) ? (problem.word ? 'already in the course' : 'already in your words') : problem.message) : `the list is full: ${store.OWN_WORDS_MAX} words`})`);
     }
     // What was added leaves the box; what was not stays there to be corrected.
     listBody.value = listBody.value.split(/\r?\n/).filter((l, i) => l.trim() && !done.has(i + 1)).join('\n');
+    if (added) ctx.refreshOwnWords?.();
     paint();
     set(listMessage, `Added ${added} ${added === 1 ? 'entry' : 'entries'}.`,
       skipped.length ? ` Not added: ${skipped.slice(0, 6).join(', ')}${skipped.length > 6 ? ` and ${skipped.length - 6} more` : ''}.` : null);

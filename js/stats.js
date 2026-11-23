@@ -61,7 +61,7 @@ const paths = new WeakMap();
  */
 export function learningPath(lang) {
   if (paths.has(lang)) return paths.get(lang);
-  const cats = lang.categories;
+  const cats = lang.categories.filter((c) => !c.own); // the learner's own words are not a step of the course
   let path;
   if (Array.isArray(lang.path)) {
     const listed = lang.path.map((id) => cats.find((c) => c.id === id)).filter(Boolean);

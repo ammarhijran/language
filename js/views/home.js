@@ -57,6 +57,16 @@ export default function home(ctx) {
       icon('arrow', 18))
     : null;
 
+  // The learner's own words that are still new: one tap to learn them.
+  const own = lang.categories.find((c) => c.own);
+  const ownNew = own ? countOf(own).total - countOf(own).learned : 0;
+  const ownRow = ownNew > 0 && resume !== own
+    ? h('a', { class: 'up-next own-row', href: `#/learn/${encodeURIComponent(own.id)}` },
+      h('span', { class: 'kicker' }, 'Your words'),
+      h('span', { class: 'up-next-name' }, `${own.emoji} ${own.name} · ${ownNew} to learn`),
+      icon('arrow', 18))
+    : null;
+
   // What's new: once, for people who were already using the app.
   const news = newsToShow(ctx.store);
   const newsCard = news ? h('section', { class: 'card news', 'aria-labelledby': 'news-title' },
@@ -94,6 +104,7 @@ export default function home(ctx) {
         icon('arrow', 18))
       : null,
     kitRow,
+    ownRow,
     h('div', { class: 'shortcuts' },
       shortcut('#/phrases', glyph('chat', 22), 'Phrasebook', saved ? `★ ${saved} saved` : 'Ready-made phrases'),
       talk ? shortcut('#/learn/g/talk', h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🗣️'), 'Talk like a local', 'Slang & everyday speech') : null,
