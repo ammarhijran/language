@@ -8,7 +8,7 @@ import { keepScreenOn } from '../native.js';
 const COUNT = 20;
 const PREFS_KEY = 'lisan:handsfree';
 const STEPS = {
-  listen: 'Listen…', repeat: 'Your turn — say it out loud', again: 'Once more…', meaning: 'It means…',
+  ask: 'How do you say…', recall: 'Your turn — say the word', listen: 'Listen…', repeat: 'Your turn — say it out loud', again: 'Once more…', meaning: 'It means…',
   example: 'In a sentence…', exampleRepeat: 'Your turn — say the sentence', exampleMeaning: 'The sentence means…',
 };
 const PAUSES = [['0.6', 'Short'], ['1', 'Normal'], ['1.6', 'Long']];
@@ -16,8 +16,8 @@ const PAUSES = [['0.6', 'Short'], ['1', 'Normal'], ['1.6', 'Long']];
 function loadPrefs() {
   try {
     const p = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
-    return { english: p.english !== false, twice: p.twice !== false, sentence: p.sentence === true, pause: PAUSES.some(([v]) => Number(v) === p.pause) ? p.pause : 1 };
-  } catch { return { english: true, twice: true, sentence: false, pause: 1 }; }
+    return { english: p.english !== false, twice: p.twice !== false, sentence: p.sentence === true, recall: p.recall === true, pause: PAUSES.some(([v]) => Number(v) === p.pause) ? p.pause : 1 };
+  } catch { return { english: true, twice: true, sentence: false, recall: false, pause: 1 }; }
 }
 const savePrefs = (p) => { try { localStorage.setItem(PREFS_KEY, JSON.stringify(p)); } catch { /* not kept */ } };
 
@@ -55,11 +55,17 @@ export default function handsFree(ctx, pool) {
   const view = h('div', { class: 'view handsfree' });
   const round = createHandsFree({
     items,
-    opts: { pause: prefs.pause, twice: prefs.twice, english: prefs.english, sentence: prefs.sentence },
+    opts: { pause: prefs.pause, twice: prefs.twice, english: prefs.english, sentence: prefs.sentence, recall: prefs.recall },
     say: (entry) => ctx.say(entry),
     sayEnglish: (text) => speech.speak(text, { lang: 'en-US', rate: 1, regions: ['en-US', 'en-GB'] }),
     onItem: show,
-    onStep: (name) => { step.textContent = STEPS[name]; if (name === 'example') exBox.hidden = false; },
+    onStep: (name) => {
+      step.textContent = STEPS[name];
+      if (name === 'example') exBox.hidden = false;
+      // Meaning first: the word stays covered until it is said.
+      if (name === 'ask' || name === 'recall') card.classList.add('hf-covered');
+      else card.classList.remove('hf-covered');
+    },
     onHeard: (i) => {
       if (heard.has(i)) return;
       heard.add(i);
@@ -88,7 +94,7 @@ export default function handsFree(ctx, pool) {
 
   const change = (patch) => { Object.assign(prefs, patch); Object.assign(round.opts, patch); savePrefs(prefs); };
   const noEnglish = speech.canSpeak('en-US') === false;
-  if (noEnglish) round.opts.english = false;
+  if (noEnglish) { round.opts.english = false; round.opts.recall = false; }
   const options = h('section', { class: 'card form' },
     h('h2', { class: 'card-title' }, 'Options'),
     h('label', { class: 'field inline' },
@@ -100,6 +106,9 @@ export default function handsFree(ctx, pool) {
     h('label', { class: 'field inline' },
       h('input', { type: 'checkbox', checked: prefs.sentence, onchange: (e) => change({ sentence: e.target.checked }) }),
       h('span', null, 'Then say its example sentence too')),
+    h('label', { class: 'field inline' },
+      h('input', { type: 'checkbox', id: 'hf-recall', checked: prefs.recall && !noEnglish, disabled: noEnglish, onchange: (e) => change({ recall: e.target.checked }) }),
+      h('span', null, 'Meaning first: hear the English, say the word, then hear it')),
     h('label', { class: 'field', for: 'hf-pause' }, h('span', null, 'Time to repeat'),
       h('select', { class: 'select', id: 'hf-pause', onchange: (e) => change({ pause: Number(e.target.value) }) },
         PAUSES.map(([value, label]) => h('option', { value, selected: Number(value) === prefs.pause }, label)))));

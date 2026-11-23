@@ -26,7 +26,9 @@ export function englishFor(en) {
 /**
  * A round over `items`. say(entry) and sayEnglish(text) speak and resolve when
  * done (say: false when there is no voice, which ends the round via onFail).
- * `opts` ({ pause, twice, english, sentence }) may be changed while it plays.
+ * `opts` ({ pause, twice, english, sentence, recall }) may be changed while it plays.
+ * With `recall`, the meaning comes first ('ask'), then a pause to recall the
+ * word ('recall'), then the word — audio flashcards.
  * With `sentence`, an entry's example sentence follows the entry: spoken, a
  * pause to repeat it, and (with `english`) its meaning.
  * Callbacks: onStep(step, i) with 'listen' | 'repeat' | 'again' | 'meaning' |
@@ -35,7 +37,7 @@ export function englishFor(en) {
  * onEnd(), onFail().
  */
 export function createHandsFree({ items, say, sayEnglish = null, opts = {}, wait = sleep, onStep, onItem, onHeard, onState, onEnd, onFail }) {
-  const o = Object.assign({ pause: 1, twice: true, english: true, sentence: false }, opts);
+  const o = Object.assign({ pause: 1, twice: true, english: true, sentence: false, recall: false }, opts);
   let seq = 0;
   const player = createPlayer({
     count: items.length,
@@ -44,6 +46,16 @@ export function createHandsFree({ items, say, sayEnglish = null, opts = {}, wait
       const my = ++seq;
       const live = () => my === seq;
       const entry = items[i];
+      // Meaning first: the English is said, a pause to recall the word, then the word.
+      const recall = !!o.recall && !!sayEnglish;
+      if (recall) {
+        onStep?.('ask', i);
+        await sayEnglish(englishFor(entry.en));
+        if (!live()) return true;
+        onStep?.('recall', i);
+        await wait(repeatPause(entry, o.pause));
+        if (!live()) return true;
+      }
       onStep?.('listen', i);
       if ((await say(entry)) === false) return false;
       if (!live()) return true;
@@ -55,7 +67,7 @@ export function createHandsFree({ items, say, sayEnglish = null, opts = {}, wait
         await say(entry);
         if (!live()) return true;
       }
-      if (o.english && sayEnglish) {
+      if (o.english && sayEnglish && !recall) { // (meaning first: it has been said already)
         onStep?.('meaning', i);
         await sayEnglish(englishFor(entry.en));
         if (!live()) return true;

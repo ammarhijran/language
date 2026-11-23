@@ -10,6 +10,7 @@
 
 ### Added
 - **Fixed:** with the largest text size on a narrow phone, the Play / Pause label in a text’s player bar was cut off at both ends; the row now wraps instead.
+- **Hands-free, meaning first** (Practice → Hands-free → Options): the English is said first, then a pause to say the word yourself, then the word — audio flashcards, for recalling words with your hands and eyes busy. The word on screen stays covered until it is said.
 - **Tidier Alphabet tab:** its quizzes are one row of chips under “Quiz yourself”, instead of a stack of buttons that had grown to six for Japanese.
 - **Rule quizzes on the Practice screen:** each language’s pronunciation-rule quiz (vowel harmony, я ю є, は, sun and moon letters) has its own link under “Speak & listen”, next to Numbers by ear.
 - **は: ha or wa?** (Speak → Kana, Japanese): ten of the course’s example sentences a round, shown in kana word by word with one は or へ marked — is it *wa* or *ha*, *e* or *he*? On its own it is a particle (wa, e); inside a word it is ha, he. Each answer says which, and plays the sentence.

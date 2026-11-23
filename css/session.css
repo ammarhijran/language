@@ -197,6 +197,8 @@ body.in-session .session-head {
 
 /* Practice → Hands-free listening */
 .hf-card { text-align: center; }
+/* meaning first: the word and its reading stay hidden until they are said */
+.hf-card.hf-covered .hero-tr, .hf-card.hf-covered .reading { visibility: hidden; }
 .hf-card .word-hero { margin: var(--sp-2) 0; min-height: 8.5rem; display: flex; flex-direction: column; justify-content: center; }
 .hf-step { margin: 0; font-weight: 700; color: var(--action); min-height: 1.5em; }
 .hf-controls { display: flex; align-items: center; justify-content: center; gap: var(--sp-4); }

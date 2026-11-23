@@ -116,3 +116,33 @@ test('with the sentence option an entry is followed by its example sentence', as
   for (let i = 0; i < 20 && !done; i++) await new Promise((r) => setTimeout(r, 100));
   assert.ok(!quiet.includes('Bu ev çok büyük.'));
 });
+
+test('meaning first: the English, a pause to recall, then the word — and no second meaning', async () => {
+  const log = [];
+  let ended = false;
+  const round = createHandsFree({
+    items: [{ tr: 'ev', en: 'house / home' }, { tr: 'evet', en: 'yes' }],
+    opts: { recall: true, twice: true, english: true },
+    say: async (e) => { log.push(`say:${e.tr}`); return true; },
+    sayEnglish: async (t) => { log.push(`en:${t}`); return true; },
+    wait: async () => { log.push('wait'); },
+    onStep: (s, i) => log.push(`${s}:${i}`),
+    onEnd: () => { ended = true; },
+  });
+  round.player.play();
+  for (let i = 0; i < 20 && !ended; i++) await new Promise((r) => setTimeout(r, 100));
+  assert.equal(ended, true);
+  assert.deepEqual(log.slice(0, 10), ['ask:0', 'en:house or home', 'recall:0', 'wait', 'listen:0', 'say:ev', 'repeat:0', 'wait', 'again:0', 'say:ev']);
+  assert.ok(!log.includes('meaning:0'), 'the meaning is not said a second time');
+  assert.equal(log.filter((x) => x === 'en:yes').length, 1);
+  // without an English voice it is an ordinary round
+  const plain = [];
+  let done = false;
+  const r2 = createHandsFree({
+    items: [{ tr: 'ev', en: 'house' }], opts: { recall: true, twice: false },
+    say: async (e) => { plain.push(`say:${e.tr}`); return true; }, wait: async () => {}, onStep: (s) => plain.push(s), onEnd: () => { done = true; },
+  });
+  r2.player.play();
+  for (let i = 0; i < 20 && !done; i++) await new Promise((r) => setTimeout(r, 100));
+  assert.deepEqual(plain.slice(0, 3), ['listen', 'say:ev', 'repeat']);
+});
