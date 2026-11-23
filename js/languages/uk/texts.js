@@ -4123,5 +4123,720 @@ export const texts = [
         "explain": "«горобець» is a sparrow: once a word has flown out, you can’t catch it."
       }
     ]
+  },
+  {
+    "id": "uk-kolobok-tale",
+    "kind": "story",
+    "level": "B1",
+    "title": "Kolobok, the Little Round Bun",
+    "titleNative": "Колобок",
+    "summary": "A favourite folk tale retold in simple words: a freshly baked round bun rolls away from home, escapes one animal after another with a boastful song, and then meets a flattering fox.",
+    "register": "mixed",
+    "lines": [
+      {
+        "tr": "Жили собі дід та баба.",
+        "en": "Once upon a time there lived an old man and an old woman."
+      },
+      {
+        "tr": "— Спечи мені, бабо, колобок! — попросив якось уранці дід.",
+        "en": "“Bake me a kolobok, old woman!” the old man asked one morning."
+      },
+      {
+        "tr": "— Та з чого ж я спечу, коли борошна немає? — здивувалася баба.",
+        "en": "“But what am I to bake it from, when there’s no flour?” said the old woman in surprise."
+      },
+      {
+        "tr": "— А ти пошукай у коморі, може, трохи знайдеш, — порадив дід.",
+        "en": "“Have a look in the pantry – maybe you’ll find a little,” the old man advised."
+      },
+      {
+        "tr": "Баба знайшла дві жмені борошна, замісила тісто на сметані й спекла круглий колобок.",
+        "en": "The old woman found two handfuls of flour, kneaded a dough with sour cream and baked a round kolobok."
+      },
+      {
+        "tr": "Вона поклала його на вікно, щоб він охолов.",
+        "en": "She put him on the windowsill to cool down."
+      },
+      {
+        "tr": "А колобок лежав, лежав та й покотився: з вікна на лавку, з лавки на підлогу, а звідти — надвір.",
+        "en": "But the kolobok lay there for a while and then rolled off: from the window onto the bench, from the bench onto the floor, and from there out into the yard."
+      },
+      {
+        "tr": "Котиться він дорогою, а назустріч йому — зайчик.",
+        "en": "He is rolling along the road when a little hare comes towards him."
+      },
+      {
+        "tr": "— Колобку, колобку, я тебе з’їм! — каже зайчик.",
+        "en": "“Kolobok, Kolobok, I’m going to eat you!” says the hare."
+      },
+      {
+        "tr": "— Не їж мене, зайчику, я тобі пісеньку заспіваю!",
+        "en": "“Don’t eat me, little hare – I’ll sing you a song!”"
+      },
+      {
+        "tr": "— Я від діда втік, я від баби втік, то й від тебе втечу! — заспівав колобок і покотився далі.",
+        "en": "“I ran away from the old man, I ran away from the old woman, and I’ll run away from you too!” sang the kolobok, and he rolled on."
+      },
+      {
+        "tr": "Зайчик тільки його й бачив.",
+        "en": "And that was the last the hare saw of him."
+      },
+      {
+        "tr": "Потім колобок зустрів сірого вовка, а за ним — великого ведмедя.",
+        "en": "Next the kolobok met a grey wolf, and after him a big bear."
+      },
+      {
+        "tr": "Обидва хотіли його з’їсти, але він і їм заспівав свою пісеньку та втік.",
+        "en": "Both of them wanted to eat him, but he sang his song to them as well and got away."
+      },
+      {
+        "tr": "«Який я спритний, ніхто мене не спіймає!» — радів колобок.",
+        "en": "“How nimble I am – nobody will ever catch me!” the kolobok thought happily."
+      },
+      {
+        "tr": "Аж тут на дорогу вийшла лисичка.",
+        "en": "And just then a fox stepped out onto the road."
+      },
+      {
+        "tr": "— Добрий день, колобку! Який же ти гарний та рум’яний! — сказала вона лагідно.",
+        "en": "“Good day, Kolobok! How handsome and golden-brown you are!” she said sweetly."
+      },
+      {
+        "tr": "Колобок зрадів і заспівав їй свою пісеньку.",
+        "en": "The kolobok was delighted and sang her his song."
+      },
+      {
+        "tr": "— Ой, яка гарна пісенька! Тільки я вже стара й погано чую, — зітхнула лисичка.",
+        "en": "“Oh, what a lovely song! Only I’m old now and I don’t hear well,” sighed the fox."
+      },
+      {
+        "tr": "— Сядь мені на язик та заспівай ще раз, голосніше.",
+        "en": "“Sit on my tongue and sing it once more, a bit louder.”"
+      },
+      {
+        "tr": "Колобок повірив їй і стрибнув лисичці просто на язик.",
+        "en": "The kolobok believed her and jumped straight onto the fox’s tongue."
+      },
+      {
+        "tr": "А лисичка — гам! — і з’їла його.",
+        "en": "And the fox – snap! – ate him up."
+      },
+      {
+        "tr": "Так хвалько й не побачив більше ні діда, ні баби.",
+        "en": "And so the show-off never saw the old man or the old woman again."
+      },
+      {
+        "tr": "Ось і казці кінець. А ви не вірте тому, хто вас надто солодко хвалить!",
+        "en": "And that’s the end of the tale. As for you – don’t trust anyone who praises you too sweetly!"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "спечи",
+        "en": "bake! (спекти – to bake; said to one person)"
+      },
+      {
+        "tr": "борошна",
+        "en": "flour (борошно); the genitive, here after «немає» and «дві жмені»"
+      },
+      {
+        "tr": "коморі",
+        "en": "pantry, storeroom (комора), here: in the pantry"
+      },
+      {
+        "tr": "замісила тісто",
+        "en": "kneaded the dough (замісити тісто)"
+      },
+      {
+        "tr": "на сметані",
+        "en": "made with sour cream (сметана)"
+      },
+      {
+        "tr": "охолов",
+        "en": "cooled down (охолонути)"
+      },
+      {
+        "tr": "покотився",
+        "en": "rolled off, started rolling (покотитися)"
+      },
+      {
+        "tr": "назустріч",
+        "en": "towards, coming the other way (назустріч йому = towards him)"
+      },
+      {
+        "tr": "колобку",
+        "en": "Kolobok! – the form used to address him (колобок = a small round loaf)"
+      },
+      {
+        "tr": "пісеньку",
+        "en": "a little song (пісенька)"
+      },
+      {
+        "tr": "втечу",
+        "en": "I will run away (втекти; past: втік)"
+      },
+      {
+        "tr": "спритний",
+        "en": "nimble, quick and clever"
+      },
+      {
+        "tr": "спіймає",
+        "en": "will catch (спіймати)"
+      },
+      {
+        "tr": "рум’яний",
+        "en": "rosy; of bread: golden-brown"
+      },
+      {
+        "tr": "лагідно",
+        "en": "gently, sweetly"
+      },
+      {
+        "tr": "зітхнула",
+        "en": "sighed (зітхнути)"
+      },
+      {
+        "tr": "повірив",
+        "en": "believed (повірити)"
+      },
+      {
+        "tr": "хвалько",
+        "en": "a boaster, a show-off"
+      }
+    ],
+    "questions": [
+      {
+        "q": "What did the old woman mix the dough with?",
+        "options": [
+          "Milk",
+          "Sour cream",
+          "Water",
+          "Honey"
+        ],
+        "answer": 1,
+        "explain": "«Баба … замісила тісто на сметані й спекла круглий колобок.»"
+      },
+      {
+        "q": "Which animal did the kolobok meet first?",
+        "options": [
+          "The wolf",
+          "The bear",
+          "The fox",
+          "The hare"
+        ],
+        "answer": 3,
+        "explain": "«Котиться він дорогою, а назустріч йому — зайчик.» The wolf and the bear come later, and the fox last."
+      },
+      {
+        "q": "What reason did the fox give for asking the kolobok to sit on her tongue?",
+        "options": [
+          "She was old and could not hear well",
+          "She wanted to carry him home",
+          "She wanted to keep him warm",
+          "She wanted to learn the song herself"
+        ],
+        "answer": 0,
+        "explain": "«Тільки я вже стара й погано чую» – so she asks him to sit on her tongue and sing «ще раз, голосніше»."
+      },
+      {
+        "q": "How does the tale end for the kolobok?",
+        "options": [
+          "He rolls back home",
+          "The bear catches him",
+          "The fox eats him",
+          "He hides in the pantry"
+        ],
+        "answer": 2,
+        "explain": "«А лисичка — гам! — і з’їла його.»"
+      }
+    ]
+  },
+  {
+    "id": "uk-viewing-a-flat",
+    "kind": "dialogue",
+    "level": "B1",
+    "title": "Viewing a Flat",
+    "titleNative": "Оглядаємо квартиру",
+    "summary": "Sofiia comes to see a two-room flat; the owner, Bohdan, shows her round, and they discuss the rent, utilities, the deposit, her cat and when she can move in.",
+    "register": "polite",
+    "lines": [
+      {
+        "speaker": "Sofiia",
+        "tr": "Добрий вечір, пане Богдане! Я Софія, це я телефонувала вам щодо квартири.",
+        "en": "Good evening, Mr Bohdan! I’m Sofiia – I’m the one who phoned you about the flat."
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Добрий вечір, пані Софіє! Заходьте, будь ласка, взуття можна не знімати.",
+        "en": "Good evening, Ms Sofiia! Please come in – you can keep your shoes on."
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Квартира двокімнатна: тут вітальня, а там спальня з балконом.",
+        "en": "The flat has two rooms: this is the living room, and over there is the bedroom with a balcony."
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Це третій поверх, вікна виходять у тихий двір.",
+        "en": "It’s on the third floor, and the windows look out onto a quiet courtyard."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "Тут дуже світло. А меблі й техніка залишаються?",
+        "en": "It’s very bright in here. And do the furniture and the appliances stay?"
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Так, усе залишається: диван, ліжко, шафа, холодильник і пральна машина.",
+        "en": "Yes, everything stays: the sofa, the bed, the wardrobe, the fridge and the washing machine."
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Ось кухня — вона невелика, але плита й духовка нові.",
+        "en": "Here’s the kitchen – it isn’t big, but the hob and the oven are new."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "А яке тут опалення? Узимку в квартирі тепло?",
+        "en": "And what kind of heating is there? Is the flat warm in winter?"
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Опалення центральне, тож узимку тепло. Гаряча вода є завжди, бо у ванній стоїть бойлер.",
+        "en": "The heating is central, so it’s warm in winter. There’s always hot water, because there’s a water heater in the bathroom."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "Чудово. А скільки коштує оренда?",
+        "en": "Great. And how much is the rent?"
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Чотирнадцять тисяч гривень на місяць плюс комунальні послуги.",
+        "en": "Fourteen thousand hryvnias a month, plus utilities."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "А скільки приблизно виходить за комунальні послуги?",
+        "en": "And roughly how much do the utilities come to?"
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Улітку близько тисячі гривень, а взимку, з опаленням, — до трьох тисяч.",
+        "en": "About a thousand hryvnias in summer, and in winter, with the heating, up to three thousand."
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Інтернет у квартирі вже є, за нього ви платите окремо — двісті п’ятдесят гривень.",
+        "en": "The flat already has internet; you pay for that separately – two hundred and fifty hryvnias."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "Зрозуміло. А чи потрібна застава?",
+        "en": "I see. And is a deposit required?"
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Так, застава дорівнює оплаті за один місяць. Я поверну її, коли ви виїжджатимете, якщо все буде ціле.",
+        "en": "Yes, the deposit is equal to one month’s rent. I’ll give it back when you move out, provided nothing is damaged."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "Тобто під час заселення я маю заплатити двадцять вісім тисяч?",
+        "en": "So when I move in I have to pay twenty-eight thousand?"
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Саме так: оплата за перший місяць і застава. Договір оренди ми підпишемо на рік.",
+        "en": "Exactly: the first month’s rent and the deposit. We’ll sign the tenancy agreement for a year."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "У мене є кіт, він дуже спокійний. Ви не проти тварин?",
+        "en": "I have a cat; he’s very calm. Do you mind pets?"
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Проти кота я нічого не маю, тільки стежте, щоб він не дряпав меблі.",
+        "en": "I’ve nothing against a cat – just make sure he doesn’t scratch the furniture."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "Обіцяю! А коли можна буде заселитися?",
+        "en": "I promise! And when could I move in?"
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Квартира вільна, тож хоч із першого числа, хоч уже цієї суботи.",
+        "en": "The flat is vacant, so either from the first of the month or as early as this Saturday."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "Субота мені підходить. Квартира мені подобається, і я готова її винайняти.",
+        "en": "Saturday suits me. I like the flat, and I’m ready to take it."
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "Дуже радий! Тоді візьміть із собою паспорт, і в суботу ми підпишемо договір.",
+        "en": "I’m very glad! Then bring your passport with you, and we’ll sign the agreement on Saturday."
+      },
+      {
+        "speaker": "Sofiia",
+        "tr": "Домовилися. Дякую, пане Богдане, до суботи!",
+        "en": "Agreed. Thank you, Mr Bohdan – see you on Saturday!"
+      },
+      {
+        "speaker": "Bohdan",
+        "tr": "До зустрічі, пані Софіє, гарного вам вечора!",
+        "en": "See you then, Ms Sofiia – have a nice evening!"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "щодо",
+        "en": "about, regarding (+ genitive: щодо квартири)"
+      },
+      {
+        "tr": "взуття",
+        "en": "shoes, footwear"
+      },
+      {
+        "tr": "двокімнатна",
+        "en": "two-room (of a flat: a living room and a bedroom)"
+      },
+      {
+        "tr": "вітальня",
+        "en": "living room"
+      },
+      {
+        "tr": "вікна виходять",
+        "en": "the windows look out (onto: у + accusative)"
+      },
+      {
+        "tr": "меблі й техніка",
+        "en": "the furniture and the appliances (меблі is always plural)"
+      },
+      {
+        "tr": "пральна машина",
+        "en": "washing machine"
+      },
+      {
+        "tr": "опалення",
+        "en": "heating"
+      },
+      {
+        "tr": "у ванній",
+        "en": "in the bathroom (ванна кімната)"
+      },
+      {
+        "tr": "оренда",
+        "en": "rent; renting"
+      },
+      {
+        "tr": "комунальні послуги",
+        "en": "utilities (water, heating, electricity and so on)"
+      },
+      {
+        "tr": "застава",
+        "en": "deposit (money you get back when you leave)"
+      },
+      {
+        "tr": "поверну",
+        "en": "I will give back, return (повернути)"
+      },
+      {
+        "tr": "під час заселення",
+        "en": "when moving in (заселення – moving in)"
+      },
+      {
+        "tr": "договір оренди",
+        "en": "tenancy agreement, lease"
+      },
+      {
+        "tr": "не проти",
+        "en": "don’t mind (бути проти + genitive – to be against)"
+      },
+      {
+        "tr": "дряпав",
+        "en": "scratched (дряпати); щоб він не дряпав – so that he doesn’t scratch"
+      },
+      {
+        "tr": "винайняти",
+        "en": "to rent, to take (a flat) as a tenant; the imperfective is винаймати"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Which floor is the flat on?",
+        "options": [
+          "The first",
+          "The second",
+          "The third",
+          "The fifth"
+        ],
+        "answer": 2,
+        "explain": "«Це третій поверх, вікна виходять у тихий двір.»"
+      },
+      {
+        "q": "How much does Sofiia have to pay when she moves in?",
+        "options": [
+          "Twenty-eight thousand hryvnias",
+          "Fourteen thousand hryvnias",
+          "Three thousand hryvnias",
+          "Seventeen thousand hryvnias"
+        ],
+        "answer": 0,
+        "explain": "The rent is «чотирнадцять тисяч», and the deposit equals one month, so «під час заселення» she pays «двадцять вісім тисяч»."
+      },
+      {
+        "q": "What does Bohdan say about the cat?",
+        "options": [
+          "Pets are not allowed",
+          "She must pay a bigger deposit",
+          "The cat has to stay on the balcony",
+          "He doesn’t mind, as long as it doesn’t scratch the furniture"
+        ],
+        "answer": 3,
+        "explain": "«Проти кота я нічого не маю, тільки стежте, щоб він не дряпав меблі.»"
+      },
+      {
+        "q": "When does Sofiia decide to move in?",
+        "options": [
+          "On the first of the month",
+          "This Saturday",
+          "In a year",
+          "Tomorrow evening"
+        ],
+        "answer": 1,
+        "explain": "Bohdan offers «із першого числа» or «цієї суботи», and Sofiia answers: «Субота мені підходить.»"
+      }
+    ]
+  },
+  {
+    "id": "uk-borshch-talk",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Ukrainian Dish: How to Make Borscht",
+    "titleNative": "Українська страва: як приготувати борщ",
+    "summary": "A learner gives a short talk about borscht: what it is, when people eat it, what goes into it and how to cook it step by step. It is written without gendered forms, so any speaker can give it.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "Добрий день усім!",
+        "en": "Good afternoon, everyone!"
+      },
+      {
+        "tr": "Сьогодні я розповім вам про найвідомішу українську страву — борщ.",
+        "en": "Today I’m going to tell you about the most famous Ukrainian dish – borscht."
+      },
+      {
+        "tr": "Борщ — це густий червоний суп із буряка, капусти та інших овочів.",
+        "en": "Borscht is a thick red soup made from beetroot, cabbage and other vegetables."
+      },
+      {
+        "tr": "В Україні його зазвичай їдять на обід — і в будні, і на свята.",
+        "en": "In Ukraine people usually eat it for lunch – on weekdays and on holidays alike."
+      },
+      {
+        "tr": "Кажуть, що кожна родина має свій рецепт, тому двох однакових борщів не буває.",
+        "en": "They say every family has its own recipe, so no two borschts are ever the same."
+      },
+      {
+        "tr": "Ось як його готують у родині моєї подруги з Полтави.",
+        "en": "Here is how it is made in the family of a friend of mine from Poltava."
+      },
+      {
+        "tr": "Для борщу потрібні м’ясо, буряк, картопля, капуста, морква, цибуля та томатна паста.",
+        "en": "For borscht you need meat, beetroot, potatoes, cabbage, carrot, onion and tomato paste."
+      },
+      {
+        "tr": "А ще знадобляться сіль, часник, лавровий лист і свіжий кріп.",
+        "en": "You will also need salt, garlic, a bay leaf and fresh dill."
+      },
+      {
+        "tr": "Спочатку варимо бульйон: кладемо м’ясо у велику каструлю з водою і варимо приблизно півтори години.",
+        "en": "First we make the stock: we put the meat into a large pot of water and boil it for about an hour and a half."
+      },
+      {
+        "tr": "Тим часом чистимо овочі: картоплю нарізаємо кубиками, а капусту тонко шаткуємо.",
+        "en": "Meanwhile we peel the vegetables: we cut the potatoes into cubes and shred the cabbage finely."
+      },
+      {
+        "tr": "Буряк і моркву натираємо на тертці, а цибулю дрібно ріжемо.",
+        "en": "We grate the beetroot and the carrot, and chop the onion finely."
+      },
+      {
+        "tr": "На сковороді смажимо цибулю з морквою, потім додаємо буряк і томатну пасту.",
+        "en": "In a frying pan we fry the onion with the carrot, then add the beetroot and the tomato paste."
+      },
+      {
+        "tr": "Усе це тушкуємо хвилин десять — так борщ буде яскраво-червоним.",
+        "en": "We stew all this for about ten minutes – that way the borscht will be bright red."
+      },
+      {
+        "tr": "Коли бульйон готовий, кладемо в нього картоплю, а через десять хвилин — капусту.",
+        "en": "When the stock is ready, we put the potatoes into it, and ten minutes later the cabbage."
+      },
+      {
+        "tr": "Після цього додаємо овочі зі сковороди, сіль і лавровий лист.",
+        "en": "After that we add the vegetables from the pan, the salt and the bay leaf."
+      },
+      {
+        "tr": "Борщ вариться ще хвилин п’ятнадцять на слабкому вогні.",
+        "en": "The borscht cooks for about another fifteen minutes on a low heat."
+      },
+      {
+        "tr": "Наприкінці кладемо подрібнений часник і кріп та вимикаємо плиту.",
+        "en": "At the end we put in the chopped garlic and the dill and turn off the cooker."
+      },
+      {
+        "tr": "Тепер найважче: борщ має постояти під кришкою хоча б пів години.",
+        "en": "Now comes the hardest part: the borscht has to stand under a lid for at least half an hour."
+      },
+      {
+        "tr": "Подають його гарячим, із ложкою сметани.",
+        "en": "It is served hot, with a spoonful of sour cream."
+      },
+      {
+        "tr": "До борщу часто їдять пампушки — маленькі м’які булочки з часником.",
+        "en": "With borscht people often eat pampushky – small soft buns with garlic."
+      },
+      {
+        "tr": "А ще кажуть, що наступного дня борщ смакує ще краще.",
+        "en": "People also say that borscht tastes even better the next day."
+      },
+      {
+        "tr": "Для українців борщ — це не просто їжа, а смак дому.",
+        "en": "For Ukrainians borscht is not just food but the taste of home."
+      },
+      {
+        "tr": "Спробуйте приготувати його вдома — це не так складно, як здається.",
+        "en": "Try making it at home – it isn’t as hard as it seems."
+      },
+      {
+        "tr": "Дякую за увагу і смачного!",
+        "en": "Thank you for your attention, and enjoy your meal!"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "страву",
+        "en": "dish (страва)"
+      },
+      {
+        "tr": "густий",
+        "en": "thick (of soup)"
+      },
+      {
+        "tr": "буряк",
+        "en": "beetroot"
+      },
+      {
+        "tr": "в будні",
+        "en": "on weekdays (будні – weekdays, working days)"
+      },
+      {
+        "tr": "знадобляться",
+        "en": "will be needed (знадобитися)"
+      },
+      {
+        "tr": "лавровий лист",
+        "en": "bay leaf"
+      },
+      {
+        "tr": "кріп",
+        "en": "dill"
+      },
+      {
+        "tr": "бульйон",
+        "en": "stock, broth"
+      },
+      {
+        "tr": "півтори години",
+        "en": "an hour and a half"
+      },
+      {
+        "tr": "шаткуємо",
+        "en": "we shred (шаткувати – said of cabbage)"
+      },
+      {
+        "tr": "натираємо на тертці",
+        "en": "we grate (натирати на тертці; тертка – a grater)"
+      },
+      {
+        "tr": "тушкуємо",
+        "en": "we stew, braise (тушкувати)"
+      },
+      {
+        "tr": "на слабкому вогні",
+        "en": "on a low heat (вогонь – fire, flame)"
+      },
+      {
+        "tr": "подрібнений",
+        "en": "chopped, crushed"
+      },
+      {
+        "tr": "під кришкою",
+        "en": "under a lid (кришка)"
+      },
+      {
+        "tr": "із ложкою сметани",
+        "en": "with a spoonful of sour cream (сметана)"
+      },
+      {
+        "tr": "пампушки",
+        "en": "small soft buns, served with garlic"
+      },
+      {
+        "tr": "смакує",
+        "en": "tastes (good) (смакувати)"
+      }
+    ],
+    "questions": [
+      {
+        "q": "According to the talk, when do people in Ukraine usually eat borscht?",
+        "options": [
+          "Only at big celebrations",
+          "For breakfast",
+          "For lunch, on weekdays and holidays alike",
+          "Only in winter"
+        ],
+        "answer": 2,
+        "explain": "«В Україні його зазвичай їдять на обід — і в будні, і на свята.»"
+      },
+      {
+        "q": "How long is the meat boiled for the stock?",
+        "options": [
+          "About an hour and a half",
+          "About ten minutes",
+          "About half an hour",
+          "About fifteen minutes"
+        ],
+        "answer": 0,
+        "explain": "«…кладемо м’ясо у велику каструлю з водою і варимо приблизно півтори години.»"
+      },
+      {
+        "q": "What goes into the stock first when it is ready?",
+        "options": [
+          "The cabbage",
+          "The garlic",
+          "The tomato paste",
+          "The potatoes"
+        ],
+        "answer": 3,
+        "explain": "«Коли бульйон готовий, кладемо в нього картоплю, а через десять хвилин — капусту.»"
+      },
+      {
+        "q": "What is “the hardest part”, according to the speaker?",
+        "options": [
+          "Grating the beetroot",
+          "Letting the borscht stand under a lid",
+          "Finding fresh dill",
+          "Baking the garlic buns"
+        ],
+        "answer": 1,
+        "explain": "«Тепер найважче: борщ має постояти під кришкою хоча б пів години.»"
+      }
+    ]
   }
 ];

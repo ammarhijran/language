@@ -4787,5 +4787,853 @@ export const texts = [
         "explain": "Whoever works hard, finds."
       }
     ]
+  },
+  {
+    "id": "ar-ali-baba-tale",
+    "kind": "story",
+    "level": "B1",
+    "title": "Ali Baba and the Forty Thieves",
+    "titleNative": "عَلِي بَابَا وَالْأَرْبَعُونَ لِصًّا",
+    "summary": "A short, gentle retelling of the tale from the Thousand and One Nights: a poor woodcutter, a cave that opens to “Open, Sesame!”, a greedy brother — and a happy ending.",
+    "register": "mixed",
+    "lines": [
+      {
+        "tr": "كَانَ يَا مَا كَانَ، فِي قَدِيمِ الزَّمَانِ، رَجُلٌ فَقِيرٌ يَعِيشُ فِي بِلَادِ فَارِسَ.",
+        "en": "Once upon a time, long ago, there was a poor man who lived in Persia.",
+        "tl": "kāna yā mā kāna fī qadīmi-z-zamāni rajulun faqīrun yaʿīshu fī bilādi fāris"
+      },
+      {
+        "tr": "كَانَ اسْمُهُ عَلِي بَابَا، وَكَانَ يَقْطَعُ الْحَطَبَ فِي الْغَابَةِ وَيَبِيعُهُ فِي السُّوقِ.",
+        "en": "His name was Ali Baba, and he used to cut firewood in the forest and sell it in the market.",
+        "tl": "kāna-smuhu ʿalī bābā wa-kāna yaqṭaʿu-l-ḥaṭaba fī-l-ghābati wa-yabīʿuhu fī-s-sūq"
+      },
+      {
+        "tr": "أَمَّا أَخُوهُ قَاسِمٌ فَكَانَ تَاجِرًا غَنِيًّا، لَكِنَّهُ كَانَ يُحِبُّ الْمَالَ أَكْثَرَ مِنْ كُلِّ شَيْءٍ.",
+        "en": "His brother Qasim, on the other hand, was a rich merchant, but he loved money more than anything.",
+        "tl": "ʾammā ʾakhūhu qāsimun fa-kāna tājiran ghaniyyan lākinnahu kāna yuḥibbu-l-māla ʾakthara min kulli shayʾ"
+      },
+      {
+        "tr": "فِي يَوْمٍ مِنَ الْأَيَّامِ، رَأَى عَلِي بَابَا فِي الْغَابَةِ أَرْبَعِينَ رَجُلًا عَلَى خُيُولِهِمْ.",
+        "en": "One day, in the forest, Ali Baba saw forty men on their horses.",
+        "tl": "fī yawmin mina-l-ʾayyāmi raʾā ʿalī bābā fī-l-ghābati ʾarbaʿīna rajulan ʿalā khuyūlihim"
+      },
+      {
+        "tr": "خَافَ مِنْهُمْ، فَصَعِدَ إِلَى شَجَرَةٍ عَالِيَةٍ وَاخْتَبَأَ بَيْنَ أَغْصَانِهَا.",
+        "en": "He was afraid of them, so he climbed a tall tree and hid among its branches.",
+        "tl": "khāfa minhum fa-ṣaʿida ʾilā shajaratin ʿāliyatin wa-khtabaʾa bayna ʾaghṣānihā"
+      },
+      {
+        "tr": "وَقَفَ الرِّجَالُ أَمَامَ صَخْرَةٍ كَبِيرَةٍ فِي الْجَبَلِ، وَكَانُوا لُصُوصًا يَحْمِلُونَ أَكْيَاسًا ثَقِيلَةً.",
+        "en": "The men stopped in front of a big rock on the mountainside; they were thieves, carrying heavy sacks.",
+        "tl": "waqafa-r-rijālu ʾamāma ṣakhratin kabīratin fī-l-jabali wa-kānū luṣūṣan yaḥmilūna ʾakyāsan thaqīla"
+      },
+      {
+        "tr": "قَالَ رَئِيسُهُمْ بِصَوْتٍ مُرْتَفِعٍ: «اِفْتَحْ يَا سِمْسِمُ!»",
+        "en": "Their leader said in a loud voice: “Open, Sesame!”",
+        "tl": "qāla raʾīsuhum bi-ṣawtin murtafiʿ iftaḥ yā simsim"
+      },
+      {
+        "tr": "فَانْفَتَحَ فِي الصَّخْرَةِ بَابُ مَغَارَةٍ، وَدَخَلَ اللُّصُوصُ كُلُّهُمْ، ثُمَّ انْغَلَقَ الْبَابُ خَلْفَهُمْ.",
+        "en": "And the door of a cave opened in the rock. All the thieves went in, and then the door closed behind them.",
+        "tl": "fa-nfataḥa fī-ṣ-ṣakhrati bābu maghāratin wa-dakhala-l-luṣūṣu kulluhum thumma-nghalaqa-l-bābu khalfahum"
+      },
+      {
+        "tr": "بَعْدَ قَلِيلٍ خَرَجُوا، وَقَالَ الرَّئِيسُ: «أَغْلِقْ يَا سِمْسِمُ!» ثُمَّ رَكِبُوا خُيُولَهُمْ وَذَهَبُوا.",
+        "en": "A little later they came out, and the leader said: “Close, Sesame!” Then they got on their horses and rode away.",
+        "tl": "baʿda qalīlin kharajū wa-qāla-r-raʾīs ʾaghliq yā simsim thumma rakibū khuyūlahum wa-dhahabū"
+      },
+      {
+        "tr": "نَزَلَ عَلِي بَابَا مِنَ الشَّجَرَةِ، وَوَقَفَ أَمَامَ الصَّخْرَةِ، وَقَالَ الْكَلِمَاتِ نَفْسَهَا.",
+        "en": "Ali Baba came down from the tree, stood in front of the rock and said the same words.",
+        "tl": "nazala ʿalī bābā mina-sh-shajarati wa-waqafa ʾamāma-ṣ-ṣakhrati wa-qāla-l-kalimāti nafsahā"
+      },
+      {
+        "tr": "اِنْفَتَحَ الْبَابُ، فَدَخَلَ الْمَغَارَةَ، وَوَجَدَ فِيهَا ذَهَبًا وَفِضَّةً وَأَشْيَاءَ ثَمِينَةً كَثِيرَةً.",
+        "en": "The door opened, so he went into the cave, and in it he found gold, silver and many precious things.",
+        "tl": "infataḥa-l-bābu fa-dakhala-l-maghārata wa-wajada fīhā dhahaban wa-fiḍḍatan wa-ʾashyāʾa thamīnatan kathīra"
+      },
+      {
+        "tr": "لَمْ يَأْخُذْ إِلَّا كِيسًا صَغِيرًا مِنَ الذَّهَبِ، ثُمَّ أَغْلَقَ الْبَابَ وَعَادَ إِلَى بَيْتِهِ.",
+        "en": "He took only one small bag of gold, then closed the door and went back home.",
+        "tl": "lam yaʾkhudh ʾillā kīsan ṣaghīran mina-dh-dhahabi thumma ʾaghlaqa-l-bāba wa-ʿāda ʾilā baytih"
+      },
+      {
+        "tr": "فَرِحَتْ زَوْجَتُهُ كَثِيرًا، لَكِنَّ قَاسِمًا عَرَفَ السِّرَّ بَعْدَ أَيَّامٍ قَلِيلَةٍ.",
+        "en": "His wife was overjoyed, but a few days later Qasim found out the secret.",
+        "tl": "fariḥat zawjatuhu kathīran lākinna qāsiman ʿarafa-s-sirra baʿda ʾayyāmin qalīla"
+      },
+      {
+        "tr": "قَالَ قَاسِمٌ لِأَخِيهِ: «أَخْبِرْنِي أَيْنَ وَجَدْتَ هَذَا الذَّهَبَ!» فَأَخْبَرَهُ عَلِي بَابَا بِكُلِّ شَيْءٍ.",
+        "en": "Qasim said to his brother: “Tell me where you found this gold!” So Ali Baba told him everything.",
+        "tl": "qāla qāsimun li-ʾakhīh ʾakhbirnī ʾayna wajadta hādhā-dh-dhahab fa-ʾakhbarahu ʿalī bābā bi-kulli shayʾ"
+      },
+      {
+        "tr": "فِي الصَّبَاحِ ذَهَبَ قَاسِمٌ إِلَى الْمَغَارَةِ وَمَعَهُ عَشَرَةُ حَمِيرٍ، لِأَنَّهُ أَرَادَ أَنْ يَأْخُذَ كُلَّ الذَّهَبِ.",
+        "en": "In the morning Qasim went to the cave with ten donkeys, because he wanted to take all the gold.",
+        "tl": "fī-ṣ-ṣabāḥi dhahaba qāsimun ʾilā-l-maghārati wa-maʿahu ʿasharatu ḥamīrin liʾannahu ʾarāda ʾan yaʾkhudha kulla-dh-dhahab"
+      },
+      {
+        "tr": "قَالَ: «اِفْتَحْ يَا سِمْسِمُ!» فَدَخَلَ وَمَلَأَ أَكْيَاسَهُ بِالذَّهَبِ وَهُوَ سَعِيدٌ جِدًّا.",
+        "en": "He said: “Open, Sesame!” and went in, and he filled his sacks with gold, feeling very happy.",
+        "tl": "qāl iftaḥ yā simsim fa-dakhala wa-malaʾa ʾakyāsahu bi-dh-dhahabi wa-huwa saʿīdun jiddan"
+      },
+      {
+        "tr": "لَكِنَّهُ نَسِيَ الْكَلِمَةَ الصَّحِيحَةَ عِنْدَمَا أَرَادَ أَنْ يَخْرُجَ.",
+        "en": "But he forgot the right word when he wanted to get out.",
+        "tl": "lākinnahu nasiya-l-kalimata-ṣ-ṣaḥīḥata ʿindamā ʾarāda ʾan yakhruj"
+      },
+      {
+        "tr": "صَاحَ: «اِفْتَحْ يَا قَمْحُ! اِفْتَحْ يَا شَعِيرُ!» لَكِنَّ الْبَابَ لَمْ يَنْفَتِحْ.",
+        "en": "He shouted: “Open, Wheat! Open, Barley!” But the door did not open.",
+        "tl": "ṣāḥ iftaḥ yā qamḥ iftaḥ yā shaʿīr lākinna-l-bāba lam yanfatiḥ"
+      },
+      {
+        "tr": "بَقِيَ قَاسِمٌ خَائِفًا وَجَائِعًا فِي الْمَغَارَةِ الْمُظْلِمَةِ طُولَ اللَّيْلِ.",
+        "en": "Qasim stayed in the dark cave all night long, frightened and hungry.",
+        "tl": "baqiya qāsimun khāʾifan wa-jāʾiʿan fī-l-maghārati-l-muẓlimati ṭūla-l-layl"
+      },
+      {
+        "tr": "فِي الْيَوْمِ التَّالِي بَحَثَ عَلِي بَابَا عَنْ أَخِيهِ، فَوَجَدَهُ فِي الْمَغَارَةِ وَأَخْرَجَهُ مِنْهَا.",
+        "en": "The next day Ali Baba looked for his brother, found him in the cave and got him out of it.",
+        "tl": "fī-l-yawmi-t-tālī baḥatha ʿalī bābā ʿan ʾakhīhi fa-wajadahu fī-l-maghārati wa-ʾakhrajahu minhā"
+      },
+      {
+        "tr": "بَكَى قَاسِمٌ وَقَالَ: «سَامِحْنِي يَا أَخِي، لَقَدْ كُنْتُ طَمَّاعًا جِدًّا.»",
+        "en": "Qasim wept and said: “Forgive me, my brother. I have been very greedy.”",
+        "tl": "bakā qāsimun wa-qāl sāmiḥnī yā ʾakhī laqad kuntu ṭammāʿan jiddan"
+      },
+      {
+        "tr": "ضَحِكَ عَلِي بَابَا وَقَالَ: «الْأَخُ أَغْلَى مِنَ الذَّهَبِ.»",
+        "en": "Ali Baba laughed and said: “A brother is worth more than gold.”",
+        "tl": "ḍaḥika ʿalī bābā wa-qāl al-ʾakhu ʾaghlā mina-dh-dhahab"
+      },
+      {
+        "tr": "أَمَّا اللُّصُوصُ فَعَرَفُوا أَنَّ سِرَّهُمْ لَمْ يَعُدْ سِرًّا، فَتَرَكُوا تِلْكَ الْبِلَادَ وَلَمْ يَرْجِعُوا إِلَيْهَا أَبَدًا.",
+        "en": "As for the thieves, they realised that their secret was a secret no longer, so they left that land and never came back.",
+        "tl": "ʾammā-l-luṣūṣu fa-ʿarafū ʾanna sirrahum lam yaʿud sirran fa-tarakū tilka-l-bilāda wa-lam yarjiʿū ʾilayhā ʾabadan"
+      },
+      {
+        "tr": "أَعْطَى عَلِي بَابَا الْفُقَرَاءَ كَثِيرًا مِنَ الذَّهَبِ، وَفَتَحَ دُكَّانًا صَغِيرًا فِي السُّوقِ.",
+        "en": "Ali Baba gave much of the gold to the poor, and opened a small shop in the market.",
+        "tl": "ʾaʿṭā ʿalī bābā-l-fuqarāʾa kathīran mina-dh-dhahabi wa-fataḥa dukkānan ṣaghīran fī-s-sūq"
+      },
+      {
+        "tr": "وَمُنْذُ ذَلِكَ الْيَوْمِ عَاشَ الْأَخَوَانِ فِي سَعَادَةٍ وَسَلَامٍ.",
+        "en": "And from that day on, the two brothers lived in happiness and peace.",
+        "tl": "wa-mundhu dhālika-l-yawmi ʿāsha-l-ʾakhawāni fī saʿādatin wa-salām"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "الْحَطَبَ",
+        "en": "firewood",
+        "tl": "al-ḥaṭab"
+      },
+      {
+        "tr": "الْغَابَةِ",
+        "en": "the forest",
+        "tl": "al-ghāba"
+      },
+      {
+        "tr": "تَاجِرًا",
+        "en": "a merchant, a trader (تَاجِر)",
+        "tl": "tājir"
+      },
+      {
+        "tr": "خُيُولِهِمْ",
+        "en": "their horses (خُيُول; one horse is حِصَان)",
+        "tl": "khuyūlihim"
+      },
+      {
+        "tr": "اخْتَبَأَ",
+        "en": "he hid",
+        "tl": "ikhtabaʾ"
+      },
+      {
+        "tr": "أَغْصَانِهَا",
+        "en": "its branches (singular غُصْن)",
+        "tl": "ʾaghṣānihā"
+      },
+      {
+        "tr": "صَخْرَةٍ",
+        "en": "a rock",
+        "tl": "ṣakhra"
+      },
+      {
+        "tr": "لُصُوصًا",
+        "en": "thieves (singular لِصّ)",
+        "tl": "luṣūṣ"
+      },
+      {
+        "tr": "رَئِيسُهُمْ",
+        "en": "their leader, their chief",
+        "tl": "raʾīsuhum"
+      },
+      {
+        "tr": "اِفْتَحْ يَا سِمْسِمُ",
+        "en": "“Open, Sesame!” (سِمْسِم is sesame)",
+        "tl": "iftaḥ yā simsim"
+      },
+      {
+        "tr": "الْمَغَارَةَ",
+        "en": "the cave",
+        "tl": "al-maghāra"
+      },
+      {
+        "tr": "ثَمِينَةً",
+        "en": "precious, valuable",
+        "tl": "thamīna"
+      },
+      {
+        "tr": "السِّرَّ",
+        "en": "the secret",
+        "tl": "as-sirr"
+      },
+      {
+        "tr": "حَمِيرٍ",
+        "en": "donkeys (singular حِمَار)",
+        "tl": "ḥamīr"
+      },
+      {
+        "tr": "نَسِيَ",
+        "en": "he forgot",
+        "tl": "nasiya"
+      },
+      {
+        "tr": "الْمُظْلِمَةِ",
+        "en": "dark",
+        "tl": "al-muẓlima"
+      },
+      {
+        "tr": "سَامِحْنِي",
+        "en": "forgive me",
+        "tl": "sāmiḥnī"
+      },
+      {
+        "tr": "طَمَّاعًا",
+        "en": "greedy",
+        "tl": "ṭammāʿ"
+      }
+    ],
+    "questions": [
+      {
+        "q": "How did Ali Baba earn his living?",
+        "options": [
+          "He was a rich merchant",
+          "He cut firewood and sold it in the market",
+          "He looked after horses",
+          "He kept a small shop from the start"
+        ],
+        "answer": 1,
+        "explain": "«كَانَ يَقْطَعُ الْحَطَبَ فِي الْغَابَةِ وَيَبِيعُهُ فِي السُّوقِ»."
+      },
+      {
+        "q": "What did Ali Baba take from the cave the first time?",
+        "options": [
+          "Only one small bag of gold",
+          "All the gold and silver",
+          "Ten sacks of precious things",
+          "Nothing at all"
+        ],
+        "answer": 0,
+        "explain": "«لَمْ يَأْخُذْ إِلَّا كِيسًا صَغِيرًا مِنَ الذَّهَبِ»."
+      },
+      {
+        "q": "Why could Qasim not get out of the cave?",
+        "options": [
+          "The thieves had locked the door",
+          "His sacks were too heavy to carry",
+          "His donkeys had run away",
+          "He had forgotten the right word"
+        ],
+        "answer": 3,
+        "explain": "«لَكِنَّهُ نَسِيَ الْكَلِمَةَ الصَّحِيحَةَ عِنْدَمَا أَرَادَ أَنْ يَخْرُجَ»."
+      },
+      {
+        "q": "What did the thieves do in the end?",
+        "options": [
+          "They came back for their gold",
+          "They made friends with Ali Baba",
+          "They left that land and never returned",
+          "They opened a shop in the market"
+        ],
+        "answer": 2,
+        "explain": "«فَتَرَكُوا تِلْكَ الْبِلَادَ وَلَمْ يَرْجِعُوا إِلَيْهَا أَبَدًا»."
+      }
+    ]
+  },
+  {
+    "id": "ar-viewing-a-flat",
+    "kind": "dialogue",
+    "level": "B1",
+    "title": "Viewing a Flat",
+    "titleNative": "زِيَارَةُ شَقَّةٍ لِلْإِيجَارِ",
+    "summary": "Salma (a woman) is looking for a flat to rent, and Karim, an estate agent (a man), shows her round: the rooms, the rent, the deposit, the bills, the contract and when she could move in.",
+    "register": "polite",
+    "lines": [
+      {
+        "speaker": "Karim",
+        "tr": "أَهْلًا وَسَهْلًا يَا سَيِّدَةُ سَلْمَى، تَفَضَّلِي بِالدُّخُولِ.",
+        "en": "Welcome, Ms Salma. Please come in.",
+        "tl": "ʾahlan wa-sahlan yā sayyidatu salmā tafaḍḍalī bi-d-dukhūl"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "شُكْرًا لَكَ يَا سَيِّدُ كَرِيمُ. الْعِمَارَةُ هَادِئَةٌ، وَهَذَا يُعْجِبُنِي.",
+        "en": "Thank you, Mr Karim. The building is quiet, and I like that.",
+        "tl": "shukran laka yā sayyidu karīm al-ʿimāratu hādiʾatun wa-hādhā yuʿjibunī"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "نَعَمْ، وَالشَّقَّةُ فِي الطَّابِقِ الثَّانِي، وَفِي الْعِمَارَةِ مِصْعَدٌ.",
+        "en": "Yes, and the flat is on the second floor, and there is a lift in the building.",
+        "tl": "naʿam wa-sh-shaqqatu fī-ṭ-ṭābiqi-th-thānī wa-fī-l-ʿimārati miṣʿad"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "هَذِهِ غُرْفَةُ الْجُلُوسِ، وَهِيَ وَاسِعَةٌ وَفِيهَا نَافِذَتَانِ كَبِيرَتَانِ.",
+        "en": "This is the living room. It is spacious and has two big windows.",
+        "tl": "hādhihi ghurfatu-l-julūsi wa-hiya wāsiʿatun wa-fīhā nāfidhatāni kabīratān"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "جَمِيلَةٌ وَمُشْمِسَةٌ! وَكَمْ غُرْفَةَ نَوْمٍ فِي الشَّقَّةِ؟",
+        "en": "It’s lovely and sunny! And how many bedrooms are there in the flat?",
+        "tl": "jamīlatun wa-mushmisa wa-kam ghurfata nawmin fī-sh-shaqqa"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "فِيهَا غُرْفَتَانِ لِلنَّوْمِ: وَاحِدَةٌ كَبِيرَةٌ وَالْأُخْرَى صَغِيرَةٌ.",
+        "en": "It has two bedrooms: one is large and the other is small.",
+        "tl": "fīhā ghurfatāni li-n-nawm wāḥidatun kabīratun wa-l-ʾukhrā ṣaghīra"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "هَلْ يُمْكِنُ أَنْ أَرَى الْمَطْبَخَ وَالْحَمَّامَ؟",
+        "en": "Could I see the kitchen and the bathroom?",
+        "tl": "hal yumkinu ʾan ʾarā-l-maṭbakha wa-l-ḥammām"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "بِالتَّأْكِيدِ، الْمَطْبَخُ جَدِيدٌ، وَفِيهِ ثَلَّاجَةٌ وَفُرْنٌ وَغَسَّالَةٌ.",
+        "en": "Certainly. The kitchen is new, and it has a fridge, an oven and a washing machine.",
+        "tl": "bi-t-taʾkīd al-maṭbakhu jadīdun wa-fīhi thallājatun wa-furnun wa-ghassāla"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "مُمْتَازٌ. وَكَمِ الْإِيجَارُ فِي الشَّهْرِ؟",
+        "en": "Excellent. And how much is the rent per month?",
+        "tl": "mumtāz wa-kami-l-ʾījāru fī-sh-shahr"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "الْإِيجَارُ ثَلَاثُمِئَةِ دِينَارٍ فِي الشَّهْرِ، وَيُدْفَعُ فِي أَوَّلِ كُلِّ شَهْرٍ.",
+        "en": "The rent is three hundred dinars a month, and it is paid at the beginning of each month.",
+        "tl": "al-ʾījāru thalāthumiʾati dīnārin fī-sh-shahri wa-yudfaʿu fī ʾawwali kulli shahr"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "وَهَلْ يَشْمَلُ هَذَا الْمَبْلَغُ فَوَاتِيرَ الْمَاءِ وَالْكَهْرَبَاءِ؟",
+        "en": "And does that amount include the water and electricity bills?",
+        "tl": "wa-hal yashmalu hādhā-l-mablaghu fawātīra-l-māʾi wa-l-kahrabāʾ"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "يَشْمَلُ الْمَاءَ فَقَطْ، أَمَّا الْكَهْرَبَاءُ وَالْإِنْتَرْنِتُ فَعَلَى الْمُسْتَأْجِرِ.",
+        "en": "It includes water only; the electricity and the internet are paid by the tenant.",
+        "tl": "yashmalu-l-māʾa faqaṭ ʾammā-l-kahrabāʾu wa-l-ʾintarnitu fa-ʿalā-l-mustaʾjir"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "فَهِمْتُ. وَهَلْ هُنَاكَ تَأْمِينٌ؟",
+        "en": "I see. And is there a deposit?",
+        "tl": "fahimt wa-hal hunāka taʾmīn"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "نَعَمْ، التَّأْمِينُ إِيجَارُ شَهْرٍ وَاحِدٍ، وَيَعُودُ إِلَيْكِ عِنْدَ نِهَايَةِ الْعَقْدِ.",
+        "en": "Yes, the deposit is one month’s rent, and it comes back to you at the end of the contract.",
+        "tl": "naʿam at-taʾmīnu ʾījāru shahrin wāḥidin wa-yaʿūdu ʾilayki ʿinda nihāyati-l-ʿaqd"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "وَمَا مُدَّةُ الْعَقْدِ؟",
+        "en": "And how long is the contract?",
+        "tl": "wa-mā muddatu-l-ʿaqd"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "مُدَّةُ الْعَقْدِ سَنَةٌ وَاحِدَةٌ، وَيُمْكِنُ تَجْدِيدُهُ بَعْدَ ذَلِكَ.",
+        "en": "The contract is for one year, and it can be renewed after that.",
+        "tl": "muddatu-l-ʿaqdi sanatun wāḥidatun wa-yumkinu tajdīduhu baʿda dhālik"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "وَكَيْفَ الْحَيُّ؟ هَلْ تُوجَدُ مَحَلَّاتٌ وَمُوَاصَلَاتٌ قَرِيبَةٌ؟",
+        "en": "And what is the neighbourhood like? Are there shops and transport nearby?",
+        "tl": "wa-kayfa-l-ḥayy hal tūjadu maḥallātun wa-muwāṣalātun qarība"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "الْحَيُّ هَادِئٌ وَآمِنٌ، وَمَوْقِفُ الْحَافِلَاتِ عَلَى بُعْدِ خَمْسِ دَقَائِقَ مَشْيًا عَلَى الْأَقْدَامِ.",
+        "en": "The neighbourhood is quiet and safe, and the bus stop is five minutes away on foot.",
+        "tl": "al-ḥayyu hādiʾun wa-ʾāminun wa-mawqifu-l-ḥāfilāti ʿalā buʿdi khamsi daqāʾiqa mashyan ʿalā-l-ʾaqdām"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "وَيُوجَدُ بِالْقُرْبِ مِنْ هُنَا سُوقٌ وَصَيْدَلِيَّةٌ وَمَخْبَزٌ.",
+        "en": "And close by there is a market, a pharmacy and a bakery.",
+        "tl": "wa-yūjadu bi-l-qurbi min hunā sūqun wa-ṣaydaliyyatun wa-makhbaz"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "هَذَا مُنَاسِبٌ لِي، فَأَنَا أَعْمَلُ فِي مَدْرَسَةٍ قَرِيبَةٍ.",
+        "en": "That suits me, as I work at a school nearby.",
+        "tl": "hādhā munāsibun lī fa-ʾanā ʾaʿmalu fī madrasatin qarība"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "مَتَى أَسْتَطِيعُ أَنْ أَنْتَقِلَ إِلَى الشَّقَّةِ؟",
+        "en": "When can I move into the flat?",
+        "tl": "matā ʾastaṭīʿu ʾan ʾantaqila ʾilā-sh-shaqqa"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "الشَّقَّةُ الْآنَ فَارِغَةٌ، وَيُمْكِنُكِ أَنْ تَنْتَقِلِي فِي أَوَّلِ الشَّهْرِ الْقَادِمِ.",
+        "en": "The flat is empty now, and you can move in at the beginning of next month.",
+        "tl": "ash-shaqqatu-l-ʾāna fārighatun wa-yumkinuki ʾan tantaqilī fī ʾawwali-sh-shahri-l-qādim"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "جَيِّدٌ جِدًّا. أُرِيدُ أَنْ أُفَكِّرَ قَلِيلًا، وَسَأَتَّصِلُ بِكَ غَدًا.",
+        "en": "Very good. I’d like to think it over a little, and I’ll call you tomorrow.",
+        "tl": "jayyidun jiddan ʾurīdu ʾan ʾufakkira qalīlan wa-sa-ʾattaṣilu bika ghadan"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "خُذِي وَقْتَكِ، لَكِنْ هُنَاكَ شَخْصٌ آخَرُ سَيَرَى الشَّقَّةَ بَعْدَ غَدٍ.",
+        "en": "Take your time — but there is someone else who will be seeing the flat the day after tomorrow.",
+        "tl": "khudhī waqtaki lākin hunāka shakhṣun ʾākharu sa-yarā-sh-shaqqata baʿda ghad"
+      },
+      {
+        "speaker": "Salma",
+        "tr": "إِذَنْ سَأُخْبِرُكَ بِقَرَارِي غَدًا صَبَاحًا. شُكْرًا جَزِيلًا عَلَى وَقْتِكَ.",
+        "en": "Then I’ll let you know my decision tomorrow morning. Thank you very much for your time.",
+        "tl": "ʾidhan sa-ʾukhbiruka bi-qarārī ghadan ṣabāḥan shukran jazīlan ʿalā waqtik"
+      },
+      {
+        "speaker": "Karim",
+        "tr": "عَفْوًا، أَنَا فِي انْتِظَارِ اتِّصَالِكِ. مَعَ السَّلَامَةِ.",
+        "en": "You’re welcome. I’ll be waiting for your call. Goodbye.",
+        "tl": "ʿafwan ʾanā fī-ntiẓāri-ttiṣālik maʿa-s-salāma"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "تَفَضَّلِي بِالدُّخُولِ",
+        "en": "please come in (said to a woman)",
+        "tl": "tafaḍḍalī bi-d-dukhūl"
+      },
+      {
+        "tr": "الْعِمَارَةُ",
+        "en": "the building, the block of flats",
+        "tl": "al-ʿimāra"
+      },
+      {
+        "tr": "الطَّابِقِ الثَّانِي",
+        "en": "the second floor",
+        "tl": "aṭ-ṭābiq ath-thānī"
+      },
+      {
+        "tr": "مِصْعَدٌ",
+        "en": "a lift, an elevator",
+        "tl": "miṣʿad"
+      },
+      {
+        "tr": "غُرْفَةُ الْجُلُوسِ",
+        "en": "the living room",
+        "tl": "ghurfat al-julūs"
+      },
+      {
+        "tr": "وَاسِعَةٌ",
+        "en": "spacious, roomy",
+        "tl": "wāsiʿa"
+      },
+      {
+        "tr": "مُشْمِسَةٌ",
+        "en": "sunny",
+        "tl": "mushmisa"
+      },
+      {
+        "tr": "ثَلَّاجَةٌ",
+        "en": "a fridge",
+        "tl": "thallāja"
+      },
+      {
+        "tr": "غَسَّالَةٌ",
+        "en": "a washing machine",
+        "tl": "ghassāla"
+      },
+      {
+        "tr": "الْإِيجَارُ",
+        "en": "the rent",
+        "tl": "al-ʾījār"
+      },
+      {
+        "tr": "الْمَبْلَغُ",
+        "en": "the amount, the sum (of money)",
+        "tl": "al-mablagh"
+      },
+      {
+        "tr": "فَوَاتِيرَ",
+        "en": "bills (singular فَاتُورَة)",
+        "tl": "fawātīr"
+      },
+      {
+        "tr": "الْمُسْتَأْجِرِ",
+        "en": "the tenant",
+        "tl": "al-mustaʾjir"
+      },
+      {
+        "tr": "تَأْمِينٌ",
+        "en": "a deposit",
+        "tl": "taʾmīn"
+      },
+      {
+        "tr": "مُدَّةُ الْعَقْدِ",
+        "en": "the length of the contract",
+        "tl": "muddat al-ʿaqd"
+      },
+      {
+        "tr": "تَجْدِيدُهُ",
+        "en": "renewing it (تَجْدِيد, renewal)",
+        "tl": "tajdīduh"
+      },
+      {
+        "tr": "مَوْقِفُ الْحَافِلَاتِ",
+        "en": "the bus stop",
+        "tl": "mawqif al-ḥāfilāt"
+      },
+      {
+        "tr": "أَنْتَقِلَ",
+        "en": "I move (house) — اِنْتَقَلَ إِلَى, to move to",
+        "tl": "ʾantaqil"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Which floor is the flat on?",
+        "options": [
+          "The ground floor",
+          "The first floor",
+          "The second floor",
+          "The fifth floor"
+        ],
+        "answer": 2,
+        "explain": "«الشَّقَّةُ فِي الطَّابِقِ الثَّانِي»."
+      },
+      {
+        "q": "Which bills are included in the rent?",
+        "options": [
+          "Water only",
+          "Water and electricity",
+          "Electricity and internet",
+          "None of them"
+        ],
+        "answer": 0,
+        "explain": "«يَشْمَلُ الْمَاءَ فَقَطْ، أَمَّا الْكَهْرَبَاءُ وَالْإِنْتَرْنِتُ فَعَلَى الْمُسْتَأْجِرِ»."
+      },
+      {
+        "q": "How much is the deposit?",
+        "options": [
+          "Three months’ rent",
+          "One month’s rent",
+          "Half a month’s rent",
+          "There is no deposit"
+        ],
+        "answer": 1,
+        "explain": "«التَّأْمِينُ إِيجَارُ شَهْرٍ وَاحِدٍ»."
+      },
+      {
+        "q": "Why might Salma want to decide quickly?",
+        "options": [
+          "The rent goes up next month",
+          "Karim is going away tomorrow",
+          "The contract is only for a month",
+          "Someone else is viewing the flat the day after tomorrow"
+        ],
+        "answer": 3,
+        "explain": "«هُنَاكَ شَخْصٌ آخَرُ سَيَرَى الشَّقَّةَ بَعْدَ غَدٍ»."
+      }
+    ]
+  },
+  {
+    "id": "ar-hummus-talk",
+    "kind": "speech",
+    "level": "B1",
+    "title": "An Arab Dish and How to Make It: Hummus",
+    "titleNative": "طَبَقٌ عَرَبِيٌّ وَطَرِيقَةُ تَحْضِيرِهِ: الْحُمُّصُ",
+    "summary": "A learner gives a short talk about hummus: what it is, when people eat it, what goes into it and the steps for making it, in order. Nothing in it depends on whether the speaker is a man or a woman, so it suits any speaker as it stands.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "أَهْلًا بِكُمْ جَمِيعًا.",
+        "en": "Hello and welcome, everyone.",
+        "tl": "ʾahlan bikum jamīʿan"
+      },
+      {
+        "tr": "الْيَوْمَ سَأُحَدِّثُكُمْ عَنْ طَبَقٍ عَرَبِيٍّ مَشْهُورٍ، وَهُوَ الْحُمُّصُ.",
+        "en": "Today I am going to tell you about a famous Arab dish: hummus.",
+        "tl": "al-yawma sa-ʾuḥaddithukum ʿan ṭabaqin ʿarabiyyin mashhūrin wa-huwa-l-ḥummuṣ"
+      },
+      {
+        "tr": "الْحُمُّصُ طَبَقٌ بَارِدٌ وَنَاعِمٌ، يُصْنَعُ مِنْ حَبِّ الْحُمُّصِ وَالطَّحِينَةِ.",
+        "en": "Hummus is a cold, smooth dish made from chickpeas and tahini.",
+        "tl": "al-ḥummuṣu ṭabaqun bāridun wa-nāʿimun yuṣnaʿu min ḥabbi-l-ḥummuṣi wa-ṭ-ṭaḥīna"
+      },
+      {
+        "tr": "يَأْكُلُهُ النَّاسُ فِي بِلَادِ الشَّامِ وَمِصْرَ وَفِي بِلَادٍ عَرَبِيَّةٍ أُخْرَى.",
+        "en": "People eat it in the Levant, in Egypt and in other Arab countries.",
+        "tl": "yaʾkuluhu-n-nāsu fī bilādi-sh-shāmi wa-miṣra wa-fī bilādin ʿarabiyyatin ʾukhrā"
+      },
+      {
+        "tr": "فِي الصَّبَاحِ يَأْكُلُهُ كَثِيرٌ مِنَ النَّاسِ عَلَى الْفُطُورِ مَعَ الْخُبْزِ السَّاخِنِ.",
+        "en": "In the morning many people eat it for breakfast with hot bread.",
+        "tl": "fī-ṣ-ṣabāḥi yaʾkuluhu kathīrun mina-n-nāsi ʿalā-l-fuṭūri maʿa-l-khubzi-s-sākhin"
+      },
+      {
+        "tr": "وَيُقَدَّمُ أَيْضًا فِي الْغَدَاءِ وَالْعَشَاءِ مَعَ الْمُقَبِّلَاتِ.",
+        "en": "It is also served at lunch and dinner, with the starters.",
+        "tl": "wa-yuqaddamu ʾayḍan fī-l-ghadāʾi wa-l-ʿashāʾi maʿa-l-muqabbilāt"
+      },
+      {
+        "tr": "هُوَ طَعَامٌ صِحِّيٌّ وَرَخِيصٌ، وَتَحْضِيرُهُ سَهْلٌ جِدًّا.",
+        "en": "It is healthy, cheap food, and it is very easy to make.",
+        "tl": "huwa ṭaʿāmun ṣiḥḥiyyun wa-rakhīṣun wa-taḥḍīruhu sahlun jiddan"
+      },
+      {
+        "tr": "لِتَحْضِيرِ الْحُمُّصِ نَحْتَاجُ إِلَى مُكَوِّنَاتٍ قَلِيلَةٍ.",
+        "en": "To make hummus we need only a few ingredients.",
+        "tl": "li-taḥḍīri-l-ḥummuṣi naḥtāju ʾilā mukawwinātin qalīla"
+      },
+      {
+        "tr": "نَحْتَاجُ إِلَى كُوبَيْنِ مِنَ الْحُمُّصِ الْمَسْلُوقِ، وَثَلَاثِ مَلَاعِقَ مِنَ الطَّحِينَةِ.",
+        "en": "We need two cups of boiled chickpeas and three spoonfuls of tahini.",
+        "tl": "naḥtāju ʾilā kūbayni mina-l-ḥummuṣi-l-maslūqi wa-thalāthi malāʿiqa mina-ṭ-ṭaḥīna"
+      },
+      {
+        "tr": "وَنَحْتَاجُ أَيْضًا إِلَى عَصِيرِ لَيْمُونَةٍ، وَفَصِّ ثُومٍ، وَقَلِيلٍ مِنَ الْمِلْحِ وَزَيْتِ الزَّيْتُونِ.",
+        "en": "We also need the juice of a lemon, a clove of garlic, and a little salt and olive oil.",
+        "tl": "wa-naḥtāju ʾayḍan ʾilā ʿaṣīri laymūnatin wa-faṣṣi thūmin wa-qalīlin mina-l-milḥi wa-zayti-z-zaytūn"
+      },
+      {
+        "tr": "الطَّحِينَةُ مَعْجُونٌ مِنَ السِّمْسِمِ، وَتَجِدُونَهَا فِي كُلِّ مَتْجَرٍ عَرَبِيٍّ.",
+        "en": "Tahini is a paste made from sesame, and you will find it in any Arab shop.",
+        "tl": "aṭ-ṭaḥīnatu maʿjūnun mina-s-simsimi wa-tajidūnahā fī kulli matjarin ʿarabī"
+      },
+      {
+        "tr": "إِذَا كَانَ الْحُمُّصُ جَافًّا، نَنْقَعُهُ فِي الْمَاءِ لَيْلَةً كَامِلَةً ثُمَّ نَسْلُقُهُ.",
+        "en": "If the chickpeas are dried, we soak them in water for a whole night and then boil them.",
+        "tl": "ʾidhā kāna-l-ḥummuṣu jāffan nanqaʿuhu fī-l-māʾi laylatan kāmilatan thumma nasluquh"
+      },
+      {
+        "tr": "الطَّرِيقَةُ سَهْلَةٌ. أَوَّلًا، نَضَعُ الْحُمُّصَ الْمَسْلُوقَ فِي الْخَلَّاطِ.",
+        "en": "The method is easy. First, we put the boiled chickpeas in the blender.",
+        "tl": "aṭ-ṭarīqatu sahla ʾawwalan naḍaʿu-l-ḥummuṣa-l-maslūqa fī-l-khallāṭ"
+      },
+      {
+        "tr": "ثَانِيًا، نُضِيفُ الطَّحِينَةَ وَعَصِيرَ اللَّيْمُونِ وَالثُّومَ وَالْمِلْحَ.",
+        "en": "Second, we add the tahini, the lemon juice, the garlic and the salt.",
+        "tl": "thāniyan nuḍīfu-ṭ-ṭaḥīnata wa-ʿaṣīra-l-laymūni wa-th-thūma wa-l-milḥ"
+      },
+      {
+        "tr": "ثَالِثًا، نُضِيفُ قَلِيلًا مِنَ الْمَاءِ الْبَارِدِ، وَنَخْلِطُ كُلَّ شَيْءٍ حَتَّى يَصِيرَ نَاعِمًا تَمَامًا.",
+        "en": "Third, we add a little cold water, and blend everything until it becomes completely smooth.",
+        "tl": "thālithan nuḍīfu qalīlan mina-l-māʾi-l-bāridi wa-nakhliṭu kulla shayʾin ḥattā yaṣīra nāʿiman tamāman"
+      },
+      {
+        "tr": "بَعْدَ ذَلِكَ نَذُوقُ الْحُمُّصَ، وَنُضِيفُ مِلْحًا أَوْ لَيْمُونًا إِذَا لَزِمَ الْأَمْرُ.",
+        "en": "After that we taste the hummus, and add salt or lemon if necessary.",
+        "tl": "baʿda dhālika nadhūqu-l-ḥummuṣa wa-nuḍīfu milḥan ʾaw laymūnan ʾidhā lazima-l-ʾamr"
+      },
+      {
+        "tr": "ثُمَّ نَضَعُهُ فِي صَحْنٍ وَاسِعٍ، وَنَصُبُّ فَوْقَهُ قَلِيلًا مِنْ زَيْتِ الزَّيْتُونِ.",
+        "en": "Then we put it in a wide dish and pour a little olive oil over it.",
+        "tl": "thumma naḍaʿuhu fī ṣaḥnin wāsiʿin wa-naṣubbu fawqahu qalīlan min zayti-z-zaytūn"
+      },
+      {
+        "tr": "وَيُمْكِنُ أَنْ نُزَيِّنَهُ بِحَبَّاتٍ مِنَ الْحُمُّصِ وَقَلِيلٍ مِنَ الْبَقْدُونِسِ.",
+        "en": "And we can decorate it with a few whole chickpeas and a little parsley.",
+        "tl": "wa-yumkinu ʾan nuzayyinahu bi-ḥabbātin mina-l-ḥummuṣi wa-qalīlin mina-l-baqdūnis"
+      },
+      {
+        "tr": "نَأْكُلُ الْحُمُّصَ بِالْخُبْزِ الْعَرَبِيِّ، لَا بِالْمِلْعَقَةِ!",
+        "en": "We eat hummus with Arab bread, not with a spoon!",
+        "tl": "naʾkulu-l-ḥummuṣa bi-l-khubzi-l-ʿarabiyyi lā bi-l-milʿaqa"
+      },
+      {
+        "tr": "ذُقْتُ الْحُمُّصَ لِأَوَّلِ مَرَّةٍ فِي مَطْعَمٍ صَغِيرٍ فِي بَيْرُوتَ.",
+        "en": "I tasted hummus for the first time in a small restaurant in Beirut.",
+        "tl": "dhuqtu-l-ḥummuṣa li-ʾawwali marratin fī maṭʿamin ṣaghīrin fī bayrūt"
+      },
+      {
+        "tr": "مُنْذُ ذَلِكَ الْيَوْمِ أُحَضِّرُهُ فِي بَيْتِي كُلَّ أُسْبُوعٍ تَقْرِيبًا.",
+        "en": "Since that day I have made it at home almost every week.",
+        "tl": "mundhu dhālika-l-yawmi ʾuḥaḍḍiruhu fī baytī kulla ʾusbūʿin taqrīban"
+      },
+      {
+        "tr": "جَرِّبُوا هَذِهِ الطَّرِيقَةَ فِي بُيُوتِكُمْ، وَسَتَرَوْنَ أَنَّهَا سَهْلَةٌ حَقًّا.",
+        "en": "Try this method at home, and you will see that it really is easy.",
+        "tl": "jarribū hādhihi-ṭ-ṭarīqata fī buyūtikum wa-sa-tarawna ʾannahā sahlatun ḥaqqan"
+      },
+      {
+        "tr": "وَكَمَا يَقُولُ الْعَرَبُ قَبْلَ الطَّعَامِ: «بِالْهَنَاءِ وَالشِّفَاءِ!»",
+        "en": "And as Arabs say before a meal: “Enjoy your food!”",
+        "tl": "wa-kamā yaqūlu-l-ʿarabu qabla-ṭ-ṭaʿām bi-l-hanāʾi wa-sh-shifāʾ"
+      },
+      {
+        "tr": "شُكْرًا لَكُمْ عَلَى حُسْنِ اسْتِمَاعِكُمْ.",
+        "en": "Thank you for listening.",
+        "tl": "shukran lakum ʿalā ḥusni-stimāʿikum"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "طَبَقٍ عَرَبِيٍّ",
+        "en": "an Arab dish",
+        "tl": "ṭabaq ʿarabī"
+      },
+      {
+        "tr": "حَبِّ الْحُمُّصِ",
+        "en": "chickpeas (literally “grains of ḥummuṣ”)",
+        "tl": "ḥabb al-ḥummuṣ"
+      },
+      {
+        "tr": "الطَّحِينَةِ",
+        "en": "tahini, sesame paste",
+        "tl": "aṭ-ṭaḥīna"
+      },
+      {
+        "tr": "بِلَادِ الشَّامِ",
+        "en": "the Levant (Syria, Lebanon, Jordan and Palestine)",
+        "tl": "bilād ash-shām"
+      },
+      {
+        "tr": "الْفُطُورِ",
+        "en": "breakfast",
+        "tl": "al-fuṭūr"
+      },
+      {
+        "tr": "الْمُقَبِّلَاتِ",
+        "en": "starters, mezze",
+        "tl": "al-muqabbilāt"
+      },
+      {
+        "tr": "صِحِّيٌّ",
+        "en": "healthy",
+        "tl": "ṣiḥḥī"
+      },
+      {
+        "tr": "مُكَوِّنَاتٍ",
+        "en": "ingredients",
+        "tl": "mukawwināt"
+      },
+      {
+        "tr": "مَلَاعِقَ",
+        "en": "spoons, spoonfuls (singular مِلْعَقَة)",
+        "tl": "malāʿiq"
+      },
+      {
+        "tr": "فَصِّ ثُومٍ",
+        "en": "a clove of garlic",
+        "tl": "faṣṣ thūm"
+      },
+      {
+        "tr": "زَيْتِ الزَّيْتُونِ",
+        "en": "olive oil",
+        "tl": "zayt az-zaytūn"
+      },
+      {
+        "tr": "السِّمْسِمِ",
+        "en": "sesame",
+        "tl": "as-simsim"
+      },
+      {
+        "tr": "نَنْقَعُهُ",
+        "en": "we soak it",
+        "tl": "nanqaʿuh"
+      },
+      {
+        "tr": "الْمَسْلُوقَ",
+        "en": "boiled",
+        "tl": "al-maslūq"
+      },
+      {
+        "tr": "الْخَلَّاطِ",
+        "en": "the blender",
+        "tl": "al-khallāṭ"
+      },
+      {
+        "tr": "نَخْلِطُ",
+        "en": "we mix, we blend",
+        "tl": "nakhliṭ"
+      },
+      {
+        "tr": "نَذُوقُ",
+        "en": "we taste",
+        "tl": "nadhūq"
+      },
+      {
+        "tr": "بِالْهَنَاءِ وَالشِّفَاءِ",
+        "en": "enjoy your food! (literally “with pleasure and health”)",
+        "tl": "bi-l-hanāʾ wa-sh-shifāʾ"
+      }
+    ],
+    "questions": [
+      {
+        "q": "When do many people eat hummus with hot bread?",
+        "options": [
+          "Late at night",
+          "At breakfast, in the morning",
+          "Only at weddings",
+          "Only in winter"
+        ],
+        "answer": 1,
+        "explain": "«فِي الصَّبَاحِ يَأْكُلُهُ كَثِيرٌ مِنَ النَّاسِ عَلَى الْفُطُورِ مَعَ الْخُبْزِ السَّاخِنِ»."
+      },
+      {
+        "q": "What is tahini made from?",
+        "options": [
+          "Chickpeas",
+          "Olives",
+          "Sesame",
+          "Lemons"
+        ],
+        "answer": 2,
+        "explain": "«الطَّحِينَةُ مَعْجُونٌ مِنَ السِّمْسِمِ»."
+      },
+      {
+        "q": "What is the first step of the method?",
+        "options": [
+          "Putting the boiled chickpeas in the blender",
+          "Pouring olive oil into a dish",
+          "Adding cold water",
+          "Tasting the hummus"
+        ],
+        "answer": 0,
+        "explain": "«أَوَّلًا، نَضَعُ الْحُمُّصَ الْمَسْلُوقَ فِي الْخَلَّاطِ»."
+      },
+      {
+        "q": "Where did the speaker taste hummus for the first time?",
+        "options": [
+          "At a friend’s home in Cairo",
+          "In a market in Damascus",
+          "In a school kitchen",
+          "In a small restaurant in Beirut"
+        ],
+        "answer": 3,
+        "explain": "«ذُقْتُ الْحُمُّصَ لِأَوَّلِ مَرَّةٍ فِي مَطْعَمٍ صَغِيرٍ فِي بَيْرُوتَ»."
+      }
+    ]
   }
 ];

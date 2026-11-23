@@ -578,11 +578,14 @@ test('fill the gaps: no capital-letter giveaway, repeated words skipped, too few
   const items = gapItems(L.tr, t, { random: seeded(3) });
   assert.equal(items.length, 4);
   assert.deepEqual(items.map((g) => g.answer), ['Kedi', 'köpek', 'İyi günler', 'Balık'], 'the line keeps its own spelling');
-  assert.deepEqual(items.map((g) => g.option), ['kedi', 'köpek', 'iyi günler', 'balık'], 'Turkish İ → i, not ı̇');
-  for (const g of items) assert.deepEqual([...g.options].sort(), ['balık', 'iyi günler', 'kedi', 'köpek']);
-  // A name keeps its capital: the glossary writes it with one.
+  // A gap at the start of a sentence: every option gets a capital (Turkish i → İ)…
+  assert.deepEqual([...items[0].options].sort(), ['Balık', 'Kedi', 'Köpek', 'İyi günler']);
+  // …a gap inside one: words that only had a capital from starting a sentence are written small (İ → i).
+  assert.deepEqual([...items[1].options].sort(), ['balık', 'iyi günler', 'kedi', 'köpek']);
+  for (const g of items) assert.equal(g.option, g.answer);
+  // A name keeps its capital inside a sentence: the glossary writes it with one.
   const named = gapItems(L.tr, text(['Ankara güzel.', 'Kedi uyuyor.', 'Bu bir köpek.', 'Balık yüzüyor.'], ['Ankara', 'kedi', 'köpek', 'balık']), { random: seeded() });
-  assert.equal(named.find((g) => g.answer === 'Ankara').option, 'Ankara');
+  assert.ok(named.find((g) => g.answer === 'köpek').options.includes('Ankara'));
   // "berber" twice in a line would answer itself: that line gets no gap for it.
   const twice = gapItems(L.tr, text(['Bir berber bir berbere geldi.', 'Kedi uyuyor.', 'Bu bir köpek.', 'Balık yüzüyor.', 'Kuş uçuyor.'], ['berber', 'kedi', 'köpek', 'balık', 'kuş']), { random: seeded() });
   assert.ok(!twice.some((g) => g.line === 0));

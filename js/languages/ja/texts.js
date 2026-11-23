@@ -4851,5 +4851,842 @@ export const texts = [
         "explain": "«打たれる» — it gets hit: people who stand out are criticised."
       }
     ]
+  },
+  {
+    "id": "ja-urashima-taro-tale",
+    "kind": "story",
+    "level": "B1",
+    "title": "Urashima Taro",
+    "titleNative": "浦島太郎",
+    "summary": "The old folk tale retold in simple words: a young fisherman saves a turtle, is taken to the Dragon Palace under the sea, and comes home with a box he must never open.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "むかしむかし、ある海辺の村に、浦島太郎という若い漁師が住んでいました。",
+        "en": "Once upon a time, in a village by the sea, there lived a young fisherman called Urashima Taro.",
+        "kana": "むかしむかし ある うみべ の むら に うらしま たろう と いう わかい りょうし が すんで いました"
+      },
+      {
+        "tr": "太郎は毎日海で魚をとって、年を取ったお母さんと二人で暮らしていました。",
+        "en": "Every day Taro caught fish in the sea, and he lived with his elderly mother, just the two of them.",
+        "kana": "たろう は まいにち うみ で さかな を とって とし を とった おかあさん と ふたり で くらして いました"
+      },
+      {
+        "tr": "ある日、太郎が浜辺を歩いていると、子どもたちが大きなカメをいじめていました。",
+        "en": "One day, as Taro was walking along the beach, some children were tormenting a big turtle.",
+        "kana": "ある ひ たろう が はまべ を あるいて いる と こども たち が おおきな カメ を いじめて いました"
+      },
+      {
+        "tr": "太郎は「かわいそうだから、やめなさい」と言いました。",
+        "en": "“Stop it, the poor thing,” said Taro.",
+        "kana": "たろう は かわいそう だ から やめなさい と いいました"
+      },
+      {
+        "tr": "子どもたちがいなくなると、太郎はカメを海へ逃がしてやりました。",
+        "en": "When the children had gone, Taro let the turtle go back into the sea.",
+        "kana": "こども たち が いなく なる と たろう は カメ を うみ へ にがして やりました"
+      },
+      {
+        "tr": "何日かたったある日、太郎が船で釣りをしていると、あのカメが海から顔を出しました。",
+        "en": "One day a few days later, while Taro was fishing from his boat, that same turtle put its head up out of the sea.",
+        "kana": "なんにち か たった ある ひ たろう が ふね で つり を して いる と あの カメ が うみ から かお を だしました"
+      },
+      {
+        "tr": "カメは「先日は助けてくださって、ありがとうございました」と言いました。",
+        "en": "The turtle said, “Thank you very much for saving me the other day.”",
+        "kana": "カメ は せんじつ は たすけて くださって ありがとう ございました と いいました"
+      },
+      {
+        "tr": "それから、「お礼に、海の底にある竜宮城へご案内します」と言いました。",
+        "en": "Then it said, “To thank you, I will take you to the Dragon Palace at the bottom of the sea.”",
+        "kana": "それから おれい に うみ の そこ に ある りゅうぐうじょう へ ごあんない します と いいました"
+      },
+      {
+        "tr": "太郎がカメの背中に乗ると、カメは海の中へどんどんもぐっていきました。",
+        "en": "When Taro got on the turtle’s back, the turtle dived deeper and deeper into the sea.",
+        "kana": "たろう が カメ の せなか に のる と カメ は うみ の なか へ どんどん もぐって いきました"
+      },
+      {
+        "tr": "しばらくすると、今まで見たこともないほど美しいお城が見えてきました。",
+        "en": "After a while, a palace more beautiful than anything he had ever seen came into view.",
+        "kana": "しばらく する と いままで みた こと も ない ほど うつくしい おしろ が みえて きました"
+      },
+      {
+        "tr": "お城では、乙姫様というお姫様が太郎を待っていました。",
+        "en": "At the palace, a princess called Otohime was waiting for Taro.",
+        "kana": "おしろ で は おとひめさま と いう おひめさま が たろう を まって いました"
+      },
+      {
+        "tr": "乙姫様は「カメを助けてくださったそうですね、どうぞゆっくりしていってください」と言いました。",
+        "en": "Otohime said, “I hear that you saved the turtle. Please stay a while and make yourself at home.”",
+        "kana": "おとひめさま は カメ を たすけて くださった そう です ね どうぞ ゆっくり して いって ください と いいました"
+      },
+      {
+        "tr": "太郎の前には、食べきれないほどのごちそうが並びました。",
+        "en": "More delicious food than he could ever eat was set out in front of Taro.",
+        "kana": "たろう の まえ に は たべきれない ほど の ごちそう が ならびました"
+      },
+      {
+        "tr": "タイやヒラメなどの魚たちも、楽しい踊りを見せてくれました。",
+        "en": "Sea bream, flounder and other fish also performed merry dances for him.",
+        "kana": "タイ や ヒラメ など の さかな たち も たのしい おどり を みせて くれました"
+      },
+      {
+        "tr": "毎日が夢のように楽しくて、太郎は時間がたつのも忘れてしまいました。",
+        "en": "Every day was as delightful as a dream, and Taro quite forgot that time was passing.",
+        "kana": "まいにち が ゆめ の よう に たのしくて たろう は じかん が たつ の も わすれて しまいました"
+      },
+      {
+        "tr": "けれども、三年ほどたつと、太郎は村に残してきたお母さんのことが心配になりました。",
+        "en": "But after about three years, Taro began to worry about the mother he had left behind in the village.",
+        "kana": "けれども さんねん ほど たつ と たろう は むら に のこして きた おかあさん の こと が しんぱい に なりました"
+      },
+      {
+        "tr": "太郎が「そろそろ村へ帰りたいと思います」と言うと、乙姫様は悲しそうな顔をしました。",
+        "en": "When Taro said, “I think it is time I went back to my village,” Otohime looked sad.",
+        "kana": "たろう が そろそろ むら へ かえりたい と おもいます と いう と おとひめさま は かなしそう な かお を しました"
+      },
+      {
+        "tr": "別れるとき、乙姫様は太郎に玉手箱という美しい箱を渡しました。",
+        "en": "When they parted, Otohime handed Taro a beautiful box called a tamatebako.",
+        "kana": "わかれる とき おとひめさま は たろう に たまてばこ と いう うつくしい はこ を わたしました"
+      },
+      {
+        "tr": "そして、「どんなことがあっても、この箱を開けてはいけません」と言いました。",
+        "en": "And she said, “Whatever happens, you must not open this box.”",
+        "kana": "そして どんな こと が あって も この はこ を あけて は いけません と いいました"
+      },
+      {
+        "tr": "太郎はカメに乗って浜辺に戻りましたが、村の様子はすっかり変わっていました。",
+        "en": "Taro rode the turtle back to the beach, but the village looked completely different.",
+        "kana": "たろう は カメ に のって はまべ に もどりました が むら の ようす は すっかり かわって いました"
+      },
+      {
+        "tr": "自分の家はどこにもなく、知っている人は一人もいませんでした。",
+        "en": "His own house was nowhere to be found, and there was not a single person he knew.",
+        "kana": "じぶん の いえ は どこ に も なく しって いる ひと は ひとり も いませんでした"
+      },
+      {
+        "tr": "村の人に聞くと、「浦島太郎は三百年も前に海でいなくなった人ですよ」と言われました。",
+        "en": "When he asked a villager, he was told, “Urashima Taro is someone who disappeared at sea a full three hundred years ago.”",
+        "kana": "むら の ひと に きく と うらしま たろう は さんびゃくねん も まえ に うみ で いなく なった ひと です よ と いわれました"
+      },
+      {
+        "tr": "竜宮城での三年は、地上では三百年だったのです。",
+        "en": "The three years at the Dragon Palace had been three hundred years on land.",
+        "kana": "りゅうぐうじょう で の さんねん は ちじょう で は さんびゃくねん だった の です"
+      },
+      {
+        "tr": "悲しくなった太郎は、乙姫様の言葉を忘れて、玉手箱を開けてしまいました。",
+        "en": "Overcome with sadness, Taro forgot Otohime’s words and opened the box.",
+        "kana": "かなしく なった たろう は おとひめさま の ことば を わすれて たまてばこ を あけて しまいました"
+      },
+      {
+        "tr": "すると、中から白い煙が出てきて、太郎はあっという間におじいさんになってしまいました。",
+        "en": "At once white smoke came out of it, and in the blink of an eye Taro turned into an old man.",
+        "kana": "すると なか から しろい けむり が でて きて たろう は あっというま に おじいさん に なって しまいました"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "漁師",
+        "en": "fisherman",
+        "kana": "りょうし"
+      },
+      {
+        "tr": "浜辺",
+        "en": "beach, seashore",
+        "kana": "はまべ"
+      },
+      {
+        "tr": "いじめていました",
+        "en": "were bullying, tormenting (いじめる)",
+        "kana": "いじめて いました"
+      },
+      {
+        "tr": "逃がしてやりました",
+        "en": "let (it) go, set (it) free (逃がす + てやる, doing something for someone)",
+        "kana": "にがして やりました"
+      },
+      {
+        "tr": "釣り",
+        "en": "fishing (with a line)",
+        "kana": "つり"
+      },
+      {
+        "tr": "先日",
+        "en": "the other day (polite)",
+        "kana": "せんじつ"
+      },
+      {
+        "tr": "お礼に",
+        "en": "as thanks, to thank (you)",
+        "kana": "おれい に"
+      },
+      {
+        "tr": "竜宮城",
+        "en": "the Dragon Palace under the sea (竜 = dragon, 城 = castle)",
+        "kana": "りゅうぐうじょう"
+      },
+      {
+        "tr": "もぐっていきました",
+        "en": "dived down (and away) (もぐる)",
+        "kana": "もぐって いきました"
+      },
+      {
+        "tr": "ごちそう",
+        "en": "a feast, delicious food",
+        "kana": "ごちそう"
+      },
+      {
+        "tr": "踊り",
+        "en": "a dance",
+        "kana": "おどり"
+      },
+      {
+        "tr": "夢のように",
+        "en": "like a dream",
+        "kana": "ゆめ の よう に"
+      },
+      {
+        "tr": "残してきた",
+        "en": "(had) left behind (残す)",
+        "kana": "のこして きた"
+      },
+      {
+        "tr": "悲しそうな",
+        "en": "sad-looking",
+        "kana": "かなしそう な"
+      },
+      {
+        "tr": "玉手箱",
+        "en": "tamatebako, the box of this tale",
+        "kana": "たまてばこ"
+      },
+      {
+        "tr": "様子",
+        "en": "the look of things, how something appears",
+        "kana": "ようす"
+      },
+      {
+        "tr": "煙",
+        "en": "smoke",
+        "kana": "けむり"
+      },
+      {
+        "tr": "あっという間に",
+        "en": "in an instant, in the blink of an eye",
+        "kana": "あっというま に"
+      }
+    ],
+    "questions": [
+      {
+        "q": "What were the children on the beach doing?",
+        "options": [
+          "Catching fish for their families",
+          "Tormenting a big turtle",
+          "Building a small boat",
+          "Looking for a lost box"
+        ],
+        "answer": 1,
+        "explain": "「子どもたちが大きなカメをいじめていました。」"
+      },
+      {
+        "q": "Why did Taro want to leave the Dragon Palace after about three years?",
+        "options": [
+          "He was tired of the food and the dances",
+          "Otohime asked him to go",
+          "He wanted to go fishing again",
+          "He was worried about his mother"
+        ],
+        "answer": 3,
+        "explain": "「太郎は村に残してきたお母さんのことが心配になりました。」"
+      },
+      {
+        "q": "What did Otohime tell Taro about the box?",
+        "options": [
+          "He must not open it, whatever happens",
+          "He should open it as soon as he got home",
+          "He should give it to his mother",
+          "He should throw it into the sea"
+        ],
+        "answer": 0,
+        "explain": "「どんなことがあっても、この箱を開けてはいけません」"
+      },
+      {
+        "q": "What happened when Taro opened the box?",
+        "options": [
+          "The turtle came back for him",
+          "He found his old house again",
+          "White smoke came out and he became an old man",
+          "He was carried back to the palace"
+        ],
+        "answer": 2,
+        "explain": "「中から白い煙が出てきて、太郎はあっという間におじいさんになってしまいました。」"
+      }
+    ]
+  },
+  {
+    "id": "ja-viewing-a-flat",
+    "kind": "dialogue",
+    "level": "B1",
+    "title": "Viewing a Flat",
+    "titleNative": "アパートの部屋を見に行く",
+    "summary": "Ms Chen looks round a flat with an estate agent and asks about the rooms, the walk to the station, the rent, the deposit and key money, and when she can move in.",
+    "register": "polite",
+    "lines": [
+      {
+        "speaker": "Agent",
+        "tr": "チェン様、こちらがお部屋です、どうぞ中をご覧ください。",
+        "en": "Ms Chen, this is the flat. Please have a look inside.",
+        "kana": "チェン さま こちら が おへや です どうぞ なか を ごらん ください"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "ありがとうございます、明るくていい部屋ですね。",
+        "en": "Thank you. It’s a nice bright room, isn’t it?",
+        "kana": "ありがとう ございます あかるくて いい へや です ね"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "はい、南向きですので、日当たりがとてもいいんです。",
+        "en": "Yes, it faces south, so it gets plenty of sun.",
+        "kana": "はい みなみむき です ので ひあたり が とても いい ん です"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "部屋はいくつありますか。",
+        "en": "How many rooms are there?",
+        "kana": "へや は いくつ あります か"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "六畳の部屋が一つと台所、それからお風呂とトイレがあります。",
+        "en": "There is one six-mat room and a kitchen, and then a bath and a toilet.",
+        "kana": "ろくじょう の へや が ひとつ と だいどころ それから おふろ と トイレ が あります"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "お風呂とトイレは別ですか。",
+        "en": "Are the bath and the toilet separate?",
+        "kana": "おふろ と トイレ は べつ です か"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "はい、別になっております。",
+        "en": "Yes, they are separate.",
+        "kana": "はい べつ に なって おります"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "一番近い駅まで、歩いて何分ぐらいかかりますか。",
+        "en": "About how many minutes does it take to walk to the nearest station?",
+        "kana": "いちばん ちかい えき まで あるいて なんぷん ぐらい かかります か"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "駅までは歩いて七分ほどで、途中にスーパーとコンビニもございます。",
+        "en": "It is about a seven-minute walk to the station, and there are a supermarket and a convenience store on the way.",
+        "kana": "えき まで は あるいて ななふん ほど で とちゅう に スーパー と コンビニ も ございます"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "便利ですね、家賃はいくらですか。",
+        "en": "That’s convenient. How much is the rent?",
+        "kana": "べんり です ね やちん は いくら です か"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "家賃は月に六万八千円で、ほかに管理費が三千円かかります。",
+        "en": "The rent is 68,000 yen a month, and on top of that there is a management fee of 3,000 yen.",
+        "kana": "やちん は つき に ろくまんはっせん えん で ほか に かんりひ が さんぜん えん かかります"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "敷金と礼金も必要ですか。",
+        "en": "Do I need to pay a deposit and key money as well?",
+        "kana": "しききん と れいきん も ひつよう です か"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "敷金は家賃の一か月分ですが、礼金はいただいておりません。",
+        "en": "The deposit is one month’s rent, but we do not charge key money.",
+        "kana": "しききん は やちん の いっかげつぶん です が れいきん は いただいて おりません"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "礼金がないのは助かります。",
+        "en": "It’s a great help that there is no key money.",
+        "kana": "れいきん が ない の は たすかります"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "いつから入居できますか。",
+        "en": "When could I move in?",
+        "kana": "いつ から にゅうきょ できます か"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "今は空いておりますので、来週からでもご入居いただけます。",
+        "en": "It is empty at the moment, so you could move in as early as next week.",
+        "kana": "いま は あいて おります ので らいしゅう から でも ごにゅうきょ いただけます"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "実は、来月の一日から住みたいと思っているんですが。",
+        "en": "Actually, I was hoping to live here from the first of next month.",
+        "kana": "じつ は らいげつ の ついたち から すみたい と おもって いる ん です が"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "来月の一日でしたら、まったく問題ございません。",
+        "en": "The first of next month would be no problem at all.",
+        "kana": "らいげつ の ついたち でしたら まったく もんだい ございません"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "契約のときには、何が必要ですか。",
+        "en": "What will I need when we sign the contract?",
+        "kana": "けいやく の とき に は なに が ひつよう です か"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "在留カードと最初の月の家賃、それに敷金をご用意ください。",
+        "en": "Please have ready your residence card, the first month’s rent and also the deposit.",
+        "kana": "ざいりゅう カード と さいしょ の つき の やちん それに しききん を ごようい ください"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "全部でいくらぐらいになりますか。",
+        "en": "About how much will that come to altogether?",
+        "kana": "ぜんぶ で いくら ぐらい に なります か"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "管理費も入れて、十三万九千円になります。",
+        "en": "Including the management fee, it comes to 139,000 yen.",
+        "kana": "かんりひ も いれて じゅうさんまんきゅうせん えん に なります"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "わかりました、とても気に入ったので、この部屋に決めたいと思います。",
+        "en": "I see. I like it very much, so I would like to take this flat.",
+        "kana": "わかりました とても き に いった ので この へや に きめたい と おもいます"
+      },
+      {
+        "speaker": "Agent",
+        "tr": "ありがとうございます、では、事務所に戻って手続きをいたしましょう。",
+        "en": "Thank you very much. Then let us go back to the office and do the paperwork.",
+        "kana": "ありがとう ございます で は じむしょ に もどって てつづき を いたしましょう"
+      },
+      {
+        "speaker": "Chen",
+        "tr": "はい、よろしくお願いします。",
+        "en": "Yes, thank you.",
+        "kana": "はい よろしく おねがい します"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "ご覧ください",
+        "en": "please have a look (honorific for 見てください)",
+        "kana": "ごらん ください"
+      },
+      {
+        "tr": "南向き",
+        "en": "south-facing",
+        "kana": "みなみむき"
+      },
+      {
+        "tr": "日当たり",
+        "en": "how much sun a room gets",
+        "kana": "ひあたり"
+      },
+      {
+        "tr": "六畳",
+        "en": "six tatami mats — a room size of about 10 square metres (畳 counts mats)",
+        "kana": "ろくじょう"
+      },
+      {
+        "tr": "別",
+        "en": "separate",
+        "kana": "べつ"
+      },
+      {
+        "tr": "家賃",
+        "en": "rent",
+        "kana": "やちん"
+      },
+      {
+        "tr": "管理費",
+        "en": "management fee (a monthly charge for looking after the building)",
+        "kana": "かんりひ"
+      },
+      {
+        "tr": "敷金",
+        "en": "deposit (paid at the start; returned, less any costs, when you move out)",
+        "kana": "しききん"
+      },
+      {
+        "tr": "礼金",
+        "en": "key money (a payment to the landlord that is not returned)",
+        "kana": "れいきん"
+      },
+      {
+        "tr": "一か月分",
+        "en": "one month’s worth",
+        "kana": "いっかげつぶん"
+      },
+      {
+        "tr": "助かります",
+        "en": "that is a great help (助かる)",
+        "kana": "たすかります"
+      },
+      {
+        "tr": "入居",
+        "en": "moving in (to a flat or house)",
+        "kana": "にゅうきょ"
+      },
+      {
+        "tr": "空いております",
+        "en": "is empty, is vacant (humble for 空いています)",
+        "kana": "あいて おります"
+      },
+      {
+        "tr": "一日",
+        "en": "the first (day of the month)",
+        "kana": "ついたち"
+      },
+      {
+        "tr": "契約",
+        "en": "contract",
+        "kana": "けいやく"
+      },
+      {
+        "tr": "在留カード",
+        "en": "residence card (the ID card of foreign residents in Japan)",
+        "kana": "ざいりゅう カード"
+      },
+      {
+        "tr": "気に入った",
+        "en": "liked, took a liking to (気に入る)",
+        "kana": "き に いった"
+      },
+      {
+        "tr": "手続き",
+        "en": "procedure, paperwork",
+        "kana": "てつづき"
+      }
+    ],
+    "questions": [
+      {
+        "q": "How long does it take to walk from the flat to the nearest station?",
+        "options": [
+          "About three minutes",
+          "About seven minutes",
+          "About ten minutes",
+          "About fifteen minutes"
+        ],
+        "answer": 1,
+        "explain": "「駅までは歩いて七分ほどで…」"
+      },
+      {
+        "q": "How much is the rent each month, not counting the management fee?",
+        "options": [
+          "3,000 yen",
+          "71,000 yen",
+          "68,000 yen",
+          "139,000 yen"
+        ],
+        "answer": 2,
+        "explain": "「家賃は月に六万八千円で、ほかに管理費が三千円かかります。」"
+      },
+      {
+        "q": "What does the agent say about key money?",
+        "options": [
+          "They do not charge any",
+          "It is one month’s rent",
+          "It is two months’ rent",
+          "It is paid when you move out"
+        ],
+        "answer": 0,
+        "explain": "「礼金はいただいておりません。」 Only the deposit (敷金) is one month’s rent."
+      },
+      {
+        "q": "From when does Ms Chen want to live in the flat?",
+        "options": [
+          "From tomorrow",
+          "From next week",
+          "From the end of this month",
+          "From the first of next month"
+        ],
+        "answer": 3,
+        "explain": "「来月の一日から住みたいと思っているんですが。」 Next week is only what the agent offers."
+      }
+    ]
+  },
+  {
+    "id": "ja-onigiri-talk",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Japanese Dish and How to Make It: Onigiri",
+    "titleNative": "発表：おにぎりの作り方",
+    "summary": "A learner gives a short talk about onigiri rice balls: what they are, when people eat them, what you need, and how to make one step by step.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "皆さん、こんにちは。",
+        "en": "Hello, everyone.",
+        "kana": "みなさん こんにち は"
+      },
+      {
+        "tr": "今日は、私の好きな日本の料理、おにぎりについてお話しします。",
+        "en": "Today I am going to talk about a Japanese dish I like: onigiri.",
+        "kana": "きょう は わたし の すき な にほん の りょうり おにぎり に ついて おはなし します"
+      },
+      {
+        "tr": "おにぎりは、ご飯を手でにぎって、三角や丸い形にした食べ物です。",
+        "en": "Onigiri is a food made by pressing cooked rice in your hands into a triangle or a round shape.",
+        "kana": "おにぎり は ごはん を て で にぎって さんかく や まるい かたち に した たべもの です"
+      },
+      {
+        "tr": "中に梅干しやツナなどを入れて、外にのりを巻くことが多いです。",
+        "en": "People often put something like a pickled plum or tuna inside and wrap nori seaweed round the outside.",
+        "kana": "なか に うめぼし や ツナ など を いれて そと に のり を まく こと が おおい です"
+      },
+      {
+        "tr": "日本では、朝ご飯やお弁当として、また遠足やピクニックのときによく食べます。",
+        "en": "In Japan people often eat it for breakfast or as a packed lunch, and also on school outings and picnics.",
+        "kana": "にほん で は あさごはん や おべんとう と して また えんそく や ピクニック の とき に よく たべます"
+      },
+      {
+        "tr": "コンビニでも一個百五十円ぐらいで売っていて、とても人気があります。",
+        "en": "Convenience stores sell them too, for about 150 yen each, and they are very popular.",
+        "kana": "コンビニ でも いっこ ひゃくごじゅう えん ぐらい で うって いて とても にんき が あります"
+      },
+      {
+        "tr": "でも、自分で作るのも簡単ですから、今日は作り方を紹介します。",
+        "en": "But they are also easy to make yourself, so today I will show you how.",
+        "kana": "でも じぶん で つくる の も かんたん です から きょう は つくりかた を しょうかい します"
+      },
+      {
+        "tr": "材料は、炊いたご飯と塩、のり、そして梅干しです。",
+        "en": "The ingredients are cooked rice, salt, nori and pickled plums.",
+        "kana": "ざいりょう は たいた ごはん と しお のり そして うめぼし です"
+      },
+      {
+        "tr": "まず、ご飯を炊いて、少し冷まします。",
+        "en": "First, cook the rice and let it cool a little.",
+        "kana": "まず ごはん を たいて すこし さまします"
+      },
+      {
+        "tr": "ご飯が熱すぎると、手で持てないからです。",
+        "en": "That is because you cannot hold the rice in your hands if it is too hot.",
+        "kana": "ごはん が あつすぎる と て で もてない から です"
+      },
+      {
+        "tr": "次に、手を水でぬらして、手のひらに塩を少しつけます。",
+        "en": "Next, wet your hands with water and put a little salt on your palms.",
+        "kana": "つぎ に て を みず で ぬらして てのひら に しお を すこし つけます"
+      },
+      {
+        "tr": "こうすると、ご飯が手につきにくくなります。",
+        "en": "If you do this, the rice does not stick to your hands so easily.",
+        "kana": "こう する と ごはん が て に つきにくく なります"
+      },
+      {
+        "tr": "それから、茶わん一杯ぐらいのご飯を手にのせます。",
+        "en": "Then put about one bowlful of rice on your hand.",
+        "kana": "それから ちゃわん いっぱい ぐらい の ごはん を て に のせます"
+      },
+      {
+        "tr": "ご飯の真ん中に梅干しを一つ置いて、ご飯で包みます。",
+        "en": "Put one pickled plum in the middle of the rice and wrap the rice round it.",
+        "kana": "ごはん の まんなか に うめぼし を ひとつ おいて ごはん で つつみます"
+      },
+      {
+        "tr": "そして、両手で三回か四回やさしくにぎって、三角の形にします。",
+        "en": "Then press it gently three or four times with both hands and shape it into a triangle.",
+        "kana": "そして りょうて で さんかい か よんかい やさしく にぎって さんかく の かたち に します"
+      },
+      {
+        "tr": "強くにぎりすぎると固くなるので、気をつけてください。",
+        "en": "Be careful, because it goes hard if you press it too firmly.",
+        "kana": "つよく にぎりすぎる と かたく なる ので き を つけて ください"
+      },
+      {
+        "tr": "最後に、のりを巻いたら、できあがりです。",
+        "en": "Finally, wrap the nori round it, and it is ready.",
+        "kana": "さいご に のり を まいたら できあがり です"
+      },
+      {
+        "tr": "中に入れるものは、何でもかまいません。",
+        "en": "You can put anything you like inside.",
+        "kana": "なか に いれる もの は なんでも かまいません"
+      },
+      {
+        "tr": "私の国ではチーズをよく食べるので、私はチーズを入れてみました。",
+        "en": "In my country we eat a lot of cheese, so I tried putting cheese in.",
+        "kana": "わたし の くに で は チーズ を よく たべる ので わたし は チーズ を いれて みました"
+      },
+      {
+        "tr": "意外においしかったので、皆さんもぜひ試してみてください。",
+        "en": "It was surprisingly good, so please do try it yourselves.",
+        "kana": "いがい に おいしかった ので みなさん も ぜひ ためして みて ください"
+      },
+      {
+        "tr": "自分で作ったおにぎりは、形が少し悪くても、とてもおいしいです。",
+        "en": "An onigiri you have made yourself tastes very good, even if its shape is not quite right.",
+        "kana": "じぶん で つくった おにぎり は かたち が すこし わるくて も とても おいしい です"
+      },
+      {
+        "tr": "以上で、私の発表を終わります。",
+        "en": "That is the end of my presentation.",
+        "kana": "いじょう で わたし の はっぴょう を おわります"
+      },
+      {
+        "tr": "聞いてくださって、ありがとうございました。",
+        "en": "Thank you for listening.",
+        "kana": "きいて くださって ありがとう ございました"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "にぎって",
+        "en": "pressing, squeezing in the hands (にぎる)",
+        "kana": "にぎって"
+      },
+      {
+        "tr": "梅干し",
+        "en": "pickled plum (salty and sour)",
+        "kana": "うめぼし"
+      },
+      {
+        "tr": "のり",
+        "en": "nori, thin sheets of dried seaweed",
+        "kana": "のり"
+      },
+      {
+        "tr": "巻く",
+        "en": "to wrap round, to roll",
+        "kana": "まく"
+      },
+      {
+        "tr": "遠足",
+        "en": "school outing, day trip",
+        "kana": "えんそく"
+      },
+      {
+        "tr": "人気があります",
+        "en": "is popular",
+        "kana": "にんき が あります"
+      },
+      {
+        "tr": "作り方",
+        "en": "how to make (it)",
+        "kana": "つくりかた"
+      },
+      {
+        "tr": "材料",
+        "en": "ingredients",
+        "kana": "ざいりょう"
+      },
+      {
+        "tr": "炊いた",
+        "en": "cooked (rice) (炊く, to cook rice)",
+        "kana": "たいた"
+      },
+      {
+        "tr": "冷まします",
+        "en": "let (it) cool (冷ます)",
+        "kana": "さまします"
+      },
+      {
+        "tr": "ぬらして",
+        "en": "wetting (ぬらす)",
+        "kana": "ぬらして"
+      },
+      {
+        "tr": "手のひら",
+        "en": "palm of the hand",
+        "kana": "てのひら"
+      },
+      {
+        "tr": "つきにくく",
+        "en": "not sticking easily (つく + にくい, hard to …)",
+        "kana": "つきにくく"
+      },
+      {
+        "tr": "茶わん",
+        "en": "rice bowl",
+        "kana": "ちゃわん"
+      },
+      {
+        "tr": "包みます",
+        "en": "wrap, enclose (包む)",
+        "kana": "つつみます"
+      },
+      {
+        "tr": "できあがり",
+        "en": "finished, ready",
+        "kana": "できあがり"
+      },
+      {
+        "tr": "意外に",
+        "en": "surprisingly, unexpectedly",
+        "kana": "いがい に"
+      },
+      {
+        "tr": "試して",
+        "en": "trying out (試す)",
+        "kana": "ためして"
+      }
+    ],
+    "questions": [
+      {
+        "q": "About how much does one onigiri cost at a convenience store?",
+        "options": [
+          "About 50 yen",
+          "About 100 yen",
+          "About 150 yen",
+          "About 500 yen"
+        ],
+        "answer": 2,
+        "explain": "「コンビニでも一個百五十円ぐらいで売っていて…」"
+      },
+      {
+        "q": "Why should you let the rice cool a little first?",
+        "options": [
+          "Because you cannot hold rice that is too hot",
+          "Because cold rice tastes sweeter",
+          "Because hot rice breaks the nori",
+          "Because the salt would disappear"
+        ],
+        "answer": 0,
+        "explain": "「ご飯が熱すぎると、手で持てないからです。」"
+      },
+      {
+        "q": "Why do you wet your hands and put salt on your palms?",
+        "options": [
+          "So that the rice ball becomes round",
+          "So that the rice cooks faster",
+          "So that the nori stays dry",
+          "So that the rice does not stick to your hands so easily"
+        ],
+        "answer": 3,
+        "explain": "「こうすると、ご飯が手につきにくくなります。」"
+      },
+      {
+        "q": "What did the speaker try putting inside an onigiri?",
+        "options": [
+          "Tuna",
+          "Cheese",
+          "Chocolate",
+          "Fried egg"
+        ],
+        "answer": 1,
+        "explain": "「私はチーズを入れてみました。」"
+      }
+    ]
   }
 ];

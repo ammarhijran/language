@@ -4162,5 +4162,724 @@ export const texts = [
         "explain": "One cup of coffee is remembered for forty years: a small kindness is not forgotten."
       }
     ]
+  },
+  {
+    "id": "tr-keloglan-tale",
+    "kind": "story",
+    "level": "B1",
+    "title": "Keloğlan and the Jar of Gold",
+    "titleNative": "Keloğlan ile Bir Küp Altın",
+    "summary": "A much-loved Keloğlan folk tale: the poor bald boy wins the sultan's contest with a lie the sultan cannot afford to call true. Like most Turkish tales, it is told in the -miş storytelling past.",
+    "register": "casual",
+    "lines": [
+      {
+        "tr": "Bir varmış, bir yokmuş. Eski zamanlarda bir köyde Keloğlan adında fakir bir genç yaşarmış.",
+        "en": "Once upon a time, long ago, a poor young man called Keloğlan lived in a village."
+      },
+      {
+        "tr": "Başında hiç saç yokmuş, bu yüzden herkes ona Keloğlan dermiş.",
+        "en": "He had no hair on his head, which is why everyone called him Keloğlan, “the bald boy”."
+      },
+      {
+        "tr": "Yaşlı annesiyle küçük bir evde oturuyormuş ve çok az paraları varmış.",
+        "en": "He lived in a small house with his elderly mother, and they had very little money."
+      },
+      {
+        "tr": "O ülkenin padişahı çok zenginmiş ve eğlenmeyi çok severmiş.",
+        "en": "The sultan of that land was very rich and loved to have fun."
+      },
+      {
+        "tr": "Bir gün padişah bütün ülkeye bir haber göndermiş.",
+        "en": "One day the sultan sent a message out to the whole land."
+      },
+      {
+        "tr": "“Bana bir yalan söyleyin. Buna yalan dersem size bir küp altın vereceğim” demiş.",
+        "en": "“Tell me a lie. If I call it a lie, I will give you a jar of gold,” he said."
+      },
+      {
+        "tr": "Her yerden insanlar saraya gelmiş ve en büyük yalanlarını söylemiş.",
+        "en": "People came to the palace from everywhere and told their biggest lies."
+      },
+      {
+        "tr": "Biri “Benim eşeğim uçuyor” demiş, bir başkası “Denizi bir bardakla boşalttım” demiş.",
+        "en": "One said, “My donkey flies,” and another said, “I emptied the sea with a glass.”"
+      },
+      {
+        "tr": "Ama padişah her seferinde gülmüş ve “Olabilir, neden olmasın?” demiş.",
+        "en": "But each time the sultan laughed and said, “It could be, why not?”"
+      },
+      {
+        "tr": "Böylece altını kimse kazanamamış.",
+        "en": "And so nobody managed to win the gold."
+      },
+      {
+        "tr": "Keloğlan bu haberi duyunca annesine “Anne, o altını ben alacağım” demiş.",
+        "en": "When Keloğlan heard this news, he said to his mother, “Mother, I am going to get that gold.”"
+      },
+      {
+        "tr": "Annesi gülmüş: “Oğlum, o kadar insan başaramadı, sen nasıl başaracaksın?”",
+        "en": "His mother laughed: “My son, all those people couldn't do it, so how will you?”"
+      },
+      {
+        "tr": "Keloğlan ertesi sabah erkenden yola çıkmış ve akşama doğru saraya varmış.",
+        "en": "The next morning Keloğlan set off early, and towards evening he reached the palace."
+      },
+      {
+        "tr": "Padişahın önünde eğilmiş ve konuşmaya başlamış.",
+        "en": "He bowed before the sultan and began to speak."
+      },
+      {
+        "tr": "“Padişahım, benim babam çok zengin bir adamdı.”",
+        "en": "“Your Majesty, my father was a very rich man.”"
+      },
+      {
+        "tr": "“Yıllar önce sizin babanız ondan bir küp altın borç aldı ama geri vermedi.”",
+        "en": "“Years ago your father borrowed a jar of gold from him, but he didn't give it back.”"
+      },
+      {
+        "tr": "“Ben de bugün o altını almaya geldim.”",
+        "en": "“So today I have come to collect that gold.”"
+      },
+      {
+        "tr": "Padişah çok kızmış ve ayağa kalkmış.",
+        "en": "The sultan got very angry and stood up."
+      },
+      {
+        "tr": "“Bu yalan! Benim babam kimseden borç almadı!” diye bağırmış.",
+        "en": "“That's a lie! My father didn't borrow from anyone!” he shouted."
+      },
+      {
+        "tr": "Keloğlan gülümsemiş: “Yalan dediniz padişahım, öyleyse altını kazandım.”",
+        "en": "Keloğlan smiled: “You said it was a lie, Your Majesty, so I have won the gold.”"
+      },
+      {
+        "tr": "Padişah bir an durmuş ve düşünmüş: “Yalan dersem ödülü vereceğim, doğru dersem babamın borcunu ödeyeceğim.”",
+        "en": "The sultan stopped for a moment and thought: “If I say it's a lie, I'll give the prize; if I say it's true, I'll pay my father's debt.”"
+      },
+      {
+        "tr": "Her iki durumda da Keloğlan bir küp altın alacakmış.",
+        "en": "Either way, Keloğlan was going to get a jar of gold."
+      },
+      {
+        "tr": "Sonunda padişah gülmeye başlamış: “Aferin Keloğlan, bu sefer sen kazandın!”",
+        "en": "In the end the sultan started to laugh: “Well done, Keloğlan, this time you have won!”"
+      },
+      {
+        "tr": "Keloğlan altını alıp köyüne dönmüş ve annesiyle uzun yıllar mutlu yaşamış.",
+        "en": "Keloğlan took the gold, went back to his village and lived happily with his mother for many years."
+      },
+      {
+        "tr": "Gökten üç elma düşmüş: biri anlatana, biri dinleyene, biri de bütün iyi insanlara.",
+        "en": "Three apples fell from the sky: one for the teller, one for the listener, and one for all good people."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "Bir varmış, bir yokmuş",
+        "en": "once upon a time (lit. 'once there was, once there wasn't'; the usual opening of a tale)"
+      },
+      {
+        "tr": "fakir",
+        "en": "poor"
+      },
+      {
+        "tr": "saç",
+        "en": "hair (kel = bald; Keloğlan = 'the bald boy')"
+      },
+      {
+        "tr": "padişah",
+        "en": "sultan, ruler"
+      },
+      {
+        "tr": "yalan",
+        "en": "lie (yalan söylemek = to tell a lie)"
+      },
+      {
+        "tr": "küp",
+        "en": "large clay jar"
+      },
+      {
+        "tr": "saraya",
+        "en": "to the palace (saray)"
+      },
+      {
+        "tr": "eşeğim",
+        "en": "my donkey (eşek)"
+      },
+      {
+        "tr": "boşalttım",
+        "en": "I emptied (boşaltmak = to empty)"
+      },
+      {
+        "tr": "her seferinde",
+        "en": "each time (sefer = time, occasion)"
+      },
+      {
+        "tr": "kazanamamış",
+        "en": "couldn't win (kazanmak = to win, to earn)"
+      },
+      {
+        "tr": "duyunca",
+        "en": "when he heard (duymak = to hear; -ince = when)"
+      },
+      {
+        "tr": "başaramadı",
+        "en": "couldn't manage it (başarmak = to succeed)"
+      },
+      {
+        "tr": "yola çıkmış",
+        "en": "set off (yola çıkmak)"
+      },
+      {
+        "tr": "eğilmiş",
+        "en": "bowed, bent down (eğilmek)"
+      },
+      {
+        "tr": "borç aldı",
+        "en": "borrowed (borç = debt; borç almak = to borrow)"
+      },
+      {
+        "tr": "ödülü",
+        "en": "the prize (as an object; ödül = prize)"
+      },
+      {
+        "tr": "aferin",
+        "en": "well done!"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Why did everyone call the young man Keloğlan?",
+        "options": [
+          "Because he was very poor",
+          "Because he lived with his mother",
+          "Because he had no hair on his head",
+          "Because he told many lies"
+        ],
+        "answer": 2,
+        "explain": "'Başında hiç saç yokmuş, bu yüzden herkes ona Keloğlan dermiş.' Kel means bald, oğlan means boy."
+      },
+      {
+        "q": "What did the sultan promise?",
+        "options": [
+          "A jar of gold for a story he would call a lie",
+          "His palace for the funniest joke",
+          "A donkey for the poorest man in the land",
+          "A jar of gold for anyone who told the truth"
+        ],
+        "answer": 0,
+        "explain": "'Bana bir yalan söyleyin. Buna yalan dersem size bir küp altın vereceğim.'"
+      },
+      {
+        "q": "What did Keloğlan tell the sultan?",
+        "options": [
+          "That his donkey could fly",
+          "That he had emptied the sea with a glass",
+          "That his mother was ill",
+          "That the sultan's father had borrowed a jar of gold from his father"
+        ],
+        "answer": 3,
+        "explain": "'Yıllar önce sizin babanız ondan bir küp altın borç aldı ama geri vermedi.'"
+      },
+      {
+        "q": "Why couldn't the sultan win this time?",
+        "options": [
+          "He had no gold left in the palace",
+          "Calling it a lie cost him the prize, and calling it true meant paying the debt",
+          "He was laughing too much to answer",
+          "Keloğlan's mother came to help her son"
+        ],
+        "answer": 1,
+        "explain": "'Yalan dersem ödülü vereceğim, doğru dersem babamın borcunu ödeyeceğim.' Either way Keloğlan gets a jar of gold."
+      }
+    ]
+  },
+  {
+    "id": "tr-viewing-a-flat",
+    "kind": "dialogue",
+    "level": "B1",
+    "title": "Viewing a Flat to Rent",
+    "titleNative": "Kiralık Daireye Bakmak",
+    "summary": "Zeynep views a flat with Kemal Bey, an estate agent: the rooms, the heating, the rent, the bills, the deposit, the contract and when she can move in.",
+    "register": "polite",
+    "lines": [
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Merhaba, Zeynep Hanım siz misiniz? Ben emlakçı Kemal.",
+        "en": "Hello, are you Zeynep Hanım? I'm Kemal, the estate agent."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Evet, benim. Memnun oldum Kemal Bey, daireyi görmek için sabırsızlanıyorum.",
+        "en": "Yes, that's me. Pleased to meet you, Kemal Bey. I can't wait to see the flat."
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Buyurun, daire ikinci katta. Binada asansör yok ama merdivenler geniş.",
+        "en": "This way, please; the flat is on the second floor. There is no lift in the building, but the stairs are wide."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Sorun değil, ikinci kat benim için uygun.",
+        "en": "That's no problem, the second floor suits me."
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Burası salon. Gördüğünüz gibi büyük ve çok aydınlık.",
+        "en": "This is the living room. As you can see, it's big and very bright."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Gerçekten güzelmiş. Kaç oda var?",
+        "en": "It really is nice. How many rooms are there?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "İki oda ve bir salon var. Büyük oda arka tarafta, o yüzden çok sessiz.",
+        "en": "There are two rooms and a living room. The big room is at the back, so it's very quiet."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Mutfak biraz küçük ama yeni görünüyor. Buzdolabı ve fırın dâhil mi?",
+        "en": "The kitchen is a bit small, but it looks new. Are the fridge and the oven included?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Evet, buzdolabı, fırın ve çamaşır makinesi ev sahibine ait, burada kalacak.",
+        "en": "Yes, the fridge, the oven and the washing machine belong to the landlord; they will stay here."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Çok iyi. Peki, kışın ev nasıl ısınıyor?",
+        "en": "Very good. And how is the flat heated in winter?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Doğal gazlı kombi var, ev kışın sıcacık oluyor.",
+        "en": "There's a natural gas combi boiler; the flat gets nice and warm in winter."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Kira ne kadar?",
+        "en": "How much is the rent?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Aylık kira on sekiz bin lira. Her ayın beşine kadar ödemeniz gerekiyor.",
+        "en": "The monthly rent is eighteen thousand lira. You need to pay it by the fifth of each month."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Faturalar kiraya dâhil mi?",
+        "en": "Are the bills included in the rent?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Hayır, elektrik, su ve doğal gaz faturalarını siz ödeyeceksiniz. Bir de aylık beş yüz lira aidat var.",
+        "en": "No, you will pay the electricity, water and gas bills yourself. There is also a monthly building fee of five hundred lira."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Anladım. Peki, depozito var mı?",
+        "en": "I see. And is there a deposit?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Evet, ev sahibi depozito olarak iki aylık kira istiyor.",
+        "en": "Yes, the landlord wants two months' rent as a deposit."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Yani otuz altı bin lira. Evden çıkarken geri alacağım, değil mi?",
+        "en": "So thirty-six thousand lira. I'll get it back when I move out, won't I?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Tabii, evi temiz ve hasarsız bırakırsanız depozitonuzu geri alırsınız.",
+        "en": "Of course, if you leave the flat clean and undamaged, you'll get your deposit back."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Sözleşme kaç yıllık olacak?",
+        "en": "How many years will the contract be for?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Bir yıllık kira sözleşmesi yapıyoruz, sonra isterseniz uzatabiliriz.",
+        "en": "We make a one-year rental contract; after that we can extend it if you wish."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Peki, eve ne zaman taşınabilirim?",
+        "en": "All right, when can I move in?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Daire şu anda boş. Sözleşmeyi imzaladıktan sonra ayın birinde taşınabilirsiniz.",
+        "en": "The flat is empty at the moment. After signing the contract, you can move in on the first of the month."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Daireyi çok beğendim ama bu akşam biraz düşünmek istiyorum. Yarın sizi arasam olur mu?",
+        "en": "I like the flat very much, but I'd like to think it over a little this evening. Would it be all right if I called you tomorrow?"
+      },
+      {
+        "speaker": "Kemal Bey",
+        "tr": "Tabii, ama fazla beklemeyin; yarın daireyi iki kişi daha görecek.",
+        "en": "Of course, but don't wait too long; two more people are going to see the flat tomorrow."
+      },
+      {
+        "speaker": "Zeynep",
+        "tr": "Anlaştık, yarın öğleye kadar size haber veririm. Çok teşekkürler.",
+        "en": "Agreed, I'll let you know by noon tomorrow. Thank you very much."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "emlakçı",
+        "en": "estate agent (emlak = property, real estate)"
+      },
+      {
+        "tr": "sabırsızlanıyorum",
+        "en": "I can't wait, I'm impatient (sabırsızlanmak)"
+      },
+      {
+        "tr": "asansör",
+        "en": "lift, elevator"
+      },
+      {
+        "tr": "merdivenler",
+        "en": "the stairs (merdiven)"
+      },
+      {
+        "tr": "buzdolabı",
+        "en": "fridge"
+      },
+      {
+        "tr": "dâhil",
+        "en": "included (-e dâhil = included in; often written 'dahil')"
+      },
+      {
+        "tr": "çamaşır makinesi",
+        "en": "washing machine"
+      },
+      {
+        "tr": "ev sahibi",
+        "en": "landlord, owner of the flat (-e ait = belonging to)"
+      },
+      {
+        "tr": "ısınıyor",
+        "en": "is heated, gets warm (ısınmak)"
+      },
+      {
+        "tr": "kombi",
+        "en": "combi boiler (for heating and hot water)"
+      },
+      {
+        "tr": "kira",
+        "en": "rent (kiralık = for rent)"
+      },
+      {
+        "tr": "faturalar",
+        "en": "bills (fatura)"
+      },
+      {
+        "tr": "aidat",
+        "en": "monthly fee for the upkeep of the building"
+      },
+      {
+        "tr": "depozito",
+        "en": "deposit"
+      },
+      {
+        "tr": "hasarsız",
+        "en": "undamaged (hasar = damage)"
+      },
+      {
+        "tr": "sözleşme",
+        "en": "contract (kira sözleşmesi = rental contract)"
+      },
+      {
+        "tr": "taşınabilirim",
+        "en": "I can move in (taşınmak = to move house)"
+      },
+      {
+        "tr": "imzaladıktan sonra",
+        "en": "after signing (imzalamak = to sign; -dikten sonra = after doing)"
+      }
+    ],
+    "questions": [
+      {
+        "q": "How much is the monthly rent?",
+        "options": [
+          "Five hundred lira",
+          "Eighteen thousand lira",
+          "Thirty-six thousand lira",
+          "Fifteen thousand lira"
+        ],
+        "answer": 1,
+        "explain": "'Aylık kira on sekiz bin lira.' Thirty-six thousand is the deposit and five hundred is the monthly building fee."
+      },
+      {
+        "q": "Who pays the electricity, water and gas bills?",
+        "options": [
+          "The landlord",
+          "The estate agent",
+          "They are included in the rent",
+          "Zeynep, the tenant"
+        ],
+        "answer": 3,
+        "explain": "'Hayır, elektrik, su ve doğal gaz faturalarını siz ödeyeceksiniz.'"
+      },
+      {
+        "q": "When will Zeynep get her deposit back?",
+        "options": [
+          "When she moves out, if she leaves the flat clean and undamaged",
+          "After the first year, when the contract is extended",
+          "On the fifth of each month",
+          "As soon as she signs the contract"
+        ],
+        "answer": 0,
+        "explain": "'Evi temiz ve hasarsız bırakırsanız depozitonuzu geri alırsınız.'"
+      },
+      {
+        "q": "What does Zeynep decide at the end of the viewing?",
+        "options": [
+          "To sign the contract straight away",
+          "To look for a flat with a lift",
+          "To think about it and give her answer by noon tomorrow",
+          "To ask the landlord for a lower rent"
+        ],
+        "answer": 2,
+        "explain": "'Bu akşam biraz düşünmek istiyorum… yarın öğleye kadar size haber veririm.'"
+      }
+    ]
+  },
+  {
+    "id": "tr-menemen-talk",
+    "kind": "speech",
+    "level": "B1",
+    "title": "A Dish from Türkiye: How to Make Menemen",
+    "titleNative": "Türkiye'den Bir Yemek: Menemen Nasıl Yapılır?",
+    "summary": "A learner gives a short talk about menemen: what it is, when people eat it, the ingredients, the steps in order and how to serve it.",
+    "register": "polite",
+    "lines": [
+      {
+        "tr": "Herkese merhaba! Bugün size çok sevdiğim bir Türk yemeğini anlatacağım: menemen.",
+        "en": "Hello everyone! Today I'm going to tell you about a Turkish dish that I love: menemen."
+      },
+      {
+        "tr": "Menemen; yumurta, domates ve yeşil biberle yapılan sıcak bir yemektir.",
+        "en": "Menemen is a hot dish made with eggs, tomatoes and green peppers."
+      },
+      {
+        "tr": "Türkiye'de insanlar menemeni en çok kahvaltıda, özellikle hafta sonları yer.",
+        "en": "In Türkiye people eat menemen mostly at breakfast, especially at weekends."
+      },
+      {
+        "tr": "Ama hızlı ve ucuz olduğu için öğrenciler akşam yemeğinde de sık sık menemen yapar.",
+        "en": "But because it is quick and cheap, students often make menemen for dinner too."
+      },
+      {
+        "tr": "Ben menemeni ilk kez İzmir'de bir arkadaşımın evinde yedim ve çok beğendim.",
+        "en": "I ate menemen for the first time at a friend's house in Izmir, and I liked it very much."
+      },
+      {
+        "tr": "İki kişi için malzemeler şunlar: dört yumurta, üç olgun domates ve iki yeşil biber.",
+        "en": "The ingredients for two people are these: four eggs, three ripe tomatoes and two green peppers."
+      },
+      {
+        "tr": "Ayrıca biraz tereyağı ya da zeytinyağı, tuz ve karabiber gerekiyor.",
+        "en": "You also need a little butter or olive oil, salt and black pepper."
+      },
+      {
+        "tr": "İsterseniz bir soğan da ekleyebilirsiniz.",
+        "en": "If you like, you can add an onion too."
+      },
+      {
+        "tr": "Bu arada, Türkiye'de “Menemen soğanlı mı olur, soğansız mı?” diye bitmeyen bir tartışma var!",
+        "en": "By the way, in Türkiye there is a never-ending debate: “Should menemen be made with onion or without?”"
+      },
+      {
+        "tr": "Şimdi nasıl yapıldığını adım adım anlatayım.",
+        "en": "Now let me tell you step by step how it is made."
+      },
+      {
+        "tr": "Önce biberleri ince ince doğrayın, domatesleri soyup küçük küçük kesin.",
+        "en": "First chop the peppers finely, then peel the tomatoes and cut them into small pieces."
+      },
+      {
+        "tr": "Sonra tavayı ocağa koyun ve yağı ısıtın.",
+        "en": "Then put the pan on the stove and heat the butter or oil."
+      },
+      {
+        "tr": "Biberleri tavaya atın ve yumuşayana kadar birkaç dakika kavurun.",
+        "en": "Put the peppers in the pan and fry them for a few minutes until they soften."
+      },
+      {
+        "tr": "Ardından domatesleri, tuzu ve karabiberi ekleyin.",
+        "en": "Next, add the tomatoes, the salt and the black pepper."
+      },
+      {
+        "tr": "Domatesler suyunu çekene kadar kısık ateşte yaklaşık on dakika pişirin.",
+        "en": "Cook over a low heat for about ten minutes, until the juice of the tomatoes has cooked away."
+      },
+      {
+        "tr": "Daha sonra yumurtaları tavaya kırın.",
+        "en": "After that, crack the eggs into the pan."
+      },
+      {
+        "tr": "Bazıları yumurtaları hemen karıştırır, bazıları ise hiç karıştırmaz; ben hafifçe karıştırıyorum.",
+        "en": "Some people stir the eggs straight away, while others don't stir them at all; I stir them gently."
+      },
+      {
+        "tr": "Yumurtalar fazla pişmesin; iki üç dakika yeter.",
+        "en": "Don't let the eggs cook too much; two or three minutes is enough."
+      },
+      {
+        "tr": "Menemen hazır! Onu tabaklara koymayın, tavayla sofraya getirin.",
+        "en": "The menemen is ready! Don't put it on plates; bring it to the table in the pan."
+      },
+      {
+        "tr": "Çünkü menemen çatalla değil, taze ekmekle yenir: Ekmeği menemene banarsınız.",
+        "en": "Because menemen is eaten not with a fork but with fresh bread: you dip the bread into the menemen."
+      },
+      {
+        "tr": "Yanında tabii ki bir bardak sıcak çay olmalı.",
+        "en": "And of course there should be a glass of hot tea with it."
+      },
+      {
+        "tr": "Bence menemen, arkadaşlarla paylaşınca daha da lezzetli oluyor.",
+        "en": "I think menemen is even tastier when you share it with friends."
+      },
+      {
+        "tr": "Bu hafta sonu siz de evde deneyin; çok kolay, göreceksiniz.",
+        "en": "Try it at home yourselves this weekend; it's very easy, you'll see."
+      },
+      {
+        "tr": "Dinlediğiniz için teşekkür ederim, şimdiden afiyet olsun!",
+        "en": "Thank you for listening, and enjoy your meal in advance!"
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "yapılan",
+        "en": "(that is) made (yapılmak = to be made)"
+      },
+      {
+        "tr": "malzemeler",
+        "en": "ingredients (malzeme)"
+      },
+      {
+        "tr": "olgun",
+        "en": "ripe"
+      },
+      {
+        "tr": "tereyağı",
+        "en": "butter"
+      },
+      {
+        "tr": "zeytinyağı",
+        "en": "olive oil (zeytin = olive, yağ = oil, fat)"
+      },
+      {
+        "tr": "karabiber",
+        "en": "black pepper"
+      },
+      {
+        "tr": "soğan",
+        "en": "onion (soğanlı = with onion, soğansız = without onion)"
+      },
+      {
+        "tr": "tartışma",
+        "en": "debate, argument"
+      },
+      {
+        "tr": "adım adım",
+        "en": "step by step (adım = step)"
+      },
+      {
+        "tr": "doğrayın",
+        "en": "chop (doğramak = to chop)"
+      },
+      {
+        "tr": "tava",
+        "en": "frying pan"
+      },
+      {
+        "tr": "ocağa",
+        "en": "onto the stove (ocak = stove, cooker)"
+      },
+      {
+        "tr": "kavurun",
+        "en": "fry, sauté (kavurmak)"
+      },
+      {
+        "tr": "suyunu çekene kadar",
+        "en": "until the liquid has cooked away (suyunu çekmek = to absorb or lose its liquid)"
+      },
+      {
+        "tr": "kısık ateşte",
+        "en": "over a low heat (ateş = fire)"
+      },
+      {
+        "tr": "kırın",
+        "en": "crack, break (kırmak = to break)"
+      },
+      {
+        "tr": "banarsınız",
+        "en": "you dip (banmak = to dip)"
+      },
+      {
+        "tr": "afiyet olsun",
+        "en": "enjoy your meal, bon appétit"
+      }
+    ],
+    "questions": [
+      {
+        "q": "When do people in Türkiye eat menemen most often?",
+        "options": [
+          "At lunch on working days",
+          "Late at night after work",
+          "At breakfast, especially at weekends",
+          "Only on holidays"
+        ],
+        "answer": 2,
+        "explain": "'Türkiye'de insanlar menemeni en çok kahvaltıda, özellikle hafta sonları yer.'"
+      },
+      {
+        "q": "Which ingredient do people never stop arguing about?",
+        "options": [
+          "Onion",
+          "Butter",
+          "Black pepper",
+          "Green peppers"
+        ],
+        "answer": 0,
+        "explain": "'Menemen soğanlı mı olur, soğansız mı?' – with onion or without – is the never-ending debate."
+      },
+      {
+        "q": "What goes into the pan after the peppers have softened?",
+        "options": [
+          "The eggs",
+          "The bread",
+          "The tea",
+          "The tomatoes, with the salt and black pepper"
+        ],
+        "answer": 3,
+        "explain": "'Ardından domatesleri, tuzu ve karabiberi ekleyin.' The eggs come later, after about ten minutes."
+      },
+      {
+        "q": "How is menemen served and eaten?",
+        "options": [
+          "On separate plates, with a fork",
+          "In the pan, with fresh bread dipped into it",
+          "Cold, with yoghurt",
+          "In a bowl, with a spoon"
+        ],
+        "answer": 1,
+        "explain": "'Onu tabaklara koymayın, tavayla sofraya getirin… Ekmeği menemene banarsınız.'"
+      }
+    ]
   }
 ];

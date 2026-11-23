@@ -63,7 +63,7 @@ HOW PEOPLE REALLY TALK
 • Trip essentials: the 40 phrases to learn first, as a crash course before you travel
 
 READ, LISTEN AND SPEAK
-• 24 graded dialogues, stories and speeches per language with line-by-line audio, translations and tap-a-word meanings
+• 27 graded dialogues, stories and speeches per language with line-by-line audio, translations and tap-a-word meanings
 • Proverbs people really use, and classic tongue twisters to train your pronunciation
 • Practise speeches by repeating, shadowing and recording yourself; role-play dialogues
 • Fill-the-gaps exercises for every text

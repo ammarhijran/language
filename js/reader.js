@@ -430,7 +430,7 @@ export function textsWithWord(lang, texts, wordId) {
  * per line and per glossary item, in text order; [] when the text has fewer
  * than four different glossary words to choose between.
  * [{ line, gloss, before, answer, after, option, options }]: `answer` is the word as
- * the line writes it, `option` the one of `options` that is right.
+ * the line writes it; `option` (the same) is the one of `options` that is right.
  */
 export function gapItems(lang, text, { max = 10, random = Math.random } = {}) {
   const mix = (list) => {
@@ -455,14 +455,15 @@ export function gapItems(lang, text, { max = 10, random = Math.random } = {}) {
       });
     });
   });
-  // The options show each word as the text writes it, except that a capital
-  // letter it only has because it starts a sentence would give the place away.
-  const label = (c) => {
-    const first = [...c.answer][0];
-    const own = [...String(text.glossary[c.gloss].tr)][0];
-    return own && own === own.toLocaleLowerCase(lang.code) && first !== first.toLocaleLowerCase(lang.code)
-      ? first.toLocaleLowerCase(lang.code) + [...c.answer].slice(1).join('') : c.answer;
-  };
+  // A capital letter must not give the place away. In the pool, a word that
+  // is only capitalised because it starts a sentence is written small (the
+  // glossary shows how it is normally written); and when the missing word
+  // itself starts with a capital, every option is shown with one.
+  const first = (f) => [...f][0] || '';
+  const isUpper = (ch) => ch !== ch.toLocaleLowerCase(lang.code);
+  const recase = (f, fn) => fn(first(f)) + [...f].slice(1).join('');
+  const label = (c) => (isUpper(first(c.answer)) && !isUpper(first(String(text.glossary[c.gloss].tr)))
+    ? recase(c.answer, (ch) => ch.toLocaleLowerCase(lang.code)) : c.answer);
   // One written form per glossary item, to choose the wrong answers from.
   const forms = new Map();
   for (const c of all) if (!forms.has(c.gloss)) forms.set(c.gloss, label(c));
@@ -478,11 +479,12 @@ export function gapItems(lang, text, { max = 10, random = Math.random } = {}) {
     picked.push(c);
   }
   return picked.sort((a, b) => a.line - b.line).map((c) => {
-    const option = label(c);
-    const key = lang.normalize(option);
+    const capital = isUpper(first(c.answer));
+    const key = lang.normalize(c.answer);
     const wrong = mix([...forms].filter(([g, f]) => g !== c.gloss && lang.normalize(f) !== key).map(([, f]) => f));
-    const others = [...new Map(wrong.map((f) => [lang.normalize(f), f])).values()].slice(0, 3);
-    return { ...c, option, options: mix([option, ...others]) };
+    const others = [...new Map(wrong.map((f) => [lang.normalize(f), f])).values()].slice(0, 3)
+      .map((f) => (capital ? recase(f, (ch) => ch.toLocaleUpperCase(lang.code)) : f));
+    return { ...c, option: c.answer, options: mix([c.answer, ...others]) };
   }).filter((c) => c.options.length === 4);
 }
 
