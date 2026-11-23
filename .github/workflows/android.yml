@@ -23,10 +23,19 @@ jobs:
           node-version: 22
           cache: npm
 
+      # Gradle's downloads are cached between builds: faster, and the build no
+      # longer fetches every dependency from Maven Central each time (which
+      # answered "429 Too Many Requests" on a busy day).
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
+          cache: gradle
+          cache-dependency-path: |
+            android/*.gradle
+            android/app/*.gradle
+            android/gradle/wrapper/gradle-wrapper.properties
+            package-lock.json
 
       - run: npm ci
       - run: npm test
@@ -37,7 +46,8 @@ jobs:
       # each new build installs over the previous one on your phone.
       - name: Build installable APK
         working-directory: android
-        run: ./gradlew assembleRelease --no-daemon
+        # One retry: a download that failed (a busy mirror) usually works a minute later.
+        run: ./gradlew assembleRelease --no-daemon || (echo "::warning::Gradle failed; retrying once in 60 s" && sleep 60 && ./gradlew assembleRelease --no-daemon)
 
       - name: Name the APK
         id: apk
