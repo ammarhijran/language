@@ -285,3 +285,30 @@ test('Arabic content: every word with the article is transliterated by the sun-a
   for (const w of ar.words) { check(w); check(w.example); check(w.pair); }
   assert.ok(checked > 700, `${checked} article words checked`);
 });
+
+test('Turkish content: plurals and question words in the course and its texts follow vowel harmony', async () => {
+  const { questionOf, lastVowel } = await import('../js/views/harmony.js');
+  const { texts } = await import('../js/languages/tr/texts.js');
+  // Borrowed words whose endings keep a front vowel after a back one — correctly (saatler, sıhhatler).
+  const KNOWN = new Set(['saat', 'sıhhat']);
+  const plain = (w) => w.replace(/[’']/g, '').replace(/â/g, 'a').replace(/î/g, 'i').replace(/û/g, 'u');
+  let plurals = 0; let questions = 0;
+  const scan = (text) => {
+    const ws = String(text || '').replace(/İ/g, 'i').toLowerCase().split(/[^a-zçğıöşüâîû’']+/).filter(Boolean);
+    ws.forEach((w, i) => {
+      const p = /^(.{2,})(lar|ler)(ı|i|u|ü|a|e|da|de|dan|den|ın|in|ım|im|ımız|imiz)?$/.exec(plain(w));
+      if (p && lastVowel(p[1]) && !KNOWN.has(p[1])) {
+        plurals++;
+        assert.equal(p[2], 'aıou'.includes(lastVowel(p[1])) ? 'lar' : 'ler', `${w} in “${text}”`);
+      }
+      const q = /^(mı|mi|mu|mü)(yım|yim|yum|yüm|sın|sin|sun|sün|yız|yiz|yuz|yüz|sınız|siniz|sunuz|sünüz|dır|dir|ydı|ydi|ydu|ydü)?$/.exec(w);
+      if (q && i && questionOf(plain(ws[i - 1])) && !KNOWN.has(plain(ws[i - 1]))) {
+        questions++;
+        assert.equal(q[1], questionOf(plain(ws[i - 1])), `${ws[i - 1]} ${w} in “${text}”`);
+      }
+    });
+  };
+  for (const w of tr.words) { scan(w.tr); scan(w.example?.tr); scan(w.pair?.tr); }
+  for (const t of texts) for (const l of t.lines) scan(l.tr);
+  assert.ok(plurals > 150 && questions > 300, `${plurals} plurals, ${questions} question words`);
+});
