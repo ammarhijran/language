@@ -529,6 +529,8 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .options.syllables .option { flex: 0 1 auto; min-width: 64px; justify-content: center; padding: .7rem .8rem; font-size: var(--fs-lg); }
 .options.syllables .option .mark { margin-inline-start: 0; }
 .prompt-gloss { margin: var(--sp-1) 0 0; color: var(--muted); font-size: var(--fs-md); }
+.beats-line { margin: var(--sp-2) 0 0; font-size: var(--fs-sm); }
+.beats-line b { font-size: var(--fs-lg); }
 .option:disabled { cursor: default; }
 .option.correct { border-color: var(--good); background: var(--good-soft); }
 .option.wrong { border-color: var(--bad); background: var(--bad-soft); }

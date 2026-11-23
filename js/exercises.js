@@ -141,7 +141,7 @@ function continueButton(onClick, label = 'Continue') {
   return h('button', { type: 'button', class: 'btn primary wide continue', onclick: onClick }, label, icon('arrow', 18));
 }
 
-function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, options = null, cls = '', wrong = AGAIN }) {
+function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, options = null, cls = '', wrong = AGAIN, extra = null }) {
   const opts = options || pickOptions(ctx.lang, word, label);
   const live = liveRegion();
   let correct = false;
@@ -169,7 +169,7 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, 
     ctx.onAnswer?.({ correct, rating: correct ? GOOD : wrong });
     if (!correct) buzzWrong();
     const btn = continueButton(finish);
-    el.append(answerSheet(ctx, correct ? 'good' : 'bad', reveal(ctx, word, correct), btn, [buttons[i], right]));
+    el.append(answerSheet(ctx, correct ? 'good' : 'bad', reveal(ctx, word, correct, extra), btn, [buttons[i], right]));
     announce(ctx, live, correct ? 'Right! ' : 'Not quite. The answer: ', spoken(ctx, word.tr, word.en));
     ctx.say(word, { auto: true });
     btn.focus({ preventScroll: true });
@@ -290,6 +290,55 @@ export function stress(ctx, word, onDone) {
     // The stressed syllable stands for the entry itself: that is what choice() counts as right.
     options: item.syllables.map((text, i) => ({ id: i === item.stressed ? word.id : `${word.id}#${i}`, text })),
     label: (o) => o.text,
+  });
+}
+
+/**
+ * What a "count the beats" question needs (Japanese): the beats (morae) of a
+ * one-word entry — but only of words where counting teaches something: a
+ * small っ, ん, a long vowel or a second vowel, or a contracted sound (きゃ).
+ * null otherwise.
+ */
+export function beatItem(lang, w) {
+  if (!w.kana || /\s/.test(w.kana.trim())) return null;
+  try {
+    const a = lang.analyze(w);
+    if (a.words.length !== 1) return null;
+    const beats = a.words[0].syllables.map((x) => x.text);
+    if (beats.length < 2 || beats.length > 8) return null;
+    const telling = beats.some((b, i) => /^[っッんンー]$/.test(b) || /[ゃゅょャュョぁぃぅぇぉァィゥェォ]/.test(b) || (i > 0 && /^[あいうえおアイウエオ]$/.test(b)));
+    return telling ? { beats } : null;
+  } catch { return null; }
+}
+
+/** Four numbers in a row that include `n`, starting one or two below it (never below 1). */
+export function beatOptions(n, random = Math.random) {
+  const start = Math.max(1, n - (random() < 0.5 ? 1 : 2));
+  return [0, 1, 2, 3].map((k) => start + k);
+}
+
+/**
+ * Count the beats: the word in its script and in kana, no audio — how many
+ * beats (morae) does it have? Japanese rhythm gives every beat the same
+ * length, and a small っ, ん and the second half of a long vowel are beats of
+ * their own. The answer shows the word beat by beat and says it.
+ */
+export function beats(ctx, word, onDone) {
+  const item = beatItem(ctx.lang, word);
+  if (!item) return meaning(ctx, word, onDone);
+  const n = item.beats.length;
+  const kana = word.kana.replace(/\s+/g, '');
+  const prompt = h('div', { class: 'prompt' },
+    h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr),
+    kana !== word.tr ? h('p', { class: 'reading', lang: ctx.lang.code }, kana) : null,
+    h('p', { class: 'prompt-gloss' }, word.en));
+  return choice(ctx, word, onDone, {
+    kicker: 'How many beats?', prompt, cls: 'syllables',
+    // The right number stands for the entry itself: that is what choice() counts as right.
+    options: beatOptions(n).map((k) => ({ id: k === n ? word.id : `${word.id}#${k}`, text: String(k) })),
+    label: (o) => o.text,
+    wrong: HARD,
+    extra: h('p', { class: 'beats-line' }, h('b', { lang: ctx.lang.code }, item.beats.join(' · ')), ` — ${n} beats. っ, ん and the second half of a long vowel each take a beat; きゃ, しゅ, ちょ take one.`),
   });
 }
 
@@ -706,4 +755,4 @@ export function build(ctx, word, onDone, meta = {}) {
   return el;
 }
 
-export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build, script, stress };
+export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build, script, stress, beats };

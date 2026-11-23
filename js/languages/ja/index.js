@@ -135,6 +135,8 @@ const pack = makePack({
   exampleReadings,
   exampleReadingKey: 'kana',
   code: 'ja',
+  // Rhythm: every beat (mora) takes the same time — Practice → Count the beats.
+  beatPractice: true,
   // A word the learner adds: its reading in kana, as typed — or the word
   // itself when it is written in kana. Kanji without a reading get none.
   ownReading: (o) => {

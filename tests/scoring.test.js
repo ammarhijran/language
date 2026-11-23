@@ -157,6 +157,39 @@ test('word stress: one-word entries of two or more syllables can be asked, with 
   assert.equal(stressItem(broken, { tr: 'слово' }), null);
 });
 
+test('count the beats (Japanese): morae of single words where counting teaches something', async () => {
+  const { beatItem, beatOptions } = await import('../js/exercises.js');
+  const of = (kana) => beatItem(ja, ja.words.find((w) => w.kana === kana))?.beats.join('・');
+  assert.equal(of('きっぷ'), 'き・っ・ぷ', 'a small っ is a beat');
+  assert.equal(of('にちようび'), 'に・ち・よ・う・び', 'the second half of a long vowel is a beat');
+  assert.equal(of('しゅくじつ'), 'しゅ・く・じ・つ', 'a contracted sound is one beat');
+  assert.equal(of('オーブン'), 'オ・ー・ブ・ン', 'ー and ん are beats');
+  // Nothing to learn from plain consonant + vowel words, and phrases are not asked.
+  const plain = ja.words.find((w) => w.kana && /^[かきくけこさしすせそたちつてとなにぬねのまみむめもらりるれろ]{2,4}$/.test(w.kana));
+  assert.equal(beatItem(ja, plain), null, plain.kana);
+  assert.equal(beatItem(ja, ja.words.find((w) => /\s/.test(w.kana || ''))), null);
+  assert.equal(beatItem(ja, { tr: '蝶', en: 'no reading' }), null);
+  let n = 0;
+  for (const w of ja.words) {
+    const item = beatItem(ja, w);
+    if (!item) continue;
+    n++;
+    assert.equal(item.beats.join(''), w.kana, `${w.tr}: the beats spell the reading`);
+    assert.ok(item.beats.length >= 2 && item.beats.length <= 8 && item.beats.every((b) => [...b].length <= 2), w.kana);
+  }
+  assert.ok(n >= 400, `${n} Japanese words to ask`);
+  // The four options are consecutive, include the answer and never go below one.
+  for (let beats = 2; beats <= 8; beats++) {
+    for (const r of [0, 0.49, 0.5, 0.99]) {
+      const opts = beatOptions(beats, () => r);
+      assert.equal(opts.length, 4);
+      assert.ok(opts.includes(beats) && opts[0] >= 1 && opts.every((k, i) => i === 0 || k === opts[i - 1] + 1), `${beats}: ${opts}`);
+    }
+  }
+  assert.equal(ja.beatPractice, true);
+  assert.ok(!tr.beatPractice && !uk.beatPractice && !ar.beatPractice);
+});
+
 test('read the script: every entry has a Latin reading, and the options are four different readings', async () => {
   const { readingLabel, scriptOptions } = await import('../js/exercises.js');
   for (const L of [uk, ja, ar]) {
