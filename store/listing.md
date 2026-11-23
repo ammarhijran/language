@@ -50,7 +50,7 @@ Learn Turkish, Ukrainian, Japanese or Arabic — the words people really use, an
 Lisan teaches everyday language one small step at a time, and helps you pronounce every word with confidence.
 
 WORDS AND PHRASES THAT STICK
-• 1,030–1,170 everyday words and phrases per language in 67 topics, chosen by how often people use them
+• 1,180–1,310 everyday words and phrases per language in 77 topics, chosen by how often people use them
 • Short lessons with audio, example sentences and usage notes
 • Spaced repetition brings each word back right before you'd forget it
 • Exercises grow with you: listening, reading, multiple choice, typing, speaking and building sentences
@@ -59,7 +59,7 @@ HOW PEOPLE REALLY TALK
 • Polite and everyday forms side by side — what the textbook says, and what people actually say
 • Slang and casual speech, clearly labelled
 • Arabic: Modern Standard Arabic next to everyday Egyptian
-• A phrasebook for 27 situations with favourites and a big-text mode to show your phone to someone
+• A phrasebook for 31 situations with favourites and a big-text mode to show your phone to someone
 • Trip essentials: the 40 phrases to learn first, as a crash course before you travel
 
 READ, LISTEN AND SPEAK

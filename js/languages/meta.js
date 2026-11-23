@@ -6,8 +6,8 @@ export const meta = {
     "name": "Turkish",
     "nativeName": "Türkçe",
     "flag": "🇹🇷",
-    "words": 1171,
-    "topics": 67,
+    "words": 1315,
+    "topics": 77,
     "alphabet": 29,
     "grammar": [
       "vowel-harmony",
@@ -33,8 +33,8 @@ export const meta = {
     "name": "Ukrainian",
     "nativeName": "Українська",
     "flag": "🇺🇦",
-    "words": 1050,
-    "topics": 67,
+    "words": 1194,
+    "topics": 77,
     "alphabet": 33,
     "grammar": [
       "sounds-and-spelling",
@@ -60,8 +60,8 @@ export const meta = {
     "name": "Japanese",
     "nativeName": "日本語",
     "flag": "🇯🇵",
-    "words": 1038,
-    "topics": 67,
+    "words": 1182,
+    "topics": 77,
     "alphabet": 48,
     "grammar": [
       "x-wa-y-desu",
@@ -87,8 +87,8 @@ export const meta = {
     "name": "Arabic",
     "nativeName": "العربية",
     "flag": "🇸🇦",
-    "words": 1041,
-    "topics": 67,
+    "words": 1185,
+    "topics": 77,
     "alphabet": 29,
     "grammar": [
       "vowels-and-the-article",

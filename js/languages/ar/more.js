@@ -425,6 +425,86 @@ export const categories = [
     "emoji": "🧰",
     "group": "phrases",
     "stage": 3
+  },
+  {
+    "id": "chores",
+    "name": "Housework & Repairs",
+    "native": "الْأَعْمَال الْمَنْزِلِيَّة وَالْإِصْلَاحَات",
+    "emoji": "🧹",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "driving",
+    "name": "Cars & Driving",
+    "native": "السَّيَّارَات وَالْقِيَادَة",
+    "emoji": "🚗",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "celebrations",
+    "name": "Holidays & Celebrations",
+    "native": "الْأَعْيَاد وَالِاحْتِفَالَات",
+    "emoji": "🎉",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "media",
+    "name": "News & Media",
+    "native": "الْأَخْبَار وَالْإِعْلَام",
+    "emoji": "📰",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "landscape",
+    "name": "Landscape & Environment",
+    "native": "الطَّبِيعَة وَالْبِيئَة",
+    "emoji": "🏞️",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "describe2",
+    "name": "More Describing Words",
+    "native": "صِفَات أُخْرَى",
+    "emoji": "⚖️",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "p-sightseeing",
+    "name": "Sightseeing & Tickets",
+    "native": "السِّيَاحَة وَالتَّذَاكِر",
+    "emoji": "🎟️",
+    "group": "phrases",
+    "stage": 4
+  },
+  {
+    "id": "p-appointments",
+    "name": "Dates, Times & Appointments",
+    "native": "الْمَوَاعِيد وَالتَّوَارِيخ",
+    "emoji": "📅",
+    "group": "phrases",
+    "stage": 4
+  },
+  {
+    "id": "p-services",
+    "name": "Hairdresser, Repairs & Services",
+    "native": "الْحَلَّاق وَالتَّصْلِيح وَالْخِدْمَات",
+    "emoji": "✂️",
+    "group": "phrases",
+    "stage": 4
+  },
+  {
+    "id": "p-friends",
+    "name": "Getting to Know People",
+    "native": "التَّعَارُف وَالْمُجَامَلَات",
+    "emoji": "🤝",
+    "group": "phrases",
+    "stage": 4
   }
 ];
 
@@ -12392,6 +12472,2013 @@ export const vocab = [
       "tr": "دَه بِعِيد؟",
       "reg": "casual",
       "tl": "da biʿīd",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُرَتِّبُ",
+    "en": "I tidy up; I put in order",
+    "cat": "chores",
+    "tl": "ʾurattib",
+    "ex": [
+      "أُرَتِّبُ غُرْفَتِي كُلَّ صَبَاحٍ.",
+      "I tidy my room every morning."
+    ],
+    "note": "Past: رَتَّبْتُ (rattabtu). Tidy, in order: مُرَتَّب (murattab). ‘I make the bed’: أُرَتِّبُ السَّرِيرَ (ʾurattib as-sarīr).",
+    "pair": {
+      "tr": "بَوَضَّب",
+      "reg": "casual",
+      "tl": "bawaḍḍab",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُنَظِّفُ",
+    "en": "I clean",
+    "cat": "chores",
+    "tl": "ʾunaẓẓif",
+    "ex": [
+      "أُنَظِّفُ الْبَيْتَ كُلَّ يَوْمِ سَبْتٍ.",
+      "I clean the house every Saturday."
+    ],
+    "note": "Past: نَظَّفْتُ (naẓẓaftu). Clean: نَظِيف (naẓīf); dirty: وَسِخ (wasikh). Cleaning: تَنْظِيف (tanẓīf).",
+    "pair": {
+      "tr": "بَنَضَّف",
+      "reg": "casual",
+      "tl": "banaḍḍaf",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "غَسِيل",
+    "en": "laundry; washing",
+    "cat": "chores",
+    "tl": "ghasīl",
+    "ex": [
+      "أَنْشُرُ الْغَسِيلَ فِي الشُّرْفَةِ.",
+      "I hang the washing out on the balcony."
+    ],
+    "note": "‘I do the laundry’: أَغْسِلُ الْمَلَابِسَ (ʾaghsil al-malābis). A washing machine: غَسَّالَة (ghassāla). ‘I wash the dishes’: أَغْسِلُ الْأَطْبَاقَ (ʾaghsil al-ʾaṭbāq)."
+  },
+  {
+    "tr": "أَكْوِي",
+    "en": "I iron",
+    "cat": "chores",
+    "tl": "ʾakwī",
+    "ex": [
+      "أَكْوِي قَمِيصِي قَبْلَ الذَّهَابِ إِلَى الْعَمَلِ.",
+      "I iron my shirt before going to work."
+    ],
+    "note": "Past: كَوَيْتُ (kawaytu). An iron: مِكْوَاة (mikwāh). In Egypt many people send their clothes to the مَكْوَجِي (makwagi), the neighbourhood ironing man.",
+    "pair": {
+      "tr": "بَكْوِي",
+      "reg": "casual",
+      "tl": "bakwi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَكْنُسُ",
+    "en": "I sweep",
+    "cat": "chores",
+    "tl": "ʾaknus",
+    "ex": [
+      "أَكْنُسُ الْمَطْبَخَ بَعْدَ الْعَشَاءِ.",
+      "I sweep the kitchen after dinner."
+    ],
+    "note": "Past: كَنَسْتُ (kanastu). A broom: مِكْنَسَة (miknasa). ‘I mop the floor’: أَمْسَحُ الْأَرْضَ (ʾamsaḥ al-ʾarḍ).",
+    "pair": {
+      "tr": "بَكْنُس",
+      "reg": "casual",
+      "tl": "baknus",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مِكْنَسَةٌ كَهْرَبَائِيَّةٌ",
+    "en": "vacuum cleaner",
+    "cat": "chores",
+    "tl": "miknasa kahrabāʾiyya",
+    "ex": [
+      "صَوْتُ الْمِكْنَسَةِ الْكَهْرَبَائِيَّةِ عَالٍ جِدًّا.",
+      "The vacuum cleaner is very loud."
+    ],
+    "note": "Literally ‘an electric broom’. مِكْنَسَة on its own is an ordinary broom."
+  },
+  {
+    "tr": "قُمَامَة",
+    "en": "rubbish; garbage",
+    "cat": "chores",
+    "tl": "qumāma",
+    "ex": [
+      "مَنْ سَيُخْرِجُ الْقُمَامَةَ الْيَوْمَ؟",
+      "Who’s taking the rubbish out today?"
+    ],
+    "note": "In formal language also نُفَايَات (nufāyāt), ‘waste’. A rubbish bag: كِيسُ قُمَامَةٍ (kīs qumāma).",
+    "pair": {
+      "tr": "زِبَالَة",
+      "reg": "casual",
+      "tl": "zibāla",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "دَلْو",
+    "en": "bucket",
+    "cat": "chores",
+    "tl": "dalw",
+    "ex": [
+      "اِمْلَأِ الدَّلْوَ بِالْمَاءِ السَّاخِنِ.",
+      "Fill the bucket with hot water."
+    ],
+    "note": "Plural دِلَاء (dilāʾ). In the Levant and the Gulf people say سَطْل (saṭl).",
+    "pair": {
+      "tr": "جَرْدَل",
+      "reg": "casual",
+      "tl": "gardal",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "إِسْفَنْجَة",
+    "en": "sponge",
+    "cat": "chores",
+    "tl": "ʾisfanja",
+    "ex": [
+      "أَغْسِلُ الْأَطْبَاقَ بِإِسْفَنْجَةٍ وَصَابُونٍ.",
+      "I wash the dishes with a sponge and soap."
+    ],
+    "note": "The material is إِسْفَنْج (ʾisfanj). Egyptians say sifinga."
+  },
+  {
+    "tr": "أُصْلِحُ",
+    "en": "I fix; I repair",
+    "cat": "chores",
+    "tl": "ʾuṣliḥ",
+    "ex": [
+      "سَأُصْلِحُ بَابَ الْحَمَّامِ غَدًا.",
+      "I’ll fix the bathroom door tomorrow."
+    ],
+    "note": "Past: أَصْلَحْتُ (ʾaṣlaḥtu). A repair: إِصْلَاح (ʾiṣlāḥ); Egyptian تَصْلِيح (taṣlīḥ).",
+    "pair": {
+      "tr": "بَصَلَّح",
+      "reg": "casual",
+      "tl": "baṣallaḥ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مِطْرَقَة",
+    "en": "hammer",
+    "cat": "chores",
+    "tl": "miṭraqa",
+    "ex": [
+      "أَحْتَاجُ إِلَى مِطْرَقَةٍ لِتَعْلِيقِ هَذِهِ الصُّورَةِ.",
+      "I need a hammer to hang this picture."
+    ],
+    "note": "From طَرَقَ (ṭaraqa), ‘to knock’. Tools: أَدَوَات (ʾadawāt).",
+    "pair": {
+      "tr": "شَاكُوش",
+      "reg": "casual",
+      "tl": "shakūsh",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مِسْمَار",
+    "en": "nail (for hammering)",
+    "cat": "chores",
+    "tl": "mismār",
+    "ex": [
+      "عَلَّقْتُ الْمِرْآةَ عَلَى مِسْمَارٍ فِي الْحَائِطِ.",
+      "I hung the mirror on a nail in the wall."
+    ],
+    "note": "Plural مَسَامِير (masāmīr). A screwdriver: مِفَكّ (mifakk). A fingernail is a different word: ظُفْر (ẓufr)."
+  },
+  {
+    "tr": "مِصْبَاح",
+    "en": "light bulb; lamp",
+    "cat": "chores",
+    "tl": "miṣbāḥ",
+    "ex": [
+      "يَجِبُ أَنْ أُغَيِّرَ مِصْبَاحَ الْمَطْبَخِ.",
+      "I need to change the kitchen bulb."
+    ],
+    "note": "Plural مَصَابِيح (maṣābīḥ). Any lamp or light, from a torch to a street light.",
+    "pair": {
+      "tr": "لَمْبَة",
+      "reg": "casual",
+      "en": "light bulb",
+      "tl": "lamba",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "صُنْبُور",
+    "en": "tap; faucet",
+    "cat": "chores",
+    "tl": "ṣunbūr",
+    "ex": [
+      "أَغْلِقِ الصُّنْبُورَ جَيِّدًا.",
+      "Turn the tap off properly."
+    ],
+    "note": "Plural صَنَابِير (ṣanābīr). Tap water: مَاءُ الصُّنْبُورِ (māʾ aṣ-ṣunbūr). A plumber: سَبَّاك (sabbāk).",
+    "pair": {
+      "tr": "حَنَفِيَّة",
+      "reg": "casual",
+      "tl": "ḥanafiyya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُعَطَّل",
+    "en": "out of order; broken (not working)",
+    "cat": "chores",
+    "tl": "muʿaṭṭal",
+    "ex": [
+      "الْمِصْعَدُ مُعَطَّلٌ مُنْذُ أَمْسِ.",
+      "The lift has been out of order since yesterday."
+    ],
+    "note": "For machines that have stopped working; a broken glass or bone is مَكْسُور (maksūr). A fault, a breakdown: عُطْل (ʿuṭl).",
+    "pair": {
+      "tr": "بَايِظ",
+      "reg": "casual",
+      "tl": "bāyiẓ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "غُبَار",
+    "en": "dust",
+    "cat": "chores",
+    "tl": "ghubār",
+    "ex": [
+      "هُنَاكَ غُبَارٌ كَثِيرٌ عَلَى الْكُتُبِ.",
+      "There’s a lot of dust on the books."
+    ],
+    "note": "‘I dust’: أَمْسَحُ الْغُبَارَ (ʾamsaḥ al-ghubār), literally ‘I wipe the dust’. Egyptians call dust تُرَاب, which in standard Arabic means ‘soil; earth’.",
+    "pair": {
+      "tr": "تُرَاب",
+      "reg": "casual",
+      "tl": "turāb",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَقُودُ",
+    "en": "I drive",
+    "cat": "driving",
+    "tl": "ʾaqūd",
+    "ex": [
+      "أَقُودُ السَّيَّارَةَ إِلَى الْعَمَلِ كُلَّ يَوْمٍ.",
+      "I drive to work every day."
+    ],
+    "note": "Past: قُدْتُ (qudtu). Also ‘I lead’. Driving: الْقِيَادَة (al-qiyāda). Egyptian uses a different verb, سَاق (sāʾ).",
+    "pair": {
+      "tr": "بَسُوق",
+      "reg": "casual",
+      "tl": "basūʾ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "رُخْصَةُ قِيَادَةٍ",
+    "en": "driving licence",
+    "cat": "driving",
+    "tl": "rukhṣat qiyāda",
+    "ex": [
+      "هَلْ مَعَكَ رُخْصَةُ قِيَادَةٍ دَوْلِيَّةٌ؟",
+      "Do you have an international driving licence?"
+    ],
+    "note": "رُخْصَة (rukhṣa) is any ‘licence; permit’. The car’s own registration is رُخْصَةُ السَّيَّارَةِ (rukhṣat as-sayyāra)."
+  },
+  {
+    "tr": "بَنْزِين",
+    "en": "petrol; gas",
+    "cat": "driving",
+    "tl": "banzīn",
+    "ex": [
+      "السَّيَّارَةُ تَحْتَاجُ إِلَى بَنْزِينٍ.",
+      "The car needs petrol."
+    ],
+    "note": "Fuel in general: وَقُود (waqūd). ‘Fill it up, please’: اِمْلَأِ الْخَزَّانَ، مِنْ فَضْلِكَ (imlaʾi-l-khazzān) — in Egypt فَوِّلْهَا (fawwilha)."
+  },
+  {
+    "tr": "مَحَطَّةُ بَنْزِينٍ",
+    "en": "petrol station; gas station",
+    "cat": "driving",
+    "tl": "maḥaṭṭat banzīn",
+    "ex": [
+      "هَلْ تُوجَدُ مَحَطَّةُ بَنْزِينٍ قَرِيبَةٌ مِنْ هُنَا؟",
+      "Is there a petrol station near here?"
+    ],
+    "note": "Also مَحَطَّةُ وَقُودٍ (maḥaṭṭat waqūd), ‘fuel station’. At Egyptian stations an attendant fills the tank for you.",
+    "pair": {
+      "tr": "بَنْزِينَة",
+      "reg": "casual",
+      "tl": "banzīna",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَرْكُنُ",
+    "en": "I park",
+    "cat": "driving",
+    "tl": "ʾarkun",
+    "ex": [
+      "أَيْنَ يُمْكِنُ أَنْ أَرْكُنَ السَّيَّارَةَ؟",
+      "Where can I park the car?"
+    ],
+    "note": "Past: رَكَنْتُ (rakantu). More formal: أُوقِفُ السَّيَّارَةَ (ʾūqif as-sayyāra). On signs: مَمْنُوعُ الْوُقُوفِ (mamnūʿ al-wuqūf), ‘no parking’.",
+    "pair": {
+      "tr": "بَرْكِن",
+      "reg": "casual",
+      "tl": "barkin",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "اِزْدِحَام",
+    "en": "traffic jam; congestion",
+    "cat": "driving",
+    "tl": "izdiḥām",
+    "ex": [
+      "تَأَخَّرْتُ بِسَبَبِ الِازْدِحَامِ.",
+      "I was late because of the traffic."
+    ],
+    "note": "Also زِحَام (ziḥām). Traffic itself is الْمُرُور (al-murūr); rush hour: سَاعَةُ الذُّرْوَةِ (sāʿat adh-dhurwa).",
+    "pair": {
+      "tr": "زَحْمَة",
+      "reg": "casual",
+      "en": "traffic; crowds",
+      "tl": "zaḥma",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "حِزَامُ الْأَمَانِ",
+    "en": "seat belt",
+    "cat": "driving",
+    "tl": "ḥizām al-ʾamān",
+    "ex": [
+      "اِرْبِطْ حِزَامَ الْأَمَانِ، مِنْ فَضْلِكَ.",
+      "Fasten your seat belt, please."
+    ],
+    "note": "Literally ‘the belt of safety’. To a woman: اِرْبِطِي (irbiṭī)."
+  },
+  {
+    "tr": "إِطَار",
+    "en": "tyre; frame",
+    "cat": "driving",
+    "tl": "ʾiṭār",
+    "ex": [
+      "يَجِبُ أَنْ نُغَيِّرَ الْإِطَارَ الْأَمَامِيَّ.",
+      "We have to change the front tyre."
+    ],
+    "note": "Plural إِطَارَات (ʾiṭārāt). Also the frame of a picture or of glasses. A wheel: عَجَلَة (ʿajala).",
+    "pair": {
+      "tr": "كَاوِتْش",
+      "reg": "casual",
+      "en": "tyre",
+      "tl": "kawitsh",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "طَرِيق",
+    "en": "road; way",
+    "cat": "driving",
+    "tl": "ṭarīq",
+    "ex": [
+      "نَأْخُذُ الطَّرِيقَ السَّرِيعَ إِلَى الْإِسْكَنْدَرِيَّةِ.",
+      "We take the motorway to Alexandria."
+    ],
+    "note": "Plural طُرُق (ṭuruq). A motorway is طَرِيقٌ سَرِيعٌ (ṭarīq sarīʿ), ‘a fast road’. فِي الطَّرِيقِ (fī-ṭ-ṭarīq) means ‘on the way’."
+  },
+  {
+    "tr": "سُرْعَة",
+    "en": "speed",
+    "cat": "driving",
+    "tl": "surʿa",
+    "ex": [
+      "خَفِّفِ السُّرْعَةَ، هُنَاكَ مَدْرَسَةٌ!",
+      "Slow down, there’s a school!"
+    ],
+    "note": "بِسُرْعَةٍ (bi-surʿa) means ‘quickly’. The speed limit: السُّرْعَةُ الْقُصْوَى (as-surʿa al-quṣwā). Fast: سَرِيع (sarīʿ); slow: بَطِيء (baṭīʾ)."
+  },
+  {
+    "tr": "مُخَالَفَة",
+    "en": "(traffic) fine; ticket",
+    "cat": "driving",
+    "tl": "mukhālafa",
+    "ex": [
+      "دَفَعْتُ مُخَالَفَةً لِأَنَّنِي رَكَنْتُ أَمَامَ الْبَنْكِ.",
+      "I paid a fine because I parked in front of the bank."
+    ],
+    "note": "Literally ‘violation’: both the offence and the ticket you get for it. Plural مُخَالَفَات (mukhālafāt). A fine in general: غَرَامَة (gharāma)."
+  },
+  {
+    "tr": "أَسْتَأْجِرُ",
+    "en": "I rent; I hire",
+    "cat": "driving",
+    "tl": "ʾastaʾjir",
+    "ex": [
+      "أُرِيدُ أَنْ أَسْتَأْجِرَ سَيَّارَةً لِثَلَاثَةِ أَيَّامٍ.",
+      "I’d like to rent a car for three days."
+    ],
+    "note": "Past: اِسْتَأْجَرْتُ (istaʾjartu). Car rental: تَأْجِيرُ السَّيَّارَاتِ (taʾjīr as-sayyārāt). The Egyptian verb covers both renting and letting.",
+    "pair": {
+      "tr": "بَأَجَّر",
+      "reg": "casual",
+      "tl": "baʾaggar",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُحَرِّك",
+    "en": "engine; motor",
+    "cat": "driving",
+    "tl": "muḥarrik",
+    "ex": [
+      "مُحَرِّكُ السَّيَّارَةِ لَا يَعْمَلُ.",
+      "The car’s engine isn’t working."
+    ],
+    "note": "Plural مُحَرِّكَات (muḥarrikāt). Literally ‘mover’: a search engine is مُحَرِّكُ بَحْثٍ (muḥarrik baḥth)."
+  },
+  {
+    "tr": "حَادِث",
+    "en": "accident",
+    "cat": "driving",
+    "tl": "ḥādith",
+    "ex": [
+      "رَأَيْتُ حَادِثًا عَلَى الطَّرِيقِ السَّرِيعِ.",
+      "I saw an accident on the motorway."
+    ],
+    "note": "Plural حَوَادِث (ḥawādith). A traffic accident: حَادِثُ مُرُورٍ (ḥādith murūr). Also ‘incident’.",
+    "pair": {
+      "tr": "حَادْثَة",
+      "reg": "casual",
+      "tl": "ḥadsa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَاحِنَة",
+    "en": "lorry; truck",
+    "cat": "driving",
+    "tl": "shāḥina",
+    "ex": [
+      "هَذِهِ الشَّاحِنَةُ بَطِيئَةٌ جِدًّا.",
+      "This lorry is very slow."
+    ],
+    "note": "Plural شَاحِنَات (shāḥināt). From شَحْن (shaḥn), ‘loading; freight’. Egyptians call a car عَرَبِيَّة, so a lorry is ‘a transport car’.",
+    "pair": {
+      "tr": "عَرَبِيِّة نَقْل",
+      "reg": "casual",
+      "tl": "ʿarabiyyit naʾl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "فَرَامِل",
+    "en": "brakes",
+    "cat": "driving",
+    "tl": "farāmil",
+    "ex": [
+      "الْفَرَامِلُ لَا تَعْمَلُ جَيِّدًا.",
+      "The brakes aren’t working properly."
+    ],
+    "note": "Plural of فَرْمَلَة (farmala). A more formal word is مَكَابِح (makābiḥ). The steering wheel: عَجَلَةُ الْقِيَادَةِ (ʿajalat al-qiyāda)."
+  },
+  {
+    "tr": "عِيد",
+    "en": "holiday; festival; feast",
+    "cat": "celebrations",
+    "tl": "ʿīd",
+    "ex": [
+      "نَزُورُ الْأَقَارِبَ فِي أَوَّلِ يَوْمٍ مِنَ الْعِيدِ.",
+      "We visit our relatives on the first day of the holiday."
+    ],
+    "note": "Plural أَعْيَاد (ʾaʿyād). ‘The Eid’ is one of the two Muslim feasts: عِيدُ الْفِطْرِ (after Ramadan) and عِيدُ الْأَضْحَى. Also in عِيدُ الْأُمِّ (ʿīd al-ʾumm), ‘Mother’s Day’."
+  },
+  {
+    "tr": "عُطْلَةٌ رَسْمِيَّةٌ",
+    "en": "public holiday",
+    "cat": "celebrations",
+    "tl": "ʿuṭla rasmiyya",
+    "ex": [
+      "غَدًا عُطْلَةٌ رَسْمِيَّةٌ وَالْبُنُوكُ مُغْلَقَةٌ.",
+      "Tomorrow is a public holiday and the banks are closed."
+    ],
+    "note": "Literally ‘an official holiday’. رَسْمِيّ (rasmī) is ‘official; formal’.",
+    "pair": {
+      "tr": "أَجَازَة رَسْمِيَّة",
+      "reg": "casual",
+      "tl": "ʾagāza rasmiyya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "زِفَاف",
+    "en": "wedding",
+    "cat": "celebrations",
+    "tl": "zifāf",
+    "ex": [
+      "زِفَافُ أُخْتِي فِي الشَّهْرِ الْقَادِمِ.",
+      "My sister’s wedding is next month."
+    ],
+    "note": "Also عُرْس (ʿurs). The groom is the عَرِيس (ʿarīs), the bride the عَرُوس (ʿarūs). Egyptians call a wedding فَرَح, literally ‘joy’.",
+    "pair": {
+      "tr": "فَرَح",
+      "reg": "casual",
+      "en": "wedding (lit. joy)",
+      "tl": "faraḥ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "ذِكْرَى",
+    "en": "anniversary; memory",
+    "cat": "celebrations",
+    "tl": "dhikrā",
+    "ex": [
+      "الْيَوْمَ ذِكْرَى زَوَاجِنَا الْعَاشِرَةُ.",
+      "Today is our tenth wedding anniversary."
+    ],
+    "note": "Feminine. Plural ذِكْرَيَات (dhikrayāt), ‘memories’. A wedding anniversary is also عِيدُ الزَّوَاجِ (ʿīd az-zawāj)."
+  },
+  {
+    "tr": "ضَيْف",
+    "en": "guest",
+    "cat": "celebrations",
+    "tl": "ḍayf",
+    "ex": [
+      "أَنْتَ ضَيْفُنَا الْيَوْمَ، لَنْ تَدْفَعَ شَيْئًا.",
+      "You’re our guest today — you’re not paying for anything."
+    ],
+    "note": "Plural ضُيُوف (ḍuyūf). Hospitality: ضِيَافَة (ḍiyāfa). The guest of honour: ضَيْفُ الشَّرَفِ (ḍayf ash-sharaf).",
+    "pair": {
+      "tr": "ضِيف",
+      "reg": "casual",
+      "tl": "ḍēf",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَدْعُو",
+    "en": "I invite",
+    "cat": "celebrations",
+    "tl": "ʾadʿū",
+    "ex": [
+      "أَدْعُو كُلَّ أَصْدِقَائِي إِلَى الْحَفْلَةِ.",
+      "I’m inviting all my friends to the party."
+    ],
+    "note": "Past: دَعَوْتُ (daʿawtu). Takes إِلَى. Also ‘I call (for); I pray’. The Egyptian verb implies that you’re paying.",
+    "pair": {
+      "tr": "بَعْزِم",
+      "reg": "casual",
+      "tl": "baʿzim",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "دَعْوَة",
+    "en": "invitation",
+    "cat": "celebrations",
+    "tl": "daʿwa",
+    "ex": [
+      "شُكْرًا عَلَى الدَّعْوَةِ، سَآتِي بِالتَّأْكِيدِ.",
+      "Thanks for the invitation, I’ll definitely come."
+    ],
+    "note": "Plural دَعَوَات (daʿawāt). A wedding invitation: دَعْوَةُ زِفَافٍ (daʿwat zifāf). In Egypt a عَزُومَة is an invitation to a meal.",
+    "pair": {
+      "tr": "عَزُومَة",
+      "reg": "casual",
+      "en": "invitation (to a meal)",
+      "tl": "ʿazūma",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَحْتَفِلُ",
+    "en": "I celebrate",
+    "cat": "celebrations",
+    "tl": "ʾaḥtafil",
+    "ex": [
+      "أَحْتَفِلُ بِعِيدِ مِيلَادِي مَعَ الْعَائِلَةِ.",
+      "I celebrate my birthday with the family."
+    ],
+    "note": "Past: اِحْتَفَلْتُ (iḥtafaltu). Takes بِـ. A celebration: اِحْتِفَال (iḥtifāl); a party: حَفْلَة (ḥafla).",
+    "pair": {
+      "tr": "بَحْتِفِل",
+      "reg": "casual",
+      "tl": "baḥtifil",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَدِيَّة",
+    "en": "gift; present",
+    "cat": "celebrations",
+    "tl": "hadiyya",
+    "ex": [
+      "اِشْتَرَيْتُ هَدِيَّةً صَغِيرَةً لِأُمِّي.",
+      "I bought a small present for my mother."
+    ],
+    "note": "Plural هَدَايَا (hadāyā). ‘I give (as a present)’: أُهْدِي (ʾuhdī). A box of sweets is the classic thing to bring when you visit an Egyptian home."
+  },
+  {
+    "tr": "شَمْعَة",
+    "en": "candle",
+    "cat": "celebrations",
+    "tl": "shamʿa",
+    "ex": [
+      "عَلَى الْكَعْكَةِ ثَلَاثُونَ شَمْعَةً.",
+      "There are thirty candles on the cake."
+    ],
+    "note": "Plural شُمُوع (shumūʿ). ‘Blow out the candles!’: أَطْفِئِ الشُّمُوعَ (ʾaṭfiʾi-sh-shumūʿ). After the numbers 11–99 the noun stays singular: ثَلَاثُونَ شَمْعَةً."
+  },
+  {
+    "tr": "كَعْكَة",
+    "en": "cake",
+    "cat": "celebrations",
+    "tl": "kaʿka",
+    "ex": [
+      "صَنَعَتْ أُمِّي كَعْكَةً كَبِيرَةً لِعِيدِ مِيلَادِي.",
+      "My mother made a big cake for my birthday."
+    ],
+    "note": "Also كِيك (kīk). In Egypt a birthday or wedding cake is a تُورْتَة, and كَحْك (kaḥk) are the sugar-dusted biscuits baked for Eid.",
+    "pair": {
+      "tr": "تُورْتَة",
+      "reg": "casual",
+      "en": "(party) cake",
+      "tl": "turta",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَلْعَابٌ نَارِيَّةٌ",
+    "en": "fireworks",
+    "cat": "celebrations",
+    "tl": "ʾalʿāb nāriyya",
+    "ex": [
+      "شَاهَدْنَا الْأَلْعَابَ النَّارِيَّةَ مِنَ الشُّرْفَةِ.",
+      "We watched the fireworks from the balcony."
+    ],
+    "note": "Literally ‘fire games’. أَلْعَاب is the plural of لُعْبَة (luʿba), ‘game; toy’."
+  },
+  {
+    "tr": "تَقْلِيد",
+    "en": "tradition",
+    "cat": "celebrations",
+    "tl": "taqlīd",
+    "ex": [
+      "هَذَا تَقْلِيدٌ قَدِيمٌ فِي عَائِلَتِنَا.",
+      "This is an old tradition in our family."
+    ],
+    "note": "Plural تَقَالِيد (taqālīd), often in the pair الْعَادَاتُ وَالتَّقَالِيدُ, ‘customs and traditions’. Traditional: تَقْلِيدِيّ (taqlīdī). Also ‘imitation’."
+  },
+  {
+    "tr": "أُهَنِّئُ",
+    "en": "I congratulate",
+    "cat": "celebrations",
+    "tl": "ʾuhanniʾ",
+    "ex": [
+      "أُهَنِّئُكَ عَلَى الْوَظِيفَةِ الْجَدِيدَةِ!",
+      "Congratulations on the new job!"
+    ],
+    "note": "Past: هَنَّأْتُ (hannaʾtu). Takes عَلَى or بِـ. The noun is تَهْنِئَة (tahniʾa); what people actually say is مَبْرُوك (mabrūk).",
+    "pair": {
+      "tr": "بَبَارِك",
+      "reg": "casual",
+      "en": "I congratulate (lit. I bless)",
+      "tl": "babārik",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "رَأْسُ السَّنَةِ",
+    "en": "New Year; New Year’s Eve",
+    "cat": "celebrations",
+    "tl": "raʾs as-sana",
+    "ex": [
+      "أَيْنَ سَتَحْتَفِلُ بِرَأْسِ السَّنَةِ؟",
+      "Where will you celebrate New Year?"
+    ],
+    "note": "Literally ‘the head of the year’. New Year’s Eve is لَيْلَةُ رَأْسِ السَّنَةِ (laylat raʾs as-sana)."
+  },
+  {
+    "tr": "مُنَاسَبَة",
+    "en": "occasion",
+    "cat": "celebrations",
+    "tl": "munāsaba",
+    "ex": [
+      "أَلْبَسُ هَذِهِ الْبَدْلَةَ فِي الْمُنَاسَبَاتِ فَقَطْ.",
+      "I only wear this suit on special occasions."
+    ],
+    "note": "Plural مُنَاسَبَات (munāsabāt). بِمُنَاسَبَةِ… (bi-munāsabat) is ‘on the occasion of…’; بِالْمُنَاسَبَةِ (bi-l-munāsaba) is ‘by the way’."
+  },
+  {
+    "tr": "أَخْبَار",
+    "en": "news",
+    "cat": "media",
+    "tl": "ʾakhbār",
+    "ex": [
+      "هَلْ سَمِعْتَ أَخْبَارَ الْيَوْمِ؟",
+      "Have you heard today’s news?"
+    ],
+    "note": "Plural of خَبَر (khabar), ‘a piece of news’. The news bulletin: نَشْرَةُ الْأَخْبَارِ (nashrat al-ʾakhbār). In Egypt إِيه الْأَخْبَار؟ (ʾēh il-ʾakhbār) is a friendly ‘what’s new?’."
+  },
+  {
+    "tr": "جَرِيدَة",
+    "en": "newspaper",
+    "cat": "media",
+    "tl": "jarīda",
+    "ex": [
+      "يَقْرَأُ جَدِّي الْجَرِيدَةَ كُلَّ صَبَاحٍ.",
+      "My grandfather reads the newspaper every morning."
+    ],
+    "note": "Plural جَرَائِد (jarāʾid). Also صَحِيفَة (ṣaḥīfa), plural صُحُف (ṣuḥuf) — hence صَحَفِيّ, ‘journalist’.",
+    "pair": {
+      "tr": "جُرْنَال",
+      "reg": "casual",
+      "tl": "gurnāl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَجَلَّة",
+    "en": "magazine",
+    "cat": "media",
+    "tl": "majalla",
+    "ex": [
+      "اِشْتَرَيْتُ مَجَلَّةً لِأَقْرَأَهَا فِي الْقِطَارِ.",
+      "I bought a magazine to read on the train."
+    ],
+    "note": "Plural مَجَلَّات (majallāt). A weekly: مَجَلَّةٌ أُسْبُوعِيَّةٌ (majalla ʾusbūʿiyya); a monthly: مَجَلَّةٌ شَهْرِيَّةٌ (majalla shahriyya)."
+  },
+  {
+    "tr": "بَرْنَامَج",
+    "en": "programme; show",
+    "cat": "media",
+    "tl": "barnāmaj",
+    "ex": [
+      "هَذَا بَرْنَامَجِي الْمُفَضَّلُ فِي التِّلْفَازِ.",
+      "This is my favourite programme on TV."
+    ],
+    "note": "Plural بَرَامِج (barāmij). Also a computer program, and a plan or schedule: مَا بَرْنَامَجُكَ الْيَوْمَ؟ ‘what’s your plan for today?’"
+  },
+  {
+    "tr": "إِعْلَان",
+    "en": "advert; announcement",
+    "cat": "media",
+    "tl": "ʾiʿlān",
+    "ex": [
+      "فِي هَذِهِ الْقَنَاةِ إِعْلَانَاتٌ كَثِيرَةٌ.",
+      "There are a lot of adverts on this channel."
+    ],
+    "note": "Plural إِعْلَانَات (ʾiʿlānāt). Covers adverts, classified ads, posters and public announcements."
+  },
+  {
+    "tr": "قَنَاة",
+    "en": "channel",
+    "cat": "media",
+    "tl": "qanāh",
+    "ex": [
+      "غَيِّرِ الْقَنَاةَ، مِنْ فَضْلِكَ.",
+      "Change the channel, please."
+    ],
+    "note": "Plural قَنَوَات (qanawāt). Also a canal: قَنَاةُ السُّوَيْسِ (qanāt as-suways), the Suez Canal."
+  },
+  {
+    "tr": "مَقَال",
+    "en": "article",
+    "cat": "media",
+    "tl": "maqāl",
+    "ex": [
+      "قَرَأْتُ مَقَالًا مُهِمًّا عَنِ التَّعْلِيمِ.",
+      "I read an important article about education."
+    ],
+    "note": "Also مَقَالَة (maqāla); plural مَقَالَات (maqālāt). A headline or title is a عُنْوَان (ʿunwān), the same word as ‘address’."
+  },
+  {
+    "tr": "مُقَابَلَة",
+    "en": "interview",
+    "cat": "media",
+    "tl": "muqābala",
+    "ex": [
+      "شَاهَدْتُ مُقَابَلَةً مَعَ الْمُدَرِّبِ بَعْدَ الْمُبَارَاةِ.",
+      "I watched an interview with the coach after the match."
+    ],
+    "note": "Also any arranged meeting with someone. A job interview: مُقَابَلَةُ عَمَلٍ (muqābalat ʿamal). ‘I meet’: أُقَابِلُ (ʾuqābil)."
+  },
+  {
+    "tr": "وَسَائِلُ التَّوَاصُلِ الِاجْتِمَاعِيِّ",
+    "en": "social media",
+    "cat": "media",
+    "tl": "wasāʾil at-tawāṣul al-ijtimāʿī",
+    "ex": [
+      "لَا أَسْتَخْدِمُ وَسَائِلَ التَّوَاصُلِ الِاجْتِمَاعِيِّ كَثِيرًا.",
+      "I don’t use social media much."
+    ],
+    "note": "Literally ‘the means of social contact’; often shortened to وَسَائِلُ التَّوَاصُلِ. In everyday speech most people use the English term.",
+    "pair": {
+      "tr": "السُّوشْيَال مِيدْيَا",
+      "reg": "casual",
+      "tl": "is-sōshyal mīdya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنْشُرُ",
+    "en": "I post; I publish",
+    "cat": "media",
+    "tl": "ʾanshur",
+    "ex": [
+      "أَنْشُرُ صُوَرَ رِحْلَاتِي عَلَى الْإِنْتَرْنِتِ.",
+      "I post my travel photos online."
+    ],
+    "note": "Past: نَشَرْتُ (nashartu). A post: مَنْشُور (manshūr). A publisher: نَاشِر (nāshir). The same verb means ‘I hang out (the washing)’."
+  },
+  {
+    "tr": "أُتَابِعُ",
+    "en": "I follow",
+    "cat": "media",
+    "tl": "ʾutābiʿ",
+    "ex": [
+      "أُتَابِعُ أَخْبَارَ الرِّيَاضَةِ كُلَّ يَوْمٍ.",
+      "I follow the sports news every day."
+    ],
+    "note": "Past: تَابَعْتُ (tābaʿtu). For the news, a series or an account online. A follower: مُتَابِع (mutābiʿ).",
+    "pair": {
+      "tr": "بَتَابِع",
+      "reg": "casual",
+      "tl": "batābiʿ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بُودْكَاسْت",
+    "en": "podcast",
+    "cat": "media",
+    "tl": "būdkāst",
+    "ex": [
+      "أَسْتَمِعُ إِلَى بُودْكَاسْتٍ عَرَبِيٍّ فِي الطَّرِيقِ إِلَى الْعَمَلِ.",
+      "I listen to an Arabic podcast on the way to work."
+    ],
+    "note": "A loanword. An episode: حَلْقَة (ḥalqa), plural حَلَقَات (ḥalaqāt) — the same word as for an episode of a TV series."
+  },
+  {
+    "tr": "مُذِيع",
+    "en": "presenter; newsreader",
+    "cat": "media",
+    "tl": "mudhīʿ",
+    "ex": [
+      "الْمُذِيعُ يَقْرَأُ نَشْرَةَ الْأَخْبَارِ.",
+      "The presenter is reading the news."
+    ],
+    "note": "A woman is a مُذِيعَة (mudhīʿa). From إِذَاعَة (ʾidhāʿa), ‘broadcasting; radio station’."
+  },
+  {
+    "tr": "أُعَلِّقُ",
+    "en": "I comment",
+    "cat": "media",
+    "tl": "ʾuʿalliq",
+    "ex": [
+      "أُعَلِّقُ دَائِمًا عَلَى صُوَرِ أَصْدِقَائِي.",
+      "I always comment on my friends’ photos."
+    ],
+    "note": "Past: عَلَّقْتُ (ʿallaqtu). Takes عَلَى. A comment: تَعْلِيق (taʿlīq). The same verb means ‘I hang (something) up’.",
+    "pair": {
+      "tr": "بَعَلَّق",
+      "reg": "casual",
+      "tl": "baʿallaʾ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُبَاشِر",
+    "en": "live (broadcast); direct",
+    "cat": "media",
+    "tl": "mubāshir",
+    "ex": [
+      "نُشَاهِدُ الْمُبَارَاةَ فِي بَثٍّ مُبَاشِرٍ.",
+      "We’re watching the match live."
+    ],
+    "note": "بَثٌّ مُبَاشِرٌ (bathth mubāshir) is a live broadcast; on screen you just see مُبَاشِر. Also ‘direct’: رِحْلَةٌ مُبَاشِرَةٌ, a direct flight. مُبَاشَرَةً (mubāsharatan) = ‘straight away’."
+  },
+  {
+    "tr": "إِعْلَام",
+    "en": "media",
+    "cat": "media",
+    "tl": "ʾiʿlām",
+    "ex": [
+      "يَعْمَلُ أَخِي فِي مَجَالِ الْإِعْلَامِ.",
+      "My brother works in the media."
+    ],
+    "note": "‘The media’ is usually وَسَائِلُ الْإِعْلَامِ (wasāʾil al-ʾiʿlām). Don’t confuse it with إِعْلَان, ‘advert’, or with أَعْلَام (ʾaʿlām), ‘flags’."
+  },
+  {
+    "tr": "بُحَيْرَة",
+    "en": "lake",
+    "cat": "landscape",
+    "tl": "buḥayra",
+    "ex": [
+      "نَسْبَحُ فِي الْبُحَيْرَةِ فِي الصَّيْفِ.",
+      "We swim in the lake in summer."
+    ],
+    "note": "Plural بُحَيْرَات (buḥayrāt). A diminutive of بَحْر, so literally ‘a little sea’. Lake Nasser: بُحَيْرَةُ نَاصِرٍ (buḥayrat nāṣir)."
+  },
+  {
+    "tr": "غَابَة",
+    "en": "forest; jungle",
+    "cat": "landscape",
+    "tl": "ghāba",
+    "ex": [
+      "مَشَيْنَا سَاعَتَيْنِ فِي الْغَابَةِ.",
+      "We walked for two hours in the forest."
+    ],
+    "note": "Plural غَابَات (ghābāt). Any large area of trees, from a pine forest to the jungle."
+  },
+  {
+    "tr": "تَلّ",
+    "en": "hill",
+    "cat": "landscape",
+    "tl": "tall",
+    "ex": [
+      "بَيْتُهُمْ عَلَى تَلٍّ صَغِيرٍ خَارِجَ الْمَدِينَةِ.",
+      "Their house is on a small hill outside the city."
+    ],
+    "note": "Plural تِلَال (tilāl). In archaeology a تَلّ is a mound covering an ancient town, which is why so many sites are called ‘Tell …’."
+  },
+  {
+    "tr": "وَادٍ",
+    "en": "valley",
+    "cat": "landscape",
+    "tl": "wādī",
+    "ex": [
+      "زُرْنَا وَادِيَ الْمُلُوكِ فِي الْأُقْصُرِ.",
+      "We visited the Valley of the Kings in Luxor."
+    ],
+    "note": "Written وَادٍ when indefinite, الْوَادِي with the article. Plural أَوْدِيَة (ʾawdiya) or وِدْيَان (widyān). Also a dry riverbed in the desert. The Nile Valley: وَادِي النِّيلِ.",
+    "alt": [
+      "وادي"
+    ]
+  },
+  {
+    "tr": "جَزِيرَة",
+    "en": "island",
+    "cat": "landscape",
+    "tl": "jazīra",
+    "ex": [
+      "هَذِهِ الْجَزِيرَةُ صَغِيرَةٌ وَهَادِئَةٌ.",
+      "This island is small and quiet."
+    ],
+    "note": "Plural جُزُر (juzur). A peninsula is شِبْهُ جَزِيرَةٍ (shibh jazīra), ‘almost an island’: شِبْهُ جَزِيرَةِ سِينَاءَ is the Sinai Peninsula."
+  },
+  {
+    "tr": "سَاحِل",
+    "en": "coast",
+    "cat": "landscape",
+    "tl": "sāḥil",
+    "ex": [
+      "نَقْضِي الصَّيْفَ عَلَى السَّاحِلِ الشَّمَالِيِّ.",
+      "We spend the summer on the north coast."
+    ],
+    "note": "Plural سَوَاحِل (sawāḥil). السَّاحِلُ الشَّمَالِيُّ, ‘the North Coast’, is Egypt’s Mediterranean shore west of Alexandria — full of holidaymakers every summer."
+  },
+  {
+    "tr": "شَاطِئ",
+    "en": "beach; shore",
+    "cat": "landscape",
+    "tl": "shāṭiʾ",
+    "ex": [
+      "الْأَطْفَالُ يَلْعَبُونَ عَلَى الشَّاطِئِ.",
+      "The children are playing on the beach."
+    ],
+    "note": "Plural شَوَاطِئ (shawāṭiʾ). Sand: رَمْل (raml). Egyptians often say بِلَاج (bilāj), from French ‘plage’."
+  },
+  {
+    "tr": "حَقْل",
+    "en": "field",
+    "cat": "landscape",
+    "tl": "ḥaql",
+    "ex": [
+      "يَعْمَلُ الْفَلَّاحُونَ فِي الْحَقْلِ مُنْذُ الصَّبَاحِ.",
+      "The farmers have been working in the field since morning."
+    ],
+    "note": "Plural حُقُول (ḥuqūl). Also an oil field, حَقْلُ نَفْطٍ (ḥaql nafṭ), and a field on a form. A farmer: فَلَّاح (fallāḥ).",
+    "pair": {
+      "tr": "غِيط",
+      "reg": "casual",
+      "tl": "ghēṭ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَلَّال",
+    "en": "waterfall",
+    "cat": "landscape",
+    "tl": "shallāl",
+    "ex": [
+      "صَوَّرْنَا الشَّلَّالَ مِنْ فَوْقِ الْجِسْرِ.",
+      "We photographed the waterfall from the bridge."
+    ],
+    "note": "Plural شَلَّالَات (shallālāt). The rapids of the Nile, like the one at Aswan, are called شَلَّالَات too — the ‘cataracts’."
+  },
+  {
+    "tr": "قَرْيَة",
+    "en": "village",
+    "cat": "landscape",
+    "tl": "qarya",
+    "ex": [
+      "وُلِدَ أَبِي فِي قَرْيَةٍ صَغِيرَةٍ قُرْبَ أَسْوَانَ.",
+      "My father was born in a small village near Aswan."
+    ],
+    "note": "Plural قُرًى (quran). The countryside: الرِّيف (ar-rīf). A holiday resort is a قَرْيَةٌ سِيَاحِيَّةٌ (qarya siyāḥiyya), ‘a tourist village’."
+  },
+  {
+    "tr": "هَوَاء",
+    "en": "air",
+    "cat": "landscape",
+    "tl": "hawāʾ",
+    "ex": [
+      "الْهَوَاءُ فِي الْجِبَالِ نَظِيفٌ وَبَارِدٌ.",
+      "The air in the mountains is clean and cool."
+    ],
+    "note": "Fresh air: هَوَاءٌ نَقِيٌّ (hawāʾ naqī). عَلَى الْهَوَاءِ (ʿalā-l-hawāʾ) means ‘on air’, i.e. live. In Egypt هَوَا also means ‘wind’."
+  },
+  {
+    "tr": "تَلَوُّث",
+    "en": "pollution",
+    "cat": "landscape",
+    "tl": "talawwuth",
+    "ex": [
+      "تَلَوُّثُ الْهَوَاءِ مُشْكِلَةٌ كَبِيرَةٌ فِي الْمُدُنِ.",
+      "Air pollution is a big problem in cities."
+    ],
+    "note": "Polluted: مُلَوَّث (mulawwath). ‘It pollutes’: يُلَوِّثُ (yulawwith)."
+  },
+  {
+    "tr": "بِيئَة",
+    "en": "environment",
+    "cat": "landscape",
+    "tl": "bīʾa",
+    "ex": [
+      "يَجِبُ أَنْ نُحَافِظَ عَلَى الْبِيئَةِ.",
+      "We must protect the environment."
+    ],
+    "note": "Environmental: بِيئِيّ (bīʾī). Environmentally friendly: صَدِيقٌ لِلْبِيئَةِ (ṣadīq li-l-bīʾa), ‘a friend to the environment’."
+  },
+  {
+    "tr": "مُنَاخ",
+    "en": "climate",
+    "cat": "landscape",
+    "tl": "munākh",
+    "ex": [
+      "مُنَاخُ مِصْرَ حَارٌّ وَجَافٌّ فِي الصَّيْفِ.",
+      "Egypt’s climate is hot and dry in summer."
+    ],
+    "note": "Climate change: تَغَيُّرُ الْمُنَاخِ (taghayyur al-munākh). For today’s weather use الطَّقْس (aṭ-ṭaqs) or الْجَوّ (al-jaww)."
+  },
+  {
+    "tr": "سَلَّةُ الْمُهْمَلَاتِ",
+    "en": "rubbish bin; wastebasket",
+    "cat": "landscape",
+    "tl": "sallat al-muhmalāt",
+    "ex": [
+      "اِرْمِ الْوَرَقَةَ فِي سَلَّةِ الْمُهْمَلَاتِ.",
+      "Throw the paper in the bin."
+    ],
+    "note": "سَلَّة (salla) is a basket — كُرَةُ السَّلَّةِ is basketball. A big street bin is صُنْدُوقُ قُمَامَةٍ (ṣundūq qumāma).",
+    "pair": {
+      "tr": "سَلِّة الزِّبَالَة",
+      "reg": "casual",
+      "tl": "sallit iz-zibāla",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "إِعَادَةُ التَّدْوِيرِ",
+    "en": "recycling",
+    "cat": "landscape",
+    "tl": "ʾiʿādat at-tadwīr",
+    "ex": [
+      "إِعَادَةُ التَّدْوِيرِ مُهِمَّةٌ لِلْبِيئَةِ.",
+      "Recycling is important for the environment."
+    ],
+    "note": "إِعَادَة + noun works like ‘re-’: إِعَادَةُ الِاسْتِخْدَامِ is ‘reuse’. ‘We recycle paper’: نُعِيدُ تَدْوِيرَ الْوَرَقِ (nuʿīd tadwīr al-waraq)."
+  },
+  {
+    "tr": "فَارِغ",
+    "en": "empty",
+    "cat": "describe2",
+    "tl": "fārigh",
+    "ex": [
+      "الثَّلَّاجَةُ فَارِغَةٌ، يَجِبُ أَنْ نَذْهَبَ إِلَى السُّوقِ.",
+      "The fridge is empty; we have to go to the market."
+    ],
+    "note": "The opposite is مُمْتَلِئ (mumtaliʾ), ‘full’. On an empty stomach: عَلَى مَعِدَةٍ فَارِغَةٍ. The Egyptian word also means ‘free, not busy’.",
+    "pair": {
+      "tr": "فَاضِي",
+      "reg": "casual",
+      "en": "empty; free",
+      "tl": "fāḍi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مُمْتَلِئ",
+    "en": "full",
+    "cat": "describe2",
+    "tl": "mumtaliʾ",
+    "ex": [
+      "الْقِطَارُ مُمْتَلِئٌ، لَا يُوجَدُ مَكَانٌ.",
+      "The train is full; there’s no room."
+    ],
+    "note": "‘Full of’ takes بِـ: مُمْتَلِئٌ بِالنَّاسِ, ‘full of people’. After a meal you say شَبِعْتُ (shabiʿtu), ‘I’m full’.",
+    "pair": {
+      "tr": "مَلْيَان",
+      "reg": "casual",
+      "tl": "malyān",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "ثَقِيل",
+    "en": "heavy",
+    "cat": "describe2",
+    "tl": "thaqīl",
+    "ex": [
+      "هَذِهِ الْحَقِيبَةُ ثَقِيلَةٌ جِدًّا.",
+      "This suitcase is very heavy."
+    ],
+    "note": "Also of food that sits heavily, and of a tiresome person: دَمُّهُ ثَقِيلٌ, ‘his blood is heavy’ — the opposite of funny. Weight: وَزْن (wazn).",
+    "pair": {
+      "tr": "تِقِيل",
+      "reg": "casual",
+      "tl": "tiʾīl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "خَفِيف",
+    "en": "light (not heavy)",
+    "cat": "describe2",
+    "tl": "khafīf",
+    "ex": [
+      "أُرِيدُ عَشَاءً خَفِيفًا فَقَطْ.",
+      "I just want a light dinner."
+    ],
+    "note": "Also weak tea or coffee (شَايٌ خَفِيفٌ), light traffic and light rain. Light in colour is a different word: فَاتِح (fātiḥ)."
+  },
+  {
+    "tr": "عَرِيض",
+    "en": "wide; broad",
+    "cat": "describe2",
+    "tl": "ʿarīḍ",
+    "ex": [
+      "شَوَارِعُ هَذَا الْحَيِّ عَرِيضَةٌ وَنَظِيفَةٌ.",
+      "The streets in this district are wide and clean."
+    ],
+    "note": "Wide from side to side; وَاسِع is ‘spacious, roomy’. Width: عَرْض (ʿarḍ). The opposite is ضَيِّق (ḍayyiq), ‘narrow’."
+  },
+  {
+    "tr": "عَمِيق",
+    "en": "deep",
+    "cat": "describe2",
+    "tl": "ʿamīq",
+    "ex": [
+      "الْمَاءُ هُنَا عَمِيقٌ جِدًّا، لَا تَسْبَحْ بَعِيدًا!",
+      "The water is very deep here — don’t swim far out!"
+    ],
+    "note": "Depth: عُمْق (ʿumq). Also of sleep, a voice or an idea: نَوْمٌ عَمِيقٌ, ‘deep sleep’. Shallow: ضَحْل (ḍaḥl).",
+    "pair": {
+      "tr": "غَوِيط",
+      "reg": "casual",
+      "tl": "ghawīṭ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "نَاعِم",
+    "en": "soft; smooth",
+    "cat": "describe2",
+    "tl": "nāʿim",
+    "ex": [
+      "هَذِهِ الْمِنْشَفَةُ نَاعِمَةٌ جِدًّا.",
+      "This towel is very soft."
+    ],
+    "note": "For skin, hair, fabric and fine powder. The opposite is خَشِن (khashin), ‘rough’. A soft bed or cushion is طَرِيّ (ṭarī); a hard one is صُلْب (ṣulb)."
+  },
+  {
+    "tr": "مُبَلَّل",
+    "en": "wet",
+    "cat": "describe2",
+    "tl": "muballal",
+    "ex": [
+      "لَا تَجْلِسْ هُنَا، الْكُرْسِيُّ مُبَلَّلٌ.",
+      "Don’t sit here, the chair is wet."
+    ],
+    "note": "Also مُبْتَلّ (mubtall). Damp, humid: رَطْب (raṭb).",
+    "pair": {
+      "tr": "مَبْلُول",
+      "reg": "casual",
+      "tl": "mablūl",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "جَافّ",
+    "en": "dry",
+    "cat": "describe2",
+    "tl": "jāff",
+    "ex": [
+      "الْمَلَابِسُ لَيْسَتْ جَافَّةً بَعْدُ.",
+      "The clothes aren’t dry yet."
+    ],
+    "note": "Dry skin: بَشَرَةٌ جَافَّةٌ (bashara jāffa). Drought: جَفَاف (jafāf). The Egyptian word is also used for stale bread.",
+    "pair": {
+      "tr": "نَاشِف",
+      "reg": "casual",
+      "tl": "nāshif",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عَالٍ",
+    "en": "high; loud",
+    "cat": "describe2",
+    "tl": "ʿālī",
+    "ex": [
+      "الْمُوسِيقَى عَالِيَةٌ جِدًّا هُنَا.",
+      "The music is very loud here."
+    ],
+    "note": "Written عَالٍ when indefinite, الْعَالِي with the article. ‘In a loud voice’: بِصَوْتٍ عَالٍ. The opposite is مُنْخَفِض (munkhafiḍ), ‘low’.",
+    "alt": [
+      "عالي"
+    ]
+  },
+  {
+    "tr": "غَرِيب",
+    "en": "strange; odd",
+    "cat": "describe2",
+    "tl": "gharīb",
+    "ex": [
+      "سَمِعْتُ صَوْتًا غَرِيبًا فِي اللَّيْلِ.",
+      "I heard a strange noise in the night."
+    ],
+    "note": "As a noun, ‘a stranger’; plural غُرَبَاء (ghurabāʾ). In Egypt غَرِيبَة! (gharība) on its own means ‘how odd!’"
+  },
+  {
+    "tr": "مُخْتَلِف",
+    "en": "different",
+    "cat": "describe2",
+    "tl": "mukhtalif",
+    "ex": [
+      "الْحَيَاةُ فِي الْقَرْيَةِ مُخْتَلِفَةٌ عَنِ الْحَيَاةِ فِي الْمَدِينَةِ.",
+      "Life in the village is different from life in the city."
+    ],
+    "note": "‘Different from’ takes عَنْ. With a plural it means ‘various’: أَلْوَانٌ مُخْتَلِفَةٌ. Similar: مُشَابِه (mushābih). A difference: فَرْق (farq)."
+  },
+  {
+    "tr": "مُمْكِن",
+    "en": "possible",
+    "cat": "describe2",
+    "tl": "mumkin",
+    "ex": [
+      "كُلُّ شَيْءٍ مُمْكِنٌ إِذَا حَاوَلْتَ.",
+      "Anything is possible if you try."
+    ],
+    "note": "مِنَ الْمُمْكِنِ أَنْ… = ‘it’s possible that…’. In Egyptian مُمْكِن opens any polite request: مُمْكِن أَدْخُل؟ (mumkin ʾadkhul), ‘may I come in?’"
+  },
+  {
+    "tr": "مُسْتَحِيل",
+    "en": "impossible",
+    "cat": "describe2",
+    "tl": "mustaḥīl",
+    "ex": [
+      "مِنَ الْمُسْتَحِيلِ أَنْ نَصِلَ قَبْلَ السَّاعَةِ الْخَامِسَةِ.",
+      "It’s impossible for us to get there before five."
+    ],
+    "note": "On its own, مُسْتَحِيل! is ‘No way!’. Also غَيْرُ مُمْكِنٍ (ghayr mumkin), ‘not possible’."
+  },
+  {
+    "tr": "ضَرُورِيّ",
+    "en": "necessary; essential",
+    "cat": "describe2",
+    "tl": "ḍarūrī",
+    "ex": [
+      "لَيْسَ ضَرُورِيًّا أَنْ تَحْجِزَ مُقَدَّمًا.",
+      "You don’t need to book in advance."
+    ],
+    "note": "From ضَرُورَة (ḍarūra), ‘necessity’. مِنَ الضَّرُورِيِّ أَنْ… = ‘it’s essential that…’. In everyday speech ‘must’ is لَازِم.",
+    "pair": {
+      "tr": "لَازِم",
+      "reg": "casual",
+      "en": "necessary; (you) must",
+      "tl": "lāzim",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "جَاهِز",
+    "en": "ready",
+    "cat": "describe2",
+    "tl": "jāhiz",
+    "ex": [
+      "هَلْ أَنْتَ جَاهِزٌ؟ سَنَخْرُجُ بَعْدَ خَمْسِ دَقَائِقَ.",
+      "Are you ready? We’re leaving in five minutes."
+    ],
+    "note": "A woman is جَاهِزَة (jāhiza). ‘Ready for’ takes لِـ: جَاهِزٌ لِلسَّفَرِ. Also ‘ready-made’: مَلَابِسُ جَاهِزَةٌ, ready-to-wear clothes. Egyptians say gāhiz."
+  },
+  {
+    "tr": "تَذْكِرَتَانِ، مِنْ فَضْلِكَ.",
+    "en": "Two tickets, please.",
+    "cat": "p-sightseeing",
+    "tl": "tadhkiratān min faḍlik",
+    "ex": [
+      "— تَذْكِرَتَانِ، مِنْ فَضْلِكَ. — لِلْمِصْرِيِّينَ أَمْ لِلْأَجَانِبِ؟",
+      "— Two tickets, please. — For Egyptians or for foreigners?"
+    ],
+    "note": "The dual ending ـَانِ does the counting, so no number is needed. Many Egyptian sites have one price for locals and another for foreigners: أَجَانِب (ʾajānib).",
+    "reg": "polite",
+    "pair": {
+      "tr": "تَذْكَرْتِين لَوْ سَمَحْت.",
+      "reg": "polite",
+      "tl": "tazkartēn law samaḥt",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُوجَدُ خَصْمٌ لِلطُّلَّابِ؟",
+    "en": "Is there a student discount?",
+    "cat": "p-sightseeing",
+    "tl": "hal yūjad khaṣm li-ṭ-ṭullāb",
+    "note": "Have your student card ready: بِطَاقَةُ الطَّالِبِ (biṭāqat aṭ-ṭālib); Egyptians call it a كَارْنِيه (karnēh). For children: لِلْأَطْفَالِ (li-l-ʾaṭfāl).",
+    "pair": {
+      "tr": "فِيه خَصْم لِلطَّلَبَة؟",
+      "reg": "casual",
+      "tl": "fīh khaṣm li-ṭ-ṭalaba",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَتَى يَفْتَحُ الْمَتْحَفُ؟",
+    "en": "What time does the museum open?",
+    "cat": "p-sightseeing",
+    "tl": "matā yaftaḥ al-matḥaf",
+    "ex": [
+      "— مَتَى يَفْتَحُ الْمَتْحَفُ؟ — فِي التَّاسِعَةِ صَبَاحًا.",
+      "— What time does the museum open? — At nine in the morning."
+    ],
+    "note": "Opening hours: مَوَاعِيدُ الزِّيَارَةِ (mawāʿīd az-ziyāra), literally ‘visiting times’. Open: مَفْتُوح (maftūḥ); closed: مُغْلَق (mughlaq).",
+    "pair": {
+      "tr": "الْمَتْحَف بِيِفْتَح السَّاعَة كَام؟",
+      "reg": "casual",
+      "tl": "il-matḥaf biyiftaḥ is-sāʿa kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَتَى تُغْلِقُونَ؟",
+    "en": "What time do you close?",
+    "cat": "p-sightseeing",
+    "tl": "matā tughliqūn",
+    "note": "Said to the staff (plural ‘you’). The ticket office usually shuts before the site does, so ask about آخِرُ دُخُولٍ (ʾākhir dukhūl), ‘last entry’.",
+    "pair": {
+      "tr": "بِتِقْفِلُوا السَّاعَة كَام؟",
+      "reg": "casual",
+      "tl": "bitiʾfilu-s-sāʿa kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُسْمَحُ بِالتَّصْوِيرِ هُنَا؟",
+    "en": "Is photography allowed here?",
+    "cat": "p-sightseeing",
+    "tl": "hal yusmaḥ bi-t-taṣwīr hunā",
+    "note": "Some museums and tombs sell a separate photo ticket: تَذْكِرَةُ تَصْوِيرٍ (tadhkirat taṣwīr). ‘Without flash’: بِدُونِ فِلَاش (bi-dūn filāsh).",
+    "reg": "polite",
+    "pair": {
+      "tr": "مُمْكِن أَصَوَّر هِنَا؟",
+      "reg": "casual",
+      "en": "Can I take photos here?",
+      "tl": "mumkin ʾaṣawwar hina",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ تُوجَدُ جَوْلَةٌ مَعَ مُرْشِدٍ بِالْإِنْجِلِيزِيَّةِ؟",
+    "en": "Is there a guided tour in English?",
+    "cat": "p-sightseeing",
+    "tl": "hal tūjad jawla maʿa murshid bi-l-ʾinjilīziyya",
+    "note": "A tour guide: مُرْشِدٌ سِيَاحِيٌّ (murshid siyāḥī). An audio guide: مُرْشِدٌ صَوْتِيٌّ (murshid ṣawtī).",
+    "pair": {
+      "tr": "فِيه جَوْلَة بِمُرْشِد بِالْإِنْجِلِيزِي؟",
+      "reg": "casual",
+      "tl": "fīh gawla bi-murshid bi-l-ʾingilīzi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مِنْ أَيْنَ تَبْدَأُ الْجَوْلَةُ؟",
+    "en": "Where does the tour start?",
+    "cat": "p-sightseeing",
+    "tl": "min ʾayna tabdaʾ al-jawla",
+    "ex": [
+      "— مِنْ أَيْنَ تَبْدَأُ الْجَوْلَةُ؟ — مِنْ أَمَامِ الْبَابِ الرَّئِيسِيِّ.",
+      "— Where does the tour start? — From in front of the main gate."
+    ],
+    "note": "جَوْلَة (jawla) is a tour or a look round. The meeting point: نُقْطَةُ اللِّقَاءِ (nuqṭat al-liqāʾ).",
+    "pair": {
+      "tr": "الْجَوْلَة هَتِبْدَأ مِنِين؟",
+      "reg": "casual",
+      "tl": "il-gawla hatibdaʾ minēn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كَمْ تَسْتَغْرِقُ الْجَوْلَةُ؟",
+    "en": "How long does the tour take?",
+    "cat": "p-sightseeing",
+    "tl": "kam tastaghriq al-jawla",
+    "note": "Typical answers: سَاعَة وَنِصْف (sāʿa wa-niṣf), ‘an hour and a half’; سَاعَتَيْنِ (sāʿatayn), ‘two hours’.",
+    "pair": {
+      "tr": "الْجَوْلَة بِتَاخُد قَدّ إِيه؟",
+      "reg": "casual",
+      "tl": "il-gawla bitākhud ʾadd ʾēh",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا هَذَا الْمَبْنَى؟",
+    "en": "What is this building?",
+    "cat": "p-sightseeing",
+    "tl": "mā hādhā-l-mabnā",
+    "note": "A landmark: مَعْلَم (maʿlam), plural مَعَالِم (maʿālim). Swap the noun for anything you see: مَا هَذَا الْمَسْجِدُ؟ ‘what is this mosque?’",
+    "pair": {
+      "tr": "إِيه الْمَبْنَى دَه؟",
+      "reg": "casual",
+      "tl": "ʾēh il-mabna da",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يَسْتَحِقُّ الزِّيَارَةَ؟",
+    "en": "Is it worth a visit?",
+    "cat": "p-sightseeing",
+    "tl": "hal yastaḥiqq az-ziyāra",
+    "note": "يَسْتَحِقُّ (yastaḥiqq) is ‘it deserves’. For a feminine place (مَدِينَة, قَلْعَة) say تَسْتَحِقُّ (tastaḥiqq) / تِسْتَاهِل (tistāhil).",
+    "pair": {
+      "tr": "يِسْتَاهِل الزِّيَارَة؟",
+      "reg": "casual",
+      "tl": "yistāhil iz-ziyāra",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "بِكَمْ تَذْكِرَةُ الدُّخُولِ؟",
+    "en": "How much is the entrance ticket?",
+    "cat": "p-sightseeing",
+    "tl": "bi-kam tadhkirat ad-dukhūl",
+    "note": "Entrance: الدُّخُول (ad-dukhūl); exit: الْخُرُوج (al-khurūj). Free admission: الدُّخُولُ مَجَّانِيٌّ (ad-dukhūl majjānī).",
+    "pair": {
+      "tr": "تَذْكَرِة الدُّخُول بِكَام؟",
+      "reg": "casual",
+      "tl": "tazkarit id-dukhūl bi-kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَيْنَ شُبَّاكُ التَّذَاكِرِ؟",
+    "en": "Where is the ticket office?",
+    "cat": "p-sightseeing",
+    "tl": "ʾayna shubbāk at-tadhākir",
+    "note": "شُبَّاك is literally ‘window’. A queue is a طَابُور (ṭābūr).",
+    "pair": {
+      "tr": "شِبَّاك التَّذَاكِر فِين؟",
+      "reg": "casual",
+      "tl": "shibbāk it-tazākir fēn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا تَارِيخُ الْيَوْمِ؟",
+    "en": "What’s the date today?",
+    "cat": "p-appointments",
+    "tl": "mā tārīkh al-yawm",
+    "ex": [
+      "— مَا تَارِيخُ الْيَوْمِ؟ — الْخَامِسُ مِنْ مَايُو.",
+      "— What’s the date today? — The fifth of May."
+    ],
+    "note": "Dates use ordinal numbers: الْخَامِسُ مِنْ مَايُو, ‘the fifth of May’. In everyday Egyptian you just say خَمْسَة مَايُو (khamsa māyu).",
+    "pair": {
+      "tr": "النَّهَارْدَه كَام فِي الشَّهْر؟",
+      "reg": "casual",
+      "en": "What’s the date today? (lit. today is how many in the month?)",
+      "tl": "in-naharda kām fi-sh-shahr",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُرِيدُ أَنْ أَحْجِزَ مَوْعِدًا.",
+    "en": "I’d like to make an appointment.",
+    "cat": "p-appointments",
+    "tl": "ʾurīd ʾan ʾaḥjiz mawʿidan",
+    "ex": [
+      "— أُرِيدُ أَنْ أَحْجِزَ مَوْعِدًا مَعَ الطَّبِيبِ. — هَلْ يُنَاسِبُكَ يَوْمُ الثُّلَاثَاءِ؟",
+      "— I’d like to make an appointment with the doctor. — Does Tuesday suit you?"
+    ],
+    "note": "مَوْعِد (mawʿid) is an appointment, a date or any fixed time; plural مَوَاعِيد (mawāʿīd). In the Egyptian form a woman says عَايْزَة (ʿayza).",
+    "reg": "polite",
+    "pair": {
+      "tr": "عَايِز أَحْجِز مَعَاد.",
+      "reg": "casual",
+      "tl": "ʿāyiz ʾaḥgiz maʿād",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ عِنْدَكُمْ مَوْعِدٌ يَوْمَ الْخَمِيسِ؟",
+    "en": "Do you have a slot on Thursday?",
+    "cat": "p-appointments",
+    "tl": "hal ʿindakum mawʿid yawm al-khamīs",
+    "note": "For a time of day add صَبَاحًا (ṣabāḥan), ‘in the morning’, or مَسَاءً (masāʾan), ‘in the evening’.",
+    "pair": {
+      "tr": "فِيه مَعَاد يُوم الْخَمِيس؟",
+      "reg": "casual",
+      "tl": "fīh maʿād yōm il-khamīs",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَيُّ يَوْمٍ يُنَاسِبُكَ؟",
+    "en": "Which day suits you?",
+    "cat": "p-appointments",
+    "tl": "ʾayy yawm yunāsibuk",
+    "note": "To a woman: يُنَاسِبُكِ (yunāsibuki) / يِنَاسْبِك (yinasbik). ‘The day after tomorrow’ is بَعْدَ غَدٍ (baʿda ghad); Egyptian بَعْد بُكْرَة (baʿd bukra).",
+    "reg": "polite",
+    "pair": {
+      "tr": "أَنْهِي يُوم يِنَاسْبَك؟",
+      "reg": "casual",
+      "tl": "ʾanhi yōm yinasbak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُنَاسِبُكَ هَذَا الْمَوْعِدُ؟",
+    "en": "Does that time suit you?",
+    "cat": "p-appointments",
+    "tl": "hal yunāsibuk hādhā-l-mawʿid",
+    "ex": [
+      "— هَلْ يُنَاسِبُكَ هَذَا الْمَوْعِدُ؟ — نَعَمْ، يُنَاسِبُنِي تَمَامًا.",
+      "— Does that time suit you? — Yes, it suits me perfectly."
+    ],
+    "note": "مُنَاسِب (munāsib) is ‘suitable’. If it isn’t: لِلْأَسَفِ لَا يُنَاسِبُنِي (li-l-ʾasaf lā yunāsibunī), ‘unfortunately that doesn’t suit me’.",
+    "reg": "polite",
+    "pair": {
+      "tr": "الْمَعَاد دَه مُنَاسِب لِيك؟",
+      "reg": "casual",
+      "tl": "il-maʿād da munāsib līk",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنَا مَشْغُولٌ فِي ذَلِكَ الْيَوْمِ.",
+    "en": "I’m busy that day.",
+    "cat": "p-appointments",
+    "tl": "ʾanā mashghūl fī dhālika-l-yawm",
+    "note": "A woman says مَشْغُولَةٌ (mashghūla). Soften it with لِلْأَسَفِ (li-l-ʾasaf), ‘unfortunately’.",
+    "pair": {
+      "tr": "أَنَا مَشْغُول فِي الْيُوم دَه.",
+      "reg": "casual",
+      "tl": "ʾana mashghūl fi-l-yōm da",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُمْكِنُ أَنْ نُؤَجِّلَهُ إِلَى يَوْمِ الِاثْنَيْنِ؟",
+    "en": "Can we move it to Monday?",
+    "cat": "p-appointments",
+    "tl": "hal yumkin ʾan nuʾajjilah ʾilā yawm al-ithnayn",
+    "note": "أُؤَجِّلُ (ʾuʾajjil) is ‘I postpone’. To bring something forward: أُقَدِّمُ (ʾuqaddim).",
+    "reg": "polite",
+    "pair": {
+      "tr": "مُمْكِن نِأَجِّلُه لِيُوم الِاتْنِين؟",
+      "reg": "casual",
+      "tl": "mumkin niʾaggilu li-yōm il-itnēn",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنَا مُضْطَرٌّ لِإِلْغَاءِ الْمَوْعِدِ.",
+    "en": "I have to cancel the appointment.",
+    "cat": "p-appointments",
+    "tl": "ʾanā muḍṭarr li-ʾilghāʾ al-mawʿid",
+    "note": "مُضْطَرّ (muḍṭarr) is ‘forced, obliged’; a woman says مُضْطَرَّةٌ (muḍṭarra). ‘I cancel’: أُلْغِي (ʾulghī).",
+    "reg": "polite",
+    "pair": {
+      "tr": "لَازِم أَلْغِي الْمَعَاد.",
+      "reg": "casual",
+      "tl": "lāzim ʾalghi-l-maʿād",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "سَأَتَأَخَّرُ عَشْرَ دَقَائِقَ.",
+    "en": "I’ll be ten minutes late.",
+    "cat": "p-appointments",
+    "tl": "saʾataʾakhkhar ʿashr daqāʾiq",
+    "note": "‘A quarter of an hour’: رُبْعَ سَاعَةٍ (rubʿ sāʿa). On time: فِي الْمَوْعِدِ (fī-l-mawʿid).",
+    "pair": {
+      "tr": "هَتْأَخَّر عَشَر دَقَايِق.",
+      "reg": "casual",
+      "tl": "hatʾakhkhar ʿashar daʾāyiʾ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنَا فِي الطَّرِيقِ.",
+    "en": "I’m on my way.",
+    "cat": "p-appointments",
+    "tl": "ʾanā fī-ṭ-ṭarīq",
+    "note": "Literally ‘I’m on the road’. سِكَّة (sikka) is an Egyptian word for ‘way, road’. In the Egyptian form a woman says جَايَّة (gayya).",
+    "pair": {
+      "tr": "أَنَا جَايّ فِي السِّكَّة.",
+      "reg": "casual",
+      "tl": "ʾana gayy fi-s-sikka",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَرَاكَ فِي الثَّامِنَةِ.",
+    "en": "See you at eight.",
+    "cat": "p-appointments",
+    "tl": "ʾarāk fī-th-thāmina",
+    "note": "Clock times use ordinals: (السَّاعَةُ) الثَّامِنَةُ, ‘the eighth (hour)’. To a woman: أَرَاكِ (ʾarāki) / أَشُوفِك (ʾashūfik).",
+    "pair": {
+      "tr": "أَشُوفَك السَّاعَة تَمَانْيَة.",
+      "reg": "casual",
+      "tl": "ʾashūfak is-sāʿa tamanya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "عِنْدِي مَوْعِدٌ فِي الْعَاشِرَةِ وَالنِّصْفِ.",
+    "en": "I have an appointment at half past ten.",
+    "cat": "p-appointments",
+    "tl": "ʿindī mawʿid fī-l-ʿāshira wa-n-niṣf",
+    "note": "وَالنِّصْف = ‘and a half’; وَالرُّبْع (wa-r-rubʿ) = quarter past; إِلَّا رُبْعًا (ʾillā rubʿan) = quarter to. Egyptian: wi-nuṣṣ, wi-rubʿ, ʾilla rubʿ.",
+    "pair": {
+      "tr": "عَنْدِي مَعَاد السَّاعَة عَشَرَة وِنُصّ.",
+      "reg": "casual",
+      "tl": "ʿandi maʿād is-sāʿa ʿashara wi-nuṣṣ",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُرِيدُ أَنْ أَقُصَّ شَعْرِي.",
+    "en": "I’d like a haircut.",
+    "cat": "p-services",
+    "tl": "ʾurīd ʾan ʾaquṣṣ shaʿrī",
+    "ex": [
+      "— أُرِيدُ أَنْ أَقُصَّ شَعْرِي. — تَفَضَّلْ، كَيْفَ تُرِيدُهُ؟",
+      "— I’d like a haircut. — Have a seat. How would you like it?"
+    ],
+    "note": "A barber is a حَلَّاق (ḥallāq); a women’s hairdresser is a كُوَافِير (kuwafēr). After a haircut Egyptians tell you نَعِيمًا (naʿīman).",
+    "reg": "polite",
+    "pair": {
+      "tr": "عَايِز أَقُصّ شَعْرِي.",
+      "reg": "casual",
+      "tl": "ʿāyiz ʾaʾuṣṣ shaʿri",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "قُصَّ الْأَطْرَافَ فَقَطْ، مِنْ فَضْلِكَ.",
+    "en": "Just a trim, please.",
+    "cat": "p-services",
+    "tl": "quṣṣa-l-ʾaṭrāf faqaṭ min faḍlik",
+    "note": "Literally ‘cut just the ends’. أَطْرَاف (ʾaṭrāf) is the plural of طَرَف (ṭaraf), ‘end; edge’. To a woman: قُصِّي (quṣṣī).",
+    "reg": "polite",
+    "pair": {
+      "tr": "قُصّ الْأَطْرَاف بَسّ.",
+      "reg": "casual",
+      "tl": "ʾuṣṣ il-ʾaṭrāf bass",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لَا أُرِيدُهُ قَصِيرًا جِدًّا.",
+    "en": "I don’t want it too short.",
+    "cat": "p-services",
+    "tl": "lā ʾurīduh qaṣīran jiddan",
+    "ex": [
+      "— كَيْفَ تُرِيدُ شَعْرَكَ؟ — لَا أُرِيدُهُ قَصِيرًا جِدًّا.",
+      "— How would you like your hair? — Not too short."
+    ],
+    "note": "Short: قَصِير (qaṣīr); long: طَوِيل (ṭawīl). ‘A little shorter’: أَقْصَرَ قَلِيلًا (ʾaqṣar qalīlan).",
+    "pair": {
+      "tr": "مِش قُصَيَّر أَوِي.",
+      "reg": "casual",
+      "en": "Not too short.",
+      "tl": "mish ʾuṣayyar ʾawi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "شَاشَةُ هَاتِفِي مَكْسُورَةٌ، هَلْ يُمْكِنُ إِصْلَاحُهَا؟",
+    "en": "My phone screen is broken — can it be fixed?",
+    "cat": "p-services",
+    "tl": "shāshat hātifī maksūra hal yumkin ʾiṣlāḥuhā",
+    "note": "A repair shop: مَحَلُّ تَصْلِيحٍ (maḥall taṣlīḥ). Spare parts: قِطَعُ غِيَارٍ (qiṭaʿ ghiyār).",
+    "pair": {
+      "tr": "شَاشِة الْمُوبَايِل مَكْسُورَة، مُمْكِن تِصَلَّحْهَا؟",
+      "reg": "casual",
+      "en": "My phone screen is broken — can you fix it?",
+      "tl": "shāshit il-mobāyl maksūra mumkin tiṣallaḥha",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كَمْ سَيَسْتَغْرِقُ الْإِصْلَاحُ؟",
+    "en": "How long will the repair take?",
+    "cat": "p-services",
+    "tl": "kam sayastaghriq al-ʾiṣlāḥ",
+    "note": "Possible answers: سَاعَة (sāʿa), ‘an hour’; يَوْمَيْنِ (yawmayn), ‘two days’ — or simply بُكْرَة إِنْ شَاءَ اللَّهُ, ‘tomorrow, God willing’.",
+    "pair": {
+      "tr": "التَّصْلِيح هَيَاخُد قَدّ إِيه؟",
+      "reg": "casual",
+      "tl": "it-taṣlīḥ hayākhud ʾadd ʾēh",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَتَى سَيَكُونُ جَاهِزًا؟",
+    "en": "When will it be ready?",
+    "cat": "p-services",
+    "tl": "matā sayakūn jāhizan",
+    "ex": [
+      "— مَتَى سَيَكُونُ جَاهِزًا؟ — غَدًا بَعْدَ الظُّهْرِ.",
+      "— When will it be ready? — Tomorrow afternoon."
+    ],
+    "note": "For a feminine thing (السَّيَّارَة, السَّاعَة): مَتَى سَتَكُونُ جَاهِزَةً؟ (matā satakūn jāhiza).",
+    "pair": {
+      "tr": "هَيِجْهَز إِمْتَى؟",
+      "reg": "casual",
+      "tl": "hayighaz ʾimta",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أُرِيدُ تَنْظِيفَ هَذِهِ الْبَدْلَةِ.",
+    "en": "I’d like to have this suit cleaned.",
+    "cat": "p-services",
+    "tl": "ʾurīd tanẓīf hādhihi-l-badla",
+    "note": "A laundry or dry cleaner’s: مَغْسَلَة (maghsala). For ironing only, Egyptians go to the مَكْوَجِي (makwagi). A stain: بُقْعَة (buqʿa).",
+    "reg": "polite",
+    "pair": {
+      "tr": "عَايِز أَنَضَّف الْبَدْلَة دِي.",
+      "reg": "casual",
+      "tl": "ʿāyiz ʾanaḍḍaf il-badla di",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُمْكِنُ تَقْصِيرُ هَذَا الْبَنْطَلُونِ؟",
+    "en": "Can these trousers be shortened?",
+    "cat": "p-services",
+    "tl": "hal yumkin taqṣīr hādhā-l-banṭalūn",
+    "note": "A tailor: خَيَّاط (khayyāṭ); Egyptian تَرْزِي (tarzi). To take in: تَضْيِيق (taḍyīq); to let out: تَوْسِيع (tawsīʿ).",
+    "reg": "polite",
+    "pair": {
+      "tr": "مُمْكِن تِقَصَّر الْبَنْطَلُون دَه؟",
+      "reg": "casual",
+      "en": "Can you shorten these trousers?",
+      "tl": "mumkin tiʾaṣṣar il-banṭalōn da",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "كَمْ سَيُكَلِّفُ ذَلِكَ؟",
+    "en": "How much will that cost?",
+    "cat": "p-services",
+    "tl": "kam sayukallif dhālik",
+    "note": "Agree on the price before the work starts. ‘Roughly’: تَقْرِيبًا (taqrīban).",
+    "pair": {
+      "tr": "هَيِتْكَلِّف كَام؟",
+      "reg": "casual",
+      "tl": "hayitkallif kām",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ يُمْكِنُ أَنْ أَسْتَلِمَهُ غَدًا؟",
+    "en": "Can I pick it up tomorrow?",
+    "cat": "p-services",
+    "tl": "hal yumkin ʾan ʾastalimah ghadan",
+    "note": "Keep the receipt: الْإِيصَال (al-ʾīṣāl). For a feminine thing: أَسْتَلِمَهَا (ʾastalimahā) / أَسْتِلِمْهَا (ʾastilimha).",
+    "reg": "polite",
+    "pair": {
+      "tr": "مُمْكِن أَسْتِلِمُه بُكْرَة؟",
+      "reg": "casual",
+      "tl": "mumkin ʾastilimu bukra",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "السَّاعَةُ تَحْتَاجُ إِلَى بَطَّارِيَّةٍ جَدِيدَةٍ.",
+    "en": "The watch needs a new battery.",
+    "cat": "p-services",
+    "tl": "as-sāʿa taḥtāj ʾilā baṭṭāriyya jadīda",
+    "note": "A watchmaker: سَاعَاتِيّ (sāʿātī). In Egypt a small battery is called a حَجَر (ḥagar), literally ‘a stone’.",
+    "pair": {
+      "tr": "السَّاعَة عَايْزَة حَجَر جِدِيد.",
+      "reg": "casual",
+      "tl": "is-sāʿa ʿayza ḥagar gidīd",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَا زَالَ فِي فَتْرَةِ الضَّمَانِ.",
+    "en": "It’s still under warranty.",
+    "cat": "p-services",
+    "tl": "mā zāl fī fatrat aḍ-ḍamān",
+    "note": "الضَّمَان (aḍ-ḍamān) is ‘guarantee; warranty’. Bring the receipt with you. For a feminine thing: مَا زَالَتْ (mā zālat).",
+    "pair": {
+      "tr": "لِسَّه فِي الضَّمَان.",
+      "reg": "casual",
+      "tl": "lissa fi-ḍ-ḍamān",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ أَنْتَ مِنْ هُنَا؟",
+    "en": "Are you from around here?",
+    "cat": "p-friends",
+    "tl": "hal ʾanta min hunā",
+    "ex": [
+      "— هَلْ أَنْتَ مِنْ هُنَا؟ — لَا، أَنَا مِنَ الْإِسْكَنْدَرِيَّةِ.",
+      "— Are you from around here? — No, I’m from Alexandria."
+    ],
+    "note": "An easy opener anywhere. To a woman: أَنْتِ (ʾanti) / إِنْتِي (ʾinti).",
+    "pair": {
+      "tr": "إِنْتَ مِن هِنَا؟",
+      "reg": "casual",
+      "tl": "ʾinta min hina",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ تَأْتِي إِلَى هُنَا كَثِيرًا؟",
+    "en": "Do you come here often?",
+    "cat": "p-friends",
+    "tl": "hal taʾtī ʾilā hunā kathīran",
+    "note": "To a woman: تَأْتِينَ (taʾtīn); the Egyptian form is the same for both. ‘This is my first time’: هَذِهِ أَوَّلُ مَرَّةٍ (hādhihi ʾawwal marra).",
+    "pair": {
+      "tr": "بِتِيجِي هِنَا كِتِير؟",
+      "reg": "casual",
+      "tl": "bitīgi hina kitīr",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "مَاذَا تَفْعَلُ فِي وَقْتِ فَرَاغِكَ؟",
+    "en": "What do you do in your free time?",
+    "cat": "p-friends",
+    "tl": "mādhā tafʿal fī waqt farāghik",
+    "ex": [
+      "— مَاذَا تَفْعَلُ فِي وَقْتِ فَرَاغِكَ؟ — أَلْعَبُ كُرَةَ الْقَدَمِ وَأَقْرَأُ كَثِيرًا.",
+      "— What do you do in your free time? — I play football and read a lot."
+    ],
+    "note": "To a woman: تَفْعَلِينَ … فَرَاغِكِ (tafʿalīn … farāghiki) / بِتِعْمِلِي … فَرَاغِك (bitiʿmili … farāghik).",
+    "pair": {
+      "tr": "بِتِعْمِل إِيه فِي وَقْت فَرَاغَك؟",
+      "reg": "casual",
+      "tl": "bitiʿmil ʾēh fi waʾt farāghak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ تُحِبُّ أَنْ نَشْرَبَ قَهْوَةً مَعًا؟",
+    "en": "Would you like to have a coffee together?",
+    "cat": "p-friends",
+    "tl": "hal tuḥibb ʾan nashrab qahwa maʿan",
+    "note": "تِيجِي + verb (‘will you come and…’) is the everyday Egyptian way to suggest doing something together.",
+    "reg": "polite",
+    "pair": {
+      "tr": "تِيجِي نِشْرَب قَهْوَة؟",
+      "reg": "casual",
+      "en": "Fancy a coffee?",
+      "tl": "tīgi nishrab ʾahwa",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ نَتَبَادَلُ الْأَرْقَامَ؟",
+    "en": "Shall we swap numbers?",
+    "cat": "p-friends",
+    "tl": "hal natabādal al-ʾarqām",
+    "note": "أَتَبَادَلُ (ʾatabādal) is ‘I exchange’. In the Egyptian form, to a woman: رَقَمِك (raʾamik).",
+    "pair": {
+      "tr": "مُمْكِن آخُد رَقَمَك؟",
+      "reg": "casual",
+      "en": "Can I have your number?",
+      "tl": "mumkin ʾākhud raʾamak",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَلْ عِنْدَكَ حِسَابٌ عَلَى وَسَائِلِ التَّوَاصُلِ؟",
+    "en": "Are you on social media?",
+    "cat": "p-friends",
+    "tl": "hal ʿindak ḥisāb ʿalā wasāʾil at-tawāṣul",
+    "note": "Literally ‘do you have an account on social media?’. ‘I’ll add you’: سَأُضِيفُكَ (saʾuḍīfuk); Egyptian هَضِيفَك (haḍīfak).",
+    "pair": {
+      "tr": "عَنْدَك حِسَاب عَلَى السُّوشْيَال مِيدْيَا؟",
+      "reg": "casual",
+      "tl": "ʿandak ḥisāb ʿala-s-sōshyal mīdya",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "هَذِهِ النَّظَّارَةُ تَلِيقُ بِكَ.",
+    "en": "Those glasses suit you.",
+    "cat": "p-friends",
+    "tl": "hādhihi-n-naẓẓāra talīq bik",
+    "note": "نَظَّارَة is singular in Arabic, so the verb is too. A gracious reply to a compliment: هَذَا مِنْ ذَوْقِكَ (hādhā min dhawqik), ‘that’s your good taste’.",
+    "pair": {
+      "tr": "النَّضَّارَة دِي لَايْقَة عَلِيك.",
+      "reg": "casual",
+      "tl": "in-naḍḍāra di layʾa ʿalēk",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنْتَ تَتَكَلَّمُ الْإِنْجِلِيزِيَّةَ جَيِّدًا جِدًّا.",
+    "en": "You speak English really well.",
+    "cat": "p-friends",
+    "tl": "ʾanta tatakallam al-ʾinjilīziyya jayyidan jiddan",
+    "note": "You’ll hear the same about your Arabic. A modest reply: شُكْرًا، مَا زِلْتُ أَتَعَلَّمُ (shukran mā ziltu ʾataʿallam), ‘thanks, I’m still learning’.",
+    "pair": {
+      "tr": "بِتِتْكَلِّم إِنْجِلِيزِي كْوَيِّس أَوِي.",
+      "reg": "casual",
+      "tl": "bititkallim ʾingilīzi kwayyis ʾawi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "أَنْتَ خَفِيفُ الظِّلِّ!",
+    "en": "You’re so funny!",
+    "cat": "p-friends",
+    "tl": "ʾanta khafīf aẓ-ẓill",
+    "note": "Literally ‘you are light of shadow’ — good company. Egyptians say ‘your blood is light’. To a woman: خَفِيفَةُ الظِّلِّ (khafīfat aẓ-ẓill) / دَمِّك خَفِيف (dammik khafīf).",
+    "pair": {
+      "tr": "دَمَّك خَفِيف أَوِي!",
+      "reg": "casual",
+      "en": "You’re so funny! (lit. your blood is very light)",
+      "tl": "dammak khafīf ʾawi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "قَضَيْتُ وَقْتًا مُمْتِعًا جِدًّا.",
+    "en": "I had a great time.",
+    "cat": "p-friends",
+    "tl": "qaḍaytu waqtan mumtiʿan jiddan",
+    "note": "مُمْتِع (mumtiʿ) is ‘enjoyable, fun’. The Egyptian verb comes from مَبْسُوط (mabsūṭ), ‘happy’.",
+    "pair": {
+      "tr": "اِتْبَسَطْت أَوِي.",
+      "reg": "casual",
+      "en": "I really enjoyed myself.",
+      "tl": "itbasaṭt ʾawi",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "لِنَبْقَ عَلَى تَوَاصُلٍ.",
+    "en": "Let’s keep in touch.",
+    "cat": "p-friends",
+    "tl": "li-nabqa ʿalā tawāṣul",
+    "note": "لِـ + verb = ‘let’s…’. تَوَاصُل (tawāṣul) is ‘contact, staying connected’ — the same word as in وَسَائِلُ التَّوَاصُلِ, ‘social media’.",
+    "pair": {
+      "tr": "خَلِّينَا عَلَى تَوَاصُل.",
+      "reg": "casual",
+      "tl": "khallīna ʿala tawāṣul",
+      "dialect": "Egyptian"
+    }
+  },
+  {
+    "tr": "تَعَالَ لِزِيَارَتِي فِي أَيِّ وَقْتٍ.",
+    "en": "Come and visit me any time.",
+    "cat": "p-friends",
+    "tl": "taʿāl li-ziyāratī fī ʾayy waqt",
+    "note": "To a woman: تَعَالَيْ (taʿālay) / تَعَالِي زُورِينِي (taʿāli zurīni). The usual warm reply is إِنْ شَاءَ اللَّهُ (ʾin shāʾa-llāh).",
+    "pair": {
+      "tr": "تَعَالَى زُورْنِي فِي أَيّ وَقْت.",
+      "reg": "casual",
+      "tl": "taʿāla zurni fi ʾayy waʾt",
       "dialect": "Egyptian"
     }
   }

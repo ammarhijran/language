@@ -303,7 +303,7 @@ test('tricky words: forgotten in review or with lowered ease, most-forgotten fir
 
 test('Learn: topics are grouped by stage, in order, and every language has more than one stage of words', () => {
   const g = stagesOf([{ id: 'a' }, { id: 'b', stage: 2 }, { id: 'c' }, { id: 'd', stage: 9 }, { id: 'e', stage: 2 }]);
-  assert.deepEqual(g.map((x) => [x.stage, x.title, x.cats.map((c) => c.id).join('')]), [[1, 'Start here', 'ac'], [2, 'Everyday life', 'be'], [3, 'Going further', 'd']]);
+  assert.deepEqual(g.map((x) => [x.stage, x.title, x.cats.map((c) => c.id).join('')]), [[1, 'Start here', 'ac'], [2, 'Everyday life', 'be'], [4, 'Wider world', 'd']]);
   for (const lang of Object.values(languages)) {
     for (const group of ['words', 'phrases']) {
       const stages = stagesOf(lang.categories.filter((c) => (c.group || 'words') === group));

@@ -425,6 +425,86 @@ export const categories = [
     "emoji": "🧰",
     "group": "phrases",
     "stage": 3
+  },
+  {
+    "id": "chores",
+    "name": "Housework & Repairs",
+    "native": "Хатні справи й ремонт",
+    "emoji": "🧹",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "driving",
+    "name": "Cars & Driving",
+    "native": "Машина й дорога",
+    "emoji": "🚗",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "celebrations",
+    "name": "Holidays & Celebrations",
+    "native": "Свята й урочистості",
+    "emoji": "🎉",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "media",
+    "name": "News & Media",
+    "native": "Новини й медіа",
+    "emoji": "📰",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "landscape",
+    "name": "Landscape & Environment",
+    "native": "Природа й довкілля",
+    "emoji": "🏞️",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "describe2",
+    "name": "More Describing Words",
+    "native": "Ще прикметники",
+    "emoji": "⚖️",
+    "group": "words",
+    "stage": 4
+  },
+  {
+    "id": "p-sightseeing",
+    "name": "Sightseeing & Tickets",
+    "native": "Екскурсії й квитки",
+    "emoji": "🎟️",
+    "group": "phrases",
+    "stage": 4
+  },
+  {
+    "id": "p-appointments",
+    "name": "Dates, Times & Appointments",
+    "native": "Дати, час і зустрічі",
+    "emoji": "📅",
+    "group": "phrases",
+    "stage": 4
+  },
+  {
+    "id": "p-services",
+    "name": "Hairdresser, Repairs & Services",
+    "native": "Перукарня, ремонт і послуги",
+    "emoji": "✂️",
+    "group": "phrases",
+    "stage": 4
+  },
+  {
+    "id": "p-friends",
+    "name": "Getting to Know People",
+    "native": "Нові друзі й компліменти",
+    "emoji": "🤝",
+    "group": "phrases",
+    "stage": 4
   }
 ];
 
@@ -12801,5 +12881,2117 @@ export const vocab = [
       2
     ],
     "note": "Таксі is neuter and never changes its ending. Most people order one in an app; викликати таксі = to call a taxi."
+  },
+  {
+    "tr": "прибирати",
+    "en": "to tidy up; to clean",
+    "cat": "chores",
+    "s": 3,
+    "ex": [
+      "Щосуботи я прибираю в квартирі.",
+      "Every Saturday I clean the flat."
+    ],
+    "note": "Я прибираю, ти прибираєш. One-off: прибрати — Я вже прибрав у кімнаті (I’ve already tidied my room). Cleaning as a noun is прибирання."
+  },
+  {
+    "tr": "прати",
+    "en": "to wash (clothes); to do the laundry",
+    "cat": "chores",
+    "s": 1,
+    "ex": [
+      "Цей светр треба прати в холодній воді.",
+      "This jumper has to be washed in cold water."
+    ],
+    "note": "Only for clothes and fabric — dishes, hands and floors take мити. Irregular: я перу, ти переш, вони перуть. One-off: випрати. Washing machine: пральна машина."
+  },
+  {
+    "tr": "прасувати",
+    "en": "to iron",
+    "cat": "chores",
+    "s": 3,
+    "ex": [
+      "Я не люблю прасувати сорочки.",
+      "I don’t like ironing shirts."
+    ],
+    "note": "Я прасую, ти прасуєш. One-off: попрасувати — Попрасуй, будь ласка, мою сорочку (Iron my shirt, please)."
+  },
+  {
+    "tr": "праска",
+    "en": "iron (for clothes)",
+    "cat": "chores",
+    "s": 1,
+    "ex": [
+      "Обережно, праска ще гаряча!",
+      "Careful, the iron is still hot!"
+    ],
+    "note": "The thing you iron with (прасувати). Вимкнути праску = to switch off the iron. An ironing board is прасувальна дошка."
+  },
+  {
+    "tr": "підмітати",
+    "en": "to sweep",
+    "cat": "chores",
+    "s": 3,
+    "ex": [
+      "Я підмітаю підлогу на кухні.",
+      "I’m sweeping the kitchen floor."
+    ],
+    "note": "Я підмітаю, ти підмітаєш. One-off: підмести — Підмети, будь ласка (Sweep up, please). A broom is віник; the floor is підлога."
+  },
+  {
+    "tr": "пилосос",
+    "en": "vacuum cleaner",
+    "cat": "chores",
+    "s": 3,
+    "ex": [
+      "Наш пилосос дуже шумить.",
+      "Our vacuum cleaner is very noisy."
+    ],
+    "note": "From пил (dust). To vacuum is пилососити: Треба попилососити в кімнаті (The room needs vacuuming)."
+  },
+  {
+    "tr": "сміття",
+    "en": "rubbish; litter",
+    "cat": "chores",
+    "s": 2,
+    "ex": [
+      "Винеси, будь ласка, сміття.",
+      "Take the rubbish out, please."
+    ],
+    "note": "Neuter and singular only: багато сміття. Винести сміття = to take the rubbish out; сортувати сміття = to sort it for recycling."
+  },
+  {
+    "tr": "відро",
+    "en": "bucket",
+    "cat": "chores",
+    "s": 2,
+    "ex": [
+      "Налий у відро теплої води.",
+      "Pour some warm water into the bucket."
+    ],
+    "note": "Plural: ві́дра (the stress moves back); п’ять відер. A bucket of water = відро води."
+  },
+  {
+    "tr": "ганчірка",
+    "en": "cloth; rag",
+    "cat": "chores",
+    "s": 2,
+    "ex": [
+      "Витри стіл ганчіркою.",
+      "Wipe the table with a cloth."
+    ],
+    "note": "Any cleaning cloth. Витерти пил = to dust; мокра ганчірка = a wet cloth. A washing-up sponge is губка."
+  },
+  {
+    "tr": "лагодити",
+    "en": "to fix; to repair",
+    "cat": "chores",
+    "s": 1,
+    "ex": [
+      "Тато лагодить мій велосипед.",
+      "Dad is fixing my bike."
+    ],
+    "note": "Я лагоджу, ти лагодиш. One-off: полагодити — Можете це полагодити? For bigger jobs also ремонтувати."
+  },
+  {
+    "tr": "ремонт",
+    "en": "repair; renovation",
+    "cat": "chores",
+    "s": 2,
+    "ex": [
+      "У нас удома ремонт.",
+      "We’re having our home renovated."
+    ],
+    "note": "Both a repair and redecorating a home: робити ремонт. Ремонт взуття = shoe repair. A sign you’ll see: Зачинено на ремонт (closed for repairs)."
+  },
+  {
+    "tr": "молоток",
+    "en": "hammer",
+    "cat": "chores",
+    "s": 3,
+    "ex": [
+      "Дай мені молоток і цвяхи.",
+      "Give me the hammer and the nails."
+    ],
+    "note": "The о drops out and the stress moves to the ending: молотка́, молотки́. Other tools: викрутка (screwdriver), дриль (drill). Tools in general: інструменти."
+  },
+  {
+    "tr": "цвях",
+    "en": "nail (metal)",
+    "cat": "chores",
+    "s": 1,
+    "ex": [
+      "Я забив цвях у стіну.",
+      "I hammered a nail into the wall."
+    ],
+    "note": "Only the metal kind — a fingernail is ніготь. Забити цвях = to hammer in a nail. A screw is гвинт or шуруп."
+  },
+  {
+    "tr": "лампочка",
+    "en": "light bulb",
+    "cat": "chores",
+    "s": 1,
+    "ex": [
+      "У коридорі перегоріла лампочка.",
+      "The light bulb in the hallway has gone."
+    ],
+    "note": "Перегоріла = has burnt out. Замінити лампочку = to change the bulb. The light itself is світло: увімкнути / вимкнути світло."
+  },
+  {
+    "tr": "кран",
+    "en": "tap",
+    "cat": "chores",
+    "s": 1,
+    "ex": [
+      "Закрути, будь ласка, кран.",
+      "Turn the tap off, please."
+    ],
+    "note": "Відкрутити / закрутити кран = to turn the tap on / off; кран тече = the tap is leaking. Also a crane on a building site."
+  },
+  {
+    "tr": "зламаний",
+    "en": "broken",
+    "cat": "chores",
+    "s": 1,
+    "ex": [
+      "Цей стілець зламаний.",
+      "This chair is broken."
+    ],
+    "note": "From зламати (to break). When something stops working you say зламався: Ліфт зламався. Glass and screens are розбитий (smashed)."
+  },
+  {
+    "tr": "машина",
+    "en": "car",
+    "cat": "driving",
+    "s": 2,
+    "ex": [
+      "Моя машина стоїть біля будинку.",
+      "My car is parked by the building."
+    ],
+    "note": "The everyday word; also any machine (пральна машина). Автомобіль is the formal word, авто a short one. By car = машиною or на машині.",
+    "pair": {
+      "tr": "автомобіль",
+      "reg": "formal",
+      "en": "automobile; car",
+      "s": 4
+    }
+  },
+  {
+    "tr": "кермо",
+    "en": "steering wheel",
+    "cat": "driving",
+    "s": 2,
+    "ex": [
+      "Хто сьогодні за кермом?",
+      "Who’s driving today?"
+    ],
+    "note": "За кермом = at the wheel: сидіти за кермом (to be driving). Also the handlebars of a bike."
+  },
+  {
+    "tr": "водійське посвідчення",
+    "en": "driving licence",
+    "cat": "driving",
+    "s": [
+      2,
+      2
+    ],
+    "ex": [
+      "Покажіть, будь ласка, ваше водійське посвідчення.",
+      "Show me your driving licence, please."
+    ],
+    "note": "Officially also посвідчення водія. In everyday speech just права (plural): У тебе є права? Здати на права = to pass your driving test.",
+    "pair": {
+      "tr": "права",
+      "reg": "casual",
+      "en": "licence (everyday)",
+      "s": 2
+    }
+  },
+  {
+    "tr": "бензин",
+    "en": "petrol",
+    "cat": "driving",
+    "s": 2,
+    "ex": [
+      "Бензин знову подорожчав.",
+      "Petrol has gone up again."
+    ],
+    "note": "Fuel in general is пальне (it declines like an adjective: пального). Diesel is дизель. A full tank: повний бак."
+  },
+  {
+    "tr": "заправка",
+    "en": "petrol station",
+    "cat": "driving",
+    "s": 2,
+    "ex": [
+      "Найближча заправка — за п’ять кілометрів.",
+      "The nearest petrol station is five kilometres away."
+    ],
+    "note": "Short for автозаправна станція (АЗС on signs). Заправитися = to fill up: Мені треба заправитися. Повний бак, будь ласка = Fill it up, please."
+  },
+  {
+    "tr": "паркуватися",
+    "en": "to park",
+    "cat": "driving",
+    "s": 3,
+    "ex": [
+      "Тут не можна паркуватися.",
+      "You can’t park here."
+    ],
+    "note": "Я паркуюся, ти паркуєшся. One-off: припаркуватися — Де можна припаркуватися? With an object, without -ся: припаркувати машину."
+  },
+  {
+    "tr": "стоянка",
+    "en": "car park",
+    "cat": "driving",
+    "s": 2,
+    "ex": [
+      "Біля готелю є безкоштовна стоянка.",
+      "There’s a free car park next to the hotel."
+    ],
+    "note": "A place to leave the car; people also say парковка, and паркінг for a multi-storey or underground one. Платна стоянка = paid parking; стоянка таксі = taxi rank."
+  },
+  {
+    "tr": "затор",
+    "en": "traffic jam",
+    "cat": "driving",
+    "s": 2,
+    "ex": [
+      "Ми вже годину стоїмо в заторі.",
+      "We’ve been stuck in a traffic jam for an hour."
+    ],
+    "note": "Стояти в заторі = to be stuck in traffic. На дорогах затори = there are jams on the roads. You’ll also hear the colloquial пробка, but затор is the standard word."
+  },
+  {
+    "tr": "ремінь безпеки",
+    "en": "seat belt",
+    "cat": "driving",
+    "s": [
+      1,
+      2
+    ],
+    "ex": [
+      "Пристебніть, будь ласка, ремені безпеки.",
+      "Please fasten your seat belts."
+    ],
+    "note": "Ремінь = belt (also the one for trousers); безпека = safety. Пристебнутися = to buckle up: Пристебнися!"
+  },
+  {
+    "tr": "колесо",
+    "en": "wheel",
+    "cat": "driving",
+    "s": 1,
+    "ex": [
+      "У нас пробите колесо.",
+      "We’ve got a puncture."
+    ],
+    "note": "Plural: коле́са (the stress moves). The rubber tyre itself is шина: зимові шини = winter tyres. Запасне колесо = spare wheel."
+  },
+  {
+    "tr": "траса",
+    "en": "highway; main road",
+    "cat": "driving",
+    "s": 1,
+    "ex": [
+      "Ми їдемо трасою до Львова.",
+      "We’re taking the highway to Lviv."
+    ],
+    "note": "A big road between cities: траса Київ — Одеса. На трасі = on the highway. A true motorway is автомагістраль."
+  },
+  {
+    "tr": "обганяти",
+    "en": "to overtake",
+    "cat": "driving",
+    "s": 3,
+    "ex": [
+      "Тут не можна обганяти.",
+      "You mustn’t overtake here."
+    ],
+    "note": "Я обганяю, ти обганяєш. One-off: обігнати — Нас обігнала червона машина (A red car overtook us). Overtaking is обгін."
+  },
+  {
+    "tr": "швидкість",
+    "en": "speed",
+    "cat": "driving",
+    "s": 1,
+    "ex": [
+      "У місті обмеження швидкості — п’ятдесят кілометрів на годину.",
+      "The speed limit in town is fifty kilometres an hour."
+    ],
+    "note": "From швидкий (fast). Обмеження швидкості = speed limit; перевищити швидкість = to break it. Кілометрів на годину = km/h."
+  },
+  {
+    "tr": "штраф",
+    "en": "fine (penalty)",
+    "cat": "driving",
+    "s": 1,
+    "ex": [
+      "Він отримав штраф за перевищення швидкості.",
+      "He got a fine for speeding."
+    ],
+    "note": "Штраф за + accusative: за паркування, за перевищення швидкості. Заплатити штраф = to pay a fine; оштрафувати = to fine."
+  },
+  {
+    "tr": "орендувати",
+    "en": "to rent; to hire",
+    "cat": "driving",
+    "s": 4,
+    "ex": [
+      "Ми хочемо орендувати машину на три дні.",
+      "We want to rent a car for three days."
+    ],
+    "note": "Я орендую, ти орендуєш. Оренда = rental; прокат автомобілів = car hire. For a flat you can also say винаймати."
+  },
+  {
+    "tr": "двигун",
+    "en": "engine",
+    "cat": "driving",
+    "s": 2,
+    "ex": [
+      "Двигун не заводиться.",
+      "The engine won’t start."
+    ],
+    "note": "The stress moves to the ending: двигуна́, двигуни́. Also мотор. Завести машину = to start the car; заглушити двигун = to switch the engine off."
+  },
+  {
+    "tr": "свято",
+    "en": "holiday; celebration",
+    "cat": "celebrations",
+    "s": 1,
+    "ex": [
+      "Різдво — моє улюблене свято.",
+      "Christmas is my favourite holiday."
+    ],
+    "note": "A festive day, public or family. Plural: свята́ (the stress moves): На свята ми їдемо до батьків. A day off is вихідний; time off work is відпустка."
+  },
+  {
+    "tr": "святкувати",
+    "en": "to celebrate",
+    "cat": "celebrations",
+    "s": 3,
+    "ex": [
+      "Як ви святкуєте Новий рік?",
+      "How do you celebrate New Year?"
+    ],
+    "note": "Я святкую, ти святкуєш. One-off: відсвяткувати. A little more formal: відзначати — відзначати річницю."
+  },
+  {
+    "tr": "вітати",
+    "en": "to congratulate; to greet",
+    "cat": "celebrations",
+    "s": 2,
+    "ex": [
+      "Вітаю тебе з днем народження!",
+      "Happy birthday to you!"
+    ],
+    "note": "Вітати + accusative + з + instrumental: Вітаю вас зі святом! One-off: привітати. Good wishes are вітання."
+  },
+  {
+    "tr": "гість",
+    "en": "guest",
+    "cat": "celebrations",
+    "s": 1,
+    "ex": [
+      "У нас сьогодні гість із Польщі.",
+      "We have a guest from Poland today."
+    ],
+    "note": "The і turns into о when an ending is added: гостя, гості. Іти в гості = to go and visit someone; бути в гостях = to be visiting."
+  },
+  {
+    "tr": "запрошення",
+    "en": "invitation",
+    "cat": "celebrations",
+    "s": 2,
+    "ex": [
+      "Дякую за запрошення!",
+      "Thank you for the invitation!"
+    ],
+    "note": "From запрошувати / запросити (to invite): Запрошую вас на день народження. Запрошення на весілля = a wedding invitation."
+  },
+  {
+    "tr": "подарунок",
+    "en": "present; gift",
+    "cat": "celebrations",
+    "s": 3,
+    "ex": [
+      "Це подарунок для мами.",
+      "This is a present for Mum."
+    ],
+    "note": "The о drops out: подарунка, подарунки. To give as a present: дарувати / подарувати — Що тобі подарувати?"
+  },
+  {
+    "tr": "свічка",
+    "en": "candle",
+    "cat": "celebrations",
+    "s": 1,
+    "ex": [
+      "На торті було десять свічок.",
+      "There were ten candles on the cake."
+    ],
+    "note": "Genitive plural: свічо́к. Запалити свічку = to light a candle; задути свічки = to blow out the candles."
+  },
+  {
+    "tr": "торт",
+    "en": "cake (large, festive)",
+    "cat": "celebrations",
+    "s": 1,
+    "ex": [
+      "Мама спекла шоколадний торт.",
+      "Mum baked a chocolate cake."
+    ],
+    "note": "A big festive cake, usually layered with cream. A small individual one is тістечко; пиріг is a pie. A slice: шматок торта."
+  },
+  {
+    "tr": "феєрверк",
+    "en": "fireworks",
+    "cat": "celebrations",
+    "s": 3,
+    "ex": [
+      "Опівночі над містом був гарний феєрверк.",
+      "At midnight there were beautiful fireworks over the city."
+    ],
+    "note": "Singular for the whole display. Also called салют."
+  },
+  {
+    "tr": "традиція",
+    "en": "tradition",
+    "cat": "celebrations",
+    "s": 2,
+    "ex": [
+      "Пекти паску на Великдень — давня традиція.",
+      "Baking paska for Easter is an old tradition."
+    ],
+    "note": "За традицією = by tradition. Adjective: традиційний — традиційна страва (a traditional dish)."
+  },
+  {
+    "tr": "тост",
+    "en": "toast",
+    "cat": "celebrations",
+    "s": 1,
+    "ex": [
+      "Я хочу сказати тост.",
+      "I’d like to propose a toast."
+    ],
+    "note": "A toast with raised glasses (and a slice of toasted bread too). Сказати тост = to propose a toast. The shortest ones: Будьмо! За здоров’я!"
+  },
+  {
+    "tr": "Новий рік",
+    "en": "New Year",
+    "cat": "celebrations",
+    "s": [
+      2,
+      1
+    ],
+    "ex": [
+      "Де ви зустрічаєте Новий рік?",
+      "Where are you seeing in the New Year?"
+    ],
+    "note": "Both words decline: з Новим роком, до Нового року. Зустрічати Новий рік = to see the New Year in. The night itself is новорічна ніч; the decorated tree is ялинка."
+  },
+  {
+    "tr": "Різдво",
+    "en": "Christmas",
+    "cat": "celebrations",
+    "s": 2,
+    "ex": [
+      "На Різдво ми збираємося всією родиною.",
+      "At Christmas the whole family gets together."
+    ],
+    "note": "Since 2023 Ukraine officially celebrates it on 25 December (before that, 7 January). Christmas Eve is Святвечір; carols are колядки. Greeting: Христос народився!"
+  },
+  {
+    "tr": "Великдень",
+    "en": "Easter",
+    "cat": "celebrations",
+    "s": 2,
+    "ex": [
+      "На Великдень ми печемо паску.",
+      "At Easter we bake paska."
+    ],
+    "note": "Literally ‘great day’. Genitive: Великодня. Паска is the sweet Easter bread, писанка a decorated egg. Greeting: Христос воскрес! — Воістину воскрес!"
+  },
+  {
+    "tr": "річниця",
+    "en": "anniversary",
+    "cat": "celebrations",
+    "s": 2,
+    "ex": [
+      "Сьогодні в нас річниця весілля.",
+      "Today is our wedding anniversary."
+    ],
+    "note": "From рік (year). Річниця весілля = wedding anniversary. A round-number birthday or jubilee is ювілей."
+  },
+  {
+    "tr": "листівка",
+    "en": "greeting card; postcard",
+    "cat": "celebrations",
+    "s": 2,
+    "ex": [
+      "Я надіслав бабусі вітальну листівку.",
+      "I sent Grandma a greeting card."
+    ],
+    "note": "From лист (letter). Вітальна листівка = greeting card. Підписати листівку = to write a card."
+  },
+  {
+    "tr": "новини",
+    "en": "news",
+    "cat": "media",
+    "s": 2,
+    "ex": [
+      "Ти вже чув новини?",
+      "Have you heard the news?"
+    ],
+    "note": "Plural in Ukrainian; one piece of news is новина́ — У мене гарна новина! Дивитися новини = to watch the news; останні новини = the latest news."
+  },
+  {
+    "tr": "газета",
+    "en": "newspaper",
+    "cat": "media",
+    "s": 2,
+    "ex": [
+      "Дідусь щоранку читає газету.",
+      "Grandpa reads the newspaper every morning."
+    ],
+    "note": "У газеті = in the newspaper. Свіжа газета = today’s paper. Online people read новинні сайти (news sites)."
+  },
+  {
+    "tr": "журнал",
+    "en": "magazine",
+    "cat": "media",
+    "s": 2,
+    "ex": [
+      "Я купила журнал про подорожі.",
+      "I bought a travel magazine."
+    ],
+    "note": "A magazine — not a diary (that is щоденник). At school the класний журнал is the teacher’s register of marks."
+  },
+  {
+    "tr": "передача",
+    "en": "programme (TV, radio)",
+    "cat": "media",
+    "s": 3,
+    "ex": [
+      "Це моя улюблена передача про тварин.",
+      "This is my favourite programme about animals."
+    ],
+    "note": "A TV or radio show; also телепередача or програма. In other contexts it means a pass in football or a gear in a car."
+  },
+  {
+    "tr": "реклама",
+    "en": "advert; advertising",
+    "cat": "media",
+    "s": 2,
+    "ex": [
+      "У цьому відео забагато реклами.",
+      "There are too many ads in this video."
+    ],
+    "note": "Both one advert and advertising in general, so it is usually singular. A small ad or notice is оголошення. Без реклами = ad-free."
+  },
+  {
+    "tr": "канал",
+    "en": "channel",
+    "cat": "media",
+    "s": 2,
+    "ex": [
+      "Перемкни, будь ласка, на інший канал.",
+      "Switch to another channel, please."
+    ],
+    "note": "A TV channel, a channel on a video or messaging app — and a canal. Підписатися на канал = to subscribe to a channel."
+  },
+  {
+    "tr": "журналіст",
+    "en": "journalist",
+    "cat": "media",
+    "s": 3,
+    "ex": [
+      "Журналіст пише статтю про наше місто.",
+      "The journalist is writing an article about our city."
+    ],
+    "note": "A woman is журналістка. Працювати журналістом = to work as a journalist (instrumental after працювати)."
+  },
+  {
+    "tr": "стаття",
+    "en": "article",
+    "cat": "media",
+    "s": 2,
+    "ex": [
+      "Я прочитав цікаву статтю про Карпати.",
+      "I read an interesting article about the Carpathians."
+    ],
+    "note": "Plural: статті́; genitive plural: стате́й. An article about = стаття про + accusative. Написати статтю = to write an article."
+  },
+  {
+    "tr": "заголовок",
+    "en": "headline; heading",
+    "cat": "media",
+    "s": 3,
+    "ex": [
+      "Я прочитав тільки заголовок.",
+      "I only read the headline."
+    ],
+    "note": "The о drops out: заголовка, заголовки. From голова (head) — just like ‘headline’. The title of a book or film is назва."
+  },
+  {
+    "tr": "інтерв’ю",
+    "en": "interview",
+    "cat": "media",
+    "s": 3,
+    "ex": [
+      "Ти бачив інтерв’ю з цим актором?",
+      "Did you see the interview with this actor?"
+    ],
+    "note": "Neuter; it never changes its form. Дати інтерв’ю = to give an interview; взяти інтерв’ю в + genitive = to interview someone. A job interview is співбесіда."
+  },
+  {
+    "tr": "соцмережі",
+    "en": "social media",
+    "cat": "media",
+    "s": 3,
+    "ex": [
+      "Я рідко сиджу в соцмережах.",
+      "I’m rarely on social media."
+    ],
+    "note": "Short for соціальні мережі (social networks). Сидіти в соцмережах = to spend time on social media. A profile page is сторінка.",
+    "pair": {
+      "tr": "соціальні мережі",
+      "reg": "formal",
+      "en": "social networks",
+      "s": [
+        3,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "допис",
+    "en": "post (on social media)",
+    "cat": "media",
+    "s": 1,
+    "ex": [
+      "Я бачив твій допис про подорож.",
+      "I saw your post about the trip."
+    ],
+    "note": "In casual speech people say пост, and постити for ‘to post’. Опублікувати допис = to publish a post; a comment is коментар.",
+    "pair": {
+      "tr": "пост",
+      "reg": "casual",
+      "en": "post",
+      "s": 1
+    }
+  },
+  {
+    "tr": "підписатися",
+    "en": "to follow; to subscribe",
+    "cat": "media",
+    "s": 3,
+    "ex": [
+      "Підпишися на мій канал!",
+      "Follow my channel!"
+    ],
+    "note": "Підписатися на + accusative: на канал, на сторінку, на новини. Я підпишуся, ти підпишешся. A follower is підписник; to unfollow is відписатися."
+  },
+  {
+    "tr": "поширити",
+    "en": "to share (a post, a link)",
+    "cat": "media",
+    "s": 2,
+    "ex": [
+      "Пошир, будь ласка, цей допис.",
+      "Please share this post."
+    ],
+    "note": "The button under a post says Поширити. Ongoing: поширювати. To share something with a person is поділитися: Поділися посиланням (Share the link)."
+  },
+  {
+    "tr": "подкаст",
+    "en": "podcast",
+    "cat": "media",
+    "s": 2,
+    "ex": [
+      "Дорогою на роботу я слухаю подкасти.",
+      "I listen to podcasts on my way to work."
+    ],
+    "note": "Слухати подкаст = to listen to a podcast. An episode is випуск: Ти чув новий випуск?"
+  },
+  {
+    "tr": "телебачення",
+    "en": "television",
+    "cat": "media",
+    "s": 3,
+    "ex": [
+      "Цей фільм показували по телебаченню.",
+      "This film was shown on television."
+    ],
+    "note": "The medium; the set is телевізор (colloquially телик). По телебаченню or по телевізору = on TV."
+  },
+  {
+    "tr": "озеро",
+    "en": "lake",
+    "cat": "landscape",
+    "s": 1,
+    "ex": [
+      "Улітку ми купаємося в озері.",
+      "In summer we swim in the lake."
+    ],
+    "note": "Plural: озе́ра (the stress moves). На озері = at the lake. Світязь is the deepest lake in Ukraine."
+  },
+  {
+    "tr": "ліс",
+    "en": "forest; wood",
+    "cat": "landscape",
+    "s": 1,
+    "ex": [
+      "Ми ходили в ліс по гриби.",
+      "We went to the forest to pick mushrooms."
+    ],
+    "note": "У лісі = in the forest. Plural: ліси́. Іти в ліс по гриби (to go mushroom picking) is a favourite autumn pastime."
+  },
+  {
+    "tr": "пагорб",
+    "en": "hill",
+    "cat": "landscape",
+    "s": 1,
+    "ex": [
+      "Наш будинок стоїть на пагорбі.",
+      "Our house stands on a hill."
+    ],
+    "note": "Smaller than a гора (mountain). Kyiv is famous for its hills above the Dnipro: київські пагорби."
+  },
+  {
+    "tr": "долина",
+    "en": "valley",
+    "cat": "landscape",
+    "s": 2,
+    "ex": [
+      "У долині тече річка.",
+      "A river runs through the valley."
+    ],
+    "note": "Долина річки = a river valley. In spring people travel to Transcarpathia to see the Долина нарцисів (Valley of Narcissi)."
+  },
+  {
+    "tr": "острів",
+    "en": "island",
+    "cat": "landscape",
+    "s": 1,
+    "ex": [
+      "Хортиця — найбільший острів на Дніпрі.",
+      "Khortytsia is the largest island on the Dnipro."
+    ],
+    "note": "The і turns into о, and the stress moves in the plural: о́строва, острови́. На острові = on the island. A peninsula is півострів."
+  },
+  {
+    "tr": "берег",
+    "en": "shore; bank; coast",
+    "cat": "landscape",
+    "s": 1,
+    "ex": [
+      "Ми сидимо на березі моря.",
+      "We’re sitting on the seashore."
+    ],
+    "note": "Г turns into з in the locative: на березі. Plural: береги́. Kyiv has its лівий берег and правий берег (left and right bank). A coastline is узбережжя."
+  },
+  {
+    "tr": "пустеля",
+    "en": "desert",
+    "cat": "landscape",
+    "s": 2,
+    "ex": [
+      "У пустелі вдень спекотно, а вночі холодно.",
+      "In the desert it’s hot by day and cold at night."
+    ],
+    "note": "Related to пустий (empty). Don’t mix it up with десерт (dessert)!"
+  },
+  {
+    "tr": "поле",
+    "en": "field",
+    "cat": "landscape",
+    "s": 1,
+    "ex": [
+      "У полі росте пшениця.",
+      "Wheat grows in the field."
+    ],
+    "note": "Plural: поля́ (the stress moves). У полі = in the field. Also a sports pitch: футбольне поле."
+  },
+  {
+    "tr": "водоспад",
+    "en": "waterfall",
+    "cat": "landscape",
+    "s": 3,
+    "ex": [
+      "У Карпатах є багато гарних водоспадів.",
+      "There are many beautiful waterfalls in the Carpathians."
+    ],
+    "note": "From вода (water) + падати (to fall). Шипіт and Пробій are well-known waterfalls in the Carpathians."
+  },
+  {
+    "tr": "село",
+    "en": "village",
+    "cat": "landscape",
+    "s": 2,
+    "ex": [
+      "Мої бабуся й дідусь живуть у селі.",
+      "My grandparents live in a village."
+    ],
+    "note": "Plural: се́ла (the stress moves back). У селі = in the village, in the countryside. Їхати в село = to go to the country. Adjective: сільський."
+  },
+  {
+    "tr": "повітря",
+    "en": "air",
+    "cat": "landscape",
+    "s": 2,
+    "ex": [
+      "У горах дуже чисте повітря.",
+      "The air in the mountains is very clean."
+    ],
+    "note": "Neuter, singular only. На свіжому повітрі = in the fresh air, outdoors. An air-raid alert is повітряна тривога."
+  },
+  {
+    "tr": "забруднення",
+    "en": "pollution",
+    "cat": "landscape",
+    "s": 2,
+    "ex": [
+      "Забруднення повітря — серйозна проблема у великих містах.",
+      "Air pollution is a serious problem in big cities."
+    ],
+    "note": "From брудний (dirty). Забруднювати = to pollute: Заводи забруднюють річку. Забруднення води = water pollution."
+  },
+  {
+    "tr": "переробляти",
+    "en": "to recycle; to process",
+    "cat": "landscape",
+    "s": 4,
+    "ex": [
+      "Пластик і скло можна переробляти.",
+      "Plastic and glass can be recycled."
+    ],
+    "note": "Я переробляю. One-off: переробити. Переробка = recycling. At home it starts with сортувати сміття (sorting your rubbish). Also ‘to redo’."
+  },
+  {
+    "tr": "смітник",
+    "en": "rubbish bin",
+    "cat": "landscape",
+    "s": 2,
+    "ex": [
+      "Викинь це в смітник, будь ласка.",
+      "Throw this in the bin, please."
+    ],
+    "note": "From сміття (rubbish). The stress moves to the ending: смітника́, у смітнику́. Викинути в смітник = to throw in the bin. A street litter bin is also урна."
+  },
+  {
+    "tr": "клімат",
+    "en": "climate",
+    "cat": "landscape",
+    "s": 1,
+    "ex": [
+      "Клімат змінюється в усьому світі.",
+      "The climate is changing all over the world."
+    ],
+    "note": "Зміна клімату = climate change. Теплий, холодний, вологий клімат. Mind the stress: клі́мат."
+  },
+  {
+    "tr": "довкілля",
+    "en": "environment",
+    "cat": "landscape",
+    "s": 2,
+    "ex": [
+      "Ми всі маємо берегти довкілля.",
+      "We all have to look after the environment."
+    ],
+    "note": "The natural world around us; more formal: навколишнє середовище. Природа = nature. Захист довкілля = environmental protection."
+  },
+  {
+    "tr": "порожній",
+    "en": "empty",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "Холодильник зовсім порожній.",
+      "The fridge is completely empty."
+    ],
+    "note": "A soft adjective: порожня, порожнє, порожні. Also пустий. Порожня пляшка = an empty bottle. Opposite: повний."
+  },
+  {
+    "tr": "повний",
+    "en": "full",
+    "cat": "describe2",
+    "s": 1,
+    "ex": [
+      "Автобус був повний людей.",
+      "The bus was full of people."
+    ],
+    "note": "Повний + genitive: повний води, повний людей. Full after a meal is ситий, not повний. Of a person, повний is a polite word for plump."
+  },
+  {
+    "tr": "важкий",
+    "en": "heavy; hard (difficult)",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "Ця валіза дуже важка.",
+      "This suitcase is very heavy."
+    ],
+    "note": "Both heavy and difficult: важкий день, важке питання. Adverb: важко — Мені важко це зрозуміти. Opposite: легкий."
+  },
+  {
+    "tr": "легкий",
+    "en": "light (not heavy); easy",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "Це було легке завдання.",
+      "That was an easy task."
+    ],
+    "note": "Both light and easy. Here г sounds like х: [лехкий]. Adverb: легко — Це легко! Comparative: легший."
+  },
+  {
+    "tr": "широкий",
+    "en": "wide; broad",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "Дніпро — дуже широка річка.",
+      "The Dnipro is a very wide river."
+    ],
+    "note": "Comparative: ширший. Широка вулиця = a wide street; широкий вибір = a wide choice. Opposite: вузький."
+  },
+  {
+    "tr": "вузький",
+    "en": "narrow",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "У старому місті дуже вузькі вулиці.",
+      "The streets in the old town are very narrow."
+    ],
+    "note": "Comparative: вужчий. Of clothes it means tight: Ці штани мені завузькі (These trousers are too tight for me)."
+  },
+  {
+    "tr": "глибокий",
+    "en": "deep",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "Обережно, тут озеро дуже глибоке.",
+      "Careful, the lake is very deep here."
+    ],
+    "note": "Comparative: глибший. Opposite: мілкий (shallow). Also глибокий сон (deep sleep) and глибока тарілка (a soup plate)."
+  },
+  {
+    "tr": "м’який",
+    "en": "soft",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "Цей хліб свіжий і м’який.",
+      "This bread is fresh and soft."
+    ],
+    "note": "The apostrophe shows that м stays hard and я is said [йа]. М’який знак (‘soft sign’) is the name of the letter ь. Opposite: твердий."
+  },
+  {
+    "tr": "твердий",
+    "en": "hard; firm",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "Ліжко в готелі було дуже тверде.",
+      "The bed in the hotel was very hard."
+    ],
+    "note": "Hard to the touch only — a hard task is важке завдання. Твердий сир = hard cheese. Opposite: м’який."
+  },
+  {
+    "tr": "мокрий",
+    "en": "wet",
+    "cat": "describe2",
+    "s": 1,
+    "ex": [
+      "Я потрапив під дощ і тепер весь мокрий.",
+      "I got caught in the rain and now I’m wet through."
+    ],
+    "note": "Really wet; just damp is вологий. Мокре волосся = wet hair. Opposite: сухий."
+  },
+  {
+    "tr": "сухий",
+    "en": "dry",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "Рушник уже сухий.",
+      "The towel is dry already."
+    ],
+    "note": "Also of wine: сухе вино (dry wine). Сухе повітря = dry air. Verb: сушити (to dry) — сушити волосся."
+  },
+  {
+    "tr": "гучний",
+    "en": "loud",
+    "cat": "describe2",
+    "s": 2,
+    "ex": [
+      "У сусідів дуже гучна музика.",
+      "The neighbours’ music is very loud."
+    ],
+    "note": "Adverb: гучно or голосно — Говоріть, будь ласка, голосніше (Speak louder, please). Opposite: тихий."
+  },
+  {
+    "tr": "тихий",
+    "en": "quiet",
+    "cat": "describe2",
+    "s": 1,
+    "ex": [
+      "Це тихий район, тут мало машин.",
+      "It’s a quiet area, there are few cars here."
+    ],
+    "note": "Adverb: тихо — Тихо! (Quiet!). Comparative: тихіший. Тихе місце = a quiet spot. Opposite: гучний."
+  },
+  {
+    "tr": "дивний",
+    "en": "strange; odd",
+    "cat": "describe2",
+    "s": 1,
+    "ex": [
+      "Який дивний звук!",
+      "What a strange sound!"
+    ],
+    "note": "From диво (a wonder). Adverb: дивно — Дивно, що він не подзвонив (Strange that he hasn’t called)."
+  },
+  {
+    "tr": "схожий",
+    "en": "similar; alike",
+    "cat": "describe2",
+    "s": 1,
+    "ex": [
+      "Ти дуже схожий на тата.",
+      "You look a lot like your dad."
+    ],
+    "note": "Схожий на + accusative = like, similar to. Вони дуже схожі = They are very alike. Схоже, буде дощ = It looks like rain."
+  },
+  {
+    "tr": "різний",
+    "en": "different; various",
+    "cat": "describe2",
+    "s": 1,
+    "ex": [
+      "У нас із братом дуже різні смаки.",
+      "My brother and I have very different tastes."
+    ],
+    "note": "Mostly plural: різні люди, різні думки. ‘Another, a different one’ is інший: Дайте, будь ласка, інший. Різниця = difference."
+  },
+  {
+    "tr": "Два квитки, будь ласка.",
+    "en": "Two tickets, please.",
+    "cat": "p-sightseeing",
+    "s": [
+      1,
+      2,
+      0,
+      1
+    ],
+    "ex": [
+      "— Два квитки, будь ласка. — Дорослі чи дитячі?",
+      "— Two tickets, please. — Adult or child?"
+    ],
+    "note": "After 2, 3 and 4 the noun is nominative plural (два квитки); from 5 on, genitive plural (п’ять квитків). Дорослий = adult, дитячий = child’s.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Нам два квитки.",
+      "reg": "casual",
+      "en": "Two tickets for us.",
+      "s": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "У вас є знижка для студентів?",
+    "en": "Is there a student discount?",
+    "cat": "p-sightseeing",
+    "s": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    "note": "Для + genitive: для дітей (for children), для пенсіонерів (for pensioners). You may be asked to show your студентський квиток (student card).",
+    "reg": "polite",
+    "pair": {
+      "tr": "А студентам дешевше?",
+      "reg": "casual",
+      "en": "Is it cheaper for students?",
+      "s": [
+        0,
+        2,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "О котрій відчиняється музей?",
+    "en": "What time does the museum open?",
+    "cat": "p-sightseeing",
+    "s": [
+      0,
+      2,
+      3,
+      2
+    ],
+    "note": "On the door you’ll see Відчинено (open) or Зачинено (closed). The answer: О десятій (at ten)."
+  },
+  {
+    "tr": "До котрої години ви працюєте?",
+    "en": "What time are you open until?",
+    "cat": "p-sightseeing",
+    "s": [
+      0,
+      2,
+      2,
+      0,
+      2
+    ],
+    "note": "Literally ‘Until what hour do you work?’ — the usual way to ask about closing time. The каса (ticket office) often closes earlier.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Ви до котрої?",
+      "reg": "casual",
+      "en": "How late are you open?",
+      "s": [
+        0,
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Тут можна фотографувати?",
+    "en": "May I take photos here?",
+    "cat": "p-sightseeing",
+    "s": [
+      0,
+      1,
+      5
+    ],
+    "note": "Можна + infinitive asks permission. Possible answers: Так, але без спалаху (Yes, but no flash) or Фотографувати заборонено (No photography).",
+    "reg": "polite",
+    "pair": {
+      "tr": "Тут можна фоткати?",
+      "reg": "casual",
+      "en": "Can I snap pics here?",
+      "s": [
+        0,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Чи є екскурсія англійською?",
+    "en": "Is there a guided tour in English?",
+    "cat": "p-sightseeing",
+    "s": [
+      0,
+      0,
+      2,
+      2
+    ],
+    "note": "The language goes in the instrumental: англійською, польською, німецькою. Аудіогід = audio guide; екскурсовод = tour guide."
+  },
+  {
+    "tr": "Де починається екскурсія?",
+    "en": "Where does the tour start?",
+    "cat": "p-sightseeing",
+    "s": [
+      0,
+      3,
+      2
+    ],
+    "ex": [
+      "— Де починається екскурсія? — Біля входу, о дванадцятій.",
+      "— Where does the tour start? — By the entrance, at twelve."
+    ],
+    "note": "Починатися = to start; закінчуватися = to end. How long is it? — Скільки триває екскурсія?",
+    "pair": {
+      "tr": "Де збираємося?",
+      "reg": "casual",
+      "en": "Where are we meeting?",
+      "s": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Сфотографуйте нас, будь ласка.",
+    "en": "Could you take a photo of us, please?",
+    "cat": "p-sightseeing",
+    "s": [
+      4,
+      0,
+      0,
+      1
+    ],
+    "note": "Hand over your phone and add: На тлі собору (with the cathedral behind us). Ще раз, будь ласка = One more, please.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Сфоткай нас, будь ласка.",
+      "reg": "casual",
+      "en": "Take a pic of us, please.",
+      "s": [
+        1,
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Що це за будівля?",
+    "en": "What is this building?",
+    "cat": "p-sightseeing",
+    "s": [
+      0,
+      0,
+      0,
+      2
+    ],
+    "ex": [
+      "— Що це за будівля? — Це оперний театр.",
+      "— What is this building? — It’s the opera house."
+    ],
+    "note": "Що це за + nominative = What (kind of) … is this? Будівля is any building; пам’ятник = monument, замок = castle, вежа = tower."
+  },
+  {
+    "tr": "Це варто побачити?",
+    "en": "Is it worth seeing?",
+    "cat": "p-sightseeing",
+    "s": [
+      0,
+      1,
+      2
+    ],
+    "note": "Варто + infinitive = it’s worth doing: Варто піти (It’s worth going). Не варто = it isn’t worth it.",
+    "pair": {
+      "tr": "Воно того варте?",
+      "reg": "casual",
+      "en": "Is it worth it?",
+      "s": [
+        2,
+        2,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Скільки коштує вхід?",
+    "en": "How much is admission?",
+    "cat": "p-sightseeing",
+    "s": [
+      1,
+      1,
+      1
+    ],
+    "note": "Вхід = entrance, admission. Вхід вільний = admission free; вхід платний = there is a charge. The way out is вихід."
+  },
+  {
+    "tr": "Де тут гардероб?",
+    "en": "Where is the cloakroom?",
+    "cat": "p-sightseeing",
+    "s": [
+      0,
+      0,
+      3
+    ],
+    "note": "In museums and theatres you leave your coat (and often a big bag) in the гардероб and get a numbered tag, номерок. Don’t lose it!"
+  },
+  {
+    "tr": "Яке сьогодні число?",
+    "en": "What’s the date today?",
+    "cat": "p-appointments",
+    "s": [
+      2,
+      2,
+      2
+    ],
+    "ex": [
+      "— Яке сьогодні число? — Двадцять третє листопада.",
+      "— What’s the date today? — The twenty-third of November."
+    ],
+    "note": "The answer is a neuter ordinal (it agrees with число) + the month in the genitive: перше травня. ‘On the first of May’ puts both in the genitive: першого травня."
+  },
+  {
+    "tr": "Який сьогодні день тижня?",
+    "en": "What day of the week is it today?",
+    "cat": "p-appointments",
+    "s": [
+      2,
+      2,
+      1,
+      1
+    ],
+    "note": "Answer with the weekday: Сьогодні середа. ‘On Wednesday’ is у + accusative: у середу, у п’ятницю, у неділю."
+  },
+  {
+    "tr": "На котру годину?",
+    "en": "For what time?",
+    "cat": "p-appointments",
+    "s": [
+      0,
+      2,
+      2
+    ],
+    "ex": [
+      "— Я хотів би записатися на завтра. — На котру годину?",
+      "— I’d like an appointment for tomorrow. — For what time?"
+    ],
+    "note": "На + accusative = ‘for’ a time: на десяту (for ten), на пів на третю (for half past two). You’ll hear it whenever you book something."
+  },
+  {
+    "tr": "Я хотів би записатися на п’ятницю.",
+    "en": "I’d like to make an appointment for Friday.",
+    "cat": "p-appointments",
+    "s": [
+      0,
+      2,
+      0,
+      3,
+      0,
+      1
+    ],
+    "note": "A woman says Я хотіла б. Записатися = to book an appointment: до лікаря (with a doctor), на стрижку (for a haircut), на манікюр (for a manicure).",
+    "reg": "polite",
+    "alt": [
+      "Я хотіла б записатися на п’ятницю."
+    ],
+    "pair": {
+      "tr": "Можна записатися на п’ятницю?",
+      "reg": "neutral",
+      "en": "Can I book for Friday?",
+      "s": [
+        1,
+        3,
+        0,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Ви вільні в п’ятницю?",
+    "en": "Are you free on Friday?",
+    "cat": "p-appointments",
+    "s": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "note": "To a woman friend: Ти вільна? В comes after a vowel, у between consonants: вільні в п’ятницю, вільний у п’ятницю. Opposite: зайнятий (busy).",
+    "reg": "polite",
+    "pair": {
+      "tr": "Ти вільний у п’ятницю?",
+      "reg": "casual",
+      "s": [
+        0,
+        1,
+        0,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Чи можна перенести запис на понеділок?",
+    "en": "Can I move my appointment to Monday?",
+    "cat": "p-appointments",
+    "s": [
+      0,
+      1,
+      4,
+      1,
+      0,
+      3
+    ],
+    "note": "Перенести на + accusative = to move to another day or time. Запис is a booking (doctor, hairdresser); a meeting is зустріч.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Давай перенесемо на понеділок.",
+      "reg": "casual",
+      "en": "Let’s move it to Monday.",
+      "s": [
+        2,
+        5,
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "tr": "Я запізнююся на десять хвилин.",
+    "en": "I’m running ten minutes late.",
+    "cat": "p-appointments",
+    "s": [
+      0,
+      2,
+      0,
+      1,
+      2
+    ],
+    "ex": [
+      "— Ви вже на місці? — Вибачте, я запізнююся на десять хвилин.",
+      "— Are you there yet? — Sorry, I’m running ten minutes late."
+    ],
+    "note": "На + accusative says by how much: на п’ять хвилин, на пів години. За десять хвилин = in ten minutes’ time.",
+    "pair": {
+      "tr": "Буду за десять хвилин.",
+      "reg": "casual",
+      "en": "I’ll be there in ten minutes.",
+      "s": [
+        1,
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "На жаль, я мушу скасувати зустріч.",
+    "en": "Unfortunately, I have to cancel the meeting.",
+    "cat": "p-appointments",
+    "s": [
+      0,
+      1,
+      0,
+      1,
+      3,
+      1
+    ],
+    "note": "Скасувати = to cancel (a meeting, a booking, a flight). Мушу = I have to. It’s polite to offer another time: Може, в четвер?",
+    "reg": "polite",
+    "pair": {
+      "tr": "Сьогодні не вийде, вибач.",
+      "reg": "casual",
+      "en": "Today won’t work, sorry.",
+      "s": [
+        2,
+        0,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "До зустрічі о восьмій!",
+    "en": "See you at eight!",
+    "cat": "p-appointments",
+    "s": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "note": "О + locative of the ordinal gives the hour: о восьмій, о десятій; before a vowel it becomes об: об одинадцятій. Пів на дев’яту = half past eight.",
+    "pair": {
+      "tr": "Давай, до восьмої!",
+      "reg": "casual",
+      "en": "OK, see you at eight!",
+      "s": [
+        2,
+        0,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Вам зручно о третій?",
+    "en": "Does three o’clock suit you?",
+    "cat": "p-appointments",
+    "s": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "ex": [
+      "— Вам зручно о третій? — Так, цілком.",
+      "— Does three o’clock suit you? — Yes, perfectly."
+    ],
+    "note": "Зручно = convenient. If it isn’t: На жаль, о третій я не можу. Може, о четвертій? (Sorry, I can’t at three. Maybe at four?)",
+    "reg": "polite",
+    "pair": {
+      "tr": "Тобі о третій нормально?",
+      "reg": "casual",
+      "en": "Is three OK for you?",
+      "s": [
+        2,
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "У мене запис на десяту.",
+    "en": "I have an appointment at ten.",
+    "cat": "p-appointments",
+    "s": [
+      0,
+      1,
+      1,
+      0,
+      2
+    ],
+    "note": "What you say at reception. A doctor’s appointment is also прийом: У мене прийом у лікаря. They may ask: На чиє ім’я? (In whose name?)"
+  },
+  {
+    "tr": "Наступного тижня я зайнятий.",
+    "en": "I’m busy next week.",
+    "cat": "p-appointments",
+    "s": [
+      2,
+      1,
+      0,
+      1
+    ],
+    "note": "A woman says зайнята. ‘When’ with тиждень, місяць, рік is a bare genitive: наступного тижня, минулого місяця, цього року.",
+    "alt": [
+      "Наступного тижня я зайнята."
+    ],
+    "pair": {
+      "tr": "Наступного тижня ніяк.",
+      "reg": "casual",
+      "en": "Next week’s no good.",
+      "s": [
+        2,
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Я хотів би підстригтися.",
+    "en": "I’d like a haircut.",
+    "cat": "p-services",
+    "s": [
+      0,
+      2,
+      0,
+      2
+    ],
+    "note": "A woman says Я хотіла б. Стрижка = haircut; перукарня = hairdresser’s; барбершоп = barber’s. To book: записатися на стрижку.",
+    "reg": "polite",
+    "alt": [
+      "Я хотіла б підстригтися."
+    ],
+    "pair": {
+      "tr": "Мені б підстригтися.",
+      "reg": "casual",
+      "en": "I could do with a haircut.",
+      "s": [
+        2,
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Тільки підрівняйте кінчики, будь ласка.",
+    "en": "Just a trim, please.",
+    "cat": "p-services",
+    "s": [
+      1,
+      3,
+      1,
+      0,
+      1
+    ],
+    "note": "Literally ‘just even out the ends’. Кінчики = the ends of the hair. A little more off: Ще трохи коротше, будь ласка.",
+    "reg": "polite"
+  },
+  {
+    "tr": "Не дуже коротко, будь ласка.",
+    "en": "Not too short, please.",
+    "cat": "p-services",
+    "s": [
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    "note": "Коротко = short; коротше = shorter. Where: з боків (at the sides), ззаду (at the back), зверху (on top).",
+    "reg": "polite",
+    "pair": {
+      "tr": "Тільки не коротко!",
+      "reg": "casual",
+      "en": "Just not short!",
+      "s": [
+        1,
+        0,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "У мене розбився екран на телефоні.",
+    "en": "My phone screen is smashed.",
+    "cat": "p-services",
+    "s": [
+      0,
+      1,
+      2,
+      2,
+      0,
+      3
+    ],
+    "note": "Розбився = got smashed (glass). Other problems: не вмикається (won’t turn on), не заряджається (won’t charge), швидко сідає батарея (the battery dies fast)."
+  },
+  {
+    "tr": "Ви можете це відремонтувати?",
+    "en": "Can you repair it?",
+    "cat": "p-services",
+    "s": [
+      0,
+      1,
+      0,
+      5
+    ],
+    "note": "Відремонтувати and полагодити both mean to repair. If it’s still under guarantee, say: Він ще на гарантії.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Це можна полагодити?",
+      "reg": "neutral",
+      "en": "Can this be fixed?",
+      "s": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Скільки часу це займе?",
+    "en": "How long will it take?",
+    "cat": "p-services",
+    "s": [
+      1,
+      1,
+      0,
+      1
+    ],
+    "ex": [
+      "— Скільки часу це займе? — Десь пів години.",
+      "— How long will it take? — About half an hour."
+    ],
+    "note": "Займе is the future of зайняти (to take up). Десь = roughly. Пів години = half an hour — пів is written as a separate word.",
+    "pair": {
+      "tr": "Це надовго?",
+      "reg": "casual",
+      "en": "Will it take long?",
+      "s": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Коли буде готово?",
+    "en": "When will it be ready?",
+    "cat": "p-services",
+    "s": [
+      2,
+      1,
+      2
+    ],
+    "ex": [
+      "— Коли буде готово? — Завтра після обіду.",
+      "— When will it be ready? — Tomorrow afternoon."
+    ],
+    "note": "Готово = ready, done. They may say: Ми вам зателефонуємо (We’ll call you). Після обіду = in the afternoon."
+  },
+  {
+    "tr": "Я хотів би здати пальто в хімчистку.",
+    "en": "I’d like to have this coat dry-cleaned.",
+    "cat": "p-services",
+    "s": [
+      0,
+      2,
+      0,
+      1,
+      2,
+      0,
+      2
+    ],
+    "note": "Хімчистка = dry cleaner’s. Здати в = to hand in for: здати в ремонт (for repair). A stain is пляма: Тут пляма від кави.",
+    "reg": "polite",
+    "alt": [
+      "Я хотіла б здати пальто в хімчистку."
+    ]
+  },
+  {
+    "tr": "Можна вкоротити ці штани?",
+    "en": "Could you shorten these trousers?",
+    "cat": "p-services",
+    "s": [
+      1,
+      3,
+      0,
+      2
+    ],
+    "note": "Ask at an ательє (tailor’s shop). Вкоротити = to shorten; звузити = to take in; замінити блискавку = to replace the zip.",
+    "reg": "polite"
+  },
+  {
+    "tr": "Скільки це буде коштувати?",
+    "en": "How much will it cost?",
+    "cat": "p-services",
+    "s": [
+      1,
+      0,
+      1,
+      1
+    ],
+    "note": "Буде коштувати = will cost. A rough answer starts with приблизно or десь: Десь п’ятсот гривень.",
+    "pair": {
+      "tr": "Скільки вийде?",
+      "reg": "casual",
+      "en": "How much will it come to?",
+      "s": [
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Можна забрати завтра?",
+    "en": "Can I pick it up tomorrow?",
+    "cat": "p-services",
+    "s": [
+      1,
+      2,
+      1
+    ],
+    "note": "Забрати = to collect, to pick up. Keep the квитанція (receipt) — you’ll need it to get your things back.",
+    "pair": {
+      "tr": "Завтра заберу, добре?",
+      "reg": "casual",
+      "en": "I’ll pick it up tomorrow, OK?",
+      "s": [
+        1,
+        3,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Зробіть, будь ласка, як на фото.",
+    "en": "Please do it like in the photo.",
+    "cat": "p-services",
+    "s": [
+      2,
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    "note": "Show a picture at the hairdresser’s or nail salon. Фото never changes its form: на фото, без фото.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Хочу як на фото.",
+      "reg": "casual",
+      "en": "I want it like in the photo.",
+      "s": [
+        1,
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Ви часто тут буваєте?",
+    "en": "Do you come here often?",
+    "cat": "p-friends",
+    "s": [
+      0,
+      1,
+      0,
+      2
+    ],
+    "note": "Бувати = to be somewhere now and then. An easy opener at a café, gym or club. A possible answer: Так, майже щотижня (Yes, almost every week).",
+    "reg": "polite",
+    "pair": {
+      "tr": "Часто тут буваєш?",
+      "reg": "casual",
+      "s": [
+        1,
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Що ви робите у вільний час?",
+    "en": "What do you do in your free time?",
+    "cat": "p-friends",
+    "s": [
+      0,
+      0,
+      1,
+      0,
+      1,
+      1
+    ],
+    "ex": [
+      "— Що ви робите у вільний час? — Багато читаю і їжджу на велосипеді.",
+      "— What do you do in your free time? — I read a lot and ride my bike."
+    ],
+    "note": "У вільний час = in (your) free time. Answer with a verb (Граю у футбол) or with Я захоплююся + instrumental: Я захоплююся фотографією.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Що робиш у вільний час?",
+      "reg": "casual",
+      "s": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Можна ваш номер телефону?",
+    "en": "Could I have your phone number?",
+    "cat": "p-friends",
+    "s": [
+      1,
+      0,
+      1,
+      3
+    ],
+    "note": "What comes next: Я вам напишу (I’ll message you) or Запишіть мій (Take down mine).",
+    "reg": "polite",
+    "pair": {
+      "tr": "Обміняємося номерами?",
+      "reg": "casual",
+      "en": "Shall we swap numbers?",
+      "s": [
+        3,
+        3
+      ]
+    }
+  },
+  {
+    "tr": "Ви є в соцмережах?",
+    "en": "Are you on social media?",
+    "cat": "p-friends",
+    "s": [
+      0,
+      0,
+      0,
+      3
+    ],
+    "note": "Соцмережі = social media. Я на вас підпишуся = I’ll follow you. Додати в друзі = to add as a friend.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Як тебе знайти в соцмережах?",
+      "reg": "casual",
+      "en": "How do I find you on social media?",
+      "s": [
+        0,
+        2,
+        2,
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "tr": "Вам дуже пасує цей колір.",
+    "en": "That colour really suits you.",
+    "cat": "p-friends",
+    "s": [
+      0,
+      1,
+      2,
+      0,
+      1
+    ],
+    "note": "Пасувати + dative, like личити. It also means ‘to go with’: Ця сумка пасує до сукні. A simple thank-you is the right reply: Дякую, мені приємно!",
+    "reg": "polite",
+    "pair": {
+      "tr": "Тобі пасує!",
+      "reg": "casual",
+      "en": "It suits you!",
+      "s": [
+        2,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Ви чудово розмовляєте англійською!",
+    "en": "You speak English really well!",
+    "cat": "p-friends",
+    "s": [
+      0,
+      2,
+      3,
+      2
+    ],
+    "note": "The language is in the instrumental: англійською, українською. You’ll hear this about your Ukrainian — a modest answer: Дякую, я ще вчуся (Thanks, I’m still learning).",
+    "reg": "polite",
+    "pair": {
+      "tr": "У тебе класна англійська!",
+      "reg": "casual",
+      "en": "Your English is great!",
+      "s": [
+        0,
+        1,
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Я чудово провів час.",
+    "en": "I had a great time.",
+    "cat": "p-friends",
+    "s": [
+      0,
+      2,
+      2,
+      1
+    ],
+    "note": "A woman says провела. Провести час = to spend time. Add: Дякую за вечір! (Thank you for the evening!)",
+    "alt": [
+      "Я чудово провела час."
+    ],
+    "pair": {
+      "tr": "Було класно!",
+      "reg": "casual",
+      "en": "It was great!",
+      "s": [
+        2,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Будьмо на зв’язку!",
+    "en": "Let’s keep in touch!",
+    "cat": "p-friends",
+    "s": [
+      1,
+      0,
+      2
+    ],
+    "note": "Будьмо = let’s be (on its own it is also the classic toast). Не губися is literally ‘don’t get lost’. You can add: Пишіть! (Do write!)",
+    "pair": {
+      "tr": "Не губися!",
+      "reg": "casual",
+      "en": "Don’t be a stranger!",
+      "s": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "tr": "Приїжджайте до мене в гості!",
+    "en": "Come and visit me!",
+    "cat": "p-friends",
+    "s": [
+      3,
+      0,
+      1,
+      0,
+      1
+    ],
+    "note": "Приїжджати = to come by transport, so this invites someone from another town or country. To someone who lives nearby you’d say Приходьте.",
+    "reg": "polite",
+    "pair": {
+      "tr": "Приїжджай до мене!",
+      "reg": "casual",
+      "en": "Come and see me!",
+      "s": [
+        3,
+        0,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Можна до вас приєднатися?",
+    "en": "May I join you?",
+    "cat": "p-friends",
+    "s": [
+      1,
+      0,
+      0,
+      3
+    ],
+    "note": "Приєднатися до + genitive = to join. A friendly yes: Звичайно, сідайте! (Of course, have a seat!)",
+    "reg": "polite",
+    "pair": {
+      "tr": "Можна до вас?",
+      "reg": "casual",
+      "en": "Can I join you guys?",
+      "s": [
+        1,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "tr": "У вас чудове почуття гумору!",
+    "en": "You have a great sense of humour!",
+    "cat": "p-friends",
+    "s": [
+      0,
+      0,
+      2,
+      3,
+      1
+    ],
+    "note": "Почуття гумору = sense of humour. To call someone witty: Ви дуже дотепний (to a woman: дотепна).",
+    "reg": "polite",
+    "pair": {
+      "tr": "З тобою весело!",
+      "reg": "casual",
+      "en": "You’re fun to be with!",
+      "s": [
+        0,
+        2,
+        1
+      ]
+    }
+  },
+  {
+    "tr": "Може, якось вип’ємо кави?",
+    "en": "Shall we have a coffee sometime?",
+    "cat": "p-friends",
+    "s": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "ex": [
+      "— Може, якось вип’ємо кави? — Із задоволенням! Я вільна в суботу.",
+      "— Shall we have a coffee sometime? — I’d love to! I’m free on Saturday."
+    ],
+    "note": "Я́кось = sometime (with the other stress, яко́сь means ‘somehow’). Кави is genitive: ‘some coffee’. Going на каву is the classic way to meet up.",
+    "pair": {
+      "tr": "Ходімо якось на каву!",
+      "reg": "casual",
+      "en": "Let’s go for a coffee sometime!",
+      "s": [
+        2,
+        1,
+        0,
+        1
+      ]
+    }
   }
 ];

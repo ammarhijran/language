@@ -156,7 +156,7 @@ export function wordOfTheDay(ctx, d = new Date()) {
 
 // Long topic lists are split by stage (a category's `stage`, 1 when absent),
 // each under its own heading on the Learn screen.
-const STAGES = ['Start here', 'Everyday life', 'Going further'];
+const STAGES = ['Start here', 'Everyday life', 'Going further', 'Wider world'];
 /** [{ stage, title, cats }] in stage order; topics keep their order within a stage. */
 export function stagesOf(cats) {
   const out = [];
