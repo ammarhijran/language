@@ -589,10 +589,11 @@ function readerView(ctx, texts, text) {
   const player = createPlayer({
     count: n,
     say: (i) => ctx.say(sayable(ctx, text, text.lines[i]), { slow: p.slow }),
-    onLine: (i) => highlight(i),
+    onLine: (i) => { highlight(i); setDevicePref(posKey, i); resume.hidden = true; },
     onState: (playing) => { paintPlay(playing); keepScreenOn(playing); },
     onEnd: () => {
       live.textContent = 'End of the text.';
+      setDevicePref(posKey, 0); // read to the end: next time it starts from the top
       // Keep playing: on to the next text in the list, which starts by itself.
       if (!keepPlaying || !nextUp) return;
       if (sleepAt && Date.now() >= sleepAt) return; // the sleep timer has run out: no next text
@@ -648,6 +649,12 @@ function readerView(ctx, texts, text) {
     }
     live.textContent = on ? 'Text hidden. Listen first, then reveal it.' : 'Text shown.';
   }
+
+  // Where the learner stopped last time, in a text left part-way: one tap carries on from there.
+  const posKey = `readPos:${text.id}`;
+  const leftAt = Number(devicePref(posKey, 0)) || 0;
+  const resume = h('p', { class: 'read-resume', hidden: !(leftAt > 0 && leftAt < text.lines.length - 1) || autoPlayId === text.id },
+    h('button', { type: 'button', class: 'btn small', id: 'read-resume', onclick: () => player.play(leftAt) }, icon('play', 16), `Continue from line ${leftAt + 1} of ${text.lines.length}`));
 
   // The line being read (or the first), respelled for the voice — as on a word's page.
   const fixBtn = h('button', {
@@ -770,6 +777,7 @@ function readerView(ctx, texts, text) {
       best != null ? h('p', { class: 'read-best' }, icon('check', 16), `Done · best score ${pct(best)}`) : null),
     voiceBanner(ctx),
     practiceCard(text),
+    resume,
     bar,
     revealBtn,
     list,
