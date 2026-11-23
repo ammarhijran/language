@@ -6,6 +6,7 @@ import { h, icon, set, growList, debounce } from '../ui.js';
 import { phraseRow, topicTile, devicePref, setDevicePref, backLink } from '../components.js';
 import { topicCounts } from '../stats.js';
 import { status } from '../srs.js';
+import { searchTips } from './help.js';
 import { loadTexts, cachedTexts } from '../reader.js';
 
 // ---------- Ranking (no DOM: tested in tests/nav.test.js) ----------
@@ -315,9 +316,10 @@ export default function search(ctx, initial = '') {
     const entries = rankEntries(lang, q);
     const topics = searchTopics(lang, q);
     const lessons = searchGrammar(lang, q);
+    const appTips = searchTips(lang, q, { scope: Object.keys(store.getCards(lang.code)).length >= 40 ? '' : '/all' });
     const noted = searchNotes(lang, store.getNotes(lang.code), q, new Set(entries.map((e) => e.word.id)));
     const textBox = h('section', { class: 'search-group', hidden: true });
-    found = entries.length + topics.length + lessons.length + noted.length;
+    found = entries.length + topics.length + lessons.length + noted.length + appTips.length;
     tell(q);
     const cards = store.getCards(lang.code);
     const counts = topics.length ? topicCounts(ctx) : null;
@@ -349,7 +351,15 @@ export default function search(ctx, initial = '') {
             h('span', { class: 'll-text' }, h('b', null, l.title), h('small', null, l.summary)),
             h('span', { class: `badge level-${l.level}` }, l.level))))))
         : null,
-      textBox);
+      textBox,
+      // What the app itself can do (Me → Tips).
+      appTips.length
+        ? h('section', { class: 'search-group help' },
+          h('h2', { class: 'section-title' }, `In the app (${appTips.length})`),
+          h('ul', { class: 'link-list' }, appTips.map((it) => h('li', null, h('a', { href: it.href },
+            h('span', { class: 'll-icon', 'aria-hidden': 'true' }, it.emoji),
+            h('span', { class: 'll-text' }, h('b', null, it.name), h('small', null, it.text)))))))
+        : null);
     if (entries.length) {
       stopList = growList(list, entries, ({ word }) => phraseRow(ctx, word, { status: status(cards[word.id]) }), { first: 40, step: 80, label: 'Show more' });
     }

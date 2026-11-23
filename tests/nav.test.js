@@ -587,3 +587,17 @@ test('the Tips page: every tip opens a real screen, and only what applies to the
     assert.ok(tips(L).flatMap((g) => g.items).some((x) => x.href === '#/practice/cloze'), 'no scope: among the learned words');
   }
 });
+
+test('search finds what the app can do', async () => {
+  const { searchTips } = await import('../js/views/help.js');
+  const tr = languages.tr;
+  const names = (q) => searchTips(tr, q).map((x) => x.name);
+  assert.ok(names('dark').includes('Themes and text size'));
+  assert.ok(names('BACKUP').includes('Back up'));
+  assert.ok(names('sync code').includes('Sync between devices'));
+  assert.ok(names('tricky').includes('Tricky letters'));
+  assert.ok(searchTips(languages.ja, 'beats').some((x) => x.name === 'Count the beats'));
+  assert.deepEqual(names('da'), [], 'two letters are not a search');
+  assert.deepEqual(names('zzqx'), []);
+  assert.ok(searchTips(tr, 'the').length <= 4, 'a few at most');
+});

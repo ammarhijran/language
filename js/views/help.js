@@ -80,6 +80,16 @@ export function tips(lang, { reminders = false, scope = '' } = {}) {
   ];
 }
 
+/**
+ * Tips whose name or text contains the query (three letters or more, any
+ * case) — so Search also finds what the app can do ("dark", "backup").
+ */
+export function searchTips(lang, query, opts = {}) {
+  const q = String(query || '').trim().toLowerCase();
+  if ([...q].length < 3) return [];
+  return tips(lang, opts).flatMap((g) => g.items).filter((it) => `${it.name} ${it.text}`.toLowerCase().includes(q)).slice(0, 4);
+}
+
 export default function help(ctx) {
   // Practice links: among the learned words once there are enough, else from the whole course.
   const learned = Object.keys(ctx.store.getCards(ctx.lang.code)).length;
