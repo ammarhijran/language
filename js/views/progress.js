@@ -1,5 +1,5 @@
 import { h, icon, meter, set, growList, debounce } from '../ui.js';
-import { computeStats, nextCategory, reviewForecast } from '../stats.js';
+import { computeStats, nextCategory, reviewForecast, activityCalendar } from '../stats.js';
 import { status, STATUS_LABEL } from '../srs.js';
 import { playButton } from '../components.js';
 
@@ -68,6 +68,14 @@ export default function progress(ctx, catFilter) {
 
   renderList();
 
+  // Six weeks as a calendar: which days were practised, and how much against the daily goal.
+  const weeks = activityCalendar((d) => {
+    const day = store.getDay(lang.code, d);
+    return { n: store.dayTotal(day), goalMet: day.goalMet || day.repaired };
+  }, { goal: ctx.settings.dailyGoal });
+  const past = weeks.filter((c) => !c.future);
+  const activeDays = past.filter((c) => c.level > 0).length;
+  const goalDays = past.filter((c) => c.level === 3).length;
   const next = nextCategory(ctx);
   // Reviews coming up: what falls due on each of the next seven days.
   const ahead = reviewForecast(lang, cards);
@@ -106,6 +114,16 @@ export default function progress(ctx, catFilter) {
           h('p', { class: 'hint chart-note' }, history[13].n
             ? `Today: ${history[13].n} exercise${history[13].n === 1 ? '' : 's'}${busiest > history[13].n ? ` · best day: ${busiest}` : ''}.`
             : `Nothing yet today${busiest ? ` · best day: ${busiest}` : ''}.`)),
+        h('section', { class: 'card' },
+          h('h2', { class: 'card-title' }, 'Last 6 weeks'),
+          h('div', { class: 'cal-head', 'aria-hidden': 'true' }, ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((x) => h('small', null, x))),
+          h('div', { class: 'cal', role: 'img', 'aria-label': `The last six weeks: practised on ${activeDays} of ${past.length} days, daily goal met on ${goalDays}.` },
+            weeks.map((c) => h('i', {
+              class: `l${c.level}${c.today ? ' today' : ''}${c.future ? ' future' : ''}`,
+              title: c.future ? null : `${dayName(c.d)}: ${c.n}${c.level === 3 ? ' · goal met' : ''}`,
+            }))),
+          h('p', { class: 'hint chart-note' }, `Practised on ${activeDays} of ${past.length} days · daily goal met on ${goalDays}. `,
+            h('span', { class: 'cal-key', 'aria-hidden': 'true' }, 'less ', h('i', { class: 'l0' }), h('i', { class: 'l1' }), h('i', { class: 'l2' }), h('i', { class: 'l3' }), ' goal met'))),
         aheadTotal ? h('section', { class: 'card' },
           h('h2', { class: 'card-title' }, 'Reviews coming up'),
           h('div', { class: 'bars week', role: 'img', 'aria-label': `Words due for review over the next 7 days: ${ahead.map((x, k) => `${k === 0 ? 'today' : dayName(x.d)} ${x.n}`).join(', ')}` },

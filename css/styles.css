@@ -866,6 +866,18 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .bar.none .bar-fill { background: var(--track); }
 .bar-val { position: absolute; bottom: calc(var(--h) * 1% + 2px); font-size: var(--fs-2xs); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text); }
 .bar-days { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: var(--sp-1); margin-top: var(--sp-1); }
+/* Progress: six weeks as a calendar of days, darker the more was done (l3 = the daily goal). */
+.cal, .cal-head { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--sp-1); max-width: 20rem; margin: 0 auto; }
+.cal-head { margin-bottom: var(--sp-1); }
+.cal-head small { text-align: center; font-size: var(--fs-2xs); color: var(--muted); }
+.cal i, .cal-key i { display: block; aspect-ratio: 1; border-radius: var(--r-xs); background: var(--track); }
+.cal i.l1, .cal-key i.l1 { background: color-mix(in srgb, var(--progress) 30%, var(--track)); }
+.cal i.l2, .cal-key i.l2 { background: color-mix(in srgb, var(--progress) 62%, var(--track)); }
+.cal i.l3, .cal-key i.l3 { background: var(--progress); }
+.cal i.future { background: none; box-shadow: inset 0 0 0 1px var(--border); }
+.cal i.today { outline: 2px solid var(--text); outline-offset: 1px; }
+.cal-key { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+.cal-key i { width: .8em; }
 .bars.week, .bar-days.week { grid-template-columns: repeat(7, minmax(0, 1fr)); }
 .bars.week { height: 110px; }
 .bars.week .bar-fill { max-width: 30px; }

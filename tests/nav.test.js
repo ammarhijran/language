@@ -540,3 +540,25 @@ test('when nothing is due: how many words come back, and when', async () => {
   assert.equal(far.days, 30);
   assert.match(far.text, /^1 word on \w+, \w+ \d+$/);
 });
+
+test('the activity calendar: whole weeks from Monday, levels against the daily goal, nothing after today', async () => {
+  const { activityCalendar } = await import('../js/stats.js');
+  const now = new Date(2026, 10, 25, 9, 0); // Wednesday 25 November 2026
+  const key = (d) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+  const days = { '2026-11-25': { n: 3 }, '2026-11-24': { n: 10 }, '2026-11-23': { n: 25 }, '2026-11-22': { n: 4, goalMet: true }, '2026-11-26': { n: 99 }, '2026-10-19': { n: 20 } };
+  const cal = activityCalendar((d) => days[key(d)], { now, goal: 20 });
+  assert.equal(cal.length, 42);
+  assert.equal(cal[0].d.getDay(), 1, 'starts on a Monday');
+  assert.equal(key(cal[0].d), '2026-10-19');
+  assert.equal(key(cal[41].d), '2026-11-29', 'ends with the Sunday of this week');
+  const of = (k) => cal.find((c) => key(c.d) === k);
+  assert.deepEqual([of('2026-11-25').level, of('2026-11-24').level, of('2026-11-23').level, of('2026-11-22').level, of('2026-11-21').level], [1, 2, 3, 3, 0]);
+  assert.equal(of('2026-10-19').level, 3);
+  assert.equal(of('2026-11-25').today, true);
+  assert.equal(cal.filter((c) => c.today).length, 1);
+  assert.deepEqual(cal.filter((c) => c.future).map((c) => key(c.d)), ['2026-11-26', '2026-11-27', '2026-11-28', '2026-11-29']);
+  assert.equal(of('2026-11-26').level, 0, 'a day that has not come is empty whatever is stored for it');
+  assert.equal(activityCalendar(() => null, { now, weeks: 2 }).length, 14);
+  // On a Sunday the week is complete and nothing is in the future.
+  assert.equal(activityCalendar(() => ({ n: 1 }), { now: new Date(2026, 10, 29, 23, 0) }).filter((c) => c.future).length, 0);
+});

@@ -331,3 +331,27 @@ export function nextReviews(lang, cards, now = Date.now()) {
       : `on ${new Date(from).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}`;
   return { n, days, text: `${n} word${n === 1 ? '' : 's'} ${when}` };
 }
+
+/**
+ * The last `weeks` calendar weeks of activity, Monday first and ending with
+ * the current week: one cell per day, [{ d, n, level, today, future }].
+ * `dayOf(date)` gives { n, goalMet } for a day. level: 0 nothing, 1 a little,
+ * 2 at least half the daily goal, 3 the goal met. Days after today are
+ * `future` (shown empty).
+ */
+export function activityCalendar(dayOf, { weeks = 6, now = new Date(), goal = 20 } = {}) {
+  const today = new Date(now);
+  today.setHours(12, 0, 0, 0); // noon: adding days never lands on the wrong date across DST
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - ((today.getDay() + 6) % 7) - 7 * (weeks - 1));
+  const out = [];
+  for (let i = 0; i < weeks * 7; i++) {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    const future = d > today;
+    const { n = 0, goalMet = false } = future ? {} : dayOf(d) || {};
+    const level = future || (!n && !goalMet) ? 0 : goalMet || n >= goal ? 3 : n >= goal / 2 ? 2 : 1;
+    out.push({ d, n, level, today: d.getTime() === today.getTime(), future });
+  }
+  return out;
+}
