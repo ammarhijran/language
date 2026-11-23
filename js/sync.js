@@ -299,6 +299,9 @@ function sanitizeProgress(progress, legacyGoalMet) {
     const fav = {};
     for (const [id, f] of pairs(p.fav, 20000)) { const s = sanitizeFav(f); if (s) fav[id] = s; }
     if (Object.keys(fav).length) out[code].fav = fav;
+    const notes = {};
+    for (const [id, n] of pairs(p.notes, 20000)) { const s = sanitizeNote(n); if (s) notes[id] = s; }
+    if (Object.keys(notes).length) out[code].notes = notes;
     const lastCat = sanitizeLastCat(p.lastCat);
     if (lastCat) out[code].lastCat = lastCat;
   }
@@ -311,6 +314,20 @@ function sanitizeFav(f) {
   const last = num(f.last, MAX_TIME);
   if (last === undefined) return null;
   return f.deleted === true ? { deleted: true, last } : { last };
+}
+
+/** How long a learner's note on an entry may be. */
+export const NOTE_MAX = 300;
+/** One line of text, trimmed to NOTE_MAX. */
+export const noteText = (v) => (typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, NOTE_MAX).trim() : '');
+/** A learner's note on an entry: { text, last }, or a { deleted, last } tombstone once removed. */
+function sanitizeNote(n) {
+  if (!isObj(n)) return null;
+  const last = num(n.last, MAX_TIME);
+  if (last === undefined) return null;
+  if (n.deleted === true) return { deleted: true, last };
+  const text = noteText(n.text);
+  return text ? { text, last } : null;
 }
 
 /** The topic of the last lesson started: { id, at }. */
@@ -533,11 +550,21 @@ function mergeLang(local = {}, remote = {}) {
       fav[id] = clone(rf);
     }
   }
+  // The learner's notes on entries: like saved entries, the newest wins and a reset leaves them.
+  const notes = clone(local.notes || {});
+  let notesChanged = 0;
+  for (const [id, rn] of Object.entries(remote.notes || {})) {
+    const ln = notes[id];
+    if (!ln || rn.last > ln.last || (rn.last === ln.last && rn.deleted && !ln.deleted)) {
+      if (!(rn.deleted && (!ln || ln.deleted)) && rn.text !== ln?.text) notesChanged++;
+      notes[id] = clone(rn);
+    }
+  }
   const lastCat = newerLastCat(local.lastCat, remote.lastCat);
   return {
     cards, days, ...(resetAt ? { resetAt } : {}),
-    ...(Object.keys(fav).length ? { fav } : {}), ...(lastCat ? { lastCat: clone(lastCat) } : {}),
-    added, updated, removed, skipped, savedAdded, savedRemoved,
+    ...(Object.keys(fav).length ? { fav } : {}), ...(Object.keys(notes).length ? { notes } : {}), ...(lastCat ? { lastCat: clone(lastCat) } : {}),
+    added, updated, removed, skipped, savedAdded, savedRemoved, notesChanged,
   };
 }
 
@@ -624,18 +651,19 @@ export function mergeAll(local, payload, { device = 'this' } = {}) {
   const progress = mine.progress;
   const langs = [];
   for (const [code, rp] of Object.entries(theirs.progress)) {
-    const empty = !Object.keys(rp.cards).length && !Object.keys(rp.days).length && !rp.fav && !rp.lastCat;
+    const empty = !Object.keys(rp.cards).length && !Object.keys(rp.days).length && !rp.fav && !rp.notes && !rp.lastCat;
     if (empty && !progress[code]) continue; // a language the other device only opened (or reset)
     const m = mergeLang(progress[code], rp);
     progress[code] = {
       cards: m.cards, days: m.days, ...(m.resetAt ? { resetAt: m.resetAt } : {}),
-      ...(m.fav ? { fav: m.fav } : {}), ...(m.lastCat ? { lastCat: m.lastCat } : {}),
+      ...(m.fav ? { fav: m.fav } : {}), ...(m.notes ? { notes: m.notes } : {}), ...(m.lastCat ? { lastCat: m.lastCat } : {}),
     };
     const remoteWords = Object.values(rp.cards).filter((c) => !c.deleted).length;
     langs.push({
       code, remoteWords, added: m.added, updated: m.updated, removed: m.removed, skipped: m.skipped,
       // ★ entries the merge saves / unsaves here (only when there are any)
       ...(m.savedAdded ? { savedAdded: m.savedAdded } : {}), ...(m.savedRemoved ? { savedRemoved: m.savedRemoved } : {}),
+      ...(m.notesChanged ? { notesChanged: m.notesChanged } : {}),
     });
   }
   const game = mergeGame(mine.game, theirs.game);

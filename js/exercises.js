@@ -122,6 +122,7 @@ export function pickOptions(lang, word, label, n = 4) {
 
 function reveal(ctx, word, correct, extra) {
   const a = ctx.lang.analyze(word);
+  const note = ctx.store?.getNote?.(ctx.lang.code, word.id) || '';
   return h('div', { class: `reveal ${correct ? 'good' : 'bad'}` },
     h('p', { class: 'verdict' }, icon(correct ? 'check' : 'x', 18), correct ? praiseLine(ctx.lang, pick(ctx.lang.praise)) : 'Not quite — here’s the answer:'),
     h('div', { class: 'reveal-word' },
@@ -133,6 +134,8 @@ function reveal(ctx, word, correct, extra) {
       ),
     ),
     registerBlock(ctx, word, { compact: true }),
+    // The learner's own note on the word (a memory hook), when there is one.
+    note ? h('p', { class: 'my-note-text' }, h('span', { 'aria-hidden': 'true' }, '📝 '), h('span', { class: 'sr-only' }, 'My note: '), note) : null,
     extra,
   );
 }

@@ -9,7 +9,7 @@
 // WRITE_GAP ms, the native mirror at most every MIRROR_GAP ms, and both at
 // once when the app is hidden, closed or paused, so closing it loses nothing.
 import { hasPlugin, plugin, isNative, onAppPause } from './native.js';
-import { sanitize, stamp, DAY_FIELDS, cleanOwnWords, ownWordFields, OWN_WORDS_MAX, OWN_WORD_LIMITS } from './sync.js';
+import { sanitize, stamp, DAY_FIELDS, cleanOwnWords, ownWordFields, OWN_WORDS_MAX, OWN_WORD_LIMITS, NOTE_MAX, noteText } from './sync.js';
 
 const KEY = 'lisan:v1';
 const DEVICE_KEY = 'lisan:device';
@@ -376,7 +376,29 @@ export function setFav(lang, id, on) {
   return !!on;
 }
 
-/** The id of the topic whose lesson was started last, or null. */
+// ---------- The learner's notes on entries ----------
+// progress[lang].notes: { id: { text, last } } — a memory hook, a sentence of
+// one's own. Removing a note leaves a { deleted, last } tombstone, so the
+// removal reaches a synced device. Like ★ they are not progress: a reset keeps them.
+export { NOTE_MAX };
+/** The learner's note on an entry, or '' when there is none. */
+export function getNote(lang, id) {
+  const notes = prog(lang).notes;
+  const n = notes && Object.hasOwn(notes, id) ? notes[id] : null;
+  return live(n) ? n.text || '' : '';
+}
+/** Write, change or (with empty text) remove the note on an entry. Returns the note as kept. */
+export function setNote(lang, id, text) {
+  const clean = noteText(text);
+  const notes = (prog(lang).notes ||= {});
+  const old = Object.hasOwn(notes, id) ? notes[id] : null;
+  if (clean === (live(old) ? old.text : '')) return clean;
+  const last = Math.max(Date.now(), (old?.last ?? 0) + 1);
+  notes[id] = clean ? { text: clean, last } : { deleted: true, last };
+  save();
+  return clean;
+}
+
 /** The learner's own texts in a language, newest first: [{ id, title, body, at }]. */
 export const getOwnTexts = (lang) => [...(state.mine && Object.hasOwn(state.mine, lang) ? state.mine[lang] : [])].sort((a, b) => b.at - a.at);
 
@@ -571,7 +593,8 @@ export function resetProgress(lang) {
   const met = !!state.progress[lang]?.days?.[k]?.goalMet;
   // Saved words and phrases are a phrasebook, not progress: they stay.
   const fav = state.progress[lang]?.fav;
-  state.progress[lang] = { cards: {}, days: met ? { [k]: { goalMet: true } } : {}, resetAt: Date.now(), ...(fav ? { fav } : {}) };
+  const notes = state.progress[lang]?.notes;
+  state.progress[lang] = { cards: {}, days: met ? { [k]: { goalMet: true } } : {}, resetAt: Date.now(), ...(fav ? { fav } : {}), ...(notes ? { notes } : {}) };
   save();
   flush();
 }

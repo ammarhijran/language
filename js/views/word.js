@@ -1,4 +1,4 @@
-import { h, icon } from '../ui.js';
+import { h, icon, set } from '../ui.js';
 import { audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge, sayLater, backLink, favButton } from '../components.js';
 import { status, STATUS_LABEL, markKnown } from '../srs.js';
 import { rich } from './grammar.js';
@@ -54,6 +54,7 @@ export default function word(ctx, id) {
       registerBlock(ctx, w),
       exampleBlock(ctx, w, { links: true }),
       w.note ? h('p', { class: 'note' }, rich(w.note, lang.code)) : null,
+      w.own ? null : myNote(ctx, w),
       w.own ? h('p', { class: 'hint' }, 'One of your own words. ', h('a', { href: `#/mywords/${encodeURIComponent(w.id)}` }, 'Change or delete it')) : null,
       st === 'new'
         ? h('button', {
@@ -77,4 +78,37 @@ export default function word(ctx, id) {
       speakPractice(ctx, w)),
     seen,
   );
+}
+
+/**
+ * The learner's own note on an entry — a memory hook, a sentence of their
+ * own: shown here and after each answer about the word, kept with the
+ * progress (backups, sync). Edited in place.
+ */
+function myNote(ctx, w) {
+  const { lang, store } = ctx;
+  const box = h('div', { class: 'my-note' });
+  const show = () => {
+    const text = store.getNote(lang.code, w.id);
+    set(box, text
+      ? [h('p', { class: 'my-note-text' }, h('span', { 'aria-hidden': 'true' }, '📝 '), h('span', { class: 'sr-only' }, 'My note: '), text),
+        h('button', { type: 'button', class: 'link-btn', onclick: edit }, 'Change my note')]
+      : h('button', { type: 'button', class: 'btn small', onclick: edit }, '📝 Add a note of my own'));
+  };
+  function edit() {
+    const area = h('textarea', {
+      class: 'my-note-input', rows: '3', maxlength: String(store.NOTE_MAX), 'aria-label': `My note on ${w.tr}`,
+      placeholder: 'A memory hook, where you heard it, a sentence of your own…',
+    });
+    area.value = store.getNote(lang.code, w.id);
+    const save = () => { store.setNote(lang.code, w.id, area.value); show(); box.querySelector('button')?.focus(); };
+    set(box, area,
+      h('div', { class: 'button-row' },
+        h('button', { type: 'button', class: 'btn small primary', onclick: save }, 'Save'),
+        h('button', { type: 'button', class: 'btn small', onclick: () => { show(); box.querySelector('button')?.focus(); } }, 'Cancel')),
+      h('p', { class: 'hint' }, 'Only you see it: it is shown after each answer about this word. Empty it to remove the note.'));
+    area.focus();
+  }
+  show();
+  return box;
 }

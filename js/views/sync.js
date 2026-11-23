@@ -47,6 +47,10 @@ export function langChanges(l) {
     if (l.savedAdded && l.savedRemoved) parts.push(', ');
     if (l.savedRemoved) parts.push(`${l.savedRemoved} unsaved`);
   }
+  if (l.notesChanged) {
+    if (parts.length) parts.push(' · ');
+    parts.push(`📝 ${plural(l.notesChanged, 'note')}`);
+  }
   return parts;
 }
 
@@ -59,11 +63,12 @@ export function ownChanges(own) {
 /** The sentence after a merge: words first, then saved entries; never "0 new, 0 updated" for a code that only changes ★. */
 export function mergedText(rows, own = null) {
   const sum = (k) => rows.reduce((s, l) => s + (l[k] || 0), 0);
-  const [added, updated, removed, savedAdded, savedRemoved] = ['added', 'updated', 'removed', 'savedAdded', 'savedRemoved'].map(sum);
+  const [added, updated, removed, savedAdded, savedRemoved, notesChanged] = ['added', 'updated', 'removed', 'savedAdded', 'savedRemoved', 'notesChanged'].map(sum);
   const out = [];
   if (added || updated || removed) out.push(`${added} new and ${updated} updated words${removed ? `, ${removed} removed` : ''}`);
   if (savedAdded) out.push(`${plural(savedAdded, 'entry', 'entries')} added to your saved phrases`);
   if (savedRemoved) out.push(`${plural(savedRemoved, 'entry', 'entries')} removed from them`);
+  if (notesChanged) out.push(`${plural(notesChanged, 'note')} of yours updated`);
   const mine = ownChanges(own);
   if (mine) out.push(`in My words ${mine}`);
   if (!out.length) return 'Progress combined. ';
@@ -120,7 +125,7 @@ export default function sync(ctx) {
       const code = await encode({ device: store.deviceId(), at: Date.now(), ...store.syncData() }, { passphrase });
       const box = h('textarea', { class: 'code-box', readonly: true, rows: 4, 'aria-label': 'Your sync code', onfocus: (e) => e.target.select() }, code);
       const status = h('p', { class: 'hint', 'aria-live': 'polite' },
-        `${kb(code)} · `, passphrase ? h('b', null, '🔒 encrypted') : 'not encrypted — anyone who sees it can read your progress and the words you added');
+        `${kb(code)} · `, passphrase ? h('b', null, '🔒 encrypted') : 'not encrypted — anyone who sees it can read your progress, your notes and the words you added');
       set(sendOut,
         box, status,
         h('div', { class: 'button-row' },
@@ -186,7 +191,7 @@ export default function sync(ctx) {
     const sameDevice = payload.device === store.deviceId();
     const lvBefore = levelFromXp(sumXp(local.game)).level;
     const lvAfter = levelFromXp(sumXp(merged.game)).level;
-    const rows = merged.summary.langs.filter((l) => meta[l.code] && (l.remoteWords > 0 || l.added || l.updated || l.removed || l.savedAdded || l.savedRemoved));
+    const rows = merged.summary.langs.filter((l) => meta[l.code] && (l.remoteWords > 0 || l.added || l.updated || l.removed || l.savedAdded || l.savedRemoved || l.notesChanged));
     const nothing = !merged.summary.changed;
     // Words from before "Reset progress" on this device are left out on purpose: say so.
     const skipped = rows.some((l) => l.skipped);

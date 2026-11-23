@@ -383,3 +383,45 @@ test('the reminder to back up: only with something to lose, and only after a mon
   assert.equal(agoText(now - 100 * DAY, now), '3 months ago');
   assert.equal(agoText(now + DAY, now), 'today', 'a clock that went backwards');
 });
+
+test('my notes on entries: kept per language, trimmed, synced like saved entries, and they survive a reset', async () => {
+  const store = await import('../js/store.js');
+  store._resetAll();
+  assert.equal(store.getNote('tr', 'merhaba'), '');
+  assert.equal(store.setNote('tr', 'merhaba', '  sounds like\n “mare-haba”  '), 'sounds like “mare-haba”');
+  assert.equal(store.getNote('tr', 'merhaba'), 'sounds like “mare-haba”');
+  assert.equal(store.getNote('uk', 'merhaba'), '', 'another language has its own notes');
+  assert.equal(store.setNote('tr', 'evet', 'x'.repeat(store.NOTE_MAX + 50)).length, store.NOTE_MAX);
+  for (const id of ['constructor', '__proto__', 'toString']) assert.equal(store.getNote('tr', id), '');
+  // They travel in sync data and in backups.
+  const data = store.syncData();
+  assert.equal(data.progress.tr.notes.merhaba.text, 'sounds like “mare-haba”');
+  const theirs = { device: 'other', at: 1, game: {}, progress: { tr: { cards: {}, days: {}, notes: {
+    merhaba: { text: 'older note', last: 5 },
+    selam: { text: '  from the other phone ', last: 7 },
+    bad: { text: '', last: 9 }, worse: 'text', gone: { deleted: true, last: 3 },
+  } } } };
+  const m = mergeAll(data, theirs, { device: 'this' });
+  assert.equal(m.progress.tr.notes.merhaba.text, 'sounds like “mare-haba”', 'the newer note wins');
+  assert.equal(m.progress.tr.notes.selam.text, 'from the other phone');
+  assert.equal('bad' in m.progress.tr.notes || 'worse' in m.progress.tr.notes, false);
+  assert.equal(m.summary.langs.find((l) => l.code === 'tr').notesChanged, 1);
+  assert.equal(m.summary.changed, true);
+  store.applySync(m);
+  assert.equal(store.getNote('tr', 'selam'), 'from the other phone');
+  assert.equal(mergeAll(store.syncData(), theirs, { device: 'this' }).summary.changed, false, 'the same code again changes nothing');
+  // Emptying a note removes it, and the removal wins over an older copy elsewhere.
+  assert.equal(store.setNote('tr', 'selam', '   '), '');
+  assert.equal(store.getNote('tr', 'selam'), '');
+  const again = mergeAll(store.syncData(), theirs, { device: 'this' });
+  assert.equal(again.progress.tr.notes.selam.deleted, true);
+  // A reset clears progress, not notes.
+  store.resetProgress('tr');
+  assert.equal(store.getNote('tr', 'merhaba'), 'sounds like “mare-haba”');
+  // A backup keeps them.
+  const backup = store.exportData();
+  store._resetAll();
+  store.importData(backup);
+  assert.equal(store.getNote('tr', 'merhaba'), 'sounds like “mare-haba”');
+  store._resetAll();
+});
