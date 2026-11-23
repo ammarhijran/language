@@ -89,6 +89,16 @@ export default function word(ctx, id) {
           }, 'Undo — I want to learn it'))
         : null,
       cardHistory(card) ? h('p', { class: 'hint card-history' }, cardHistory(card)) : null,
+      // A word that never stuck can be taken back to the start: it becomes new, and its lesson teaches it again.
+      card && st !== 'new' && st !== 'known' ? h('button', {
+        type: 'button', class: 'link-btn', id: 'word-restart',
+        onclick: () => {
+          if (!confirm(`Learn “${w.tr}” again from the start? Its review history is cleared.`)) return;
+          store.deleteCard(lang.code, w.id);
+          ctx.toast('Back among the new words');
+          ctx.rerender();
+        },
+      }, 'Learn it again from the start') : null,
       card ? h('p', { class: 'hint' }, card.due <= Date.now()
         ? 'Due for review now.'
         : `Next review: ${new Date(card.due).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}.`) : null,

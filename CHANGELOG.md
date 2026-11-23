@@ -10,6 +10,7 @@
 
 ### Added
 - **Fixed:** with the largest text size on a narrow phone, the Play / Pause label in a text’s player bar was cut off at both ends; the row now wraps instead.
+- **Learn it again from the start** (a learned word’s page): takes a word that never stuck back among the new words, after asking — its lesson then teaches it again.
 - **Search → My words:** when a search finds no word, “Add it to My words” is one tap away — with the word filled in when you typed it in the language’s own script.
 - **Go on by itself after a right answer** (Settings → Lessons; off by default): in multiple-choice questions, a right answer moves on to the next question once the word has been said — one tap a question instead of two. A wrong answer always waits for you.
 - **Review ahead** (the Review screen, when nothing is due): the words that come up by the end of tomorrow can be reviewed today — for the evening before a day without time. They are scheduled from today, like any review.
