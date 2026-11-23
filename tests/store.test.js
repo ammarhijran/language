@@ -143,6 +143,45 @@ test('unmarking a word keeps a tombstone that every reader skips', () => {
   assert.equal(store.getCard('tr', 'constructor'), undefined, 'inherited properties are not cards');
 });
 
+test('own spellings for the voice: kept per language on this device, in backups but not in sync data', () => {
+  assert.deepEqual(store.getSay('ja'), {});
+  assert.equal(store.setSay('ja', '今日', '  きょう \n'), 'きょう');
+  assert.equal(store.setSay('ja', '明日', 'あした'), 'あした');
+  assert.equal(store.setSay('uk', 'молоко', 'молоко\u0301'), 'молоко\u0301');
+  assert.deepEqual(store.getSay('ja'), { 今日: 'きょう', 明日: 'あした' });
+  store.getSay('ja').今日 = 'changed'; // a copy: changing it changes nothing
+  assert.equal(store.getSay('ja').今日, 'きょう');
+  assert.equal(store.setSay('ja', '明日', '   '), '', 'an empty text removes it');
+  assert.deepEqual(store.getSay('ja'), { 今日: 'きょう' });
+  assert.equal(store.setSay('ja', 'x', 'y'.repeat(500)).length, store.SAY_MAX);
+  // nothing odd gets in
+  for (const [lang, id] of [['constructor', 'a'], ['ja', '__proto__'], ['ja', ''], ['ja', 'i'.repeat(81)], ['JA', 'a'], ['ja', 5]]) {
+    assert.equal(store.setSay(lang, id, 'text'), '', `${lang}/${id}`);
+  }
+  assert.deepEqual(store.getSay('constructor'), {});
+  // a sync code carries progress and own words, not these
+  assert.equal(JSON.stringify(store.syncData()).includes('きょう'), false);
+  // resetting a language's progress leaves them (they are about the voice, not about learning)
+  store.resetProgress('ja');
+  assert.equal(store.getSay('ja').今日, 'きょう');
+  // a backup file has them, and brings them back — checked on the way in
+  const backup = JSON.parse(store.exportData());
+  assert.equal(backup.say.ja.今日, 'きょう');
+  backup.say.ja.bad = { not: 'a string' };
+  backup.say.ja.empty = '   ';
+  backup.say.zz9 = { a: 'b' };
+  backup.say.tr = 'nope';
+  store.setSay('ja', '今日', '');
+  store.importData(JSON.stringify(backup));
+  assert.deepEqual(Object.keys(store.getSay('ja')).sort(), ['x', '今日']);
+  assert.deepEqual(store.getSay('uk'), { молоко: 'молоко\u0301' });
+  assert.deepEqual(store.getSay('tr'), {});
+  // a backup from before the feature
+  delete backup.say;
+  store.importData(JSON.stringify(backup));
+  assert.deepEqual(store.getSay('ja'), {});
+});
+
 test('reset progress remembers when it happened', () => {
   store.setCard('tr', 'kedi', { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: T, added: T, last: T });
   const before = Date.now();

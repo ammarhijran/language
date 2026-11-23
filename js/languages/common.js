@@ -343,6 +343,16 @@ export function makePack(def) {
     return textIndex.get(text) || textIndex.get(text.trim()) || { tr: text };
   };
   const speechOf = def.speech || ((e, said) => ({ text: said ?? e.tr, lang: def.speechLang }));
+  // The learner's own spellings for the voice (a word's page → "Voice says it
+  // wrong?"): entry id → text. They win over say.js and over the pack's own
+  // reading of the entry; set when the app starts and whenever one changes.
+  let ownSay = new Map();
+  pack.setOwnSay = (map = {}) => {
+    ownSay = new Map(Object.entries(map || {}).filter(([, text]) => typeof text === 'string' && text.trim()));
+    return pack;
+  };
+  /** The learner's spelling of an entry for the voice, or ''. */
+  pack.ownSay = (entry) => (entry?.id != null && ownSay.get(entry.id)) || '';
   const slowText = def.slowText || ((text) => pauseBetweenWords(text));
 
   /**
@@ -355,12 +365,15 @@ export function makePack(def) {
    *   slow     the text with pauses between the words (phrases only), for slow playback
    *   alt      what to say instead when no voice exists for `lang` itself (Egyptian
    *            Arabic read by a Standard Arabic voice)
+   * `opts.course`: leave the learner's own spelling out (what the course sends).
    */
-  pack.speech = (target) => {
+  pack.speech = (target, opts = {}) => {
     if (target == null) return { text: '', lang: def.speechLang, regions: [def.speechLang], slow: null };
     if (typeof target === 'object' && 'text' in target) return { lang: def.speechLang, ...target };
     const entry = typeof target === 'string' ? entryForText(target) : target;
-    const said = entry.say ?? def.saySentences?.[entry.tr];
+    // (an entry's example and pair have no id: only the headword can be respelled)
+    const mine = entry.id != null && !opts.course ? ownSay.get(entry.id) : undefined;
+    const said = mine ?? entry.say ?? def.saySentences?.[entry.tr];
     const r = { regions: def.speechRegions || [def.speechLang], ...speechOf(entry, said) };
     if (r.slow === undefined) r.slow = slowText(r.text, entry);
     return r;

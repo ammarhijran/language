@@ -42,7 +42,8 @@ await store.init();
 // Only the language being learned is loaded (the others' names and counts are in languages/meta.js).
 const lang = await loadLanguage(store.getSettings().lang);
 // The learner's own words join the pack as one more topic ("My words").
-const refreshOwnWords = () => lang.setOwnWords(store.getOwnWords(lang.code));
+// The learner's own words, and their own spellings for the voice.
+const refreshOwnWords = () => { lang.setOwnWords(store.getOwnWords(lang.code)); lang.setOwnSay(store.getSay(lang.code)); };
 refreshOwnWords();
 
 // Settings that change how everything is shown: reading aids and text size.

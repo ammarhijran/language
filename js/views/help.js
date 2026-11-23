@@ -48,6 +48,7 @@ export function tips(lang, { reminders = false, scope = '' } = {}) {
         item('👂', 'Ear training', 'Pairs of words one sound apart — including pairs from the words you have learned. Which one did you hear?', '#/speak/ear'),
         item('🗣️', 'Sounds', 'The sounds English speakers find new, each with words to practise.', '#/speak/sounds'),
         ...(sound ? [item('🎯', sound[1], sound[2], `#/practice/${sound[0]}${scope}`)] : []),
+        item('🔧', 'Voice says a word wrong?', 'On the word’s page, “Voice says it wrong?” lets you respell the word for the voice only — the word on screen stays. Settings → Audio has a switch for the whole language where there is one.', '#/progress'),
       ],
     },
     {

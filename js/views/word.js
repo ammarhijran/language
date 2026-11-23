@@ -69,6 +69,7 @@ export default function word(ctx, id) {
       pronunciationPanel(ctx, w),
       // Where stress follows rules (Arabic): the rule behind this word's stress.
       stressNote ? h('p', { class: 'hint stress-note' }, h('b', null, 'Why the stress is there: '), stressNote) : null,
+      voiceFix(ctx, w),
       registerBlock(ctx, w),
       exampleBlock(ctx, w, { links: true }),
       w.note ? h('p', { class: 'note' }, rich(w.note, lang.code)) : null,
@@ -101,6 +102,73 @@ export default function word(ctx, id) {
         h('a', { href: `#/word/${encodeURIComponent(x.id)}` }, h('b', { lang: lang.code }, x.tr), ' ', h('span', null, x.en)))))) : null,
     seen,
   );
+}
+
+// What to try when a voice reads a word wrong, by language.
+const VOICE_FIX_TIPS = {
+  ja: 'Kana usually works: きょう for 今日.',
+  ar: 'Adding or leaving out vowel marks often changes how a voice reads a word.',
+  uk: 'An accent mark after the stressed vowel (молоко́) helps some voices; a hyphen between syllables helps others.',
+  tr: 'A hyphen between syllables, or a doubled vowel where it should be long, often helps.',
+};
+
+/**
+ * "Voice says it wrong?" — the learner's own spelling of this entry for the
+ * voice. Phone voices differ, and each gets its own words wrong; the word on
+ * screen, its reading and the answers that count stay the course's. Kept on
+ * this device (store.setSay) and applied wherever the entry is spoken.
+ */
+function voiceFix(ctx, w) {
+  const { lang, store } = ctx;
+  const box = h('div', { class: 'voice-fix' });
+  const course = () => lang.speech(w, { course: true });
+  // `text` as this entry would be spoken: its locale and voice, no slow version.
+  const spoken = (text) => {
+    const base = course();
+    return { ...base, text, slow: null, ...(base.alt ? { alt: { ...base.alt, text, slow: null } } : {}) };
+  };
+  const apply = (text) => {
+    const kept = store.setSay(lang.code, w.id, text);
+    lang.setOwnSay(store.getSay(lang.code));
+    return kept;
+  };
+  const show = () => {
+    const mine = lang.ownSay(w);
+    set(box, mine
+      ? [h('p', { class: 'voice-fix-text' }, h('span', { 'aria-hidden': 'true' }, '🔧 '), 'The voice reads your spelling: ', h('b', { lang: lang.code }, mine)),
+        h('button', { type: 'button', class: 'link-btn', onclick: edit }, 'Change it')]
+      : h('button', { type: 'button', class: 'link-btn', onclick: edit }, 'Voice says it wrong?'));
+  };
+  function edit() {
+    const mine = lang.ownSay(w);
+    const input = h('input', {
+      type: 'text', class: 'my-note-input', id: 'voice-fix-input', lang: lang.code, dir: lang.dir || 'auto', maxlength: String(store.SAY_MAX),
+      autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': `How the voice should read ${w.tr}`,
+    });
+    input.value = mine || course().text;
+    const back = (focus = true) => { show(); if (focus) box.querySelector('button')?.focus(); };
+    const save = () => {
+      const typed = input.value.replace(/\s+/g, ' ').trim();
+      // The course's own text is no spelling of the learner's: nothing to keep.
+      apply(typed === course().text ? '' : typed);
+      back();
+      ctx.toast(lang.ownSay(w) ? 'The voice will read your spelling.' : 'The voice reads the course’s spelling.');
+    };
+    set(box,
+      h('label', { class: 'field', for: 'voice-fix-input' }, h('span', null, 'Spell it for the voice')),
+      input,
+      h('div', { class: 'button-row' },
+        h('button', { type: 'button', class: 'btn small', onclick: () => { if (input.value.trim()) ctx.say(spoken(input.value.trim())); } }, icon('volume', 16), 'Listen'),
+        h('button', { type: 'button', class: 'btn small primary', onclick: save }, 'Use this'),
+        mine ? h('button', { type: 'button', class: 'btn small', onclick: () => { apply(''); back(); ctx.toast('The voice reads the course’s spelling.'); } }, 'Back to the course’s') : null,
+        h('button', { type: 'button', class: 'btn small', onclick: () => back() }, 'Cancel')),
+      h('p', { class: 'hint' }, 'Only the voice gets this: the word on screen and the answers that count stay the same. ',
+        VOICE_FIX_TIPS[lang.code] || '', ' Kept on this device, for its voice.'));
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); save(); } });
+    input.focus();
+  }
+  show();
+  return box;
 }
 
 /**

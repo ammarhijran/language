@@ -362,6 +362,32 @@ test('Ukrainian: a word can be sent to the voice with its stress marked', async 
   assert.equal(pack.speech(moloko).text, 'молоко');
 });
 
+test('the learner’s own spelling for the voice wins for that entry, and only there', () => {
+  for (const pack of [tr, uk, ja, ar]) {
+    const word = pack.words.find((w) => !w.say && w.example && !/\s/.test(w.tr));
+    const fixed = pack.words.find((w) => w.say);
+    const before = pack.speech(word);
+    const exampleBefore = pack.speech(word.example).text;
+    try {
+      pack.setOwnSay({ [word.id]: 'my spelling', ...(fixed ? { [fixed.id]: 'mine too' } : {}), other: '   ' });
+      assert.equal(pack.ownSay(word), 'my spelling');
+      assert.equal(pack.ownSay({ tr: word.tr }), '', 'an entry without an id has none');
+      assert.equal(pack.speech(word).text, 'my spelling', pack.code);
+      assert.equal(pack.speech(word.tr).text, 'my spelling', 'a display string is looked up like the entry');
+      assert.equal(pack.speech({ ...word }).text, 'my spelling');
+      assert.equal(pack.speech(word).lang, before.lang, 'the locale stays the entry’s');
+      assert.deepEqual(pack.speech(word, { course: true }), before, 'the course’s own can still be asked for');
+      if (fixed) assert.equal(pack.speech(fixed).text, 'mine too', 'it wins over the course’s say.js');
+      assert.equal(pack.speech(word.example).text, exampleBefore, 'the example sentence is untouched');
+      assert.equal(pack.speech({ text: 'as given', lang: before.lang }).text, 'as given');
+    } finally {
+      pack.setOwnSay({});
+    }
+    assert.deepEqual(pack.speech(word), before);
+    assert.equal(pack.ownSay(word), '');
+  }
+});
+
 test('Japanese: single words can be sent to the voice in kana', () => {
   const pack = ja;
   const word = pack.words.find((w) => w.tr === '今日'); // きょう: a single word with no override

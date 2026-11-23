@@ -54,7 +54,7 @@ const RANGES = { rate: [0.5, 1.2, false], lessonSize: [3, 15, true], sessionSize
 const isObj = (x) => x != null && typeof x === 'object' && !Array.isArray(x);
 const BAD_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 
-const fresh = () => ({ settings: { ...DEFAULTS }, progress: {}, game: {}, mine: {}, words: {} });
+const fresh = () => ({ settings: { ...DEFAULTS }, progress: {}, game: {}, mine: {}, words: {}, say: {} });
 
 // The learner's own texts for Read & Listen ("My texts"): kept on this device
 // and in backup files, not in sync codes (they are personal, and can be long).
@@ -77,6 +77,31 @@ function cleanMine(raw) {
       if (texts.length >= OWN_TEXTS_MAX) break;
     }
     if (texts.length) out[lang] = texts;
+  }
+  return out;
+}
+
+// The learner's own spellings for the voice ("Voice says it wrong?" on a
+// word's page): id → the text sent to the voice instead of the course's. Kept
+// on this device and in backup files, not in sync codes — voices differ from
+// one device to the next, and so does what they get wrong.
+export const SAY_MAX = 120; // characters per spelling
+const SAYS_MAX = 500; // spellings per language
+const cleanSayText = (text) => (typeof text === 'string' ? text.replace(/\s+/g, ' ').trim().slice(0, SAY_MAX) : '');
+function cleanSay(raw) {
+  const out = {};
+  if (!isObj(raw)) return out;
+  for (const [lang, map] of Object.entries(raw)) {
+    if (BAD_KEYS.has(lang) || !/^[a-z]{2,3}$/.test(lang) || !isObj(map)) continue;
+    const kept = {};
+    let n = 0;
+    for (const [id, text] of Object.entries(map)) {
+      const clean = cleanSayText(text);
+      if (BAD_KEYS.has(id) || !id || id.length > 80 || !clean) continue;
+      kept[id] = clean;
+      if (++n >= SAYS_MAX) break;
+    }
+    if (n) out[lang] = kept;
   }
   return out;
 }
@@ -124,7 +149,7 @@ function cleanSettings(raw) {
 function fromData(d) {
   const settings = cleanSettings(d?.settings);
   const { progress, game } = sanitize(d, { device: deviceId(), dailyGoal: settings.dailyGoal });
-  return { settings, progress, game, mine: cleanMine(d?.mine), words: cleanOwnWords(d?.words) };
+  return { settings, progress, game, mine: cleanMine(d?.mine), words: cleanOwnWords(d?.words), say: cleanSay(d?.say) };
 }
 
 function load() {
@@ -405,6 +430,32 @@ export function setNote(lang, id, text) {
   if (clean === (live(old) ? old.text : '')) return clean;
   const last = Math.max(Date.now(), (old?.last ?? 0) + 1);
   notes[id] = clean ? { text: clean, last } : { deleted: true, last };
+  save();
+  return clean;
+}
+
+/** The learner's own spellings for the voice in a language: { id: text } (a copy). */
+export const getSay = (lang) => ({ ...(state.say && Object.hasOwn(state.say, lang) ? state.say[lang] : {}) });
+
+/**
+ * Set (or, with an empty text, remove) the learner's spelling of an entry
+ * for the voice. Returns what was stored: the cleaned text, or '' when
+ * nothing is — also when the language already has SAYS_MAX of them.
+ */
+export function setSay(lang, id, text) {
+  if (!/^[a-z]{2,3}$/.test(lang) || typeof id !== 'string' || !id || id.length > 80 || BAD_KEYS.has(id)) return '';
+  const clean = cleanSayText(text);
+  state.say ||= {};
+  const map = Object.hasOwn(state.say, lang) ? state.say[lang] : {};
+  const had = Object.hasOwn(map, id);
+  if (!clean) {
+    if (!had) return '';
+    delete map[id];
+  } else {
+    if (!had && Object.keys(map).length >= SAYS_MAX) return '';
+    map[id] = clean;
+  }
+  if (Object.keys(map).length) state.say[lang] = map; else delete state.say[lang];
   save();
   return clean;
 }
