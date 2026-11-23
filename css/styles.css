@@ -452,7 +452,7 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .quick-link .quick-emoji { font-size: var(--fs-xl); }
 .own-link > .icon:last-child { margin-inline-start: auto; flex: none; }
 /* Word page: copy the word. */
-.copy-btn { display: flex; margin: 0 auto var(--sp-2); }
+.word-send { display: flex; justify-content: center; gap: var(--sp-5); margin-bottom: var(--sp-2); }
 /* Word page: entries one letter away. */
 .lookalikes .word-chips { justify-content: flex-start; margin: 0; }
 /* Hands-free: the example sentence while it is said. */

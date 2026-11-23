@@ -16,7 +16,7 @@ globalThis.window = {
   },
 };
 
-const { saveTextFile, keepScreenOn, systemBars } = await import('../js/native.js');
+const { saveTextFile, keepScreenOn, systemBars, canShareText, shareText } = await import('../js/native.js');
 const { wordsCsv } = await import('../js/wordlist.js');
 const { languages } = await import('./all-languages.js');
 
@@ -92,4 +92,18 @@ test('a forced theme sets the phone’s status-bar icons to match, where the pag
   assert.equal(await systemBars('dark', NEW), null);
   window.Capacitor.nativePromise = real;
   assert.equal(await systemBars('dark', NEW), 'DARK');
+});
+
+test('sharing a word uses the Share plugin in the apps, and says how it ended', async () => {
+  calls.length = 0;
+  assert.equal(canShareText(), true);
+  assert.equal(await shareText('merhaba — hello', { title: 'Turkish: merhaba', dialogTitle: 'Share this word' }), 'shared');
+  assert.deepEqual(calls.map((c) => `${c.plugin}.${c.method}`), ['Share.share']);
+  assert.deepEqual(calls[0].options, { title: 'Turkish: merhaba', text: 'merhaba — hello', dialogTitle: 'Share this word' });
+  const real = window.Capacitor.nativePromise;
+  window.Capacitor.nativePromise = () => Promise.reject(new Error('Share canceled'));
+  assert.equal(await shareText('x'), 'cancelled', 'closing the sheet is not an error');
+  window.Capacitor.nativePromise = () => Promise.reject(new Error('no activity'));
+  assert.equal(await shareText('x'), 'failed');
+  window.Capacitor.nativePromise = real;
 });

@@ -4,7 +4,7 @@ import { status, STATUS_LABEL, markKnown } from '../srs.js';
 import { rich } from './grammar.js';
 import { loadTexts, textsWithWord } from '../reader.js';
 import { lookalikes } from '../stats.js';
-import { copyText } from '../native.js';
+import { copyText, canShareText, shareText } from '../native.js';
 
 export default function word(ctx, id) {
   const { lang, store } = ctx;
@@ -52,10 +52,20 @@ export default function word(ctx, id) {
         h('p', { class: 'hero-en' }, w.en, ' ', regBadge(w))),
       audioControls(ctx, w),
       // To paste it into a message, a search, a note.
-      h('button', {
-        type: 'button', class: 'link-btn copy-btn',
-        onclick: async () => ctx.toast((await copyText(w.tr)) ? `Copied “${w.tr}”` : 'Couldn’t copy — select the word and copy it by hand.'),
-      }, 'Copy'),
+      h('div', { class: 'word-send' },
+        h('button', {
+          type: 'button', class: 'link-btn copy-btn',
+          onclick: async () => ctx.toast((await copyText(w.tr)) ? `Copied “${w.tr}”` : 'Couldn’t copy — select the word and copy it by hand.'),
+        }, 'Copy'),
+        // The word with its meaning, through the phone's share sheet.
+        canShareText() ? h('button', {
+          type: 'button', class: 'link-btn share-btn',
+          onclick: async () => {
+            const reading = lang.fullReading?.(w);
+            const result = await shareText(`${w.tr}${reading ? ` (${reading})` : ''} — ${w.en}`, { title: `${lang.name}: ${w.tr}`, dialogTitle: 'Share this word' });
+            if (result === 'failed') ctx.toast('Couldn’t open the share sheet — use Copy instead.');
+          },
+        }, 'Share') : null),
       pronunciationPanel(ctx, w),
       // Where stress follows rules (Arabic): the rule behind this word's stress.
       stressNote ? h('p', { class: 'hint stress-note' }, h('b', null, 'Why the stress is there: '), stressNote) : null,

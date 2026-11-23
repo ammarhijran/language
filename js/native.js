@@ -81,6 +81,24 @@ export async function copyText(text) {
   } catch { return false; }
 }
 
+/** Whether text can be handed to the system's share sheet here. */
+export const canShareText = () => hasPlugin('Share') || (typeof navigator !== 'undefined' && typeof navigator.share === 'function');
+
+/**
+ * Hand text to the share sheet (a chat, mail, notes…). Resolves to 'shared',
+ * 'cancelled' (the learner closed the sheet) or 'failed'. It never throws.
+ */
+export async function shareText(text, { title = 'Lisan', dialogTitle = 'Share' } = {}) {
+  try {
+    if (hasPlugin('Share')) await plugin('Share').share({ title, text, dialogTitle });
+    else if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') await navigator.share({ title, text });
+    else return 'failed';
+    return 'shared';
+  } catch (e) {
+    return /cancel|abort/i.test(String(e?.name || '') + String(e?.message || e)) ? 'cancelled' : 'failed';
+  }
+}
+
 let webLock = null;
 /**
  * Keep the screen on while something plays by itself (hands-free listening,
