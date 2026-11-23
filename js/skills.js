@@ -13,6 +13,8 @@ export const SKILLS = [
   // The language's own exercise about how words sound: its practice mode is chosen by skillMode().
   { id: 'sounds', name: 'Sounds', emoji: '🎯', hint: 'stress, beats, tricky letters', types: ['stress', 'beats', 'letters'], mode: null },
   // Not an exercise of a session: Practice → Numbers by ear files its answers here itself.
+  // Likewise the letter quiz (Speak → Alphabet), where the script is new.
+  { id: 'letters', name: 'Letters', emoji: '🔤', hint: 'know the script', types: [], mode: null, href: '#/speak/alphabet' },
   { id: 'numbers', name: 'Numbers', emoji: '🔢', hint: 'hear a number, type it', types: [], mode: null, href: '#/numbers' },
 ];
 

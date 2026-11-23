@@ -47,6 +47,7 @@ export default function letterQuiz(ctx, setId) {
       const ok = q.options[k] === q.item;
       if (ok) right++; else missed.push(q.item);
       ctx.store.logActivity(lang.code, { practiced: 1 });
+      ctx.store.logSkill?.(lang.code, 'letters', ok); // Progress → Your skills
       buttons.forEach((b, n) => {
         b.disabled = true;
         if (q.options[n] === q.item) b.classList.add('correct');
