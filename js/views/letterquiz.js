@@ -1,6 +1,6 @@
 // Speak → Alphabet → Quiz: ten letters, one at a time (js/letterquiz.js).
 import { h, icon, set, bindKeys } from '../ui.js';
-import { backLink, playButton } from '../components.js';
+import { backLink, playButton, devicePref, setDevicePref } from '../components.js';
 import { rich } from './grammar.js';
 import { letterSets, letterQuestions } from '../letterquiz.js';
 
@@ -17,7 +17,10 @@ export default function letterQuiz(ctx, setId) {
         h('a', { class: 'btn primary', href: '#/speak/alphabet' }, 'See the letters')));
     return view;
   }
-  const qs = letterQuestions(chosen, COUNT);
+  // The letters missed in the last round of this set come up again in this one.
+  const prefKey = `letterMissed:${lang.code}:${chosen.id}`;
+  const before = devicePref(prefKey, []);
+  const qs = letterQuestions(chosen, COUNT, Math.random, Array.isArray(before) ? before.filter((g) => typeof g === 'string').slice(0, COUNT) : []);
   const missed = [];
   let i = 0;
   let right = 0;
@@ -85,6 +88,7 @@ export default function letterQuiz(ctx, setId) {
   function summary() {
     const others = sets.filter((s) => s !== chosen);
     const unique = [...new Set(missed)];
+    setDevicePref(prefKey, unique.map((x) => x.glyph));
     set(view,
       backLink(ctx, '#/speak/alphabet', lang.code === 'ja' ? 'Kana' : 'Alphabet'),
       h('div', { class: 'summary' },
@@ -92,7 +96,7 @@ export default function letterQuiz(ctx, setId) {
         h('h2', null, 'Round done'),
         h('p', { class: 'big-number' }, `${right}/${qs.length}`),
         unique.length
-          ? [h('p', { class: 'muted' }, 'Worth another look:'),
+          ? [h('p', { class: 'muted' }, 'Worth another look — they come up again next round:'),
             h('ul', { class: 'word-chips letter-missed' }, unique.map((x) => h('li', null, h('span', null, pair(x)))))]
           : h('p', { class: 'muted' }, 'Every one right.'),
         h('div', { class: 'actions stack' },

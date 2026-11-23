@@ -92,3 +92,16 @@ test('a round: different letters, four distinct options with the right one among
   seed = 7;
   assert.deepEqual(letterQuestions(hira, 5, rnd).map((q) => q.item.glyph + q.dir), a);
 });
+
+test('letters missed last time are asked again', () => {
+  const [hira] = letterSets(ja);
+  for (let run = 0; run < 20; run++) {
+    const qs = letterQuestions(hira, 10, Math.random, ['ぬ', 'め', 'nope']);
+    const glyphs = qs.map((q) => q.item.glyph);
+    assert.equal(qs.length, 10);
+    assert.equal(new Set(glyphs).size, 10);
+    assert.ok(glyphs.includes('ぬ') && glyphs.includes('め'));
+  }
+  // more missed than a round holds: still one round
+  assert.equal(letterQuestions(hira, 10, Math.random, hira.items.map((x) => x.glyph)).length, 10);
+});

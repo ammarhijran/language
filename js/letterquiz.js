@@ -40,9 +40,13 @@ const close = (a, b) => a.label[0] === b.label[0] || a.label.at(-1) === b.label.
  * reading) or 'find' (the reading is shown, pick the letter); four options
  * in random order, one of them `item`. No two options share a reading or a
  * glyph, and up to two of the wrong ones are close to the right one.
+ * Letters whose glyph is in `first` are asked for certain.
  */
-export function letterQuestions(set, count = 10, random = Math.random) {
-  return mix(set.items, random).slice(0, count).map((item) => {
+export function letterQuestions(set, count = 10, random = Math.random, first = []) {
+  // `first`: glyphs missed last time — they are in this round (in random places), the rest is drawn.
+  const again = mix(set.items.filter((x) => first.includes(x.glyph)), random).slice(0, count);
+  const rest = mix(set.items.filter((x) => !again.includes(x)), random).slice(0, count - again.length);
+  return mix([...again, ...rest], random).map((item) => {
     const others = mix(set.items.filter((x) => x !== item), random);
     const picked = [];
     const fits = (x) => ![item, ...picked].some((p) => p.label === x.label || p.glyph === x.glyph);
