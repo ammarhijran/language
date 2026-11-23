@@ -4490,305 +4490,6 @@ export const texts = [
     ]
   },
   {
-    "id": "ar-tongue-twisters",
-    "kind": "twister",
-    "level": "B1",
-    "title": "Tongue Twisters",
-    "titleNative": "عِبَارَاتٌ صَعْبَةُ النُّطْقِ",
-    "summary": "Five well-known Arabic tongue twisters — three from everyday speech and two famous lines of classical Arabic. Say each one slowly first, then three times fast.",
-    "lines": [
-      {
-        "tr": "خَيْطُ حَرِيرٍ عَلَى حَيْطِ خَلِيلٍ.",
-        "en": "A silk thread on Khalil’s wall.",
-        "tl": "khayṭu ḥarīrin ʿalā ḥayṭi khalīl",
-        "note": "Trains خ (kh) against ح (ḥ). حيط is the everyday word for “wall” in the Levant and Egypt (Standard Arabic: حائط)."
-      },
-      {
-        "tr": "مِشْمِشْنَا مِشْ مِنْ مِشْمِشْكُمْ، وَمِشْمِشْكُمْ مِشْ مِنْ مِشْمِشْنَا.",
-        "en": "Our apricots are not from your apricots, and your apricots are not from our apricots.",
-        "tl": "mishmishnā mish min mishmishkum wa-mishmishkum mish min mishmishnā",
-        "note": "Everyday Arabic: مش means “not”. Trains م and ش."
-      },
-      {
-        "tr": "لُورِي وَرَا لُورِي.",
-        "en": "A lorry behind a lorry.",
-        "tl": "lūrī warā lūrī",
-        "note": "From the Gulf: ورا is the everyday word for “behind” (Standard Arabic: وراء). Trains ل and ر — say it five times fast."
-      },
-      {
-        "tr": "وَقَبْرُ حَرْبٍ بِمَكَانٍ قَفْرٍ، وَلَيْسَ قُرْبَ قَبْرِ حَرْبٍ قَبْرُ.",
-        "en": "Harb’s grave lies in a desolate place, and near Harb’s grave there is no grave.",
-        "tl": "wa-qabru ḥarbin bi-makānin qafrin wa-laysa qurba qabri ḥarbin qabr",
-        "note": "A famous line of classical poetry, said to be impossible to recite three times in a row. Trains ق, ب and ر."
-      },
-      {
-        "tr": "أَلَمٌ أَلَمَّ أَلَمْ أُلِمَّ بِدَائِهِ.",
-        "en": "A pain has struck me — did I not come to know its illness?",
-        "tl": "ʾalamun ʾalamma ʾalam ʾulimma bi-dāʾih",
-        "note": "Classical word-play on look-alikes: أَلَمٌ “a pain”, أَلَمَّ “it struck”, أَلَمْ “did … not”. Trains the glottal stop ء and the doubled م."
-      }
-    ],
-    "glossary": [
-      {
-        "tr": "خَيْطُ",
-        "en": "a thread",
-        "tl": "khayṭ"
-      },
-      {
-        "tr": "حَرِيرٍ",
-        "en": "silk",
-        "tl": "ḥarīr"
-      },
-      {
-        "tr": "مِشْ",
-        "en": "not (everyday Arabic)",
-        "tl": "mish"
-      },
-      {
-        "tr": "وَرَا",
-        "en": "behind (everyday Arabic)",
-        "tl": "warā"
-      },
-      {
-        "tr": "قَبْرُ",
-        "en": "a grave",
-        "tl": "qabr"
-      },
-      {
-        "tr": "قَفْرٍ",
-        "en": "desolate, empty",
-        "tl": "qafr"
-      },
-      {
-        "tr": "أَلَمٌ",
-        "en": "a pain",
-        "tl": "ʾalam"
-      }
-    ],
-    "questions": [
-      {
-        "q": "Where is the silk thread?",
-        "options": [
-          "In a desolate place",
-          "On Khalil’s wall",
-          "Behind a lorry",
-          "Among the apricots"
-        ],
-        "answer": 1,
-        "explain": "«عَلَى حَيْطِ خَلِيلٍ» — on Khalil’s wall."
-      },
-      {
-        "q": "What does «مِشْ» mean in everyday Arabic?",
-        "options": [
-          "from",
-          "behind",
-          "not",
-          "our"
-        ],
-        "answer": 2,
-        "explain": "«مِشْ مِنْ» — “not from”."
-      },
-      {
-        "q": "What is there near Harb’s grave?",
-        "options": [
-          "No other grave",
-          "A wall",
-          "An apricot tree",
-          "A lorry"
-        ],
-        "answer": 0,
-        "explain": "«وَلَيْسَ قُرْبَ قَبْرِ حَرْبٍ قَبْرُ» — near Harb’s grave there is no grave."
-      },
-      {
-        "q": "Which two sounds does the first twister train?",
-        "options": [
-          "م and ش",
-          "ل and ر",
-          "ق and ب",
-          "خ (kh) and ح (ḥ)"
-        ],
-        "answer": 3,
-        "explain": "خيط and خليل begin with خ; حرير and حيط begin with ح."
-      }
-    ]
-  },
-  {
-    "id": "ar-proverbs",
-    "kind": "saying",
-    "level": "A2",
-    "title": "Proverbs You Will Hear",
-    "titleNative": "أَمْثَالٌ وَحِكَمٌ",
-    "summary": "Thirteen proverbs and sayings known across the Arab world. The translation is word for word; the note under it says what people mean.",
-    "lines": [
-      {
-        "tr": "الصَّبْرُ مِفْتَاحُ الْفَرَجِ.",
-        "en": "Patience is the key to relief.",
-        "tl": "aṣ-ṣabru miftāḥu-l-faraj",
-        "note": "Be patient: things get better."
-      },
-      {
-        "tr": "الْجَارُ قَبْلَ الدَّارِ.",
-        "en": "The neighbour before the house.",
-        "tl": "al-jāru qabla-d-dār",
-        "note": "Find out about the neighbours before you choose a home — good neighbours matter most."
-      },
-      {
-        "tr": "خَيْرُ الْكَلَامِ مَا قَلَّ وَدَلَّ.",
-        "en": "The best speech is what is short and to the point.",
-        "tl": "khayru-l-kalāmi mā qalla wa-dall",
-        "note": "Keep it brief and meaningful."
-      },
-      {
-        "tr": "مَنْ جَدَّ وَجَدَ.",
-        "en": "Whoever works hard, finds.",
-        "tl": "man jadda wajad",
-        "note": "Hard work pays off."
-      },
-      {
-        "tr": "الْعِلْمُ نُورٌ.",
-        "en": "Knowledge is light.",
-        "tl": "al-ʿilmu nūr",
-        "note": "Said in praise of learning and education."
-      },
-      {
-        "tr": "فِي التَّأَنِّي السَّلَامَةُ وَفِي الْعَجَلَةِ النَّدَامَةُ.",
-        "en": "In taking your time there is safety, and in haste there is regret.",
-        "tl": "fī-t-taʾannī-s-salāmatu wa-fī-l-ʿajalati-n-nadāma",
-        "note": "Haste makes waste."
-      },
-      {
-        "tr": "الصَّدِيقُ وَقْتَ الضِّيقِ.",
-        "en": "The friend, at the time of hardship.",
-        "tl": "aṣ-ṣadīqu waqta-ḍ-ḍīq",
-        "note": "A friend in need is a friend indeed."
-      },
-      {
-        "tr": "عُصْفُورٌ فِي الْيَدِ خَيْرٌ مِنْ عَشَرَةٍ عَلَى الشَّجَرَةِ.",
-        "en": "A bird in the hand is better than ten in the tree.",
-        "tl": "ʿuṣfūrun fī-l-yadi khayrun min ʿasharatin ʿalā-sh-shajara",
-        "note": "Be glad of what you have for certain."
-      },
-      {
-        "tr": "يَدٌ وَاحِدَةٌ لَا تُصَفِّقُ.",
-        "en": "One hand does not clap.",
-        "tl": "yadun wāḥidatun lā tuṣaffiq",
-        "note": "Nothing gets done without working together."
-      },
-      {
-        "tr": "اُطْلُبُوا الْعِلْمَ مِنَ الْمَهْدِ إِلَى اللَّحْدِ.",
-        "en": "Seek knowledge from the cradle to the grave.",
-        "tl": "uṭlubū-l-ʿilma mina-l-mahdi ʾilā-l-laḥd",
-        "note": "Never stop learning."
-      },
-      {
-        "tr": "لِكُلِّ مَقَامٍ مَقَالٌ.",
-        "en": "For every occasion there is a way of speaking.",
-        "tl": "li-kulli maqāmin maqāl",
-        "note": "Suit your words to the situation."
-      },
-      {
-        "tr": "الْقِرْدُ فِي عَيْنِ أُمِّهِ غَزَالٌ.",
-        "en": "In his mother’s eye, the monkey is a gazelle.",
-        "tl": "al-qirdu fī ʿayni ʾummihi ghazāl",
-        "note": "Every mother thinks her child is beautiful."
-      },
-      {
-        "tr": "الْوَقْتُ كَالسَّيْفِ، إِنْ لَمْ تَقْطَعْهُ قَطَعَكَ.",
-        "en": "Time is like a sword: if you do not cut it, it cuts you.",
-        "tl": "al-waqtu ka-s-sayfi ʾin lam taqṭaʿhu qaṭaʿak",
-        "note": "Use your time well, or it will be lost."
-      }
-    ],
-    "glossary": [
-      {
-        "tr": "الصَّبْرُ",
-        "en": "patience",
-        "tl": "aṣ-ṣabr"
-      },
-      {
-        "tr": "مِفْتَاحُ",
-        "en": "a key",
-        "tl": "miftāḥ"
-      },
-      {
-        "tr": "الْجَارُ",
-        "en": "the neighbour",
-        "tl": "al-jār"
-      },
-      {
-        "tr": "الْعِلْمُ",
-        "en": "knowledge",
-        "tl": "al-ʿilm"
-      },
-      {
-        "tr": "الصَّدِيقُ",
-        "en": "the friend",
-        "tl": "aṣ-ṣadīq"
-      },
-      {
-        "tr": "عُصْفُورٌ",
-        "en": "a small bird, a sparrow",
-        "tl": "ʿuṣfūr"
-      },
-      {
-        "tr": "يَدٌ",
-        "en": "a hand",
-        "tl": "yad"
-      },
-      {
-        "tr": "الْوَقْتُ",
-        "en": "time",
-        "tl": "al-waqt"
-      }
-    ],
-    "questions": [
-      {
-        "q": "Which proverb tells you to keep what you say short?",
-        "options": [
-          "الْعِلْمُ نُورٌ.",
-          "خَيْرُ الْكَلَامِ مَا قَلَّ وَدَلَّ.",
-          "مَنْ جَدَّ وَجَدَ.",
-          "الصَّبْرُ مِفْتَاحُ الْفَرَجِ."
-        ],
-        "answer": 1,
-        "explain": "The best speech is what is short and to the point."
-      },
-      {
-        "q": "What does «الْجَارُ قَبْلَ الدَّارِ» advise?",
-        "options": [
-          "Find out about the neighbours before you choose a home",
-          "Visit your neighbours every day",
-          "Build your house before winter",
-          "Never lend things to neighbours"
-        ],
-        "answer": 0,
-        "explain": "The neighbour before the house: who lives next door matters more than the house itself."
-      },
-      {
-        "q": "In the proverb about the mother, what does the monkey look like to her?",
-        "options": [
-          "A bird",
-          "A sword",
-          "A key",
-          "A gazelle"
-        ],
-        "answer": 3,
-        "explain": "«الْقِرْدُ فِي عَيْنِ أُمِّهِ غَزَالٌ» — in his mother’s eye, the monkey is a gazelle."
-      },
-      {
-        "q": "Which proverb means “hard work pays off”?",
-        "options": [
-          "يَدٌ وَاحِدَةٌ لَا تُصَفِّقُ.",
-          "الصَّدِيقُ وَقْتَ الضِّيقِ.",
-          "مَنْ جَدَّ وَجَدَ.",
-          "لِكُلِّ مَقَامٍ مَقَالٌ."
-        ],
-        "answer": 2,
-        "explain": "Whoever works hard, finds."
-      }
-    ]
-  },
-  {
     "id": "ar-ali-baba-tale",
     "kind": "story",
     "level": "B1",
@@ -5633,6 +5334,305 @@ export const texts = [
         ],
         "answer": 3,
         "explain": "«ذُقْتُ الْحُمُّصَ لِأَوَّلِ مَرَّةٍ فِي مَطْعَمٍ صَغِيرٍ فِي بَيْرُوتَ»."
+      }
+    ]
+  },
+  {
+    "id": "ar-tongue-twisters",
+    "kind": "twister",
+    "level": "B1",
+    "title": "Tongue Twisters",
+    "titleNative": "عِبَارَاتٌ صَعْبَةُ النُّطْقِ",
+    "summary": "Five well-known Arabic tongue twisters — three from everyday speech and two famous lines of classical Arabic. Say each one slowly first, then three times fast.",
+    "lines": [
+      {
+        "tr": "خَيْطُ حَرِيرٍ عَلَى حَيْطِ خَلِيلٍ.",
+        "en": "A silk thread on Khalil’s wall.",
+        "tl": "khayṭu ḥarīrin ʿalā ḥayṭi khalīl",
+        "note": "Trains خ (kh) against ح (ḥ). حيط is the everyday word for “wall” in the Levant (Standard Arabic: حائط)."
+      },
+      {
+        "tr": "مِشْمِشْنَا مِشْ مِنْ مِشْمِشْكُمْ، وَمِشْمِشْكُمْ مِشْ مِنْ مِشْمِشْنَا.",
+        "en": "Our apricots are not from your apricots, and your apricots are not from our apricots.",
+        "tl": "mishmishnā mish min mishmishkum wa-mishmishkum mish min mishmishnā",
+        "note": "Everyday Arabic: مش means “not”. Trains م and ش."
+      },
+      {
+        "tr": "لُورِي وَرَا لُورِي.",
+        "en": "A lorry behind a lorry.",
+        "tl": "lūrī warā lūrī",
+        "note": "From the Gulf: ورا is the everyday word for “behind” (Standard Arabic: وراء). Trains ل and ر — say it five times fast."
+      },
+      {
+        "tr": "وَقَبْرُ حَرْبٍ بِمَكَانٍ قَفْرٍ، وَلَيْسَ قُرْبَ قَبْرِ حَرْبٍ قَبْرُ.",
+        "en": "Harb’s grave lies in a desolate place, and near Harb’s grave there is no grave.",
+        "tl": "wa-qabru ḥarbin bi-makānin qafrin wa-laysa qurba qabri ḥarbin qabr",
+        "note": "A famous line of classical poetry, said to be impossible to recite three times in a row. Trains ق, ب and ر."
+      },
+      {
+        "tr": "أَلَمٌ أَلَمَّ أَلَمْ أُلِمَّ بِدَائِهِ.",
+        "en": "A pain has struck me — did I not come to know its illness?",
+        "tl": "ʾalamun ʾalamma ʾalam ʾulimma bi-dāʾih",
+        "note": "Classical word-play on look-alikes: أَلَمٌ “a pain”, أَلَمَّ “it struck”, أَلَمْ “did … not”. Trains the glottal stop ء and the doubled م."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "خَيْطُ",
+        "en": "a thread",
+        "tl": "khayṭ"
+      },
+      {
+        "tr": "حَرِيرٍ",
+        "en": "silk",
+        "tl": "ḥarīr"
+      },
+      {
+        "tr": "مِشْ",
+        "en": "not (everyday Arabic)",
+        "tl": "mish"
+      },
+      {
+        "tr": "وَرَا",
+        "en": "behind (everyday Arabic)",
+        "tl": "warā"
+      },
+      {
+        "tr": "قَبْرُ",
+        "en": "a grave",
+        "tl": "qabr"
+      },
+      {
+        "tr": "قَفْرٍ",
+        "en": "desolate, empty",
+        "tl": "qafr"
+      },
+      {
+        "tr": "أَلَمٌ",
+        "en": "a pain",
+        "tl": "ʾalam"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Where is the silk thread?",
+        "options": [
+          "In a desolate place",
+          "On Khalil’s wall",
+          "Behind a lorry",
+          "Among the apricots"
+        ],
+        "answer": 1,
+        "explain": "«عَلَى حَيْطِ خَلِيلٍ» — on Khalil’s wall."
+      },
+      {
+        "q": "What does «مِشْ» mean in everyday Arabic?",
+        "options": [
+          "from",
+          "behind",
+          "not",
+          "our"
+        ],
+        "answer": 2,
+        "explain": "«مِشْ مِنْ» — “not from”."
+      },
+      {
+        "q": "What is there near Harb’s grave?",
+        "options": [
+          "No other grave",
+          "A wall",
+          "An apricot tree",
+          "A lorry"
+        ],
+        "answer": 0,
+        "explain": "«وَلَيْسَ قُرْبَ قَبْرِ حَرْبٍ قَبْرُ» — near Harb’s grave there is no grave."
+      },
+      {
+        "q": "Which two sounds does the first twister train?",
+        "options": [
+          "م and ش",
+          "ل and ر",
+          "ق and ب",
+          "خ (kh) and ح (ḥ)"
+        ],
+        "answer": 3,
+        "explain": "خيط and خليل begin with خ; حرير and حيط begin with ح."
+      }
+    ]
+  },
+  {
+    "id": "ar-proverbs",
+    "kind": "saying",
+    "level": "A2",
+    "title": "Proverbs You Will Hear",
+    "titleNative": "أَمْثَالٌ وَحِكَمٌ",
+    "summary": "Thirteen proverbs and sayings known across the Arab world. The translation is word for word; the note under it says what people mean.",
+    "lines": [
+      {
+        "tr": "الصَّبْرُ مِفْتَاحُ الْفَرَجِ.",
+        "en": "Patience is the key to relief.",
+        "tl": "aṣ-ṣabru miftāḥu-l-faraj",
+        "note": "Be patient: things get better."
+      },
+      {
+        "tr": "الْجَارُ قَبْلَ الدَّارِ.",
+        "en": "The neighbour before the house.",
+        "tl": "al-jāru qabla-d-dār",
+        "note": "Find out about the neighbours before you choose a home — good neighbours matter most."
+      },
+      {
+        "tr": "خَيْرُ الْكَلَامِ مَا قَلَّ وَدَلَّ.",
+        "en": "The best speech is what is short and to the point.",
+        "tl": "khayru-l-kalāmi mā qalla wa-dall",
+        "note": "Keep it brief and meaningful."
+      },
+      {
+        "tr": "مَنْ جَدَّ وَجَدَ.",
+        "en": "Whoever works hard, finds.",
+        "tl": "man jadda wajad",
+        "note": "Hard work pays off."
+      },
+      {
+        "tr": "الْعِلْمُ نُورٌ.",
+        "en": "Knowledge is light.",
+        "tl": "al-ʿilmu nūr",
+        "note": "Said in praise of learning and education."
+      },
+      {
+        "tr": "فِي التَّأَنِّي السَّلَامَةُ وَفِي الْعَجَلَةِ النَّدَامَةُ.",
+        "en": "In taking your time there is safety, and in haste there is regret.",
+        "tl": "fī-t-taʾannī-s-salāmatu wa-fī-l-ʿajalati-n-nadāma",
+        "note": "Haste makes waste."
+      },
+      {
+        "tr": "الصَّدِيقُ وَقْتَ الضِّيقِ.",
+        "en": "The friend, at the time of hardship.",
+        "tl": "aṣ-ṣadīqu waqta-ḍ-ḍīq",
+        "note": "A friend in need is a friend indeed."
+      },
+      {
+        "tr": "عُصْفُورٌ فِي الْيَدِ خَيْرٌ مِنْ عَشَرَةٍ عَلَى الشَّجَرَةِ.",
+        "en": "A bird in the hand is better than ten in the tree.",
+        "tl": "ʿuṣfūrun fī-l-yadi khayrun min ʿasharatin ʿalā-sh-shajara",
+        "note": "Be glad of what you have for certain."
+      },
+      {
+        "tr": "يَدٌ وَاحِدَةٌ لَا تُصَفِّقُ.",
+        "en": "One hand does not clap.",
+        "tl": "yadun wāḥidatun lā tuṣaffiq",
+        "note": "Nothing gets done without working together."
+      },
+      {
+        "tr": "اُطْلُبُوا الْعِلْمَ مِنَ الْمَهْدِ إِلَى اللَّحْدِ.",
+        "en": "Seek knowledge from the cradle to the grave.",
+        "tl": "uṭlubū-l-ʿilma mina-l-mahdi ʾilā-l-laḥd",
+        "note": "Never stop learning."
+      },
+      {
+        "tr": "لِكُلِّ مَقَامٍ مَقَالٌ.",
+        "en": "For every occasion there is a way of speaking.",
+        "tl": "li-kulli maqāmin maqāl",
+        "note": "Suit your words to the situation."
+      },
+      {
+        "tr": "الْقِرْدُ فِي عَيْنِ أُمِّهِ غَزَالٌ.",
+        "en": "In his mother’s eye, the monkey is a gazelle.",
+        "tl": "al-qirdu fī ʿayni ʾummihi ghazāl",
+        "note": "Every mother thinks her child is beautiful."
+      },
+      {
+        "tr": "الْوَقْتُ كَالسَّيْفِ، إِنْ لَمْ تَقْطَعْهُ قَطَعَكَ.",
+        "en": "Time is like a sword: if you do not cut it, it cuts you.",
+        "tl": "al-waqtu ka-s-sayfi ʾin lam taqṭaʿhu qaṭaʿak",
+        "note": "Use your time well, or it will be lost."
+      }
+    ],
+    "glossary": [
+      {
+        "tr": "الصَّبْرُ",
+        "en": "patience",
+        "tl": "aṣ-ṣabr"
+      },
+      {
+        "tr": "مِفْتَاحُ",
+        "en": "a key",
+        "tl": "miftāḥ"
+      },
+      {
+        "tr": "الْجَارُ",
+        "en": "the neighbour",
+        "tl": "al-jār"
+      },
+      {
+        "tr": "الْعِلْمُ",
+        "en": "knowledge",
+        "tl": "al-ʿilm"
+      },
+      {
+        "tr": "الصَّدِيقُ",
+        "en": "the friend",
+        "tl": "aṣ-ṣadīq"
+      },
+      {
+        "tr": "عُصْفُورٌ",
+        "en": "a small bird, a sparrow",
+        "tl": "ʿuṣfūr"
+      },
+      {
+        "tr": "يَدٌ",
+        "en": "a hand",
+        "tl": "yad"
+      },
+      {
+        "tr": "الْوَقْتُ",
+        "en": "time",
+        "tl": "al-waqt"
+      }
+    ],
+    "questions": [
+      {
+        "q": "Which proverb tells you to keep what you say short?",
+        "options": [
+          "الْعِلْمُ نُورٌ.",
+          "خَيْرُ الْكَلَامِ مَا قَلَّ وَدَلَّ.",
+          "مَنْ جَدَّ وَجَدَ.",
+          "الصَّبْرُ مِفْتَاحُ الْفَرَجِ."
+        ],
+        "answer": 1,
+        "explain": "The best speech is what is short and to the point."
+      },
+      {
+        "q": "What does «الْجَارُ قَبْلَ الدَّارِ» advise?",
+        "options": [
+          "Find out about the neighbours before you choose a home",
+          "Visit your neighbours every day",
+          "Build your house before winter",
+          "Never lend things to neighbours"
+        ],
+        "answer": 0,
+        "explain": "The neighbour before the house: who lives next door matters more than the house itself."
+      },
+      {
+        "q": "In the proverb about the mother, what does the monkey look like to her?",
+        "options": [
+          "A bird",
+          "A sword",
+          "A key",
+          "A gazelle"
+        ],
+        "answer": 3,
+        "explain": "«الْقِرْدُ فِي عَيْنِ أُمِّهِ غَزَالٌ» — in his mother’s eye, the monkey is a gazelle."
+      },
+      {
+        "q": "Which proverb means “hard work pays off”?",
+        "options": [
+          "يَدٌ وَاحِدَةٌ لَا تُصَفِّقُ.",
+          "الصَّدِيقُ وَقْتَ الضِّيقِ.",
+          "مَنْ جَدَّ وَجَدَ.",
+          "لِكُلِّ مَقَامٍ مَقَالٌ."
+        ],
+        "answer": 2,
+        "explain": "Whoever works hard, finds."
       }
     ]
   }
