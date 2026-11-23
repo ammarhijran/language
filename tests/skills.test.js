@@ -29,6 +29,11 @@ test('each skill has a practice mode; the sound exercise is the language’s own
   assert.equal(skillMode(sounds, { beatPractice: true }), 'beats');
   assert.equal(skillMode(sounds, {}), null);
   for (const s of SKILLS.filter((x) => x !== sounds)) assert.equal(skillMode(s, {}), s.mode);
+  // every skill can be practised somewhere: a mode, the language's sound exercise, or a screen of its own
+  for (const s of SKILLS) assert.ok(s.mode || s.href || s === sounds, s.id);
+  const sum = skillSummary({ numbers: { right: 2, total: 10 }, reading: { right: 10, total: 10 } });
+  assert.equal(sum.weakest, 'numbers');
+  assert.equal(sum.rows.find((r) => r.id === 'numbers').href, '#/numbers');
 });
 
 test('the summary: only skills with enough answers, and the one to work on', () => {

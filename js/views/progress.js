@@ -21,9 +21,9 @@ function skillsCard(ctx) {
       h('span', { class: 'skill-name' }, h('b', null, r.name), h('small', null, r.hint)),
       h('span', { class: 'skill-pct' }, `${r.pct}%`, h('span', { class: 'sr-only' }, ` right, of the last ${r.total} answers`)),
       meter(r.right, r.total)))),
-    weak && weak.mode
+    weak && (weak.mode || weak.href)
       ? h('p', { class: 'skill-next' }, `${weak.name} is the one to work on. `,
-        h('a', { class: 'btn small', href: `#/practice/${weak.mode}` }, `Practise ${weak.name.toLowerCase()}`, icon('arrow', 16)))
+        h('a', { class: 'btn small', href: weak.href || `#/practice/${weak.mode}` }, `Practise ${weak.name.toLowerCase()}`, icon('arrow', 16)))
       : null,
     h('p', { class: 'hint chart-note' }, `How your last answers of each kind went (up to ${store.SKILL_WINDOW}, on this device). A kind shows up after ${SKILL_MIN} answers.`));
 }

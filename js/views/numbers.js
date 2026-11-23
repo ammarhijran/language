@@ -88,6 +88,7 @@ function round(ctx, range) {
     const ok = typed === n;
     if (ok) right++;
     ctx.store.logActivity(lang.code, { practiced: 1 });
+    ctx.store.logSkill?.(lang.code, 'numbers', ok); // Progress → Your skills
     input.readOnly = true;
     input.classList.add(ok ? 'right' : 'wrong');
     // The course's own word for the number, when it has one (the small numbers).

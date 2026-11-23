@@ -12,6 +12,8 @@ export const SKILLS = [
   { id: 'sentences', name: 'Sentences', emoji: '🧱', hint: 'put the words in order', types: ['build'], mode: 'build' },
   // The language's own exercise about how words sound: its practice mode is chosen by skillMode().
   { id: 'sounds', name: 'Sounds', emoji: '🎯', hint: 'stress, beats, tricky letters', types: ['stress', 'beats', 'letters'], mode: null },
+  // Not an exercise of a session: Practice → Numbers by ear files its answers here itself.
+  { id: 'numbers', name: 'Numbers', emoji: '🔢', hint: 'hear a number, type it', types: [], mode: null, href: '#/numbers' },
 ];
 
 const BY_TYPE = new Map(SKILLS.flatMap((s) => s.types.map((t) => [t, s.id])));
@@ -33,7 +35,8 @@ export const SKILL_MIN = 8;
 
 /**
  * The skills with enough answers, in the order above:
- * { rows: [{ id, name, emoji, hint, right, total, pct, mode }], weakest }.
+ * { rows: [{ id, name, emoji, hint, right, total, pct, mode, href }], weakest }
+ * (`href`: where to practise it when that is not a practice mode).
  * `tallies`: { id: { right, total } } (store.getSkills). `weakest` is the id
  * of the row to practise — the lowest, when there are two or more to compare
  * and it is both under 90 % and clearly below the best — or null.
@@ -44,7 +47,7 @@ export function skillSummary(tallies, lang = null) {
     const t = tallies && Object.hasOwn(tallies, s.id) ? tallies[s.id] : null;
     if (!t || !(t.total >= SKILL_MIN)) continue;
     const right = Math.max(0, Math.min(t.total, t.right || 0));
-    rows.push({ id: s.id, name: s.name, emoji: s.emoji, hint: s.hint, right, total: t.total, pct: Math.round((right / t.total) * 100), mode: skillMode(s, lang) });
+    rows.push({ id: s.id, name: s.name, emoji: s.emoji, hint: s.hint, right, total: t.total, pct: Math.round((right / t.total) * 100), mode: skillMode(s, lang), href: s.href || null });
   }
   let weakest = null;
   if (rows.length >= 2) {
