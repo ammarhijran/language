@@ -124,7 +124,12 @@ function myNote(ctx, w) {
       placeholder: 'A memory hook, where you heard it, a sentence of your own…',
     });
     area.value = store.getNote(lang.code, w.id);
-    const save = () => { store.setNote(lang.code, w.id, area.value); show(); box.querySelector('button')?.focus(); };
+    const save = () => {
+      store.setNote(lang.code, w.id, area.value);
+      ctx.game?.refresh?.(lang.code); // a note may complete an achievement
+      show();
+      box.querySelector('button')?.focus();
+    };
     set(box, area,
       h('div', { class: 'button-row' },
         h('button', { type: 'button', class: 'btn small primary', onclick: save }, 'Save'),

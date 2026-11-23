@@ -164,6 +164,9 @@ export function runSession(ctx, { items, onResult, onFinish, exitHref = '#/', la
     comboEl.hidden = !gameOn || combo < 3;
     comboEl.textContent = `🔥 ${combo}`;
     game.answer({ lang: ctx.lang.code, rating: result.rating, combo });
+    // Counted for achievements: words put back into their sentence, and questions about how words sound.
+    if (right && item.type === 'cloze') game.count?.({ lang: ctx.lang.code, key: 'inContext' });
+    if (right && ['stress', 'beats', 'letters'].includes(item.type)) game.count?.({ lang: ctx.lang.code, key: 'soundQuiz' });
   }
 
   function summary() {

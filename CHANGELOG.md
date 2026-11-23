@@ -9,6 +9,7 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **Four new achievements** (52 in all): In Context (30 words put back into their sentences), Sound Sense (50 stress, beats or tricky-letter questions right), Word Collector (learn 10 words you added yourself) and Memory Hooks (your own note on 10 words).
 - **Share** on word and phrase pages (where the device has a share sheet): sends the word with its reading and meaning — “水 (みず · mizu) — water” — to a chat, mail or notes app.
 - **Keep playing** (Read & Listen, in the player bar; “⏭ Next” on narrow screens): when a text ends, the next one in the list opens and starts by itself — the stories and speeches become one long listening session. It stops after the last text, and the switch is remembered.
 - **Last 6 weeks** (Progress): a calendar of days, Monday first — the more you did, the darker the day; the darkest are days the daily goal was met, today is outlined. Below it: on how many days you practised and met the goal.

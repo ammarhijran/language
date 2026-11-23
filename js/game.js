@@ -140,6 +140,7 @@ export const ACHIEVEMENTS = [
   A('ear-perfect', '👂', 'Golden Ear', 'Get 10/10 in an ear-training quiz', 'earPerfect', 1, 'Pronunciation'),
   A('alphabet', '🔤', 'Letter by Letter', 'Listen to every letter of an alphabet', 'alphabet', 1, 'Pronunciation'),
   A('handsfree-5', '🎧', 'Easy Listening', 'Finish 5 hands-free listening rounds', 'handsFree', 5, 'Pronunciation'),
+  A('sound-50', '🎯', 'Sound Sense', 'Get 50 stress, beats or tricky-letter questions right', 'soundQuiz', 50, 'Pronunciation'),
 
   A('grammar-1', '📐', 'First Rules', 'Finish a grammar lesson', 'grammar', 1, 'Grammar'),
   A('grammar-5', '🤓', 'Grammar Geek', 'Finish 5 grammar lessons', 'grammar', 5, 'Grammar'),
@@ -147,6 +148,8 @@ export const ACHIEVEMENTS = [
   A('grammar-perfect', '💯', 'Rule Master', 'Score 4/4 on 10 grammar quizzes', 'grammarPerfect', 10, 'Grammar'),
   A('talk-local', '🗣️', 'Talk Like a Local', 'Learn 20 everyday or slang expressions', 'talkWords', 20, 'Learning'),
   A('trip-kit', '🎒', 'Ready to Travel', 'Learn all the trip essentials of a language', 'kitDone', 1, 'Learning'),
+  A('own-words-10', '📝', 'Word Collector', 'Learn 10 words you added yourself', 'ownLearned', 10, 'Learning'),
+  A('notes-10', '🗒️', 'Memory Hooks', 'Write a note of your own on 10 words', 'notes', 10, 'Learning'),
 
   A('text-1', '📜', 'First Read', 'Finish a text in Read & Listen', 'texts', 1, 'Reading'),
   A('texts-5', '🔖', 'Bookworm', 'Finish 5 texts in Read & Listen', 'texts', 5, 'Reading'),
@@ -160,6 +163,7 @@ export const ACHIEVEMENTS = [
   A('flawless', '✨', 'Flawless', 'Finish a session of 10+ with every answer right first time', 'flawless', 1, 'Skill'),
   A('reviews-500', '🔁', 'Spaced Out', 'Answer 500 exercises', 'answers', 500, 'Skill'),
   A('dictation-20', '👂', 'Sharp Ears', 'Build 20 sentences by ear in Dictation', 'dictations', 20, 'Skill'),
+  A('context-30', '🧩', 'In Context', 'Put 30 words back into their sentences', 'inContext', 30, 'Skill'),
   A('level-5', '⭐', 'Rising Star', 'Reach level 5', 'level', 5, 'Skill'),
   A('level-10', '🌟', 'Language Lover', 'Reach level 10', 'level', 10, 'Skill'),
   A('polyglot-2', '🌍', 'Bilingual Brain', 'Learn words in 2 languages', 'langs', 2, 'Skill'),
@@ -203,7 +207,7 @@ export function challengesForWeek(key) {
 
 const COUNTERS = ['lessons', 'answers', 'correct', 'sessions', 'flawless', 'speakGreat', 'speakPerfect', 'earQuizzes', 'earPerfect',
   'goalsMet', 'challenges', 'bestCombo', 'bestStreak', 'early', 'night', 'personalGoals', 'speechPractice', 'rolePlays',
-  'handsFree', 'dictations', 'ownTextPractice', 'kitDone'];
+  'handsFree', 'dictations', 'ownTextPractice', 'kitDone', 'inContext', 'soundQuiz'];
 
 // Counters where the best value counts, rather than the sum across devices.
 const BEST = new Set(['bestCombo', 'bestStreak']);
@@ -318,6 +322,7 @@ export function metrics() {
   const s = g();
   let words = 0; let mastered = 0; let langs = 0; let topics = 0; let topicsInLang = 0; let streakNow = 0; let alphabet = 0;
   let grammar = 0; let grammarAll = 0; let grammarPerfect = 0; let talkWords = 0; let texts = 0; let textsAll = 0;
+  let ownLearned = 0; let notes = 0;
   for (const [code, M] of Object.entries(meta)) {
     const cards = store.getCards(code);
     const ids = Object.keys(cards);
@@ -326,6 +331,9 @@ export function metrics() {
       if (!cards[id].known) words++;
       if (status(cards[id]) === 'mastered') mastered++;
     }
+    // The learner's own words that have been learned, and their notes on words.
+    ownLearned += store.getOwnWords(code).filter((w) => cards[w.id] && !cards[w.id].known).length;
+    notes += Object.keys(store.getNotes(code)).length;
     const sum = packSummary(code, cards);
     topics += sum.topics;
     topicsInLang = Math.max(topicsInLang, sum.complete ? ALL_TOPICS : sum.topics);
@@ -347,7 +355,7 @@ export function metrics() {
   // (one per word per day) are kept as a floor so progress never goes back.
   const speakGreat = Math.max(all.speakGreat, s.said.great.length);
   const speakPerfect = Math.max(all.speakPerfect, s.said.perfect.length);
-  return { ...all, speakGreat, speakPerfect, words, mastered, langs, topics, topicsInLang, streak: all.bestStreak, level: level().level, alphabet, grammar, grammarAll, grammarPerfect, talkWords, texts, textsAll };
+  return { ...all, speakGreat, speakPerfect, words, mastered, langs, topics, topicsInLang, streak: all.bestStreak, level: level().level, alphabet, grammar, grammarAll, grammarPerfect, talkWords, texts, textsAll, ownLearned, notes };
 }
 
 /**

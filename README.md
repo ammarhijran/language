@@ -72,7 +72,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
   - A combo of 5+ right answers in a row adds a bonus.
   - Bonuses for new words, finished and flawless sessions, the daily goal, speaking drills and ear training.
   - Levels come with titles: Beginner → Explorer → Word Collector → … → Polyglot.
-- **48 achievements** in six groups: Learning, Habits, Pronunciation, Skill, Grammar and Reading. Locked ones show "X of Y" progress.
+- **52 achievements** in six groups: Learning, Habits, Pronunciation, Skill, Grammar and Reading. Locked ones show "X of Y" progress.
 - **Goals**:
   - a daily goal
   - three weekly challenges, new every Monday, +100 XP each

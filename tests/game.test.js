@@ -299,3 +299,34 @@ test('new counters: hands-free rounds, dictation, own texts and the trip kit unl
   }
   store._resetAll();
 });
+
+test('achievements for the newer features: in context, sound questions, own words and notes', () => {
+  store._resetAll();
+  for (const id of ['context-30', 'sound-50', 'own-words-10', 'notes-10']) assert.ok(game.ACHIEVEMENTS.some((a) => a.id === id), id);
+  assert.equal(game.ACHIEVEMENTS.length, 52);
+  const m0 = game.metrics();
+  assert.deepEqual([m0.inContext, m0.soundQuiz, m0.ownLearned, m0.notes], [0, 0, 0, 0]);
+
+  for (let i = 0; i < 30; i++) game.count({ lang: 'tr', key: 'inContext' });
+  for (let i = 0; i < 50; i++) game.count({ lang: 'uk', key: 'soundQuiz' });
+  // Own words count once they are learned (a card), across languages; "already known" ones do not.
+  const ids = [];
+  for (let i = 0; i < 6; i++) ids.push(['tr', store.saveOwnWord('tr', { tr: `zzq${i}`, en: `made up ${i}` })]);
+  for (let i = 0; i < 6; i++) ids.push(['ja', store.saveOwnWord('ja', { tr: `ずず${i}`, en: `made up ${i}` })]);
+  assert.equal(game.metrics().ownLearned, 0, 'added, not learned yet');
+  ids.slice(0, 11).forEach(([lang, id]) => store.setCard(lang, id, { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: 1, added: 1 }));
+  store.setCard(ids[11][0], ids[11][1], { ease: 2.5, interval: 30, reps: 0, lapses: 0, due: 1, added: 1, known: true });
+  assert.equal(game.metrics().ownLearned, 11);
+  for (let i = 0; i < 10; i++) store.setNote(i % 2 ? 'tr' : 'ar', `word-${i}`, `note ${i}`);
+  store.setNote('tr', 'word-1', ''); // removed again
+  const m = game.metrics();
+  assert.deepEqual([m.inContext, m.soundQuiz, m.ownLearned, m.notes], [30, 50, 11, 9]);
+  store.setNote('uk', 'another', 'the tenth');
+  game.refresh('tr');
+  const done = new Set(game.unlocked?.().map?.((a) => a.id) || []);
+  if (done.size) for (const id of ['context-30', 'sound-50', 'own-words-10', 'notes-10']) assert.ok(done.has(id), `${id} is unlocked`);
+  for (const a of game.ACHIEVEMENTS.filter((x) => ['context-30', 'sound-50', 'own-words-10', 'notes-10'].includes(x.id))) {
+    assert.ok(game.metrics()[a.metric] >= a.target, `${a.id} is reached`);
+  }
+  store._resetAll();
+});
