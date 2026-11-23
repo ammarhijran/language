@@ -523,3 +523,20 @@ test('ear training pairs from the course: one sound apart, the learner’s words
     assert.ok(d === 0 || (d === -1 && /^– \/ [っんーあいうえお]$/.test(contrast)), `${kana(a)} / ${kana(b)} ${contrast}`);
   }
 });
+
+test('when nothing is due: how many words come back, and when', async () => {
+  const { nextReviews } = await import('../js/stats.js');
+  const { startOfDay } = await import('../js/srs.js');
+  const tr = languages.tr;
+  const now = new Date(2026, 10, 23, 15, 30).getTime(); // a Monday afternoon
+  const at = (days, hours = 12) => startOfDay(now, days) + hours * 3600000;
+  const [a, b, c, d] = tr.words;
+  assert.equal(nextReviews(tr, {}, now), null);
+  assert.equal(nextReviews(tr, { [a.id]: { due: now - 1000 } }, now), null, 'a word that is due now is not “next”');
+  assert.deepEqual(nextReviews(tr, { [a.id]: { due: at(0, 20) }, [b.id]: { due: at(1) } }, now), { n: 1, days: 0, text: '1 word later today' });
+  assert.deepEqual(nextReviews(tr, { [a.id]: { due: at(1, 1) }, [b.id]: { due: at(1, 22) }, [c.id]: { due: at(2) }, 'not-a-word': { due: at(1) } }, now), { n: 2, days: 1, text: '2 words tomorrow' });
+  assert.match(nextReviews(tr, { [d.id]: { due: at(3) } }, now).text, /^1 word on Thursday$/);
+  const far = nextReviews(tr, { [d.id]: { due: at(30) } }, now);
+  assert.equal(far.days, 30);
+  assert.match(far.text, /^1 word on \w+, \w+ \d+$/);
+});

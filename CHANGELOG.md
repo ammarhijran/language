@@ -9,6 +9,7 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **When the next reviews come:** with nothing due, the Review screen and the Practice card now say how many words come back and when — “Next: 7 words tomorrow”, “3 words on Thursday” — instead of only a date or “check back later”.
 - **Hands-free listening can add the example sentence** (Practice → Hands-free → Options → “Then say its example sentence too”): after each word you hear its sentence, get a pause to repeat it and — with the English option — hear what it means. A twenty-word round becomes several minutes of listening made of sentences that are already part of the course.
 - **Build a text’s sentences, and take it as dictation** (Read & Listen, under each text): two new links — “Build its sentences” (the translation is shown; put the words of a line in order) and “Dictation” (hear a line, build it) — make rounds of up to ten of the text’s own lines. Lines too short or too long to build are left out; almost every text has enough.
 - **Typing and speaking questions can be switched off** (Settings → Lessons): for reviews and Mixed practice — when there is no keyboard for the language, or no way to talk. The words are then asked by choosing or as flashcards. Spelling and Speaking practice stay available when picked on purpose.

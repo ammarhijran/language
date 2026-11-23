@@ -2,7 +2,7 @@ import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
 import { newCard, review as schedule, missedToday, AGAIN, startOfDay } from '../srs.js';
 import { missedChips } from '../components.js';
-import { dueWords, chooseReviewType, nextCategory } from '../stats.js';
+import { dueWords, chooseReviewType, nextCategory, nextReviews } from '../stats.js';
 
 const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce', build: 'produce', stress: 'meaning', cloze: 'produce' };
 
@@ -62,12 +62,13 @@ export default function review(ctx) {
 function empty(ctx) {
   const learned = Object.keys(ctx.store.getCards(ctx.lang.code)).length;
   const next = nextCategory(ctx);
+  const upcoming = learned ? nextReviews(ctx.lang, ctx.store.getCards(ctx.lang.code)) : null;
   return h('div', { class: 'view' },
     h('div', { class: 'summary' },
       h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, learned ? '✅' : '🌱'),
       h('h2', null, learned ? 'Nothing to review right now' : 'No words to review yet'),
       h('p', { class: 'muted' }, learned
-        ? 'Words come back just before you’re likely to forget them. Check back later — or keep going:'
+        ? `Words come back just before you’re likely to forget them. ${upcoming ? `Next: ${upcoming.text}. ` : ''}Until then, keep going:`
         : 'Learn a few words first and they’ll show up here for spaced-repetition review.'),
       h('div', { class: 'actions stack' },
         next ? h('a', { class: 'btn primary wide', href: `#/learn/${next.id}` }, `Learn: ${next.emoji} ${next.name}`) : null,

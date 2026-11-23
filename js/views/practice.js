@@ -1,7 +1,7 @@
 import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
 import { stressItem, beatItem, misreadItem, clozeItem } from '../exercises.js';
-import { learnedWords, dueWords, trickyWords } from '../stats.js';
+import { learnedWords, dueWords, trickyWords, nextReviews } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
 import { GROUPS, missedChips } from '../components.js';
 import { sentencesFor, textSentences, MIN_SENTENCES } from '../sentences.js';
@@ -294,14 +294,10 @@ function reviewCard(ctx) {
       h('span', null, h('b', null, `Review ${due} word${due === 1 ? '' : 's'}`), h('small', null, 'Due now · spaced repetition')),
       icon('arrow'));
   }
-  const cards = Object.values(ctx.store.getCards(ctx.lang.code));
-  const soonest = cards.reduce((m, c) => Math.min(m, c.due), Infinity);
-  const when = Number.isFinite(soonest)
-    ? new Date(soonest).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })
-    : null;
+  const next = nextReviews(ctx.lang, ctx.store.getCards(ctx.lang.code));
   return h('a', { class: 'quick-link review-idle', href: '#/review' },
     icon('check', 22),
-    h('span', null, h('b', null, 'No reviews due'), h('small', null, when ? `Next review: ${when}` : 'Learn a lesson and its words come back here')),
+    h('span', null, h('b', null, 'No reviews due'), h('small', null, next ? `Next: ${next.text}` : 'Learn a lesson and its words come back here')),
     icon('arrow', 18));
 }
 

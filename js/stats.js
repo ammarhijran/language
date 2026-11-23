@@ -305,3 +305,29 @@ export function clozable(lang, w) {
   if (!s || !w.tr || s.length <= w.tr.length + 1) return false;
   return lang.code === 'ja' ? s.includes(w.tr) : s.toLowerCase().includes(w.tr.toLowerCase());
 }
+
+/**
+ * When the next reviews fall due, once nothing is due now: { n, days, text } —
+ * `n` words on the first day that has any, `days` from today (0 = later
+ * today), and `text` such as "7 words tomorrow". null when no word is waiting.
+ */
+export function nextReviews(lang, cards, now = Date.now()) {
+  let soonest = Infinity;
+  for (const w of lang.words) {
+    const c = cards[w.id];
+    if (c && Number.isFinite(c.due) && c.due > now && c.due < soonest) soonest = c.due;
+  }
+  if (!Number.isFinite(soonest)) return null;
+  const from = startOfDay(soonest);
+  const to = startOfDay(soonest, 1);
+  let n = 0;
+  for (const w of lang.words) {
+    const c = cards[w.id];
+    if (c && c.due > now && c.due >= from && c.due < to) n++;
+  }
+  const days = Math.round((from - startOfDay(now)) / 86400000);
+  const when = days <= 0 ? 'later today' : days === 1 ? 'tomorrow'
+    : days < 7 ? `on ${new Date(from).toLocaleDateString(undefined, { weekday: 'long' })}`
+      : `on ${new Date(from).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}`;
+  return { n, days, text: `${n} word${n === 1 ? '' : 's'} ${when}` };
+}
