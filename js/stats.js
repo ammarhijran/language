@@ -13,6 +13,14 @@ export function dueWords(ctx, now = Date.now()) {
 }
 
 /**
+ * Words that come up for review by the end of tomorrow, soonest first — for
+ * reviewing ahead (before a day without time). Same shape as dueWords().
+ */
+export function dueSoonWords(ctx, now = Date.now()) {
+  return dueWords(ctx, startOfDay(now, 2) - 1);
+}
+
+/**
  * Words that keep slipping: forgotten at least once in review (a lapse) or
  * with a lowered ease, most-forgotten first. Words ticked "already learned"
  * and words not yet reviewed don't count.

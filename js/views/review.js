@@ -2,13 +2,16 @@ import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
 import { newCard, review as schedule, missedToday, AGAIN, startOfDay } from '../srs.js';
 import { missedChips } from '../components.js';
-import { dueWords, chooseReviewType, nextCategory, nextReviews } from '../stats.js';
+import { dueWords, dueSoonWords, chooseReviewType, nextCategory, nextReviews } from '../stats.js';
 
 const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce', build: 'produce', stress: 'meaning', cloze: 'produce' };
 
-export default function review(ctx) {
+export default function review(ctx, mode) {
   const { lang, store } = ctx;
-  const due = dueWords(ctx);
+  // #/review/ahead: nothing is due, and tomorrow's words are reviewed today.
+  const now = dueWords(ctx);
+  const ahead = mode === 'ahead' && !now.length;
+  const due = ahead ? dueSoonWords(ctx) : now;
 
   if (!due.length) return empty(ctx);
 
@@ -17,7 +20,7 @@ export default function review(ctx) {
   const firstTry = new Map();
 
   return h('div', { class: 'view' }, runSession(ctx, {
-    label: 'Review',
+    label: ahead ? 'Review ahead' : 'Review',
     items,
     onResult(item, r) {
       if (r.skipped) return { ...item, type: 'flashcard' };
@@ -63,6 +66,7 @@ function empty(ctx) {
   const learned = Object.keys(ctx.store.getCards(ctx.lang.code)).length;
   const next = nextCategory(ctx);
   const upcoming = learned ? nextReviews(ctx.lang, ctx.store.getCards(ctx.lang.code)) : null;
+  const soon = dueSoonWords(ctx).length;
   return h('div', { class: 'view' },
     h('div', { class: 'summary' },
       h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, learned ? '✅' : '🌱'),
@@ -72,6 +76,8 @@ function empty(ctx) {
         : 'Learn a few words first and they’ll show up here for spaced-repetition review.'),
       h('div', { class: 'actions stack' },
         next ? h('a', { class: 'btn primary wide', href: `#/learn/${next.id}` }, `Learn: ${next.emoji} ${next.name}`) : null,
+        // A day without time coming up? Tomorrow's words can be done today.
+        soon ? h('a', { class: `btn wide${next ? '' : ' primary'}`, id: 'review-ahead', href: '#/review/ahead' }, `Review ahead: ${soon} word${soon === 1 ? '' : 's'} due by tomorrow`) : null,
         learned ? h('a', { class: 'btn wide', href: '#/practice' }, 'Practise anyway') : null,
         h('a', { class: 'btn ghost wide', href: '#/speak' }, icon('mic', 18), 'Speak')),
     ),
