@@ -601,3 +601,14 @@ test('search finds what the app can do', async () => {
   assert.deepEqual(names('zzqx'), []);
   assert.ok(searchTips(tr, 'the').length <= 4, 'a few at most');
 });
+
+test('a word’s record in a line', async () => {
+  const { cardHistory } = await import('../js/views/word.js');
+  assert.equal(cardHistory(null), '');
+  assert.equal(cardHistory({ reps: 0, lapses: 0, interval: 0 }), '');
+  assert.equal(cardHistory({ reps: 3, lapses: 0, interval: 21, known: true }), '', 'marked as known: nothing was answered');
+  assert.equal(cardHistory({ reps: 1, lapses: 0, interval: 1 }), 'Answered right once.');
+  assert.equal(cardHistory({ reps: 6, lapses: 2, interval: 12.4 }), 'Answered right 6 times in a row · missed twice · now comes back after 12 days.');
+  assert.equal(cardHistory({ reps: 0, lapses: 1, interval: 0 }), 'Missed once.');
+  assert.equal(cardHistory({ reps: 9, lapses: 3, interval: 95 }), 'Answered right 9 times in a row · missed 3 times · now comes back after 3 months.');
+});

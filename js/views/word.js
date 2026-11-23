@@ -88,6 +88,7 @@ export default function word(ctx, id) {
             onclick: () => { store.deleteCard(lang.code, w.id); ctx.toast('Moved back to new words'); ctx.rerender(); },
           }, 'Undo — I want to learn it'))
         : null,
+      cardHistory(card) ? h('p', { class: 'hint card-history' }, cardHistory(card)) : null,
       card ? h('p', { class: 'hint' }, card.due <= Date.now()
         ? 'Due for review now.'
         : `Next review: ${new Date(card.due).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}.`) : null,
@@ -102,6 +103,22 @@ export default function word(ctx, id) {
         h('a', { href: `#/word/${encodeURIComponent(x.id)}` }, h('b', { lang: lang.code }, x.tr), ' ', h('span', null, x.en)))))) : null,
     seen,
   );
+}
+
+/**
+ * A learned word's record in a line: "Answered right 6 times in a row ·
+ * missed twice · now comes back every 12 days" — or '' for a word that is
+ * new or was only marked as known.
+ */
+export function cardHistory(card) {
+  if (!card || card.deleted || card.known || !(card.reps > 0 || card.lapses > 0)) return '';
+  const times = (n) => (n === 1 ? 'once' : n === 2 ? 'twice' : `${n} times`);
+  const parts = [];
+  if (card.reps > 0) parts.push(`Answered right ${card.reps === 1 ? 'once' : `${card.reps} times in a row`}`);
+  if (card.lapses > 0) parts.push(`${parts.length ? 'missed' : 'Missed'} ${times(card.lapses)}`);
+  const days = Math.round(card.interval || 0);
+  if (card.reps > 0 && days >= 2) parts.push(`now comes back after ${days >= 60 ? `${Math.round(days / 30)} months` : `${days} days`}`);
+  return `${parts.join(' · ')}.`;
 }
 
 // What to try when a voice reads a word wrong, by language.
