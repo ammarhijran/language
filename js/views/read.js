@@ -517,6 +517,10 @@ function practiceCard(text) {
 
 // "Keep playing": the text to start playing as soon as its reader opens (set when the one before it ends).
 let autoPlayId = null;
+// The sleep timer: when playing stops by itself (a time, or 0 for never). It
+// outlives the screen, since Keep playing moves from text to text.
+let sleepAt = 0;
+export const SLEEP_MINUTES = [10, 20, 30, 60];
 
 function readerView(ctx, texts, text) {
   const { lang } = ctx;
@@ -590,6 +594,7 @@ function readerView(ctx, texts, text) {
       live.textContent = 'End of the text.';
       // Keep playing: on to the next text in the list, which starts by itself.
       if (!keepPlaying || !nextUp) return;
+      if (sleepAt && Date.now() >= sleepAt) return; // the sleep timer has run out: no next text
       live.textContent = `End of the text. Next: ${nextUp.title}.`;
       clearTimeout(onward);
       onward = setTimeout(() => { autoPlayId = nextUp.id; location.hash = href(nextUp.id); }, 1800);
@@ -643,6 +648,37 @@ function readerView(ctx, texts, text) {
     live.textContent = on ? 'Text hidden. Listen first, then reveal it.' : 'Text shown.';
   }
 
+  // Sleep timer: playing stops by itself after a while — for listening in bed with Keep playing on.
+  const sleepLeft = () => Math.max(1, Math.round((sleepAt - Date.now()) / 60000));
+  const sleepSelect = h('select', {
+    class: 'read-select', id: 'read-sleep', 'aria-label': 'Sleep timer: stop playing after',
+    onchange: () => {
+      const min = Number(sleepSelect.value);
+      sleepAt = min ? Date.now() + min * 60000 : 0;
+      paintSleep();
+      live.textContent = min ? `Playing stops in ${min} minutes.` : 'Sleep timer off.';
+    },
+  });
+  function paintSleep() {
+    const on = sleepAt > Date.now();
+    if (!on) sleepAt = 0;
+    set(sleepSelect,
+      h('option', { value: '0', selected: !on }, 'Timer off'),
+      // a running timer shows what is left; choosing a time again restarts it
+      on ? h('option', { value: String(sleepLeft()), selected: true }, `${sleepLeft()} min left`) : null,
+      SLEEP_MINUTES.map((m) => h('option', { value: String(m) }, `${m} min`)));
+  }
+  paintSleep();
+  const sleepTick = setInterval(() => {
+    if (!sleepAt) return;
+    if (Date.now() < sleepAt) { paintSleep(); return; }
+    clearTimeout(onward);
+    pausePlayer();
+    paintSleep();
+    live.textContent = 'Sleep timer: playing has stopped.';
+  }, 15000);
+  ctx.onCleanup(() => clearInterval(sleepTick));
+
   // The voice's speed, changed while listening: it is the app's speaking speed
   // (Settings → Audio), and the next line is read with it.
   const rateNow = Math.round(ctx.settings.rate * 100) / 100;
@@ -684,7 +720,8 @@ function readerView(ctx, texts, text) {
         }, { 'aria-label': lang.code === 'ja' ? 'Kana and rōmaji' : lang.code === 'ar' ? 'Transliteration' : 'Reading' })
         : null,
       firstBtn,
-      keepBtn),
+      keepBtn,
+      h('span', { class: 'read-select-wrap read-sleep' }, h('span', { 'aria-hidden': 'true' }, '⏱'), sleepSelect)),
     live);
   stickUnderTopbar(ctx, bar);
 

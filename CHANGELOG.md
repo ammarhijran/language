@@ -10,6 +10,7 @@
 
 ### Added
 - **Fixed:** with the largest text size on a narrow phone, the Play / Pause label in a text’s player bar was cut off at both ends; the row now wraps instead.
+- **Sleep timer** (Read & Listen, in a text’s player bar): ⏱ 10, 20, 30 or 60 minutes — when the time is up, playing stops, and Keep playing does not go on to the next text. The timer carries on from text to text and shows the minutes left.
 - **Speed in the reader** (Read & Listen, in a text’s player bar): the voice’s speed can be changed while listening — 0.6× to 1.1× — and the next line is read with it. It is the same speaking speed as in Settings → Audio.
 - **Two more word-list filters** (Progress → Word list): “Missed before”, the words you have got wrong in reviews with the most-missed first, and “With a note of mine”.
 - **A word’s record** (a word’s page): one line under the review date — how many times in a row you have answered it right, how often you missed it, and how far apart its reviews now are.

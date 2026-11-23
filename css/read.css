@@ -87,6 +87,7 @@
 .read-transport { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1); min-width: 0; }
 .read-main { min-width: 7.2rem; white-space: nowrap; flex-shrink: 0; }
 .read-select-wrap.read-speed { padding-left: .3rem; }
+.read-select-wrap.read-sleep { padding-left: .5rem; }
 .read-short { display: none; }
 .read-step { color: var(--text); }
 .read-count { margin-inline-start: auto; padding: 0 .35rem; color: var(--muted); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; white-space: nowrap; }
