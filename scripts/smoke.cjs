@@ -211,6 +211,8 @@ async function walk(browser, lang, pack, texts) {
   await open('placement', { selector: 'a[href="#/placement/go"]' });
   await open('placement/go', { selector: '.exercise' });
   await open('numbers/100', { selector: '#number-answer' });
+  await open('numbers/years', { selector: '#number-answer' });
+  await open('numbers/phone', { selector: '#number-answer' });
 
   await ctx.close();
   return { pages, problems };

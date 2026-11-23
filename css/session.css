@@ -212,3 +212,6 @@ body.in-session .session-head {
 .numbers-audio { justify-content: center; }
 .numbers-answer { margin: 0; font: 800 var(--fs-hero) var(--font-display); letter-spacing: .02em; }
 .numbers .choice { text-decoration: none; color: inherit; }
+/* a phone number: the digits typed differently — colour and a line under them, not colour alone */
+.numbers-answer .digit-miss { background: none; color: var(--bad); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: .12em; }
+.numbers .section-title { margin-top: var(--sp-5); }

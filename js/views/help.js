@@ -38,7 +38,7 @@ export function tips(lang, { reminders = false, scope = '' } = {}) {
         item('🔀', 'Quick rounds', 'Ten questions in the mode you choose — listening, spelling, flashcards, sentences, dictation — on what you have learned or on any topic.', '#/practice'),
         item('🧩', 'In context', 'A word’s own example sentence with the word left out: choose the word.', `#/practice/cloze${scope}`),
         item('🎧', 'Hands-free', 'Listen and repeat with nothing to tap. In its options you can add each word’s example sentence.', `#/practice/handsfree${scope}`),
-        item('🔢', 'Numbers by ear', 'Hear a number, type its digits.', '#/numbers'),
+        item('🔢', 'Numbers by ear', 'Hear a number, type its digits — also years, and phone numbers said digit by digit.', '#/numbers'),
       ],
     },
     {

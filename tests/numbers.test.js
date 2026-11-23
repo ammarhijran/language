@@ -1,7 +1,7 @@
 // Numbers by ear: ranges, the numbers of a round and reading what was typed.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { RANGES, rangeOf, pickNumbers, parseNumber } from '../js/numbers.js';
+import { RANGES, SPECIAL, rangeOf, pickNumbers, parseNumber, parseDigits, groupDigits } from '../js/numbers.js';
 
 test('ranges follow one another without gaps', () => {
   assert.equal(RANGES[0].min, 0);
@@ -22,6 +22,36 @@ test('a round has different numbers from its range', () => {
   assert.deepEqual(pickNumbers({ min: 3, max: 5 }, 10).sort(), [3, 4, 5]);
   assert.deepEqual(pickNumbers({ min: 0, max: 10 }, 1, () => 0), [0]);
   assert.deepEqual(pickNumbers({ min: 0, max: 10 }, 1, () => 0.9999), [10]);
+});
+
+test('years and phone numbers: their own rounds', () => {
+  assert.deepEqual(SPECIAL.map((r) => r.id), ['years', 'phone']);
+  const ids = [...RANGES, ...SPECIAL].map((r) => r.id);
+  assert.equal(new Set(ids).size, ids.length, 'no two rounds share an id');
+  for (const r of SPECIAL) assert.equal(rangeOf(r.id), r);
+  const years = pickNumbers(rangeOf('years'), 10);
+  assert.equal(new Set(years).size, 10);
+  assert.ok(years.every((y) => Number.isInteger(y) && y >= 1950 && y <= 2030));
+  // phone numbers are strings of digits: a leading 0 has to survive
+  const phone = rangeOf('phone');
+  const list = pickNumbers(phone, 10);
+  assert.equal(list.length, 10);
+  assert.equal(new Set(list).size, 10);
+  assert.ok(list.every((n) => typeof n === 'string' && new RegExp(`^\\d{${phone.digits}}$`).test(n)), list.join(' '));
+  assert.deepEqual(pickNumbers(phone, 3, () => 0), ['0'.repeat(phone.digits)], 'a stuck random source ends the loop');
+});
+
+test('typed phone numbers: digits as a string, however they are grouped', () => {
+  assert.equal(parseDigits('0470291'), '0470291');
+  assert.equal(parseDigits(' 047 02-91 '), '0470291');
+  assert.equal(parseDigits('(047) 02.91'), '0470291');
+  assert.equal(parseDigits('٠٤٧'), '047');
+  assert.equal(parseDigits('０４７'), '047');
+  for (const bad of ['', '   ', 'four seven', '47a', '1234567890123456', null, undefined]) assert.equal(parseDigits(bad), null, String(bad));
+  assert.equal(groupDigits('4702915'), '470 29 15');
+  assert.equal(groupDigits('047029'), '04 70 29');
+  assert.equal(groupDigits('4702'), '4702');
+  for (const n of pickNumbers(rangeOf('phone'), 5)) assert.equal(groupDigits(n).replace(/ /g, ''), n);
 });
 
 test('typed numbers: separators and other digit scripts are understood, words are not', () => {
