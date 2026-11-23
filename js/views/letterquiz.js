@@ -35,6 +35,8 @@ export default function letterQuiz(ctx, setId) {
     answered = false;
     const q = qs[i];
     const read = q.dir === 'read';
+    const hear = q.dir === 'hear';
+    const word = q.item.letter.ex?.[0];
     const feedback = h('div', { class: 'feedback', 'aria-live': 'polite' });
     const buttons = q.options.map((o, k) => h('button', {
       type: 'button', class: 'option', onclick: () => pickOption(k),
@@ -81,11 +83,14 @@ export default function letterQuiz(ctx, setId) {
       backLink(ctx, '#/speak/alphabet', lang.code === 'ja' ? 'Kana' : 'Alphabet'),
       h('div', { class: 'exercise' },
         h('p', { class: 'kicker' }, `${chosen.name} · ${i + 1} of ${qs.length}`),
-        h('p', { class: `letter-quiz-prompt${read || chosen.native ? '' : ' as-label'}`, ...(read || chosen.native ? { lang: lang.code } : {}) }, read ? q.item.glyph : q.item.label),
-        h('p', { class: 'muted letter-quiz-ask' }, chosen.asks ? chosen.asks[read ? 0 : 1] : read ? 'How is it read?' : 'Which one is it?'),
+        hear
+          ? h('p', { class: 'letter-quiz-prompt' }, h('button', { type: 'button', class: 'icon-btn play big', id: 'letter-hear', 'aria-label': 'Play the word again', onclick: () => ctx.say(word) }, icon('volume', 28)))
+          : h('p', { class: `letter-quiz-prompt${read || chosen.native ? '' : ' as-label'}`, ...(read || chosen.native ? { lang: lang.code } : {}) }, read ? q.item.glyph : q.item.label),
+        h('p', { class: 'muted letter-quiz-ask' }, hear ? 'Which one does the word start with?' : chosen.asks ? chosen.asks[read ? 0 : 1] : read ? 'How is it read?' : 'Which one is it?'),
         // Two columns, unless the glyphs are long (きゃ キャ) and are what is being picked: then one, so none is cut off.
         h('div', { class: `options${!read && wideGlyphs ? '' : ' two'}` }, buttons),
         feedback));
+    if (hear) ctx.say(word, { auto: true });
     window.scrollTo(0, 0);
   }
 

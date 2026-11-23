@@ -74,7 +74,8 @@ test('a round: different letters, four distinct options with the right one among
         assert.equal(qs.length, 10);
         assert.equal(new Set(qs.map((q) => q.item)).size, 10, 'no letter twice in a round');
         for (const q of qs) {
-          assert.ok(['read', 'find'].includes(q.dir));
+          assert.ok(['read', 'find', 'hear'].includes(q.dir));
+          if (q.dir === 'hear') assert.ok([...q.item.letter.ex[0]][0].toLowerCase() === q.item.letter.lower || [...q.item.letter.ex[0]][0] === q.item.letter.upper, 'by ear only when the word begins with the letter');
           assert.equal(q.options.length, 4);
           assert.equal(q.options.filter((o) => o === q.item).length, 1);
           assert.equal(new Set(q.options.map((o) => o.label)).size, 4, 'no reading twice');
@@ -87,10 +88,16 @@ test('a round: different letters, four distinct options with the right one among
   // both directions come up, and wrong answers are close to the right one where they can be
   const [hira] = letterSets(ja);
   const many = Array.from({ length: 30 }, () => letterQuestions(hira, 10)).flat();
-  assert.ok(many.some((q) => q.dir === 'read') && many.some((q) => q.dir === 'find'));
+  assert.ok(many.some((q) => q.dir === 'read') && many.some((q) => q.dir === 'find') && many.some((q) => q.dir === 'hear'));
+  assert.ok(!many.some((q) => q.dir === 'hear' && 'ぬらるれろをん'.includes(q.item.glyph)), 'not for kana no example word begins with');
+  // sets without example words (the voiced kana, the joined shapes keep theirs) are never asked by ear unless the word fits
+  const voiced = letterSets(ja).find((x) => x.id === 'voiced');
+  assert.ok(!Array.from({ length: 10 }, () => letterQuestions(voiced, 10)).flat().some((q) => q.dir === 'hear'));
   const ka = many.filter((q) => q.item.label === 'ka');
   assert.ok(ka.length > 0);
   assert.ok(ka.every((q) => q.options.filter((o) => o !== q.item && (o.label[0] === 'k' || o.label.endsWith('a'))).length >= 2), 'two of か’s wrong answers share its row or its vowel');
+  // お and を are the same sound: never both among the options
+  assert.ok(!many.some((q) => q.options.some((o) => o.glyph === 'お') && q.options.some((o) => o.glyph === 'を')));
   // a fixed random source gives a fixed round
   let seed = 7;
   const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
