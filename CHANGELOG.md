@@ -9,6 +9,7 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **Keep playing** (Read & Listen, in the player bar; “⏭ Next” on narrow screens): when a text ends, the next one in the list opens and starts by itself — the stories and speeches become one long listening session. It stops after the last text, and the switch is remembered.
 - **Last 6 weeks** (Progress): a calendar of days, Monday first — the more you did, the darker the day; the darkest are days the daily goal was met, today is outlined. Below it: on how many days you practised and met the goal.
 - **When the next reviews come:** with nothing due, the Review screen and the Practice card now say how many words come back and when — “Next: 7 words tomorrow”, “3 words on Thursday” — instead of only a date or “check back later”.
 - **Hands-free listening can add the example sentence** (Practice → Hands-free → Options → “Then say its example sentence too”): after each word you hear its sentence, get a pause to repeat it and — with the English option — hear what it means. A twenty-word round becomes several minutes of listening made of sentences that are already part of the course.

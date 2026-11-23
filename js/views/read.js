@@ -7,7 +7,7 @@
 // Texts load on demand (js/reader.js), so the first visit renders a short
 // loading state and fills in; later visits render straight away.
 import { h, icon, set, bindKeys, meter } from '../ui.js';
-import { voiceBanner, diffLine, praiseLine, cleanupScope, backLink, readingText } from '../components.js';
+import { voiceBanner, diffLine, praiseLine, cleanupScope, backLink, readingText, devicePref, setDevicePref } from '../components.js';
 import { rich } from './grammar.js';
 import * as speech from '../speech.js';
 import { keepScreenOn } from '../native.js';
@@ -515,6 +515,9 @@ function practiceCard(text) {
   return null;
 }
 
+// "Keep playing": the text to start playing as soon as its reader opens (set when the one before it ends).
+let autoPlayId = null;
+
 function readerView(ctx, texts, text) {
   const { lang } = ctx;
   const p = prefs(ctx);
@@ -524,6 +527,11 @@ function readerView(ctx, texts, text) {
   const best = ctx.game.textBest(lang.code, text.id);
   const kind = KINDS[text.kind] || KINDS.story;
   const host = h('div', { class: 'read-sheet-host' });
+  // Keep playing: the course text that follows this one in the list (none after the last, or for an own text).
+  const order = text.own ? [] : sortTexts(texts);
+  const nextUp = order[order.findIndex((t) => t.id === text.id) + 1] || null;
+  let keepPlaying = !!devicePref('readKeepPlaying', false);
+  let onward = null;
   // Other audio on this screen (a glossary word) pauses Play all first: it
   // would cut the current line off, and the player would take that for a
   // missing voice. Looking a word up also keeps the place in the text.
@@ -578,10 +586,20 @@ function readerView(ctx, texts, text) {
     say: (i) => ctx.say(sayable(ctx, text, text.lines[i]), { slow: p.slow }),
     onLine: (i) => highlight(i),
     onState: (playing) => { paintPlay(playing); keepScreenOn(playing); },
-    onEnd: () => { live.textContent = 'End of the text.'; },
+    onEnd: () => {
+      live.textContent = 'End of the text.';
+      // Keep playing: on to the next text in the list, which starts by itself.
+      if (!keepPlaying || !nextUp) return;
+      live.textContent = `End of the text. Next: ${nextUp.title}.`;
+      clearTimeout(onward);
+      onward = setTimeout(() => { autoPlayId = nextUp.id; location.hash = href(nextUp.id); }, 1800);
+    },
     onFail: () => ctx.toast('Audio isn’t available — check that a voice is installed for this language.'),
   });
-  ctx.onCleanup(() => { player.stop(); keepScreenOn(false); });
+  ctx.onCleanup(() => { clearTimeout(onward); player.stop(); keepScreenOn(false); });
+  // Arrived here from the end of the text before: start playing.
+  if (autoPlayId === text.id) onward = setTimeout(() => player.play(), 700);
+  autoPlayId = null;
 
   function highlight(i) {
     rows[current]?.classList.remove('current');
@@ -605,6 +623,12 @@ function readerView(ctx, texts, text) {
   }
   paintPlay(false);
 
+  const keepBtn = nextUp ? toggle(h('span', null, h('span', { 'aria-hidden': 'true' }, '⏭ '), label('Keep playing', 'Next')), keepPlaying, (on) => {
+    keepPlaying = on;
+    setDevicePref('readKeepPlaying', on);
+    if (!on) clearTimeout(onward);
+    live.textContent = on ? `After this text, “${nextUp.title}” starts by itself.` : 'Playing stops at the end of this text.';
+  }, { 'aria-label': 'Keep playing: go on to the next text when this one ends', title: `Next: ${nextUp.title}` }) : null;
   const revealBtn = h('button', { type: 'button', class: 'btn small read-reveal-all', hidden: true, onclick: () => setListenFirst(false) }, 'Reveal the text');
   const firstBtn = toggle(h('span', null, h('span', { 'aria-hidden': 'true' }, '🎧 '), 'Listen first'), false, (on) => setListenFirst(on, true));
   function setListenFirst(on, fromToggle = false) {
@@ -646,7 +670,8 @@ function readerView(ctx, texts, text) {
           applyView();
         }, { 'aria-label': lang.code === 'ja' ? 'Kana and rōmaji' : lang.code === 'ar' ? 'Transliteration' : 'Reading' })
         : null,
-      firstBtn),
+      firstBtn,
+      keepBtn),
     live);
   stickUnderTopbar(ctx, bar);
 
