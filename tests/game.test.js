@@ -303,7 +303,7 @@ test('new counters: hands-free rounds, dictation, own texts and the trip kit unl
 test('achievements for the newer features: in context, sound questions, own words and notes', () => {
   store._resetAll();
   for (const id of ['context-30', 'sound-50', 'own-words-10', 'notes-10']) assert.ok(game.ACHIEVEMENTS.some((a) => a.id === id), id);
-  assert.equal(game.ACHIEVEMENTS.length, 52);
+  assert.equal(game.ACHIEVEMENTS.length, 54);
   const m0 = game.metrics();
   assert.deepEqual([m0.inContext, m0.soundQuiz, m0.ownLearned, m0.notes], [0, 0, 0, 0]);
 

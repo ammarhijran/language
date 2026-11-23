@@ -141,6 +141,8 @@ export const ACHIEVEMENTS = [
   A('alphabet', '🔤', 'Letter by Letter', 'Listen to every letter of an alphabet', 'alphabet', 1, 'Pronunciation'),
   A('handsfree-5', '🎧', 'Easy Listening', 'Finish 5 hands-free listening rounds', 'handsFree', 5, 'Pronunciation'),
   A('sound-50', '🎯', 'Sound Sense', 'Get 50 stress, beats or tricky-letter questions right', 'soundQuiz', 50, 'Pronunciation'),
+  A('letters-100', '🔤', 'Reads the Script', 'Get 100 letters right in the letter quiz', 'lettersRight', 100, 'Skill'),
+  A('numbers-50', '🔢', 'Good with Numbers', 'Get 50 numbers right by ear', 'numbersRight', 50, 'Skill'),
 
   A('grammar-1', '📐', 'First Rules', 'Finish a grammar lesson', 'grammar', 1, 'Grammar'),
   A('grammar-5', '🤓', 'Grammar Geek', 'Finish 5 grammar lessons', 'grammar', 5, 'Grammar'),
@@ -207,7 +209,7 @@ export function challengesForWeek(key) {
 
 const COUNTERS = ['lessons', 'answers', 'correct', 'sessions', 'flawless', 'speakGreat', 'speakPerfect', 'earQuizzes', 'earPerfect',
   'goalsMet', 'challenges', 'bestCombo', 'bestStreak', 'early', 'night', 'personalGoals', 'speechPractice', 'rolePlays',
-  'handsFree', 'dictations', 'ownTextPractice', 'kitDone', 'inContext', 'soundQuiz'];
+  'handsFree', 'dictations', 'ownTextPractice', 'kitDone', 'inContext', 'soundQuiz', 'lettersRight', 'numbersRight'];
 
 // Counters where the best value counts, rather than the sum across devices.
 const BEST = new Set(['bestCombo', 'bestStreak']);

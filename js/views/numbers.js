@@ -89,6 +89,7 @@ function round(ctx, range) {
     if (ok) right++;
     ctx.store.logActivity(lang.code, { practiced: 1 });
     ctx.store.logSkill?.(lang.code, 'numbers', ok); // Progress → Your skills
+    if (ok) ctx.game?.count?.({ lang: lang.code, key: 'numbersRight' });
     input.readOnly = true;
     input.classList.add(ok ? 'right' : 'wrong');
     // The course's own word for the number, when it has one (the small numbers).

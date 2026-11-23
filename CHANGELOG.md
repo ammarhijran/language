@@ -10,6 +10,7 @@
 
 ### Added
 - **Fixed:** with the largest text size on a narrow phone, the Play / Pause label in a text’s player bar was cut off at both ends; the row now wraps instead.
+- **Two more achievements** (54 in all): Reads the Script (100 letters right in the letter quiz) and Good with Numbers (50 numbers right by ear).
 - **Copy a topic** (a topic’s page → Copy): its words or phrases as text, one a line with reading and meaning.
 - **Flashcards the other way round** (Settings → Lessons → “Flashcards show first”): the word itself can be the front of the card — you see and hear it, and recall what it means — instead of the meaning.
 - **Practise these again:** when a review or a round ends with four or more missed words, the summary’s “Worth another look” list has a button that starts a mixed round of just those words, and one that plays them hands-free.
