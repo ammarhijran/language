@@ -4,7 +4,8 @@ import { stressItem, beatItem, misreadItem, clozeItem } from '../exercises.js';
 import { learnedWords, dueWords, trickyWords } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
 import { GROUPS, missedChips } from '../components.js';
-import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
+import { sentencesFor, textSentences, MIN_SENTENCES } from '../sentences.js';
+import { cachedTexts, loadTexts } from '../reader.js';
 import handsFree from './handsfree.js';
 import { tripKit } from '../kit.js';
 
@@ -125,12 +126,23 @@ function summary(ctx, right, answered, back = null, missed = []) {
 /** Sentences mode: build up to ROUND sentences of the scope from shuffled word tiles. */
 function sentenceRound(ctx, scope = 'learned', byEar = false) {
   const { lang } = ctx;
-  const pool = sentencesFor(lang, scope, { cards: ctx.store.getCards(lang.code) });
+  // 'text:<id>': the lines of a Read & Listen text. The texts load on demand.
+  const textId = scope.startsWith('text:') ? scope.slice('text:'.length) : null;
+  if (textId && !cachedTexts(lang.code)) {
+    let gone = false;
+    ctx.onCleanup(() => { gone = true; });
+    loadTexts(lang.code).then(() => { if (!gone) ctx.rerender(); }).catch(() => { if (!gone) ctx.replace('/read'); });
+    return h('div', { class: 'view' }, h('p', { class: 'muted', role: 'status' }, 'Loading the text…'));
+  }
+  const text = textId ? (cachedTexts(lang.code) || []).find((t) => t.id === textId) : null;
+  const textHref = text && `#/read/${encodeURIComponent(text.id)}`;
+  const pool = textId ? textSentences(lang, text) : sentencesFor(lang, scope, { cards: ctx.store.getCards(lang.code) });
   const lesson = scope.startsWith('grammar:') ? (lang.grammar || []).find((l) => `grammar:${l.id}` === scope) : null;
   const lessonHref = lesson && `#/grammar/${encodeURIComponent(lesson.id)}`;
   if (pool.length < MIN_SENTENCES) {
     // Phrase topics have the most sentences; a word topic only has its example sentences.
     const hint = scope === 'learned' ? 'Learn a few phrases first, or practise the sentences of a Phrases topic.'
+      : textId ? 'This text has too few lines that can be built from tiles.'
       : lesson ? 'This lesson has too few example sentences to build.'
         : 'This topic has too few example sentences to build. Phrases topics have plenty — or try all of them.';
     return notEnough('Not enough sentences yet', hint,
@@ -143,7 +155,7 @@ function sentenceRound(ctx, scope = 'learned', byEar = false) {
 
   return h('div', { class: 'view' }, runSession(ctx, {
     label: byEar ? 'Dictation' : 'Sentence practice',
-    exitHref: lessonHref || '#/practice',
+    exitHref: lessonHref || textHref || '#/practice',
     items,
     onResult(item, r) {
       // A skipped sentence just moves on: there is no word to fall back on.
@@ -155,7 +167,8 @@ function sentenceRound(ctx, scope = 'learned', byEar = false) {
       return null;
     },
     onFinish: () => summary(ctx, right, answered,
-      lesson ? h('a', { class: 'btn wide', href: lessonHref }, `Back to “${lesson.title}”`) : null),
+      lesson ? h('a', { class: 'btn wide', href: lessonHref }, `Back to “${lesson.title}”`)
+        : text ? h('a', { class: 'btn wide', href: textHref }, `Back to “${text.title}”`) : null),
   }));
 }
 

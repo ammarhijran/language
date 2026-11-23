@@ -12,6 +12,7 @@ import { rich } from './grammar.js';
 import * as speech from '../speech.js';
 import { keepScreenOn } from '../native.js';
 import { newCard } from '../srs.js';
+import { textSentences, MIN_SENTENCES } from '../sentences.js';
 import {
   KINDS, LEVELS, REGISTERS, canPractise, practiceModes, gapItems, MIN_GAPS, loadTexts, cachedTexts, sortTexts, filterTexts, estimateMinutes, speakerIndex,
   canRolePlay, nextText, findWord, fadeLine, SHADOW_ROUNDS, createPlayer, listenTimeout,
@@ -532,6 +533,7 @@ function readerView(ctx, texts, text) {
   const extra = extraGlossary(lang, text);
   const sheet = glossSheet(ctx, text, host, { say: sayAside, onOpen: pausePlayer, items: [...text.glossary, ...extra] });
   const fresh = text.own ? newWords(lang, text) : [];
+  const buildable = text.own ? 0 : textSentences(lang, text).length;
   let listenFirst = false;
   let current = -1;
 
@@ -700,6 +702,17 @@ function readerView(ctx, texts, text) {
         h('span', null, h('b', null, 'Fill the gaps'), h('small', null, 'Put the glossary words back into the text')),
         icon('arrow', 18))
       : null,
+    // The text's own lines as sentences to build from tiles — by reading the translation, or by ear.
+    buildable >= MIN_SENTENCES ? [
+      h('a', { class: 'quick-link read-build-link', href: `#/practice/build/${encodeURIComponent(`text:${text.id}`)}` },
+        h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🧱'),
+        h('span', null, h('b', null, 'Build its sentences'), h('small', null, `Put the words of ${Math.min(buildable, 10)} lines in order`)),
+        icon('arrow', 18)),
+      h('a', { class: 'quick-link read-dictation-link', href: `#/practice/dictation/${encodeURIComponent(`text:${text.id}`)}` },
+        h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '👂'),
+        h('span', null, h('b', null, 'Dictation'), h('small', null, 'Hear a line of the text, build it')),
+        icon('arrow', 18)),
+    ] : null,
     textQuiz(ctx, texts, text),
     host,
   ];

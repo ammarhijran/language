@@ -360,6 +360,16 @@ export function lessonSentences(lang, lessonId) {
     makeSentence(lang, ex, { kind: 'grammar', lessonId }, `grammar:${lessonId}:${si}:${ei}`))).filter(Boolean);
 }
 
+/**
+ * The lines of a Read & Listen text as practice sentences (those that can be
+ * built: not too short, not too long, with a translation), in the text's order.
+ */
+export function textSentences(lang, text) {
+  if (!text?.lines) return [];
+  return unique(lang, text.lines.map((line, i) =>
+    makeSentence(lang, line, { kind: 'text', textId: text.id }, `text:${text.id}:${i}`)).filter(Boolean));
+}
+
 /** The same sentence from two places (a phrase and an example, two lessons) is practised once. */
 function unique(lang, sentences) {
   const seen = new Set();

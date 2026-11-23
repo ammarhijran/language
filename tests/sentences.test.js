@@ -359,3 +359,29 @@ test('an order listed on the entry, or another course sentence with the same wor
   assert.equal(checkOrder(uk, s, tokenize('додому я йду')).correct, true);
   assert.equal(checkOrder(uk, s, tokenize('йду я додому')).correct, false);
 });
+
+test('a Read & Listen text gives its lines as sentences to build', async () => {
+  const { textSentences } = await import('../js/sentences.js');
+  const { loadTexts } = await import('../js/reader.js');
+  for (const L of [tr, uk, ja, ar]) {
+    const texts = await loadTexts(L.code);
+    let enough = 0;
+    for (const t of texts) {
+      const list = textSentences(L, t);
+      if (list.length >= MIN_SENTENCES) enough++;
+      assert.ok(list.length <= t.lines.length);
+      assert.equal(new Set(list.map((x) => x.id)).size, list.length, `${t.id}: each line once`);
+      for (const x of list) {
+        assert.match(x.id, new RegExp(`^text:${t.id}:\\d+$`));
+        const line = t.lines[Number(x.id.split(':').pop())];
+        assert.equal(x.en, line.en);
+        assert.equal(x.audioText, line.tr, `${t.id}: the voice says the line as written`);
+        assert.deepEqual(x.source, { kind: 'text', textId: t.id });
+        assert.ok(x.tokens.length >= 2);
+      }
+    }
+    assert.ok(enough >= 20, `${L.code}: ${enough} texts with enough lines to build`);
+  }
+  assert.deepEqual(textSentences(tr, null), []);
+  assert.deepEqual(textSentences(tr, { id: 'x', lines: [{ tr: 'Merhaba!' }] }), [], 'a line without a translation is left out');
+});

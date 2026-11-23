@@ -133,6 +133,9 @@ async function walk(browser, lang, pack, texts) {
     if (!kept) problems.push(`${lang} ${withGloss.id}: no glossary word could be added to My words`);
     await open('topic/my-words', { selector: '.phrase-row' });
     await open('phrases/mine', { selector: '.phrase-row' }); // the phrasebook lists own entries too
+    // The text's lines as sentences to build, and by ear.
+    await open(`practice/build/${enc(`text:${withGloss.id}`)}`, { wait: 500 });
+    await open(`practice/dictation/${enc(`text:${withGloss.id}`)}`, { wait: 500 });
   }
 
   // Every topic: its page, the first and last entry, and the phrasebook page of phrase topics.
