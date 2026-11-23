@@ -3,6 +3,8 @@ import { pronunciationPanel, speakPractice, voiceBanner, exampleBlock, readingLi
 import { learnedWords, coursePairs } from '../stats.js';
 import { rich } from './grammar.js';
 import { soundWords } from '../sounddrill.js';
+import letterQuiz from './letterquiz.js';
+import { letterSets } from '../letterquiz.js';
 
 // Doing first (speaking, ear training), then the reference (letters, sounds).
 // `short`: the label on a phone, so the four always fit in one row.
@@ -14,6 +16,8 @@ const TABS = [
 ];
 
 export default function pronounce(ctx, tab, ...args) {
+  // The letter quiz is a screen of its own (no tabs): #/speak/alphabet/quiz/<set>.
+  if (tab === 'alphabet' && args[0] === 'quiz') return letterQuiz(ctx, args[1]);
   // Without a section: speaking, once there are a few words to say; before that, the letters.
   if (!TABS.some((t) => t.id === tab)) tab = learnedWords(ctx).length >= 5 ? 'drill' : 'alphabet';
   const body = { alphabet, sounds, ear, drill }[tab](ctx, ...args);
@@ -104,8 +108,11 @@ function alphabet(ctx) {
   } else {
     chart = h('div', { class: 'letter-grid', dir: lang.dir === 'rtl' || code === 'ar' ? 'rtl' : null }, lang.alphabet.map(tile));
   }
+  const quizzes = letterSets(lang);
   return h('section', null,
     h('p', { class: 'muted' }, lang.alphabetIntro),
+    quizzes.length ? h('div', { class: 'button-row letter-quiz-links' }, quizzes.map((s) =>
+      h('a', { class: 'btn small', href: `#/speak/alphabet/quiz/${s.id}` }, icon('target', 16), quizzes.length > 1 ? `Quiz: ${s.name}` : 'Quiz me on the letters'))) : null,
     chart,
     lang.alphabet.some((l) => l.special) ? h('p', { class: 'hint letter-legend' }, h('i', { 'aria-hidden': 'true' }), 'Tinted: sounds English speakers find new.') : null,
   );

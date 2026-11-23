@@ -21,6 +21,7 @@ function soundTip(lang) {
  */
 export function tips(lang, { reminders = false, scope = '' } = {}) {
   const sound = soundTip(lang);
+  const letters = typeof lang.letterName === 'function'; // a script that is new: it has a letter quiz
   const item = (emoji, name, text, href) => ({ emoji, name, text, href });
   return [
     {
@@ -46,6 +47,7 @@ export function tips(lang, { reminders = false, scope = '' } = {}) {
       items: [
         item('🎤', 'Speak', 'Say words aloud and get a score that shows which letters to work on.', '#/speak/drill'),
         item('👂', 'Ear training', 'Pairs of words one sound apart — including pairs from the words you have learned. Which one did you hear?', '#/speak/ear'),
+        ...(letters ? [item('🔤', lang.code === 'ja' ? 'Kana quiz' : 'Letter quiz', 'See a letter and pick how it is read, or the other way round — ten at a time, with the ones you missed listed at the end.', '#/speak/alphabet/quiz')] : []),
         item('🗣️', 'Sounds', 'The sounds English speakers find new, each with words to practise.', '#/speak/sounds'),
         ...(sound ? [item('🎯', sound[1], sound[2], `#/practice/${sound[0]}${scope}`)] : []),
         item('🔧', 'Voice says a word wrong?', 'On the word’s page, “Voice says it wrong?” lets you respell the word for the voice only — the word on screen stays. Settings → Audio has a switch for the whole language where there is one.', '#/progress'),

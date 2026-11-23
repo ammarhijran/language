@@ -73,6 +73,8 @@ async function walk(browser, lang, pack, texts) {
   for (const r of ['', 'learn', 'learn/g/phrases', 'learn/g/talk', 'learn/g/grammar', 'learn/g/read', 'review', 'practice', 'phrases', 'phrases/kit', 'phrases/mine', 'me', 'help',
     'progress', 'journey', 'settings', 'sync', 'search', 'known', 'speak', 'speak/drill', 'speak/ear', 'speak/alphabet', 'speak/sounds', 'grammar', 'read']) await open(r, { wait: 220 });
 
+  // The letter quiz, where the script is new (a language without one shows its own message).
+  await open('speak/alphabet/quiz', { selector: '.letter-quiz' });
   // Speak → Sounds: "Practise this sound" opens the speaking drill with its words.
   await open('speak/sounds', { selector: '.tip-drill' });
   await page.click('.tip-drill');

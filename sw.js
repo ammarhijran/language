@@ -53,6 +53,8 @@ const ASSETS = [
   'js/reminders.js',
   'js/sentences.js',
   'js/skills.js',
+  'js/letterquiz.js',
+  'js/views/letterquiz.js',
   'js/session.js',
   'js/themes.js',
   'js/speech.js',

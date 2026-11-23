@@ -179,6 +179,8 @@ export default makePack({
   vocab: [...baseVocab, ...moreVocab],
   grammar: withDialects(lessons),
   alphabet,
+  // The letter quiz: each letter by its name (alif, bāʾ…).
+  letterName: (l) => l.lower,
   soundTips,
   minimalPairs,
   analyze: (word) => {

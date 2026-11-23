@@ -59,6 +59,13 @@ const QUESTION_WORDS = ['що', 'де', 'коли', 'як', 'чому', 'хто'
 // Settings → Audio → “Mark the stress for the voice”: see `speech` below.
 const voice = { stress: false };
 
+// How each letter is usually written in Latin letters (the official romanisation).
+const LETTER_NAMES = {
+  а: 'a', б: 'b', в: 'v', г: 'h', ґ: 'g', д: 'd', е: 'e', є: 'ye', ж: 'zh', з: 'z',
+  и: 'y — “i” in “sit”', і: 'i', ї: 'yi', й: 'y — “y” in “boy”', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p',
+  р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'kh', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'shch', ь: 'soft sign', ю: 'yu', я: 'ya',
+};
+
 export default makePack({
   extraExamples,
   feminine,
@@ -108,6 +115,9 @@ export default makePack({
   vocab: [...baseVocab, ...moreVocab],
   grammar: lessons,
   alphabet,
+  // The letter quiz: each letter by its usual Latin spelling; и and й, both “y”, by their sound.
+  letterName: (l) => LETTER_NAMES[l.lower] || null,
+  letterSets: [{ id: 'letters', name: 'Letters', glyph: (l) => `${l.upper} ${l.lower}` }],
   soundTips,
   minimalPairs,
   analyze: (word) => analyze(word.tr, word.s),

@@ -175,6 +175,12 @@ const pack = makePack({
   vocab: [...baseVocab, ...moreVocab],
   grammar: lessons,
   alphabet,
+  // The letter quiz: each kana by its rōmaji, hiragana and katakana as two sets. (っ and ー have no reading of their own.)
+  letterName: (l) => (l.upper === 'を' ? 'o (wo)' : romaji(l.upper) || null),
+  letterSets: [
+    { id: 'hiragana', name: 'Hiragana', glyph: (l) => l.upper },
+    { id: 'katakana', name: 'Katakana', glyph: (l) => l.lower },
+  ],
   soundTips,
   minimalPairs,
   analyze(word) {
