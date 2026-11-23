@@ -2417,7 +2417,7 @@ export const vocab = [
       "Можна приміряти цю куртку?",
       "Can I try on this jacket?"
     ],
-    "note": "The fitting room is примірочна."
+    "note": "The fitting room is примірювальна (you will also hear примірочна)."
   },
   {
     "tr": "У вас є на розмір більше?",
@@ -11603,7 +11603,7 @@ export const vocab = [
       0,
       2
     ],
-    "note": "Пароль від… = the password ‘from’ something. Often written Wi-Fi, said вайфай.",
+    "note": "Пароль до… = the password to something (you will also hear пароль від). Often written Wi-Fi, said вайфай.",
     "pair": {
       "tr": "Скинь пароль до вайфаю.",
       "reg": "casual",
