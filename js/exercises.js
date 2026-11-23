@@ -148,6 +148,10 @@ function reveal(ctx, word, correct, extra) {
   );
 }
 
+// Auto-advance: at most this long for the answer's audio, then a short pause to see the answer.
+const AUTO_NEXT_MAX = 4000;
+const AUTO_NEXT_PAUSE = 700;
+
 function continueButton(onClick, label = 'Continue') {
   return h('button', { type: 'button', class: 'btn primary wide continue', onclick: onClick }, label, icon('arrow', 18));
 }
@@ -190,10 +194,19 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, 
     }, 'I mis-tapped — I knew this one') : null;
     el.append(answerSheet(ctx, correct ? 'good' : 'bad', reveal(ctx, word, correct, [extra, slip]), btn, [buttons[i], right]));
     announce(ctx, live, correct ? 'Right! ' : 'Not quite. The answer: ', spoken(ctx, word.tr, word.en));
-    ctx.say(word, { auto: true });
+    const said = ctx.say(word, { auto: true });
     btn.focus({ preventScroll: true });
+    // Settings → Lessons → "Go on by itself after a right answer": once the
+    // word has been said (or a few seconds at most), the next question comes.
+    // A wrong answer always waits: it is the one to look at.
+    if (correct && ctx.settings?.autoNext === true) {
+      const wait = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
+      Promise.race([Promise.resolve(said).catch(() => {}), wait(AUTO_NEXT_MAX)]).then(() => wait(AUTO_NEXT_PAUSE)).then(() => { if (!gone) finish(); });
+    }
   }
 
+  let gone = false; // the question has left the screen: nothing may go on by itself
+  ctx.onCleanup(() => { gone = true; });
   const unbind = bindKeys({
     ...Object.fromEntries(opts.slice(0, 9).map((_, i) => [i + 1, () => answer(i)])),
     Enter: () => { if (answered) finish(); },

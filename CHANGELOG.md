@@ -10,6 +10,7 @@
 
 ### Added
 - **Fixed:** with the largest text size on a narrow phone, the Play / Pause label in a text’s player bar was cut off at both ends; the row now wraps instead.
+- **Go on by itself after a right answer** (Settings → Lessons; off by default): in multiple-choice questions, a right answer moves on to the next question once the word has been said — one tap a question instead of two. A wrong answer always waits for you.
 - **Review ahead** (the Review screen, when nothing is due): the words that come up by the end of tomorrow can be reviewed today — for the evening before a day without time. They are scheduled from today, like any review.
 - **Copy My words** (My words → “Copy the list”): all your own words as text, one a line — word, meaning, reading, note. It pastes into a spreadsheet as columns, and into “Paste a list” on another device as the same words.
 - **Sleep timer** (Read & Listen, in a text’s player bar): ⏱ 10, 20, 30 or 60 minutes — when the time is up, playing stops, and Keep playing does not go on to the next text. The timer carries on from text to text and shows the minutes left.
