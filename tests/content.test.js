@@ -149,3 +149,19 @@ test('languages/meta.js matches the packs (run: node scripts/lang-meta.mjs)', as
   assert.deepEqual(Object.keys(meta), Object.keys(languages));
   for (const L of Object.values(languages)) assert.deepEqual(meta[L.code], metaOf(L), `${L.code}: meta.js is out of date`);
 });
+
+test('Ukrainian stress marks fit their words: one value per word, never past the last vowel', () => {
+  const uk = languages.uk;
+  const vowels = (w) => (w.match(/[аеєиіїоуюя]/gi) || []).length;
+  const check = (o, where) => {
+    const words = o.tr.trim().split(/\s+/);
+    if (o.s === undefined) return;
+    const s = Array.isArray(o.s) ? o.s : [o.s];
+    assert.equal(s.length, words.length, `${where}: “${o.tr}” has ${words.length} words but ${s.length} stress values`);
+    s.forEach((n, i) => assert.ok(Number.isInteger(n) && n >= 0 && n <= vowels(words[i]), `${where}: stress ${n} does not fit “${words[i]}”`));
+  };
+  for (const w of uk.words) {
+    check(w, w.id);
+    if (w.pair) check(w.pair, `${w.id} (pair)`);
+  }
+});

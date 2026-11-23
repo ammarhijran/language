@@ -2068,6 +2068,7 @@ export const vocab = [
       "en": "The weather’s awesome!",
       "s": [
         2,
+        0,
         1
       ]
     }
@@ -2557,7 +2558,7 @@ export const vocab = [
     "cat": "p-directions",
     "s": [
       0,
-      2
+      3
     ],
     "note": "Politer with a lead-in. On the doors: Ч (чоловічий, men) and Ж (жіночий, women).",
     "pair": {
@@ -2567,7 +2568,7 @@ export const vocab = [
         3,
         0,
         0,
-        2
+        3
       ]
     }
   },
@@ -7214,7 +7215,7 @@ export const vocab = [
       "tr": "Що-що?",
       "reg": "casual",
       "en": "Come again?",
-      "s": 0
+      "s": 1
     }
   },
   {
@@ -8042,7 +8043,7 @@ export const vocab = [
       3,
       0,
       0,
-      2
+      1
     ],
     "ex": [
       "— Відколи це у вас? — Це почалося три дні тому.",
@@ -8444,9 +8445,10 @@ export const vocab = [
     "note": "Входить у вартість = is included in the price."
   },
   {
-    "tr": "Підкажіть, будь ласка, пароль від вайфаю.",
+    "tr": "Підкажіть, будь ласка, пароль до вайфаю.",
     "en": "Could you tell me the Wi-Fi password, please?",
     "cat": "p-hotel",
+    "id": "підкажіть-будь-ласка-пароль-від-вайфаю",
     "s": [
       3,
       0,
@@ -8458,7 +8460,7 @@ export const vocab = [
     "note": "Підкажіть is the go-to polite way to ask for information. Wi-Fi is said вайфай.",
     "reg": "polite",
     "pair": {
-      "tr": "Який пароль від вайфаю?",
+      "tr": "Який пароль до вайфаю?",
       "reg": "casual",
       "en": "What’s the Wi-Fi password?",
       "s": [
@@ -11590,9 +11592,10 @@ export const vocab = [
     "note": "Landlords usually ask for the first month up front plus a deposit (застава or депозит), often one month’s rent."
   },
   {
-    "tr": "Який тут пароль від вайфаю?",
+    "tr": "Який тут пароль до вайфаю?",
     "en": "What’s the Wi-Fi password here?",
     "cat": "p-housing",
+    "id": "який-тут-пароль-від-вайфаю",
     "s": [
       2,
       0,
@@ -11602,7 +11605,7 @@ export const vocab = [
     ],
     "note": "Пароль від… = the password ‘from’ something. Often written Wi-Fi, said вайфай.",
     "pair": {
-      "tr": "Скинь пароль від вайфаю.",
+      "tr": "Скинь пароль до вайфаю.",
       "reg": "casual",
       "en": "Send me the Wi-Fi password.",
       "s": [
