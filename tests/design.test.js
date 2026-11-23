@@ -176,6 +176,10 @@ test('sync: a code that only changes ★ saved entries says so, never “0 new, 
   assert.equal(text(langChanges(both[1])), '★ 1 saved, 2 unsaved');
   assert.equal(text(langChanges(both[0])), '12 words · 2 new · 1 updated');
   assert.equal(mergedText([{ code: 'tr', remoteWords: 3, added: 0, updated: 0, removed: 0 }]), 'Progress combined. ');
+  // The learner's own words are named when the merge changes them.
+  assert.equal(mergedText([], { added: 2, updated: 0, removed: 1 }), 'In My words 2 new, 1 removed. ');
+  assert.equal(mergedText(favOnly, { added: 0, updated: 1, removed: 0 }), '3 entries added to your saved phrases and in My words 1 changed. ');
+  assert.equal(mergedText([], { added: 0, updated: 0, removed: 0 }), 'Progress combined. ');
 });
 
 // ---------- Search ----------

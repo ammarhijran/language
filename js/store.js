@@ -9,7 +9,7 @@
 // WRITE_GAP ms, the native mirror at most every MIRROR_GAP ms, and both at
 // once when the app is hidden, closed or paused, so closing it loses nothing.
 import { hasPlugin, plugin, isNative, onAppPause } from './native.js';
-import { sanitize, stamp, DAY_FIELDS } from './sync.js';
+import { sanitize, stamp, DAY_FIELDS, cleanOwnWords, ownWordFields, OWN_WORDS_MAX, OWN_WORD_LIMITS } from './sync.js';
 
 const KEY = 'lisan:v1';
 const DEVICE_KEY = 'lisan:device';
@@ -77,33 +77,9 @@ function cleanMine(raw) {
 }
 
 // The learner's own words and phrases ("My words"): added by hand, learned,
-// reviewed and practised like the course's. Like own texts they are kept on
-// this device and in backup files, not in sync codes.
-export const OWN_WORDS_MAX = 300; // entries per language
-export const OWN_WORD_LIMITS = { tr: 80, en: 120, read: 120, note: 200 }; // characters per field
-const OWN_WORD_ID = /^mw-[a-z0-9]{1,12}$/;
-const oneLine = (v, max) => (typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, max).trim() : '');
-/** { tr, en, read, note } trimmed to one line each and to their limits. */
-const ownWordFields = (w) => Object.fromEntries(Object.entries(OWN_WORD_LIMITS).map(([k, max]) => [k, oneLine(w?.[k], max)]));
-function cleanOwnWords(raw) {
-  const out = {};
-  if (!isObj(raw)) return out;
-  for (const [lang, list] of Object.entries(raw)) {
-    if (BAD_KEYS.has(lang) || !/^[a-z]{2,3}$/.test(lang) || !Array.isArray(list)) continue;
-    const seen = new Set();
-    const words = [];
-    for (const w of list) {
-      if (!isObj(w) || typeof w.id !== 'string' || !OWN_WORD_ID.test(w.id) || seen.has(w.id)) continue;
-      const fields = ownWordFields(w);
-      if (!fields.tr || !fields.en) continue;
-      seen.add(w.id);
-      words.push({ id: w.id, ...fields, at: Number.isFinite(w.at) ? w.at : 0 });
-      if (words.length >= OWN_WORDS_MAX) break;
-    }
-    if (words.length) out[lang] = words;
-  }
-  return out;
-}
+// reviewed and practised like the course's. They are part of backups and of
+// sync codes (see sync.js for their shape, checking and merging).
+export { OWN_WORDS_MAX, OWN_WORD_LIMITS };
 
 let memDeviceId = null;
 let wiped = false; // set by deleteAllData(): nothing may be written back before the reload
@@ -433,38 +409,45 @@ export function deleteOwnText(lang, id) {
   save();
 }
 
+const ownList = (lang) => (state.words && Object.hasOwn(state.words, lang) ? state.words[lang] : []);
+const newer = (old) => Math.max(Date.now(), (old?.last ?? 0) + 1); // a change is always stamped after what it replaces
 /** The learner's own words in a language, in the order they were added: [{ id, tr, en, read, note, at }]. */
-export const getOwnWords = (lang) => (state.words && Object.hasOwn(state.words, lang) ? state.words[lang] : []).map((w) => ({ ...w }));
+export const getOwnWords = (lang) => ownList(lang).filter((w) => !w.deleted)
+  .map(({ id, tr, en, read, note, at }) => ({ id, tr, en, read, note, at }));
 
 /**
  * Add a word or phrase, or change the one with `id`. Returns its id, or null
  * when the word or its meaning is missing, or the language already has
- * OWN_WORDS_MAX entries. `read` is an optional reading (kana, transliteration).
+ * OWN_WORDS_MAX entries. `read` is an optional reading (kana, transliteration,
+ * the stress of a Ukrainian word).
  */
 export function saveOwnWord(lang, { id = null, ...input }) {
   const fields = ownWordFields(input);
   if (!fields.tr || !fields.en) return null;
-  state.words ||= {};
-  const list = (state.words[lang] ||= []);
-  let rec = id ? list.find((w) => w.id === id) : null;
+  const list = ownList(lang);
+  let rec = id ? list.find((w) => w.id === id && !w.deleted) : null;
   if (!rec) {
-    if (list.length >= OWN_WORDS_MAX) { if (!list.length) delete state.words[lang]; return null; }
+    if (list.filter((w) => !w.deleted).length >= OWN_WORDS_MAX) return null;
     let n = Date.now().toString(36).slice(-8);
     while (list.some((w) => w.id === `mw-${n}`)) n = (parseInt(n, 36) + 1).toString(36);
     rec = { id: `mw-${n}`, at: Date.now() };
-    list.push(rec);
+    state.words ||= {};
+    (state.words[lang] ||= list).push(rec);
   }
-  Object.assign(rec, fields);
+  Object.assign(rec, fields, { last: newer(rec) });
   save();
   return rec.id;
 }
 
-/** Remove one of the learner's own words, with what was learned about it. */
+/**
+ * Remove one of the learner's own words, with what was learned about it. A
+ * tombstone stays in its place, so the deletion also reaches a synced device.
+ */
 export function deleteOwnWord(lang, id) {
-  const list = state.words?.[lang];
-  if (!list?.some((w) => w.id === id)) return;
-  state.words[lang] = list.filter((w) => w.id !== id);
-  if (!state.words[lang].length) delete state.words[lang];
+  const list = ownList(lang);
+  const at = list.findIndex((w) => w.id === id && !w.deleted);
+  if (at < 0) return;
+  list[at] = { id, deleted: true, last: newer(list[at]) };
   if (Object.hasOwn(prog(lang).cards, id)) deleteCard(lang, id);
   if (prog(lang).fav && Object.hasOwn(prog(lang).fav, id)) setFav(lang, id, false);
   save();
@@ -614,13 +597,14 @@ export async function deleteAllData() {
 }
 
 /** Everything that sync carries between devices, tombstones included (no settings — those stay per device). */
-export const syncData = () => ({ progress: state.progress, game: state.game });
+export const syncData = () => ({ progress: state.progress, game: state.game, words: state.words || {} });
 
 /** Replace progress and game state with a merged version (see sync.js). */
-export function applySync({ progress, game }) {
+export function applySync({ progress, game, words }) {
   const clean = sanitize({ progress, game }, { device: deviceId() }); // already clean; this is only a safety net
   state.progress = clean.progress;
   state.game = clean.game;
+  if (words) state.words = cleanOwnWords(words); // a merge made by an older caller has none: the list stays
   if (hasAnyProgress()) state.settings.onboarded = true;
   save();
   flush();

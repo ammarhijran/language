@@ -50,14 +50,22 @@ export function langChanges(l) {
   return parts;
 }
 
+/** What a merge does to the learner's own words: "2 new, 1 changed, 1 removed", or '' when nothing. */
+export function ownChanges(own) {
+  if (!own) return '';
+  return [own.added ? `${own.added} new` : '', own.updated ? `${own.updated} changed` : '', own.removed ? `${own.removed} removed` : ''].filter(Boolean).join(', ');
+}
+
 /** The sentence after a merge: words first, then saved entries; never "0 new, 0 updated" for a code that only changes ★. */
-export function mergedText(rows) {
+export function mergedText(rows, own = null) {
   const sum = (k) => rows.reduce((s, l) => s + (l[k] || 0), 0);
   const [added, updated, removed, savedAdded, savedRemoved] = ['added', 'updated', 'removed', 'savedAdded', 'savedRemoved'].map(sum);
   const out = [];
   if (added || updated || removed) out.push(`${added} new and ${updated} updated words${removed ? `, ${removed} removed` : ''}`);
   if (savedAdded) out.push(`${plural(savedAdded, 'entry', 'entries')} added to your saved phrases`);
   if (savedRemoved) out.push(`${plural(savedRemoved, 'entry', 'entries')} removed from them`);
+  const mine = ownChanges(own);
+  if (mine) out.push(`in My words ${mine}`);
   if (!out.length) return 'Progress combined. ';
   const text = out.length > 1 ? `${out.slice(0, -1).join(', ')} and ${out[out.length - 1]}` : out[0];
   return `${text[0].toUpperCase()}${text.slice(1)}. `;
@@ -189,7 +197,8 @@ export default function sync(ctx) {
           ? h('ul', { class: 'sync-langs' }, rows.map((l) => h('li', null,
             h('span', null, meta[l.code].flag, ' ', meta[l.code].name),
             h('span', { class: 'muted small' }, langChanges(l)))))
-          : h('p', { class: 'hint' }, 'No words in this code yet.'),
+          : ownChanges(merged.summary.own) ? null : h('p', { class: 'hint' }, 'No words in this code yet.'),
+        ownChanges(merged.summary.own) ? h('p', null, '📝 My words: ', ownChanges(merged.summary.own)) : null,
         lvAfter > lvBefore ? h('p', null, `⭐ You’ll go from level ${lvBefore} to level ${lvAfter}.`) : null,
         nothing ? h('p', { class: 'hint' }, skipped
           ? 'Nothing new — the rest of this code is from before you reset progress on this device.'
@@ -200,6 +209,7 @@ export default function sync(ctx) {
             onclick: () => {
               store.applySync(merged);
               ctx.applyDisplaySettings?.();
+              ctx.refreshOwnWords?.(); // the words added on the other device
               try {
                 ctx.game.refresh(ctx.lang.code); // combined progress may unlock achievements
               } catch (e) {
@@ -210,7 +220,7 @@ export default function sync(ctx) {
               store.syncLog({ kind: 'merged', from: payload.device });
               paste.value = '';
               set(preview, h('div', { class: 'banner sync-done' },
-                h('b', null, '✅ Merged! '), mergedText(rows),
+                h('b', null, '✅ Merged! '), mergedText(rows, merged.summary.own),
                 h('p', { class: 'hint' }, 'To finish a two-way sync, send this device’s progress back:'),
                 h('button', { type: 'button', class: 'btn small primary', onclick: () => { sendPass.input.value = recvPass.input.value; create(); sendCard.scrollIntoView({ behavior: 'smooth' }); } }, 'Create a code for the other device')));
               refreshLog();

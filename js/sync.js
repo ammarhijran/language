@@ -178,7 +178,7 @@ export async function decode(text, { passphrase = '' } = {}) {
   try { payload = JSON.parse(new TextDecoder().decode(bytes)); } catch { throw new SyncError('invalid', 'The sync code is incomplete or damaged.'); }
   if (!isObj(payload) || payload.app !== 'lisan' || !isObj(payload.progress)) throw new SyncError('invalid', 'That isn’t Lisan progress.');
   const device = okKey(payload.device) ? payload.device : 'other';
-  return { app: 'lisan', device, at: num(payload.at, MAX_TIME) ?? null, ...sanitize(payload, { device }) };
+  return { app: 'lisan', device, at: num(payload.at, MAX_TIME) ?? null, ...sanitize(payload, { device }), words: cleanOwnWords(payload.words) };
 }
 
 // ---------- sanitizing ----------
@@ -399,6 +399,80 @@ export function sanitize(data, { device, dailyGoal } = {}) {
   return { progress: sanitizeProgress(data?.progress, legacyGoalMet), game };
 }
 
+// ---------- The learner's own words ("My words") ----------
+// { lang: [entry] } in the order the words were added. An entry is
+// { id, tr, en, read, note, at, last } — `at` when it was added, `last` when it
+// last changed — or, once deleted, a { id, deleted, last } tombstone, so the
+// deletion wins over an older copy on another device.
+export const OWN_WORDS_MAX = 300; // words per language
+export const OWN_WORD_LIMITS = { tr: 80, en: 120, read: 120, note: 200 }; // characters per field
+const OWN_WORD_ID = /^mw-[a-z0-9]{1,12}$/;
+const oneLine = (v, max) => (typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, max).trim() : '');
+/** { tr, en, read, note } trimmed to one line each and to their limits. */
+export const ownWordFields = (w) => Object.fromEntries(Object.entries(OWN_WORD_LIMITS).map(([k, max]) => [k, oneLine(w?.[k], max)]));
+const time = (x) => (typeof x === 'number' && Number.isFinite(x) && x >= 0 ? x : 0);
+
+/** Own words from stored, imported or synced data, checked entry by entry. */
+export function cleanOwnWords(raw) {
+  const out = {};
+  if (!isObj(raw)) return out;
+  for (const [lang, list] of Object.entries(raw)) {
+    if (BAD_KEYS.has(lang) || !/^[a-z]{2,3}$/.test(lang) || !Array.isArray(list)) continue;
+    const seen = new Set();
+    const words = [];
+    let live = 0;
+    let gone = 0;
+    for (const w of list) {
+      if (!isObj(w) || typeof w.id !== 'string' || !OWN_WORD_ID.test(w.id) || seen.has(w.id)) continue;
+      if (w.deleted === true) {
+        if (gone++ >= OWN_WORDS_MAX) continue;
+        seen.add(w.id);
+        words.push({ id: w.id, deleted: true, last: time(w.last) });
+        continue;
+      }
+      const fields = ownWordFields(w);
+      if (!fields.tr || !fields.en || live >= OWN_WORDS_MAX) continue;
+      live++;
+      seen.add(w.id);
+      const at = time(w.at);
+      words.push({ id: w.id, ...fields, at, last: Math.max(time(w.last), at) });
+    }
+    if (words.length) out[lang] = words;
+  }
+  return out;
+}
+
+/**
+ * Combine two (clean) lists of own words: for a word both have, the copy that
+ * changed last wins — a deletion included; words only the other device has are
+ * added after this device's. Neither argument is changed.
+ * @returns {{ words, added, updated, removed }} — the counts are what changes on this device.
+ */
+export function mergeOwnWords(local = {}, remote = {}) {
+  const words = {};
+  let added = 0; let updated = 0; let removed = 0;
+  const same = (a, b) => Object.keys(OWN_WORD_LIMITS).every((k) => a[k] === b[k]);
+  for (const lang of new Set([...Object.keys(local), ...Object.keys(remote)])) {
+    const theirs = new Map((remote[lang] || []).map((w) => [w.id, w]));
+    const list = [];
+    for (const w of local[lang] || []) {
+      const r = theirs.get(w.id);
+      theirs.delete(w.id);
+      if (!r || r.last <= w.last) { list.push(w); continue; }
+      list.push(r);
+      if (r.deleted) { if (!w.deleted) removed++; } else if (w.deleted) added++; else if (!same(r, w)) updated++;
+    }
+    for (const r of theirs.values()) {
+      list.push(r);
+      if (!r.deleted) added++;
+    }
+    let live = 0;
+    const kept = list.filter((w) => w.deleted || ++live <= OWN_WORDS_MAX).map((w) => ({ ...w }));
+    if (kept.length) words[lang] = kept;
+  }
+  return { words, added, updated, removed };
+}
+
 // ---------- merge ----------
 
 const clone = (x) => (x == null ? x : JSON.parse(JSON.stringify(x)));
@@ -540,7 +614,7 @@ export function mergeGame(local = {}, remote = {}) {
  * Merge a payload into local data without touching either. The payload is
  * sanitized first; `device` is this device's id (it owns any old-format
  * local day logs). summary.changed is false when merging would change nothing.
- * @returns {{ progress, game, summary }}
+ * @returns {{ progress, game, words, summary }}
  */
 export function mergeAll(local, payload, { device = 'this' } = {}) {
   const mine = sanitize(local, { device });
@@ -565,6 +639,12 @@ export function mergeAll(local, payload, { device = 'this' } = {}) {
     });
   }
   const game = mergeGame(mine.game, theirs.game);
-  const changed = JSON.stringify({ progress, game }) !== before;
-  return { progress, game, summary: { langs, changed, from: payload?.device, at: payload?.at } };
+  // The learner's own words travel with the progress about them.
+  const localWords = cleanOwnWords(local?.words);
+  const own = mergeOwnWords(localWords, cleanOwnWords(payload?.words));
+  const changed = JSON.stringify({ progress, game }) !== before || JSON.stringify(own.words) !== JSON.stringify(localWords);
+  return {
+    progress, game, words: own.words,
+    summary: { langs, changed, from: payload?.device, at: payload?.at, own: { added: own.added, updated: own.updated, removed: own.removed } },
+  };
 }

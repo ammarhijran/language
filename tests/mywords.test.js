@@ -7,10 +7,11 @@ import * as store from '../js/store.js';
 import { OWN_CATEGORY } from '../js/languages/common.js';
 import { ownWordProblem, readingField, parseWordList, stressFromAccents, LIST_LINES_MAX } from '../js/views/mywords.js';
 import { newCard } from '../js/srs.js';
+import { cleanOwnWords, mergeOwnWords, mergeAll, encode, decode } from '../js/sync.js';
 
 const { tr, uk, ja, ar } = languages;
 
-test('own words: saved per language in the order added, trimmed, kept in backups, never in sync data', () => {
+test('own words: saved per language in the order added, trimmed, kept in backups and in sync data', () => {
   store._resetAll();
   assert.deepEqual(store.getOwnWords('tr'), []);
   assert.equal(store.saveOwnWord('tr', { tr: 'kelebek', en: '  ' }), null, 'a meaning is needed');
@@ -38,7 +39,8 @@ test('own words: saved per language in the order added, trimmed, kept in backups
   store.deleteOwnWord('ja', long);
   assert.deepEqual(store.getOwnWords('ja'), []);
 
-  assert.equal('words' in store.syncData(), false, 'not synced');
+  assert.deepEqual(store.syncData().words.tr.map((w) => w.tr), ['uğur böceği', 'yağmurluk'], 'part of a sync code');
+  assert.deepEqual(store.syncData().words.ja.map((w) => [w.id, w.deleted]), [[long, true]], 'a deleted word leaves a tombstone, so the deletion can travel');
   const backup = JSON.parse(store.exportData());
   assert.deepEqual(backup.words.tr.map((w) => w.tr), ['uğur böceği', 'yağmurluk']);
   store._resetAll();
@@ -340,4 +342,98 @@ test('accent marks typed or pasted with a Ukrainian word become its stress', () 
   // In a pasted list a third column is a note (the stress is not typed), and accents stay for the form to read.
   const { entries } = parseWordList('мете\u0301лик\tbutterfly\tfrom a song', uk);
   assert.deepEqual([entries[0].tr, entries[0].read, entries[0].note], ['мете\u0301лик', '', 'from a song']);
+});
+
+// ---------- Sync ----------
+
+const W = (id, tr, last, extra = {}) => ({ id, tr, en: `${tr} (en)`, read: '', note: '', at: 1, last, ...extra });
+const GONE = (id, last) => ({ id, deleted: true, last });
+
+test('sync: for a word both devices have, the copy changed last wins — deletions included', () => {
+  const local = { tr: [W('mw-a', 'bir', 10), W('mw-b', 'iki', 10), W('mw-c', 'üç', 10), GONE('mw-d', 30), W('mw-e', 'beş', 10)] };
+  const remote = { tr: [W('mw-a', 'bir!', 20), W('mw-b', 'iki?', 5), GONE('mw-c', 20), W('mw-d', 'dört', 20), W('mw-f', 'altı', 1)], uk: [W('mw-g', 'сім', 1), GONE('mw-h', 2)] };
+  const before = JSON.stringify([local, remote]);
+  const m = mergeOwnWords(local, remote);
+  assert.equal(JSON.stringify([local, remote]), before, 'neither side is changed');
+  assert.deepEqual(m.words.tr.map((w) => (w.deleted ? `-${w.id}` : w.tr)), ['bir!', 'iki', '-mw-c', '-mw-d', 'beş', 'altı'], 'this device’s order, then the other’s new words');
+  assert.deepEqual(m.words.uk.map((w) => (w.deleted ? `-${w.id}` : w.tr)), ['сім', '-mw-h']);
+  assert.deepEqual([m.added, m.updated, m.removed], [2, 1, 1]);
+  // The same merge from the other side ends with the same words.
+  const back = mergeOwnWords(remote, local);
+  const live = (words) => Object.fromEntries(Object.entries(words).map(([k, l]) => [k, l.filter((w) => !w.deleted).map((w) => w.tr).sort()]));
+  assert.deepEqual(live(back.words), live(m.words));
+  // Merging again changes nothing.
+  assert.deepEqual([mergeOwnWords(m.words, remote).added, mergeOwnWords(m.words, remote).updated, mergeOwnWords(m.words, remote).removed], [0, 0, 0]);
+  // A deleted word that was added again later (a newer copy) comes back.
+  assert.equal(mergeOwnWords({ tr: [GONE('mw-a', 5)] }, { tr: [W('mw-a', 'bir', 9)] }).added, 1);
+  // Never more than the limit of live words.
+  const many = { tr: Array.from({ length: 200 }, (_, i) => W(`mw-l${i}`, `l${i}`, 1)) };
+  const more = { tr: Array.from({ length: 200 }, (_, i) => W(`mw-r${i}`, `r${i}`, 1)) };
+  assert.equal(mergeOwnWords(many, more).words.tr.filter((w) => !w.deleted).length, 300);
+});
+
+test('sync: own words from a code are checked like the rest of it', () => {
+  const clean = cleanOwnWords({
+    tr: [W('mw-a', 'bir', 10), { id: 'mw-b', deleted: true, last: 7, tr: 'ignored' }, { id: 'mw-c', deleted: 'yes', tr: 'x', en: 'y' }, GONE('../x', 1), W('mw-a', 'twice', 1),
+      { id: 'mw-d', tr: 'eski', en: 'from an older version', at: 50 }, { id: 'mw-e', tr: 'a', en: 'b', at: -5, last: 'now' }],
+    __proto__: [W('mw-z', 'z', 1)], 'TR ': [W('mw-z', 'z', 1)], ja: 'x',
+  });
+  assert.deepEqual(Object.keys(clean), ['tr']);
+  assert.deepEqual(clean.tr.map((w) => [w.id, w.deleted || w.tr, w.last]), [['mw-a', 'bir', 10], ['mw-b', true, 7], ['mw-c', 'x', 0], ['mw-d', 'eski', 50], ['mw-e', 'a', 0]]);
+  assert.deepEqual(Object.keys(clean.tr[1]), ['id', 'deleted', 'last'], 'a tombstone keeps nothing else');
+  assert.equal(clean.tr[3].last, 50, 'a word saved before changes were stamped counts as last changed when it was added');
+});
+
+test('sync: a code carries the words, merges them, and an older code without them leaves the list alone', () => {
+  store._resetAll();
+  const id = store.saveOwnWord('tr', { tr: 'zzqa', en: 'mine' });
+  const local = store.syncData();
+  const theirs = { device: 'other-device', at: 5, progress: {}, game: {}, words: { tr: [W('mw-far', 'zzqb', Date.now() + 1000)], uk: [W('mw-uk', 'ззю', 1)] } };
+  const merged = mergeAll(local, theirs, { device: 'this-device' });
+  assert.deepEqual(merged.words.tr.map((w) => w.tr), ['zzqa', 'zzqb']);
+  assert.deepEqual(merged.summary.own, { added: 2, updated: 0, removed: 0 });
+  assert.equal(merged.summary.changed, true, 'new words alone are a change');
+  store.applySync(merged);
+  assert.deepEqual(store.getOwnWords('tr').map((w) => w.tr), ['zzqa', 'zzqb']);
+  assert.deepEqual(store.getOwnWords('uk').map((w) => w.tr), ['ззю']);
+  // The same code again: nothing new.
+  assert.equal(mergeAll(store.syncData(), theirs, { device: 'this-device' }).summary.changed, false);
+  // The other device deleted a word since: it goes here too, with what was learned about it left to the card merge.
+  const later = { ...theirs, words: { tr: [GONE(id, Date.now() + 5000)] } };
+  const m2 = mergeAll(store.syncData(), later, { device: 'this-device' });
+  assert.deepEqual(m2.summary.own, { added: 0, updated: 0, removed: 1 });
+  store.applySync(m2);
+  assert.deepEqual(store.getOwnWords('tr').map((w) => w.tr), ['zzqb']);
+  // A code from a version without My words has no list: this device keeps its own.
+  const old = mergeAll(store.syncData(), { device: 'old', at: 1, progress: {}, game: {} }, { device: 'this-device' });
+  assert.deepEqual(old.summary.own, { added: 0, updated: 0, removed: 0 });
+  store.applySync(old);
+  assert.deepEqual(store.getOwnWords('tr').map((w) => w.tr), ['zzqb']);
+  store.applySync({ progress: {}, game: {} }); // and a merge made without the list leaves it alone
+  assert.deepEqual(store.getOwnWords('tr').map((w) => w.tr), ['zzqb']);
+  // Changing a word after a deletion elsewhere: the newer change wins.
+  store.saveOwnWord('tr', { id: store.getOwnWords('tr')[0].id, tr: 'zzqb', en: 'changed here' });
+  const stale = mergeAll(store.syncData(), { ...theirs, words: { tr: [GONE('mw-far', 10)] } }, { device: 'this-device' });
+  assert.deepEqual(stale.words.tr.filter((w) => !w.deleted).map((w) => w.en), ['changed here']);
+  store._resetAll();
+});
+
+test('sync: the words survive being packed into a code and read back, encrypted or not', async () => {
+  store._resetAll();
+  store.saveOwnWord('ja', { tr: '蝶', en: 'butterfly', read: 'ちょう', note: 'from a song' });
+  const gone = store.saveOwnWord('ja', { tr: '傘', en: 'umbrella' });
+  store.deleteOwnWord('ja', gone);
+  for (const passphrase of ['', 'correct horse battery']) {
+    const code = await encode({ device: 'dev-a', at: 7, ...store.syncData() }, { passphrase });
+    const payload = await decode(code, { passphrase });
+    assert.deepEqual(payload.words.ja.map((w) => (w.deleted ? `-${w.id}` : [w.tr, w.en, w.read, w.note].join('|'))), ['蝶|butterfly|ちょう|from a song', `-${gone}`]);
+    const merged = mergeAll({ progress: {}, game: {} }, payload, { device: 'dev-b' });
+    assert.deepEqual(merged.summary.own, { added: 1, updated: 0, removed: 0 });
+  }
+  // What is read from a code is checked: rubbish in the list never gets through.
+  const bad = await decode(await encode({ device: 'dev-a', at: 7, progress: {}, game: {}, words: { ja: [{ id: 'x', tr: 'a', en: 'b' }, 'text'], __proto__: [] } }));
+  assert.deepEqual(bad.words, {});
+  const none = await decode(await encode({ device: 'dev-a', at: 7, progress: {}, game: {} }));
+  assert.deepEqual(none.words, {}, 'a code from a version without My words');
+  store._resetAll();
 });

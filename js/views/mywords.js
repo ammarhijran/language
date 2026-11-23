@@ -330,5 +330,5 @@ export default function myWords(ctx, editId, prefill = '') {
     listCard,
     summary,
     list,
-    h('p', { class: 'hint' }, 'Your words stay on this device and in a backup file you export (Settings → Your data). They are not part of sync codes.'));
+    h('p', { class: 'hint' }, 'Your words are saved on this device. They are part of the backup file you can export and of sync codes (Settings → Your data), so they can follow you to another device.'));
 }
