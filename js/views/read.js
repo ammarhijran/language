@@ -595,11 +595,18 @@ function readerView(ctx, texts, text) {
   const player = createPlayer({
     count: n,
     say: (i) => ctx.say(sayable(ctx, text, text.lines[i]), { slow: p.slow }),
-    onLine: (i) => { highlight(i); setDevicePref(posKey, i); resume.hidden = true; },
+    onLine: (i) => {
+      highlight(i);
+      setDevicePref(posKey, i);
+      // …and which text it was, for Home's "Keep listening" row.
+      setDevicePref('readLast', i > 0 && i < text.lines.length - 1 ? { lang: lang.code, id: text.id, title: text.title, line: i, of: text.lines.length } : null);
+      resume.hidden = true;
+    },
     onState: (playing) => { paintPlay(playing); keepScreenOn(playing); },
     onEnd: () => {
       live.textContent = 'End of the text.';
       setDevicePref(posKey, 0); // read to the end: next time it starts from the top
+      setDevicePref('readLast', null);
       // Keep playing: on to the next text in the list, which starts by itself.
       if (!keepPlaying || !nextUp) return;
       if (sleepAt && Date.now() >= sleepAt) return; // the sleep timer has run out: no next text

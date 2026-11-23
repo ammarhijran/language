@@ -3,7 +3,7 @@
 // phrasebook, everyday speech, texts and sentences, the word of the day and
 // this week's challenges. Every topic is one tap away on Learn.
 import { h, icon, storageBanner } from '../ui.js';
-import { voiceBanner, playButton, readingLine, glyph } from '../components.js';
+import { voiceBanner, playButton, readingLine, glyph, devicePref } from '../components.js';
 import { computeStats, nextTopics, topicCounts, wordOfTheDay, learnedWords } from '../stats.js';
 import { challengeList, repairBanner } from './journey.js';
 import { newsToShow } from '../news.js';
@@ -54,6 +54,15 @@ export default function home(ctx) {
     ? h('a', { class: 'up-next kit-row', href: '#/learn/kit' },
       h('span', { class: 'kicker' }, 'Trip soon?'),
       h('span', { class: 'up-next-name' }, `🎒 Essentials · ${kitLearned}/${kit.length}`),
+      icon('arrow', 18))
+    : null;
+
+  // A text left part-way in Read & Listen: back to it in one tap (it offers to continue from that line).
+  const last = devicePref('readLast', null);
+  const listenRow = last && typeof last === 'object' && last.lang === lang.code && typeof last.id === 'string' && Number(last.line) > 0
+    ? h('a', { class: 'up-next kit-row listen-row', href: `#/read/${encodeURIComponent(last.id)}` },
+      h('span', { class: 'kicker' }, 'Keep listening'),
+      h('span', { class: 'up-next-name' }, `🎧 ${String(last.title || 'Your text').slice(0, 60)} · line ${Number(last.line) + 1}`),
       icon('arrow', 18))
     : null;
 
@@ -113,6 +122,7 @@ export default function home(ctx) {
       : null,
     kitRow,
     scriptRow,
+    listenRow,
     ownRow,
     h('div', { class: 'shortcuts' },
       shortcut('#/phrases', glyph('chat', 22), 'Phrasebook', saved ? `★ ${saved} saved` : 'Ready-made phrases'),
