@@ -57,6 +57,14 @@ export default function home(ctx) {
       icon('arrow', 18))
     : null;
 
+  // A script that is new (kana, Arabic, Cyrillic), near the start: the letter quiz, one tap away.
+  const scriptRow = typeof lang.letterName === 'function' && Object.keys(ctx.store.getCards(lang.code)).length < 60
+    ? h('a', { class: 'up-next kit-row script-row', href: '#/speak/alphabet' },
+      h('span', { class: 'kicker' }, 'New script?'),
+      h('span', { class: 'up-next-name' }, `🔤 ${lang.code === 'ja' ? 'Kana' : 'Letters'}: chart and quiz`),
+      icon('arrow', 18))
+    : null;
+
   // The learner's own words that are still new: one tap to learn them.
   const own = lang.categories.find((c) => c.own);
   const ownNew = own ? countOf(own).total - countOf(own).learned : 0;
@@ -104,6 +112,7 @@ export default function home(ctx) {
         icon('arrow', 18))
       : null,
     kitRow,
+    scriptRow,
     ownRow,
     h('div', { class: 'shortcuts' },
       shortcut('#/phrases', glyph('chat', 22), 'Phrasebook', saved ? `★ ${saved} saved` : 'Ready-made phrases'),
