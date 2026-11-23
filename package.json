@@ -8,6 +8,7 @@
     "start": "node scripts/serve.js",
     "test": "node --test tests/*.test.js",
     "smoke": "node scripts/smoke.cjs",
+    "monkey": "node scripts/monkey.mjs",
     "build": "node scripts/build-web.js",
     "cap:sync": "npm run build && cap sync",
     "android:open": "cap open android",

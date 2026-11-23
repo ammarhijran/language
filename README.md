@@ -125,6 +125,8 @@ npm start        # serves the website at http://localhost:8000 (no install neede
 npm test         # unit tests (Node 22+)
 npm run build    # copies the web app into www/ (used by the native apps)
 npm run smoke    # browser smoke test: every topic and screen in all four languages (needs Playwright)
+                 #   SMOKE_WIDTH=320 SMOKE_TEXT=xl npm run smoke — as a small phone with extra-large text
+npm run monkey   # random clicking through the app, failing on any script error (needs Playwright)
 ```
 
 Any static file server works too, e.g. `python3 -m http.server`.
@@ -204,7 +206,7 @@ js/languages/tr/ uk/ ja/ ar/   language packs: vocab.js (core), more.js (everyda
                                grammar.js (lessons), texts.js (Read & Listen), sounds.js (alphabet, ear training),
                                phonetics; feminine.js (uk, ar: what a woman says)
 js/languages/index.js, meta.js loads the pack being learned · generated names and counts of all packs
-scripts/                       serve.js (npm start), build-web.js, smoke.cjs (npm run smoke), store-screenshots.cjs
+scripts/                       serve.js (npm start), build-web.js, smoke.cjs (npm run smoke), monkey.mjs (npm run monkey), store-screenshots.cjs
 tests/                         unit tests (npm test)
 ```
 

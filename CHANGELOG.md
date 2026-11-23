@@ -157,6 +157,7 @@
 
 ### Fixed
 - **Small phones with large text:** with Ukrainian, Extra-large text and a 320 px wide screen, the language name in the top bar pushed the Search button off the edge and every screen scrolled sideways by a few pixels. The name is now shortened with an ellipsis. The browser smoke test can walk the app as a small phone with large text (`SMOKE_WIDTH=320 SMOKE_TEXT=xl npm run smoke`); all four languages pass.
+- **Random-click test for developers** (`npm run monkey`): presses buttons, links, options and tiles at random in the real app — a few hundred times per language, with some progress and a word of the learner’s own — and fails on any script error. The first runs (about 1,150 clicks over the four languages) found none.
 - **Screen stays on while audio plays by itself** (hands-free listening, Play all and shadowing in Read & Listen) in the Android and iOS apps too: the browser’s wake lock used so far does not exist inside an Android app, so the phone would dim and lock mid-round. The apps now use the keep-awake plugin (no permission needed); the website keeps using the wake lock.
 - **Export progress in the Android and iOS apps:** it used a browser download, which an app’s WebView cannot do; it now goes through the share sheet (save to Files or Drive, or send it to yourself), like the sync file already did.
 - **Turkish numbers in speaking exercises:** when the phone’s speech recogniser answers with digits (“3” for *üç*, “40” for *kırk*), the answer now counts as right, as it already did in the other languages.
