@@ -34,6 +34,14 @@ const MODES = [
 /** Whether a mode is for this language: some are only for new scripts (`langs`) or for packs with a feature (`when`). */
 const offered = (m, lang) => (!m.langs || m.langs.includes(lang.code)) && (!m.when || !!m.when(lang));
 
+// Each language's rule quiz: [where, emoji, name, what it asks].
+const RULE_QUIZ = {
+  tr: ['#/speak/alphabet/harmony', '🎶', 'Vowel harmony', '-lar or -ler? mı, mi, mu or mü?'],
+  uk: ['#/speak/alphabet/iotated', '🔤', 'я, ю, є', 'Two sounds or one?'],
+  ja: ['#/speak/alphabet/particles', '🔤', 'は: ha or wa?', 'Particle, or part of a word?'],
+  ar: ['#/speak/alphabet/sun', '☀️', 'Sun or moon letter?', 'How al- is said before each letter'],
+};
+
 const ROUND = 10;
 
 /** The skill that is clearly behind the others (Progress → Your skills), one tap from a round of it — or nothing. */
@@ -285,6 +293,11 @@ function setup(ctx) {
       speakLink('#/speak/ear', icon('ear', 22), 'Ear training', 'Hear the difference'),
       speakLink('#/speak/alphabet', h('span', { class: 'sc-emoji', 'aria-hidden': 'true', lang: lang.code }, lang.code === 'ja' ? 'あ' : lang.code === 'ar' ? 'ع' : lang.code === 'uk' ? 'Ї' : 'Ğ'), 'Alphabet', lang.code === 'ja' ? 'Kana chart' : 'Letters & sounds'),
       speakLink('#/speak/sounds', icon('wave', 22), 'Sounds', 'Tricky sounds explained')),
+    // The language's own pronunciation rule, as a quiz (Speak → Alphabet has it too).
+    RULE_QUIZ[lang.code] ? h('a', { class: 'quick-link rule-link', href: RULE_QUIZ[lang.code][0] },
+      h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, RULE_QUIZ[lang.code][1]),
+      h('span', null, h('b', null, RULE_QUIZ[lang.code][2]), h('small', null, RULE_QUIZ[lang.code][3])),
+      icon('arrow', 18)) : null,
     h('a', { class: 'quick-link', href: '#/numbers' },
       h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🔢'),
       h('span', null, h('b', null, 'Numbers by ear'), h('small', null, 'Hear a number, type its digits')),
