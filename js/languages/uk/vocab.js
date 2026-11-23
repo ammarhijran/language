@@ -28,7 +28,7 @@ const data = {
     ['добрий день', 'good afternoon; hello', { s: [1, 0], note: 'The standard polite greeting during the day.' }],
     ['добрий ранок', 'good morning', { s: [1, 1] }],
     ['добрий вечір', 'good evening', { s: [1, 1] }],
-    ['на добраніч', 'good night', { s: [0, 3] }],
+    ['на добраніч', 'good night', { s: [0, 2] }],
     ['до побачення', 'goodbye', { s: [0, 2] }],
     ['бувай', 'bye (informal)', { s: 2 }],
     ['дякую', 'thank you', { s: 1, ex: ['Дякую, дуже смачно!', 'Thank you, it’s delicious!'] }],

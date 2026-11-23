@@ -2105,8 +2105,8 @@ export const vocab = [
     "en": "Do you have this one size bigger?",
     "cat": "p-shop",
     "ex": [
-      "Bunun bir beden küçüğü var mı?",
-      "Do you have this one size smaller?"
+      "Bu bana dar geldi. Bunun bir beden büyüğü var mı?",
+      "This is too tight on me. Do you have this one size bigger?"
     ],
     "note": "Clothes size = beden (S, M, L…); shoe size = numara: “Kırk iki numara var mı?”"
   },
@@ -2209,7 +2209,7 @@ export const vocab = [
       "— Taksim'e nasıl gidebilirim? — Metroyla iki durak.",
       "— How can I get to Taksim? — It's two stops on the metro."
     ],
-    "note": "Place names take -e/-a (“to”) after an apostrophe: Taksim'e, Kadıköy'e, Ankara'ya.",
+    "note": "Place names take -(y)e/-(y)a (“to”) after an apostrophe: Taksim'e, Kadıköy'e, Ankara'ya.",
     "reg": "polite",
     "pair": {
       "tr": "Taksim'e nasıl giderim?",
@@ -2338,7 +2338,7 @@ export const vocab = [
     "tr": "Saat kaçta buluşalım?",
     "en": "What time shall we meet?",
     "cat": "p-plans",
-    "note": "Answer with -de/-da (at): sekizde (at eight), yedi buçukta (at half past seven).",
+    "note": "Answer with -de/-da/-te/-ta (at): sekizde (at eight), yedi buçukta (at half past seven).",
     "pair": {
       "tr": "Kaçta?",
       "reg": "casual",
@@ -2462,7 +2462,8 @@ export const vocab = [
     "pair": {
       "tr": "Süper!",
       "reg": "casual",
-      "en": "Awesome!"
+      "en": "Awesome!",
+      "s": 1
     }
   },
   {
@@ -2750,6 +2751,7 @@ export const vocab = [
     "tr": "Naber?",
     "en": "What's up?",
     "cat": "everyday",
+    "s": 1,
     "ex": [
       "Naber kanka, nasıl gidiyor?",
       "What's up, buddy, how's it going?"
@@ -2798,7 +2800,7 @@ export const vocab = [
     "tr": "Napıyorsun?",
     "en": "What are you up to?",
     "cat": "everyday",
-    "s": 2,
+    "s": 1,
     "ex": [
       "Selam, napıyorsun? Müsait misin?",
       "Hi, what are you up to? Are you free?"
@@ -2990,7 +2992,7 @@ export const vocab = [
     "tr": "Napalım?",
     "en": "What can you do? / Oh well.",
     "cat": "everyday",
-    "s": 2,
+    "s": 1,
     "ex": [
       "Otobüsü kaçırdık. Napalım, bir sonrakini bekleriz.",
       "We missed the bus. Oh well, we'll wait for the next one."
@@ -3110,7 +3112,7 @@ export const vocab = [
       "Kanka, bu akşam ne yapıyoruz?",
       "Mate, what are we doing tonight?"
     ],
-    "note": "From “kan kardeş” (blood brother). Young people use it for close friends of any gender; also “kanki”.",
+    "note": "From “kan kardeşi” (blood brother). Young people use it for close friends of any gender; also “kanki”.",
     "reg": "slang",
     "pair": {
       "tr": "Arkadaşım",
@@ -3128,13 +3130,15 @@ export const vocab = [
     "pair": {
       "tr": "Kesinlikle.",
       "reg": "neutral",
-      "en": "Absolutely."
+      "en": "Absolutely.",
+      "s": 3
     }
   },
   {
     "tr": "Valla!",
     "en": "Honestly! / I swear!",
     "cat": "slang",
+    "s": 1,
     "ex": [
       "Valla bilmiyorum, ben de yeni duydum.",
       "Honestly, I don't know — I've only just heard myself."
@@ -3241,7 +3245,8 @@ export const vocab = [
     "pair": {
       "tr": "Beyefendi",
       "reg": "polite",
-      "en": "sir"
+      "en": "sir",
+      "s": 3
     }
   },
   {
@@ -3646,6 +3651,7 @@ export const vocab = [
     "tr": "hala",
     "en": "aunt (father's sister)",
     "cat": "family2",
+    "s": 1,
     "ex": [
       "Halam Ankara'da oturuyor.",
       "My aunt lives in Ankara."
@@ -3666,6 +3672,7 @@ export const vocab = [
     "tr": "yenge",
     "en": "aunt by marriage; sister-in-law",
     "cat": "family2",
+    "s": 1,
     "ex": [
       "Yengem çok güzel yemek yapar.",
       "My aunt (my uncle's wife) is a great cook."
@@ -3676,6 +3683,7 @@ export const vocab = [
     "tr": "enişte",
     "en": "uncle by marriage; brother-in-law",
     "cat": "family2",
+    "s": 2,
     "ex": [
       "Eniştem bizi havalimanından aldı.",
       "My uncle (my aunt's husband) picked us up from the airport."
@@ -3879,6 +3887,7 @@ export const vocab = [
     "tr": "şapka",
     "en": "hat",
     "cat": "clothes",
+    "s": 1,
     "ex": [
       "Güneş çok yakıyor, şapkanı tak.",
       "The sun is really strong, put your hat on."
@@ -3918,6 +3927,7 @@ export const vocab = [
     "tr": "numara",
     "en": "number; (shoe) size",
     "cat": "clothes",
+    "s": 2,
     "ex": [
       "Kaç numara giyiyorsunuz?",
       "What shoe size do you wear?"
@@ -3988,6 +3998,7 @@ export const vocab = [
     "tr": "hobi",
     "en": "hobby",
     "cat": "hobbies",
+    "s": 1,
     "ex": [
       "Benim hobim fotoğraf çekmek.",
       "My hobby is taking photos."
@@ -4025,6 +4036,7 @@ export const vocab = [
     "tr": "futbol",
     "en": "football; soccer",
     "cat": "hobbies",
+    "s": 1,
     "ex": [
       "Türkiye'de futbol çok popüler.",
       "Football is very popular in Türkiye."
@@ -4209,6 +4221,7 @@ export const vocab = [
     "tr": "tavla",
     "en": "backgammon",
     "cat": "hobbies",
+    "s": 1,
     "ex": [
       "Dedem her akşam tavla oynar.",
       "My grandfather plays backgammon every evening."
@@ -4347,6 +4360,7 @@ export const vocab = [
     "tr": "Amerikalı",
     "en": "American (person)",
     "cat": "countries",
+    "s": 3,
     "ex": [
       "Yeni öğretmenimiz Amerikalı.",
       "Our new teacher is American."
@@ -4529,6 +4543,7 @@ export const vocab = [
     "tr": "fırtına",
     "en": "storm",
     "cat": "weather",
+    "s": 2,
     "ex": [
       "Gece büyük bir fırtına çıktı.",
       "A big storm broke out in the night."
@@ -4798,6 +4813,7 @@ export const vocab = [
     "tr": "kilo",
     "en": "kilo; weight",
     "cat": "groceries",
+    "s": 1,
     "ex": [
       "İki kilo domates, lütfen.",
       "Two kilos of tomatoes, please."
@@ -4883,6 +4899,7 @@ export const vocab = [
     "tr": "reçete",
     "en": "prescription",
     "cat": "health",
+    "s": 2,
     "ex": [
       "Bu ilaç reçeteyle mi satılıyor?",
       "Do you need a prescription for this medicine?"
@@ -5171,6 +5188,7 @@ export const vocab = [
     "tr": "e-posta",
     "en": "email",
     "cat": "tech",
+    "s": 2,
     "ex": [
       "E-posta adresiniz nedir?",
       "What is your email address?"
@@ -5313,6 +5331,7 @@ export const vocab = [
     "tr": "kilise",
     "en": "church",
     "cat": "town",
+    "s": 2,
     "ex": [
       "Bu eski kilise artık müze.",
       "This old church is now a museum."
@@ -5427,6 +5446,7 @@ export const vocab = [
     "tr": "metro",
     "en": "metro; underground",
     "cat": "town",
+    "s": 1,
     "ex": [
       "Her gün metroyla işe gidiyorum.",
       "I go to work by metro every day."
@@ -5436,6 +5456,7 @@ export const vocab = [
     "tr": "tava",
     "en": "frying pan",
     "cat": "kitchen",
+    "s": 1,
     "ex": [
       "Yumurtaları tavaya kır.",
       "Crack the eggs into the pan."
@@ -5445,6 +5466,7 @@ export const vocab = [
     "tr": "tencere",
     "en": "pot; saucepan",
     "cat": "kitchen",
+    "s": 1,
     "ex": [
       "Tencerenin kapağını kapat.",
       "Put the lid on the pot."
@@ -7807,6 +7829,7 @@ export const vocab = [
     "tr": "ızgara",
     "en": "grilled; grill",
     "cat": "restaurant",
+    "s": 2,
     "ex": [
       "Izgara köfte ve yanında pilav alayım.",
       "I'll have grilled meatballs with rice on the side."
@@ -8559,7 +8582,7 @@ export const vocab = [
     "tr": "Dört kişiyiz.",
     "en": "There are four of us.",
     "cat": "p-restaurant",
-    "note": "The answer to “Kaç kişisiniz?” (How many are you?). The ending -iz/-ız/-uz/-üz means “we are”: iki kişiyiz, altı kişiyiz."
+    "note": "The answer to “Kaç kişisiniz?” (How many are you?). The ending -(y)iz/-(y)ız/-(y)uz/-(y)üz means “we are”: iki kişiyiz, altı kişiyiz."
   },
   {
     "tr": "Dışarıda oturabilir miyiz?",
@@ -9338,7 +9361,8 @@ export const vocab = [
     "pair": {
       "tr": "Elbette.",
       "reg": "polite",
-      "en": "Certainly."
+      "en": "Certainly.",
+      "s": 1
     }
   },
   {

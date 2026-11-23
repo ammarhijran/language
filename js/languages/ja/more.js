@@ -4269,7 +4269,7 @@ export const vocab = [
       "このスカートは短すぎます。",
       "This skirt is too short."
     ],
-    "note": "Like trousers, a skirt takes 履く: スカートを履く."
+    "note": "Like trousers, a skirt takes はく: スカートをはく (in kana — the kanji 履く is strictly for footwear)."
   },
   {
     "tr": "ワンピース",
@@ -4418,7 +4418,7 @@ export const vocab = [
       "靴を履いてください。",
       "Please put your shoes on."
     ],
-    "note": "For anything you pull on below the waist: trousers, skirts, socks and shoes."
+    "note": "For anything you pull on below the waist: trousers, skirts, socks and shoes. Strictly the kanji 履く is for footwear; with trousers and skirts the verb is normally written はく in kana."
   },
   {
     "tr": "かぶる",
@@ -5116,7 +5116,7 @@ export const vocab = [
       "梅雨は六月から七月までです。",
       "The rainy season lasts from June to July."
     ],
-    "note": "Early summer rains across most of Japan (not Hokkaido). The news also reads it ばいう."
+    "note": "Early summer rains across most of Japan (not Hokkaido). In compounds such as 梅雨前線 (ばいうぜんせん, the rainy-season front) it is read ばいう."
   },
   {
     "tr": "果物",
@@ -8020,7 +8020,7 @@ export const vocab = [
     "en": "I’ll send it by the end of today.",
     "cat": "p-work",
     "kana": "きょうじゅう に おくります",
-    "note": "〜中 (じゅう) = by the end of: 今日中 (today), 今週中 (this week). To a client: 本日中にお送りします.",
+    "note": "〜中 (じゅう) = by the end of: 今日中 (today), 今週中 (this week — read こんしゅうちゅう). To a client: 本日中にお送りします.",
     "reg": "polite",
     "pair": {
       "tr": "今日中に送るね。",

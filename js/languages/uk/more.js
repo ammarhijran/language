@@ -1563,7 +1563,7 @@ export const vocab = [
       "Я втомився, тому йду спати.",
       "I’m tired, so I’m going to bed."
     ],
-    "note": "After a time word it means ‘ago’: два роки тому = two years ago."
+    "note": "After a time word it means ‘ago’, and then the stress is on the first syllable: два роки то́му = two years ago."
   },
   {
     "tr": "тому що",
@@ -4901,7 +4901,7 @@ export const vocab = [
       "У мене нове зимове пальто.",
       "I have a new winter coat."
     ],
-    "note": "Never changes its ending: у пальто, без пальто."
+    "note": "Unlike кіно or метро, it does change its endings: у пальті, без пальта."
   },
   {
     "tr": "куртка",
@@ -6252,10 +6252,10 @@ export const vocab = [
     "cat": "tech",
     "s": 2,
     "ex": [
-      "Який пароль від вайфаю?",
+      "Який пароль до вайфаю?",
       "What’s the Wi-Fi password?"
     ],
-    "note": "Password for something = пароль від: пароль від пошти."
+    "note": "Password for something = пароль до: пароль до пошти."
   },
   {
     "tr": "зарядка",
@@ -6425,7 +6425,7 @@ export const vocab = [
       "reg": "formal",
       "en": "user account (formal)",
       "s": [
-        2,
+        3,
         1
       ]
     }

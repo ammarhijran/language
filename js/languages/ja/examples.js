@@ -114,7 +114,7 @@ export const extraExamples = {
   "口": ["口を開けてください。","Please open your mouth.","くち を あけて ください"],
   "手": ["食べる前に手を洗ってください。","Please wash your hands before eating.","たべる まえ に て を あらって ください"],
   "足": ["たくさん歩いて、足が疲れました。","I walked a lot, and my legs are tired.","たくさん あるいて あし が つかれました"],
-  "歯": ["歯が痛いので、歯医者に行きます。","I have a toothache, so I’m going to the dentist.","はが いたい ので はいしゃ に いきます"],
+  "歯": ["歯が痛いので、歯医者に行きます。","I have a toothache, so I’m going to the dentist.","は が いたい ので はいしゃ に いきます"],
   "病気": ["病気で学校を休みました。","I missed school because I was sick.","びょうき で がっこう を やすみました"],
   "薬": ["この薬を一日三回飲んでください。","Take this medicine three times a day.","この くすり を いちにち さんかい のんで ください"],
   "医者": ["将来、医者になりたいです。","I want to be a doctor in the future.","しょうらい いしゃ に なりたい です"],

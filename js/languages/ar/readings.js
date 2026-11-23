@@ -72,7 +72,7 @@ export const exampleReadings = {
   "هَلْ أَنْتَ جَائِعٌ؟": "hal ʾanta jāʾiʿ",
   "أَنَا عَطْشَانُ، أُرِيدُ مَاءً.": "ʾanā ʿaṭshānu ʾurīdu māʾ",
   "هُوَ غَاضِبٌ مِنِّي.": "huwa ghāḍibun minnī",
-  "لَا تَخَفْ!": "lā takhaf",
+  "هَلْ أَنْتَ خَائِفٌ؟": "hal ʾanta khāʾif",
   "أَنَا قَلِقٌ عَلَيْكَ.": "ʾanā qaliqun ʿalayk",
   "أَنَا مُتَحَمِّسٌ لِلرِّحْلَةِ.": "ʾanā mutaḥammisun li-r-riḥla",
   "أَظُنُّ أَنَّ الْمَطْعَمَ مُغْلَقٌ الْيَوْمَ.": "ʾaẓunnu ʾanna-l-maṭʿama mughlaqun al-yawm",
@@ -315,7 +315,6 @@ export const exampleReadings = {
   "كِيلُو تُفَّاحٍ، مِنْ فَضْلِكَ.": "kīlū tuffāḥin min faḍlik",
   "هَلِ السَّمَكُ طَازَجٌ؟": "hali-s-samaku ṭāzaj",
   "الْبِقَالَةُ فِي آخِرِ الشَّارِعِ.": "al-biqālatu fī ʾākhiri-sh-shāriʿ",
-  "عِنْدَ ابْنِي حُمًّى مُنْذُ أَمْسِ.": "ʿinda-bnī ḥumman mundhu ʾams",
   "عِنْدِي سُعَالٌ مُنْذُ أُسْبُوعٍ.": "ʿindī suʿālun mundhu ʾusbūʿ",
   "عِنْدِي صُدَاعٌ شَدِيدٌ.": "ʿindī ṣudāʿun shadīd",
   "أَظُنُّ أَنَّ عِنْدِي زُكَامًا.": "ʾaẓunnu ʾanna ʿindī zukām",
@@ -699,4 +698,5 @@ export const exampleReadings = {
   "— مَتَى سَيَكُونُ جَاهِزًا؟ — غَدًا بَعْدَ الظُّهْرِ.": "matā sayakūnu jāhiz ghadan baʿda-ẓ-ẓuhr",
   "— هَلْ أَنْتَ مِنْ هُنَا؟ — لَا، أَنَا مِنَ الْإِسْكَنْدَرِيَّةِ.": "hal ʾanta min hunā lā ʾanā mina-l-ʾiskandariyya",
   "— مَاذَا تَفْعَلُ فِي وَقْتِ فَرَاغِكَ؟ — أَلْعَبُ كُرَةَ الْقَدَمِ وَأَقْرَأُ كَثِيرًا.": "mādhā tafʿalu fī waqti farāghik ʾalʿabu kurata-l-qadami wa-ʾaqraʾu kathīran",
+  "عِنْدَ ابْنِي حُمَّى مُنْذُ أَمْسِ.": "ʿinda-bnī ḥummā mundhu ʾams",
 };

@@ -1145,8 +1145,8 @@ export const vocab = [
     "cat": "feelings",
     "tl": "khāʾif",
     "ex": [
-      "لَا تَخَفْ!",
-      "Don’t be afraid!"
+      "هَلْ أَنْتَ خَائِفٌ؟",
+      "Are you afraid?"
     ],
     "note": "‘Afraid of’ uses مِنْ: خَائِفٌ مِنَ الْكِلَابِ ‘scared of dogs’."
   },
@@ -4731,9 +4731,9 @@ export const vocab = [
     ],
     "note": "Plural; one sock is جَوْرَب (jawrab).",
     "pair": {
-      "tr": "شُرَاب",
+      "tr": "شَرَاب",
       "reg": "casual",
-      "tl": "shurāb",
+      "tl": "sharāb",
       "dialect": "Egyptian"
     }
   },
@@ -4746,7 +4746,7 @@ export const vocab = [
       "هَذِهِ الْقُبَّعَةُ تَحْمِينِي مِنَ الشَّمْسِ.",
       "This hat protects me from the sun."
     ],
-    "note": "A baseball cap is often just كَاب (kāb). In Egypt a brimmed hat is also بَرْنِيطَة (barnīṭa)."
+    "note": "A baseball cap is often just كَاب (kāb). In Egypt a brimmed hat is also بُرْنِيطَة (burnēṭa)."
   },
   {
     "tr": "حَقِيبَة",
@@ -4858,7 +4858,7 @@ export const vocab = [
     "tr": "يَلِيقُ بِكَ",
     "en": "it suits you",
     "cat": "clothes",
-    "tl": "yalīqu bik",
+    "tl": "yalīq bik",
     "ex": [
       "هَذَا اللَّوْنُ يَلِيقُ بِكَ.",
       "This color suits you."
@@ -5333,7 +5333,7 @@ export const vocab = [
       "الْبَتْرَاءُ فِي الْأُرْدُنِّ.",
       "Petra is in Jordan."
     ],
-    "note": "Jordanian: أُرْدُنِيّ (ʾurdunī). The capital is عَمَّان (ʿammān)."
+    "note": "Jordanian: أُرْدُنِّيّ (ʾurdunnī). The capital is عَمَّان (ʿammān)."
   },
   {
     "tr": "الْإِمَارَات",
@@ -6004,7 +6004,7 @@ export const vocab = [
     "cat": "health",
     "tl": "ḥummā",
     "ex": [
-      "عِنْدَ ابْنِي حُمًّى مُنْذُ أَمْسِ.",
+      "عِنْدَ ابْنِي حُمَّى مُنْذُ أَمْسِ.",
       "My son has had a fever since yesterday."
     ],
     "note": "In speech also حَرَارَة (ḥarāra), ‘temperature’: عِنْدِي حَرَارَةٌ ‘I have a temperature’.",
@@ -7100,9 +7100,9 @@ export const vocab = [
     ],
     "note": "Flour: دَقِيق (daqīq). Past: خَلَطْتُ (khalaṭtu).",
     "pair": {
-      "tr": "بَخْلَط",
+      "tr": "بَخْلِط",
       "reg": "casual",
-      "tl": "bakhlaṭ",
+      "tl": "bakhliṭ",
       "dialect": "Egyptian"
     }
   },
@@ -9841,7 +9841,7 @@ export const vocab = [
     ],
     "note": "Plural أَمْوَال (ʾamwāl). Everyday words: نُقُود (nuqūd) and, all over the Arab world, فُلُوس.",
     "pair": {
-      "tr": "فُلُوس",
+      "tr": "فِلُوس",
       "reg": "casual",
       "tl": "filūs",
       "dialect": "Egyptian"
@@ -10540,7 +10540,7 @@ export const vocab = [
       "لَا أُحِبُّ أَنْ أَخْسَرَ.",
       "I don’t like losing."
     ],
-    "note": "Past: خَسِرْتُ (khasirtu). Also to lose money or weight. In Egypt يَا خَسَارَة (ya khusāra) means ‘what a pity!’.",
+    "note": "Past: خَسِرْتُ (khasirtu). Also to lose money or weight. In Egypt يَا خُسَارَة (ya khusāra) means ‘what a pity!’.",
     "pair": {
       "tr": "بَخْسَر",
       "reg": "casual",
@@ -12375,7 +12375,7 @@ export const vocab = [
     "tl": "ʾabḥath ʿan ṣaydaliyya",
     "note": "أَبْحَثُ عَنْ … = I’m looking for …: a cash machine is صَرَّاف آلِيّ (ṣarrāf ʾālī).",
     "pair": {
-      "tr": "بَادَوَّر عَلَى صَيْدَلِيَّة.",
+      "tr": "بَدَوَّر عَلَى صَيْدَلِيَّة.",
       "reg": "casual",
       "tl": "badawwar ʿala ṣaydaliyya",
       "dialect": "Egyptian"
