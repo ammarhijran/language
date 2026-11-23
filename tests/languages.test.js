@@ -368,6 +368,8 @@ test('Japanese: single words can be sent to the voice in kana', () => {
   const phrase = pack.words.find((w) => w.kana && /\s/.test(w.kana.trim()) && !w.say);
   const fixed = pack.words.find((w) => w.say);
   assert.equal(pack.speech(word).text, word.tr);
+  const oneKana = pack.words.filter((w) => w.kana && [...w.kana.trim()].length === 1 && w.kana !== w.tr).map((w) => [w, pack.speech(w).text]);
+  assert.ok(oneKana.some(([w]) => w.tr === '歯'), 'the course has one-kana words');
   assert.equal(pack.voiceOption.setting, 'voiceKana');
   const sample = pack.words.find((w) => w.tr === pack.voiceOption.sample);
   assert.ok(sample && !sample.say && sample.kana !== sample.tr, 'the sample is an entry the switch changes');
@@ -379,6 +381,8 @@ test('Japanese: single words can be sent to the voice in kana', () => {
     assert.equal(pack.speech(fixed).text, fixed.say, 'an override stays');
     assert.equal(pack.speech({ tr: '今日は暑いです。' }).text, '今日は暑いです。', 'a sentence without a reading is sent as written');
     assert.equal(pack.speech(word).lang, 'ja-JP');
+    // One-kana words keep what they were sent as: a lone は could be read as the particle.
+    for (const [w, was] of oneKana) assert.equal(pack.speech(w).text, was, w.tr);
   } finally {
     pack.voiceOption.set(false);
   }

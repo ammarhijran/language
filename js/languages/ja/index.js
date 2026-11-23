@@ -253,7 +253,9 @@ const pack = makePack({
   // Phrases and sentences stay as written — without kanji a voice loses where
   // the words end and how the particles は and へ are read.
   speech(e, said) {
-    const single = voice.kana && e.kana && !/\s/.test(e.kana.trim());
+    // A one-kana word (歯 は, 目 め) stays as written too: alone, は and へ can be
+    // taken for the particles wa and e, and one kana gives a voice nothing to go on.
+    const single = voice.kana && e.kana && !/\s/.test(e.kana.trim()) && [...e.kana.trim()].length > 1;
     const text = said ?? (single ? e.kana.trim() : e.kana ? readAmbiguous(e.tr, e.kana) : e.tr);
     return { text, lang: 'ja-JP', slow: e.kana ? pausedJapanese(text, e.kana) : null };
   },
