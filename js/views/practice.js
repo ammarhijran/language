@@ -44,12 +44,15 @@ function wordsFor(ctx, scope) {
 // choice, recall and speaking instead (Spelling mode still types them on request).
 const isLong = (word) => word.tr.trim().split(/\s+/).length > 3 || word.tr.length > 24;
 
-function typeFor(mode, word) {
+export function typeFor(mode, word, lang = null) {
   // Without speech recognition a speaking round would be all disabled buttons:
   // fall back to flashcards (hear it, say it aloud, self-rate).
   if (mode === 'speak' && !recognitionSupported()) return 'flashcard';
   if (mode !== 'mixed') return mode;
-  const pool = ['listen', 'meaning', 'produce', ...(isLong(word) ? [] : ['type']), ...(recognitionSupported() ? ['speak'] : [])];
+  const pool = ['listen', 'meaning', 'produce', ...(isLong(word) ? [] : ['type']), ...(recognitionSupported() ? ['speak'] : []),
+    // A mixed round also asks how a word sounds, where the course teaches that: its stress, or its beats.
+    ...(lang?.stressPractice && stressItem(lang, word) ? ['stress'] : []),
+    ...(lang?.beatPractice && beatItem(lang, word) ? ['beats'] : [])];
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -64,7 +67,7 @@ export default function practice(ctx, mode, scope) {
   if (pool.length < 4) return notEnough('Not enough words yet', 'Learn a lesson first, or pick a topic to practise from.');
   if (mode === 'handsfree') return handsFree(ctx, pool);
 
-  const items = shuffle(pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word) }));
+  const items = shuffle(pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word, ctx.lang) }));
   let right = 0;
   let answered = 0;
 

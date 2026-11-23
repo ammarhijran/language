@@ -190,6 +190,23 @@ test('count the beats (Japanese): morae of single words where counting teaches s
   assert.ok(!tr.beatPractice && !uk.beatPractice && !ar.beatPractice);
 });
 
+test('a mixed practice round also asks for stress (Ukrainian, Arabic) or beats (Japanese), never elsewhere', async () => {
+  const { typeFor } = await import('../js/views/practice.js');
+  const kinds = (mode, w, L) => new Set(Array.from({ length: 400 }, () => typeFor(mode, w, L)));
+  const moloko = uk.words.find((w) => w.tr === 'молоко');
+  assert.ok(kinds('mixed', moloko, uk).has('stress'));
+  assert.ok(!kinds('mixed', moloko, uk).has('beats'));
+  assert.ok(!kinds('mixed', uk.words.find((w) => /\s/.test(w.tr)), uk).has('stress'), 'not for a phrase');
+  assert.ok(kinds('mixed', ar.words.find((w) => w.tl === 'kitāb'), ar).has('stress'));
+  const kippu = ja.words.find((w) => w.kana === 'きっぷ');
+  assert.ok(kinds('mixed', kippu, ja).has('beats'));
+  assert.ok(!kinds('mixed', kippu, ja).has('stress'));
+  const turkish = kinds('mixed', tr.words[0], tr);
+  assert.ok(!turkish.has('stress') && !turkish.has('beats'));
+  assert.ok(!kinds('mixed', moloko).has('stress'), 'without the pack nothing changes');
+  assert.deepEqual([...kinds('listen', moloko, uk)], ['listen'], 'a chosen mode stays that mode');
+});
+
 test('read the script: every entry has a Latin reading, and the options are four different readings', async () => {
   const { readingLabel, scriptOptions } = await import('../js/exercises.js');
   for (const L of [uk, ja, ar]) {
