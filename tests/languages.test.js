@@ -285,3 +285,33 @@ test('reading aids: prompts can hide rōmaji or the transliteration, fullReading
     assert.ok(ja.matches(mizu, 'mizu') && ar.matches(shukran, 'shukran'), 'search still finds romanisations');
   } finally { ja.readingAid = 'full'; ar.readingAid = 'full'; }
 });
+
+test('Arabic: every rule-placed stress comes with the rule that placed it', () => {
+  const why = (tl, dialect) => analyzeTranslit(tl, undefined, dialect).words[0].stressWhy;
+  assert.equal(why('kitāb'), 'final'); // ki-TĀB: long vowel + consonant
+  assert.equal(why('shukran'), 'penult'); // SHUK-ran: closed syllable
+  assert.equal(why('qāmūs'), 'final');
+  assert.equal(why('ʾāsif'), 'penult'); // ʾĀ-sif: long vowel
+  assert.equal(why('shajara'), 'antepenult'); // SHA-ja-ra
+  assert.equal(why('walad'), 'two'); // WA-lad
+  assert.equal(why('al-ʾaḥad'), 'clitic'); // al-ʾA-ḥad: the article is never stressed
+  assert.equal(why('madrasa'), 'antepenult'); // MAD-ra-sa in Standard Arabic…
+  assert.equal(why('madrasa', 'Egyptian'), 'cairo-penult'); // …mad-RA-sa in Egyptian
+  assert.equal(why('katabit', 'Egyptian'), 'cairo-antepenult'); // KA-ta-bit
+  assert.equal(why('lā'), null, 'one syllable: nothing to explain');
+  // A stress the entry marks itself is not explained by a rule.
+  assert.equal(analyzeTranslit('shajara', 2).words[0].stressWhy, null);
+  // Every word the stress question can ask about has its sentence.
+  const pack = ar;
+  let asked = 0;
+  for (const w of pack.words) {
+    if (/\s/.test(w.tr.trim())) continue;
+    const a = pack.analyze(w);
+    if (a.words.length !== 1 || a.words[0].stressIndex < 0) continue;
+    asked++;
+    const note = pack.stressNote(w);
+    assert.ok(typeof note === 'string' && note.length > 30, `${w.tl}: ${note}`);
+    if (w.dialect !== 'Egyptian') assert.doesNotMatch(note, /Egyptian stress/, w.tl);
+  }
+  assert.ok(asked >= 600);
+});

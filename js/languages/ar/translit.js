@@ -90,6 +90,25 @@ export function stressIndex(syls, first = 0) {
   return Math.min(Math.max(si, first), n - 1);
 }
 
+/**
+ * Which rule put the stress on syllable `si`: 'final' (a superheavy last
+ * syllable), 'penult' (a heavy second-to-last), 'two' (two syllables, neither
+ * of those), 'antepenult' (Standard: the third from the end), 'cairo-penult' /
+ * 'cairo-antepenult' (Egyptian counting), or 'clitic' (the article or a
+ * one-letter word in front pushed it onto the word itself). null when the
+ * word has no stress to explain.
+ */
+export function stressReason(syls, first, si, egyptian = false) {
+  const n = syls.length;
+  if (n < 2 || si < 0) return null;
+  if ((egyptian ? cairoStressIndex : stressIndex)(syls, 0) !== si) return 'clitic';
+  if (si === n - 1) return 'final';
+  if (weight(syls[n - 2]) >= 2) return 'penult';
+  if (n === 2) return 'two';
+  if (!egyptian) return 'antepenult';
+  return si === n - 2 ? 'cairo-penult' : 'cairo-antepenult';
+}
+
 // Hyphenated proclitics: the article in all its forms (al-, ash-, an-, il-,
 // a bare l- or s- after elision) and the one-letter prepositions/conjunctions.
 const PROCLITIC = /^(?:wa|fa|bi|li|ka|[aie]?(?:l|th|dh|sh|[tdrzsnṣḍṭẓ]))$/;
@@ -132,13 +151,15 @@ export function analyzeTranslit(tl, stress, dialect) {
   const words = ws.map((w, wi) => {
     const syls = syllabify(tokenize(w));
     const override = Array.isArray(stress) ? stress[wi] : (ws.length === 1 ? stress : undefined);
-    const si = override === 0 ? -1 : override ? override - 1
-      : stressAt(syls, firstStemSyllable(syls, procliticLength(w)));
+    const first = firstStemSyllable(syls, procliticLength(w));
+    const si = override === 0 ? -1 : override ? override - 1 : stressAt(syls, first);
     // Display each syllable in transliteration (keep the word's own letters).
     return {
       text: w,
       syllables: syls.map((syl, i) => ({ text: syl.join(''), ipa: ipaOf(syl), respell: respellOf(syl, i === 0) })),
       stressIndex: syls.length > 1 ? si : -1,
+      // Why it is there (see stressReason): only when the rules placed it, not an entry's own mark.
+      stressWhy: override == null ? stressReason(syls, first, syls.length > 1 ? si : -1, dialect === 'Egyptian') : null,
     };
   });
   const ipa = words.map((w) => w.syllables.map((s, i) => (i === w.stressIndex ? 'ˈ' : i > 0 ? '.' : '') + s.ipa).join('')).join(' ');

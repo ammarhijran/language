@@ -287,6 +287,8 @@ export function stress(ctx, word, onDone) {
     // Knowing the word but not its stress is a slip, not a forgotten word: in a
     // review it comes back sooner (Hard) without starting again from the first step.
     wrong: HARD,
+    // Where stress follows rules (Arabic), the answer says which one applied.
+    extra: ctx.lang.stressNote?.(word) ? h('p', { class: 'beats-line' }, ctx.lang.stressNote(word)) : null,
     // The stressed syllable stands for the entry itself: that is what choice() counts as right.
     options: item.syllables.map((text, i) => ({ id: i === item.stressed ? word.id : `${word.id}#${i}`, text })),
     label: (o) => o.text,

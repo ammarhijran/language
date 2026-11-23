@@ -153,6 +153,20 @@ export default makePack({
   // Stress is not written and follows rules of syllable weight (different ones in
   // Egyptian): the course asks for it (Practice → Word stress, and now and then in reviews).
   stressPractice: true,
+  // One sentence on why a word is stressed where it is, for the stress question's answer.
+  stressNote: (word) => {
+    let why = null;
+    try { why = analyzeTranslit(word.tl, word.s, word.dialect).words[0]?.stressWhy; } catch { why = null; }
+    return {
+      final: 'The last syllable is extra heavy — a long vowel followed by a consonant, or two consonants at the end — so it takes the stress.',
+      penult: 'The second-to-last syllable is heavy — it has a long vowel or ends in a consonant — so it takes the stress.',
+      two: 'Two syllables and no extra-heavy ending: the first one is stressed.',
+      antepenult: 'The ending is not extra heavy and the second-to-last syllable is light (a short vowel, nothing after it), so the stress moves back to the third syllable from the end.',
+      'cairo-penult': 'Egyptian stress: the second-to-last syllable is light but stressed all the same — Egyptian counts the light syllables before it, where Standard Arabic would go back to the third from the end.',
+      'cairo-antepenult': 'Egyptian stress: the second-to-last syllable is light, and counting the light syllables before it puts the stress on the third from the end.',
+      clitic: 'The article (al-) and one-letter words joined to the front never take the stress: it stays on the word itself.',
+    }[why] || null;
+  },
   almostHint: 'So close! Just a letter or two off:',
   // Feedback: Arabic words (none addressed to “you”, so no gender) with an English gloss.
   praise: [['صَحِيح!', 'Correct.'], ['رَائِع!', 'Great.'], ['جَيِّد!', 'Good.'], ['جَمِيل!', 'Nice.']],
