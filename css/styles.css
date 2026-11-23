@@ -450,6 +450,10 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .copy-btn { display: flex; margin: 0 auto var(--sp-2); }
 /* Word page: entries one letter away. */
 .lookalikes .word-chips { justify-content: flex-start; margin: 0; }
+/* Hands-free: the example sentence while it is said. */
+.hf-example { margin: var(--sp-3) 0 0; padding-top: var(--sp-3); border-top: 1px solid var(--border); }
+.hf-ex-tr { margin: 0; font-size: var(--fs-lg); font-weight: 600; overflow-wrap: anywhere; }
+.hf-ex-en { margin: var(--sp-1) 0 0; font-size: var(--fs-sm); }
 /* After a round: the words that were missed. */
 .missed-words { margin-top: var(--sp-4); }
 .missed-words .hint { margin-top: var(--sp-2); }

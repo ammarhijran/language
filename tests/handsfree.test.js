@@ -80,3 +80,39 @@ test('options apply while playing; no voice ends the round; pausing abandons the
   assert.deepEqual(heard, [], 'a paused item is not counted');
   assert.equal(c.player.playing, false);
 });
+
+test('with the sentence option an entry is followed by its example sentence', async () => {
+  const log = [];
+  let ended = false;
+  const heard = [];
+  const items = [
+    { tr: 'ev', en: 'house', example: { tr: 'Bu ev çok büyük.', en: 'This house is very big.' } },
+    { tr: 'evet', en: 'yes' }, // no example: just the word
+  ];
+  const round = createHandsFree({
+    items,
+    opts: { sentence: true, twice: false },
+    say: async (e) => { log.push(`say:${e.tr}`); return true; },
+    sayEnglish: async (t) => { log.push(`en:${t}`); return true; },
+    wait: async () => { log.push('wait'); },
+    onStep: (s, i) => log.push(`${s}:${i}`),
+    onHeard: (i) => heard.push(i),
+    onEnd: () => { ended = true; },
+  });
+  round.player.play();
+  for (let i = 0; i < 20 && !ended; i++) await new Promise((r) => setTimeout(r, 100));
+  assert.equal(ended, true);
+  assert.deepEqual(log.slice(0, 12), [
+    'listen:0', 'say:ev', 'repeat:0', 'wait', 'meaning:0', 'en:house',
+    'example:0', 'say:Bu ev çok büyük.', 'exampleRepeat:0', 'wait', 'exampleMeaning:0', 'en:This house is very big.',
+  ]);
+  assert.ok(!log.includes('example:1'), 'an entry without an example is not held up');
+  assert.deepEqual(heard, [0, 1], 'heard once the sentence has played too');
+  // Off by default.
+  const quiet = [];
+  let done = false;
+  const b = createHandsFree({ items: [items[0]], say: async (e) => { quiet.push(e.tr); return true; }, sayEnglish: async () => true, wait: async () => {}, onEnd: () => { done = true; } });
+  b.player.play();
+  for (let i = 0; i < 20 && !done; i++) await new Promise((r) => setTimeout(r, 100));
+  assert.ok(!quiet.includes('Bu ev çok büyük.'));
+});

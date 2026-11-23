@@ -26,13 +26,16 @@ export function englishFor(en) {
 /**
  * A round over `items`. say(entry) and sayEnglish(text) speak and resolve when
  * done (say: false when there is no voice, which ends the round via onFail).
- * `opts` ({ pause, twice, english }) may be changed while it plays.
- * Callbacks: onStep(step, i) with 'listen' | 'repeat' | 'again' | 'meaning',
+ * `opts` ({ pause, twice, english, sentence }) may be changed while it plays.
+ * With `sentence`, an entry's example sentence follows the entry: spoken, a
+ * pause to repeat it, and (with `english`) its meaning.
+ * Callbacks: onStep(step, i) with 'listen' | 'repeat' | 'again' | 'meaning' |
+ * 'example' | 'exampleRepeat' | 'exampleMeaning',
  * onItem(i), onHeard(i) once an item has played to its end, onState(playing),
  * onEnd(), onFail().
  */
 export function createHandsFree({ items, say, sayEnglish = null, opts = {}, wait = sleep, onStep, onItem, onHeard, onState, onEnd, onFail }) {
-  const o = Object.assign({ pause: 1, twice: true, english: true }, opts);
+  const o = Object.assign({ pause: 1, twice: true, english: true, sentence: false }, opts);
   let seq = 0;
   const player = createPlayer({
     count: items.length,
@@ -56,6 +59,21 @@ export function createHandsFree({ items, say, sayEnglish = null, opts = {}, wait
         onStep?.('meaning', i);
         await sayEnglish(englishFor(entry.en));
         if (!live()) return true;
+      }
+      // The word in a sentence: its example, when it has one.
+      const ex = o.sentence ? entry.example : null;
+      if (ex?.tr) {
+        onStep?.('example', i);
+        if ((await say(ex)) === false) return false;
+        if (!live()) return true;
+        onStep?.('exampleRepeat', i);
+        await wait(repeatPause(ex, o.pause));
+        if (!live()) return true;
+        if (o.english && sayEnglish && ex.en) {
+          onStep?.('exampleMeaning', i);
+          await sayEnglish(englishFor(ex.en));
+          if (!live()) return true;
+        }
       }
       onHeard?.(i);
       return true;
