@@ -3,7 +3,7 @@ import { runSession } from '../session.js';
 import { stressItem, beatItem, misreadItem, clozeItem } from '../exercises.js';
 import { learnedWords, dueWords, trickyWords, nextReviews } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
-import { GROUPS, missedChips } from '../components.js';
+import { GROUPS, missedChips, devicePref } from '../components.js';
 import { sentencesFor, textSentences, MIN_SENTENCES } from '../sentences.js';
 import { cachedTexts, loadTexts } from '../reader.js';
 import { skillSummary } from '../skills.js';
@@ -52,6 +52,8 @@ function wordsFor(ctx, scope) {
   if (scope === 'all') return ctx.lang.words;
   if (scope === 'saved') return ctx.store.getFavs(ctx.lang.code).map((id) => ctx.lang.byId(id)).filter(Boolean);
   if (scope === 'tricky') return trickyWords(ctx);
+  // The words missed in the last review or round (remembered by its summary).
+  if (scope === 'missed') return (devicePref(`lastMissed:${ctx.lang.code}`, []) || []).map((id) => ctx.lang.byId(id)).filter(Boolean);
   if (scope === 'kit') return tripKit(ctx.lang);
   return ctx.lang.wordsIn(scope);
 }

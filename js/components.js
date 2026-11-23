@@ -849,9 +849,14 @@ export function showMode(ctx, words, start = 0) {
 export function missedChips(ctx, words, max = 12) {
   const list = [...new Set(words)].filter(Boolean);
   if (!list.length) return null;
+  // Remembered on this device, so that a round of just these can be started (Practice, scope "missed").
+  setDevicePref(`lastMissed:${ctx.lang.code}`, list.slice(0, 40).map((w) => w.id));
   return h('div', { class: 'missed-words' },
     h('p', { class: 'muted' }, `Worth another look${list.length > max ? ` (${max} of ${list.length})` : ''}:`),
     h('ul', { class: 'word-chips' }, list.slice(0, max).map((w) =>
       h('li', null, h('a', { href: `#/word/${encodeURIComponent(w.id)}` }, h('b', { lang: ctx.lang.code }, w.tr), ' ', h('span', null, w.en))))),
+    list.length >= 4
+      ? h('a', { class: 'btn small missed-again', href: '#/practice/mixed/missed' }, icon('repeat', 16), `Practise these ${Math.min(list.length, 40)} again`)
+      : null,
     h('p', { class: 'hint' }, 'Open one to hear it again — or to add a note of your own that helps it stick.'));
 }
