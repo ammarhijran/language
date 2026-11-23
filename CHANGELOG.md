@@ -10,6 +10,7 @@
 
 ### Added
 - **Fixed:** with the largest text size on a narrow phone, the Play / Pause label in a text’s player bar was cut off at both ends; the row now wraps instead.
+- **Grammar: mixed review** (Learn → Grammar, once two lessons are done): ten questions drawn from the quizzes of the lessons you have finished, spread across them — to keep earlier rules fresh. A missed question links back to its lesson; lesson scores are not changed.
 - **Continue where you stopped** (Read & Listen): a text left part-way remembers the line; opening it again offers “Continue from line 14 of 32”. The list of texts marks it too (“▶ stopped at line 14”). And Home has a “Keep listening” row that goes straight back to it. Read to the end, it starts from the top next time.
 - **Hands-free, keep going** (Practice → Hands-free → Options): when a round ends, the next one starts by itself with a fresh draw of words, up to eight rounds in a row, for a walk or a drive.
 - **Hands-free, meaning first** (Practice → Hands-free → Options): the English is said first, then a pause to say the word yourself, then the word — audio flashcards, for recalling words with your hands and eyes busy. The word on screen stays covered until it is said.

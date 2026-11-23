@@ -631,3 +631,25 @@ test('review ahead: the words due by the end of tomorrow, soonest first', async 
   assert.deepEqual(dueSoonWords(ctx, now).map((x) => x.word.id), [a, b, c]);
   assert.deepEqual(dueSoonWords({ lang, store: { getCards: () => ({}) } }, now), []);
 });
+
+test('grammar mixed review: questions from the lessons done, spread over them', async () => {
+  const { mixedQuestions, MIXED_COUNT } = await import('../js/views/grammar.js');
+  for (const lang of Object.values(languages)) {
+    const lessons = lang.grammar;
+    assert.ok(!lessons.some((l) => l.id === 'review'), 'no lesson is called "review" (the route of the mixed quiz)');
+    assert.deepEqual(mixedQuestions(lessons, []), []);
+    const three = lessons.slice(0, 3).map((l) => l.id);
+    const qs = mixedQuestions(lessons, three);
+    assert.equal(qs.length, MIXED_COUNT);
+    assert.ok(qs.every((q) => three.includes(q.from.id) && q.from.title && Array.isArray(q.options) && Number.isInteger(q.answer)));
+    assert.equal(new Set(qs.map((q) => q.q)).size, qs.length, 'no question twice');
+    const per = three.map((id) => qs.filter((q) => q.from.id === id).length);
+    assert.ok(Math.max(...per) - Math.min(...per) <= 1, `spread evenly: ${per}`);
+    // many lessons done: no more than one or two from each
+    const all = mixedQuestions(lessons, lessons.map((l) => l.id));
+    assert.equal(all.length, MIXED_COUNT);
+    assert.ok(Math.max(...lessons.map((l) => all.filter((q) => q.from.id === l.id).length)) <= Math.ceil(MIXED_COUNT / lessons.length) + 1);
+    // one lesson done: what it has
+    assert.equal(mixedQuestions(lessons, [lessons[0].id]).length, Math.min(MIXED_COUNT, lessons[0].quiz.length));
+  }
+});

@@ -1,6 +1,6 @@
 // Grammar guide: a list of short lessons per language, each with explanations,
 // tables, audio examples and a 4-question quiz.
-import { h, icon, set, bindKeys } from '../ui.js';
+import { h, icon, set, bindKeys, shuffle } from '../ui.js';
 import { playButton, backLink, readingText } from '../components.js';
 import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
 
@@ -46,8 +46,45 @@ function list(ctx) {
     lessons.length
       ? h('p', { class: 'muted' }, `${lessons.length} short lessons, from first sentences to everyday speech — each ends with a quick quiz. ${done ? `${done} done.` : ''}`)
       : h('p', { class: 'muted' }, `Grammar lessons for ${lang.name} are coming soon.`),
+    // Questions from the lessons already done, mixed — to keep the rules fresh.
+    done >= MIXED_MIN ? h('a', { class: 'quick-link', id: 'g-mixed', href: '#/grammar/review' },
+      h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '🔀'),
+      h('span', null, h('b', null, 'Mixed review'), h('small', null, `${MIXED_COUNT} questions from the ${done} lessons you have done`)),
+      icon('arrow', 18)) : null,
     h('div', { class: 'grammar-list' }, lessons.map((l, i) => lessonCard(ctx, l, i))),
   );
+}
+
+export const MIXED_MIN = 2; // lessons done before a mixed review is offered
+export const MIXED_COUNT = 10;
+
+/**
+ * Questions for a mixed review: up to `count` from the quizzes of the lessons
+ * in `doneIds`, in random order, at most two from any one lesson while there
+ * are enough lessons — each with `from` (its lesson's id and title).
+ */
+export function mixedQuestions(lessons, doneIds, count = MIXED_COUNT, mix = shuffle) {
+  const pools = lessons.filter((l) => doneIds.includes(l.id) && l.quiz?.length)
+    .map((l) => mix(l.quiz).map((q) => ({ ...q, from: { id: l.id, title: l.title } })));
+  const out = [];
+  // Round after round, one question from each lesson, until there are enough.
+  for (let round = 0; out.length < count && pools.some((p) => p[round]); round++) {
+    for (const p of mix(pools)) if (p[round] && out.length < count) out.push(p[round]);
+  }
+  return mix(out);
+}
+
+function reviewView(ctx) {
+  const { lang } = ctx;
+  const lessons = lang.grammar || [];
+  const doneIds = lessons.filter((l) => ctx.game.grammarBest(lang.code, l.id) != null).map((l) => l.id);
+  const qs = mixedQuestions(lessons, doneIds);
+  if (doneIds.length < MIXED_MIN || !qs.length) return list(ctx);
+  return h('div', { class: 'view grammar-lesson' },
+    backLink(ctx, '#/grammar', 'Grammar'),
+    h('h1', null, 'Mixed review'),
+    h('p', { class: 'muted' }, `${qs.length} questions from the ${doneIds.length} lessons you have done. It is practice: your lesson scores stay as they are.`),
+    quiz(ctx, { id: 'review', title: 'Mixed review', mixed: true, quiz: qs }, null));
 }
 
 function example(ctx, ex) {
@@ -103,7 +140,8 @@ function quiz(ctx, lesson, next) {
     unbind();
     const correct = answers.filter((a, i) => a === qs[i].answer).length;
     ctx.store.logActivity(code, { practiced: qs.length });
-    const xp = ctx.game.grammarDone({ lang: code, id: lesson.id, correct, total: qs.length });
+    // A mixed review is practice: it is no lesson of its own, so nothing is recorded for one.
+    const xp = lesson.mixed ? 0 : ctx.game.grammarDone({ lang: code, id: lesson.id, correct, total: qs.length });
     paintDots();
     set(stage, h('div', { class: 'summary g-result' },
       h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, correct === qs.length ? '🌟' : '📘'),
@@ -111,10 +149,13 @@ function quiz(ctx, lesson, next) {
       xp ? h('p', { class: 'muted' }, `+${xp} XP`) : null,
       h('ul', { class: 'g-review' }, qs.map((q, i) => h('li', { class: answers[i] === q.answer ? 'right' : 'wrong' },
         icon(answers[i] === q.answer ? 'check' : 'x', 16),
-        h('span', null, rich(q.q, code))))),
+        h('span', null, rich(q.q, code),
+          // In a mixed review: the lesson a missed question comes from, to read it again.
+          q.from && answers[i] !== q.answer ? [' ', h('a', { class: 'small', href: `#/grammar/${encodeURIComponent(q.from.id)}` }, `→ ${q.from.title}`)] : null)))),
       h('div', { class: 'actions stack' },
         next ? h('a', { class: 'btn primary wide', href: `#/grammar/${encodeURIComponent(next.id)}` }, `Next: ${next.title}`, icon('arrow', 18)) : null,
-        h('button', { type: 'button', class: 'btn wide', onclick: () => { answers.fill(null); at = 0; show(); } }, icon('repeat', 18), 'Try the quiz again'),
+        lesson.mixed ? h('button', { type: 'button', class: 'btn primary wide', id: 'g-mixed-again', onclick: () => ctx.rerender() }, 'Another ten', icon('arrow', 18)) : null,
+        h('button', { type: 'button', class: 'btn wide', onclick: () => { answers.fill(null); at = 0; show(); } }, icon('repeat', 18), lesson.mixed ? 'These ten again' : 'Try the quiz again'),
         h('a', { class: 'btn ghost wide', href: LESSONS_HREF }, 'All lessons'))));
     stage.querySelector('.g-result-title')?.focus({ preventScroll: true });
     ctx.flushRewards?.();
@@ -169,7 +210,7 @@ function quiz(ctx, lesson, next) {
 
   set(wrap,
     h('div', { class: 'g-quiz-head' },
-      h('h2', { class: 'card-title', id: 'g-quiz-title' }, '✏️ Quick check'),
+      h('h2', { class: 'card-title', id: 'g-quiz-title' }, lesson.mixed ? '🔀 Mixed review' : '✏️ Quick check'),
       h('span', { class: 'g-quiz-progress' }, counter, ' ', dots)),
     stage);
   show();
@@ -266,5 +307,6 @@ function lessonView(ctx, id) {
 }
 
 export default function grammar(ctx, id) {
+  if (id === 'review') return reviewView(ctx);
   return id ? lessonView(ctx, id) : list(ctx);
 }
