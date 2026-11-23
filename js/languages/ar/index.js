@@ -132,6 +132,16 @@ const withDialects = (lessons) => lessons.map((l) => ({
     : s)),
 }));
 
+// Each letter's joined shapes, drawn with the joining stroke (tatweel) on the
+// side where it connects. ا د ذ ر ز و never join the letter after them, so
+// they have no initial or medial shape; hamza (ء) stands alone.
+const TATWEEL = 'ـ';
+const NON_JOINING = new Set('ادذرزو');
+const JOINED_SHAPES = alphabet.filter((l) => l.upper !== 'ء').flatMap((l) => [
+  ...(NON_JOINING.has(l.upper) ? [] : [['at the start of a word', l.upper + TATWEEL], ['in the middle of a word', TATWEEL + l.upper + TATWEEL]]),
+  ['at the end of a word', TATWEEL + l.upper],
+].map(([where, shape]) => ({ ...l, shape, hint: `${l.lower} ${where} — ${l.hint}` })));
+
 export default makePack({
   displayUnits: (text) => writtenUnits(text, /[a-z]/i.test(text) ? arabiziUnit : normalize),
   extraExamples,
@@ -181,6 +191,11 @@ export default makePack({
   alphabet,
   // The letter quiz: each letter by its name (alif, bāʾ…).
   letterName: (l) => l.lower,
+  // A second quiz: the letters as they look joined to their neighbours — at the start, in the middle and at the end of a word.
+  letterSets: [
+    { id: 'letters', name: 'Letters', glyph: (l) => l.upper },
+    { id: 'shapes', name: 'Shapes in a word', glyph: (l) => l.shape, letters: JOINED_SHAPES },
+  ],
   soundTips,
   minimalPairs,
   analyze: (word) => {

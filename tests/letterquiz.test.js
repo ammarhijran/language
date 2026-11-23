@@ -10,7 +10,7 @@ test('the scripts that are new have a letter quiz; Turkish has none', () => {
   assert.deepEqual(letterSets(tr), []);
   assert.deepEqual(letterSets(null), []);
   assert.deepEqual(letterSets(ja).map((s) => s.id), ['hiragana', 'katakana', 'voiced']);
-  assert.deepEqual(letterSets(ar).map((s) => s.id), ['letters']);
+  assert.deepEqual(letterSets(ar).map((s) => s.id), ['letters', 'shapes']);
   assert.deepEqual(letterSets(uk).map((s) => s.id), ['letters']);
   for (const lang of [uk, ja, ar]) {
     for (const set of letterSets(lang)) {
@@ -53,6 +53,13 @@ test('Ukrainian and Arabic: every letter has a reading of its own', () => {
   const [a] = letterSets(ar);
   assert.equal(a.items.length, ar.alphabet.length);
   assert.equal(a.items.find((x) => x.glyph === 'ب').label, 'bāʾ');
+  // the joined shapes: 22 joining letters × 3, 6 non-joining × 1; a letter keeps its name in every shape
+  const shapes = letterSets(ar)[1];
+  assert.equal(shapes.items.length, 22 * 3 + 6);
+  assert.deepEqual(shapes.items.filter((x) => x.letter.upper === 'ب').map((x) => x.glyph), ['بـ', 'ـبـ', 'ـب']);
+  assert.deepEqual(shapes.items.filter((x) => x.letter.upper === 'د').map((x) => x.glyph), ['ـد']);
+  assert.ok(shapes.items.every((x) => x.label === ar.alphabet.find((l) => l.upper === x.letter.upper).lower && x.glyph.includes('ـ')));
+  assert.ok(!shapes.items.some((x) => x.letter.upper === 'ء'));
   for (const set of [u, a]) {
     const labels = set.items.map((x) => x.label);
     assert.equal(new Set(labels).size, labels.length);
