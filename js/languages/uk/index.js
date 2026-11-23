@@ -60,6 +60,12 @@ export default makePack({
   extraExamples,
   feminine,
   code: 'uk',
+  // A word the learner adds: its stress, when they marked it — the stressed
+  // syllable of each word, counted from 1 (0 = not marked), as "2" or "1 0 3".
+  ownReading: (o) => {
+    const s = /^\d+(?: \d+)*$/.test(o.read || '') ? o.read.split(' ').map(Number) : [];
+    return s.some(Boolean) ? { s: s.length === 1 ? s[0] : s } : {};
+  },
   name: 'Ukrainian',
   nativeName: 'Українська',
   flag: '🇺🇦',

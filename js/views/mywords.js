@@ -27,7 +27,45 @@ export function readingField(lang) {
       check: (v) => (/\p{Script=Latin}/u.test(v) && !/\p{Script=Arabic}/u.test(v) ? null : 'Write the transliteration in Latin letters, for example kitāb.'),
     };
   }
+  if (lang.code === 'uk') {
+    // Not typed: picked by tapping a syllable (see stressPicker). Stored as the
+    // stressed syllable of each word, counted from 1: "2", or "1 0 3" for a phrase.
+    return {
+      label: 'Stress', picked: true,
+      hint: 'Tap the stressed syllable of each word if you know it. It is shown on the word’s page and asked in Word stress practice.',
+      check: (v) => (/^\d+(?: \d+)*$/.test(v) ? null : 'Tap the stressed syllable.'),
+    };
+  }
   return null;
+}
+
+/**
+ * Stress written with accent marks, as dictionaries print it (мете́лик):
+ * { tr, stress } — the text without the marks and, for each word, its
+ * stressed syllable counted from 1 (0 = not marked). stress is null when
+ * there are no marks.
+ */
+export function stressFromAccents(lang, text) {
+  const tr = String(text).normalize('NFC').replace(/\u0301/g, '');
+  if (tr === String(text).normalize('NFC')) return { tr, stress: null };
+  const marked = new Set(); // positions in `tr` of the letters that carried a mark
+  let at = 0;
+  for (const ch of String(text).normalize('NFC')) {
+    if (ch === '\u0301') marked.add(at - 1); else at += ch.length;
+  }
+  let from = 0;
+  const stress = lang.analyze({ tr, own: true }).words.map((w) => {
+    let pos = tr.indexOf(w.text, from);
+    if (pos < 0) return 0;
+    from = pos + w.text.length;
+    for (let k = 0; k < w.syllables.length; k++) {
+      const end = pos + w.syllables[k].text.length;
+      for (let j = pos; j < end; j++) if (marked.has(j)) return k + 1;
+      pos = end;
+    }
+    return 0;
+  });
+  return { tr, stress };
 }
 
 /**
@@ -77,7 +115,7 @@ export function parseWordList(text, lang) {
       const sep = SEPARATORS.slice(1).map((re) => re.exec(raw)).filter((m) => m && m.index > 0).sort((a, b) => a.index - b.index)[0];
       if (sep) { tr = raw.slice(0, sep.index).trim(); en = raw.slice(sep.index + sep[0].length).trim(); }
     }
-    const field = readingField(lang);
+    const field = readingField(lang)?.picked ? null : readingField(lang);
     const bracket = field && !read ? BRACKETED.exec(tr) : null;
     if (bracket && bracket[1] && !field.check(bracket[2])) { tr = bracket[1]; read = bracket[2]; }
     if (field && read && field.check(read)) read = ''; // not a reading in the right script: leave it out
@@ -98,7 +136,7 @@ export default function myWords(ctx, editId) {
   const fields = {
     tr: input('tr', { lang: lang.code, dir: lang.dir === 'rtl' ? 'rtl' : null, autocapitalize: 'off', spellcheck: 'false', placeholder: lang.sampleWords?.[0]?.[0] || '' }),
     en: input('en', { placeholder: lang.sampleWords?.[0]?.[1] || 'What it means' }),
-    read: reading ? input('read', { ...reading.attrs, autocapitalize: 'off', spellcheck: 'false' }) : null,
+    read: reading ? (reading.picked ? h('input', { type: 'hidden', id: 'mw-read' }) : input('read', { ...reading.attrs, autocapitalize: 'off', spellcheck: 'false' })) : null,
     note: input('note', { placeholder: 'Where you met it, how it is used…' }),
   };
   const message = h('p', { class: 'form-message', role: 'status', 'aria-live': 'polite' });
@@ -110,9 +148,39 @@ export default function myWords(ctx, editId) {
 
   const say = (text, extra = null) => set(message, text, extra);
 
+  // Stress (Ukrainian): the word in syllables; tap one to mark it, again to unmark.
+  // The choice lives in the hidden "read" field as "2" or "1 0 3".
+  const picker = reading?.picked ? h('div', { class: 'stress-pick', role: 'group', 'aria-label': 'Stressed syllable' }) : null;
+  function drawPicker() {
+    if (!picker) return;
+    // Accent marks pasted with the word (мете́лик) become the choice, and leave the word.
+    const typed = stressFromAccents(lang, fields.tr.value);
+    if (typed.stress) { fields.tr.value = typed.tr; fields.read.value = typed.stress.join(' '); }
+    const text = fields.tr.value.replace(/\s+/g, ' ').trim();
+    let words = [];
+    try { words = text ? lang.analyze({ tr: text, own: true }).words : []; } catch { words = []; }
+    const chosen = fields.read.value.split(' ').map(Number);
+    const stress = words.map((w, i) => (chosen[i] > 0 && chosen[i] <= w.syllables.length && w.syllables.length > 1 ? chosen[i] : 0));
+    fields.read.value = stress.some(Boolean) ? stress.join(' ') : '';
+    set(picker, words.some((w) => w.syllables.length > 1)
+      ? words.map((w, wi) => h('span', { class: 'stress-word' }, w.syllables.map((syl, si) => h('button', {
+        type: 'button', class: `syl${stress[wi] === si + 1 ? ' stressed' : ''}`, lang: lang.code, disabled: w.syllables.length < 2,
+        'aria-pressed': String(stress[wi] === si + 1),
+        onclick: () => {
+          stress[wi] = stress[wi] === si + 1 ? 0 : si + 1;
+          fields.read.value = stress.some(Boolean) ? stress.join(' ') : '';
+          drawPicker();
+          picker.querySelectorAll('.stress-word')[wi]?.children[si]?.focus();
+        },
+      }, syl.text))))
+      : h('span', { class: 'muted' }, text ? 'One syllable: nothing to mark.' : 'Type the word first.'));
+  }
+  fields.tr.addEventListener('input', drawPicker);
+
   function edit(rec) {
     editing = rec;
     for (const [k, el] of Object.entries(fields)) if (el) el.value = rec?.[k] || '';
+    drawPicker();
     formTitle.textContent = rec ? 'Change a word' : 'Add a word or phrase';
     set(submit, icon('check', 16), rec ? 'Save' : 'Add');
     cancel.hidden = !rec;
@@ -194,6 +262,11 @@ export default function myWords(ctx, editId) {
     const skipped = unread.map((u) => `line ${u.line} (no meaning found)`);
     const done = new Set(); // lines that were added
     for (const e of entries) {
+      if (reading?.picked) { // accent marks in a pasted word (мете́лик) are its stress
+        const t = stressFromAccents(lang, e.tr);
+        e.tr = t.tr;
+        e.read = t.stress?.some(Boolean) ? t.stress.join(' ') : '';
+      }
       const problem = ownWordProblem(lang, e);
       const id = problem ? null : store.saveOwnWord(lang.code, e);
       if (id) { added++; done.add(e.line); ctx.refreshOwnWords?.(); continue; } // refreshed each time, so a word twice in the list is caught
@@ -230,7 +303,9 @@ export default function myWords(ctx, editId) {
     formTitle,
     field('tr', `In ${lang.name}`, fields.tr),
     field('en', 'Meaning', fields.en),
-    field('read', reading ? `${reading.label} (optional)` : '', fields.read, reading?.hint),
+    reading?.picked
+      ? [fields.read, h('div', { class: 'field' }, h('span', null, `${reading.label} (optional)`), picker), h('p', { class: 'hint' }, reading.hint)]
+      : field('read', reading ? `${reading.label} (optional)` : '', fields.read, reading?.hint),
     field('note', 'Note (optional)', fields.note),
     message,
     h('div', { class: 'button-row' }, submit, cancel));

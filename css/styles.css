@@ -451,6 +451,10 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .form-message:empty { display: none; }
 .own-summary { margin-top: var(--sp-4); }
 .own-list-panel { margin-top: var(--sp-3); }
+/* My words, Ukrainian: tap the stressed syllable. */
+.stress-pick { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); align-items: center; min-height: var(--tap); font-weight: 500; }
+.stress-word { display: inline-flex; flex-wrap: wrap; gap: var(--sp-1); }
+.stress-pick .syl:disabled { cursor: default; opacity: .7; }
 .own-list .own-body { min-height: 7.5rem; }
 .own-words .pr-tools { gap: var(--sp-1); }
 /* On phones a half-width tile is too narrow for the icon and a long title side by

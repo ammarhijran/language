@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { languages } from './all-languages.js';
 import * as store from '../js/store.js';
 import { OWN_CATEGORY } from '../js/languages/common.js';
-import { ownWordProblem, readingField, parseWordList, LIST_LINES_MAX } from '../js/views/mywords.js';
+import { ownWordProblem, readingField, parseWordList, stressFromAccents, LIST_LINES_MAX } from '../js/views/mywords.js';
 import { newCard } from '../js/srs.js';
 
 const { tr, uk, ja, ar } = languages;
@@ -193,7 +193,9 @@ test('readings of own words: kana for Japanese, a transliteration for Arabic —
 
 test('the form: both fields, the right script for the reading, and no word twice', () => {
   assert.equal(readingField(tr), null);
-  assert.equal(readingField(uk), null);
+  assert.equal(readingField(uk).picked, true, 'Ukrainian: the stress, picked by tapping a syllable');
+  assert.equal(readingField(uk).check('2 0 1'), null);
+  assert.ok(readingField(uk).check('друга'));
   assert.match(readingField(ja).label, /kana/i);
   assert.match(readingField(ar).label, /transliteration/i);
   try {
@@ -302,4 +304,40 @@ test('a pasted list: at most LIST_LINES_MAX lines are read at once', () => {
   assert.equal(entries.length, LIST_LINES_MAX);
   assert.equal(unread.length, 0);
   assert.equal(entries.at(-1).line, LIST_LINES_MAX);
+});
+
+test('Ukrainian own words: the stress the learner marked is shown and can be practised', async () => {
+  const { stressItem } = await import('../js/exercises.js');
+  try {
+    uk.setOwnWords([
+      { id: 'mw-1', tr: 'ззюхалик', en: 'made up', read: '2' },
+      { id: 'mw-2', tr: 'ззюхалик ззю маззюка', en: 'made-up phrase', read: '3 0 2' },
+      { id: 'mw-3', tr: 'ззюхалик', en: 'no stress marked' },
+      { id: 'mw-4', tr: 'ззюхалик', en: 'not a stress', read: 'друга' },
+      { id: 'mw-5', tr: 'ззюхалик', en: 'beyond the last syllable', read: '9' },
+    ]);
+    const [one, phrase, bare, wrong, far] = uk.wordsIn(OWN_CATEGORY.id);
+    assert.equal(uk.analyze(one).words[0].stressIndex, 1);
+    assert.equal(uk.analyze(one).stressMarked, true);
+    assert.deepEqual(stressItem(uk, one), { syllables: ['ззю', 'ха', 'лик'], stressed: 1 });
+    assert.deepEqual(uk.analyze(phrase).words.map((w) => w.stressIndex), [2, -1, 1]);
+    for (const w of [bare, wrong]) {
+      assert.equal(uk.analyze(w).stressMarked, false);
+      assert.equal(stressItem(uk, w), null, 'a word without a marked stress is never asked');
+    }
+    assert.equal(uk.analyze(far).words[0].stressIndex, 2, 'clamped to the last syllable');
+  } finally {
+    uk.setOwnWords([]);
+  }
+});
+
+test('accent marks typed or pasted with a Ukrainian word become its stress', () => {
+  assert.deepEqual(stressFromAccents(uk, 'мете\u0301лик'), { tr: 'метелик', stress: [2] });
+  assert.deepEqual(stressFromAccents(uk, 'молоко\u0301'), { tr: 'молоко', stress: [3] });
+  assert.deepEqual(stressFromAccents(uk, 'До\u0301брий ра\u0301нок!'), { tr: 'Добрий ранок!', stress: [1, 1] });
+  assert.deepEqual(stressFromAccents(uk, 'Де ти живе\u0301ш?'), { tr: 'Де ти живеш?', stress: [0, 0, 2] });
+  assert.deepEqual(stressFromAccents(uk, 'метелик'), { tr: 'метелик', stress: null });
+  // In a pasted list a third column is a note (the stress is not typed), and accents stay for the form to read.
+  const { entries } = parseWordList('мете\u0301лик\tbutterfly\tfrom a song', uk);
+  assert.deepEqual([entries[0].tr, entries[0].read, entries[0].note], ['мете\u0301лик', '', 'from a song']);
 });
