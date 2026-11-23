@@ -3,7 +3,7 @@
 // no exceptions — fourteen sun letters, the rest moon letters — and one that
 // decides how every word with the article is pronounced.
 import { h, icon, set, shuffle, bindKeys } from '../ui.js';
-import { backLink } from '../components.js';
+import { backLink, playButton } from '../components.js';
 
 const COUNT = 10;
 
@@ -22,6 +22,25 @@ export function sunMoonItems(lang) {
     .map((l) => ({ letter: l, glyph: l.upper, name: l.lower, tl: consonantOf(l.lower), sun: lang.sunLetters.includes(l.upper) }));
 }
 
+const bare = (text) => String(text).replace(/[\u064B-\u0652\u0670\u0640]/g, '');
+
+/**
+ * Course entries in Standard Arabic that begin with the article, as questions
+ * about a real word: [{ ...letter item, entry, first }] — `first`: the first
+ * word as written. Words whose first letter after ال is a hamza are left out
+ * (as hamza is among the letters).
+ */
+export function sunMoonWords(lang) {
+  const letters = new Map(sunMoonItems(lang).map((x) => [x.glyph, x]));
+  const out = [];
+  for (const entry of lang.words) {
+    if (entry.own || entry.dialect || !entry.tl || !bare(entry.tr).startsWith('ال')) continue;
+    const item = letters.get([...bare(entry.tr)][2]);
+    if (item) out.push({ ...item, entry, first: entry.tr.trim().split(/\s+/)[0].replace(/[،.؟!]+$/, '') });
+  }
+  return out;
+}
+
 /** The two ways to say al- before a letter: { sun: "ash-sh…", moon: "al-sh…" }. */
 export const withArticle = (item) => ({ sun: `a${item.tl}-${item.tl}…`, moon: `al-${item.tl}…` });
 
@@ -35,7 +54,14 @@ export default function sunQuiz(ctx) {
     return view;
   }
   // Half sun, half moon, so that guessing one side gets half of them wrong.
-  const qs = shuffle([...shuffle(items.filter((x) => x.sun)).slice(0, COUNT / 2), ...shuffle(items.filter((x) => !x.sun)).slice(0, COUNT / 2)]);
+  // On each side, up to two are real words from the course; the rest are letters.
+  const words = sunMoonWords(lang);
+  const side = (sun) => {
+    const real = shuffle(words.filter((x) => x.sun === sun)).slice(0, 2);
+    const used = new Set(real.map((x) => x.glyph));
+    return [...real, ...shuffle(items.filter((x) => x.sun === sun && !used.has(x.glyph))).slice(0, COUNT / 2 - real.length)];
+  };
+  const qs = shuffle([...side(true), ...side(false)]);
   const missed = [];
   let i = 0;
   let right = 0;
@@ -71,6 +97,8 @@ export default function sunQuiz(ctx) {
         h('div', { class: `reveal ${ok ? 'good' : 'bad'}` },
           h('p', { class: 'verdict' }, icon(ok ? 'check' : 'x', 18), ok ? 'Right!' : 'Not quite:'),
           h('p', { class: 'letter-answer' }, h('b', { lang: lang.code }, q.glyph), ' ', q.name, ' — ', q.sun ? 'a sun letter' : 'a moon letter'),
+          q.entry ? h('div', { class: 'letter-quiz-ex' }, playButton(ctx, q.entry),
+            h('span', null, h('b', { lang: lang.code }, q.entry.tr), ' ', h('span', { class: 'reading' }, q.entry.tl), ' ', h('span', { class: 'muted' }, q.entry.en))) : null,
           h('p', { class: 'small' }, q.sun
             ? `The l of al- is not said: the ${q.tl} takes its place and is held twice as long — ${said.sun} The article is still written ال.`
             : `al- is said in full, l and all — ${said.moon}`)),
@@ -86,8 +114,11 @@ export default function sunQuiz(ctx) {
       backLink(ctx, '#/speak/alphabet', 'Alphabet'),
       h('div', { class: 'exercise' },
         h('p', { class: 'kicker' }, `Sun or moon letter? · ${i + 1} of ${qs.length}`),
-        h('p', { class: 'letter-quiz-prompt', lang: lang.code, dir: 'rtl' }, `الـ + ${q.glyph}`),
-        h('p', { class: 'muted letter-quiz-ask' }, `“The” before a word that begins with ${q.name}: how is it said?`),
+        h('p', { class: 'letter-quiz-prompt', lang: lang.code, dir: 'rtl' }, // (without its vowel marks: the doubling mark on a sun letter would give the answer away)
+          q.entry ? bare(q.first) : `الـ + ${q.glyph}`),
+        h('p', { class: 'muted letter-quiz-ask' }, q.entry
+          ? `It begins with the article and then ${q.name}: how does it start?`
+          : `“The” before a word that begins with ${q.name}: how is it said?`),
         h('div', { class: 'options' }, buttons),
         feedback));
     window.scrollTo(0, 0);

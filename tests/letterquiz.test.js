@@ -173,6 +173,16 @@ test('Arabic: sun and moon letters — the fourteen, and how al- is said before 
   assert.equal(consonantOf('thāʾ'), 'th');
   assert.equal(consonantOf('alif'), '');
   assert.equal(new Set(items.map((x) => x.tl)).size, items.length, 'no two letters share a Latin spelling');
+  // real course words: the rule and the course's own transliteration must agree on every one
+  const { sunMoonWords } = await import('../js/views/sunquiz.js');
+  const words = sunMoonWords(ar);
+  assert.ok(words.filter((x) => x.sun).length >= 5 && words.filter((x) => !x.sun).length >= 5, `${words.length} words`);
+  for (const w of words) {
+    const said = withArticle(w);
+    const start = (w.sun ? said.sun : said.moon).replace('…', '');
+    assert.ok(w.entry.tl.startsWith(start), `${w.entry.tr}: ${w.entry.tl} should start with ${start}`);
+    assert.ok(!w.entry.dialect && w.first && !/\s/.test(w.first));
+  }
 });
 
 test('Turkish vowel harmony: the endings follow the last vowel, on course words only', async () => {
