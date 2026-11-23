@@ -10,6 +10,7 @@
 
 ### Added
 - **Fixed:** with the largest text size on a narrow phone, the Play / Pause label in a text’s player bar was cut off at both ends; the row now wraps instead.
+- **я, ю, є: two sounds or one?** (Speak → Alphabet, Ukrainian): ten course words a round with one of the three letters marked — is it *ya* or *a*, *yu* or *u*, *ye* or *e*? Two sounds at the start of a word, after a vowel and after an apostrophe; one after a consonant, which becomes soft. Each answer says which and why, and plays the word.
 - **Vowel harmony** (Speak → Alphabet, Turkish): ten everyday nouns a round — which plural, *-lar* or *-ler*? which question word, *mı, mi, mu* or *mü*? The ending copies the word’s last vowel; each answer names that vowel and says the result aloud. Only words that follow the rule are asked.
 - **Sun or moon letter?** (Speak → Alphabet, Arabic): ten letters a round — “the” before a word that begins with this letter: is it *ash-sh…* or *al-sh…*? Before the fourteen sun letters the l of al- is not said and the letter is doubled; before the others it is said in full. Each answer says which it is and why; the round is half sun, half moon.
 - **Two more achievements** (54 in all): Reads the Script (100 letters right in the letter quiz) and Good with Numbers (50 numbers right by ear).

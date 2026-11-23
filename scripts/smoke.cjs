@@ -77,6 +77,7 @@ async function walk(browser, lang, pack, texts) {
   await open('speak/alphabet/quiz', { selector: '.letter-quiz' });
   await open('speak/alphabet/sun', { selector: '.letter-quiz' });
   await open('speak/alphabet/harmony', { selector: '.letter-quiz' });
+  await open('speak/alphabet/iotated', { selector: '.letter-quiz' });
   // Speak → Sounds: "Practise this sound" opens the speaking drill with its words.
   await open('speak/sounds', { selector: '.tip-drill' });
   await page.click('.tip-drill');

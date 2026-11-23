@@ -59,6 +59,7 @@ export default function harmony(ctx) {
       if (ok) right++; else missed.push(q);
       ctx.store.logActivity(lang.code, { practiced: 1 });
       ctx.store.logSkill?.(lang.code, 'sounds', ok);
+      if (ok) ctx.game?.count?.({ lang: lang.code, key: 'soundQuiz' }); // counts for Sound Sense, like Tricky letters
       buttons.forEach((b, n) => {
         b.disabled = true;
         if (q.options[n] === q.answer) b.classList.add('correct');

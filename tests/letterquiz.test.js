@@ -199,3 +199,26 @@ test('Turkish vowel harmony: the endings follow the last vowel, on course words 
   }
   assert.ok(qs.some((q) => q.kind === 'plural') && qs.some((q) => q.kind === 'question'));
 });
+
+test('Ukrainian я, ю, є: two sounds or one, by where the letter stands', async () => {
+  const { iotatedIn, iotatedQuestions } = await import('../js/views/iotated.js');
+  for (const [word, two] of [['яблуко', true], ['Європа', true], ['юрист', true], ['знаєш', true], ['Англія', true], ['п’ять', true], ['м’ясо', true], ['сім’я', true], ['комп’ютер', true],
+    ['дякую', false], ['десять', false], ['неділя', false], ['вулиця', false], ['кухня', false], ['місяць', false], ['синє', false], ['люди', false]]) {
+    assert.equal(iotatedIn(word)?.two, two, word);
+  }
+  assert.equal(iotatedIn('молоко'), null);
+  assert.equal(iotatedIn('дякую').at, 1, 'the first of them is the one asked about');
+  assert.equal(iotatedIn('Європа').letter, 'є');
+  for (let run = 0; run < 5; run++) {
+    const qs = iotatedQuestions(uk, 10);
+    assert.equal(qs.length, 10);
+    assert.equal(qs.filter((q) => q.two).length, 5, 'half and half');
+    assert.equal(new Set(qs.map((q) => q.word.id)).size, 10);
+    for (const q of qs) {
+      assert.ok(!/[\s-]/.test(q.word.tr) && !q.word.own);
+      assert.ok('яює'.includes([...q.word.tr][q.at].toLowerCase()));
+      assert.ok(q.why);
+    }
+  }
+  assert.deepEqual(iotatedQuestions(tr, 10), []);
+});
