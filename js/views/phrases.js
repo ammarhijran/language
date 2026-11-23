@@ -6,6 +6,8 @@ import { phraseRow, showMode, devicePref, setDevicePref, pairToggleLabel, glyph 
 import { rankEntries } from './search.js';
 import { tripKit } from '../kit.js';
 import { OWN_CATEGORY } from '../languages/common.js';
+import { listText } from '../wordlist.js';
+import { copyText, canShareText, shareText } from '../native.js';
 
 const PHRASE_GROUPS = new Set(['phrases', 'talk']);
 
@@ -94,7 +96,16 @@ export default function phrases(ctx, chipArg, queryArg = '') {
     } else if (chip === 'saved') {
       current = saved();
       set(heading, '★ Saved');
-      set(note, current.length >= 4 ? h('p', { class: 'hint' }, h('a', { href: '#/practice/handsfree/saved' }, 'Listen to them hands-free')) : current.length ? null : h('p', { class: 'muted empty-note' }, 'Nothing saved yet. Tap ☆ next to any phrase (or any word in a topic) to keep it here — handy before a trip.'));
+      // The list as text: to a notes app, a message to yourself, or paper.
+      const asText = () => listText(lang, saved());
+      const listLinks = current.length ? [
+        h('button', { type: 'button', class: 'link-btn', id: 'saved-copy', onclick: async () => ctx.toast(await copyText(asText()) ? `Copied ${saved().length} saved` : 'Couldn’t copy the list.') }, 'Copy the list'),
+        canShareText() ? h('button', {
+          type: 'button', class: 'link-btn', id: 'saved-share',
+          onclick: async () => { if (await shareText(asText(), { title: `${lang.name}: my saved phrases`, dialogTitle: 'Share my saved phrases' }) === 'failed') ctx.toast('Couldn’t open the share sheet — use Copy instead.'); },
+        }, 'Share') : null,
+      ] : null;
+      set(note, current.length ? h('p', { class: 'hint saved-links' }, current.length >= 4 ? [h('a', { href: '#/practice/handsfree/saved' }, 'Listen to them hands-free'), ' · '] : null, listLinks) : h('p', { class: 'muted empty-note' }, 'Nothing saved yet. Tap ☆ next to any phrase (or any word in a topic) to keep it here — handy before a trip.'));
     } else if (chip === 'mine') {
       current = mine();
       set(heading, `${OWN_CATEGORY.emoji} My words and phrases`);

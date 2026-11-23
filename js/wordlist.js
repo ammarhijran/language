@@ -25,3 +25,15 @@ export function wordsCsv(lang, cards, notes = {}) {
   }
   return { count: rows.length - 1, text: `﻿${rows.map((r) => r.map(cell).join(',')).join('\r\n')}\r\n` };
 }
+
+/**
+ * Entries as plain text, one a line — "水 (みず · mizu) — water" — for the
+ * clipboard or the share sheet: a saved-phrases list to keep in a notes app
+ * or to print before a trip.
+ */
+export function listText(lang, words) {
+  return words.map((w) => {
+    const reading = lang.fullReading?.(w);
+    return `${w.tr}${reading ? ` (${reading})` : ''} — ${w.en}`;
+  }).join('\n');
+}

@@ -107,3 +107,15 @@ test('sharing a word uses the Share plugin in the apps, and says how it ended', 
   assert.equal(await shareText('x'), 'failed');
   window.Capacitor.nativePromise = real;
 });
+
+test('a list as plain text: one entry a line, with its reading where the script is new', async () => {
+  const { listText } = await import('../js/wordlist.js');
+  const { languages } = await import('./all-languages.js');
+  const { tr, ja } = languages;
+  assert.equal(listText(tr, [tr.byId('merhaba'), tr.byId('selam')]).split('\n').length, 2);
+  assert.ok(listText(tr, [tr.byId('merhaba')]).startsWith('merhaba'));
+  assert.ok(listText(tr, [tr.byId('merhaba')]).includes(` — ${tr.byId('merhaba').en}`));
+  const kyou = ja.words.find((w) => w.tr === '今日');
+  assert.equal(listText(ja, [kyou]), `今日 (${ja.fullReading(kyou)}) — ${kyou.en}`);
+  assert.equal(listText(ja, []), '');
+});
