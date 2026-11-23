@@ -55,6 +55,7 @@ const ASSETS = [
   'js/skills.js',
   'js/letterquiz.js',
   'js/views/letterquiz.js',
+  'js/views/sunquiz.js',
   'js/session.js',
   'js/themes.js',
   'js/speech.js',

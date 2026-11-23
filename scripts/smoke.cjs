@@ -75,6 +75,7 @@ async function walk(browser, lang, pack, texts) {
 
   // The letter quiz, where the script is new (a language without one shows its own message).
   await open('speak/alphabet/quiz', { selector: '.letter-quiz' });
+  await open('speak/alphabet/sun', { selector: '.letter-quiz' });
   // Speak → Sounds: "Practise this sound" opens the speaking drill with its words.
   await open('speak/sounds', { selector: '.tip-drill' });
   await page.click('.tip-drill');

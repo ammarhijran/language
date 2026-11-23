@@ -155,3 +155,22 @@ test('Japanese: the combined kana (きゃ, しゅ…) are a set too', () => {
   assert.equal(new Set(set.items.map((x) => x.label)).size, 33);
   assert.ok(set.items.every((x) => /^[ぁ-ん]{2} [ァ-ヶ]{2}$/.test(x.glyph) && x.letter.hint));
 });
+
+test('Arabic: sun and moon letters — the fourteen, and how al- is said before each', async () => {
+  const { sunMoonItems, consonantOf, withArticle } = await import('../js/views/sunquiz.js');
+  assert.deepEqual(sunMoonItems(tr), []);
+  assert.deepEqual(sunMoonItems(ja), []);
+  const items = sunMoonItems(ar);
+  assert.equal(items.length, 27, 'every letter but alif and hamza');
+  const sun = items.filter((x) => x.sun).map((x) => x.glyph).sort().join('');
+  assert.equal(sun, [...'تثدذرزسشصضطظلن'].sort().join(''));
+  assert.equal(items.filter((x) => !x.sun).map((x) => x.glyph).sort().join(''), [...'بجحخعغفقكمهوي'].sort().join(''));
+  const of = (g) => items.find((x) => x.glyph === g);
+  assert.deepEqual(withArticle(of('ش')), { sun: 'ash-sh…', moon: 'al-sh…' });
+  assert.deepEqual(withArticle(of('ق')), { sun: 'aq-q…', moon: 'al-q…' });
+  assert.deepEqual(withArticle(of('ص')), { sun: 'aṣ-ṣ…', moon: 'al-ṣ…' });
+  assert.deepEqual(withArticle(of('ع')), { sun: 'aʿ-ʿ…', moon: 'al-ʿ…' });
+  assert.equal(consonantOf('thāʾ'), 'th');
+  assert.equal(consonantOf('alif'), '');
+  assert.equal(new Set(items.map((x) => x.tl)).size, items.length, 'no two letters share a Latin spelling');
+});

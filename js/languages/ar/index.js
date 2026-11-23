@@ -191,6 +191,8 @@ export default makePack({
   alphabet,
   // The letter quiz: each letter by its name (alif, bāʾ…).
   letterName: (l) => l.lower,
+  // The fourteen sun letters: before them the l of the article al- is not said (ash-shams); before the others it is (al-qamar).
+  sunLetters: 'تثدذرزسشصضطظلن',
   // A second quiz: the letters as they look joined to their neighbours — at the start, in the middle and at the end of a word.
   letterSets: [
     { id: 'letters', name: 'Letters', glyph: (l) => l.upper },
