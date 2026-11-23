@@ -14,7 +14,10 @@ import { readFileSync } from 'node:fs';
 const CSS_PATH = process.env.LISAN_CSS || new URL('../css/styles.css', import.meta.url);
 const strip = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '');
 const src = strip(readFileSync(CSS_PATH, 'utf8'));
-const SHEETS = Object.fromEntries(['styles', 'nav', 'session', 'read'].map((n) => [n, n === 'styles' ? src : strip(readFileSync(new URL(`../css/${n}.css`, import.meta.url), 'utf8'))]));
+// The dark theme is its own stylesheet (css/dark.css), loaded with a media the
+// app can change (js/themes.js). Here it is read as the media block it is by default.
+const darkSrc = `@media (prefers-color-scheme: dark) {\n${strip(readFileSync(new URL('../css/dark.css', import.meta.url), 'utf8'))}\n}`;
+const SHEETS = Object.fromEntries(['styles', 'nav', 'session', 'read', 'dark'].map((n) => [n, n === 'styles' ? src : n === 'dark' ? darkSrc : strip(readFileSync(new URL(`../css/${n}.css`, import.meta.url), 'utf8'))]));
 
 // ---------- Tiny CSS reader ----------
 
@@ -65,7 +68,7 @@ function selectors(text) {
 
 const decls = (body) => Object.fromEntries([...body.matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)].map((m) => [m[1], m[2].trim()]));
 const ALL_RULES = Object.values(SHEETS).flatMap(parse);
-const RULES = parse(src);
+const RULES = parse(src).concat(parse(darkSrc));
 const ROOT_LIGHT = RULES.find((r) => !r.media && r.sels.includes(':root') && /--bg:/.test(r.body));
 const ROOT_DARK = RULES.find((r) => /prefers-color-scheme: dark/.test(r.media) && r.sels.includes(':root'));
 const LIGHT = decls(ROOT_LIGHT.body);

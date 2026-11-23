@@ -500,7 +500,7 @@ test('every animation in sessions stops for reduced motion', () => {
 // Colour maths (sRGB), as in styles.test.js.
 const tokens = (src, re) => Object.fromEntries([...src.match(re)[1].matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)].map((m) => [m[1], m[2].trim()]));
 const LIGHT = tokens(base, /^:root\s*\{([^}]*)\}/m);
-const DARK = { ...LIGHT, ...tokens(base, /@media \(prefers-color-scheme: dark\)\s*\{\s*:root\s*\{([^}]*)\}/) };
+const DARK = { ...LIGHT, ...tokens(readFileSync(new URL('../css/dark.css', import.meta.url), 'utf8'), /^:root\s*\{([^}]*)\}/m) };
 const hex = (s) => [0, 2, 4].map((i) => parseInt(s.slice(1).slice(i, i + 2), 16));
 const lin = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
 const lum = (c) => { const [r, g, b] = hex(c); return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b); };

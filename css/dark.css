@@ -1,0 +1,56 @@
+/* Dark theme: the colour tokens and the few component rules that differ.
+   index.html loads this sheet with media="(prefers-color-scheme: dark)", so it
+   follows the device by default; Settings → Display → Theme makes the app set
+   that media to "all" (always dark) or "not all" (always light) — see
+   js/themes.js. Keep every dark-only rule in this file. */
+:root {
+  --bg: #121110;
+  --surface: #27231e;
+  --surface-2: #332e28;
+  --text: #f3eee6;
+  --muted: #a89f93;
+  --border: #443d35;
+  --accent: #ff4d63;
+  --accent-ink: #1b0207;
+  --accent-soft: #3a1820;
+  --action: #a5b4fc;
+  --action-hover: #c7d2fe;
+  --action-ink: #0d1030;
+  --action-soft: #33303b;
+  --progress: #4fc08a;
+  --track: color-mix(in srgb, var(--text) 16%, var(--surface));
+  --good: #5fd08d;
+  --good-soft: #15301f;
+  --warn: #f2b54a;
+  --warn-soft: #33270f;
+  --bad: #ff7b6b;
+  --bad-soft: #3a1915;
+  --easy: #7aa7ff;
+  --easy-soft: #18243d;
+  --rose: #f472b6;
+  --st-new: #4a433a;
+  --st-learning-ink: #f4bb73;
+  --st-familiar-ink: #93c5ea;
+  --st-known-ink: #bba7ec;
+  --st-mastered-ink: #7cc99a;
+  --xp-ink: #f7b267;
+  --reg-casual-ink: #7dd3fc;
+  --reg-slang-ink: #d8b4fe;
+  --reg-proper-ink: #6ee7b7;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 6px 20px rgb(0 0 0 / 25%);
+  color-scheme: dark;
+}
+
+/* ---------- Dark theme: components ---------- */
+/* The big call to action is a tinted card, not a slab of colour; only its icon tile is solid. */
+.cta {
+  background: color-mix(in srgb, var(--action) 12%, var(--surface)); color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--action) 45%, transparent);
+}
+.cta:hover { background: color-mix(in srgb, var(--action) 18%, var(--surface)); }
+.cta small { opacity: 1; color: var(--muted); }
+.cta-icon { background: var(--action); color: var(--action-ink); }
+.card, .exercise { box-shadow: none; }
+
+/* Session screens */
+.answer-sheet { box-shadow: 0 -6px 24px rgb(0 0 0 / 40%); }

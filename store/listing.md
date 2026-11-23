@@ -42,7 +42,7 @@ turkish,ukrainian,japanese,arabic,learn,vocabulary,pronunciation,phrases,flashca
 ```
 
 ## Full description (App Store & Google Play)
-_2535 / 4000 characters_
+_2595 / 4000 characters_
 
 ```
 Learn Turkish, Ukrainian, Japanese or Arabic — the words people really use, and how to say them properly.
@@ -80,7 +80,7 @@ PRONUNCIATION YOU CAN SEE
 • Compare your phone's voices and pick the most natural one
 
 MADE TO FIT YOU
-• Larger text if you want it
+• Light and dark themes, your own colour and background — and larger text if you want it
 • Ukrainian and Arabic: phrases in the form a woman or a man says
 • Daily goal, streaks, weekly challenges and achievements
 • An optional daily reminder that tells you what is waiting

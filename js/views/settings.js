@@ -6,6 +6,7 @@ import { languageCards } from './language.js';
 import { remindersSupported, askPermission, parseTime, DEFAULT_TIME } from '../reminders.js';
 import { saveTextFile } from '../native.js';
 import { wordsCsv } from '../wordlist.js';
+import { MODES, ACCENTS, BACKGROUNDS, CUSTOM_ACCENT, DARK_QUERY, resolveMode, accentKey, backgroundKey, backgroundName, hueOf, palette } from '../themes.js';
 
 export default function settings(ctx) {
   const { lang, store } = ctx;
@@ -81,6 +82,7 @@ export default function settings(ctx) {
       if (!file) return;
       try {
         store.importData(await file.text());
+        ctx.applyDisplaySettings?.(); // the file's theme, text size and reading aids
         ctx.summariseLanguages?.({ fresh: true });
         ctx.toast('Progress imported.');
         ctx.rerender();
@@ -175,8 +177,67 @@ export default function settings(ctx) {
       }, [['m', 'A man'], ['f', 'A woman']].map(([value, label]) => h('option', { value, selected: (s.speakAs || 'm') === value }, label)))),
     h('p', { class: 'hint' }, `${lang.name} changes some “I …” phrases with the speaker (${lang.code === 'uk' ? 'Я згоден / Я згодна' : 'آسِف / آسِفَة'}). Lisan shows, says and checks the form you choose; the other one still counts as right.`)]
     : null;
+  // Theme: light or dark, the colour of buttons and links, and the page
+  // background. Everything applies at once; the swatches show the colours of
+  // the mode in force, so they are redrawn when the mode changes.
+  const setTheme = (patch) => {
+    const row = document.activeElement?.closest?.('.swatches');
+    store.updateSettings(patch);
+    ctx.applyDisplaySettings?.();
+    drawTheme();
+    row?.querySelector('[aria-pressed="true"]')?.focus(); // the swatches were redrawn: keep the keyboard where it was
+  };
+  const modeNow = () => resolveMode(store.getSettings().theme, window.matchMedia?.(DARK_QUERY).matches);
+  const swatch = (label, pressed, vars, onclick, cls = '') => h('button', {
+    type: 'button', class: `swatch ${cls}`.trim(), 'aria-pressed': String(pressed), 'aria-label': label, title: label, style: vars, onclick,
+  });
+  const accentRow = h('div', { class: 'swatches', role: 'group', 'aria-labelledby': 'set-accent-label' });
+  const accentName = h('b');
+  const bgRow = h('div', { class: 'swatches', role: 'group', 'aria-labelledby': 'set-background-label' });
+  const bgName = h('b');
+  const hue = h('input', {
+    type: 'range', class: 'hue-slider', id: 'set-accentHue', min: '0', max: '359', step: '1', 'aria-label': 'Your own colour',
+    oninput: (e) => {
+      // Dragging: recolour the page without rebuilding the swatches (the slider keeps the pointer).
+      store.updateSettings({ accent: CUSTOM_ACCENT, accentHue: Number(e.target.value) });
+      ctx.applyDisplaySettings?.();
+    },
+    onchange: () => drawTheme(),
+  });
+  const hueField = h('label', { class: 'field', for: 'set-accentHue' }, h('span', null, 'Your own colour'), hue);
+  function drawTheme() {
+    const now = store.getSettings();
+    const mode = modeNow();
+    const accent = accentKey(now);
+    const background = backgroundKey(now);
+    accentName.textContent = accent === CUSTOM_ACCENT ? 'Your own' : ACCENTS[accent].name;
+    set(accentRow,
+      Object.entries(ACCENTS).map(([key, a]) => swatch(a.name, key === accent,
+        { '--sw': a[mode][0], '--sw-ink': a[mode][2] }, () => setTheme({ accent: key }))),
+      swatch('Your own colour', accent === CUSTOM_ACCENT,
+        accent === CUSTOM_ACCENT ? { '--sw': palette(now, mode).accent[0], '--sw-ink': palette(now, mode).accent[2] } : { '--sw-ink': '#ffffff' },
+        () => { setTheme({ accent: CUSTOM_ACCENT, accentHue: hueOf(now) }); hue.focus(); }, accent === CUSTOM_ACCENT ? '' : 'rainbow'));
+    hueField.hidden = accent !== CUSTOM_ACCENT;
+    hue.value = String(hueOf(now));
+    hue.setAttribute('aria-valuetext', `Hue ${hueOf(now)}°`);
+    bgName.textContent = backgroundName(background, mode);
+    set(bgRow, Object.entries(BACKGROUNDS).map(([key, b]) => swatch(backgroundName(key, mode), key === background,
+      { '--sw': b[mode][0], '--sw-card': b[mode][1], '--sw-line': b[mode][3], '--sw-ink': mode === 'dark' ? '#f3eee6' : '#1f1b16' },
+      () => setTheme({ background: key }), 'page')));
+  }
+  drawTheme();
+  const themeFields = [
+    h('label', { class: 'field', for: 'set-theme' }, h('span', null, 'Theme'),
+      h('select', { class: 'select', id: 'set-theme', onchange: (e) => setTheme({ theme: e.target.value }) },
+        MODES.map(([value, label]) => h('option', { value, selected: (MODES.some(([m]) => m === s.theme) ? s.theme : 'system') === value }, label)))),
+    h('div', { class: 'field' }, h('span', { id: 'set-accent-label' }, 'Colour: ', accentName), accentRow),
+    hueField,
+    h('div', { class: 'field' }, h('span', { id: 'set-background-label' }, 'Background: ', bgName), bgRow),
+    h('p', { class: 'hint' }, 'The colour is used for buttons, links and highlights. Every combination keeps text easy to read; right and wrong answers stay green and red.'),
+  ];
   const displayCard = h('section', { class: 'card form' },
     h('h2', { class: 'card-title' }, 'Display'),
+    themeFields,
     h('label', { class: 'field', for: 'set-textSize' }, h('span', null, 'Text size'),
       pick('textSize', [['m', 'Normal'], ['l', 'Large'], ['xl', 'Extra large']])),
     aidField,

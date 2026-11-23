@@ -8,6 +8,7 @@ import { onBackButton, backAction, leaveApp } from './native.js';
 import { bootDone } from './boot.js';
 import { syncReminders, onReminderTap } from './reminders.js';
 import { sessionBack } from './session.js';
+import { applyTheme } from './themes.js';
 import home from './views/home.js';
 import learn from './views/learn.js';
 import review from './views/review.js';
@@ -46,6 +47,7 @@ function applyDisplaySettings() {
   lang.readingAid = ['full', 'script', 'off'].includes(aid) ? aid : 'full';
   lang.speakAs?.(s.speakAs === 'f' ? 'f' : 'm');
   document.documentElement.dataset.textSize = ['l', 'xl'].includes(s.textSize) ? s.textSize : 'm';
+  applyTheme(s);
 }
 applyDisplaySettings();
 

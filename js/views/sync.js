@@ -199,6 +199,7 @@ export default function sync(ctx) {
             type: 'button', class: 'btn primary', disabled: nothing,
             onclick: () => {
               store.applySync(merged);
+              ctx.applyDisplaySettings?.();
               try {
                 ctx.game.refresh(ctx.lang.code); // combined progress may unlock achievements
               } catch (e) {

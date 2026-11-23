@@ -37,10 +37,14 @@ const DEFAULTS = {
   aidJa: 'full', // Japanese readings: 'full' (kana · rōmaji), 'script' (kana only), 'off'
   aidAr: 'full', // Arabic transliteration: 'full' or 'off'
   textSize: 'm', // 'm', 'l' or 'xl'
+  theme: 'system', // 'system' (follow the device), 'light' or 'dark' — see js/themes.js
+  accent: 'indigo', // a key of ACCENTS, or 'custom' (then accentHue, 0–359, is the colour)
+  accentHue: 200,
+  background: 'warm', // a key of BACKGROUNDS
 };
 
 // Allowed ranges for numeric settings (the same limits the Settings view uses).
-const RANGES = { rate: [0.5, 1.2, false], lessonSize: [3, 15, true], sessionSize: [5, 100, true], dailyGoal: [1, 500, true] };
+const RANGES = { rate: [0.5, 1.2, false], lessonSize: [3, 15, true], sessionSize: [5, 100, true], dailyGoal: [1, 500, true], accentHue: [0, 359, true] };
 
 const isObj = (x) => x != null && typeof x === 'object' && !Array.isArray(x);
 const BAD_KEYS = new Set(['__proto__', 'constructor', 'prototype']);

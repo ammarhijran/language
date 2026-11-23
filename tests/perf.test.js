@@ -152,10 +152,13 @@ test('the loading screen uses the app’s light and dark colours', () => {
   const css = readFileSync(join(root, 'css/styles.css'), 'utf8');
   const tokens = (src) => Object.fromEntries([...src.matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)].map((m) => [m[1], m[2].trim().toLowerCase()]));
   const light = tokens(css.match(/^:root\s*\{([^}]*)\}/m)[1]);
-  const dark = { ...light, ...tokens(css.match(/@media \(prefers-color-scheme: dark\)\s*\{\s*:root\s*\{([^}]*)\}/)[1]) };
+  const darkCss = readFileSync(join(root, 'css/dark.css'), 'utf8');
+  const dark = { ...light, ...tokens(darkCss.match(/^:root\s*\{([^}]*)\}/m)[1]) };
   const boot = html.match(/<style>([\s\S]*?)<\/style>/)[1];
   const bootLight = tokens(boot.match(/\.boot\s*\{([^}]*)\}/)[1]);
-  const bootDark = tokens(boot.match(/@media \(prefers-color-scheme: dark\)\s*\{\s*\.boot\s*\{([^}]*)\}/)[1]);
+  // The dark colours are a second <style>, switched with the dark stylesheet (same media, same script).
+  const bootDark = tokens(html.match(/<style id="boot-dark" media="\(prefers-color-scheme: dark\)">\s*\.boot\s*\{([^}]*)\}/)[1]);
+  assert.match(html, /<link rel="stylesheet" href="css\/dark\.css" id="dark-css" media="\(prefers-color-scheme: dark\)">/);
   const names = { bg: '--bg', surface: '--surface', text: '--text', muted: '--muted', border: '--border', accent: '--accent', 'accent-ink': '--accent-ink' };
   for (const [short, token] of Object.entries(names)) {
     assert.equal(bootLight[`--boot-${short}`], light[token], `light ${token}`);
