@@ -6,6 +6,7 @@ import { recognitionSupported } from '../speech.js';
 import { GROUPS, missedChips } from '../components.js';
 import { sentencesFor, textSentences, MIN_SENTENCES } from '../sentences.js';
 import { cachedTexts, loadTexts } from '../reader.js';
+import { skillSummary } from '../skills.js';
 import handsFree from './handsfree.js';
 import { tripKit } from '../kit.js';
 
@@ -34,6 +35,17 @@ const MODES = [
 const offered = (m, lang) => (!m.langs || m.langs.includes(lang.code)) && (!m.when || !!m.when(lang));
 
 const ROUND = 10;
+
+/** The skill that is clearly behind the others (Progress → Your skills), one tap from a round of it — or nothing. */
+function weakLink(ctx) {
+  const { rows, weakest } = skillSummary(ctx.store.getSkills(ctx.lang.code), ctx.lang);
+  const weak = rows.find((r) => r.id === weakest);
+  if (!weak || !(weak.mode || weak.href)) return null;
+  return h('a', { class: 'quick-link weak-link', href: weak.href || `#/practice/${weak.mode}` },
+    h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, weak.emoji),
+    h('span', null, h('b', null, `Work on ${weak.name.toLowerCase()}`), h('small', null, `${weak.pct}% right lately — your other skills are ahead`)),
+    icon('arrow', 18));
+}
 
 function wordsFor(ctx, scope) {
   if (!scope || scope === 'learned') return learnedWords(ctx);
@@ -264,6 +276,7 @@ function setup(ctx) {
   return h('div', { class: 'view practice' },
     h('h1', null, 'Practice'),
     reviewCard(ctx),
+    weakLink(ctx),
     h('h2', { class: 'section-title' }, 'Speak & listen'),
     h('div', { class: 'shortcuts speak-links' },
       speakLink('#/speak/drill', icon('mic', 22), 'Speak', 'Say words, get a score'),

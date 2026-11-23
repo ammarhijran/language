@@ -57,7 +57,7 @@ export function tips(lang, { reminders = false, scope = '' } = {}) {
       title: 'Read and listen',
       items: [
         item('📖', 'Texts and speeches', 'Dialogues, stories, speeches and proverbs with audio line by line. Tap an underlined word for its meaning — and add it to My words.', '#/read'),
-        item('⏭', 'Keep playing', 'In a text’s player, “Keep playing” goes on to the next text by itself.', '#/read'),
+        item('⏭', 'Keep playing', 'In a text’s player, “Keep playing” goes on to the next text by itself. The same bar changes the voice’s speed, and ⏱ is a sleep timer that stops playing after 10 to 60 minutes.', '#/read'),
         item('🧱', 'Work with a text', 'Under each text: fill the gaps, build its sentences, take it as dictation, answer the questions.', '#/read'),
         item('✍️', 'Your own text', 'Paste a speech or an introduction and rehearse it with the voice. Its new words can go to My words.', '#/read/new'),
       ],
