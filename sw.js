@@ -58,6 +58,7 @@ const ASSETS = [
   'js/views/sunquiz.js',
   'js/views/harmony.js',
   'js/views/iotated.js',
+  'js/views/particles.js',
   'js/session.js',
   'js/themes.js',
   'js/speech.js',

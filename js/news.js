@@ -3,7 +3,7 @@
 export const NEWS = {
   id: '2026-11-r',
   items: [
-    { emoji: '🎶', text: 'Rule quizzes: harmony · sun letters · я ю є', where: 'Practice → Speak → Alphabet', href: '#/speak/alphabet' },
+    { emoji: '🎶', text: 'Rule quizzes: harmony · sun letters · я ю є · は', where: 'Practice → Speak → Alphabet', href: '#/speak/alphabet' },
     { emoji: '⏱', text: 'Reader: speed control and sleep timer', where: 'Read & Listen', href: '#/read' },
     { emoji: '🔤', text: 'Letter quiz: kana, Arabic, Cyrillic', where: 'Practice → Speak → Alphabet', href: '#/speak/alphabet' },
     { emoji: '📊', text: 'Your skills, side by side', where: 'Me → Progress', href: '#/progress' },

@@ -51,6 +51,7 @@ export function tips(lang, { reminders = false, scope = '' } = {}) {
         ...(lang.sunLetters ? [item('☀️', 'Sun or moon letter?', 'How “the” (al-) is said before each letter: ash-shams, but al-qamar.', '#/speak/alphabet/sun')] : []),
         ...(lang.code === 'tr' ? [item('🎶', 'Vowel harmony', 'Which ending a word takes — -lar or -ler, mı, mi, mu or mü — from its last vowel.', '#/speak/alphabet/harmony')] : []),
         ...(lang.code === 'uk' ? [item('🔤', 'я, ю, є: two sounds or one?', 'ya or a, yu or u, ye or e — where the letter stands in the word decides it.', '#/speak/alphabet/iotated')] : []),
+        ...(lang.code === 'ja' ? [item('🔤', 'は: ha or wa?', 'は and へ are read wa and e as particles, ha and he inside a word — on the course’s own sentences.', '#/speak/alphabet/particles')] : []),
         item('🗣️', 'Sounds', 'The sounds English speakers find new, each with words to practise.', '#/speak/sounds'),
         ...(sound ? [item('🎯', sound[1], sound[2], `#/practice/${sound[0]}${scope}`)] : []),
         item('🔧', 'Voice says a word wrong?', 'On the word’s page, “Voice says it wrong?” lets you respell the word for the voice only — the word on screen stays. Settings → Audio has a switch for the whole language where there is one.', '#/progress'),

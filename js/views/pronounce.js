@@ -7,6 +7,7 @@ import letterQuiz from './letterquiz.js';
 import sunQuiz from './sunquiz.js';
 import harmony from './harmony.js';
 import iotated from './iotated.js';
+import particles from './particles.js';
 import { letterSets } from '../letterquiz.js';
 
 // Doing first (speaking, ear training), then the reference (letters, sounds).
@@ -24,6 +25,7 @@ export default function pronounce(ctx, tab, ...args) {
   if (tab === 'alphabet' && args[0] === 'sun') return sunQuiz(ctx);
   if (tab === 'alphabet' && args[0] === 'harmony') return harmony(ctx);
   if (tab === 'alphabet' && args[0] === 'iotated') return iotated(ctx);
+  if (tab === 'alphabet' && args[0] === 'particles') return particles(ctx);
   // Without a section: speaking, once there are a few words to say; before that, the letters.
   if (!TABS.some((t) => t.id === tab)) tab = learnedWords(ctx).length >= 5 ? 'drill' : 'alphabet';
   const body = { alphabet, sounds, ear, drill }[tab](ctx, ...args);
@@ -125,7 +127,9 @@ function alphabet(ctx) {
       // Arabic: how the article al- is said before each letter.
       lang.sunLetters ? h('a', { class: 'btn small', href: '#/speak/alphabet/sun' }, h('span', { 'aria-hidden': 'true' }, '☀️'), 'Sun or moon letter?') : null,
       // Ukrainian: я, ю, є are two sounds in some places and one in others.
-      code === 'uk' ? h('a', { class: 'btn small', href: '#/speak/alphabet/iotated' }, h('span', { lang: 'uk' }, 'я, ю, є'), ': two sounds or one?') : null) : null,
+      code === 'uk' ? h('a', { class: 'btn small', href: '#/speak/alphabet/iotated' }, h('span', { lang: 'uk' }, 'я, ю, є'), ': two sounds or one?') : null,
+      // Japanese: は and へ are read differently as particles.
+      code === 'ja' ? h('a', { class: 'btn small', href: '#/speak/alphabet/particles' }, h('span', { lang: 'ja' }, 'は'), ': ha or wa?') : null) : null,
     chart,
     lang.alphabet.some((l) => l.special) ? h('p', { class: 'hint letter-legend' }, h('i', { 'aria-hidden': 'true' }), 'Tinted: sounds English speakers find new.') : null,
   );

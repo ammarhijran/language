@@ -222,3 +222,26 @@ test('Ukrainian я, ю, є: two sounds or one, by where the letter stands', asyn
   }
   assert.deepEqual(iotatedQuestions(tr, 10), []);
 });
+
+test('Japanese は and へ: particle or part of a word — and the pack reads each the same way', async () => {
+  const { particleItems, particleQuestions } = await import('../js/views/particles.js');
+  const items = particleItems(ja);
+  assert.ok(items.filter((x) => x.particle).length >= 100 && items.filter((x) => !x.particle).length >= 40, `${items.length} sentences`);
+  for (const q of items) {
+    assert.ok(q.kana === 'は' || q.kana === 'へ');
+    assert.equal([...q.tokens[q.token]][q.at], q.kana);
+    assert.equal(q.particle, q.tokens[q.token].length === 1);
+    assert.ok(!/[歯葉]/.test(q.example.tr));
+    // The pack's own rōmaji of the sentence, word by word, must say the same.
+    const romaji = ja.reading(q.example).split(' · ').pop().split(/\s+/);
+    assert.equal(romaji.length, q.tokens.length, q.example.kana);
+    const said = romaji[q.token];
+    if (q.particle) assert.equal(said, q.kana === 'は' ? 'wa' : 'e', q.example.kana);
+    else assert.ok(said.includes(q.kana === 'は' ? 'ha' : 'he'), `${q.tokens[q.token]} → ${said}`);
+  }
+  const qs = particleQuestions(ja, 10);
+  assert.equal(qs.length, 10);
+  assert.equal(qs.filter((q) => q.particle).length, 5);
+  assert.equal(new Set(qs.map((q) => q.example.tr)).size, 10);
+  assert.deepEqual(particleQuestions(tr, 10), []);
+});
