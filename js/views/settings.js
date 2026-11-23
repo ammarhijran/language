@@ -6,6 +6,7 @@ import { languageCards } from './language.js';
 import { remindersSupported, askPermission, parseTime, DEFAULT_TIME } from '../reminders.js';
 import { saveTextFile } from '../native.js';
 import { wordsCsv } from '../wordlist.js';
+import { agoText } from './me.js';
 import { MODES, ACCENTS, BACKGROUNDS, CUSTOM_ACCENT, DARK_QUERY, resolveMode, accentKey, backgroundKey, backgroundName, hueOf, palette } from '../themes.js';
 
 export default function settings(ctx) {
@@ -95,8 +96,11 @@ export default function settings(ctx) {
 
   // In the apps a file goes through the share sheet (a WebView cannot download); on the web it is a download.
   const cancelled = (e) => /cancel|abort/i.test(String(e?.message || e));
+  const backupText = () => `Last backup or sync code from this device: ${agoText(store.lastBackup())}.`;
+  const backupLine = h('p', { class: 'hint', 'aria-live': 'polite' }, backupText());
   function exportProgress() {
     saveTextFile(`lisan-progress-${store.dayKey()}.json`, store.exportData(), { type: 'application/json', dialogTitle: 'Save your Lisan backup' })
+      .then(() => { store.noteBackup(); backupLine.textContent = backupText(); })
       .catch((e) => { if (!cancelled(e)) ctx.toast('Couldn’t save the file.'); });
   }
   function exportWords() {
@@ -279,6 +283,7 @@ export default function settings(ctx) {
       h('a', { class: 'btn primary', href: '#/sync' }, icon('repeat', 16), 'Sync between devices'),
       h('p', { class: 'hint' }, 'Copy your progress to another phone, tablet or computer — no account or server needed.'),
       h('p', { class: 'hint' }, 'Progress is saved on this device and never sent to us. Export a backup, or use Sync, to move it to another device.'),
+      backupLine,
       h('div', { class: 'button-row' },
         h('button', { type: 'button', class: 'btn', onclick: exportProgress }, 'Export progress'),
         h('button', { type: 'button', class: 'btn', onclick: () => fileInput.click() }, 'Import progress'),

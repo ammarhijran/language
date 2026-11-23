@@ -364,3 +364,22 @@ test('search: sentences inside the Read & Listen texts', async () => {
   assert.ok(searchLines(languages.ar, await loadTexts('ar'), 'الصبر مفتاح').some((h) => h.text.id === 'ar-proverbs'));
   assert.ok(searchLines(languages.uk, await loadTexts('uk'), 'далі будеш').some((h) => h.text.id === 'uk-proverbs'));
 });
+
+test('the reminder to back up: only with something to lose, and only after a month without a copy', async () => {
+  const { backupNudge, agoText, BACKUP_AFTER_DAYS, BACKUP_MIN_WORDS } = await import('../js/views/me.js');
+  const DAY = 86400000;
+  const now = Date.UTC(2026, 10, 23, 12);
+  assert.equal(backupNudge(null, BACKUP_MIN_WORDS - 1, now), null, 'nothing much to lose yet');
+  assert.deepEqual(backupNudge(null, BACKUP_MIN_WORDS, now), { never: true, days: null });
+  assert.equal(backupNudge(now - (BACKUP_AFTER_DAYS - 1) * DAY, 500, now), null, 'backed up recently');
+  assert.deepEqual(backupNudge(now - 45 * DAY, 500, now), { never: false, days: 45 });
+  // “Not now” puts it off for a month, then it comes back.
+  assert.equal(backupNudge(null, 500, now, now - 3 * DAY), null);
+  assert.deepEqual(backupNudge(null, 500, now, now - (BACKUP_AFTER_DAYS + 1) * DAY), { never: true, days: null });
+  assert.equal(agoText(null, now), 'never');
+  assert.equal(agoText(now - 1000, now), 'today');
+  assert.equal(agoText(now - DAY - 1000, now), 'yesterday');
+  assert.equal(agoText(now - 12 * DAY, now), '12 days ago');
+  assert.equal(agoText(now - 100 * DAY, now), '3 months ago');
+  assert.equal(agoText(now + DAY, now), 'today', 'a clock that went backwards');
+});

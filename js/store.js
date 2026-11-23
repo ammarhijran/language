@@ -14,6 +14,7 @@ import { sanitize, stamp, DAY_FIELDS, cleanOwnWords, ownWordFields, OWN_WORDS_MA
 const KEY = 'lisan:v1';
 const DEVICE_KEY = 'lisan:device';
 const LOG_KEY = 'lisan:synclog';
+const BACKUP_KEY = 'lisan:backup'; // when a backup file was last exported on this device (device-only)
 const PERSIST_KEY = 'lisan:persist'; // persistent storage was asked for (web, once per device)
 const prefs = hasPlugin('Preferences') ? plugin('Preferences') : null;
 
@@ -622,6 +623,23 @@ export function syncLog(entry) {
     try { localStorage.setItem(LOG_KEY, JSON.stringify(log)); } catch { /* ignore */ }
   }
   return log;
+}
+
+/** Remember that a backup file has just been saved somewhere else. */
+export function noteBackup(at = Date.now()) {
+  if (wiped) return;
+  try { localStorage.setItem(BACKUP_KEY, String(at)); } catch { /* blocked: the reminder simply stays */ }
+}
+/**
+ * When this device last put its data somewhere else — a backup file exported
+ * or a sync code made — as a timestamp, or null if never (as far as this
+ * device remembers).
+ */
+export function lastBackup() {
+  let at = 0;
+  try { at = Number(localStorage.getItem(BACKUP_KEY)) || 0; } catch { at = 0; }
+  for (const e of syncLog()) if (e?.kind === 'sent' && Number.isFinite(e.at)) at = Math.max(at, e.at);
+  return at > 0 ? at : null;
 }
 
 function cancelWrites() {
