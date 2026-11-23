@@ -264,3 +264,24 @@ test('Japanese は and へ: particle or part of a word — and the pack reads ea
   assert.equal(new Set(qs.map((q) => q.example.tr)).size, 10);
   assert.deepEqual(particleQuestions(tr, 10), []);
 });
+
+test('Arabic content: every word with the article is transliterated by the sun-and-moon rule', async () => {
+  const { sunMoonItems } = await import('../js/views/sunquiz.js');
+  const letters = new Map(sunMoonItems(ar).map((x) => [x.glyph, x]));
+  const bare = (s) => s.replace(/[ً-ْٰـ]/g, '');
+  // Not the article: the imperative اِلْبَسْ. And الله doubles its l by itself (-llāh).
+  const NOT_ARTICLE = new Set(['البس', 'الله']);
+  let checked = 0;
+  const check = (e) => {
+    if (!e?.tr || !e.tl || e.dialect) return;
+    for (const w of bare(e.tr).replace(/[،.؟!«»"“”:؛—-]/g, ' ').trim().split(/\s+/)) {
+      const m = /^ال(.)/.exec(w);
+      const it = m && !NOT_ARTICLE.has(w) ? letters.get(m[1]) : null;
+      if (!it) continue;
+      checked++;
+      assert.ok(e.tl.includes(it.sun ? `${it.tl}-${it.tl}` : `l-${it.tl}`), `${w} in “${e.tr}” = ${e.tl}: ${it.sun ? 'sun' : 'moon'} letter ${it.name}`);
+    }
+  };
+  for (const w of ar.words) { check(w); check(w.example); check(w.pair); }
+  assert.ok(checked > 700, `${checked} article words checked`);
+});
