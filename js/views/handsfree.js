@@ -11,13 +11,17 @@ const STEPS = {
   ask: 'How do you say…', recall: 'Your turn — say the word', listen: 'Listen…', repeat: 'Your turn — say it out loud', again: 'Once more…', meaning: 'It means…',
   example: 'In a sentence…', exampleRepeat: 'Your turn — say the sentence', exampleMeaning: 'The sentence means…',
 };
+// Keep going: the next round starts by itself — at most this many in a row, so a forgotten phone stops.
+export const ROUNDS_MAX = 8;
+let autoRounds = 0; // rounds started by themselves since the learner last pressed play
+let autoStart = false;
 const PAUSES = [['0.6', 'Short'], ['1', 'Normal'], ['1.6', 'Long']];
 
 function loadPrefs() {
   try {
     const p = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
-    return { english: p.english !== false, twice: p.twice !== false, sentence: p.sentence === true, recall: p.recall === true, pause: PAUSES.some(([v]) => Number(v) === p.pause) ? p.pause : 1 };
-  } catch { return { english: true, twice: true, sentence: false, recall: false, pause: 1 }; }
+    return { english: p.english !== false, twice: p.twice !== false, sentence: p.sentence === true, recall: p.recall === true, loop: p.loop === true, pause: PAUSES.some(([v]) => Number(v) === p.pause) ? p.pause : 1 };
+  } catch { return { english: true, twice: true, sentence: false, recall: false, loop: false, pause: 1 }; }
 }
 const savePrefs = (p) => { try { localStorage.setItem(PREFS_KEY, JSON.stringify(p)); } catch { /* not kept */ } };
 
@@ -77,6 +81,15 @@ export default function handsFree(ctx, pool) {
       keepAwake(false);
       // A round counts once most of it was really played (not skipped through).
       if (heard.size >= Math.min(10, items.length)) ctx.game.count?.({ lang: lang.code, key: 'handsFree' });
+      // Keep going: another round of other words, by itself (the summary is shown after the last one).
+      if (prefs.loop && autoRounds < ROUNDS_MAX - 1 && pool.length > COUNT) {
+        autoRounds++;
+        autoStart = true;
+        ctx.flushRewards?.();
+        ctx.rerender();
+        return;
+      }
+      autoRounds = 0;
       set(view,
         h('div', { class: 'summary' },
           h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, '🎧'),
@@ -109,12 +122,18 @@ export default function handsFree(ctx, pool) {
     h('label', { class: 'field inline' },
       h('input', { type: 'checkbox', id: 'hf-recall', checked: prefs.recall && !noEnglish, disabled: noEnglish, onchange: (e) => change({ recall: e.target.checked }) }),
       h('span', null, 'Meaning first: hear the English, say the word, then hear it')),
+    h('label', { class: 'field inline' },
+      h('input', { type: 'checkbox', id: 'hf-loop', checked: prefs.loop, onchange: (e) => change({ loop: e.target.checked }) }),
+      h('span', null, `Keep going: start the next round by itself (up to ${ROUNDS_MAX} rounds)`)),
     h('label', { class: 'field', for: 'hf-pause' }, h('span', null, 'Time to repeat'),
       h('select', { class: 'select', id: 'hf-pause', onchange: (e) => change({ pause: Number(e.target.value) }) },
         PAUSES.map(([value, label]) => h('option', { value, selected: Number(value) === prefs.pause }, label)))));
 
   show(0);
   paintPlay(false);
+  // A round that follows another by itself starts playing; a tap on play begins the count again.
+  if (autoStart) { autoStart = false; const t = setTimeout(() => round.player.play(), 900); ctx.onCleanup(() => clearTimeout(t)); }
+  else autoRounds = 0;
   count.textContent = `${items.length} ${items.length === 1 ? 'word' : 'words'}`;
   set(view,
     backLink(ctx, '#/practice', 'Practice'),
