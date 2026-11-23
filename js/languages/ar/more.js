@@ -9002,7 +9002,7 @@ export const vocab = [
     "en": "Good luck with it all! (lit. may God help you)",
     "cat": "p-work",
     "tl": "ʾaʿānaka-llāh",
-    "note": "For someone with a lot on their plate. The usual reply is يَا رَبّ (ya rabb), ‘God willing’, or just a thank-you.",
+    "note": "For someone with a lot on their plate. The usual reply is يَا رَبّ (ya rabb), ‘O Lord’ — “may He do so”, or just a thank-you.",
     "pair": {
       "tr": "رَبِّنَا يِقَوِّيك!",
       "reg": "casual",
