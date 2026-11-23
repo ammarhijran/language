@@ -4,7 +4,7 @@
 import { h, icon, bindKeys, shuffle, pick, set } from './ui.js';
 import {
   playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge,
-  praiseLine, diffLine, sayLater, readingText,
+  praiseLine, diffLine, sayLater, readingText, scriptLang,
 } from './components.js';
 import { checkTyped, overlaps } from './compare.js';
 import { AGAIN, HARD, GOOD, EASY } from './srs.js';
@@ -282,7 +282,8 @@ export function stress(ctx, word, onDone) {
     h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr),
     h('p', { class: 'prompt-gloss' }, word.en));
   return choice(ctx, word, onDone, {
-    kicker: 'Which syllable is stressed?', prompt, cls: 'syllables', optionLang: ctx.lang.code,
+    // Arabic syllables are shown in transliteration, so they are not set in the Arabic font.
+    kicker: 'Which syllable is stressed?', prompt, cls: 'syllables', optionLang: scriptLang(item.syllables.join('')) || (ctx.lang.dir === 'rtl' ? null : ctx.lang.code),
     // Knowing the word but not its stress is a slip, not a forgotten word: in a
     // review it comes back sooner (Hard) without starting again from the first step.
     wrong: HARD,

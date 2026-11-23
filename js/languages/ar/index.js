@@ -150,6 +150,9 @@ export default makePack({
   sampleWords: [['مَرْحَبًا', 'hello'], ['شُكْرًا', 'thank you'], ['صَبَاحُ الْخَيْرِ', 'good morning']],
   sampleSentence: 'مَرْحَبًا! هَيَّا نَتَعَلَّمُ الْعَرَبِيَّةَ.',
   typingHint: 'Type in Arabic or Latin letters (e.g. shukran, ma3lesh)…',
+  // Stress is not written and follows rules of syllable weight (different ones in
+  // Egyptian): the course asks for it (Practice → Word stress, and now and then in reviews).
+  stressPractice: true,
   almostHint: 'So close! Just a letter or two off:',
   // Feedback: Arabic words (none addressed to “you”, so no gender) with an English gloss.
   praise: [['صَحِيح!', 'Correct.'], ['رَائِع!', 'Great.'], ['جَيِّد!', 'Good.'], ['جَمِيل!', 'Nice.']],

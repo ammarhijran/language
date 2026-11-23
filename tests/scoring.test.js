@@ -134,7 +134,23 @@ test('word stress: one-word entries of two or more syllables can be asked, with 
     assert.ok(/[аеєиіїоуюя]/i.test(item.syllables[item.stressed]), `${w.tr}: the stressed syllable has a vowel`);
   }
   assert.ok(n >= 600, `${n} Ukrainian words to ask`);
-  // A pack that does not mark the stress of a word is never asked about it.
+  // Arabic: the syllables are those of the transliteration; Egyptian entries follow Egyptian stress.
+  const kitab = ar.words.find((w) => w.tl === 'kitāb');
+  assert.deepEqual(stressItem(ar, kitab), { syllables: ['ki', 'tāb'], stressed: 1 });
+  const shajara = ar.words.find((w) => w.tl === 'shajara');
+  assert.deepEqual(stressItem(ar, shajara), { syllables: ['sha', 'ja', 'ra'], stressed: 0 });
+  let arabic = 0;
+  for (const w of ar.words) {
+    const item = stressItem(ar, w);
+    if (!item) continue;
+    arabic++;
+    assert.ok(item.syllables.every((x) => x && !/\p{Script=Arabic}/u.test(x)), `${w.tr}: syllables in Latin letters`);
+    assert.ok(/[aiuāīūeoēō]/i.test(item.syllables[item.stressed]), `${w.tr}: the stressed syllable ${item.syllables[item.stressed]} has a vowel`);
+  }
+  assert.ok(arabic >= 600, `${arabic} Arabic words to ask`);
+  assert.equal(uk.stressPractice, true);
+  assert.equal(ar.stressPractice, true);
+  assert.ok(!tr.stressPractice && !ja.stressPractice, 'Turkish stress is nearly always final; Japanese has pitch, not stress');
   const unmarked = { analyze: () => ({ words: [{ text: 'salı', syllables: [{ text: 'sa' }, { text: 'lı' }], stressIndex: 1 }], stressMarked: false }) };
   assert.equal(stressItem(unmarked, { tr: 'salı' }), null);
   const broken = { analyze: () => { throw new Error('no'); } };
