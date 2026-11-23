@@ -89,6 +89,7 @@
 .read-select-wrap.read-speed { padding-left: .3rem; }
 .read-select-wrap.read-sleep { padding-left: .5rem; }
 .read-resume { margin: 0 0 var(--sp-2); }
+.read-left-at { color: var(--action); font-weight: 600; white-space: nowrap; }
 .read-fix-line { margin: 0 2.5rem var(--sp-3) 0; font-size: var(--fs-lg); font-weight: 600; overflow-wrap: anywhere; }
 .read-short { display: none; }
 .read-step { color: var(--text); }

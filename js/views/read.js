@@ -164,12 +164,18 @@ const speakerClass = (line, spk) => (line.speaker && spk.size >= 2 ? ` spk spk-$
 
 // ---------- List ----------
 
+/** "Stopped at line 5" for a text left part-way (the reader remembers the line), else null. */
+function leftAtBadge(t) {
+  const at = Number(devicePref(`readPos:${t.id}`, 0)) || 0;
+  return at > 0 && at < t.lines.length - 1 ? h('span', { class: 'read-left-at' }, `▶ stopped at line ${at + 1}`) : null;
+}
+
 function ownCard(ctx, t) {
   return h('a', { class: 'read-card', href: href(t.id) },
     h('span', { class: 'read-emoji', 'aria-hidden': 'true' }, '✍️'),
     h('span', { class: 'read-card-text' },
       h('b', { ...textAttrs(ctx.lang) }, t.title),
-      h('span', { class: 'read-meta' }, h('span', null, `${t.lines.length} line${t.lines.length === 1 ? '' : 's'} · ~${estimateMinutes(t)} min`))));
+      h('span', { class: 'read-meta' }, h('span', null, `${t.lines.length} line${t.lines.length === 1 ? '' : 's'} · ~${estimateMinutes(t)} min`), leftAtBadge(t))));
 }
 
 /** "My texts": the learner's own texts and the way to add one. */
@@ -204,7 +210,7 @@ function textCard(ctx, t) {
       h('span', { class: 'read-meta' },
         levelBadge(t.level),
         h('span', null, `${kind.one} · ${t.lines.length} lines · ~${estimateMinutes(t)} min`),
-        longBadge(t), registerBadge(t.register), dialectBadge(t.dialect))),
+        longBadge(t), registerBadge(t.register), dialectBadge(t.dialect), leftAtBadge(t))),
     best != null
       ? h('span', { class: 'read-score' }, h('span', { 'aria-hidden': 'true' }, '✓'), h('small', null, h('span', { class: 'read-sr' }, 'Done, best score '), pct(best)))
       : null);
