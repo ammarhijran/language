@@ -57,7 +57,9 @@ export default function sunQuiz(ctx) {
   // On each side, up to two are real words from the course; the rest are letters.
   const words = sunMoonWords(lang);
   const side = (sun) => {
-    const real = shuffle(words.filter((x) => x.sun === sun)).slice(0, 2);
+    // (two entries can begin with the same word — الحساب — and one letter is asked once a round)
+    const seen = new Set();
+    const real = shuffle(words.filter((x) => x.sun === sun)).filter((x) => !seen.has(x.glyph) && seen.add(x.glyph)).slice(0, 2);
     const used = new Set(real.map((x) => x.glyph));
     return [...real, ...shuffle(items.filter((x) => x.sun === sun && !used.has(x.glyph))).slice(0, COUNT / 2 - real.length)];
   };
