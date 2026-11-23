@@ -2,6 +2,7 @@ import { h, icon, shuffle, pick, bindKeys, set } from '../ui.js';
 import { pronunciationPanel, speakPractice, voiceBanner, exampleBlock, readingLine, cleanupScope, sayLater, audioControls, bottomSheet } from '../components.js';
 import { learnedWords } from '../stats.js';
 import { rich } from './grammar.js';
+import { soundWords } from '../sounddrill.js';
 
 // Doing first (speaking, ear training), then the reference (letters, sounds).
 // `short`: the label on a phone, so the four always fit in one row.
@@ -112,14 +113,22 @@ function alphabet(ctx) {
 
 function sounds(ctx) {
   const { lang } = ctx;
-  return h('section', { class: 'tips' }, lang.soundTips.map((t) =>
-    h('article', { class: 'card tip' },
+  const cards = ctx.store.getCards(lang.code);
+  const learned = (w) => !!cards[w.id];
+  return h('section', { class: 'tips' }, lang.soundTips.map((t) => {
+    // The course's words with this sound, the learner's own first, for the speaking drill.
+    const words = soundWords(lang, t.id, { learned });
+    return h('article', { class: 'card tip' },
       h('h2', null, rich(t.title, lang.code), t.ipa ? h('span', { class: 'ipa' }, ` /${t.ipa}/`) : null),
       h('p', null, rich(t.body, lang.code)),
       h('div', { class: 'chip-row' }, t.examples.map(([w, en]) =>
         h('button', { type: 'button', class: 'chip', onclick: () => ctx.say(w, { slow: true }) },
           icon('volume', 14), h('b', { lang: lang.code }, w), h('span', null, en)))),
-    )),
+      words.length >= 4
+        ? h('a', { class: 'btn small tip-drill', href: wordsDrillHref(words) }, icon('mic', 16), `Practise this sound · ${words.length} words`)
+        : null,
+    );
+  }),
     // The sounds put together at speed (a text in Read & Listen).
     h('a', { class: 'quick-link', href: `#/read/${lang.code}-tongue-twisters` },
       h('span', { class: 'sc-emoji', 'aria-hidden': 'true' }, '👅'),
@@ -224,17 +233,20 @@ function ear(ctx) {
 export function lessonDrillHref(words) {
   return `#/speak/drill/lesson/${words.map((w) => encodeURIComponent(w.id)).join('/')}`;
 }
+/** The same for a hand-picked set that is not a lesson (the words with one sound). */
+const wordsDrillHref = (words) => lessonDrillHref(words).replace('/drill/lesson/', '/drill/words/');
 
 /**
- * Speaking drill. `scope` is 'learned', a category id, or 'lesson' followed
- * by the ids of the words to drill (see lessonDrillHref).
+ * Speaking drill. `scope` is 'learned', a category id, or 'lesson' / 'words'
+ * followed by the ids of the words to drill (see lessonDrillHref).
  */
 function drill(ctx, scope, ...ids) {
   const { lang } = ctx;
   const learned = learnedWords(ctx);
-  const lesson = scope === 'lesson' ? ids.map((id) => lang.byId(id)).filter(Boolean) : [];
+  const given = scope === 'lesson' || scope === 'words';
+  const lesson = given ? ids.map((id) => lang.byId(id)).filter(Boolean) : [];
   const scopeId = lesson.length ? 'lesson'
-    : (scope && scope !== 'lesson' ? scope : (learned.length >= 5 ? 'learned' : lang.categories[0].id));
+    : (scope && !given ? scope : (learned.length >= 5 ? 'learned' : lang.categories[0].id));
   const pool = scopeId === 'lesson' ? lesson : scopeId === 'learned' ? learned : lang.wordsIn(scopeId);
   // A lesson's words come in the order they were taught; other lists are shuffled.
   const words = scopeId === 'lesson' ? lesson : shuffle(pool.length ? pool : lang.wordsIn(lang.categories[0].id));
@@ -248,7 +260,7 @@ function drill(ctx, scope, ...ids) {
     class: 'select', 'aria-label': 'Words to drill',
     onchange: (e) => ctx.go(`/speak/drill/${e.target.value}`),
   },
-    lesson.length ? h('option', { value: 'lesson', selected: true }, `This lesson’s words (${lesson.length})`) : null,
+    lesson.length ? h('option', { value: 'lesson', selected: true }, scope === 'words' ? `These words (${lesson.length})` : `This lesson’s words (${lesson.length})`) : null,
     h('option', { value: 'learned', disabled: learned.length < 1, selected: scopeId === 'learned' }, `Words I’ve learned (${learned.length})`),
     lang.categories.map((c) => h('option', { value: c.id, selected: scopeId === c.id }, `${c.emoji} ${c.name}`)));
 

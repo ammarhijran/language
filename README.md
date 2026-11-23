@@ -109,6 +109,7 @@ A typical code is under 1 kB. Even every word in all four languages fits in abou
   - **Sounds:** guides to ı, ö, ü, ğ, the tapped r, double consonants, word stress and vowel harmony
   - **Ear training:** minimal pairs such as *kır/kir*, *on/ön*, *cam/çam* and *eli/elli*, with a quiz
   - **Speaking drill**
+  - **Practise this sound:** each sound tip about particular letters opens the speaking drill with eight course words that contain the sound, your learned words first
 
 ## Running it
 
@@ -179,6 +180,7 @@ js/sentences.js                practice sentences for the sentence builder and d
 js/reader.js                   Read & Listen: texts, glossary matching, the line player, your own texts
 js/handsfree.js, numbers.js    hands-free listening rounds · numbers by ear
 js/kit.js, placement.js        the trip-essentials list · the placement check
+js/sounddrill.js               which course words contain the sound of a sound tip
 js/reminders.js, news.js       daily reminders (apps) · the “New in Lisan” card
 js/components.js               pronunciation panel, speak-and-score, recorder
 js/srs.js                      spaced-repetition scheduler

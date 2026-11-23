@@ -754,6 +754,7 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 
 .tips { display: grid; gap: var(--sp-3); }
 .tip h2 { font-size: var(--fs-lg); }
+.tip-drill { margin-top: var(--sp-3); }
 .chip-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
 .chip {
   display: inline-flex; align-items: center; gap: var(--sp-2); min-height: var(--tap); padding: .3rem .8rem; border-radius: var(--r-pill);

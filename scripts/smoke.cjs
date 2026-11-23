@@ -71,6 +71,11 @@ async function walk(browser, lang, pack, texts) {
   for (const r of ['', 'learn', 'learn/g/phrases', 'learn/g/talk', 'learn/g/grammar', 'learn/g/read', 'review', 'practice', 'phrases', 'phrases/kit', 'me',
     'progress', 'journey', 'settings', 'sync', 'search', 'known', 'speak', 'speak/drill', 'speak/ear', 'speak/alphabet', 'speak/sounds', 'grammar', 'read']) await open(r, { wait: 220 });
 
+  // Speak → Sounds: "Practise this sound" opens the speaking drill with its words.
+  await open('speak/sounds', { selector: '.tip-drill' });
+  await page.click('.tip-drill');
+  await page.waitForSelector('.drill-card', { timeout: 8000 }).catch(() => problems.push(`${lang}: the sound drill did not open`));
+
   // Every topic: its page, the first and last entry, and the phrasebook page of phrase topics.
   for (const c of pack.categories) {
     const words = pack.wordsIn(c.id);
