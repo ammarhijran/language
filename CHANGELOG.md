@@ -10,8 +10,9 @@
 
 ### Added
 - **Fixed:** with the largest text size on a narrow phone, the Play / Pause label in a text’s player bar was cut off at both ends; the row now wraps instead.
+- **Copy a topic** (a topic’s page → Copy): its words or phrases as text, one a line with reading and meaning.
 - **Flashcards the other way round** (Settings → Lessons → “Flashcards show first”): the word itself can be the front of the card — you see and hear it, and recall what it means — instead of the meaning.
-- **Practise these again:** when a review or a round ends with four or more missed words, the summary’s “Worth another look” list has a button that starts a mixed round of just those words.
+- **Practise these again:** when a review or a round ends with four or more missed words, the summary’s “Worth another look” list has a button that starts a mixed round of just those words, and one that plays them hands-free.
 - **Learn it again from the start** (a learned word’s page): takes a word that never stuck back among the new words, after asking — its lesson then teaches it again.
 - **Search → My words:** when a search finds no word, “Add it to My words” is one tap away — with the word filled in when you typed it in the language’s own script.
 - **Go on by itself after a right answer** (Settings → Lessons; off by default): in multiple-choice questions, a right answer moves on to the next question once the word has been said — one tap a question instead of two. A wrong answer always waits for you.

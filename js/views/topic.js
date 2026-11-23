@@ -6,6 +6,8 @@ import { GROUPS, backLink, phraseRow, showMode, devicePref, setDevicePref, pairT
 import { status } from '../srs.js';
 import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
 import { recognitionSupported } from '../speech.js';
+import { listText } from '../wordlist.js';
+import { copyText } from '../native.js';
 
 export default function topic(ctx, catId) {
   const { lang, store } = ctx;
@@ -77,7 +79,12 @@ export default function topic(ctx, catId) {
       h('h2', { class: 'section-title' }, `${words.length} ${group.id === 'words' ? 'words' : 'entries'}`),
       h('div', { class: 'button-row' },
         pairBtn,
-        h('button', { type: 'button', class: 'pill', onclick: () => showMode(ctx, words, 0), title: 'Show them one by one in big letters' }, glyph('expand', 16), 'Show'))),
+        h('button', { type: 'button', class: 'pill', onclick: () => showMode(ctx, words, 0), title: 'Show them one by one in big letters' }, glyph('expand', 16), 'Show'),
+        // The topic as text, one entry a line: for a notes app, or paper.
+        h('button', {
+          type: 'button', class: 'pill', id: 'topic-copy', title: 'Copy the list as text',
+          onclick: async () => ctx.toast(await copyText(`${cat.name}\n${listText(ctx.lang, words)}`) ? `Copied ${words.length} — paste them into a note or a document` : 'Couldn’t copy the list.'),
+        }, 'Copy'))),
     list,
   );
 }

@@ -856,7 +856,9 @@ export function missedChips(ctx, words, max = 12) {
     h('ul', { class: 'word-chips' }, list.slice(0, max).map((w) =>
       h('li', null, h('a', { href: `#/word/${encodeURIComponent(w.id)}` }, h('b', { lang: ctx.lang.code }, w.tr), ' ', h('span', null, w.en))))),
     list.length >= 4
-      ? h('a', { class: 'btn small missed-again', href: '#/practice/mixed/missed' }, icon('repeat', 16), `Practise these ${Math.min(list.length, 40)} again`)
+      ? h('div', { class: 'button-row missed-actions' },
+        h('a', { class: 'btn small missed-again', href: '#/practice/mixed/missed' }, icon('repeat', 16), `Practise these ${Math.min(list.length, 40)} again`),
+        h('a', { class: 'btn small', href: '#/practice/handsfree/missed' }, icon('volume', 16), 'Hear them hands-free'))
       : null,
     h('p', { class: 'hint' }, 'Open one to hear it again — or to add a note of your own that helps it stick.'));
 }
