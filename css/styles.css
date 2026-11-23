@@ -511,6 +511,11 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
   font-size: var(--fs-md); font-weight: 600; transition: border-color .15s, background .15s;
 }
 .option:hover:not(:disabled) { border-color: var(--action); }
+/* Word stress: the syllables side by side, in reading order. */
+.options.syllables { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-2); }
+.options.syllables .option { flex: 0 1 auto; min-width: 64px; justify-content: center; padding: .7rem .8rem; font-size: var(--fs-lg); }
+.options.syllables .option .mark { margin-inline-start: 0; }
+.prompt-gloss { margin: var(--sp-1) 0 0; color: var(--muted); font-size: var(--fs-md); }
 .option:disabled { cursor: default; }
 .option.correct { border-color: var(--good); background: var(--good-soft); }
 .option.wrong { border-color: var(--bad); background: var(--bad-soft); }

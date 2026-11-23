@@ -116,6 +116,31 @@ test('homophones.js SPELLINGS are for words of the course, and none is another e
   }
 });
 
+test('word stress: one-word entries of two or more syllables can be asked, with the pack’s stress', async () => {
+  const { stressItem } = await import('../js/exercises.js');
+  const find = (t) => uk.words.find((w) => w.tr === t);
+  assert.deepEqual(stressItem(uk, find('молоко')), { syllables: ['мо', 'ло', 'ко'], stressed: 2 });
+  assert.deepEqual(stressItem(uk, find('привіт')), { syllables: ['при', 'віт'], stressed: 1 });
+  assert.equal(stressItem(uk, uk.words.find((w) => /\s/.test(w.tr))), null, 'not for phrases');
+  assert.equal(stressItem(uk, find('так')), null, 'not for one-syllable words');
+  let n = 0;
+  for (const w of uk.words) {
+    const item = stressItem(uk, w);
+    if (!item) continue;
+    n++;
+    const letters = (t) => t.replace(/[^\p{L}\p{M}]/gu, '');
+    assert.equal(letters(item.syllables.join('')), letters(w.tr), `${w.tr}: the syllables spell the word`);
+    assert.ok(item.syllables.length >= 2 && item.stressed >= 0 && item.stressed < item.syllables.length, w.tr);
+    assert.ok(/[аеєиіїоуюя]/i.test(item.syllables[item.stressed]), `${w.tr}: the stressed syllable has a vowel`);
+  }
+  assert.ok(n >= 600, `${n} Ukrainian words to ask`);
+  // A pack that does not mark the stress of a word is never asked about it.
+  const unmarked = { analyze: () => ({ words: [{ text: 'salı', syllables: [{ text: 'sa' }, { text: 'lı' }], stressIndex: 1 }], stressMarked: false }) };
+  assert.equal(stressItem(unmarked, { tr: 'salı' }), null);
+  const broken = { analyze: () => { throw new Error('no'); } };
+  assert.equal(stressItem(broken, { tr: 'слово' }), null);
+});
+
 test('read the script: every entry has a Latin reading, and the options are four different readings', async () => {
   const { readingLabel, scriptOptions } = await import('../js/exercises.js');
   for (const L of [uk, ja, ar]) {

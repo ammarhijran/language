@@ -139,6 +139,11 @@ async function walk(browser, lang, pack, texts) {
 
   // Practice modes start; a lesson starts; the trip-essentials course starts.
   for (const m of ['mixed', 'listen', 'meaning', 'type', 'flashcard', 'build', 'dictation', 'script']) await open(`practice/${m}/all`, { wait: 350 });
+  if (lang === 'uk') {
+    await open('practice/stress/all', { selector: '.options.syllables .option' });
+    await page.click('.options.syllables .option');
+    await page.waitForSelector('.continue', { timeout: 8000 }).catch(() => problems.push('uk: the word-stress answer did not show'));
+  }
   await open('practice/handsfree/all', { selector: '.hf-card' });
   await page.click('.hf-play');
   await page.waitForTimeout(400);

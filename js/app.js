@@ -4,7 +4,7 @@ import * as speech from './speech.js';
 import { h, icon, toast, set } from './ui.js';
 import { dueWords } from './stats.js';
 import { glyph } from './components.js';
-import { onBackButton, backAction, leaveApp } from './native.js';
+import { onBackButton, backAction, leaveApp, systemBars } from './native.js';
 import { bootDone } from './boot.js';
 import { syncReminders, onReminderTap } from './reminders.js';
 import { sessionBack } from './session.js';
@@ -48,6 +48,7 @@ function applyDisplaySettings() {
   lang.speakAs?.(s.speakAs === 'f' ? 'f' : 'm');
   document.documentElement.dataset.textSize = ['l', 'xl'].includes(s.textSize) ? s.textSize : 'm';
   applyTheme(s);
+  systemBars(s.theme); // the phone's clock and battery icons, when the app's theme differs from the phone's
 }
 applyDisplaySettings();
 

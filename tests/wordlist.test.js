@@ -16,7 +16,7 @@ globalThis.window = {
   },
 };
 
-const { saveTextFile, keepScreenOn } = await import('../js/native.js');
+const { saveTextFile, keepScreenOn, systemBars } = await import('../js/native.js');
 const { wordsCsv } = await import('../js/wordlist.js');
 const { languages } = await import('./all-languages.js');
 
@@ -66,4 +66,26 @@ test('keeping the screen on uses the KeepAwake plugin in the apps and never thro
   window.Capacitor.nativePromise = () => Promise.reject(new Error('no activity'));
   await assert.doesNotReject(keepScreenOn(true));
   window.Capacitor.nativePromise = real;
+});
+
+test('a forced theme sets the phone’s status-bar icons to match, where the page is drawn under them', async () => {
+  const NEW = 'Mozilla/5.0 (Linux; Android 15) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.0.0 Mobile Safari/537.36';
+  const OLD = NEW.replace('Chrome/141', 'Chrome/120');
+  calls.length = 0;
+  assert.equal(await systemBars('dark', NEW), null, 'without the plugin nothing happens');
+  window.Capacitor.PluginHeaders.push({ name: 'SystemBars' });
+  assert.equal(await systemBars('system', NEW), null, 'the bars already follow the device');
+  assert.equal(await systemBars('dark', OLD), null, 'older WebViews keep the phone’s strip behind the icons: leave them');
+  assert.equal(calls.length, 0);
+  assert.equal(await systemBars('dark', NEW), 'DARK');
+  assert.equal(await systemBars('dark', NEW), null, 'not set twice');
+  assert.equal(await systemBars('light', NEW), 'LIGHT');
+  assert.equal(await systemBars('system', NEW), 'DEFAULT');
+  assert.deepEqual(calls.map((c) => `${c.plugin}.${c.method} ${c.options.style}`), ['SystemBars.setStyle DARK', 'SystemBars.setStyle LIGHT', 'SystemBars.setStyle DEFAULT']);
+  // a failing plugin never breaks the app, and the next change is tried again
+  const real = window.Capacitor.nativePromise;
+  window.Capacitor.nativePromise = () => Promise.reject(new Error('no window'));
+  assert.equal(await systemBars('dark', NEW), null);
+  window.Capacitor.nativePromise = real;
+  assert.equal(await systemBars('dark', NEW), 'DARK');
 });

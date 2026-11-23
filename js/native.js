@@ -76,6 +76,30 @@ export async function keepScreenOn(on) {
   } catch { webLock = null; }
 }
 
+let barsStyle = 'DEFAULT'; // what the bars are set to: the device's own style until the app says otherwise
+/**
+ * Match the system bars (clock and battery icons, the gesture bar) to the app
+ * when Settings → Display → Theme is Light or Dark while the phone is the
+ * other way round — otherwise the icons would be dark on a dark page, or
+ * light on a light one. 'system' hands them back to the device.
+ *
+ * Capacitor's own SystemBars plugin does it. On Android the page is only
+ * drawn under the bars from WebView 140 on; in older WebViews the strip
+ * behind the icons keeps the phone's own colour, so the icons are left alone.
+ * It never throws. Resolves to the style that was set, or null.
+ */
+export async function systemBars(theme, userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : '') {
+  const style = theme === 'dark' ? 'DARK' : theme === 'light' ? 'LIGHT' : 'DEFAULT';
+  try {
+    if (!hasPlugin('SystemBars')) return null;
+    if (nativePlatform() === 'android' && Number(/Chrome\/(\d+)/.exec(userAgent || '')?.[1] || 0) < 140) return null;
+    if (style === barsStyle) return null;
+    barsStyle = style;
+    await plugin('SystemBars').setStyle({ style });
+    return style;
+  } catch { barsStyle = null; return null; } // unknown now: the next call sets it again
+}
+
 const App = plugin('App');
 
 /**

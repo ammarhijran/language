@@ -1,5 +1,6 @@
 import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
+import { stressItem } from '../exercises.js';
 import { learnedWords, dueWords, trickyWords } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
 import { GROUPS } from '../components.js';
@@ -18,6 +19,8 @@ const MODES = [
   { id: 'dictation', name: 'Dictation', desc: 'Hear a sentence, build it', icon: 'ear' },
   // For scripts that are new to the learner (not Turkish, which is written in Latin letters).
   { id: 'script', name: 'Read the script', desc: 'See it, pick how it’s read', icon: 'book', langs: ['ja', 'ar', 'uk'] },
+  // Stress is free and unwritten in Ukrainian, and the phone's voice sometimes puts it on the wrong syllable.
+  { id: 'stress', name: 'Word stress', desc: 'Tap the stressed syllable', icon: 'target', langs: ['uk'] },
   { id: 'handsfree', name: 'Hands-free', desc: 'Listen and repeat, no tapping', icon: 'volume' },
 ];
 
@@ -50,7 +53,8 @@ export default function practice(ctx, mode, scope) {
   if (!modeDef || (modeDef.langs && !modeDef.langs.includes(ctx.lang.code))) return setup(ctx);
   if (mode === 'build' || mode === 'dictation') return sentenceRound(ctx, scope, mode === 'dictation');
   // Reading the script is for words and short phrases, not whole sentences.
-  const pool = wordsFor(ctx, scope).filter((w) => mode !== 'script' || w.tr.trim().split(/\s+/).length <= 3);
+  const pool = wordsFor(ctx, scope).filter((w) => (mode !== 'script' || w.tr.trim().split(/\s+/).length <= 3)
+    && (mode !== 'stress' || stressItem(ctx.lang, w))); // single words of two or more syllables
   if (pool.length < 4) return notEnough('Not enough words yet', 'Learn a lesson first, or pick a topic to practise from.');
   if (mode === 'handsfree') return handsFree(ctx, pool);
 

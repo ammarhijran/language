@@ -141,7 +141,7 @@ function continueButton(onClick, label = 'Continue') {
   return h('button', { type: 'button', class: 'btn primary wide continue', onclick: onClick }, label, icon('arrow', 18));
 }
 
-function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, options = null }) {
+function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, options = null, cls = '' }) {
   const opts = options || pickOptions(ctx.lang, word, label);
   const live = liveRegion();
   let correct = false;
@@ -176,7 +176,7 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, 
   }
 
   const unbind = bindKeys({
-    1: () => answer(0), 2: () => answer(1), 3: () => answer(2), 4: () => answer(3),
+    ...Object.fromEntries(opts.slice(0, 9).map((_, i) => [i + 1, () => answer(i)])),
     Enter: () => { if (answered) finish(); },
   });
   ctx.onCleanup(unbind);
@@ -184,7 +184,7 @@ function choice(ctx, word, onDone, { kicker, prompt, label, optionLang, render, 
   const el = h('div', { class: 'exercise' },
     h('p', { class: 'kicker' }, kicker),
     prompt,
-    h('div', { class: 'options' }, buttons),
+    h('div', { class: `options ${cls}`.trim() }, buttons),
     live,
   );
   return el;
@@ -251,6 +251,42 @@ export function script(ctx, word, onDone) {
   if (options.length < 3) return meaning(ctx, word, onDone);
   const prompt = h('div', { class: 'prompt' }, h('p', { class: 'prompt-word script-word', lang: lang.code }, word.tr));
   return choice(ctx, word, onDone, { kicker: 'How is this read?', prompt, label: (w) => readingLabel(lang, w), options });
+}
+
+/**
+ * What a "where is the stress?" question needs: the syllables of a one-word
+ * entry and which of them is stressed. null for phrases, one-syllable words
+ * and words whose stress the pack does not mark.
+ */
+export function stressItem(lang, w) {
+  if (/\s/.test(w.tr.trim())) return null;
+  try {
+    const a = lang.analyze(w);
+    if (a.words.length !== 1 || a.stressMarked === false) return null;
+    const { syllables, stressIndex } = a.words[0];
+    if (syllables.length < 2 || !Number.isInteger(stressIndex) || stressIndex < 0 || stressIndex >= syllables.length) return null;
+    return { syllables: syllables.map((x) => x.text), stressed: stressIndex };
+  } catch { return null; }
+}
+
+/**
+ * Word stress: the word in syllables, with no audio and no reading — tap the
+ * syllable that is stressed. The answer then shows and says the word. For
+ * languages where stress is free and unwritten, and the phone's voice does
+ * not always get it right (Ukrainian).
+ */
+export function stress(ctx, word, onDone) {
+  const item = stressItem(ctx.lang, word);
+  if (!item) return meaning(ctx, word, onDone);
+  const prompt = h('div', { class: 'prompt' },
+    h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr),
+    h('p', { class: 'prompt-gloss' }, word.en));
+  return choice(ctx, word, onDone, {
+    kicker: 'Which syllable is stressed?', prompt, cls: 'syllables', optionLang: ctx.lang.code,
+    // The stressed syllable stands for the entry itself: that is what choice() counts as right.
+    options: item.syllables.map((text, i) => ({ id: i === item.stressed ? word.id : `${word.id}#${i}`, text })),
+    label: (o) => o.text,
+  });
 }
 
 export function produce(ctx, word, onDone) {
@@ -666,4 +702,4 @@ export function build(ctx, word, onDone, meta = {}) {
   return el;
 }
 
-export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build, script };
+export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build, script, stress };
