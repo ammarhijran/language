@@ -379,6 +379,15 @@ test('the learner’s own spelling for the voice wins for that entry, and only t
       assert.deepEqual(pack.speech(word, { course: true }), before, 'the course’s own can still be asked for');
       if (fixed) assert.equal(pack.speech(fixed).text, 'mine too', 'it wins over the course’s say.js');
       assert.equal(pack.speech(word.example).text, exampleBefore, 'the example sentence is untouched');
+      // …until it gets a spelling of its own, by its text
+      assert.equal(pack.sayKey(word), word.id);
+      assert.equal(pack.sayKey(word.example), `text:${word.example.tr}`);
+      pack.setOwnSay({ [word.id]: 'my spelling', [pack.sayKey(word.example)]: 'my sentence' });
+      assert.equal(pack.speech(word.example).text, 'my sentence');
+      assert.equal(pack.speech(word.example.tr).text, word.example.tr === word.tr ? 'my spelling' : 'my sentence', 'also when only its text is passed');
+      assert.equal(pack.ownSay(word.example), 'my sentence');
+      assert.equal(pack.speech(word).text, 'my spelling', 'the headword keeps its own');
+      assert.equal(pack.speech(word.example, { course: true }).text, exampleBefore);
       assert.equal(pack.speech({ text: 'as given', lang: before.lang }).text, 'as given');
     } finally {
       pack.setOwnSay({});

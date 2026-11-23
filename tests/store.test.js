@@ -155,7 +155,7 @@ test('own spellings for the voice: kept per language on this device, in backups 
   assert.deepEqual(store.getSay('ja'), { 今日: 'きょう' });
   assert.equal(store.setSay('ja', 'x', 'y'.repeat(500)).length, store.SAY_MAX);
   // nothing odd gets in
-  for (const [lang, id] of [['constructor', 'a'], ['ja', '__proto__'], ['ja', ''], ['ja', 'i'.repeat(81)], ['JA', 'a'], ['ja', 5]]) {
+  for (const [lang, id] of [['constructor', 'a'], ['ja', '__proto__'], ['ja', ''], ['ja', 'i'.repeat(301)], ['JA', 'a'], ['ja', 5]]) {
     assert.equal(store.setSay(lang, id, 'text'), '', `${lang}/${id}`);
   }
   assert.deepEqual(store.getSay('constructor'), {});

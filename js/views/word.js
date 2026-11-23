@@ -72,6 +72,8 @@ export default function word(ctx, id) {
       voiceFix(ctx, w),
       registerBlock(ctx, w),
       exampleBlock(ctx, w, { links: true }),
+      // The example sentence can be respelled for the voice too.
+      w.ex ? voiceFix(ctx, w.example || { tr: w.ex[0], en: w.ex[1] }, { ask: 'Voice reads the sentence wrong?', idBase: 'voice-fix-ex' }) : null,
       w.note ? h('p', { class: 'note' }, rich(w.note, lang.code)) : null,
       w.own ? null : myNote(ctx, w),
       w.own ? h('p', { class: 'hint' }, 'One of your own words. ', h('a', { href: `#/mywords/${encodeURIComponent(w.id)}` }, 'Change or delete it')) : null,
@@ -145,9 +147,9 @@ const VOICE_FIX_TIPS = {
  * screen, its reading and the answers that count stay the course's. Kept on
  * this device (store.setSay) and applied wherever the entry is spoken.
  */
-function voiceFix(ctx, w) {
+function voiceFix(ctx, w, { ask = 'Voice says it wrong?', idBase = 'voice-fix' } = {}) {
   const { lang, store } = ctx;
-  const box = h('div', { class: 'voice-fix' });
+  const box = h('div', { class: 'voice-fix', id: idBase });
   const course = () => lang.speech(w, { course: true });
   // `text` as this entry would be spoken: its locale and voice, no slow version.
   const spoken = (text) => {
@@ -155,7 +157,7 @@ function voiceFix(ctx, w) {
     return { ...base, text, slow: null, ...(base.alt ? { alt: { ...base.alt, text, slow: null } } : {}) };
   };
   const apply = (text) => {
-    const kept = store.setSay(lang.code, w.id, text);
+    const kept = store.setSay(lang.code, lang.sayKey(w), text);
     lang.setOwnSay(store.getSay(lang.code));
     return kept;
   };
@@ -164,12 +166,12 @@ function voiceFix(ctx, w) {
     set(box, mine
       ? [h('p', { class: 'voice-fix-text' }, h('span', { 'aria-hidden': 'true' }, '🔧 '), 'The voice reads your spelling: ', h('b', { lang: lang.code }, mine)),
         h('button', { type: 'button', class: 'link-btn', onclick: edit }, 'Change it')]
-      : h('button', { type: 'button', class: 'link-btn', onclick: edit }, 'Voice says it wrong?'));
+      : h('button', { type: 'button', class: 'link-btn', onclick: edit }, ask));
   };
   function edit() {
     const mine = lang.ownSay(w);
     const input = h('input', {
-      type: 'text', class: 'my-note-input', id: 'voice-fix-input', lang: lang.code, dir: lang.dir || 'auto', maxlength: String(store.SAY_MAX),
+      type: 'text', class: 'my-note-input', id: `${idBase}-input`, lang: lang.code, dir: lang.dir || 'auto', maxlength: String(store.SAY_MAX),
       autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': `How the voice should read ${w.tr}`,
     });
     input.value = mine || course().text;
@@ -182,7 +184,7 @@ function voiceFix(ctx, w) {
       ctx.toast(lang.ownSay(w) ? 'The voice will read your spelling.' : 'The voice reads the course’s spelling.');
     };
     set(box,
-      h('label', { class: 'field', for: 'voice-fix-input' }, h('span', null, 'Spell it for the voice')),
+      h('label', { class: 'field', for: `${idBase}-input` }, h('span', null, 'Spell it for the voice')),
       input,
       h('div', { class: 'button-row' },
         h('button', { type: 'button', class: 'btn small', onclick: () => { if (input.value.trim()) ctx.say(spoken(input.value.trim())); } }, icon('volume', 16), 'Listen'),

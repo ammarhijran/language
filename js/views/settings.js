@@ -76,7 +76,9 @@ export default function settings(ctx) {
   const gameOn = h('input', { type: 'checkbox', checked: s.gameOn, onchange: (e) => { store.updateSettings({ gameOn: e.target.checked }); ctx.toast(e.target.checked ? 'Game features on' : 'Game features off'); } });
   const toggle = (key) => h('input', { type: 'checkbox', checked: s[key] !== false, onchange: (e) => store.updateSettings({ [key]: e.target.checked }) });
   // The pack's voice switch, and an entry to hear it with.
-  const ownSays = Object.entries(store.getSay(lang.code)).map(([id, text]) => [lang.byId(id), text]).filter(([w]) => w);
+  // [what it is for — an entry, or a sentence by its text —, the spelling, the key it is stored under]
+  const ownSays = Object.entries(store.getSay(lang.code))
+    .map(([id, text]) => [lang.byId(id) || (id.startsWith('text:') ? { tr: id.slice(5) } : null), text, id]).filter(([w]) => w);
   const voiceOption = lang.voiceOption || null;
   const voiceSample = voiceOption ? lang.words.find((w) => w.tr === voiceOption.sample) || null : null;
   const autoplay = h('input', { type: 'checkbox', checked: s.autoplay, onchange: (e) => store.updateSettings({ autoplay: e.target.checked }) });
@@ -287,12 +289,12 @@ export default function settings(ctx) {
       ownSays.length ? h('details', { class: 'voice-fixes' },
         h('summary', null, `Your spellings for the voice (${ownSays.length})`),
         h('ul', { class: 'word-chips' }, ownSays.map(([w, text]) => h('li', null,
-          h('a', { href: `#/word/${encodeURIComponent(w.id)}` }, h('b', { lang: lang.code }, w.tr), ' → ', h('span', { lang: lang.code }, text))))),
+          h(w.id ? 'a' : 'span', w.id ? { href: `#/word/${encodeURIComponent(w.id)}` } : null, h('b', { lang: lang.code }, w.tr), ' → ', h('span', { lang: lang.code }, text))))),
         h('button', {
           type: 'button', class: 'btn small', id: 'voice-fixes-clear',
           onclick: () => {
             if (!confirm(`Go back to the course’s spelling for ${ownSays.length === 1 ? 'this word' : `all ${ownSays.length} words`}?`)) return;
-            for (const [w] of ownSays) store.setSay(lang.code, w.id, '');
+            for (const [, , id] of ownSays) store.setSay(lang.code, id, '');
             lang.setOwnSay(store.getSay(lang.code));
             ctx.toast('The voice reads the course’s spellings again.');
             ctx.rerender();

@@ -352,7 +352,11 @@ export function makePack(def) {
     return pack;
   };
   /** The learner's spelling of an entry for the voice, or ''. */
-  pack.ownSay = (entry) => (entry?.id != null && ownSay.get(entry.id)) || '';
+  // An entry is found by its id; a sentence without one (an entry's example) by its text.
+  const ownSayOf = (entry) => (entry?.id != null ? ownSay.get(entry.id) : entry?.tr ? ownSay.get(`text:${entry.tr}`) : undefined);
+  pack.ownSay = (entry) => ownSayOf(entry) || '';
+  /** The key an entry's spelling is stored under (store.setSay). */
+  pack.sayKey = (entry) => (entry?.id != null ? entry.id : `text:${entry.tr}`);
   const slowText = def.slowText || ((text) => pauseBetweenWords(text));
 
   /**
@@ -371,8 +375,7 @@ export function makePack(def) {
     if (target == null) return { text: '', lang: def.speechLang, regions: [def.speechLang], slow: null };
     if (typeof target === 'object' && 'text' in target) return { lang: def.speechLang, ...target };
     const entry = typeof target === 'string' ? entryForText(target) : target;
-    // (an entry's example and pair have no id: only the headword can be respelled)
-    const mine = entry.id != null && !opts.course ? ownSay.get(entry.id) : undefined;
+    const mine = opts.course ? undefined : ownSayOf(entry);
     const said = mine ?? entry.say ?? def.saySentences?.[entry.tr];
     const r = { regions: def.speechRegions || [def.speechLang], ...speechOf(entry, said) };
     if (r.slow === undefined) r.slow = slowText(r.text, entry);

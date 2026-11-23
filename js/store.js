@@ -87,7 +87,9 @@ function cleanMine(raw) {
 // word's page): id → the text sent to the voice instead of the course's. Kept
 // on this device and in backup files, not in sync codes — voices differ from
 // one device to the next, and so does what they get wrong.
-export const SAY_MAX = 120; // characters per spelling
+export const SAY_MAX = 240; // characters per spelling (an example sentence fits)
+// A key is an entry's id, or "text:" and a sentence as it is shown (an entry's example has no id of its own).
+const SAY_KEY_MAX = 300;
 const SAYS_MAX = 500; // spellings per language
 const cleanSayText = (text) => (typeof text === 'string' ? text.replace(/\s+/g, ' ').trim().slice(0, SAY_MAX) : '');
 function cleanSay(raw) {
@@ -99,7 +101,7 @@ function cleanSay(raw) {
     let n = 0;
     for (const [id, text] of Object.entries(map)) {
       const clean = cleanSayText(text);
-      if (BAD_KEYS.has(id) || !id || id.length > 80 || !clean) continue;
+      if (BAD_KEYS.has(id) || !id || id.length > SAY_KEY_MAX || !clean) continue;
       kept[id] = clean;
       if (++n >= SAYS_MAX) break;
     }
@@ -481,7 +483,7 @@ export const getSay = (lang) => ({ ...(state.say && Object.hasOwn(state.say, lan
  * nothing is — also when the language already has SAYS_MAX of them.
  */
 export function setSay(lang, id, text) {
-  if (!/^[a-z]{2,3}$/.test(lang) || typeof id !== 'string' || !id || id.length > 80 || BAD_KEYS.has(id)) return '';
+  if (!/^[a-z]{2,3}$/.test(lang) || typeof id !== 'string' || !id || id.length > SAY_KEY_MAX || BAD_KEYS.has(id)) return '';
   const clean = cleanSayText(text);
   state.say ||= {};
   const map = Object.hasOwn(state.say, lang) ? state.say[lang] : {};
