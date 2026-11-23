@@ -182,6 +182,38 @@ test('own spellings for the voice: kept per language on this device, in backups 
   assert.deepEqual(store.getSay('ja'), {});
 });
 
+test('skills: the last answers of each kind, per language, on this device', () => {
+  assert.deepEqual(store.getSkills('tr'), {});
+  for (let i = 0; i < 10; i++) store.logSkill('tr', 'listening', i % 2 === 0);
+  store.logSkill('tr', 'spelling', false);
+  store.logSkill('uk', 'listening', true);
+  assert.deepEqual(store.getSkills('tr'), { listening: { right: 5, total: 10 }, spelling: { right: 0, total: 1 } });
+  assert.deepEqual(store.getSkills('uk'), { listening: { right: 1, total: 1 } });
+  // a window: older answers fall out
+  for (let i = 0; i < store.SKILL_WINDOW; i++) store.logSkill('tr', 'listening', true);
+  assert.deepEqual(store.getSkills('tr').listening, { right: store.SKILL_WINDOW, total: store.SKILL_WINDOW });
+  // nothing odd gets in
+  for (const [lang, id] of [['constructor', 'listening'], ['tr', '__proto__'], ['tr', 'constructor1'], ['tr', ''], ['tr', 'UP'], ['tr', 7]]) store.logSkill(lang, id, true);
+  assert.deepEqual(Object.keys(store.getSkills('tr')).sort(), ['listening', 'spelling']);
+  assert.deepEqual(store.getSkills('constructor'), {});
+  // not in sync data; in backups, checked on the way in
+  assert.equal('skills' in store.syncData(), false);
+  const backup = JSON.parse(store.exportData());
+  assert.equal(backup.skills.tr.spelling, '0');
+  backup.skills.tr.recall = '1'.repeat(100);
+  backup.skills.tr.reading = '10x1';
+  backup.skills.tr.speaking = 11;
+  backup.skills.ja = 'nope';
+  store.importData(JSON.stringify(backup));
+  assert.deepEqual(store.getSkills('tr').recall, { right: store.SKILL_WINDOW, total: store.SKILL_WINDOW });
+  assert.deepEqual(Object.keys(store.getSkills('tr')).sort(), ['listening', 'recall', 'spelling']);
+  assert.deepEqual(store.getSkills('ja'), {});
+  // resetting a language's progress clears its skills, and only its own
+  store.resetProgress('tr');
+  assert.deepEqual(store.getSkills('tr'), {});
+  assert.deepEqual(store.getSkills('uk'), { listening: { right: 1, total: 1 } });
+});
+
 test('reset progress remembers when it happened', () => {
   store.setCard('tr', 'kedi', { ease: 2.5, interval: 1, reps: 1, lapses: 0, due: T, added: T, last: T });
   const before = Date.now();

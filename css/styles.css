@@ -900,6 +900,15 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .legend { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); font-size: var(--fs-sm); color: var(--muted); margin: var(--sp-3) 0 var(--sp-4); }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: var(--r-xs); margin-right: .35rem; }
 /* Mastery by topic: two lines, so a long topic name is shown in full. */
+/* Progress → Your skills: one row per kind of question */
+.skill-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-3); }
+.skill-list li { display: grid; grid-template: "icon name pct" auto "icon bar bar" auto / auto 1fr auto; column-gap: var(--sp-2); row-gap: var(--sp-1); align-items: center; }
+.skill-icon { grid-area: icon; font-size: var(--fs-lg); }
+.skill-name { grid-area: name; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: var(--sp-2); }
+.skill-name small { color: var(--muted); font-size: var(--fs-xs); }
+.skill-pct { grid-area: pct; font-weight: 700; font-variant-numeric: tabular-nums; }
+.skill-list .meter { grid-area: bar; }
+.skill-next { margin: var(--sp-4) 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
 .cat-progress-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-1); }
 .cat-progress-list a {
   display: grid; grid-template-columns: 1.75rem minmax(0, 1fr) auto; grid-template-areas: "icon name count" ". bar bar";

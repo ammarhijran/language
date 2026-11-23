@@ -1,7 +1,32 @@
 import { h, icon, meter, set, growList, debounce } from '../ui.js';
 import { computeStats, nextCategory, reviewForecast, activityCalendar } from '../stats.js';
 import { status, STATUS_LABEL } from '../srs.js';
+import { skillSummary, SKILL_MIN } from '../skills.js';
 import { playButton } from '../components.js';
+
+/**
+ * Your skills: how the last answers of each kind of question went — the
+ * weakest with a link to a round of just that. Shown once two kinds have
+ * enough answers to compare.
+ */
+function skillsCard(ctx) {
+  const { lang, store } = ctx;
+  const { rows, weakest } = skillSummary(store.getSkills(lang.code), lang);
+  if (rows.length < 2) return null;
+  const weak = rows.find((r) => r.id === weakest) || null;
+  return h('section', { class: 'card skills' },
+    h('h2', { class: 'card-title' }, 'Your skills'),
+    h('ul', { class: 'skill-list' }, rows.map((r) => h('li', { class: r.id === weakest ? 'weakest' : null },
+      h('span', { class: 'skill-icon', 'aria-hidden': 'true' }, r.emoji),
+      h('span', { class: 'skill-name' }, h('b', null, r.name), h('small', null, r.hint)),
+      h('span', { class: 'skill-pct' }, `${r.pct}%`, h('span', { class: 'sr-only' }, ` right, of the last ${r.total} answers`)),
+      meter(r.right, r.total)))),
+    weak && weak.mode
+      ? h('p', { class: 'skill-next' }, `${weak.name} is the one to work on. `,
+        h('a', { class: 'btn small', href: `#/practice/${weak.mode}` }, `Practise ${weak.name.toLowerCase()}`, icon('arrow', 16)))
+      : null,
+    h('p', { class: 'hint chart-note' }, `How your last answers of each kind went (up to ${store.SKILL_WINDOW}, on this device). A kind shows up after ${SKILL_MIN} answers.`));
+}
 
 export default function progress(ctx, catFilter) {
   const { lang, store } = ctx;
@@ -137,6 +162,7 @@ export default function progress(ctx, catFilter) {
           h('p', { class: 'hint chart-note' }, ahead[0].n
             ? `${ahead[0].n} due today (overdue ones included) · ${aheadTotal} in the next 7 days.`
             : `Nothing due today · ${aheadTotal} in the next 7 days.`)) : null,
+        skillsCard(ctx),
         h('section', { class: 'card' },
           h('h2', { class: 'card-title' }, 'Mastery'),
           h('div', { class: 'stack-bar', role: 'img', 'aria-label': Object.entries(s.counts).map(([k, v]) => `${STATUS_LABEL[k]} ${v}`).join(', ') },

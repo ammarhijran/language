@@ -52,6 +52,7 @@ const ASSETS = [
   'js/reader.js',
   'js/reminders.js',
   'js/sentences.js',
+  'js/skills.js',
   'js/session.js',
   'js/themes.js',
   'js/speech.js',

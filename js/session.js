@@ -5,6 +5,7 @@
 import { h, icon, set } from './ui.js';
 import { EXERCISES } from './exercises.js';
 import { AGAIN } from './srs.js';
+import { skillOf } from './skills.js';
 
 export const FOCUS_CLASS = 'in-session';
 
@@ -164,6 +165,9 @@ export function runSession(ctx, { items, onResult, onFinish, exitHref = '#/', la
     comboEl.hidden = !gameOn || combo < 3;
     comboEl.textContent = `🔥 ${combo}`;
     game.answer({ lang: ctx.lang.code, rating: result.rating, combo });
+    // Filed under the skill the exercise trains (Progress → Your skills). A wrong tap taken back says nothing.
+    const skill = skillOf(item.type, item.meta);
+    if (skill && !result.slip) ctx.store?.logSkill?.(ctx.lang.code, skill, right);
     // Counted for achievements: words put back into their sentence, and questions about how words sound.
     if (right && item.type === 'cloze') game.count?.({ lang: ctx.lang.code, key: 'inContext' });
     if (right && ['stress', 'beats', 'letters'].includes(item.type)) game.count?.({ lang: ctx.lang.code, key: 'soundQuiz' });

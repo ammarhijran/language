@@ -54,7 +54,7 @@ const RANGES = { rate: [0.5, 1.2, false], lessonSize: [3, 15, true], sessionSize
 const isObj = (x) => x != null && typeof x === 'object' && !Array.isArray(x);
 const BAD_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 
-const fresh = () => ({ settings: { ...DEFAULTS }, progress: {}, game: {}, mine: {}, words: {}, say: {} });
+const fresh = () => ({ settings: { ...DEFAULTS }, progress: {}, game: {}, mine: {}, words: {}, say: {}, skills: {} });
 
 // The learner's own texts for Read & Listen ("My texts"): kept on this device
 // and in backup files, not in sync codes (they are personal, and can be long).
@@ -106,6 +106,27 @@ function cleanSay(raw) {
   return out;
 }
 
+// Skills (js/skills.js): the last answers of each kind of question, per
+// language — a string of 1 (right) and 0 (wrong), newest last. A recent
+// window rather than a lifetime total, so it shows how things go now. Kept on
+// this device and in backup files, not in sync codes.
+export const SKILL_WINDOW = 40;
+const SKILL_ID = /^[a-z]{3,12}$/;
+function cleanSkills(raw) {
+  const out = {};
+  if (!isObj(raw)) return out;
+  for (const [lang, map] of Object.entries(raw)) {
+    if (BAD_KEYS.has(lang) || !/^[a-z]{2,3}$/.test(lang) || !isObj(map)) continue;
+    const kept = {};
+    for (const [id, marks] of Object.entries(map)) {
+      if (BAD_KEYS.has(id) || !SKILL_ID.test(id) || typeof marks !== 'string' || !/^[01]+$/.test(marks)) continue;
+      kept[id] = marks.slice(-SKILL_WINDOW);
+    }
+    if (Object.keys(kept).length) out[lang] = kept;
+  }
+  return out;
+}
+
 // The learner's own words and phrases ("My words"): added by hand, learned,
 // reviewed and practised like the course's. They are part of backups and of
 // sync codes (see sync.js for their shape, checking and merging).
@@ -149,7 +170,7 @@ function cleanSettings(raw) {
 function fromData(d) {
   const settings = cleanSettings(d?.settings);
   const { progress, game } = sanitize(d, { device: deviceId(), dailyGoal: settings.dailyGoal });
-  return { settings, progress, game, mine: cleanMine(d?.mine), words: cleanOwnWords(d?.words), say: cleanSay(d?.say) };
+  return { settings, progress, game, mine: cleanMine(d?.mine), words: cleanOwnWords(d?.words), say: cleanSay(d?.say), skills: cleanSkills(d?.skills) };
 }
 
 function load() {
@@ -434,6 +455,21 @@ export function setNote(lang, id, text) {
   return clean;
 }
 
+/** One more answer of a kind of question (a skill id from js/skills.js): right or wrong. */
+export function logSkill(lang, skill, right) {
+  if (!/^[a-z]{2,3}$/.test(lang) || typeof skill !== 'string' || !SKILL_ID.test(skill) || BAD_KEYS.has(skill)) return;
+  state.skills ||= {};
+  const map = Object.hasOwn(state.skills, lang) ? state.skills[lang] : (state.skills[lang] = {});
+  map[skill] = `${Object.hasOwn(map, skill) ? map[skill] : ''}${right ? '1' : '0'}`.slice(-SKILL_WINDOW);
+  save();
+}
+
+/** The last answers per skill in a language: { id: { right, total } }. */
+export function getSkills(lang) {
+  const map = state.skills && Object.hasOwn(state.skills, lang) ? state.skills[lang] : {};
+  return Object.fromEntries(Object.entries(map).map(([id, marks]) => [id, { right: marks.split('1').length - 1, total: marks.length }]));
+}
+
 /** The learner's own spellings for the voice in a language: { id: text } (a copy). */
 export const getSay = (lang) => ({ ...(state.say && Object.hasOwn(state.say, lang) ? state.say[lang] : {}) });
 
@@ -656,6 +692,7 @@ export function resetProgress(lang) {
   const fav = state.progress[lang]?.fav;
   const notes = state.progress[lang]?.notes;
   state.progress[lang] = { cards: {}, days: met ? { [k]: { goalMet: true } } : {}, resetAt: Date.now(), ...(fav ? { fav } : {}), ...(notes ? { notes } : {}) };
+  if (state.skills && Object.hasOwn(state.skills, lang)) delete state.skills[lang]; // how the answers went is progress
   save();
   flush();
 }
