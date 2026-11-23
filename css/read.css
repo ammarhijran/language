@@ -83,8 +83,9 @@
   background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(10px);
   border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--shadow);
 }
-.read-transport { display: flex; align-items: center; gap: var(--sp-1); min-width: 0; }
-.read-main { min-width: 7.2rem; white-space: nowrap; }
+/* (with very large text on a narrow phone the row wraps rather than squeezing the Play button's label) */
+.read-transport { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1); min-width: 0; }
+.read-main { min-width: 7.2rem; white-space: nowrap; flex-shrink: 0; }
 .read-select-wrap.read-speed { padding-left: .3rem; }
 .read-short { display: none; }
 .read-step { color: var(--text); }
