@@ -840,3 +840,18 @@ export function showMode(ctx, words, start = 0) {
   box.querySelector('.show-play')?.focus({ preventScroll: true });
   ctx.onCleanup(close);
 }
+
+/**
+ * After a round: the words that were missed, each a link to its page — to
+ * hear it again, or to add a note of one's own that helps it stick.
+ * null when nothing was missed.
+ */
+export function missedChips(ctx, words, max = 12) {
+  const list = [...new Set(words)].filter(Boolean);
+  if (!list.length) return null;
+  return h('div', { class: 'missed-words' },
+    h('p', { class: 'muted' }, `Worth another look${list.length > max ? ` (${max} of ${list.length})` : ''}:`),
+    h('ul', { class: 'word-chips' }, list.slice(0, max).map((w) =>
+      h('li', null, h('a', { href: `#/word/${encodeURIComponent(w.id)}` }, h('b', { lang: ctx.lang.code }, w.tr), ' ', h('span', null, w.en))))),
+    h('p', { class: 'hint' }, 'Open one to hear it again — or to add a note of your own that helps it stick.'));
+}

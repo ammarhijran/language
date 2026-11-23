@@ -1,6 +1,7 @@
 import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
 import { newCard, review as schedule, missedToday, AGAIN, startOfDay } from '../srs.js';
+import { missedChips } from '../components.js';
 import { dueWords, chooseReviewType, nextCategory } from '../stats.js';
 
 const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce', build: 'produce', stress: 'meaning' };
@@ -52,6 +53,7 @@ export default function review(ctx) {
             : h('a', { class: 'btn primary wide', href: nextCategory(ctx) ? `#/learn/${nextCategory(ctx).id}` : '#/practice' }, 'Learn something new'),
           h('a', { class: 'btn wide', href: '#/speak/drill' }, icon('mic', 18), 'Speaking drill'),
           h('a', { class: 'btn ghost wide', href: '#/' }, 'Back home')),
+        missedChips(ctx, [...firstTry].filter(([, ok]) => !ok).map(([id]) => lang.byId(id))),
       );
     },
   }));

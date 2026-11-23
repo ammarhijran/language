@@ -3,7 +3,7 @@ import { runSession } from '../session.js';
 import { stressItem, beatItem } from '../exercises.js';
 import { learnedWords, dueWords, trickyWords } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
-import { GROUPS } from '../components.js';
+import { GROUPS, missedChips } from '../components.js';
 import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
 import handsFree from './handsfree.js';
 import { tripKit } from '../kit.js';
@@ -70,6 +70,7 @@ export default function practice(ctx, mode, scope) {
   const items = shuffle(pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word, ctx.lang) }));
   let right = 0;
   let answered = 0;
+  const missed = [];
 
   return h('div', { class: 'view' }, runSession(ctx, {
     label: 'Practice',
@@ -79,10 +80,11 @@ export default function practice(ctx, mode, scope) {
       if (r.skipped) return { word: item.word, type: 'flashcard' };
       answered++;
       if (r.correct) right++;
+      else missed.push(item.word);
       ctx.store.logActivity(ctx.lang.code, { practiced: 1 });
       return null;
     },
-    onFinish: () => summary(ctx, right, answered),
+    onFinish: () => summary(ctx, right, answered, null, missed),
   }));
 }
 
@@ -95,7 +97,7 @@ function notEnough(title, hint, primary = null) {
       : h('a', { class: 'btn primary wide', href: '#/practice' }, 'Choose a topic')));
 }
 
-function summary(ctx, right, answered, back = null) {
+function summary(ctx, right, answered, back = null, missed = []) {
   return h('div', { class: 'summary' },
     h('div', { class: 'summary-emoji', 'aria-hidden': 'true' }, right === answered ? '🌟' : '👏'),
     h('h2', null, 'Practice done'),
@@ -105,6 +107,8 @@ function summary(ctx, right, answered, back = null) {
       h('button', { type: 'button', class: 'btn primary wide', onclick: () => ctx.rerender() }, 'Another round', icon('arrow', 18)),
       back || h('a', { class: 'btn wide', href: '#/practice' }, 'Change mode or topic'),
       h('a', { class: 'btn ghost wide', href: '#/' }, 'Back home')),
+    // Under the buttons, so “Another round” stays where the thumb is.
+    missedChips(ctx, missed),
   );
 }
 

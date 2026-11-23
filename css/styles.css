@@ -446,6 +446,9 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .quick-link small { color: var(--muted); font-size: var(--fs-xs); line-height: 1.3; }
 .quick-link .quick-emoji { font-size: var(--fs-xl); }
 .own-link > .icon:last-child { margin-inline-start: auto; flex: none; }
+/* After a round: the words that were missed. */
+.missed-words { margin-top: var(--sp-4); }
+.missed-words .hint { margin-top: var(--sp-2); }
 /* Read by screen readers only. */
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 /* The learner's own note on an entry: on its page and under an answer. */
