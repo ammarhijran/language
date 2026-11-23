@@ -24,11 +24,14 @@ To regenerate the screenshots after changing the app: run `npm start`, then `nod
 
 These are hard or impossible to change after your first upload.
 
-1. **App ID / bundle ID: currently `app.lisan.turkish`.** It's permanent in both stores. Use a reverse domain you control, e.g. `com.yourname.lisan`. To change it, edit:
+1. **App ID / bundle ID: `com.ammarmahdi.lisan`.** It's permanent in both stores once the first build is uploaded, so create the app records with exactly this ID. (It was `app.lisan.turkish` in test builds up to 192: a build with the new ID installs as a separate app, see the note below.) If it ever has to change before the first upload, edit:
    - `appId` in `capacitor.config.json`
    - `applicationId` in `android/app/build.gradle`
    - `PRODUCT_BUNDLE_IDENTIFIER` in `ios/App/App.xcodeproj/project.pbxproj` (2 places)
-2. **App name.** "Lisan: Learn Turkish Words" is the store name; the icon label on phones is "Lisan". App Store names must be unique, so check it's free when you create the app record (step 3.3).
+   - `namespace` in `android/app/build.gradle`, `package_name` and `custom_url_scheme` in `android/app/src/main/res/values/strings.xml`, and the package (and folder) of `MainActivity.java`
+
+   > **Test builds and the new ID.** Android treats a different ID as a different app. A test APK from before the change stays installed next to the new one, with its own progress. To move progress across: in the old app, Settings → Your data → export a backup (or make a sync code), import it in the new app, then uninstall the old one.
+2. **App name.** "Lisan: Speak 4 Languages" is the suggested store name (see `store/listing.md`); the icon label on phones is "Lisan". App Store names must be unique, so check it's free when you create the app record (step 3.3).
 3. **Contact email.** Replace `CONTACT_EMAIL` in `privacy.html` (2 places). Both stores also show a support email publicly.
 4. **Privacy policy URL.** The stores need a public link. The simplest option is GitHub Pages:
    1. Create a `main` branch from this branch.
@@ -63,7 +66,7 @@ To build the bundle on your own computer, set the same four values as `LISAN_KEY
 
 ### 2.3 Create the app in Play Console
 1. **Create app:**
-   - App name: `Lisan: Learn Turkish Words`
+   - App name: `Lisan: Speak 4 Languages` (or your own choice, see `store/listing.md`)
    - Default language: English (US)
    - App or game: App
    - Free or paid: Free
@@ -135,10 +138,10 @@ npm run ios:open
 ### 3.3 Create the app record
 In App Store Connect, go to **Apps → + → New App**:
 - Platform: iOS
-- Name: `Lisan: Learn Turkish Words`
+- Name: `Lisan: Speak 4 Languages` (or your own choice, see `store/listing.md`)
 - Primary language: English (U.S.)
-- Bundle ID: the one from step 1.1. It appears after you register it, which Xcode or the workflow does automatically.
-- SKU: `lisan-turkish`
+- Bundle ID: `com.ammarmahdi.lisan` (step 1.1). It appears after you register it, which Xcode or the workflow does automatically.
+- SKU: `lisan`
 
 ### 3.4 Fill in the version page
 

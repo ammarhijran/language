@@ -9,10 +9,10 @@ def appVersionCode = (System.getenv("LISAN_VERSION_CODE") ?: "1").toInteger()
 def uploadKeystore = System.getenv("LISAN_KEYSTORE_PATH")
 
 android {
-    namespace = "app.lisan.turkish"
+    namespace = "com.ammarmahdi.lisan"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "app.lisan.turkish"
+        applicationId "com.ammarmahdi.lisan"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode appVersionCode

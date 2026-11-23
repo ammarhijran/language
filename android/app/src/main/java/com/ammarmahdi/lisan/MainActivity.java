@@ -1,4 +1,4 @@
-package app.lisan.turkish;
+package com.ammarmahdi.lisan;
 
 import com.getcapacitor.BridgeActivity;
 
