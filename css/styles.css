@@ -471,6 +471,12 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .voice-fix .field { margin-bottom: var(--sp-1); }
 .voice-fix .button-row { margin-top: var(--sp-2); flex-wrap: wrap; }
 .voice-fix > .hint { margin-top: var(--sp-2); }
+.voice-fixes { margin: var(--sp-3) 0; }
+.voice-fixes summary { cursor: pointer; min-height: var(--tap); display: flex; align-items: center; font-weight: 600; }
+.voice-fixes summary::before { content: '▸'; margin-inline-end: var(--sp-2); color: var(--muted); }
+.voice-fixes[open] summary::before { content: '▾'; }
+.voice-fixes summary::-webkit-details-marker { display: none; }
+.voice-fixes .word-chips { margin: var(--sp-2) 0 var(--sp-3); }
 .voice-fix-text { margin: 0; font-size: var(--fs-sm); color: var(--muted); overflow-wrap: anywhere; }
 .voice-fix-text b { color: var(--text); }
 .my-note-text { margin: var(--sp-2) 0 0; padding: .5rem .7rem; border-radius: var(--r-sm); background: color-mix(in srgb, var(--xp) 14%, var(--surface)); font-size: var(--fs-sm); overflow-wrap: anywhere; }

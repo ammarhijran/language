@@ -76,6 +76,7 @@ export default function settings(ctx) {
   const gameOn = h('input', { type: 'checkbox', checked: s.gameOn, onchange: (e) => { store.updateSettings({ gameOn: e.target.checked }); ctx.toast(e.target.checked ? 'Game features on' : 'Game features off'); } });
   const toggle = (key) => h('input', { type: 'checkbox', checked: s[key] !== false, onchange: (e) => store.updateSettings({ [key]: e.target.checked }) });
   // The pack's voice switch, and an entry to hear it with.
+  const ownSays = Object.entries(store.getSay(lang.code)).map(([id, text]) => [lang.byId(id), text]).filter(([w]) => w);
   const voiceOption = lang.voiceOption || null;
   const voiceSample = voiceOption ? lang.words.find((w) => w.tr === voiceOption.sample) || null : null;
   const autoplay = h('input', { type: 'checkbox', checked: s.autoplay, onchange: (e) => store.updateSettings({ autoplay: e.target.checked }) });
@@ -282,6 +283,21 @@ export default function settings(ctx) {
         voiceSample ? h('button', { type: 'button', class: 'btn small', id: 'voiceOption-listen', onclick: () => ctx.say(voiceSample) },
           icon('volume', 16), h('span', { lang: lang.code }, `“${voiceSample.tr}”`)) : null,
       ] : null,
+      // The learner's own spellings for the voice (a word's page → "Voice says it wrong?"), to find and undo.
+      ownSays.length ? h('details', { class: 'voice-fixes' },
+        h('summary', null, `Your spellings for the voice (${ownSays.length})`),
+        h('ul', { class: 'word-chips' }, ownSays.map(([w, text]) => h('li', null,
+          h('a', { href: `#/word/${encodeURIComponent(w.id)}` }, h('b', { lang: lang.code }, w.tr), ' → ', h('span', { lang: lang.code }, text))))),
+        h('button', {
+          type: 'button', class: 'btn small', id: 'voice-fixes-clear',
+          onclick: () => {
+            if (!confirm(`Go back to the course’s spelling for ${ownSays.length === 1 ? 'this word' : `all ${ownSays.length} words`}?`)) return;
+            for (const [w] of ownSays) store.setSay(lang.code, w.id, '');
+            lang.setOwnSay(store.getSay(lang.code));
+            ctx.toast('The voice reads the course’s spellings again.');
+            ctx.rerender();
+          },
+        }, 'Use the course’s spelling for all')) : null,
       h('p', { class: 'hint' }, 'Speech recognition: ', speech.recognitionSupported()
         ? 'available ✓ (it may send your audio to an online service — Google, Apple or your browser maker — to transcribe it).'
         : 'not available in this browser — try Chrome, Edge or Safari to get pronunciation scores.')),
