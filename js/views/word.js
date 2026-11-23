@@ -147,7 +147,7 @@ const VOICE_FIX_TIPS = {
  * screen, its reading and the answers that count stay the course's. Kept on
  * this device (store.setSay) and applied wherever the entry is spoken.
  */
-function voiceFix(ctx, w, { ask = 'Voice says it wrong?', idBase = 'voice-fix' } = {}) {
+export function voiceFix(ctx, w, { ask = 'Voice says it wrong?', idBase = 'voice-fix' } = {}) {
   const { lang, store } = ctx;
   const box = h('div', { class: 'voice-fix', id: idBase });
   const course = () => lang.speech(w, { course: true });

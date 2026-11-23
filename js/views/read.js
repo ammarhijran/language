@@ -7,7 +7,8 @@
 // Texts load on demand (js/reader.js), so the first visit renders a short
 // loading state and fills in; later visits render straight away.
 import { h, icon, set, bindKeys, meter } from '../ui.js';
-import { voiceBanner, diffLine, praiseLine, cleanupScope, backLink, readingText, devicePref, setDevicePref } from '../components.js';
+import { voiceBanner, diffLine, praiseLine, cleanupScope, backLink, readingText, devicePref, setDevicePref, bottomSheet } from '../components.js';
+import { voiceFix } from './word.js';
 import { rich } from './grammar.js';
 import * as speech from '../speech.js';
 import { keepScreenOn } from '../native.js';
@@ -648,6 +649,26 @@ function readerView(ctx, texts, text) {
     live.textContent = on ? 'Text hidden. Listen first, then reveal it.' : 'Text shown.';
   }
 
+  // The line being read (or the first), respelled for the voice — as on a word's page.
+  const fixBtn = h('button', {
+    type: 'button', class: 'pill read-toggle read-fix', 'aria-label': 'Voice reads this line wrong? Respell it', title: 'Voice reads this line wrong?',
+    onclick: (e) => {
+      pausePlayer();
+      const at = Math.max(0, Math.min(text.lines.length - 1, player.index));
+      const line = sayable(ctx, text, text.lines[at]);
+      bottomSheet(ctx, {
+        label: `Line ${at + 1}: how the voice reads it`,
+        opener: e.currentTarget,
+        className: 'read-fix-sheet',
+        build: () => [
+          h('p', { class: 'kicker' }, `Line ${at + 1} of ${text.lines.length}`),
+          h('p', { class: 'read-fix-line', ...textAttrs(lang) }, line.tr),
+          voiceFix(ctx, line, { ask: 'Voice reads this line wrong? Respell it', idBase: 'voice-fix-line' }),
+        ],
+      });
+    },
+  }, h('span', { 'aria-hidden': 'true' }, '🔧'));
+
   // Sleep timer: playing stops by itself after a while — for listening in bed with Keep playing on.
   const sleepLeft = () => Math.max(1, Math.round((sleepAt - Date.now()) / 60000));
   const sleepSelect = h('select', {
@@ -721,7 +742,8 @@ function readerView(ctx, texts, text) {
         : null,
       firstBtn,
       keepBtn,
-      h('span', { class: 'read-select-wrap read-sleep' }, h('span', { 'aria-hidden': 'true' }, '⏱'), sleepSelect)),
+      h('span', { class: 'read-select-wrap read-sleep' }, h('span', { 'aria-hidden': 'true' }, '⏱'), sleepSelect),
+      fixBtn),
     live);
   stickUnderTopbar(ctx, bar);
 
