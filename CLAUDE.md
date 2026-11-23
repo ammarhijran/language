@@ -78,6 +78,38 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   its own line.
 - In Playwright, a slow tail of output (`| tail`) hides progress of long runs; background them.
 
+## Store launch (in progress)
+
+- App ID / bundle ID: `com.ammarmahdi.lisan` (changed from `app.lisan.turkish` in build 195, before
+  any store record existed). Android installs a build with a new ID as a separate app; progress
+  moves across with a backup file or a sync code.
+- The owner chose to do the console steps themselves (Play Console, Apple Developer, App Store
+  Connect); `STORE.md` is the checklist, `store/` has the listing text, graphics and screenshots.
+- A cloud session cannot drive the owner's Chrome: the Claude in Chrome tools only exist in a
+  session running where that Chrome is, and the owner's PC did not offer a folder to attach. Check
+  for the tools once, say what is blocked, and do the repo side instead. Never enter passwords, pay
+  fees or accept developer agreements for the owner.
+- Still to do in the repo, waiting on the owner: a public contact email for `privacy.html` (it
+  shows the placeholder `CONTACT_EMAIL`; do not use an address the owner has not named), and a
+  public privacy-policy URL (the Pages workflow publishes from `main`, which does not exist yet,
+  and pushes are limited to the working branch unless the owner says otherwise).
+- Android cannot be built in the cloud container (the SDK licence step is not available there);
+  the CI build is the check. After a native change, confirm it in the APK itself — for the ID, the
+  manifest inside the APK was read.
+- `store/listing.md` is the owner's store copy with character counts: suggest changes, do not
+  rewrite it unasked.
+
+## Working with the owner
+
+- Report each build plainly: what changed, how it was checked, what was not checked. Keep saying
+  that pronunciation claims are untested on a real phone until someone has listened.
+- When asked to "use Chrome" or another tool that is not present, check, then say so in the first
+  sentence and offer what can be done instead.
+- "Continuous learning" has no tool behind it here; it has meant: fold what the session taught
+  into this file. (A skill named `learn` is a tutoring mode and is not that.)
+- An open-ended "keep improving" goal produces many small builds. Prefer one verified improvement
+  per push, skip sending test-only builds, and stop cleanly when the goal is cleared.
+
 ## Still open (needs the owner)
 
 1. Japanese pitch accent: permission to run two dictionary tools, and whether data derived from
@@ -87,3 +119,5 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 3. A check on a real phone — everything since build 46 has only run in desktop Chromium.
 4. Whether to try R8 code shrinking for the Android build.
 5. New long texts and speeches are on hold until reviewers are available.
+6. Store launch: the contact email and the privacy-policy URL above; then the console steps in
+   `STORE.md`.

@@ -45,7 +45,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Placement check:** 24 quick questions over the first eight topics; the topics you clearly know can be marked as already learned in one tap.
 - **Already learned:** tick off words you already know, during a lesson, in bulk per topic, or on a word's page. Lessons skip them, and they come back once after about a month for a quick check.
 - **Spaced-repetition reviews** (an SM-2-style scheduler, like Anki) bring each word back just before you're likely to forget it.
-- **Exercises get harder as you learn:** listening → reading → choosing the Turkish → flashcards → typing → speaking. The typing exercise has buttons for ç ğ ı ö ş ü. If you only get a special letter wrong, you're told exactly which one.
+- **Exercises get harder as you learn:** listening → reading → choosing the word → flashcards → typing → speaking. The typing exercise has buttons for the language’s special letters (in Turkish, ç ğ ı ö ş ü). If you only get a special letter wrong, you're told exactly which one.
 - **Practice mode** gives you free rounds on any topic, in any mode. It doesn't change your review schedule. It can also drill your ★ saved phrases or your **tricky words** — the ones you keep forgetting in reviews.
 - **Read the script** (Japanese, Arabic, Ukrainian): see a word with no audio or reading and pick how it is read.
 - **In context:** a word’s example sentence with the word left out — choose the word.
@@ -121,7 +121,7 @@ A typical code is under 1 kB. Even every word in all four languages fits in abou
 - **Speak & score:** say a word into the microphone. Speech recognition transcribes it, the app gives you a score, and the letters you missed are highlighted with tips. Scoring is word-aware: saying a different word (or the opposite, like *anlıyorum* for *anlamıyorum*) never counts as right, while valid spellings and homophones (多分/たぶん, hala/hâlâ, Egyptian spellings) do.
 - **Record yourself** and hear your attempt played straight after the voice’s version.
 - **Speak (pronunciation lab):**
-  - **Alphabet:** all 29 letters with sounds and example words
+  - **Alphabet:** every letter (or kana) with its sound and an example word, plus the letter and rule quizzes
   - **Sounds:** guides to ı, ö, ü, ğ, the tapped r, double consonants, word stress and vowel harmony
   - **Ear training:** minimal pairs such as *kır/kir*, *on/ön*, *cam/çam* and *eli/elli*, with a quiz
   - **Speaking drill**
@@ -182,7 +182,7 @@ See **[STORE.md](STORE.md)**. It's a step-by-step checklist for Google Play and 
 | Feature | Where it works |
 | --- | --- |
 | Lessons, reviews, typing, progress | All modern browsers |
-| Audio (text-to-speech) | All modern browsers, **if a Turkish voice is installed**. iOS, macOS, Android and Windows all offer one, and Microsoft Edge has free online Turkish voices. If none is found, the app tells you how to install one. |
+| Audio (text-to-speech) | All modern browsers, **if a voice for the language is installed**. iOS, macOS, Android and Windows all offer one, and Microsoft Edge has free online Turkish voices. If none is found, the app tells you how to install one. |
 | Speaking scores (speech recognition) | Chrome, Edge and Safari. Not Firefox. Most browsers send the audio to an online service to transcribe it. |
 | Record & compare | All modern browsers |
 
