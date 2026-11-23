@@ -119,17 +119,19 @@ function alphabet(ctx) {
   const quizzes = letterSets(lang);
   return h('section', null,
     h('p', { class: 'muted' }, lang.alphabetIntro),
-    // Turkish: its letters are familiar, its endings are not — they follow the word's last vowel.
-    code === 'tr' ? h('div', { class: 'button-row letter-quiz-links' },
-      h('a', { class: 'btn small', href: '#/speak/alphabet/harmony' }, h('span', { 'aria-hidden': 'true' }, '🎶'), 'Vowel harmony: -lar or -ler?')) : null,
-    quizzes.length ? h('div', { class: 'button-row letter-quiz-links' }, quizzes.map((s) =>
-      h('a', { class: 'btn small', href: `#/speak/alphabet/quiz/${s.id}` }, icon('target', 16), quizzes.length > 1 ? `Quiz: ${s.name}` : 'Quiz me on the letters')),
-      // Arabic: how the article al- is said before each letter.
-      lang.sunLetters ? h('a', { class: 'btn small', href: '#/speak/alphabet/sun' }, h('span', { 'aria-hidden': 'true' }, '☀️'), 'Sun or moon letter?') : null,
-      // Ukrainian: я, ю, є are two sounds in some places and one in others.
-      code === 'uk' ? h('a', { class: 'btn small', href: '#/speak/alphabet/iotated' }, h('span', { lang: 'uk' }, 'я, ю, є'), ': two sounds or one?') : null,
-      // Japanese: は and へ are read differently as particles.
-      code === 'ja' ? h('a', { class: 'btn small', href: '#/speak/alphabet/particles' }, h('span', { lang: 'ja' }, 'は'), ': ha or wa?') : null) : null,
+    // The quizzes on this script and its rules, as one row of chips under a heading.
+    h('div', { class: 'letter-quizzes' },
+      h('p', { class: 'kicker' }, 'Quiz yourself'),
+      h('div', { class: 'button-row letter-quiz-links' },
+        quizzes.map((s) => h('a', { class: 'pill', href: `#/speak/alphabet/quiz/${s.id}` }, quizzes.length > 1 ? s.name : 'The letters')),
+        // Turkish: its letters are familiar, its endings are not — they follow the word's last vowel.
+        code === 'tr' ? h('a', { class: 'pill', href: '#/speak/alphabet/harmony' }, '🎶 Vowel harmony: -lar or -ler?') : null,
+        // Arabic: how the article al- is said before each letter.
+        lang.sunLetters ? h('a', { class: 'pill', href: '#/speak/alphabet/sun' }, '☀️ Sun or moon letter?') : null,
+        // Ukrainian: я, ю, є are two sounds in some places and one in others.
+        code === 'uk' ? h('a', { class: 'pill', href: '#/speak/alphabet/iotated' }, h('span', null, h('span', { lang: 'uk' }, 'я, ю, є'), ': two sounds or one?')) : null,
+        // Japanese: は and へ are read differently as particles.
+        code === 'ja' ? h('a', { class: 'pill', href: '#/speak/alphabet/particles' }, h('span', null, h('span', { lang: 'ja' }, 'は'), ': ha or wa?')) : null)),
     chart,
     lang.alphabet.some((l) => l.special) ? h('p', { class: 'hint letter-legend' }, h('i', { 'aria-hidden': 'true' }), 'Tinted: sounds English speakers find new.') : null,
   );
