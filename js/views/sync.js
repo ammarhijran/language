@@ -120,7 +120,7 @@ export default function sync(ctx) {
       const code = await encode({ device: store.deviceId(), at: Date.now(), ...store.syncData() }, { passphrase });
       const box = h('textarea', { class: 'code-box', readonly: true, rows: 4, 'aria-label': 'Your sync code', onfocus: (e) => e.target.select() }, code);
       const status = h('p', { class: 'hint', 'aria-live': 'polite' },
-        `${kb(code)} · `, passphrase ? h('b', null, '🔒 encrypted') : 'not encrypted — anyone who sees it can read your progress');
+        `${kb(code)} · `, passphrase ? h('b', null, '🔒 encrypted') : 'not encrypted — anyone who sees it can read your progress and the words you added');
       set(sendOut,
         box, status,
         h('div', { class: 'button-row' },
