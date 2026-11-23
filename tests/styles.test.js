@@ -435,3 +435,12 @@ test('topic names, their native names and word meanings wrap instead of being cu
   assert.ok(prop(':root .tt-native:lang(ar)', 'font-size'), 'Arabic native names have their own size');
   assert.ok(prop(':root .tt-native:lang(ja)', 'font-size'), 'Japanese native names have their own size');
 });
+
+test('the top bar never pushes Search off a narrow screen: a long language name is cut instead', () => {
+  // Українська with extra-large text at 320px scrolled every page sideways.
+  assert.equal(prop('.lang-pill', 'min-width'), '0');
+  assert.equal(prop('.lang-pill > span:last-child', 'text-overflow'), 'ellipsis');
+  assert.equal(prop('.lang-pill > span:last-child', 'overflow'), 'hidden');
+  assert.match(prop('.topbar .top-search', 'flex') || '', /^none$/);
+  assert.match(prop('.topbar .brand', 'flex') || '', /^none$/);
+});

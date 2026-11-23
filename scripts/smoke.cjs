@@ -15,7 +15,9 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const PORT = Number(process.env.SMOKE_PORT) || 8177;
 const BASE = `http://localhost:${PORT}/`;
-const WIDTH = 360;
+// SMOKE_WIDTH=320 SMOKE_TEXT=xl walks the app as a small phone with extra-large text.
+const WIDTH = Number(process.env.SMOKE_WIDTH) || 360;
+const TEXT = ['l', 'xl'].includes(process.env.SMOKE_TEXT) ? process.env.SMOKE_TEXT : 'm';
 const SAMPLE = {
   tr: 'Merhaba! Benim adım Alex. Türkçe öğreniyorum.',
   uk: 'Добрий день! Мене звати Алекс. Я вчу українську.',
@@ -23,10 +25,10 @@ const SAMPLE = {
   ar: 'مرحبا! اسمي أليكس. أتعلم العربية.',
 };
 
-function stubs(lang) {
+function stubs([lang, textSize]) {
   if (location.protocol === 'about:') return;
   if (!localStorage.getItem('lisan:v1')) {
-    localStorage.setItem('lisan:v1', JSON.stringify({ settings: { onboarded: true, autoplay: false, lang, gameOn: false }, progress: {}, game: {} }));
+    localStorage.setItem('lisan:v1', JSON.stringify({ settings: { onboarded: true, autoplay: false, lang, gameOn: false, textSize }, progress: {}, game: {} }));
   }
   window.SpeechSynthesisUtterance = class { constructor(t) { this.text = t; } };
   const voices = ['tr-TR', 'uk-UA', 'ja-JP', 'ar-SA', 'ar-EG', 'en-US'].map((l) => ({ name: `Test ${l}`, lang: l, localService: true, voiceURI: l }));
@@ -48,7 +50,7 @@ async function serve() {
 async function walk(browser, lang, pack, texts) {
   const problems = [];
   const ctx = await browser.newContext({ viewport: { width: WIDTH, height: 780 }, serviceWorkers: 'block' });
-  await ctx.addInitScript(stubs, lang);
+  await ctx.addInitScript(stubs, [lang, TEXT]);
   const page = await ctx.newPage();
   const where = () => decodeURIComponent(page.url().split('#')[1] || '/');
   page.on('pageerror', (e) => problems.push(`${lang} ${where()}: ${e.message}`));

@@ -190,6 +190,11 @@ button, input, select { font: inherit; color: inherit; }
   color: var(--text); text-decoration: none;
 }
 .lang-pill:hover { box-shadow: inset 0 0 0 1px var(--action); }
+/* A long language name with large text on a narrow phone (Українська at 320px):
+   the name is cut with an ellipsis instead of pushing Search off the screen. */
+.topbar .brand, .topbar .top-search { flex: none; }
+.lang-pill { min-width: 0; }
+.lang-pill > span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--sp-2); }
 .lang-card {
   display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto; align-items: center; gap: .1rem var(--sp-3);
