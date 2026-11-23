@@ -643,6 +643,8 @@ export function speak(ctx, word, onDone) {
 }
 
 export function flashcard(ctx, word, onDone) {
+  // Settings → Lessons → "Flashcards show first": the meaning (recall the word), or the word (recall what it means).
+  const wordFirst = ctx.settings?.cardFront === 'word';
   const back = h('div', { class: 'card-back', hidden: true });
   let shown = false;
   const finish = once((rating) => { unbind(); onDone({ correct: rating !== AGAIN, rating }); });
@@ -657,12 +659,14 @@ export function flashcard(ctx, word, onDone) {
     shown = true;
     back.hidden = false;
     set(back,
-      h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word)),
+      wordFirst
+        ? h('p', { class: 'prompt-word en' }, word.en)
+        : h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word)),
       readingLine(ctx, word, 'reading', { full: true }),
       pronunciationPanel(ctx, word, { compact: true }),
       myNoteLine(ctx, word),
     );
-    ctx.say(word, { auto: true });
+    if (!wordFirst) ctx.say(word, { auto: true }); // (word first: it was said with the front)
     // The question labels the group, which takes the focus (the button that had it is gone).
     const row = h('div', { class: 'rating-row', role: 'group', 'aria-label': 'How well did you remember it?', tabindex: '-1' },
       ratings.map(([r, label, cls], i) =>
@@ -680,9 +684,12 @@ export function flashcard(ctx, word, onDone) {
   });
   ctx.onCleanup(unbind);
 
+  if (wordFirst && ctx.settings.autoplay) sayLater(ctx, word);
   return h('div', { class: 'exercise' },
-    h('p', { class: 'kicker' }, `Do you remember the ${ctx.lang.name}?`),
-    h('div', { class: 'prompt' }, h('p', { class: 'prompt-word en' }, word.en)),
+    h('p', { class: 'kicker' }, wordFirst ? 'Do you remember what it means?' : `Do you remember the ${ctx.lang.name}?`),
+    h('div', { class: 'prompt' }, wordFirst
+      ? h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr, ' ', playButton(ctx, word))
+      : h('p', { class: 'prompt-word en' }, word.en)),
     back,
     bar,
   );

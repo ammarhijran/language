@@ -41,6 +41,7 @@ const DEFAULTS = {
   voiceKana: false, // Japanese: send single words to the voice in kana
   typing: true, // typing questions in reviews and Mixed rounds
   speaking: true, // speaking questions in reviews and Mixed rounds
+  cardFront: 'en', // flashcards show first: 'en' (the meaning) or 'word' (the word itself)
   autoNext: false, // after a right multiple-choice answer, go on to the next question by itself
   textSize: 'm', // 'm', 'l' or 'xl'
   theme: 'system', // 'system' (follow the device), 'light' or 'dark' — see js/themes.js
