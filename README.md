@@ -47,6 +47,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - **Exercises get harder as you learn:** listening → reading → choosing the Turkish → flashcards → typing → speaking. The typing exercise has buttons for ç ğ ı ö ş ü. If you only get a special letter wrong, you're told exactly which one.
 - **Practice mode** gives you free rounds on any topic, in any mode. It doesn't change your review schedule. It can also drill your ★ saved phrases or your **tricky words** — the ones you keep forgetting in reviews.
 - **Read the script** (Japanese, Arabic, Ukrainian): see a word with no audio or reading and pick how it is read.
+- **Tricky letters** (Turkish): pick how a word is read — the wrong answers are c, ç, ş, ı, ğ, ö, ü read the English way.
 - **Count the beats** (Japanese): say how many beats (morae) a word has — small っ, ん and long vowels each take one.
 - **Word stress** (Ukrainian, Arabic): see a word in syllables and tap the stressed one — stress is unwritten in both, and in Ukrainian phone voices sometimes misplace it. Reviews of known words ask for it now and then too.
 - **Numbers by ear:** hear a number, type its digits — from 0–10 up to 10,000.

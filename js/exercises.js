@@ -307,6 +307,53 @@ export function stress(ctx, word, onDone) {
 }
 
 /**
+ * What a "tricky letters" question needs (a pack with `misread`: letter →
+ * the letters it is wrongly read as): how a one-word entry is read, and how
+ * it would be read if those letters were misread — each of them alone, and
+ * all together. null when the word has none of the letters.
+ * @returns {{ right: string, wrong: string[] } | null}
+ */
+export function misreadItem(lang, w) {
+  if (!lang.misread || /\s/.test(w.tr.trim())) return null;
+  try {
+    const low = w.tr.toLocaleLowerCase(lang.code);
+    const present = Object.keys(lang.misread).filter((l) => low.includes(l));
+    if (!present.length) return null;
+    const right = lang.analyze(w).respell;
+    const wrong = [];
+    const add = (tr) => {
+      const r = lang.analyze({ ...w, tr }).respell;
+      if (r && r !== right && !wrong.includes(r)) wrong.push(r);
+    };
+    for (const l of present) for (const to of lang.misread[l]) add(low.replaceAll(l, to));
+    if (present.length > 1) add(present.reduce((t, l) => t.replaceAll(l, lang.misread[l][0]), low));
+    return right && wrong.length ? { right, wrong } : null;
+  } catch { return null; }
+}
+
+/**
+ * Tricky letters: the word as written, no audio — pick how it is read. The
+ * wrong answers are what the word would sound like with its special letters
+ * read the English way. The answer says what each of those letters is.
+ */
+export function letters(ctx, word, onDone) {
+  const item = misreadItem(ctx.lang, word);
+  if (!item) return meaning(ctx, word, onDone);
+  const prompt = h('div', { class: 'prompt' },
+    h('p', { class: 'prompt-word', lang: ctx.lang.code }, word.tr),
+    h('p', { class: 'prompt-gloss' }, word.en));
+  const notes = ctx.lang.letterNotes?.(word) || [];
+  return choice(ctx, word, onDone, {
+    kicker: 'How is this read?', prompt,
+    // The right reading stands for the entry itself: that is what choice() counts as right.
+    options: shuffle([{ id: word.id, text: item.right }, ...shuffle(item.wrong).slice(0, 3).map((text, i) => ({ id: `${word.id}#${i}`, text }))]),
+    label: (o) => o.text,
+    wrong: HARD,
+    extra: notes.length ? h('p', { class: 'beats-line' }, notes.map((n, i) => [i ? ' · ' : null, h('b', { lang: ctx.lang.code }, n.letter), ` ${n.hint}`])) : null,
+  });
+}
+
+/**
  * What a "count the beats" question needs (Japanese): the beats (morae) of a
  * one-word entry — but only of words where counting teaches something: a
  * small っ, ん, a long vowel or a second vowel, or a contracted sound (きゃ).
@@ -768,4 +815,4 @@ export function build(ctx, word, onDone, meta = {}) {
   return el;
 }
 
-export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build, script, stress, beats };
+export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build, script, stress, beats, letters };

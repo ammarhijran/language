@@ -1,6 +1,6 @@
 import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
-import { stressItem, beatItem } from '../exercises.js';
+import { stressItem, beatItem, misreadItem } from '../exercises.js';
 import { learnedWords, dueWords, trickyWords } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
 import { GROUPS, missedChips } from '../components.js';
@@ -21,6 +21,8 @@ const MODES = [
   { id: 'script', name: 'Read the script', desc: 'See it, pick how it’s read', icon: 'book', langs: ['ja', 'ar', 'uk'] },
   // Stress is free and unwritten in Ukrainian, and the phone's voice sometimes puts it on the wrong syllable.
   { id: 'stress', name: 'Word stress', desc: 'Tap the stressed syllable', icon: 'target', when: (lang) => lang.stressPractice },
+  // Turkish is in Latin letters, but c, ç, ş, ı, ğ, ö, ü are not read the English way.
+  { id: 'letters', name: 'Tricky letters', desc: 'See it, pick how it’s read', icon: 'book', when: (lang) => !!lang.misread },
   // Japanese has no stress: its rhythm is beats (morae) of equal length.
   { id: 'beats', name: 'Count the beats', desc: 'How many beats does the word have?', icon: 'wave', when: (lang) => lang.beatPractice },
   { id: 'handsfree', name: 'Hands-free', desc: 'Listen and repeat, no tapping', icon: 'volume' },
@@ -52,7 +54,8 @@ export function typeFor(mode, word, lang = null) {
   const pool = ['listen', 'meaning', 'produce', ...(isLong(word) ? [] : ['type']), ...(recognitionSupported() ? ['speak'] : []),
     // A mixed round also asks how a word sounds, where the course teaches that: its stress, or its beats.
     ...(lang?.stressPractice && stressItem(lang, word) ? ['stress'] : []),
-    ...(lang?.beatPractice && beatItem(lang, word) ? ['beats'] : [])];
+    ...(lang?.beatPractice && beatItem(lang, word) ? ['beats'] : []),
+    ...(lang?.misread && misreadItem(lang, word) ? ['letters'] : [])];
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -63,11 +66,14 @@ export default function practice(ctx, mode, scope) {
   // Reading the script is for words and short phrases, not whole sentences.
   const pool = wordsFor(ctx, scope).filter((w) => (mode !== 'script' || w.tr.trim().split(/\s+/).length <= 3)
     && (mode !== 'stress' || stressItem(ctx.lang, w)) // single words of two or more syllables
-    && (mode !== 'beats' || beatItem(ctx.lang, w)));
+    && (mode !== 'beats' || beatItem(ctx.lang, w))
+    && (mode !== 'letters' || misreadItem(ctx.lang, w)));
   if (pool.length < 4) return notEnough('Not enough words yet', 'Learn a lesson first, or pick a topic to practise from.');
   if (mode === 'handsfree') return handsFree(ctx, pool);
+  // Tricky letters: words with a real choice (two or more ways to misread them) come first.
+  const rich = mode === 'letters' ? pool.filter((w) => misreadItem(ctx.lang, w).wrong.length >= 2) : [];
 
-  const items = shuffle(pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word, ctx.lang) }));
+  const items = shuffle(rich.length >= ROUND ? rich : pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word, ctx.lang) }));
   let right = 0;
   let answered = 0;
   const missed = [];

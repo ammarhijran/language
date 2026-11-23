@@ -201,10 +201,37 @@ test('a mixed practice round also asks for stress (Ukrainian, Arabic) or beats (
   const kippu = ja.words.find((w) => w.kana === 'きっぷ');
   assert.ok(kinds('mixed', kippu, ja).has('beats'));
   assert.ok(!kinds('mixed', kippu, ja).has('stress'));
-  const turkish = kinds('mixed', tr.words[0], tr);
+  const turkish = kinds('mixed', tr.words.find((w) => w.tr === 'cami'), tr);
   assert.ok(!turkish.has('stress') && !turkish.has('beats'));
+  assert.ok(turkish.has('letters'), 'Turkish: how a word with special letters is read');
+  assert.ok(!kinds('mixed', moloko, uk).has('letters'));
   assert.ok(!kinds('mixed', moloko).has('stress'), 'without the pack nothing changes');
   assert.deepEqual([...kinds('listen', moloko, uk)], ['listen'], 'a chosen mode stays that mode');
+});
+
+test('tricky letters (Turkish): the wrong readings are the special letters read the English way', async () => {
+  const { misreadItem } = await import('../js/exercises.js');
+  const of = (t) => misreadItem(tr, tr.words.find((w) => w.tr === t));
+  assert.deepEqual(of('cami'), { right: 'jah-mee', wrong: ['kah-mee', 'sah-mee'] });
+  assert.deepEqual(of('kuş'), { right: 'koosh', wrong: ['koos'] });
+  assert.deepEqual(of('kış'), { right: 'kuhsh', wrong: ['kuhs', 'keesh', 'kees'] }); // ş alone, ı alone, both
+  assert.deepEqual(of('soğuk').wrong, ['soh-GOOK', 'soh-YOOK']);
+  assert.deepEqual(of('değil').wrong, ['deh-GEEL'], 'ğ read as y is the right reading here, so it is not offered as a wrong one');
+  assert.equal(misreadItem(tr, tr.words.find((w) => /^[abdefghklmnoprstuvyz]+$/.test(w.tr))), null, 'no special letter, nothing to ask');
+  assert.equal(misreadItem(tr, tr.words.find((w) => /\s/.test(w.tr) && /ş/.test(w.tr))), null, 'phrases are not asked');
+  assert.equal(misreadItem(uk, uk.words[0]), null, 'only packs that list misreadings');
+  let n = 0;
+  let rich = 0;
+  for (const w of tr.words) {
+    const item = misreadItem(tr, w);
+    if (!item) continue;
+    n++;
+    if (item.wrong.length >= 2) rich++;
+    assert.equal(item.right, tr.analyze(w).respell, w.tr);
+    assert.ok(!item.wrong.includes(item.right) && new Set(item.wrong).size === item.wrong.length, `${w.tr}: ${item.wrong}`);
+    assert.ok(item.wrong.every((x) => /^[a-zA-Z:-]+$/.test(x)), `${w.tr}: ${item.wrong}`);
+  }
+  assert.ok(n >= 300 && rich >= 120, `${n} Turkish words to ask, ${rich} with two or more wrong readings`);
 });
 
 test('read the script: every entry has a Latin reading, and the options are four different readings', async () => {

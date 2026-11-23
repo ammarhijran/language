@@ -97,6 +97,10 @@ function isNoun(key) {
 const pack = makePack({
   extraExamples,
   code: 'tr',
+  // Turkish is read as it is written, but not as English is: what an English
+  // reader tends to make of the letters that sound different (Practice →
+  // Tricky letters builds its wrong answers from these).
+  misread: { c: ['k', 's'], ç: ['k', 's'], ş: ['s'], ı: ['i'], ğ: ['g', 'y'], ö: ['o'], ü: ['u'], j: ['c'] },
   name: 'Turkish',
   nativeName: 'Türkçe',
   flag: '🇹🇷',

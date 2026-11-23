@@ -177,6 +177,11 @@ async function walk(browser, lang, pack, texts) {
 
   // Practice modes start; a lesson starts; the trip-essentials course starts.
   for (const m of ['mixed', 'listen', 'meaning', 'type', 'flashcard', 'build', 'dictation', 'script']) await open(`practice/${m}/all`, { wait: 350 });
+  if (lang === 'tr') {
+    await open('practice/letters/all', { selector: '.option' });
+    await page.click('.option');
+    await page.waitForSelector('.continue', { timeout: 8000 }).catch(() => problems.push('tr: the tricky-letters answer did not show'));
+  }
   if (lang === 'ja') {
     await open('practice/beats/all', { selector: '.options.syllables .option' });
     await page.click('.options.syllables .option');
