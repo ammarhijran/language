@@ -261,6 +261,43 @@ test('tricky letters (Turkish): the wrong readings are the special letters read 
   assert.ok(n >= 300 && rich >= 120, `${n} Turkish words to ask, ${rich} with two or more wrong readings`);
 });
 
+test('in context: the example sentence with the word taken out, when it stands there as written', async () => {
+  const { clozeItem } = await import('../js/exercises.js');
+  const { clozable, chooseReviewType } = await import('../js/stats.js');
+  const { typeFor } = await import('../js/views/practice.js');
+  const min = { tr: 450, uk: 500, ja: 600, ar: 200 };
+  for (const L of [tr, uk, ja, ar]) {
+    let n = 0;
+    for (const w of L.words) {
+      const item = clozeItem(L, w);
+      if (!item) continue;
+      n++;
+      assert.equal(item.before + item.answer + item.after, w.example.tr, `${L.code} ${w.tr}: the pieces make the sentence`);
+      assert.equal(item.answer.toLowerCase(), w.tr.toLowerCase(), `${L.code} ${w.tr}: the gap is the entry itself`);
+      assert.ok(/[\p{L}\p{N}]/u.test(item.before + item.after), `${L.code} ${w.tr}: more than the word alone`);
+      assert.equal(item.en, w.example.en);
+      assert.ok(clozable(L, w), `${L.code} ${w.tr}: the cheap test agrees`);
+    }
+    assert.ok(n >= min[L.code], `${L.code}: ${n} entries can be asked in context`);
+  }
+  // The word has to be a whole word, once; an inflected form or a sentence that is only the word is not asked.
+  const fake = (trWord, sentence) => clozeItem(tr, { tr: trWord, example: { tr: sentence, en: 'x' } });
+  assert.deepEqual(fake('ev', 'Bu ev çok büyük.'), { before: 'Bu ', after: ' çok büyük.', answer: 'ev', en: 'x' });
+  assert.equal(fake('ev', 'Evde kimse yok.'), null, 'part of a longer word');
+  assert.equal(fake('ev', 'Bu ev mi, o ev mi?'), null, 'twice: the second one would give it away');
+  assert.equal(fake('merhaba', 'Merhaba!'), null);
+  assert.equal(fake('şimdi', 'Şimdi geliyorum.').answer, 'Şimdi', 'as the sentence writes it');
+  assert.equal(clozeItem(tr, { tr: 'ev' }), null);
+  assert.deepEqual(clozeItem(ja, { tr: '家族', example: { tr: '私の家族は四人です。', en: 'x' } }), { before: '私の', after: 'は四人です。', answer: '家族', en: 'x' });
+  // It is one of the ways a word is practised and reviewed.
+  const w = tr.words.find((x) => clozeItem(tr, x) && !/\s/.test(x.tr));
+  assert.ok(new Set(Array.from({ length: 400 }, () => typeFor('mixed', w, tr))).has('cloze'));
+  const types = (card) => new Set(Array.from({ length: 400 }, () => chooseReviewType(card, w, tr)));
+  assert.ok(types({ ease: 2.5, interval: 6, reps: 3, lapses: 0 }).has('cloze'));
+  assert.ok(!types({ ease: 2.5, interval: 1, reps: 1, lapses: 0 }).has('cloze'), 'not on a word’s first reviews');
+  assert.ok(!new Set(Array.from({ length: 400 }, () => chooseReviewType({ ease: 2.5, interval: 6, reps: 3, lapses: 0 }, w))).has('cloze'), 'not without the pack');
+});
+
 test('read the script: every entry has a Latin reading, and the options are four different readings', async () => {
   const { readingLabel, scriptOptions } = await import('../js/exercises.js');
   for (const L of [uk, ja, ar]) {

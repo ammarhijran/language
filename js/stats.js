@@ -147,6 +147,8 @@ export function chooseReviewType(card, word, lang) {
   // Where stress is unwritten and has to be learned with the word (Ukrainian),
   // a single word the learner already knows is sometimes asked for its stress.
   if (lang?.stressPractice && word && FAMILIAR.has(status(card)) && !/\s/.test(word.tr.trim())) pool.push('stress');
+  // Past the first steps, a word whose example sentence has it as written is sometimes asked in that sentence.
+  if (lang && word && card.reps >= 2 && clozable(lang, word)) pool.push('cloze');
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -285,4 +287,15 @@ export function coursePairs(lang, cards = {}, max = 12) {
     picked.push({ a: p.a, b: p.b, contrast: p.contrast });
   }
   return picked;
+}
+
+/**
+ * Whether an entry's example sentence contains the entry as written (see
+ * clozeItem in exercises.js, which does the real work): a cheap test for
+ * choosing a review type without loading the exercise code.
+ */
+export function clozable(lang, w) {
+  const s = w.example?.tr;
+  if (!s || !w.tr || s.length <= w.tr.length + 1) return false;
+  return lang.code === 'ja' ? s.includes(w.tr) : s.toLowerCase().includes(w.tr.toLowerCase());
 }

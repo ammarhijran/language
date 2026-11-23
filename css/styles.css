@@ -544,6 +544,7 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .options.syllables { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-2); }
 .options.syllables .option { flex: 0 1 auto; min-width: 64px; justify-content: center; padding: .7rem .8rem; font-size: var(--fs-lg); }
 .options.syllables .option .mark { margin-inline-start: 0; }
+.cloze-sentence .gap-blank { min-width: 3.5ch; }
 .prompt-gloss { margin: var(--sp-1) 0 0; color: var(--muted); font-size: var(--fs-md); }
 .beats-line { margin: var(--sp-2) 0 0; font-size: var(--fs-sm); }
 .slip-btn { margin-top: var(--sp-2); min-height: var(--tap); font-size: var(--fs-sm); }

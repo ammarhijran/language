@@ -9,6 +9,7 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **In context** (Practice → In context; also in Mixed rounds and in reviews of words past their first steps): the word’s own example sentence is shown with a gap where the word goes, with its translation, and you choose the word; the answer shows and plays the whole sentence. Asked only when the sentence has the word exactly as the entry writes it, once — 533 Turkish, 613 Ukrainian, 719 Japanese and 248 Arabic entries.
 - **Copy** on every word and phrase page: puts the word on the clipboard, to paste into a message, a search or a note.
 - **My note** also shows on the back of flashcards and on new-word cards, not only under multiple-choice and typed answers.
 - **Ear training with the course’s own words:** besides the hand-picked pairs, Speak → Ear training now has a group “From the course: words one sound apart” — twelve pairs such as *kış / kuş*, *так / там*, *وَلَد / بَلَد*, the ones you have learned first — and the quiz draws from them too. For Japanese the pairs that matter most come first: voiced against unvoiced (あける / あげる) and words one beat longer (a long vowel, っ or ん).

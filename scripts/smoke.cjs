@@ -177,6 +177,10 @@ async function walk(browser, lang, pack, texts) {
 
   // Practice modes start; a lesson starts; the trip-essentials course starts.
   for (const m of ['mixed', 'listen', 'meaning', 'type', 'flashcard', 'build', 'dictation', 'script']) await open(`practice/${m}/all`, { wait: 350 });
+  // In context: the example sentence with a gap; the answer shows the whole sentence.
+  await open('practice/cloze/all', { selector: '.cloze-sentence .gap-blank' });
+  await page.click('.option');
+  await page.waitForSelector('.answer-sheet .example', { timeout: 8000 }).catch(() => problems.push(`${lang}: the in-context answer did not show its sentence`));
   if (lang === 'tr') {
     await open('practice/letters/all', { selector: '.option' });
     await page.click('.option');

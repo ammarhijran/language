@@ -315,6 +315,47 @@ export function stress(ctx, word, onDone) {
 }
 
 /**
+ * What an "in context" question needs: the entry's example sentence with the
+ * entry taken out — { before, after, answer, en }. Only when the example has
+ * the word exactly as the entry writes it, once, and is more than the word
+ * alone; an inflected form in the sentence is not asked. null otherwise.
+ */
+export function clozeItem(lang, w) {
+  const ex = w.example;
+  if (!ex?.tr || !ex.en || !w.tr) return null;
+  const s = ex.tr;
+  // Japanese has no spaces: the word as a run of characters. Elsewhere it has to be a whole word.
+  const esc = w.tr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = lang.code === 'ja' ? new RegExp(esc, 'gu') : new RegExp(`(?<![\\p{L}\\p{M}\\p{N}])${esc}(?![\\p{L}\\p{M}\\p{N}])`, 'giu');
+  const hits = [...s.matchAll(re)];
+  if (hits.length !== 1) return null;
+  const at = hits[0].index;
+  const before = s.slice(0, at);
+  const after = s.slice(at + hits[0][0].length);
+  if (!/[\p{L}\p{N}]/u.test(before + after)) return null; // the sentence is just the word
+  return { before, after, answer: hits[0][0], en: ex.en };
+}
+
+/**
+ * In context: the word's example sentence with a gap where the word goes,
+ * and its translation — choose the word. No audio and no reading until the
+ * answer, which shows and plays the whole sentence.
+ */
+export function cloze(ctx, word, onDone) {
+  const item = clozeItem(ctx.lang, word);
+  if (!item) return produce(ctx, word, onDone);
+  const { lang } = ctx;
+  const prompt = h('div', { class: 'prompt' },
+    h('p', { class: 'prompt-word build-en cloze-sentence', lang: lang.code, dir: lang.dir === 'rtl' ? 'rtl' : null },
+      item.before, h('span', { class: 'gap-blank', role: 'img', 'aria-label': 'blank' }), item.after),
+    h('p', { class: 'prompt-gloss' }, item.en));
+  return choice(ctx, word, onDone, {
+    kicker: 'Which word is missing?', prompt, label: (w) => w.tr, optionLang: lang.code,
+    extra: exampleBlock(ctx, word),
+  });
+}
+
+/**
  * What a "tricky letters" question needs (a pack with `misread`: letter →
  * the letters it is wrongly read as): how a one-word entry is read, and how
  * it would be read if those letters were misread — each of them alone, and
@@ -825,4 +866,4 @@ export function build(ctx, word, onDone, meta = {}) {
   return el;
 }
 
-export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build, script, stress, beats, letters };
+export const EXERCISES = { listen, meaning, produce, type, speak, flashcard, intro, build, script, stress, beats, letters, cloze };

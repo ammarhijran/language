@@ -1,6 +1,6 @@
 import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
-import { stressItem, beatItem, misreadItem } from '../exercises.js';
+import { stressItem, beatItem, misreadItem, clozeItem } from '../exercises.js';
 import { learnedWords, dueWords, trickyWords } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
 import { GROUPS, missedChips } from '../components.js';
@@ -15,6 +15,7 @@ const MODES = [
   { id: 'type', name: 'Spelling', desc: 'Type the word', icon: 'book' },
   { id: 'meaning', name: 'Reading', desc: 'See it, pick the meaning', icon: 'search' },
   { id: 'flashcard', name: 'Flashcards', desc: 'Recall and self-rate', icon: 'repeat' },
+  { id: 'cloze', name: 'In context', desc: 'Put the word back into its sentence', icon: 'search' },
   { id: 'build', name: 'Sentences', desc: 'Put the words in order', icon: 'tiles' },
   { id: 'dictation', name: 'Dictation', desc: 'Hear a sentence, build it', icon: 'ear' },
   // For scripts that are new to the learner (not Turkish, which is written in Latin letters).
@@ -52,6 +53,8 @@ export function typeFor(mode, word, lang = null) {
   if (mode === 'speak' && !recognitionSupported()) return 'flashcard';
   if (mode !== 'mixed') return mode;
   const pool = ['listen', 'meaning', 'produce', ...(isLong(word) ? [] : ['type']), ...(recognitionSupported() ? ['speak'] : []),
+    // …and the word in its example sentence, when it stands there as written.
+    ...(lang && clozeItem(lang, word) ? ['cloze'] : []),
     // A mixed round also asks how a word sounds, where the course teaches that: its stress, or its beats.
     ...(lang?.stressPractice && stressItem(lang, word) ? ['stress'] : []),
     ...(lang?.beatPractice && beatItem(lang, word) ? ['beats'] : []),
@@ -67,7 +70,8 @@ export default function practice(ctx, mode, scope) {
   const pool = wordsFor(ctx, scope).filter((w) => (mode !== 'script' || w.tr.trim().split(/\s+/).length <= 3)
     && (mode !== 'stress' || stressItem(ctx.lang, w)) // single words of two or more syllables
     && (mode !== 'beats' || beatItem(ctx.lang, w))
-    && (mode !== 'letters' || misreadItem(ctx.lang, w)));
+    && (mode !== 'letters' || misreadItem(ctx.lang, w))
+    && (mode !== 'cloze' || clozeItem(ctx.lang, w)));
   if (pool.length < 4) return notEnough('Not enough words yet', 'Learn a lesson first, or pick a topic to practise from.');
   if (mode === 'handsfree') return handsFree(ctx, pool);
   // Tricky letters: words with a real choice (two or more ways to misread them) come first.

@@ -42,7 +42,7 @@ turkish,ukrainian,japanese,arabic,learn,vocabulary,pronunciation,phrases,flashca
 ```
 
 ## Full description (App Store & Google Play)
-_2661 / 4000 characters_
+_2856 / 4000 characters_
 
 ```
 Learn Turkish, Ukrainian, Japanese or Arabic — the words people really use, and how to say them properly.
@@ -53,7 +53,7 @@ WORDS AND PHRASES THAT STICK
 • 1,180–1,310 everyday words and phrases per language in 77 topics, chosen by how often people use them
 • Short lessons with audio, example sentences and usage notes
 • Spaced repetition brings each word back right before you'd forget it
-• Exercises grow with you: listening, reading, multiple choice, typing, speaking and building sentences
+• Exercises grow with you: listening, reading, multiple choice, typing, speaking, words in context and building sentences
 
 HOW PEOPLE REALLY TALK
 • Polite and everyday forms side by side — what the textbook says, and what people actually say
@@ -77,10 +77,12 @@ PRONUNCIATION YOU CAN SEE
 • Kana and rōmaji for Japanese; full vowel marks and transliteration for Arabic — and you can hide them when you are ready to read the script
 • Say a word and get an instant score that shows which letters to work on
 • Alphabet and kana charts, sound guides and ear training
+• A sound drill for each language: tricky letters (Turkish), word stress (Ukrainian, Arabic), beats (Japanese)
 • Compare your phone's voices and pick the most natural one
 
 MADE TO FIT YOU
 • Add your own words and phrases and learn them like the course’s
+• Write your own note on any word — it shows up after each answer
 • Light and dark themes, your own colour and background — and larger text if you want it
 • Ukrainian and Arabic: phrases in the form a woman or a man says
 • Daily goal, streaks, weekly challenges and achievements

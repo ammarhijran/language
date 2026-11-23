@@ -4,7 +4,7 @@ import { newCard, review as schedule, missedToday, AGAIN, startOfDay } from '../
 import { missedChips } from '../components.js';
 import { dueWords, chooseReviewType, nextCategory } from '../stats.js';
 
-const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce', build: 'produce', stress: 'meaning' };
+const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce', build: 'produce', stress: 'meaning', cloze: 'produce' };
 
 export default function review(ctx) {
   const { lang, store } = ctx;
