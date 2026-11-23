@@ -643,6 +643,18 @@ function readerView(ctx, texts, text) {
     live.textContent = on ? 'Text hidden. Listen first, then reveal it.' : 'Text shown.';
   }
 
+  // The voice's speed, changed while listening: it is the app's speaking speed
+  // (Settings → Audio), and the next line is read with it.
+  const rateNow = Math.round(ctx.settings.rate * 100) / 100;
+  const speeds = [...new Set([0.6, 0.75, 0.9, 1, 1.1, rateNow])].sort((a, b) => a - b);
+  const speedSelect = h('select', {
+    class: 'read-select', id: 'read-speed', 'aria-label': 'Speaking speed',
+    onchange: () => {
+      ctx.store.updateSettings({ rate: Number(speedSelect.value) });
+      live.textContent = `Speaking speed ${speedSelect.value}×, from the next line.`;
+    },
+  }, speeds.map((v) => h('option', { value: String(v), selected: v === rateNow }, `${v}×`)));
+
   const trSelect = h('select', {
     class: 'read-select', 'aria-label': 'Translation',
     onchange: () => {
@@ -663,6 +675,7 @@ function readerView(ctx, texts, text) {
       toggle([icon('slow', 16), h('span', { class: 'read-long' }, 'Slow')], p.slow, (on) => { p.slow = on; ctx.store.updateSettings({ readSlow: on }); }, { 'aria-label': 'Slow' })),
     h('div', { class: 'read-options' },
       hasEn ? h('label', { class: 'read-select-wrap' }, h('span', { 'aria-hidden': 'true' }, 'EN'), trSelect) : null,
+      h('span', { class: 'read-select-wrap read-speed' }, speedSelect),
       hasReading
         ? toggle(lang.code === 'ja' ? label('Kana · rōmaji', 'Kana') : lang.code === 'ar' ? label('Transliteration', 'Latin') : 'Reading', p.reading, (on) => {
           p.reading = on;

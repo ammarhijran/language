@@ -9,6 +9,7 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **Speed in the reader** (Read & Listen, in a text’s player bar): the voice’s speed can be changed while listening — 0.6× to 1.1× — and the next line is read with it. It is the same speaking speed as in Settings → Audio.
 - **Two more word-list filters** (Progress → Word list): “Missed before”, the words you have got wrong in reviews with the most-missed first, and “With a note of mine”.
 - **A word’s record** (a word’s page): one line under the review date — how many times in a row you have answered it right, how often you missed it, and how far apart its reviews now are.
 - **Copy or share your saved phrases** (Phrasebook → ★ Saved): the whole list as text, one phrase a line with its reading and meaning — for a notes app, a message to yourself, or paper before a trip.
