@@ -489,3 +489,27 @@ test('easy to mix up: entries that are the same or one letter apart in the form 
   const kis = tr.words.find((w) => w.tr === 'kış');
   assert.ok(lookalikes(tr, kis).some((w) => w.tr === 'kuş'), 'kış (winter) / kuş (bird)');
 });
+
+test('ear training pairs from the course: one sound apart, the learner’s words first', async () => {
+  const { coursePairs } = await import('../js/stats.js');
+  const tr = languages.tr;
+  const all = coursePairs(tr, {}, 999);
+  assert.ok(all.length >= 40);
+  for (const { a, b, contrast } of all) {
+    assert.notEqual(a.id, b.id);
+    assert.equal([...tr.normalize(a.tr)].length, [...tr.normalize(b.tr)].length, `${a.tr} / ${b.tr}: the same length`);
+    assert.notEqual(tr.normalize(a.tr), tr.normalize(b.tr), 'words read the same are not a pair to hear');
+    assert.match(contrast, /^\S+ \/ \S+$/u, `${a.tr} / ${b.tr}: ${contrast}`);
+  }
+  assert.ok(all.some(({ a, b, contrast }) => [a.tr, b.tr].sort().join() === ['kış', 'kuş'].sort().join() && /^[ıu] \/ [ıu]$/.test(contrast)));
+  assert.equal(new Set(all.map(({ a, b }) => [a.id, b.id].sort().join('|'))).size, all.length, 'each pair once');
+  const uses = new Map();
+  for (const { a, b } of all) for (const w of [a, b]) uses.set(w.id, (uses.get(w.id) || 0) + 1);
+  assert.ok(Math.max(...uses.values()) <= 2, 'no word in more than two pairs');
+  assert.equal(coursePairs(tr, {}).length, 12);
+  // Pairs whose words the learner knows come first.
+  const last = all[all.length - 1];
+  const first = coursePairs(tr, { [last.a.id]: {}, [last.b.id]: {} })[0];
+  assert.deepEqual([first.a.id, first.b.id], [last.a.id, last.b.id]);
+  for (const L of Object.values(languages)) assert.ok(coursePairs(L, {}).length >= 10, L.code);
+});

@@ -1,6 +1,6 @@
 import { h, icon, shuffle, pick, bindKeys, set } from '../ui.js';
 import { pronunciationPanel, speakPractice, voiceBanner, exampleBlock, readingLine, cleanupScope, sayLater, audioControls, bottomSheet } from '../components.js';
-import { learnedWords } from '../stats.js';
+import { learnedWords, coursePairs } from '../stats.js';
 import { rich } from './grammar.js';
 import { soundWords } from '../sounddrill.js';
 
@@ -151,13 +151,21 @@ function sounds(ctx) {
 function ear(ctx) {
   const { lang } = ctx;
   const wrap = h('section', null);
+  // Besides the pack's hand-picked pairs: words of the course itself that are
+  // one sound apart, the learner's own first. They are said like any entry.
+  const own = coursePairs(lang, ctx.store.getCards(lang.code));
+  const groups = [
+    ...lang.minimalPairs,
+    ...(own.length ? [{ course: true, contrast: 'From the course: words one sound apart', pairs: own.map(({ a, b, contrast }) => [a.tr, a.en, b.tr, b.en, contrast]) }] : []),
+  ];
 
   function list() {
     set(wrap, 
       h('p', { class: 'muted' }, 'These word pairs differ by a single sound. Listen to both, then quiz yourself — training your ear is the fastest way to fix your own pronunciation.'),
       h('button', { type: 'button', class: 'btn primary wide', onclick: quiz }, icon('ear', 18), 'Quiz me (10 rounds)'),
-      lang.minimalPairs.map((g) => h('div', { class: 'card pair-group' },
-        lang.code === 'ar' || lang.code === 'ja' ? h('h2', null, rich(g.contrast, lang.code)) : h('h2', { lang: lang.code }, g.contrast),
+      groups.map((g) => h('div', { class: 'card pair-group' },
+        g.course ? h('h2', null, g.contrast)
+          : lang.code === 'ar' || lang.code === 'ja' ? h('h2', null, rich(g.contrast, lang.code)) : h('h2', { lang: lang.code }, g.contrast),
         g.pairs.map(([a, am, b, bm]) => h('div', { class: 'pair' },
           pairBtn(a, am), h('span', { class: 'vs' }, 'vs'), pairBtn(b, bm))))),
     );
@@ -169,7 +177,7 @@ function ear(ctx) {
   }
 
   function quiz() {
-    const all = lang.minimalPairs.flatMap((g) => g.pairs.map((p) => ({ contrast: g.contrast, p })));
+    const all = groups.flatMap((g) => g.pairs.map((p) => ({ contrast: p[4] || g.contrast, p })));
     const rounds = shuffle(all).concat(shuffle(all)).slice(0, 10);
     let i = 0;
     let score = 0;

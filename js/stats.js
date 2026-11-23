@@ -234,3 +234,39 @@ export function lookalikes(lang, word, max = 4) {
   }
   return out;
 }
+
+/**
+ * Pairs of the course's own words that are one sound apart — the same length,
+ * one letter different (kış / kuş) — for ear training: [{ a, b, contrast }],
+ * `contrast` being the two letters ("ı / u"). Pairs the learner has learned
+ * (`cards`) come first, then pairs with one learned word, then the rest; in
+ * course order within each, and no word in more than two pairs. Words read
+ * the same are left out: there is nothing to hear.
+ */
+export function coursePairs(lang, cards = {}, max = 12) {
+  const forms = formsOf(lang);
+  const out = [];
+  for (let i = 0; i < forms.length; i++) {
+    const x = forms[i];
+    const xs = [...x.k];
+    for (let j = i + 1; j < forms.length; j++) {
+      const y = forms[j];
+      if (y.n !== x.n || y.k === x.k || !oneApart(x.k, y.k)) continue;
+      const ys = [...y.k];
+      const at = xs.findIndex((c, k) => c !== ys[k]);
+      const known = (cards[x.w.id] ? 1 : 0) + (cards[y.w.id] ? 1 : 0);
+      out.push({ a: x.w, b: y.w, contrast: `${xs[at]} / ${ys[at]}`, known });
+    }
+  }
+  // No word in more than two pairs: twelve pairs should not be one word against six others.
+  const used = new Map();
+  const picked = [];
+  for (const p of out.sort((x, y) => y.known - x.known)) {
+    if (picked.length >= max) break;
+    if ((used.get(p.a.id) || 0) >= 2 || (used.get(p.b.id) || 0) >= 2) continue;
+    used.set(p.a.id, (used.get(p.a.id) || 0) + 1);
+    used.set(p.b.id, (used.get(p.b.id) || 0) + 1);
+    picked.push({ a: p.a, b: p.b, contrast: p.contrast });
+  }
+  return picked;
+}
