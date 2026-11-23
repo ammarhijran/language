@@ -28,6 +28,7 @@ import * as game from './game.js';
 import { initCelebrations } from './celebrate.js';
 import known from './views/known.js';
 import myWords from './views/mywords.js';
+import helpView from './views/help.js';
 import language from './views/language.js';
 import topic from './views/topic.js';
 import phrases from './views/phrases.js';
@@ -68,6 +69,7 @@ const ROUTES = {
   welcome,
   known,
   mywords: myWords,
+  help: helpView,
   language,
   journey,
   sync: syncView,
@@ -94,7 +96,7 @@ const TABS = [
 const TAB_OF = {
   topic: 'learn', grammar: 'learn', read: 'learn', known: 'learn', word: 'learn', placement: 'learn', mywords: 'learn',
   review: 'practice', speak: 'practice', numbers: 'practice',
-  progress: 'me', journey: 'me', settings: 'me', sync: 'me', language: 'me',
+  progress: 'me', journey: 'me', settings: 'me', sync: 'me', language: 'me', help: 'me',
   search: null, welcome: null,
 };
 // Detail screens opened from many places: they light up the tab of the screen
@@ -303,7 +305,7 @@ function titleOf(name, params) {
     case 'grammar': return params[0] ? (lang.grammar || []).find((l) => l.id === params[0])?.title || 'Grammar' : 'Grammar';
     default: return {
       review: 'Review', practice: 'Practice', speak: 'Speak', progress: 'Progress', settings: 'Settings', welcome: 'Welcome',
-      known: 'Already learned', mywords: 'My words', language: 'Languages', sync: 'Sync', read: 'Read & Listen', phrases: 'Phrasebook', search: 'Search', me: 'Me', numbers: 'Numbers', placement: 'Placement check',
+      known: 'Already learned', mywords: 'My words', help: 'Tips', language: 'Languages', sync: 'Sync', read: 'Read & Listen', phrases: 'Phrasebook', search: 'Search', me: 'Me', numbers: 'Numbers', placement: 'Placement check',
     }[name];
   }
 }

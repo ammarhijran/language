@@ -142,6 +142,9 @@ body.showing { overflow: hidden; }
   background: var(--surface-2); font-weight: 800; font-size: var(--fs-sm);
 }
 .link-list a.done .ll-num { background: var(--good-soft); color: var(--done); }
+/* Tips: the whole sentence, not two lines of it. */
+.help .ll-text small { display: block; overflow: visible; -webkit-line-clamp: unset; line-clamp: unset; white-space: normal; }
+.help .link-list a > .icon { flex: none; }
 .ll-icon { flex-shrink: 0; width: 30px; text-align: center; font-size: var(--fs-xl); }
 .link-list a.done .ll-icon { color: var(--done); font-weight: 800; }
 .ll-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }

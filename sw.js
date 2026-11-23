@@ -65,6 +65,7 @@ const ASSETS = [
   'js/views/home.js',
   'js/views/journey.js',
   'js/views/known.js',
+  'js/views/help.js',
   'js/views/mywords.js',
   'js/views/language.js',
   'js/views/learn.js',

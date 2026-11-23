@@ -70,7 +70,7 @@ async function walk(browser, lang, pack, texts) {
   const enc = encodeURIComponent;
 
   // The main screens.
-  for (const r of ['', 'learn', 'learn/g/phrases', 'learn/g/talk', 'learn/g/grammar', 'learn/g/read', 'review', 'practice', 'phrases', 'phrases/kit', 'phrases/mine', 'me',
+  for (const r of ['', 'learn', 'learn/g/phrases', 'learn/g/talk', 'learn/g/grammar', 'learn/g/read', 'review', 'practice', 'phrases', 'phrases/kit', 'phrases/mine', 'me', 'help',
     'progress', 'journey', 'settings', 'sync', 'search', 'known', 'speak', 'speak/drill', 'speak/ear', 'speak/alphabet', 'speak/sounds', 'grammar', 'read']) await open(r, { wait: 220 });
 
   // Speak → Sounds: "Practise this sound" opens the speaking drill with its words.

@@ -562,3 +562,28 @@ test('the activity calendar: whole weeks from Monday, levels against the daily g
   // On a Sunday the week is complete and nothing is in the future.
   assert.equal(activityCalendar(() => ({ n: 1 }), { now: new Date(2026, 10, 29, 23, 0) }).filter((c) => c.future).length, 0);
 });
+
+test('the Tips page: every tip opens a real screen, and only what applies to the language is listed', async () => {
+  const { tips } = await import('../js/views/help.js');
+  const { readFileSync } = await import('node:fs');
+  const app = readFileSync(new URL('../js/app.js', import.meta.url), 'utf8');
+  const routes = new Set([...app.match(/const ROUTES = \{([\s\S]*?)\n\};/)[1].matchAll(/^\s*'?([a-z]*)'?\s*[:,]/gm)].map((m) => m[1]));
+  for (const name of ['learn', 'review', 'practice', 'speak', 'read', 'mywords', 'settings', 'sync', 'help']) assert.ok(routes.has(name), `${name} is a route`);
+  for (const L of Object.values(languages)) {
+    const groups = tips(L, { reminders: true, scope: '/all' });
+    const items = groups.flatMap((g) => g.items);
+    assert.ok(groups.length >= 5 && items.length >= 18);
+    for (const it of items) {
+      assert.ok(it.name && it.text.length > 20 && it.emoji, it.name);
+      assert.match(it.href, /^#\/[a-z]+(\/[a-z-]+)*$/, it.href);
+      assert.ok(routes.has(it.href.split('/')[1]), `${it.name}: ${it.href} is not a screen`);
+    }
+    assert.equal(new Set(items.map((x) => x.name)).size, items.length, 'no tip twice');
+    // Its own sound exercise, by name.
+    const sound = items.find((x) => /^#\/practice\/(letters|stress|beats)\/all$/.test(x.href));
+    assert.equal(sound?.name, { tr: 'Tricky letters', uk: 'Word stress', ar: 'Word stress', ja: 'Count the beats' }[L.code]);
+    assert.ok(items.some((x) => x.href === '#/practice/cloze/all'));
+    assert.ok(!tips(L).some((g) => g.items.some((x) => x.name === 'Daily reminder')), 'no reminder tip where there are none');
+    assert.ok(tips(L).flatMap((g) => g.items).some((x) => x.href === '#/practice/cloze'), 'no scope: among the learned words');
+  }
+});

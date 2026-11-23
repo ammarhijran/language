@@ -9,6 +9,7 @@
 - **Practice screen:** the ten modes are compact cards (icon and name) with one line below describing the selected mode, so “What to practise” and Start are reached with much less scrolling.
 
 ### Added
+- **Tips** (Me → Tips): a short guide to what the app can do and where each thing is — lessons and reviews, the practice modes, pronunciation, Read & Listen, My words and notes, themes, backup and sync — one line each, with a link that opens it. It names the language’s own sound exercise and leaves out what does not apply (no reminder tip on the website).
 - **Four new achievements** (52 in all): In Context (30 words put back into their sentences), Sound Sense (50 stress, beats or tricky-letter questions right), Word Collector (learn 10 words you added yourself) and Memory Hooks (your own note on 10 words).
 - **Share** on word and phrase pages (where the device has a share sheet): sends the word with its reading and meaning — “水 (みず · mizu) — water” — to a chat, mail or notes app.
 - **Keep playing** (Read & Listen, in the player bar; “⏭ Next” on narrow screens): when a text ends, the next one in the list opens and starts by itself — the stories and speeches become one long listening session. It stops after the last text, and the switch is remembered.

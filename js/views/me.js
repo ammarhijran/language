@@ -80,7 +80,8 @@ export default function me(ctx) {
       row('#/known', icon('check', 22), 'Already learned', 'Tick words you already know so lessons skip them'),
       row('#/language', h('span', { class: 'me-flag' }, lang.flag), 'Language', `Learning ${lang.name} · switch to another`),
       row('#/sync', icon('repeat', 22), 'Sync between devices', 'Move your progress to another phone or computer'),
-      row('#/settings', icon('settings', 22), 'Settings', 'Audio, lessons, game features, backup')),
+      row('#/settings', icon('settings', 22), 'Settings', 'Audio, lessons, game features, backup'),
+      row('#/help', h('span', { class: 'me-flag' }, '💡'), 'Tips', 'What Lisan can do, and where each thing is')),
   );
 }
 
