@@ -450,6 +450,8 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .form-message { margin: 0 0 var(--sp-3); font-weight: 600; }
 .form-message:empty { display: none; }
 .own-summary { margin-top: var(--sp-4); }
+.own-list-panel { margin-top: var(--sp-3); }
+.own-list .own-body { min-height: 7.5rem; }
 .own-words .pr-tools { gap: var(--sp-1); }
 /* On phones a half-width tile is too narrow for the icon and a long title side by
    side, so the icon goes on top and the title gets the tile's full width. */

@@ -50,6 +50,44 @@ export function ownWordProblem(lang, { id = null, tr = '', en = '', read = '' })
   return null;
 }
 
+/** How many lines of a pasted list are read at once. */
+export const LIST_LINES_MAX = 300;
+const SEPARATORS = [/\t+/, /\s*=\s*/, /\s+[-–—]\s+/, /\s*;\s*/, /\s*:\s+/];
+const BRACKETED = /^(.*?)\s*[(（\[［]\s*([^()（）[\]［］]+?)\s*[)）\]］]\s*$/u;
+
+/**
+ * A pasted list, one entry per line: "word – meaning", "word = meaning",
+ * "word; meaning", or columns copied from a spreadsheet (word, meaning,
+ * reading, note, separated by tabs). In languages with a reading field the
+ * reading can follow the word in brackets: "蝶 (ちょう) = butterfly".
+ * Returns { entries: [{ tr, en, read, note, line }], unread: [{ line, text }] } —
+ * `unread` are the lines without a separator or a meaning; `line` counts from 1.
+ */
+export function parseWordList(text, lang) {
+  const entries = [];
+  const unread = [];
+  const lines = String(text || '').split(/\r?\n/);
+  for (let i = 0; i < lines.length && entries.length + unread.length < LIST_LINES_MAX; i++) {
+    const raw = lines[i].trim();
+    if (!raw) continue;
+    let tr = ''; let en = ''; let read = ''; let note = '';
+    if (raw.includes('\t')) {
+      [tr = '', en = '', read = '', note = ''] = raw.split(/\t/).map((c) => c.trim());
+    } else {
+      const sep = SEPARATORS.slice(1).map((re) => re.exec(raw)).filter((m) => m && m.index > 0).sort((a, b) => a.index - b.index)[0];
+      if (sep) { tr = raw.slice(0, sep.index).trim(); en = raw.slice(sep.index + sep[0].length).trim(); }
+    }
+    const field = readingField(lang);
+    const bracket = field && !read ? BRACKETED.exec(tr) : null;
+    if (bracket && bracket[1] && !field.check(bracket[2])) { tr = bracket[1]; read = bracket[2]; }
+    if (field && read && field.check(read)) read = ''; // not a reading in the right script: leave it out
+    if (!field) { note ||= read; read = ''; } // no reading field: a third column is a note
+    if (tr && en) entries.push({ tr, en, read, note, line: i + 1 });
+    else unread.push({ line: i + 1, text: raw.slice(0, 40) });
+  }
+  return { entries, unread };
+}
+
 export default function myWords(ctx, editId) {
   const { lang, store } = ctx;
   const reading = readingField(lang);
@@ -143,6 +181,47 @@ export default function myWords(ctx, editId) {
     }));
   }
 
+  // Several at once: a pasted list, one "word – meaning" per line.
+  const listBody = h('textarea', {
+    class: 'own-body', id: 'mw-list', rows: '6', spellcheck: 'false', autocapitalize: 'off', dir: 'auto',
+    placeholder: `${lang.sampleWords?.[0]?.[0] || 'word'} – ${lang.sampleWords?.[0]?.[1] || 'meaning'}\n${lang.sampleWords?.[1]?.[0] || 'word'} – ${lang.sampleWords?.[1]?.[1] || 'meaning'}`,
+  });
+  const listMessage = h('p', { class: 'form-message', role: 'status', 'aria-live': 'polite' });
+  function addList() {
+    const { entries, unread } = parseWordList(listBody.value, lang);
+    if (!entries.length && !unread.length) { set(listMessage, 'Paste or type a list first: one word and its meaning per line.'); listBody.focus(); return; }
+    let added = 0;
+    const skipped = unread.map((u) => `line ${u.line} (no meaning found)`);
+    const done = new Set(); // lines that were added
+    for (const e of entries) {
+      const problem = ownWordProblem(lang, e);
+      const id = problem ? null : store.saveOwnWord(lang.code, e);
+      if (id) { added++; done.add(e.line); ctx.refreshOwnWords?.(); continue; } // refreshed each time, so a word twice in the list is caught
+      skipped.push(`“${e.tr}” (${problem ? (/already/.test(problem.message) ? (problem.word ? 'already in the course' : 'already in your words') : problem.message) : `the list is full: ${store.OWN_WORDS_MAX} words`})`);
+    }
+    // What was added leaves the box; what was not stays there to be corrected.
+    listBody.value = listBody.value.split(/\r?\n/).filter((l, i) => l.trim() && !done.has(i + 1)).join('\n');
+    paint();
+    set(listMessage, `Added ${added} ${added === 1 ? 'entry' : 'entries'}.`,
+      skipped.length ? ` Not added: ${skipped.slice(0, 6).join(', ')}${skipped.length > 6 ? ` and ${skipped.length - 6} more` : ''}.` : null);
+  }
+  const listPanel = h('div', { class: 'own-list-panel', hidden: true },
+    h('label', { class: 'field', for: 'mw-list' }, h('span', null, 'One entry per line'), listBody),
+    h('p', { class: 'hint' }, 'Write the word, then a dash, “=” or “;”, then its meaning — or paste two columns from a spreadsheet.',
+      reading ? ` The ${reading.label.toLowerCase().replace('reading in ', '')} can follow the word in brackets: ${lang.code === 'ja' ? '蝶 (ちょう) = butterfly' : 'كتاب (kitāb) = book'}.` : ''),
+    listMessage,
+    h('button', { type: 'button', class: 'btn primary', onclick: addList }, icon('check', 16), 'Add them all'));
+  const listToggle = h('button', {
+    type: 'button', class: 'btn small', 'aria-expanded': 'false', 'aria-controls': 'mw-list-panel',
+    onclick: () => {
+      listPanel.hidden = !listPanel.hidden;
+      listToggle.setAttribute('aria-expanded', String(!listPanel.hidden));
+      if (!listPanel.hidden) listBody.focus();
+    },
+  }, 'Add several at once');
+  listPanel.id = 'mw-list-panel';
+  const listCard = h('section', { class: 'card form own-list' }, listToggle, listPanel);
+
   const field = (id, label, el, hint = null) => (el ? [
     h('label', { class: 'field', for: `mw-${id}` }, h('span', null, label), el),
     hint ? h('p', { class: 'hint' }, hint) : null,
@@ -164,6 +243,7 @@ export default function myWords(ctx, editId) {
     h('h1', null, `${OWN_CATEGORY.emoji} ${OWN_CATEGORY.name}`),
     h('p', { class: 'muted' }, `Words and phrases you met somewhere else — a sign, a song, a friend. Add them here and learn, review and practise them like the course’s. The ${lang.name} voice reads them; the app does not check or translate them.`),
     form,
+    listCard,
     summary,
     list,
     h('p', { class: 'hint' }, 'Your words stay on this device and in a backup file you export (Settings → Your data). They are not part of sync codes.'));

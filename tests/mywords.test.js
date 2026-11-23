@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { languages } from './all-languages.js';
 import * as store from '../js/store.js';
 import { OWN_CATEGORY } from '../js/languages/common.js';
-import { ownWordProblem, readingField } from '../js/views/mywords.js';
+import { ownWordProblem, readingField, parseWordList, LIST_LINES_MAX } from '../js/views/mywords.js';
 import { newCard } from '../js/srs.js';
 
 const { tr, uk, ja, ar } = languages;
@@ -243,4 +243,63 @@ test('own words are not part of the course: finishing every course topic still c
     store._resetAll();
     game.forgetSummaries();
   }
+});
+
+test('a pasted list: one entry per line, with the usual separators', () => {
+  const { entries, unread } = parseWordList([
+    'kelebek - butterfly',
+    '',
+    '  uğur böceği – ladybird, ladybug  ',
+    'Nerede oturuyorsun? = Where do you live?',
+    'yağmurluk; raincoat',
+    'şemsiye: umbrella',
+    'saat 3:00 — three o’clock',
+    'tek-başına - on one’s own',
+    'justaword',
+    '= no word',
+    'no meaning -   ',
+    'çekiç\thammer\ta tool\tfrom the shop',
+  ].join('\r\n'), tr);
+  assert.deepEqual(entries.map((e) => [e.line, e.tr, e.en]), [
+    [1, 'kelebek', 'butterfly'],
+    [3, 'uğur böceği', 'ladybird, ladybug'],
+    [4, 'Nerede oturuyorsun?', 'Where do you live?'],
+    [5, 'yağmurluk', 'raincoat'],
+    [6, 'şemsiye', 'umbrella'],
+    [7, 'saat 3:00', 'three o’clock'],
+    [8, 'tek-başına', 'on one’s own'],
+    [12, 'çekiç', 'hammer'],
+  ]);
+  assert.deepEqual(unread.map((u) => u.line), [9, 10, 11]);
+  // Without a reading field, a third column is a note (a fourth wins).
+  assert.equal(entries.at(-1).note, 'from the shop');
+  assert.equal(parseWordList('çekiç\thammer\ta tool', tr).entries[0].note, 'a tool');
+  assert.ok(entries.every((e) => e.read === ''));
+  assert.deepEqual(parseWordList('', tr), { entries: [], unread: [] });
+  assert.deepEqual(parseWordList(' \n\n', tr), { entries: [], unread: [] });
+});
+
+test('a pasted list: readings in brackets or in a third column, in the right script only', () => {
+  const j = parseWordList(['蝶 (ちょう) = butterfly', '住所（じゅうしょ） - address', '傘 [kasa] = umbrella', '金槌\thammer\tかなづち\tfrom the shop', '図書館\tlibrary\ttoshokan', 'ちょうちょ = butterfly'].join('\n'), ja).entries;
+  assert.deepEqual(j.map((e) => [e.tr, e.read, e.en]), [
+    ['蝶', 'ちょう', 'butterfly'],
+    ['住所', 'じゅうしょ', 'address'],
+    ['傘 [kasa]', '', 'umbrella'], // not kana: the brackets stay part of what was typed
+    ['金槌', 'かなづち', 'hammer'],
+    ['図書館', '', 'library'],
+    ['ちょうちょ', '', 'butterfly'],
+  ]);
+  assert.equal(j[3].note, 'from the shop');
+  const a = parseWordList(['كتاب (kitāb) = book', 'قلم (قلم) = pen', 'فراشة\tbutterfly\tfarāsha'].join('\n'), ar).entries;
+  assert.deepEqual(a.map((e) => [e.tr, e.read]), [['كتاب', 'kitāb'], ['قلم (قلم)', ''], ['فراشة', 'farāsha']]);
+  // In a language without readings, brackets are part of the word.
+  assert.equal(parseWordList('gitmek (to) = to go', tr).entries[0].tr, 'gitmek (to)');
+});
+
+test('a pasted list: at most LIST_LINES_MAX lines are read at once', () => {
+  const text = Array.from({ length: LIST_LINES_MAX + 20 }, (_, i) => `kelime${i} = word ${i}`).join('\n');
+  const { entries, unread } = parseWordList(text, tr);
+  assert.equal(entries.length, LIST_LINES_MAX);
+  assert.equal(unread.length, 0);
+  assert.equal(entries.at(-1).line, LIST_LINES_MAX);
 });
