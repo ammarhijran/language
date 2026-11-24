@@ -125,32 +125,38 @@ async function compose(browser, t, shot, png) {
   await page.close();
 }
 
+// The name on the feature graphic.
+const APP_NAME = 'Lisan';
+
 async function graphics(browser) {
   const dir = path.join(OUT, 'graphics');
   fs.mkdirSync(dir, { recursive: true });
-  const logo = fs.readFileSync(path.join(__dirname, '..', 'icons', 'icon.svg'), 'utf8');
+  // The app icon: four tiles, one per language, on cream (design/icons/, see its README).
+  const logo = fs.readFileSync(path.join(__dirname, '..', 'design', 'icons', 'lisan-icon-512.svg'), 'utf8');
+  const sized = (px) => logo.replace(/<svg ([^>]*?)width="\d+" height="\d+"/, `<svg $1width="${px}" height="${px}"`);
 
   // Google Play app icon: 512×512, full-bleed square (Play applies its own mask).
   let page = await browser.newPage({ viewport: { width: 512, height: 512 } });
-  await page.setContent(`<body style="margin:0">${logo.replace('<svg ', '<svg width="512" height="512" ').replace('rx="112"', 'rx="0"')}</body>`);
+  await page.setContent(`<body style="margin:0">${sized(512)}</body>`);
   await page.screenshot({ path: path.join(dir, 'play-icon-512.png') });
   await page.close();
 
   // App Store icon: 1024×1024, no transparency, no rounded corners.
   page = await browser.newPage({ viewport: { width: 1024, height: 1024 } });
-  await page.setContent(`<body style="margin:0">${logo.replace('<svg ', '<svg width="1024" height="1024" ').replace('rx="112"', 'rx="0"')}</body>`);
+  await page.setContent(`<body style="margin:0">${sized(1024)}</body>`);
   await page.screenshot({ path: path.join(dir, 'app-store-icon-1024.png') });
   await page.close();
 
-  // Google Play feature graphic: 1024×500.
+  // Google Play feature graphic: 1024×500, in the icon's own colours.
   page = await browser.newPage({ viewport: { width: 1024, height: 500 } });
   await page.setContent(`<body style="margin:0;width:1024px;height:500px;overflow:hidden;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-      background:radial-gradient(circle at 15% 10%, #e0283f 0%, #c8102e 45%, #8f0b21 100%);display:flex;align-items:center;gap:44px;padding:0 70px;box-sizing:border-box">
-    <div style="flex-shrink:0;width:170px;height:170px;border-radius:40px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.3)">${logo.replace('<svg ', '<svg width="170" height="170" ')}</div>
-    <div style="color:#fff">
-      <div style="font-size:88px;font-weight:800;letter-spacing:-.02em;line-height:1">Lisan</div>
-      <div style="font-size:36px;font-weight:600;margin-top:14px;opacity:.95">Turkish · Ukrainian · Japanese · Arabic</div>
-      <div style="font-size:26px;margin-top:18px;opacity:.85">Merhaba · Привіт · こんにちは · مرحبا</div>
+      background:#F6F1E7;display:flex;align-items:center;gap:40px;padding:0 64px;box-sizing:border-box">
+    <div style="flex-shrink:0;width:300px;height:300px;margin-left:-40px">${sized(300)}</div>
+    <div style="color:#2A2520">
+      <div style="font-size:92px;font-weight:800;letter-spacing:-.02em;line-height:1">${APP_NAME}</div>
+      <div style="font-size:30px;font-weight:600;margin-top:16px;white-space:nowrap">
+        <span style="color:#C4432F">Turkish</span> · <span style="color:#2F6FB3">Ukrainian</span> · <span style="color:#A86A0B">Japanese</span> · <span style="color:#2E8B6E">Arabic</span></div>
+      <div style="font-size:26px;margin-top:18px;color:#5F574D">Merhaba · Привіт · こんにちは · مرحبا</div>
     </div></body>`);
   await page.screenshot({ path: path.join(dir, 'play-feature-graphic-1024x500.png') });
   await page.close();
@@ -158,7 +164,8 @@ async function graphics(browser) {
 
 (async () => {
   const browser = await chromium.launch();
-  for (const t of TARGETS) {
+  // `node scripts/store-screenshots.cjs graphics`: only the icon and the feature graphic.
+  for (const t of process.argv[2] === 'graphics' ? [] : TARGETS) {
     for (const shot of SHOTS) {
       const png = await capture(browser, t, shot, seedState(shot.lang));
       await compose(browser, t, shot, png);

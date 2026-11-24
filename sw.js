@@ -35,6 +35,7 @@ const ASSETS = [
   'icons/icon.svg',
   'icons/icon-192.png',
   'icons/icon-512.png',
+  'icons/icon-maskable-512.png',
   'js/app.js',
   'js/boot.js',
   'js/celebrate.js',
