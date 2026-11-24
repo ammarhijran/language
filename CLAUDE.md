@@ -5,8 +5,8 @@ file is about how to work on it without repeating mistakes already made.
 
 ## What it is
 
-Four Tongues (called Lisan until November 2026): a zero-dependency PWA (plain ES modules, no build step for development) wrapped with
-Capacitor for Android and iOS. Four language packs — Turkish, Ukrainian, Japanese, Arabic (MSA and
+Four Tongues (called Lisan until November 2026): a zero-dependency PWA (plain ES modules, no build
+step for development) wrapped with Capacitor for Android and iOS. Four language packs — Turkish, Ukrainian, Japanese, Arabic (MSA and
 Egyptian) — under `js/languages/<code>/`, built with `makePack()` in `js/languages/common.js`.
 
 ## Checks before every commit
@@ -34,9 +34,10 @@ desktop viewport missed. Use it for anything with wide content in narrow columns
 
 ## Builds
 
-Every push to the working branch runs the Android workflow, which publishes
-`Lisan-1.0.0-build<N>.apk` on the `android-test-build` release (N is that workflow's run number).
-A test-only push also takes a number. A run can get stuck or be cancelled on the runner; pushing
+Every push to the working branch or to `main` runs the Android workflow, which publishes
+`Lisan-1.0.0-build<N>.apk` on the `android-test-build` release (N is that workflow's run number;
+the file keeps the old name). The release holds only the newest APK. A test-only or doc-only push
+also takes a number, and pushing both branches takes two. A run can get stuck or be cancelled on the runner; pushing
 the next commit is the way forward (a stuck run cannot be re-run while it shows as running).
 
 ## Content rules
@@ -135,6 +136,8 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   sentence and offer what can be done instead.
 - "Continuous learning" has no tool behind it here; it has meant: fold what the session taught
   into this file. (A skill named `learn` is a tutoring mode and is not that.)
+- When asked again to update the docs right after doing so, check what has changed since
+  (`git status`, the remote branches) and say plainly if nothing has, instead of inventing edits.
 - An open-ended "keep improving" goal produces many small builds. Prefer one verified improvement
   per push, skip sending test-only builds, and stop cleanly when the goal is cleared.
 
