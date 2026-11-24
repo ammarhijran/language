@@ -9,7 +9,7 @@ export const lessons = [
     "sections": [
       {
         "heading": "Letters that join",
-        "body": "Arabic is written and read **right to left**, and the letters of a word are joined, like handwriting. Most letters connect on both sides, but six — **ا د ذ ر ز و** — never join to the letter after them, which leaves small gaps inside words: in **وَرْدَة** (warda, rose) no two letters are joined at all. A letter can have up to four shapes (alone, at the start, in the middle, at the end of a word), but its core shape stays recognisable.\n\nIn newspapers, signs and text messages the short vowels are left out — readers simply know the words. Lisan shows them everywhere so you can pronounce everything you read."
+        "body": "Arabic is written and read **right to left**, and the letters of a word are joined, like handwriting. Most letters connect on both sides, but six — **ا د ذ ر ز و** — never join to the letter after them, which leaves small gaps inside words: in **وَرْدَة** (warda, rose) no two letters are joined at all. A letter can have up to four shapes (alone, at the start, in the middle, at the end of a word), but its core shape stays recognisable.\n\nIn newspapers, signs and text messages the short vowels are left out — readers simply know the words. Four Tongues shows them everywhere so you can pronounce everything you read."
       },
       {
         "heading": "Short vowels and other marks",
@@ -112,7 +112,7 @@ export const lessons = [
       },
       {
         "heading": "Linking words together",
-        "body": "Two things happen when words are linked in a sentence. First, the **a of al- drops after a vowel**: فِي + الْبَيْت is said **fī l-bayt** (sounds like “fil-bayt”). Second, nouns carry short **case endings** (-u, -a, -i, or -un, -an, -in with tanwīn) that change with their role in the sentence.\n\nLisan’s transliterations pronounce these endings inside a sentence and drop them on the last word, which is how Arabic is read aloud (the **pausal form**). In everyday speech they are dropped altogether, so you don’t need to master them yet.",
+        "body": "Two things happen when words are linked in a sentence. First, the **a of al- drops after a vowel**: فِي + الْبَيْت is said **fī l-bayt** (sounds like “fil-bayt”). Second, nouns carry short **case endings** (-u, -a, -i, or -un, -an, -in with tanwīn) that change with their role in the sentence.\n\nFour Tongues’ transliterations pronounce these endings inside a sentence and drop them on the last word, which is how Arabic is read aloud (the **pausal form**). In everyday speech they are dropped altogether, so you don’t need to master them yet.",
         "examples": [
           {
             "tr": "الْكِتَابُ فِي الْبَيْتِ.",

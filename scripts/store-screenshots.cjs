@@ -12,12 +12,14 @@ const path = require('path');
 
 const BASE = process.env.LISAN_URL || 'http://localhost:8000/';
 const OUT = path.join(__dirname, '..', 'store');
+// The id of the current “What’s new” list (js/news.js), so the seeded state has already seen it.
+const NEWS_ID = (/id: '([^']+)'/.exec(fs.readFileSync(path.join(__dirname, '..', 'js', 'news.js'), 'utf8')) || [])[1] || '';
 
 const SHOTS = [
-  { id: '01-home', lang: 'tr', title: 'Turkish, Ukrainian, Japanese or Arabic', sub: 'Words, phrases, grammar and pronunciation — works offline', go: '#/' },
+  { id: '01-home', lang: 'tr', title: 'Turkish, Ukrainian, Japanese or Arabic', sub: 'Words, phrases, grammar and pronunciation. Works offline', go: '#/' },
   { id: '02-lesson', lang: 'ja', title: 'Every word with its sound and reading', sub: 'Kana, rōmaji, syllables and an example sentence', go: 'lesson' },
-  { id: '03-speak', lang: 'tr', title: 'Say it — and see what to fix', sub: 'Pronunciation scores show which letters to work on', go: 'speak' },
-  { id: '04-phrasebook', lang: 'ar', title: 'A phrasebook for real situations', sub: 'Polite and everyday forms — Standard and Egyptian Arabic', go: '#/phrases' },
+  { id: '03-speak', lang: 'tr', title: 'Say it, and see what to fix', sub: 'Pronunciation scores show which letters to work on', go: 'speak' },
+  { id: '04-phrasebook', lang: 'ar', title: 'A phrasebook for real situations', sub: 'Polite and everyday forms. Standard and Egyptian Arabic', go: '#/phrases' },
   { id: '05-read', lang: 'uk', title: 'Read and listen, line by line', sub: 'Dialogues, stories and speeches with a tap-a-word glossary', go: '#/read/uk-the-mitten-tale' },
   { id: '06-progress', lang: 'tr', title: 'Reviews arrive right before you’d forget', sub: 'Spaced repetition, streaks and daily goals', go: '#/progress' },
 ];
@@ -63,7 +65,8 @@ function seedState(lang) {
     const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     days[key] = { reviews: 8 + ((k * 7) % 13), learned: k % 3 ? 0 : 5, practiced: 4, correct: 8 };
   }
-  return JSON.stringify({ settings: { autoplay: false, onboarded: true, lang }, progress: { tr: { cards, days } } });
+  // (newsSeen: the “New in …” card is not what a store screenshot should show)
+  return JSON.stringify({ settings: { autoplay: false, onboarded: true, lang, newsSeen: NEWS_ID }, progress: { tr: { cards, days } } });
 }
 
 async function capture(browser, t, shot, state) {
@@ -111,7 +114,7 @@ async function compose(browser, t, shot, png) {
   const frameW = Math.round(t.w * t.frame);
   const radius = Math.round(frameW * 0.075);
   await page.setContent(`<!doctype html><html><body style="margin:0;width:${t.w}px;height:${t.h}px;overflow:hidden;
-      background:radial-gradient(circle at 20% 0%, #e0283f 0%, #c8102e 45%, #8f0b21 100%);
+      background:radial-gradient(circle at 20% 0%, #9a4130 0%, #7A2F1F 45%, #5a2014 100%);
       font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;display:flex;flex-direction:column;align-items:center">
     <h1 style="color:#fff;font-size:${t.title}px;font-weight:800;line-height:1.08;text-align:center;letter-spacing:-.01em;margin:${Math.round(t.h * 0.055)}px ${Math.round(t.w * 0.07)}px 0">${shot.title}</h1>
     <p style="color:rgba(255,255,255,.86);font-size:${t.sub}px;line-height:1.3;text-align:center;margin:${Math.round(t.sub * 0.6)}px ${Math.round(t.w * 0.09)}px 0">${shot.sub}</p>
@@ -126,13 +129,13 @@ async function compose(browser, t, shot, png) {
 }
 
 // The name on the feature graphic.
-const APP_NAME = 'Lisan';
+const APP_NAME = 'Four Tongues';
 
 async function graphics(browser) {
   const dir = path.join(OUT, 'graphics');
   fs.mkdirSync(dir, { recursive: true });
-  // The app icon: four tiles, one per language, on cream (design/icons/, see its README).
-  const logo = fs.readFileSync(path.join(__dirname, '..', 'design', 'icons', 'lisan-icon-512.svg'), 'utf8');
+  // The app icon: a tea glass whose steam becomes a speech bubble, on terracotta (design/icons/, see its README).
+  const logo = fs.readFileSync(path.join(__dirname, '..', 'design', 'icons', 'app-icon-512.svg'), 'utf8');
   const sized = (px) => logo.replace(/<svg ([^>]*?)width="\d+" height="\d+"/, `<svg $1width="${px}" height="${px}"`);
 
   // Google Play app icon: 512×512, full-bleed square (Play applies its own mask).
@@ -147,16 +150,16 @@ async function graphics(browser) {
   await page.screenshot({ path: path.join(dir, 'app-store-icon-1024.png') });
   await page.close();
 
-  // Google Play feature graphic: 1024×500, in the icon's own colours.
+  // Google Play feature graphic: 1024×500, on the icon's own terracotta.
   page = await browser.newPage({ viewport: { width: 1024, height: 500 } });
   await page.setContent(`<body style="margin:0;width:1024px;height:500px;overflow:hidden;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-      background:#F6F1E7;display:flex;align-items:center;gap:40px;padding:0 64px;box-sizing:border-box">
-    <div style="flex-shrink:0;width:300px;height:300px;margin-left:-40px">${sized(300)}</div>
-    <div style="color:#2A2520">
-      <div style="font-size:92px;font-weight:800;letter-spacing:-.02em;line-height:1">${APP_NAME}</div>
-      <div style="font-size:30px;font-weight:600;margin-top:16px;white-space:nowrap">
-        <span style="color:#C4432F">Turkish</span> · <span style="color:#2F6FB3">Ukrainian</span> · <span style="color:#A86A0B">Japanese</span> · <span style="color:#2E8B6E">Arabic</span></div>
-      <div style="font-size:26px;margin-top:18px;color:#5F574D">Merhaba · Привіт · こんにちは · مرحبا</div>
+      background:#7A2F1F;display:flex;align-items:center;gap:12px;padding:0 56px 0 20px;box-sizing:border-box">
+    <div style="flex-shrink:0;width:360px;height:360px">${sized(360)}</div>
+    <div style="color:#FBEFDC">
+      <div style="font-size:84px;font-weight:800;letter-spacing:-.02em;line-height:1;white-space:nowrap">${APP_NAME}</div>
+      <div style="font-size:29px;font-weight:600;margin-top:18px;white-space:nowrap">
+        <span style="color:#F4958B">Turkish</span> · <span style="color:#8DBBEE">Ukrainian</span> · <span style="color:#F2B95E">Japanese</span> · <span style="color:#77CFAE">Arabic</span></div>
+      <div style="font-size:25px;margin-top:18px;opacity:.85;white-space:nowrap">Merhaba · Привіт · こんにちは · مرحبا</div>
     </div></body>`);
   await page.screenshot({ path: path.join(dir, 'play-feature-graphic-1024x500.png') });
   await page.close();

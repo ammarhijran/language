@@ -181,7 +181,7 @@ export default makePack({
   // Feedback: Arabic words (none addressed to “you”, so no gender) with an English gloss.
   praise: [['صَحِيح!', 'Correct.'], ['رَائِع!', 'Great.'], ['جَيِّد!', 'Good.'], ['جَمِيل!', 'Nice.']],
   scoreTitles: { excellent: ['مُمْتَاز!', 'Excellent.'], close: ['جَيِّد جِدًّا!', 'Very good.'] },
-  alphabetIntro: 'Arabic is written right to left with 28 letters that join together — most change shape depending on their position in a word. Short vowels are small marks, shown on every word in Lisan. Tap a letter to hear an example word.',
+  alphabetIntro: 'Arabic is written right to left with 28 letters that join together — most change shape depending on their position in a word. Short vowels are small marks, shown on every word in Four Tongues. Tap a letter to hear an example word.',
   pronHint: (a) => (a.stressMarked
     ? 'Syllables are shown in transliteration; the highlighted one is stressed. Tap a syllable to hear the word slowly.'
     : 'Syllables are shown in transliteration. Tap one to hear the word slowly.'),

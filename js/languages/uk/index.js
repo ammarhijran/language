@@ -99,7 +99,7 @@ export default makePack({
   voiceOption: {
     setting: 'voiceStress',
     label: 'Mark the stress for the voice (try it)',
-    hint: 'Phone voices sometimes stress a Ukrainian word on the wrong syllable. Lisan knows the stress of its words: with this on, a word is sent to the voice with its stress marked (молоко́). Some voices then say it right; others ignore the mark or stumble over it.',
+    hint: 'Phone voices sometimes stress a Ukrainian word on the wrong syllable. Four Tongues knows the stress of its words: with this on, a word is sent to the voice with its stress marked (молоко́). Some voices then say it right; others ignore the mark or stumble over it.',
     sample: 'молоко',
     set: (on) => { voice.stress = !!on; },
   },
@@ -150,8 +150,8 @@ export default makePack({
     ios: 'Open Settings → Accessibility → Spoken Content → Voices → Ukrainian and download a voice (e.g. Lesya).',
     android: 'Open Settings → search “Text-to-speech” → set the preferred engine to Speech Services by Google → Install voice data → Ukrainian.',
     mac: 'Open System Settings → Accessibility → Spoken Content → System voice → Manage Voices… → Ukrainian (Lesya).',
-    windows: 'Windows has no Ukrainian voice of its own, and Chrome doesn’t bring one. Open Lisan in Microsoft Edge, which has free online Ukrainian voices (Polina, Ostap), or use the Android or iPhone app.',
-    other: 'Install a Ukrainian text-to-speech voice for your system, or open Lisan in Microsoft Edge, which has free online Ukrainian voices.',
+    windows: 'Windows has no Ukrainian voice of its own, and Chrome doesn’t bring one. Open Four Tongues in Microsoft Edge, which has free online Ukrainian voices (Polina, Ostap), or use the Android or iPhone app.',
+    other: 'Install a Ukrainian text-to-speech voice for your system, or open Four Tongues in Microsoft Edge, which has free online Ukrainian voices.',
   },
 });
 

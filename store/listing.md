@@ -1,16 +1,16 @@
-# Store listing: Lisan
+# Store listing: Four Tongues
 
 Copy each field into App Store Connect / Google Play Console. The character counts are shown against each store's limit.
 
-> The app now teaches four languages, so this text was rewritten from the Turkish-only version. The **app name** is a suggestion; it is your branding decision (the previous name was “Lisan: Learn Turkish Words”). The screenshots and the feature graphic in `store/` show the current design and all four languages (regenerate them with `node scripts/store-screenshots.cjs`).
+> The app now teaches four languages, so this text was rewritten from the Turkish-only version. The **app name** is “Four Tongues” (the owner’s choice; “Lisan” was crowded on Google Play). The package ID stays `com.ammarmahdi.lisan`. The screenshots and the feature graphic in `store/` show the current design and all four languages (regenerate them with `node scripts/store-screenshots.cjs`).
 >
 > **Decided:** the store description says the lessons were written and checked with AI help and have not been reviewed by native speakers yet (its last section), as the app does in Settings → About the lessons.
 
 ## App name (App Store & Google Play)
-_24 / 30 characters_
+_27 / 30 characters_
 
 ```
-Lisan: Speak 4 Languages
+Four Tongues: Speak & Learn
 ```
 
 ## Subtitle (App Store)
@@ -42,12 +42,12 @@ turkish,ukrainian,japanese,arabic,learn,vocabulary,pronunciation,phrases,flashca
 ```
 
 ## Full description (App Store & Google Play)
-_3061 / 4000 characters_
+_3075 / 4000 characters_
 
 ```
 Learn Turkish, Ukrainian, Japanese or Arabic: the words people really use, and how to say them properly.
 
-Lisan teaches everyday language one small step at a time, and helps you pronounce every word with confidence.
+Four Tongues teaches everyday language one small step at a time, and helps you pronounce every word with confidence.
 
 WORDS AND PHRASES THAT STICK
 • 1,180 to 1,310 everyday words and phrases per language in 77 topics, chosen by how often people use them
@@ -90,7 +90,7 @@ MADE TO FIT YOU
 • Sync between your devices with a code: no account, no server
 
 PRIVATE BY DESIGN
-No account. No ads. No tracking. Lisan saves your progress on your device and never sends it to us or to any server we run. You can export it any time.
+No account. No ads. No tracking. Four Tongues saves your progress on your device and never sends it to us or to any server we run. You can export it any time.
 
 HOW THE LESSONS WERE MADE
 The words, phrases, grammar lessons and texts were written and checked with AI assistance, and have not yet been reviewed by native speakers. If you spot a mistake, please tell us.

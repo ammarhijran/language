@@ -1,4 +1,6 @@
-# Lisan — vocabulary & pronunciation
+# Four Tongues: vocabulary & pronunciation
+
+*(Called Lisan until November 2026; the repository, the package ID `com.ammarmahdi.lisan` and internal names keep the old word.)*
 
 A language-learning app focused on **vocabulary** and **pronunciation** in four languages: **Turkish 🇹🇷, Ukrainian 🇺🇦, Japanese 🇯🇵 and Arabic 🇸🇦**.
 

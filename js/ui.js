@@ -138,9 +138,9 @@ export function storageBanner(ctx, { link = false } = {}) {
     set(el,
       h('b', null, 'Your progress can’t be saved on this device. '),
       problem === 'full'
-        ? 'Its storage for Lisan is full. Free up some space. '
-        : 'This browser is blocking storage for Lisan (private browsing or a privacy setting). Allow site data for Lisan. ',
-      'Until then, what you learn is lost when Lisan closes — export a backup or make a sync code to keep it.',
+        ? 'Its storage for Four Tongues is full. Free up some space. '
+        : 'This browser is blocking storage for Four Tongues (private browsing or a privacy setting). Allow site data for Four Tongues. ',
+      'Until then, what you learn is lost when Four Tongues closes — export a backup or make a sync code to keep it.',
       link ? h('div', null, h('a', { class: 'btn small', href: '#/settings' }, 'Back up in Settings')) : null);
   };
   update();

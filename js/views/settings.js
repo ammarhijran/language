@@ -106,7 +106,7 @@ export default function settings(ctx) {
   const backupText = () => `Last backup or sync code from this device: ${agoText(store.lastBackup())}.`;
   const backupLine = h('p', { class: 'hint', 'aria-live': 'polite' }, backupText());
   function exportProgress() {
-    saveTextFile(`lisan-progress-${store.dayKey()}.json`, store.exportData(), { type: 'application/json', dialogTitle: 'Save your Lisan backup' })
+    saveTextFile(`four-tongues-progress-${store.dayKey()}.json`, store.exportData(), { type: 'application/json', dialogTitle: 'Save your Four Tongues backup' })
       .then(() => { store.noteBackup(); backupLine.textContent = backupText(); })
       .catch((e) => { if (!cancelled(e)) ctx.toast('Couldn’t save the file.'); });
   }
@@ -126,7 +126,7 @@ export default function settings(ctx) {
 
   // Everything, every language, then a fresh start on the welcome screen.
   async function deleteAll() {
-    if (!confirm('Delete ALL your Lisan data on this device — every language’s words and streaks, XP, achievements, goals, settings and sync history? This can’t be undone.')) return;
+    if (!confirm('Delete ALL your Four Tongues data on this device — every language’s words and streaks, XP, achievements, goals, settings and sync history? This can’t be undone.')) return;
     await store.deleteAllData();
     history.replaceState(null, '', '#/welcome');
     location.reload();
@@ -145,7 +145,7 @@ export default function settings(ctx) {
       const box = e.target;
       if (box.checked && !(await askPermission())) {
         box.checked = false;
-        reminderNote.textContent = 'Notifications are turned off for Lisan. Allow them in your phone’s Settings → Apps → Lisan → Notifications, then switch this on again.';
+        reminderNote.textContent = 'Notifications are turned off for Four Tongues. Allow them in your phone’s Settings → Apps → Four Tongues → Notifications, then switch this on again.';
       } else {
         reminderNote.textContent = box.checked ? `You’ll get one reminder a day at ${reminderTime.value} — skipped once you’ve met your goal.` : '';
       }
@@ -163,7 +163,7 @@ export default function settings(ctx) {
         h('p', { class: 'hint' }, 'Reminders are scheduled on this phone — nothing is sent anywhere. Today’s is skipped once you reach your daily goal, and they stop by themselves if you don’t open the app for two weeks.'),
         reminderNote,
       ]
-      : h('p', { class: 'hint' }, 'Daily reminders are available in the Lisan app for Android and iOS. A website can’t reliably notify you while it is closed.'));
+      : h('p', { class: 'hint' }, 'Daily reminders are available in the Four Tongues app for Android and iOS. A website can’t reliably notify you while it is closed.'));
 
   // Display: text size for everyone; reading aids for scripts that have them.
   const pick = (key, options) => h('select', {
@@ -187,7 +187,7 @@ export default function settings(ctx) {
         class: 'select', id: 'set-speakAs',
         onchange: (e) => { store.updateSettings({ speakAs: e.target.value }); store.flush?.(); location.reload(); },
       }, [['m', 'A man'], ['f', 'A woman']].map(([value, label]) => h('option', { value, selected: (s.speakAs || 'm') === value }, label)))),
-    h('p', { class: 'hint' }, `${lang.name} changes some “I …” phrases with the speaker (${lang.code === 'uk' ? 'Я згоден / Я згодна' : 'آسِف / آسِفَة'}). Lisan shows, says and checks the form you choose; the other one still counts as right.`)]
+    h('p', { class: 'hint' }, `${lang.name} changes some “I …” phrases with the speaker (${lang.code === 'uk' ? 'Я згоден / Я згодна' : 'آسِف / آسِفَة'}). Four Tongues shows, says and checks the form you choose; the other one still counts as right.`)]
     : null;
   // Theme: light or dark, the colour of buttons and links, and the page
   // background. Everything applies at once; the swatches show the colours of
@@ -343,11 +343,11 @@ export default function settings(ctx) {
       fileInput),
     h('section', { class: 'card form danger-zone', 'aria-labelledby': 'delete-all-title' },
       h('h2', { class: 'card-title', id: 'delete-all-title' }, 'Delete all my data'),
-      h('p', { class: 'hint' }, 'Removes everything Lisan has stored on this device: all languages, XP, achievements, goals, settings, the device id and the sync log — including the copy the app keeps in the phone’s own storage. Backups or sync codes you saved elsewhere aren’t touched.'),
+      h('p', { class: 'hint' }, 'Removes everything Four Tongues has stored on this device: all languages, XP, achievements, goals, settings, the device id and the sync log — including the copy the app keeps in the phone’s own storage. Backups or sync codes you saved elsewhere aren’t touched.'),
       h('button', { type: 'button', class: 'btn danger', onclick: deleteAll }, 'Delete all my data')),
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, 'About the lessons'),
-      h('p', { class: 'hint' }, 'Lisan’s words, phrases, grammar notes and texts were written and checked with AI help and automated tests. They haven’t been reviewed by native speakers yet — if a native speaker tells you something different, trust them.')),
-    h('p', { class: 'hint center' }, 'Lisan · ', h('a', { href: 'privacy.html' }, 'Privacy policy')),
+      h('p', { class: 'hint' }, 'Four Tongues’ words, phrases, grammar notes and texts were written and checked with AI help and automated tests. They haven’t been reviewed by native speakers yet — if a native speaker tells you something different, trust them.')),
+    h('p', { class: 'hint center' }, 'Four Tongues · ', h('a', { href: 'privacy.html' }, 'Privacy policy')),
   );
 }

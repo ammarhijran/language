@@ -104,7 +104,7 @@ export default function help(ctx) {
   return h('div', { class: 'view help' },
     backLink(ctx, '#/me', 'Me'),
     h('h1', null, 'Tips'),
-    h('p', { class: 'muted' }, 'What Lisan can do, and where each thing is.'),
+    h('p', { class: 'muted' }, 'What Four Tongues can do, and where each thing is.'),
     groups.map((g) => h('section', { class: 'search-group' },
       h('h2', { class: 'section-title' }, g.title),
       h('ul', { class: 'link-list' }, g.items.map((it) => h('li', null, h('a', { href: it.href },

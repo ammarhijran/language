@@ -10,16 +10,16 @@ import { backLink } from '../components.js';
 
 const kb = (s) => `${(s.length / 1024).toFixed(s.length < 10240 ? 1 : 0)} kB`;
 const when = (t) => new Date(t).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-const fileName = () => `Lisan sync ${new Date().toISOString().slice(0, 10)}.txt`;
+const fileName = () => `Four Tongues sync ${new Date().toISOString().slice(0, 10)}.txt`;
 
 const canShare = () => hasPlugin('Share') || typeof navigator.share === 'function';
 
 async function shareText(text) {
-  if (hasPlugin('Share')) return plugin('Share').share({ title: 'Lisan sync code', text, dialogTitle: 'Send your Lisan sync code' });
-  return navigator.share({ title: 'Lisan sync code', text });
+  if (hasPlugin('Share')) return plugin('Share').share({ title: 'Four Tongues sync code', text, dialogTitle: 'Send your Four Tongues sync code' });
+  return navigator.share({ title: 'Four Tongues sync code', text });
 }
 
-const saveFile = (text) => saveTextFile(fileName(), text, { dialogTitle: 'Save your Lisan sync file' });
+const saveFile = (text) => saveTextFile(fileName(), text, { dialogTitle: 'Save your Four Tongues sync file' });
 
 async function copy(text, fallbackEl) {
   try {
@@ -258,7 +258,7 @@ export default function sync(ctx) {
         h('li', null, h('b', null, 'Create a code'), ' on the device with the progress you want to copy.'),
         h('li', null, h('b', null, 'Move it yourself'), ' — copy & paste, AirDrop, Nearby Share, a note or message to yourself, or save the file to your own iCloud Drive / Google Drive.'),
         h('li', null, h('b', null, 'Paste it and merge'), ' on the other device. Progress from both is combined — nothing is overwritten.')),
-      h('p', { class: 'privacy-note' }, '🔒 No account and no server: Lisan never uploads your progress. The code only exists where you put it.')),
+      h('p', { class: 'privacy-note' }, '🔒 No account and no server: Four Tongues never uploads your progress. The code only exists where you put it.')),
     sendCard,
     h('section', { class: 'card form' },
       h('h2', { class: 'card-title' }, '⬇️ Receive progress from another device'),

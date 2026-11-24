@@ -3,7 +3,9 @@
 ## Unreleased
 
 ### Changed
-- **New app icon:** four tiles, one per language (Ş, Я, あ, ع) on cream, in place of the speech bubble on red. Android gets an adaptive icon with a themed (monochrome) version for Android 13+; the web app gets a separate maskable icon so launchers that crop to a circle keep all four tiles.
+- **New name: Four Tongues** (was Lisan, a name several other apps on Google Play already use). The launcher label, the app’s title, the web app’s name, messages and the privacy policy all say Four Tongues; the package ID stays `com.ammarmahdi.lisan`, so it updates in place.
+- **New app icon:** a glass of tea whose steam curls up into a speech bubble, with four dots in the colours of the four languages, on terracotta. Android gets an adaptive icon with a themed (monochrome) version for Android 13+; the web app gets a separate maskable icon so launchers that crop to a circle keep the whole drawing.
+- **Privacy policy:** it now gives a contact address.
 - **App ID is now `com.ammarmahdi.lisan`** (was `app.lisan.turkish`), ahead of the first store upload. A test build with the new ID installs as a separate app next to an older one: move your progress with a backup file or a sync code, then remove the old app.
 - **Sharper multiple choice:** when a word has look-alikes (one letter apart: *kış / kız / kuş*, *سَنَة / سِتَّة*…), up to two of them are among the wrong answers — in listening, reading and “choose the word” questions — instead of unrelated words from the topic. Telling those apart is what the question should test.
 - **Privacy policy:** now lists the words, phrases and texts you add yourself among what is stored on the device, and says that sync codes carry your own words (My words) and your notes on words besides your progress — never your own texts or settings. The sync screen’s “not encrypted” note says the same.

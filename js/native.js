@@ -88,7 +88,7 @@ export const canShareText = () => hasPlugin('Share') || (typeof navigator !== 'u
  * Hand text to the share sheet (a chat, mail, notes…). Resolves to 'shared',
  * 'cancelled' (the learner closed the sheet) or 'failed'. It never throws.
  */
-export async function shareText(text, { title = 'Lisan', dialogTitle = 'Share' } = {}) {
+export async function shareText(text, { title = 'Four Tongues', dialogTitle = 'Share' } = {}) {
   try {
     if (hasPlugin('Share')) await plugin('Share').share({ title, text, dialogTitle });
     else if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') await navigator.share({ title, text });

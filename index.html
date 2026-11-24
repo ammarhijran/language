@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Lisan</title>
+  <title>Four Tongues</title>
   <meta name="description" content="Learn vocabulary and pronunciation in Turkish, Ukrainian, Japanese and Arabic with spaced repetition, native-voice audio, syllable and stress breakdowns, and speech-recognition feedback.">
   <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#c8102e">
   <meta name="color-scheme" content="light dark">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Lisan">
+  <meta name="apple-mobile-web-app-title" content="Four Tongues">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -91,7 +91,7 @@
 </head>
 <body>
   <div id="boot" class="boot" role="status" aria-live="polite">
-    <p class="boot-brand"><img src="icons/icon.svg" alt="" width="40" height="40">Lisan</p>
+    <p class="boot-brand"><img src="icons/icon.svg" alt="" width="40" height="40">Four Tongues</p>
     <div class="boot-spinner" aria-hidden="true"></div>
     <p class="boot-text" id="boot-text">Loading…</p>
     <div class="boot-actions" id="boot-actions" hidden>
@@ -127,9 +127,9 @@
       function fail(err) {
         if (failed || window.__lisanBooted) return;
         failed = true;
-        console.error('Lisan could not start:', err);
+        console.error('Four Tongues could not start:', err);
         var load = err && err.lisanLoad;
-        show('Lisan couldn’t start',
+        show('Four Tongues couldn’t start',
           navigator.onLine === false ? 'You’re offline, and part of the app isn’t saved on this device yet. Connect to the internet and try again.'
             : load ? 'Part of the app didn’t load. Check your connection and try again.'
             : 'Something went wrong while starting. Try again — your progress on this device is safe.');
@@ -175,7 +175,7 @@
 
       if (!('noModule' in document.createElement('script'))) {
         failed = true;
-        show('This browser can’t run Lisan', 'Please update it, or open Lisan in a current version of Chrome, Edge, Firefox or Safari.');
+        show('This browser can’t run Four Tongues', 'Please update it, or open Four Tongues in a current version of Chrome, Edge, Firefox or Safari.');
         $('boot-actions').hidden = true;
         return;
       }
@@ -196,7 +196,7 @@
       }, 250);
     })();
   </script>
-  <noscript><p style="padding:2rem">Lisan needs JavaScript to run.</p></noscript>
+  <noscript><p style="padding:2rem">Four Tongues needs JavaScript to run.</p></noscript>
   <div id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

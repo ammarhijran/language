@@ -315,7 +315,7 @@ function editor(ctx, rec) {
     store.deleteOwnText(lang.code, rec.id);
     ctx.replace('/read');
   };
-  queueMicrotask(() => { document.title = `${rec ? 'Edit my text' : 'Add a text'} · Read & Listen · Lisan`; });
+  queueMicrotask(() => { document.title = `${rec ? 'Edit my text' : 'Add a text'} · Read & Listen · Four Tongues`; });
   return [
     backLink(ctx, rec ? href(rec.id) : '#/read', rec ? 'Back to the text' : 'All texts'),
     h('h1', null, rec ? 'Edit my text' : 'Add a text'),
@@ -774,7 +774,7 @@ function readerView(ctx, texts, text) {
   }));
 
   // The tab title names the text (the router sets the section's name first).
-  queueMicrotask(() => { document.title = `${text.title} · Read & Listen · Lisan`; });
+  queueMicrotask(() => { document.title = `${text.title} · Read & Listen · Four Tongues`; });
 
   return [
     backLink(ctx, '#/read', 'All texts'),
@@ -1470,7 +1470,7 @@ function gapMode(ctx, text) {
 function practiceView(ctx, texts, text, mode) {
   if (!canPractise(text)) return readerView(ctx, texts, text);
   const m = modesOf(text).find((x) => x.id === mode) || MODES[0];
-  queueMicrotask(() => { document.title = `${m.title} · ${text.title} · Lisan`; });
+  queueMicrotask(() => { document.title = `${m.title} · ${text.title} · Four Tongues`; });
   const body = m.id === 'shadow' ? shadowMode(ctx, text) : m.id === 'record' ? recordMode(ctx, text) : repeatMode(ctx, text);
   return [...practiceHead(ctx, text, m.title), modeTabs(text, m.id), voiceBanner(ctx), body];
 }
@@ -1491,11 +1491,11 @@ function routeView(ctx, texts, id, mode, arg) {
   }
   if (mode === 'practice') return practiceView(ctx, texts, text, arg);
   if (mode === 'gaps') {
-    queueMicrotask(() => { document.title = `Fill the gaps · ${text.title} · Lisan`; });
+    queueMicrotask(() => { document.title = `Fill the gaps · ${text.title} · Four Tongues`; });
     return [...practiceHead(ctx, text, 'Fill the gaps'), gapMode(ctx, text)];
   }
   if (mode === 'roleplay') {
-    queueMicrotask(() => { document.title = `Role-play · ${text.title} · Lisan`; });
+    queueMicrotask(() => { document.title = `Role-play · ${text.title} · Four Tongues`; });
     return [...practiceHead(ctx, text, 'Role-play'), voiceBanner(ctx), rolePlay(ctx, texts, text, arg)];
   }
   return readerView(ctx, texts, text);

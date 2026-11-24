@@ -7,11 +7,11 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Lisan listens when you practise saying words, so it can score your pronunciation and let you hear your own recording.</string>
+	<string>Four Tongues listens when you practise saying words, so it can score your pronunciation and let you hear your own recording.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Lisan uses speech recognition to check how you pronounce Turkish words.</string>
+	<string>Four Tongues uses speech recognition to check how you pronounce words.</string>
 	<key>CFBundleDisplayName</key>
-        <string>Lisan</string>
+        <string>Four Tongues</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

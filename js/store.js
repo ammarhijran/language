@@ -678,7 +678,7 @@ export function exportData() {
 export function importData(text) {
   let d;
   try { d = JSON.parse(text); } catch { d = null; }
-  if (!isObj(d) || !isObj(d.progress)) throw new Error('That file is not a Lisan backup.');
+  if (!isObj(d) || !isObj(d.progress)) throw new Error('That file is not a Four Tongues backup.');
   state = fromData(d);
   save();
   flush();

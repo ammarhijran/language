@@ -54,7 +54,7 @@ export const soundTips = [
   {
     id: 'stress',
     title: 'Stress can fall anywhere',
-    body: 'Ukrainian stress is free: it can be on any syllable and must be learned with each word — the highlighted syllable in Lisan shows it. Unlike Russian, unstressed о stays a full “o”: молоко is mo-lo-KO, not “ma-la-ko”.',
+    body: 'Ukrainian stress is free: it can be on any syllable and must be learned with each word — the highlighted syllable in Four Tongues shows it. Unlike Russian, unstressed о stays a full “o”: молоко is mo-lo-KO, not “ma-la-ko”.',
     examples: [['молоко', 'milk'], ['дякую', 'thank you'], ['сестра', 'sister'], ['аптека', 'pharmacy']],
   },
   {

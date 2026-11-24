@@ -62,7 +62,7 @@ export default function welcome(ctx, stepArg) {
     body = [
       h('section', { class: 'welcome-hero' },
         h('img', { src: 'icons/icon.svg', alt: '', width: 64, height: 64 }),
-        h('h1', null, 'Welcome to Lisan'),
+        h('h1', null, 'Welcome to Four Tongues'),
         h('p', null, 'Everyday words and phrases, and how to say them properly. Short lessons, spaced reviews and instant pronunciation feedback.')),
       h('section', { 'aria-labelledby': 'welcome-lang' },
         h('h2', { class: 'section-title', id: 'welcome-lang' }, 'What would you like to learn?'),
@@ -74,7 +74,7 @@ export default function welcome(ctx, stepArg) {
         type: 'button', class: 'btn primary wide step-next',
         onclick: () => { if (chosen !== lang.code) switchLanguage(ctx, chosen, `/welcome/${STEPS[1]}`); else goTo(1); },
       }, 'Continue', icon('arrow', 18)),
-      h('button', { type: 'button', class: 'btn ghost wide', onclick: () => finish('/sync') }, 'I already use Lisan on another device'),
+      h('button', { type: 'button', class: 'btn ghost wide', onclick: () => finish('/sync') }, 'I already use Four Tongues on another device'),
     ];
   } else if (step === 1) {
     const goalButtons = GOALS.map((g) => h('button', {
@@ -127,8 +127,8 @@ export default function welcome(ctx, stepArg) {
       h('section', { class: 'card' },
         h('h2', { class: 'card-title' }, '🎙️ Speaking practice'),
         h('p', { class: 'hint', style: { margin: 0 } }, speech.recognitionSupported()
-          ? 'When you practise speaking, Lisan asks for the microphone and scores your pronunciation. Nothing is saved or sent to us.'
-          : 'Pronunciation scoring isn’t available in this browser (try Chrome, Edge or Safari, or the Lisan app). Everything else works.')),
+          ? 'When you practise speaking, Four Tongues asks for the microphone and scores your pronunciation. Nothing is saved or sent to us.'
+          : 'Pronunciation scoring isn’t available in this browser (try Chrome, Edge or Safari, or the Four Tongues app). Everything else works.')),
     ];
     foot = [h('button', { type: 'button', class: 'btn primary wide step-next', onclick: () => goTo(3) }, 'Continue', icon('arrow', 18))];
   } else {

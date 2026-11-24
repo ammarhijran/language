@@ -2,7 +2,7 @@
 //
 // Progress is packed into a "sync code" (or a file containing the same code)
 // that the learner moves between their own devices themselves — clipboard,
-// AirDrop / Nearby Share, a note to self, their own cloud drive. Lisan never
+// AirDrop / Nearby Share, a note to self, their own cloud drive. Four Tongues never
 // uploads anything. With a passphrase (at least 8 characters), the code is
 // end-to-end encrypted (PBKDF2-SHA-256 → AES-GCM-256), so whatever carries it
 // only sees ciphertext.
@@ -90,7 +90,7 @@ async function pipe(bytes, stream, limit = Infinity) {
     size += value.length;
     if (size > limit) {
       reader.cancel().catch(() => {});
-      throw new SyncError('too-big', 'This sync code is far too large to be Lisan progress.');
+      throw new SyncError('too-big', 'This sync code is far too large to be Four Tongues progress.');
     }
     chunks.push(value);
   }
@@ -151,8 +151,8 @@ export const isEncrypted = (text) => !!extractCode(text)?.flags.includes('e');
 /** Read a sync code. The result is sanitized: { app, device, at, progress, game }. */
 export async function decode(text, { passphrase = '' } = {}) {
   const found = extractCode(text);
-  if (!found) throw new SyncError('invalid', 'That doesn’t look like a Lisan sync code.');
-  if (found.data.length > MAX_CODE) throw new SyncError('too-big', 'This sync code is far too large to be Lisan progress.');
+  if (!found) throw new SyncError('invalid', 'That doesn’t look like a Four Tongues sync code.');
+  if (found.data.length > MAX_CODE) throw new SyncError('too-big', 'This sync code is far too large to be Four Tongues progress.');
   let bytes;
   try { bytes = fromB64url(found.data); } catch { throw new SyncError('invalid', 'The sync code is incomplete or damaged.'); }
   if (found.flags.includes('e')) {
@@ -173,10 +173,10 @@ export async function decode(text, { passphrase = '' } = {}) {
       throw new SyncError('invalid', 'The sync code is incomplete or damaged.');
     }
   }
-  if (bytes.length > MAX_JSON) throw new SyncError('too-big', 'This sync code is far too large to be Lisan progress.');
+  if (bytes.length > MAX_JSON) throw new SyncError('too-big', 'This sync code is far too large to be Four Tongues progress.');
   let payload;
   try { payload = JSON.parse(new TextDecoder().decode(bytes)); } catch { throw new SyncError('invalid', 'The sync code is incomplete or damaged.'); }
-  if (!isObj(payload) || payload.app !== 'lisan' || !isObj(payload.progress)) throw new SyncError('invalid', 'That isn’t Lisan progress.');
+  if (!isObj(payload) || payload.app !== 'lisan' || !isObj(payload.progress)) throw new SyncError('invalid', 'That isn’t Four Tongues progress.');
   const device = okKey(payload.device) ? payload.device : 'other';
   return { app: 'lisan', device, at: num(payload.at, MAX_TIME) ?? null, ...sanitize(payload, { device }), words: cleanOwnWords(payload.words) };
 }

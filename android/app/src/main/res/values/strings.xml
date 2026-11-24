@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Lisan</string>
-    <string name="title_activity_main">Lisan</string>
+    <string name="app_name">Four Tongues</string>
+    <string name="title_activity_main">Four Tongues</string>
     <string name="package_name">com.ammarmahdi.lisan</string>
     <string name="custom_url_scheme">com.ammarmahdi.lisan</string>
 </resources>

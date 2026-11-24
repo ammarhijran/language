@@ -159,8 +159,8 @@ function shell() {
       onclick: (e) => { e.preventDefault(); document.getElementById('view').focus(); },
     }, 'Skip to content'),
     h('header', { class: 'topbar' },
-      h('a', { href: '#/', class: 'brand', 'aria-label': 'Lisan home' },
-        h('img', { src: 'icons/icon.svg', alt: '', width: 28, height: 28 }), 'Lisan'),
+      h('a', { href: '#/', class: 'brand', 'aria-label': 'Four Tongues home' },
+        h('img', { src: 'icons/icon.svg', alt: '', width: 28, height: 28 }), 'Four Tongues'),
       h('a', { class: 'lang-pill', href: '#/language', title: `Learning ${lang.name} — change language` }, h('span', { 'aria-hidden': 'true' }, lang.flag), ' ', h('span', { lang: lang.code }, lang.nativeName)),
       h('a', { href: '#/search', class: 'icon-btn top-search', 'aria-label': 'Search words, phrases and lessons' }, icon('search'))),
     h('main', { id: 'view', tabindex: '-1' }),
@@ -358,11 +358,11 @@ function render() {
     badge.title = `${due} to review`;
   }
   const title = titleOf(name, params);
-  track(name, params, title || 'Lisan', tab);
-  document.title = title ? `${title} · Lisan ${lang.name}` : `Lisan · ${lang.name}`;
+  track(name, params, title || 'Four Tongues', tab);
+  document.title = title ? `${title} · Four Tongues ${lang.name}` : `Four Tongues · ${lang.name}`;
   window.scrollTo(0, 0);
   // On first load the browser (or screen reader) starts at the top by itself.
-  if (lastView !== null) focusView(main, { restoreKey, title: title || 'Lisan' });
+  if (lastView !== null) focusView(main, { restoreKey, title: title || 'Four Tongues' });
   lastView = name;
 }
 

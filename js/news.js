@@ -9,7 +9,7 @@ export const NEWS = {
     { emoji: '📊', text: 'Your skills, side by side', where: 'Me → Progress', href: '#/progress' },
     { emoji: '🔧', text: 'Voice says a word wrong? Respell it', where: 'A word’s page', href: '#/progress' },
     { emoji: '☎️', text: 'Phone numbers and years by ear', where: 'Practice → Numbers by ear', href: '#/numbers' },
-    { emoji: '💡', text: 'Tips: everything Lisan can do', where: 'Me → Tips', href: '#/help' },
+    { emoji: '💡', text: 'Tips: everything Four Tongues can do', where: 'Me → Tips', href: '#/help' },
     { emoji: '📝', text: 'My words: add your own vocabulary', where: 'Learn → Words', href: '#/mywords' },
     { emoji: '🗒️', text: 'Your own note on any word', where: 'A word’s page', href: '#/progress' },
     { emoji: '🎨', text: 'Themes: dark mode, colours, backgrounds', where: 'Settings → Display', href: '#/settings' },

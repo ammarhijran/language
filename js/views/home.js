@@ -88,7 +88,7 @@ export default function home(ctx) {
   const news = newsToShow(ctx.store);
   const newsCard = news ? h('section', { class: 'card news', 'aria-labelledby': 'news-title' },
     h('div', { class: 'title-row' },
-      h('h2', { class: 'card-title', id: 'news-title' }, '✨ New in Lisan'),
+      h('h2', { class: 'card-title', id: 'news-title' }, '✨ New in Four Tongues'),
       h('button', {
         type: 'button', class: 'btn small',
         onclick: () => { ctx.store.updateSettings({ newsSeen: news.id }); newsCard.remove(); },

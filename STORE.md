@@ -1,4 +1,4 @@
-# Publishing Lisan to Google Play and the App Store
+# Publishing Four Tongues to Google Play and the App Store
 
 Everything the stores ask for is prepared in this repo. This guide walks through what's left: the decisions only you can make, your developer accounts, and clicking through each store console.
 
@@ -31,7 +31,7 @@ These are hard or impossible to change after your first upload.
    - `namespace` in `android/app/build.gradle`, `package_name` and `custom_url_scheme` in `android/app/src/main/res/values/strings.xml`, and the package (and folder) of `MainActivity.java`
 
    > **Test builds and the new ID.** Android treats a different ID as a different app. A test APK from before the change stays installed next to the new one, with its own progress. To move progress across: in the old app, Settings → Your data → export a backup (or make a sync code), import it in the new app, then uninstall the old one.
-2. **App name.** "Lisan: Speak 4 Languages" is the suggested store name (see `store/listing.md`); the icon label on phones is "Lisan". App Store names must be unique, so check it's free when you create the app record (step 3.3).
+2. **App name.** "Four Tongues: Speak & Learn" is the store name (see `store/listing.md`); the icon label on phones is "Lisan". App Store names must be unique, so check it's free when you create the app record (step 3.3).
 3. **Contact email.** Replace `CONTACT_EMAIL` in `privacy.html` (2 places). Both stores also show a support email publicly.
 4. **Privacy policy URL.** The stores need a public link. The simplest option is GitHub Pages:
    1. Create a `main` branch from this branch.
@@ -66,7 +66,7 @@ To build the bundle on your own computer, set the same four values as `LISAN_KEY
 
 ### 2.3 Create the app in Play Console
 1. **Create app:**
-   - App name: `Lisan: Speak 4 Languages` (or your own choice, see `store/listing.md`)
+   - App name: `Four Tongues: Speak & Learn` (see `store/listing.md`)
    - Default language: English (US)
    - App or game: App
    - Free or paid: Free
@@ -138,7 +138,7 @@ npm run ios:open
 ### 3.3 Create the app record
 In App Store Connect, go to **Apps → + → New App**:
 - Platform: iOS
-- Name: `Lisan: Speak 4 Languages` (or your own choice, see `store/listing.md`)
+- Name: `Four Tongues: Speak & Learn` (see `store/listing.md`)
 - Primary language: English (U.S.)
 - Bundle ID: `com.ammarmahdi.lisan` (step 1.1). It appears after you register it, which Xcode or the workflow does automatically.
 - SKU: `lisan`

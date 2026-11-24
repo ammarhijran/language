@@ -21,11 +21,11 @@ const { wordsCsv } = await import('../js/wordlist.js');
 const { languages } = await import('./all-languages.js');
 
 test('in the apps a file is written to the cache and handed to the share sheet', async () => {
-  await saveTextFile('lisan-progress.json', '{"a":1}', { type: 'application/json', dialogTitle: 'Save your Lisan backup' });
+  await saveTextFile('lisan-progress.json', '{"a":1}', { type: 'application/json', dialogTitle: 'Save your Four Tongues backup' });
   assert.deepEqual(calls.map((c) => `${c.plugin}.${c.method}`), ['Filesystem.writeFile', 'Share.share']);
   assert.deepEqual(calls[0].options, { path: 'lisan-progress.json', data: '{"a":1}', directory: 'CACHE', encoding: 'utf8' });
   assert.deepEqual(calls[1].options.files, ['file:///cache/lisan-progress.json']);
-  assert.equal(calls[1].options.dialogTitle, 'Save your Lisan backup');
+  assert.equal(calls[1].options.dialogTitle, 'Save your Four Tongues backup');
 });
 
 test('the word list: only started words, in course order, with readings and safe quoting', () => {

@@ -478,7 +478,7 @@ export function listen({ lang, maxAlternatives = 5, timeout = 8000, maxMs } = {}
 
 export const RECOGNITION_ERRORS = {
   'not-allowed': NATIVE
-    ? 'Microphone or speech recognition access is off. Turn it on for Lisan in your phone’s Settings.'
+    ? 'Microphone or speech recognition access is off. Turn it on for Four Tongues in your phone’s Settings.'
     : 'Microphone access is blocked. Allow the microphone for this site in your browser settings.',
   'service-not-allowed': 'Speech recognition is blocked in this browser. Try Chrome, Edge or Safari.',
   'no-speech': 'I didn’t catch that — tap the mic and speak a little louder.',

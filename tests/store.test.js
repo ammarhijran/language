@@ -258,8 +258,8 @@ test('import: old backups are converted, malformed values never reach the app', 
   assert.equal(g.dev[store.deviceId()].xp, 120, 'pre-per-device XP belongs to this device');
   assert.deepEqual(g.goals, {});
   assert.deepEqual(g.week.p, { [store.deviceId()]: { xp: 5 } });
-  assert.throws(() => store.importData('{"app":"lisan","progress":null}'), /not a Lisan backup/);
-  assert.throws(() => store.importData('not json'), /not a Lisan backup/);
+  assert.throws(() => store.importData('{"app":"lisan","progress":null}'), /not a Four Tongues backup/);
+  assert.throws(() => store.importData('not json'), /not a Four Tongues backup/);
 });
 
 test('import: a backup made by the previous build', () => {

@@ -11,15 +11,15 @@ const { chromium } = require('playwright');
 
 const ROOT = path.join(__dirname, '..');
 const SRC = path.join(ROOT, 'design', 'icons');
-const BACKGROUND = '#F6F1E7';
+const BACKGROUND = '#7A2F1F';
 const read = (name) => fs.readFileSync(path.join(SRC, name), 'utf8');
 // An SVG at a given pixel size (its own width/height attributes are replaced).
 const sized = (svg, px) => svg.replace(/<svg ([^>]*?)width="\d+" height="\d+"/, `<svg $1width="${px}" height="${px}"`);
 
 (async () => {
-  const full = read('lisan-icon-512.svg'); // the whole square, cream background
-  const foreground = read('lisan-adaptive-foreground.svg'); // transparent, content inside the safe zone
-  const monochrome = read('lisan-monochrome.svg');
+  const full = read('app-icon-512.svg'); // the whole square, on its background colour
+  const foreground = read('app-adaptive-foreground.svg'); // transparent, content inside the safe zone
+  const monochrome = read('app-monochrome.svg');
   const browser = await chromium.launch();
 
   /** Write `svg` as a `px`-square PNG. `background`: a colour, or null for transparent. `round`: clipped to a circle. */
@@ -36,7 +36,7 @@ const sized = (svg, px) => svg.replace(/<svg ([^>]*?)width="\d+" height="\d+"/, 
   fs.writeFileSync(path.join(ROOT, 'icons', 'icon.svg'), full);
   await render('icons/icon-192.png', full, 192, { background: BACKGROUND });
   await render('icons/icon-512.png', full, 512, { background: BACKGROUND });
-  // Maskable: the launcher may crop to a circle, so the tiles sit inside the safe zone.
+  // Maskable: the launcher may crop to a circle, so the drawing sits inside the safe zone.
   await render('icons/icon-maskable-512.png', foreground, 512, { background: BACKGROUND });
 
   // Android
@@ -47,7 +47,7 @@ const sized = (svg, px) => svg.replace(/<svg ([^>]*?)width="\d+" height="\d+"/, 
     await render(`${dir}/ic_launcher_monochrome.png`, monochrome, Math.round(108 * scale));
     // Before Android 8 (and where a launcher asks for it): a plain square and a round icon.
     await render(`${dir}/ic_launcher.png`, full, Math.round(48 * scale), { background: BACKGROUND });
-    await render(`${dir}/ic_launcher_round.png`, foreground.replace('scale(0.66)', 'scale(0.8)'), Math.round(48 * scale), { background: BACKGROUND, round: true });
+    await render(`${dir}/ic_launcher_round.png`, foreground.replace('scale(0.76)', 'scale(0.9)'), Math.round(48 * scale), { background: BACKGROUND, round: true });
   }
 
   // Sources for Capacitor's asset tool, and the iOS icon (no transparency)

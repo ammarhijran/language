@@ -88,7 +88,7 @@ test('codes stay small enough to paste: 300 learned words < 12 kB', async () => 
 
 test('pasted text: line breaks and surrounding words are ignored', async () => {
   const code = await encode({ device: 'd', at: T0, progress: sampleProgress(5), game: {} });
-  const messy = `Here's my Lisan sync:\n${code.slice(0, 40)}\n${code.slice(40)} 👍`;
+  const messy = `Here's my Four Tongues sync:\n${code.slice(0, 40)}\n${code.slice(40)} 👍`;
   assert.ok(extractCode(messy));
   assert.equal(Object.keys((await decode(messy)).progress.tr.cards).length, 5);
   await assert.rejects(decode('hello'), (e) => e.code === 'invalid');
@@ -285,7 +285,7 @@ test('hostile or broken codes are cleaned up instead of saved', async () => {
   assert.equal(({}).polluted, undefined);
   assert.deepEqual(m.game.letters, {});
 
-  // the top level must still look like Lisan progress
+  // the top level must still look like Four Tongues progress
   await assert.rejects(decode(code('{"app":"lisan","progress":null}')), (e) => e.code === 'invalid');
   await assert.rejects(decode(code('[1,2]')), (e) => e.code === 'invalid');
   assert.deepEqual(sanitize(null), { progress: {}, game: {} });
