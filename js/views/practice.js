@@ -1,7 +1,7 @@
 import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
 import { stressItem, beatItem, misreadItem, clozeItem } from '../exercises.js';
-import { learnedWords, dueWords, trickyWords, nextReviews } from '../stats.js';
+import { learnedWords, dueWords, trickyWords, nextReviews, studyMode, typeInMode, STUDY_MODES } from '../stats.js';
 import { recognitionSupported } from '../speech.js';
 import { GROUPS, missedChips, devicePref } from '../components.js';
 import { sentencesFor, textSentences, MIN_SENTENCES } from '../sentences.js';
@@ -100,7 +100,7 @@ export default function practice(ctx, mode, scope) {
   // Tricky letters: words with a real choice (two or more ways to misread them) come first.
   const rich = mode === 'letters' ? pool.filter((w) => misreadItem(ctx.lang, w).wrong.length >= 2) : [];
 
-  const items = shuffle(rich.length >= ROUND ? rich : pool).slice(0, ROUND).map((word) => ({ word, type: typeFor(mode, word, ctx.lang, { typing: ctx.settings.typing !== false, speaking: ctx.settings.speaking !== false }) }));
+  const items = shuffle(rich.length >= ROUND ? rich : pool).slice(0, ROUND).map((word) => ({ word, type: mode === 'mixed' ? typeInMode(typeFor(mode, word, ctx.lang, { typing: ctx.settings.typing !== false, speaking: ctx.settings.speaking !== false }), studyMode(ctx.settings)) : typeFor(mode, word, ctx.lang, { typing: ctx.settings.typing !== false, speaking: ctx.settings.speaking !== false }) }));
   let right = 0;
   let answered = 0;
   const missed = [];
@@ -286,6 +286,7 @@ function setup(ctx) {
   return h('div', { class: 'view practice' },
     h('h1', null, 'Practice'),
     reviewCard(ctx),
+    modeSwitch(ctx),
     weakLink(ctx),
     h('h2', { class: 'section-title' }, 'Speak & listen'),
     h('div', { class: 'shortcuts speak-links' },
@@ -314,6 +315,24 @@ function setup(ctx) {
 }
 
 /** Reviews come first: due words (spaced repetition), or when the next ones are due. */
+/**
+ * "How can you practise right now?" — everything, listening only (can't talk)
+ * or speaking only. It applies to reviews, lessons and Mixed rounds until it
+ * is switched back; a round in a mode chosen below stays what was chosen.
+ */
+export function modeSwitch(ctx, { rerender = true } = {}) {
+  const now = studyMode(ctx.settings);
+  const hint = h('p', { class: 'hint study-hint' }, STUDY_MODES.find((m) => m.id === now).hint, now === 'all' ? '' : ' Applies to reviews, lessons and Mixed rounds until you switch back.');
+  return h('section', { class: 'study-mode', 'aria-labelledby': 'study-mode-title' },
+    h('h2', { class: 'kicker', id: 'study-mode-title' }, 'Right now I can do'),
+    h('div', { class: 'pill-row', role: 'group', 'aria-labelledby': 'study-mode-title' }, STUDY_MODES.map((m) => h('button', {
+      type: 'button', class: `pill${m.id === now ? ' selected' : ''}`, 'aria-pressed': String(m.id === now), dataset: { mode: m.id },
+      onclick: () => { ctx.store.updateSettings({ studyMode: m.id }); if (rerender) ctx.rerender(); },
+      'aria-label': m.name,
+    }, h('span', { 'aria-hidden': 'true' }, `${m.emoji} `), m.id === 'all' ? 'All' : m.name))),
+    hint);
+}
+
 function reviewCard(ctx) {
   const due = dueWords(ctx).length;
   if (due) {

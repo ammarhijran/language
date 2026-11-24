@@ -1,3 +1,4 @@
+import { studyMode, typeInMode } from '../stats.js';
 import { h, icon, shuffle, set } from '../ui.js';
 import { GROUPS, topicTile, devicePref, setDevicePref } from '../components.js';
 import { runSession } from '../session.js';
@@ -49,7 +50,8 @@ export default function learn(ctx, catId, section) {
   const batch = unseen.slice(0, ctx.settings.lessonSize);
   const items = [
     ...batch.map((word, index) => ({ word, type: 'intro', meta: { index, total: batch.length } })),
-    ...shuffle(batch).map((word, i) => ({ word, type: i % 2 ? 'produce' : 'listen' })),
+    // (in listening-only or speaking-only mode, the quick check is all in that one way)
+    ...shuffle(batch).map((word, i) => ({ word, type: typeInMode(i % 2 ? 'produce' : 'listen', studyMode(ctx.settings)) })),
   ];
 
   const known = [];

@@ -1,8 +1,9 @@
 // "What's new": shown once on Home to people who already use the app, so new
 // features are not only found by accident. Bump `id` when the list changes.
 export const NEWS = {
-  id: '2026-11-r',
+  id: '2026-11-s',
   items: [
+    { emoji: '🎧', text: 'Listening only · speaking only', where: 'Practice', href: '#/practice' },
     { emoji: '🎶', text: 'Rule quizzes: harmony · sun letters · я ю є · は', where: 'Practice → Speak → Alphabet', href: '#/speak/alphabet' },
     { emoji: '⏱', text: 'Reader: speed control and sleep timer', where: 'Read & Listen', href: '#/read' },
     { emoji: '🔤', text: 'Letter quiz: kana, Arabic, Cyrillic', where: 'Practice → Speak → Alphabet', href: '#/speak/alphabet' },

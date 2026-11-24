@@ -653,3 +653,28 @@ test('grammar mixed review: questions from the lessons done, spread over them', 
     assert.equal(mixedQuestions(lessons, [lessons[0].id]).length, Math.min(MIXED_COUNT, lessons[0].quiz.length));
   }
 });
+
+test('study modes: listening only and speaking only turn every question into that one kind', async () => {
+  const { STUDY_MODES, studyMode, typeInMode } = await import('../js/stats.js');
+  const { EXERCISES } = await import('../js/exercises.js');
+  assert.deepEqual(STUDY_MODES.map((m) => m.id), ['all', 'listen', 'speak']);
+  assert.equal(studyMode({}), 'all');
+  assert.equal(studyMode({ studyMode: 'listen' }), 'listen');
+  assert.equal(studyMode({ studyMode: 'nope' }), 'all');
+  assert.equal(studyMode(null), 'all');
+  for (const type of Object.keys(EXERCISES)) {
+    assert.equal(typeInMode(type, 'all'), type);
+    assert.equal(typeInMode(type, undefined), type);
+    const heard = typeInMode(type, 'listen');
+    const said = typeInMode(type, 'speak', { recognition: true });
+    const rated = typeInMode(type, 'speak', { recognition: false });
+    if (type === 'intro') {
+      assert.deepEqual([heard, said, rated], ['intro', 'intro', 'intro'], 'a new-word card stays a new-word card');
+    } else {
+      assert.equal(heard, 'listen', `${type}: no speaking and no typing in listening only`);
+      assert.equal(said, 'speak');
+      assert.equal(rated, 'flashcard', 'without speech recognition: say it, then rate yourself');
+    }
+    assert.ok(EXERCISES[heard] && EXERCISES[said] && EXERCISES[rated]);
+  }
+});

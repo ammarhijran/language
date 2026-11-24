@@ -2,7 +2,7 @@ import { h, icon, shuffle } from '../ui.js';
 import { runSession } from '../session.js';
 import { newCard, review as schedule, missedToday, AGAIN, startOfDay } from '../srs.js';
 import { missedChips } from '../components.js';
-import { dueWords, dueSoonWords, chooseReviewType, nextCategory, nextReviews } from '../stats.js';
+import { dueWords, dueSoonWords, chooseReviewType, nextCategory, nextReviews, studyMode, typeInMode, STUDY_MODES } from '../stats.js';
 
 const EASIER = { type: 'produce', speak: 'produce', flashcard: 'produce', produce: 'meaning', listen: 'meaning', meaning: 'produce', build: 'produce', stress: 'meaning', cloze: 'produce' };
 
@@ -14,13 +14,15 @@ export default function review(ctx, mode) {
   const due = ahead ? dueSoonWords(ctx) : now;
 
   if (!due.length) return empty(ctx);
+  // Listening only / speaking only: every question in that one way (also the easier re-ask after a miss).
+  const only = studyMode(ctx.settings);
 
   const items = shuffle(due.slice(0, ctx.settings.sessionSize))
-    .map(({ word, card }) => ({ word, type: chooseReviewType(card, word, lang, { typing: ctx.settings.typing !== false, speaking: ctx.settings.speaking !== false }) }));
+    .map(({ word, card }) => ({ word, type: typeInMode(chooseReviewType(card, word, lang, { typing: ctx.settings.typing !== false, speaking: ctx.settings.speaking !== false }), only) }));
   const firstTry = new Map();
 
   return h('div', { class: 'view' }, runSession(ctx, {
-    label: ahead ? 'Review ahead' : 'Review',
+    label: `${ahead ? 'Review ahead' : 'Review'}${only === 'all' ? '' : ` · ${STUDY_MODES.find((m) => m.id === only).name.toLowerCase()}`}`,
     items,
     onResult(item, r) {
       if (r.skipped) return { ...item, type: 'flashcard' };
@@ -36,7 +38,7 @@ export default function review(ctx, mode) {
       if (!seen) firstTry.set(item.word.id, r.correct);
       if (r.rating === AGAIN) {
         const retries = (item.retries || 0) + 1;
-        if (retries <= 2) return { word: item.word, type: EASIER[item.type] || 'meaning', retries };
+        if (retries <= 2) return { word: item.word, type: typeInMode(EASIER[item.type] || 'meaning', only), retries };
       }
       return null;
     },

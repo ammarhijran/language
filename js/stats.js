@@ -12,6 +12,28 @@ export function dueWords(ctx, now = Date.now()) {
     .sort((a, b) => a.card.due - b.card.due);
 }
 
+// Study modes, for when only one way of practising is possible (Settings → Lessons, or the switch
+// on the Practice screen): 'listen' — headphones in, no talking, no typing: every question is
+// heard and answered with a tap; 'speak' — every question is answered aloud.
+export const STUDY_MODES = [
+  { id: 'all', name: 'Everything', short: 'Everything', emoji: '🔀', hint: 'Listening, reading, typing and speaking, mixed.' },
+  { id: 'listen', name: 'Listening only', short: 'Listening', emoji: '🎧', hint: 'For when you can’t talk: every question is heard and answered with a tap. No speaking, no typing.' },
+  { id: 'speak', name: 'Speaking only', short: 'Speaking', emoji: '🎤', hint: 'Every question is answered by saying the word aloud.' },
+];
+export const studyMode = (settings) => (STUDY_MODES.some((m) => m.id === settings?.studyMode) ? settings.studyMode : 'all');
+
+/**
+ * The exercise a study mode turns `type` into. New-word cards stay as they
+ * are. Without speech recognition, "speaking only" is a flashcard: say it
+ * aloud, then rate yourself.
+ */
+export function typeInMode(type, mode, { recognition = recognitionSupported() } = {}) {
+  if (type === 'intro' || !mode || mode === 'all') return type;
+  if (mode === 'listen') return 'listen';
+  if (mode === 'speak') return recognition ? 'speak' : 'flashcard';
+  return type;
+}
+
 /**
  * Words that come up for review by the end of tomorrow, soonest first — for
  * reviewing ahead (before a day without time). Same shape as dueWords().

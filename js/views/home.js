@@ -2,6 +2,7 @@
 // topic or start the next one), what comes after it, shortcuts to the
 // phrasebook, everyday speech, texts and sentences, the word of the day and
 // this week's challenges. Every topic is one tap away on Learn.
+import { STUDY_MODES, studyMode } from '../stats.js';
 import { h, icon, storageBanner } from '../ui.js';
 import { voiceBanner, playButton, readingLine, glyph, devicePref } from '../components.js';
 import { computeStats, nextTopics, topicCounts, wordOfTheDay, learnedWords } from '../stats.js';
@@ -56,6 +57,14 @@ export default function home(ctx) {
       h('span', { class: 'up-next-name' }, `🎒 Essentials · ${kitLearned}/${kit.length}`),
       icon('arrow', 18))
     : null;
+
+  // Listening only or speaking only is on: say so where the day starts, with the way back.
+  const only = STUDY_MODES.find((m) => m.id === studyMode(ctx.settings));
+  const modeRow = only.id === 'all' ? null
+    : h('a', { class: 'up-next kit-row mode-row', href: '#/practice' },
+      h('span', { class: 'kicker' }, 'Mode'),
+      h('span', { class: 'up-next-name' }, `${only.emoji} ${only.name} is on`),
+      h('span', { class: 'small muted' }, 'Change'));
 
   // A text left part-way in Read & Listen: back to it in one tap (it offers to continue from that line).
   const last = devicePref('readLast', null);
@@ -120,6 +129,7 @@ export default function home(ctx) {
         h('span', { class: 'up-next-name' }, after.verb === 'Continue' ? 'Continue ' : '', lessonLabel(after.cat)),
         icon('arrow', 18))
       : null,
+    modeRow,
     kitRow,
     scriptRow,
     listenRow,

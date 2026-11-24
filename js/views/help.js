@@ -73,6 +73,7 @@ export function tips(lang, { reminders = false, scope = '' } = {}) {
         item('🗒️', 'Your own notes', 'On any word’s page, “Add a note of my own”: a memory hook that shows after every answer about that word.', '#/progress'),
         item('⭐', 'Phrasebook', 'Ready-made phrases by situation. ☆ saves one; “Show” puts it on screen in big letters to show someone.', '#/phrases'),
         item('🎨', 'Themes and text size', 'Light or dark, the colour of buttons, the background, and larger text.', '#/settings'),
+        item('🎧', 'Listening only, speaking only', 'In a busy place, or with your hands full: the switch at the top of Practice makes every question in reviews, lessons and Mixed rounds one you hear and tap, or one you answer aloud.', '#/practice'),
         item('⌨️', 'No keyboard, or can’t talk?', 'Settings → Lessons switches typing or speaking questions off.', '#/settings'),
         ...(reminders ? [item('🔔', 'Daily reminder', 'A notification at the time you choose that says what is waiting.', '#/settings')] : []),
       ],

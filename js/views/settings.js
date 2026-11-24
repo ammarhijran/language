@@ -1,3 +1,4 @@
+import { STUDY_MODES, studyMode } from '../stats.js';
 import { h, icon, set, storageBanner } from '../ui.js';
 import * as speech from '../speech.js';
 import { voiceBanner } from '../components.js';
@@ -316,6 +317,10 @@ export default function settings(ctx) {
           GOALS.map((g) => h('option', { value: String(g.value), selected: g.value === s.dailyGoal }, `${g.name} — ${g.value} exercises (${g.time})`)))),
       h('label', { class: 'field inline' }, number('lessonSize', 3, 15), h('span', null, 'New words per lesson')),
       h('label', { class: 'field inline' }, number('sessionSize', 5, 100), h('span', null, 'Max words per review session')),
+      h('label', { class: 'field', for: 'set-studyMode' }, h('span', null, 'Study mode'),
+        h('select', { class: 'select', id: 'set-studyMode', onchange: (e) => { store.updateSettings({ studyMode: e.target.value }); ctx.rerender(); } },
+          STUDY_MODES.map((m) => h('option', { value: m.id, selected: m.id === studyMode(s) }, `${m.emoji} ${m.name}`)))),
+      h('p', { class: 'hint' }, STUDY_MODES.find((m) => m.id === studyMode(s)).hint, ' Also on the Practice screen.'),
       h('label', { class: 'field inline' }, toggle('typing'), h('span', null, 'Typing questions')),
       h('label', { class: 'field inline' }, toggle('speaking'), h('span', null, 'Speaking questions')),
       h('p', { class: 'hint' }, `In reviews and Mixed practice. Switch typing off if you have no ${lang.name} keyboard, speaking off when you can’t talk — the words are then asked by choosing or as flashcards. Spelling and Speaking practice stay available when you pick them yourself.`),
