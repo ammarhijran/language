@@ -91,7 +91,7 @@ Each language has its own alphabet/kana chart, sound guides and minimal-pair ear
 - Everything is on the **Journey** page (under **Me**). Game features can be switched off in Settings; the daily goal, streaks and personal goals stay (the page is then called Goals).
 
 ### Sync between devices — without accounts or servers
-Lisan has no backend. To copy progress to another phone, tablet or computer, go to **Settings → Sync between devices**:
+Four Tongues has no backend. To copy progress to another phone, tablet or computer, go to **Settings → Sync between devices**:
 1. **Create a sync code** on one device. Add a passphrase (8+ characters) to encrypt it end to end (PBKDF2-SHA-256, 600k iterations → AES-GCM-256, in the browser).
 2. **Move it yourself:** Copy, Share… (AirDrop, Nearby Share, messages) or Save as file to your own iCloud Drive or Google Drive.
 3. **Paste it or open the file** on the other device. Check the preview, then merge.
@@ -142,7 +142,7 @@ npm run monkey   # random clicking through the app, failing on any script error 
 
 Any static file server works too, e.g. `python3 -m http.server`.
 
-**Deploying:** `.github/workflows/pages.yml` publishes the app to GitHub Pages on every push to `main`. Turn it on once under **Settings → Pages → Source: GitHub Actions**.
+**Deploying:** `.github/workflows/pages.yml` publishes the app to GitHub Pages on every push to `main`: <https://ammarhijran.github.io/language/> (the privacy policy is `privacy.html` there).
 
 ## Android & iOS apps
 
@@ -204,7 +204,7 @@ js/skills.js, letterquiz.js    which exercise trains which skill (Progress → Y
 js/themes.js, wordlist.js      themes (accent colours, backgrounds) · word lists as CSV and text
 js/kit.js, placement.js        the trip-essentials list · the placement check
 js/sounddrill.js               which course words contain the sound of a sound tip
-js/reminders.js, news.js       daily reminders (apps) · the “New in Lisan” card
+js/reminders.js, news.js       daily reminders (apps) · the “New in Four Tongues” card
 js/components.js               pronunciation panel, speak-and-score, recorder
 js/srs.js                      spaced-repetition scheduler
 js/game.js, celebrate.js       XP, levels, achievements, challenges, goals · reward overlays
@@ -220,7 +220,8 @@ js/languages/tr/ uk/ ja/ ar/   language packs: vocab.js (core), more.js (everyda
                                grammar.js (lessons), texts.js (Read & Listen), sounds.js (alphabet, ear training),
                                phonetics; feminine.js (uk, ar: what a woman says)
 js/languages/index.js, meta.js loads the pack being learned · generated names and counts of all packs
-scripts/                       serve.js (npm start), build-web.js, smoke.cjs (npm run smoke), monkey.mjs (npm run monkey), store-screenshots.cjs
+design/icons/                  the app icon's sources (SVG); scripts/icons.cjs renders every icon from them
+scripts/                       serve.js (npm start), build-web.js, icons.cjs, smoke.cjs (npm run smoke), monkey.mjs (npm run monkey), store-screenshots.cjs
 tests/                         unit tests (npm test)
 ```
 

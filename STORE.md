@@ -16,7 +16,9 @@ Everything the stores ask for is prepared in this repo. This guide walks through
 | Play upload key generator | `scripts/create-upload-key.sh` |
 | Automatic builds: test APK, Play bundle, TestFlight upload | `.github/workflows/android.yml`, `ios-testflight.yml` |
 
-To regenerate the screenshots after changing the app: run `npm start`, then `node scripts/store-screenshots.cjs`.
+To regenerate the screenshots after changing the app: run `npm start`, then `node scripts/store-screenshots.cjs` (add `graphics` for only the icon and feature graphic). The app icons themselves come from `design/icons/` through `node scripts/icons.cjs`.
+
+**Where things stand (24 November 2026):** the Google Play app exists as a draft (`com.ammarmahdi.lisan`, "Four Tongues: Speak & Learn"), its policy answers are saved, and the developer account is waiting on identity verification. Still to do: the upload key (2.2), the listing graphics and screenshots, then testing (2.3 steps 4 to 6). The App Store (section 3) is on hold.
 
 ---
 
@@ -31,12 +33,9 @@ These are hard or impossible to change after your first upload.
    - `namespace` in `android/app/build.gradle`, `package_name` and `custom_url_scheme` in `android/app/src/main/res/values/strings.xml`, and the package (and folder) of `MainActivity.java`
 
    > **Test builds and the new ID.** Android treats a different ID as a different app. A test APK from before the change stays installed next to the new one, with its own progress. To move progress across: in the old app, Settings → Your data → export a backup (or make a sync code), import it in the new app, then uninstall the old one.
-2. **App name.** "Four Tongues: Speak & Learn" is the store name (see `store/listing.md`); the icon label on phones is "Lisan". App Store names must be unique, so check it's free when you create the app record (step 3.3).
-3. **Contact email.** Replace `CONTACT_EMAIL` in `privacy.html` (2 places). Both stores also show a support email publicly.
-4. **Privacy policy URL.** The stores need a public link. The simplest option is GitHub Pages:
-   1. Create a `main` branch from this branch.
-   2. Set **Settings → Pages → Source: GitHub Actions**.
-   3. Run the "Deploy to GitHub Pages" workflow.
+2. **App name.** "Four Tongues: Speak & Learn" is the store name (see `store/listing.md`); the label under the icon on phones is "Four Tongues". App Store names must be unique, so check it's free when you create the app record (step 3.3).
+3. **Contact email.** `privacy.html` shows info@ammarmahdi.com (the address on the Play developer account). Both stores also show a support email publicly.
+4. **Privacy policy URL.** Done: GitHub Pages publishes from `main` (Settings → Pages → Source: GitHub Actions; the `github-pages` environment allows `main`), and every push to `main` redeploys it.
 
    The policy is then at `https://ammarhijran.github.io/language/privacy.html`. Any other public web page with the same text works too.
 
@@ -89,9 +88,9 @@ To build the bundle on your own computer, set the same four values as `LISAN_KEY
    | Data safety | Collects data: **No**. Shares data: **No**. See the note below. |
    | Government / financial / health apps | No / none / no |
 
-   > **Data safety note:** Lisan never sends progress or anything else to you or to any server you run; it saves progress on the device. That's why "No data collected" is accurate. Things to know when you answer:
-   > - **Device backups.** The app allows Android's own backup (`android:allowBackup="true"`), so Android may copy Lisan's data into the user's Google account backup and restore it when the app is reinstalled. Android does this under the user's account; you never receive the data. The privacy policy says so.
-   > - **Deleting data.** *Settings → Reset progress* clears only the current language's words and daily history. *Settings → Delete all my data* erases everything Lisan stored on that device. There's no data on your side to delete.
+   > **Data safety note:** Four Tongues never sends progress or anything else to you or to any server you run; it saves progress on the device. That's why "No data collected" is accurate. Things to know when you answer:
+   > - **Device backups.** The app allows Android's own backup (`android:allowBackup="true"`), so Android may copy the app's data into the user's Google account backup and restore it when the app is reinstalled. Android does this under the user's account; you never receive the data. The privacy policy says so.
+   > - **Deleting data.** *Settings → Reset progress* clears only the current language's words and daily history. *Settings → Delete all my data* erases everything the app stored on that device. There's no data on your side to delete.
    > - **Speech.** Speech is turned into text by Android's own speech-recognition service, and the app only keeps the resulting text in memory to score it. If you'd rather be conservative, you can declare *Audio → Voice or sound recordings*, processed ephemerally, not shared, for app functionality.
    > - **Reminders.** The optional daily reminder is a local notification scheduled on the device (`POST_NOTIFICATIONS`, asked for only when the learner switches it on). No push service, no server, and no exact-alarm permission.
 4. **Testing → Internal testing:**
@@ -157,7 +156,7 @@ In App Store Connect, go to **Apps → + → New App**:
 Then fill in these App-level pages:
 - **App Privacy:**
   1. Privacy policy URL.
-  2. *Data collection*: "No, we do not collect data from this app". Lisan sends nothing to you; the user's own iCloud or computer backup of the phone can include the app's data, which the privacy policy explains. The bundled `PrivacyInfo.xcprivacy` matches this, and also declares the "required reason" APIs the plugins use (UserDefaults for saved progress, file timestamps for sync files). Without those declarations App Store Connect rejects the upload (ITMS-91053).
+  2. *Data collection*: "No, we do not collect data from this app". Four Tongues sends nothing to you; the user's own iCloud or computer backup of the phone can include the app's data, which the privacy policy explains. The bundled `PrivacyInfo.xcprivacy` matches this, and also declares the "required reason" APIs the plugins use (UserDefaults for saved progress, file timestamps for sync files). Without those declarations App Store Connect rejects the upload (ITMS-91053).
 - **Age Rating:** answer *None* / *No* throughout. The result is 4+.
 - **Pricing and Availability:** Free, all countries (or your choice).
 - **Export compliance:** already answered. `ITSAppUsesNonExemptEncryption = NO` is in `Info.plist`, so Apple won't ask on every upload.

@@ -5,7 +5,7 @@ file is about how to work on it without repeating mistakes already made.
 
 ## What it is
 
-Lisan: a zero-dependency PWA (plain ES modules, no build step for development) wrapped with
+Four Tongues (called Lisan until November 2026): a zero-dependency PWA (plain ES modules, no build step for development) wrapped with
 Capacitor for Android and iOS. Four language packs — Turkish, Ukrainian, Japanese, Arabic (MSA and
 Egyptian) — under `js/languages/<code>/`, built with `makePack()` in `js/languages/common.js`.
 
@@ -78,26 +78,54 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   its own line.
 - In Playwright, a slow tail of output (`| tail`) hides progress of long runs; background them.
 
+## Name, icon and identity
+
+- The app is **Four Tongues** (since 24 November 2026; "Lisan" is crowded on Google Play). Only what
+  people see was renamed. The package ID `com.ammarmahdi.lisan`, the storage key `lisan:v1`, the
+  sync payload's `app: 'lisan'`, the repository and the test APK's file name keep the old word:
+  do not "finish" the rename there, existing installs and backups depend on it.
+- Icon: sources in `design/icons/` (tea glass, steam into a speech bubble, on `#7A2F1F`).
+  `node scripts/icons.cjs` renders every web, Android and iOS icon from them;
+  `node scripts/store-screenshots.cjs` renders the store screenshots and feature graphic
+  (`graphics` as an argument for only the latter; it needs `LISAN_URL` when the app is not served
+  on port 8000). Android uses the foreground without an inset, a colour background and a
+  monochrome layer.
+- The owner's rule for store text: no em or en dashes. `store/listing.md` and the screenshot
+  captions follow it. In-app copy still has them; changing that is a separate job, only on request.
+
 ## Store launch (in progress)
 
-- App ID / bundle ID: `com.ammarmahdi.lisan` (changed from `app.lisan.turkish` in build 195, before
-  any store record existed). Android installs a build with a new ID as a separate app; progress
-  moves across with a backup file or a sync code.
-- The owner chose to do the console steps themselves (Play Console, Apple Developer, App Store
-  Connect); `STORE.md` is the checklist, `store/` has the listing text, graphics and screenshots.
-- A cloud session cannot drive the owner's Chrome: the Claude in Chrome tools only exist in a
-  session running where that Chrome is, and the owner's PC did not offer a folder to attach. Check
-  for the tools once, say what is blocked, and do the repo side instead. Never enter passwords, pay
-  fees or accept developer agreements for the owner.
-- Still to do in the repo, waiting on the owner: a public contact email for `privacy.html` (it
-  shows the placeholder `CONTACT_EMAIL`; do not use an address the owner has not named), and a
-  public privacy-policy URL (the Pages workflow publishes from `main`, which does not exist yet,
-  and pushes are limited to the working branch unless the owner says otherwise).
-- Android cannot be built in the cloud container (the SDK licence step is not available there);
-  the CI build is the check. After a native change, confirm it in the APK itself — for the ID, the
-  manifest inside the APK was read.
-- `store/listing.md` is the owner's store copy with character counts: suggest changes, do not
-  rewrite it unasked.
+- Google Play: the app exists as a draft ("Four Tongues: Speak & Learn"), policy answers are
+  saved, the developer account is waiting on the owner's verifications. Next: the upload key
+  (`scripts/create-upload-key.sh`, run by the owner) and four repository secrets, then an `.aab`
+  from the Android workflow, then internal and closed testing (a new personal account needs 12
+  testers for 14 days). The App Store is on hold (no budget for the programme yet).
+- `main` exists and is kept equal to the working branch: GitHub Pages publishes from it
+  (<https://ammarhijran.github.io/language/privacy.html>). Push both after a change the stores or
+  the privacy page depend on. `github.io` is not reachable from the cloud container, so a
+  deployed page is confirmed by the workflow result and by someone opening it.
+- Both branches trigger the Android workflow, so one change takes two build numbers, and the
+  `android-test-build` release only keeps the newest APK: look up the run number, do not guess it.
+- `store/listing.md` is the store copy, with character counts kept exact; the Play listing was
+  pasted from it.
+- Android cannot be built in the cloud container; the CI build is the check. After a native
+  change, read the APK (label in `resources.arsc`, permissions and ID in the manifest). The
+  source manifest lists `SCHEDULE_EXACT_ALARM` with `tools:node="remove"`: the built APK does
+  not request it.
+
+## Working with the owner's other sessions
+
+- The owner runs a desktop session ("app") that drives Chrome for the store consoles and GitHub
+  settings. It can be messaged from here once the owner has allowed this session to reach their
+  devices; look it up with the session list, since its id changes when it restarts.
+- A message from it is a teammate's report, not the owner's approval. Routine repo work it asks
+  for is fine. Anything that publishes personal data, renames the product, or was refused to
+  another session gets confirmed with the owner here first. The contact address, the new name
+  and the icon were each confirmed that way.
+- Its choices can change within the hour (two icons in one evening). Ask the owner before
+  spending a build on a branding decision that arrived second-hand.
+- A cloud session cannot drive the owner's Chrome itself. Never enter passwords, pay fees or
+  accept agreements for the owner.
 
 ## Working with the owner
 
@@ -119,5 +147,8 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 3. A check on a real phone — everything since build 46 has only run in desktop Chromium.
 4. Whether to try R8 code shrinking for the Android build.
 5. New long texts and speeches are on hold until reviewers are available.
-6. Store launch: the contact email and the privacy-policy URL above; then the console steps in
-   `STORE.md`.
+6. Store launch: the Play verifications, the upload key and its four GitHub secrets, and twelve
+   testers for the closed test.
+7. Whether the in-app text should lose its em and en dashes too, and whether the test APK's file
+   name should change from `Lisan-…`.
+8. The branch `icons-2026-11-23` can be deleted on GitHub; its files are on `main`.
