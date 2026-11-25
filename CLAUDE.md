@@ -106,8 +106,15 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   permission. Production needs 12 testers for 14 days (new personal account). The App Store is
   on hold (no budget for the programme yet).
 - What is on Play lags the repository: build 206 predates the Listening only and Speaking only
-  modes (build 211). A push only makes a test APK and an `.aab` artifact on GitHub; the owner
-  decides when a bundle is uploaded to Play. Do not call a push a release.
+  modes (build 211). On 25 November the owner had the build 216 bundle sent to "app" for a new
+  closed-test release; until "app" reports it submitted, 206 is what testers have. A push only
+  makes a test APK and an `.aab` artifact on GitHub; the owner decides when a bundle is uploaded
+  to Play. Do not call a push a release.
+- Handing over a bundle: take the newest successful Android run, list its artifacts, and send the
+  run link and the artifact `lisan-play-store-bundle` (a zip holding the `.aab`, signed with the
+  upload key). Never `lisan-android-apk`: that is the sideload build. The versionCode is the run
+  number, so it always rises; versionName stays 1.0.0. Name what changed since the build on Play
+  (`git log` between the two commits) and give release notes without dashes.
 - `main` exists and is kept equal to the working branch: GitHub Pages publishes from it
   (<https://ammarhijran.github.io/language/privacy.html>). Push both after a change the stores or
   the privacy page depend on. `github.io` is not reachable from the cloud container, so a
@@ -157,8 +164,8 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 3. A check on a real phone — everything since build 46 has only run in desktop Chromium.
 4. Whether to try R8 code shrinking for the Android build.
 5. New long texts and speeches are on hold until reviewers are available.
-6. Store launch: twelve testers for 14 days on the closed test, and when to upload a newer
-   bundle (with the study modes) to Play.
+6. Store launch: twelve testers for 14 days on the closed test, and confirmation from "app" that
+   the build 216 bundle (with the study modes) is submitted.
 7. Whether the in-app text should lose its em and en dashes too, and whether the test APK's file
    name should change from `Lisan-…`.
 8. The branch `icons-2026-11-23` can be deleted on GitHub; its files are on `main`.
