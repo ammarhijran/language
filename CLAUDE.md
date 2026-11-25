@@ -78,6 +78,9 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 - An inline button with a minimum tap height inside a paragraph breaks the line spacing; put it on
   its own line.
 - In Playwright, a slow tail of output (`| tail`) hides progress of long runs; background them.
+- `git push` can fail for minutes with 503 "credential service temporarily unavailable". It is
+  the session's GitHub sign-in, not the commits: retry in a background loop (every 30 s) and
+  check both branches with `git ls-remote` afterwards.
 
 ## Name, icon and identity
 
@@ -98,9 +101,10 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 
 - Google Play (as of 24 November 2026): verifications passed, the upload key (alias
   `lisan-upload`) and its four repository secrets are set, and build 206 (1.0.0) is approved on
-  Closed testing, track Alpha. Testers join through a Google Group: give them the group's `/about`
-  link (it has the Join button); the plain group link tells outsiders they lack permission. Production needs 12 testers for 14 days
-  (new personal account). The App Store is on hold (no budget for the programme yet).
+  Closed testing, track Alpha. Testers join through a Google Group: give them the group's
+  `/about` link (it has the Join button); the plain group link tells outsiders they lack
+  permission. Production needs 12 testers for 14 days (new personal account). The App Store is
+  on hold (no budget for the programme yet).
 - What is on Play lags the repository: build 206 predates the Listening only and Speaking only
   modes (build 211). A push only makes a test APK and an `.aab` artifact on GitHub; the owner
   decides when a bundle is uploaded to Play. Do not call a push a release.
