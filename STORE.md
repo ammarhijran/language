@@ -18,7 +18,7 @@ Everything the stores ask for is prepared in this repo. This guide walks through
 
 To regenerate the screenshots after changing the app: run `npm start`, then `node scripts/store-screenshots.cjs` (add `graphics` for only the icon and feature graphic). The app icons themselves come from `design/icons/` through `node scripts/icons.cjs`.
 
-**Where things stand (24 November 2026):** the Google Play app exists as a draft (`com.ammarmahdi.lisan`, "Four Tongues: Speak & Learn"), its policy answers are saved, and the developer account is waiting on identity verification. Still to do: the upload key (2.2), the listing graphics and screenshots, then testing (2.3 steps 4 to 6). The App Store (section 3) is on hold.
+**Where things stand (24 November 2026):** the Google Play app (`com.ammarmahdi.lisan`, "Four Tongues: Speak & Learn") has passed account verification, the upload key and its four repository secrets are set (2.2), and build 206 (version 1.0.0) is approved on **Closed testing**, track Alpha, with testers invited through a Google Group. Still to do: twelve testers opted in for 14 days (2.3 step 5), then production. Newer builds (from 211, with Listening only and Speaking only) are not on Play yet; the owner decides when to upload one. The App Store (section 3) is on hold.
 
 ---
 

@@ -96,11 +96,14 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 
 ## Store launch (in progress)
 
-- Google Play: the app exists as a draft ("Four Tongues: Speak & Learn"), policy answers are
-  saved, the developer account is waiting on the owner's verifications. Next: the upload key
-  (`scripts/create-upload-key.sh`, run by the owner) and four repository secrets, then an `.aab`
-  from the Android workflow, then internal and closed testing (a new personal account needs 12
-  testers for 14 days). The App Store is on hold (no budget for the programme yet).
+- Google Play (as of 24 November 2026): verifications passed, the upload key (alias
+  `lisan-upload`) and its four repository secrets are set, and build 206 (1.0.0) is approved on
+  Closed testing, track Alpha. Testers join through a Google Group; one tester could not open the
+  group page, which the "app" session is looking into. Production needs 12 testers for 14 days
+  (new personal account). The App Store is on hold (no budget for the programme yet).
+- What is on Play lags the repository: build 206 predates the Listening only and Speaking only
+  modes (build 211). A push only makes a test APK and an `.aab` artifact on GitHub; the owner
+  decides when a bundle is uploaded to Play. Do not call a push a release.
 - `main` exists and is kept equal to the working branch: GitHub Pages publishes from it
   (<https://ammarhijran.github.io/language/privacy.html>). Push both after a change the stores or
   the privacy page depend on. `github.io` is not reachable from the cloud container, so a
@@ -150,8 +153,8 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 3. A check on a real phone — everything since build 46 has only run in desktop Chromium.
 4. Whether to try R8 code shrinking for the Android build.
 5. New long texts and speeches are on hold until reviewers are available.
-6. Store launch: the Play verifications, the upload key and its four GitHub secrets, and twelve
-   testers for the closed test.
+6. Store launch: twelve testers for 14 days on the closed test, and when to upload a newer
+   bundle (with the study modes) to Play.
 7. Whether the in-app text should lose its em and en dashes too, and whether the test APK's file
    name should change from `Lisan-…`.
 8. The branch `icons-2026-11-23` can be deleted on GitHub; its files are on `main`.
