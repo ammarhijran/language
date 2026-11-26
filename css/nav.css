@@ -332,3 +332,5 @@ body.showing { overflow: hidden; }
 .news-list a:hover { background: var(--surface-2); }
 .news-list a > span:last-child { display: flex; flex-direction: column; min-width: 0; }
 .news-list small { color: var(--muted); font-size: var(--fs-xs); }
+.btn.news-more { margin-top: var(--sp-1); color: var(--action); padding-inline: .25rem; }
+.news-list > li:nth-child(n+4) { animation: enter-up .3s var(--ease-out, ease) backwards; }

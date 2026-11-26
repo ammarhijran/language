@@ -335,6 +335,9 @@ function render() {
       h('h2', null, 'Something went wrong'), h('p', { class: 'muted' }, String(err.message || err)),
       h('a', { class: 'btn primary', href: '#/' }, 'Back home')));
   }
+  // A screen that is new (not the same one drawn again) comes in with a short
+  // animation (css/styles.css "Motion"); a rerender stays still.
+  if (name !== lastView && el?.classList) el.classList.add('enter');
   set(main, el);
   document.body.classList.toggle('bare', name === 'welcome');
 

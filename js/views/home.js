@@ -10,6 +10,22 @@ import { challengeList, repairBanner } from './journey.js';
 import { newsToShow } from '../news.js';
 import { tripKit } from '../kit.js';
 
+/** The news items: the newest few, and a button for the rest, so the card never fills the screen. */
+const NEWS_SHOWN = 3;
+function newsList(ctx, news) {
+  const item = (n) => h('li', null,
+    h('a', { href: n.href, onclick: () => ctx.store.updateSettings({ newsSeen: news.id }) },
+      h('span', { 'aria-hidden': 'true' }, n.emoji), h('span', null, h('b', null, n.text), h('small', null, n.where))));
+  const list = h('ul', { class: 'news-list', id: 'news-list' }, news.items.slice(0, NEWS_SHOWN).map(item));
+  const rest = news.items.length - NEWS_SHOWN;
+  if (rest <= 0) return list;
+  const more = h('button', {
+    type: 'button', class: 'btn ghost small news-more', 'aria-controls': 'news-list',
+    onclick: () => { list.append(...news.items.slice(NEWS_SHOWN).map(item)); more.remove(); list.children[NEWS_SHOWN]?.querySelector('a')?.focus(); },
+  }, `Show ${rest} more`);
+  return h('div', null, list, more);
+}
+
 export default function home(ctx) {
   const { lang } = ctx;
   const s = computeStats(ctx);
@@ -102,9 +118,7 @@ export default function home(ctx) {
         type: 'button', class: 'btn small',
         onclick: () => { ctx.store.updateSettings({ newsSeen: news.id }); newsCard.remove(); },
       }, 'Got it')),
-    h('ul', { class: 'news-list' }, news.items.map((n) => h('li', null,
-      h('a', { href: n.href, onclick: () => ctx.store.updateSettings({ newsSeen: news.id }) },
-        h('span', { 'aria-hidden': 'true' }, n.emoji), h('span', null, h('b', null, n.text), h('small', null, n.where))))))) : null;
+    newsList(ctx, news)) : null;
 
   return h('div', { class: 'view home today' },
     h('section', { class: 'hello' },

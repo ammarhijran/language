@@ -24,6 +24,7 @@ export const MODES = [['system', 'Same as device'], ['light', 'Light'], ['dark',
 
 /** Colours for buttons, links and highlights: [--action, --action-hover, --action-ink] per mode. */
 export const ACCENTS = {
+  tea: { name: 'Tea', light: ['#8a3a22', '#6e2c18', '#ffffff'], dark: ['#eea98e', '#f8cdb9', '#3a1308'] },
   indigo: { name: 'Indigo', light: ['#4338ca', '#3730a3', '#ffffff'], dark: ['#a5b4fc', '#c7d2fe', '#0d1030'] },
   blue: { name: 'Blue', light: ['#1d4ed8', '#1e40af', '#ffffff'], dark: ['#8dbdf3', '#bfdbfe', '#0b1b3a'] },
   teal: { name: 'Teal', light: ['#0f766e', '#115e59', '#ffffff'], dark: ['#54d0bd', '#99f6e4', '#042f2e'] },
@@ -32,7 +33,7 @@ export const ACCENTS = {
   rose: { name: 'Rose', light: ['#be185d', '#9d174d', '#ffffff'], dark: ['#efa1cc', '#fbcfe8', '#3b0a22'] },
   purple: { name: 'Purple', light: ['#7e22ce', '#6b21a8', '#ffffff'], dark: ['#cfadf4', '#e9d5ff', '#2a0a45'] },
 };
-export const DEFAULT_ACCENT = 'indigo';
+export const DEFAULT_ACCENT = 'tea';
 /** "Your own colour": a hue picked on a slider; the shades are worked out by accentFromHue(). */
 export const CUSTOM_ACCENT = 'custom';
 export const DEFAULT_HUE = 200;

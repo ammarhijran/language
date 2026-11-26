@@ -46,7 +46,8 @@ const DEFAULTS = {
   autoNext: false, // after a right multiple-choice answer, go on to the next question by itself
   textSize: 'm', // 'm', 'l' or 'xl'
   theme: 'system', // 'system' (follow the device), 'light' or 'dark' — see js/themes.js
-  accent: 'indigo', // a key of ACCENTS, or 'custom' (then accentHue, 0–359, is the colour)
+  accent: 'tea', // a key of ACCENTS, or 'custom' (then accentHue, 0–359, is the colour)
+  colours: 2, // 2 since Tea became the default colour (see cleanSettings)
   accentHue: 200,
   background: 'warm', // a key of BACKGROUNDS
 };
@@ -168,6 +169,10 @@ function cleanSettings(raw) {
       out[k] = v;
     }
   }
+  // Indigo was the default colour until 26 November 2026. Settings saved before
+  // then (no `colours`) hold it whether or not it was picked, so they move to
+  // the new default, Tea; any other colour stays, and so does indigo picked since.
+  if (raw.colours !== 2 && out.accent === 'indigo') out.accent = DEFAULTS.accent;
   return out;
 }
 

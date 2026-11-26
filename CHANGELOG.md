@@ -3,6 +3,10 @@
 ## Unreleased
 
 ### Changed
+- **More motion, kept quiet:** a screen you open comes in block by block, the daily goal ring, achievement rings and progress bars fill up to their value, the tab you open gives a small hop, choices in an exercise appear one after another, and buttons and cards give a little when pressed (and lift under a mouse). Drawing the same screen again (a switch, a filter) stays still, and the device's "reduce motion" setting turns all of it off.
+- **Home: shorter "New in Four Tongues" card:** it shows the three newest things, and a button for the rest.
+- **Tea is the new standard colour:** buttons, links and highlights take the terracotta of the app icon instead of indigo. If you had the old standard colour you move to Tea once; any other colour you picked stays, and Indigo is still in Settings → Display → Colour.
+- **Wrong answers are magenta now, not red,** so they never look like the terracotta you tap. They still carry a ✗ and give a little shake.
 - **New name: Four Tongues** (was Lisan, a name several other apps on Google Play already use). The launcher label, the app’s title, the web app’s name, messages and the privacy policy all say Four Tongues; the package ID stays `com.ammarmahdi.lisan`, so it updates in place.
 - **New app icon:** a glass of tea whose steam curls up into a speech bubble, with four dots in the colours of the four languages, on terracotta. Android gets an adaptive icon with a themed (monochrome) version for Android 13+; the web app gets a separate maskable icon so launchers that crop to a circle keep the whole drawing.
 - **Privacy policy:** it now gives a contact address.

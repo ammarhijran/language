@@ -388,3 +388,14 @@ test('native mirror: when the WebView storage fills up, the next launch gets the
   assert.ok(store.getCard('tr', 'after'), 'the outdated WebView copy did not win');
   assert.ok(store.getCard('tr', 'before'));
 });
+
+test('Tea is the default colour; settings saved before it move from indigo, picks made since stay', () => {
+  const load = (settings) => { store.importData(JSON.stringify({ settings, progress: {} })); return store.getSettings(); };
+  assert.equal(load({}).accent, 'tea');
+  assert.equal(load({ accent: 'indigo' }).accent, 'tea', 'old default (or an old pick, which looks the same)');
+  assert.equal(load({ accent: 'teal' }).accent, 'teal', 'another colour is kept');
+  assert.equal(load({ accent: 'custom', accentHue: 40 }).accent, 'custom');
+  const now = load({ accent: 'indigo', colours: 2 });
+  assert.equal(now.accent, 'indigo', 'indigo picked after the change is kept');
+  assert.equal(now.colours, 2);
+});

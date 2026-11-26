@@ -122,8 +122,8 @@ test('what the settings come to', () => {
   assert.equal(darkMedia('light'), 'not all');
   assert.equal(darkMedia('nonsense'), DARK_QUERY);
   assert.equal(accentKey({ accent: 'teal' }), 'teal');
-  assert.equal(accentKey({ accent: 'toString' }), 'indigo');
-  assert.equal(accentKey({}), 'indigo');
+  assert.equal(accentKey({ accent: 'toString' }), 'tea');
+  assert.equal(accentKey({}), 'tea');
   assert.equal(backgroundKey({ background: 'cool' }), 'cool');
   assert.equal(backgroundKey({ background: '__proto__' }), 'warm');
 });
@@ -131,7 +131,7 @@ test('what the settings come to', () => {
 test('the standard look sets nothing; other looks set only what differs', () => {
   for (const mode of ['light', 'dark']) {
     assert.deepEqual(themeVars({}, mode), {});
-    assert.deepEqual(themeVars({ theme: 'dark', accent: 'indigo', background: 'warm' }, mode), {});
+    assert.deepEqual(themeVars({ theme: 'dark', accent: 'tea', background: 'warm' }, mode), {});
     const colour = themeVars({ accent: 'teal' }, mode);
     assert.deepEqual(Object.keys(colour).sort(), ['--action', '--action-hover', '--action-ink', '--action-soft']);
     assert.equal(colour['--action'], ACCENTS.teal[mode][0]);

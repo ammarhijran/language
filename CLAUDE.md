@@ -64,6 +64,22 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 - Small per-device conveniences (reader position, last missed words, quiz misses) use
   `devicePref` / `setDevicePref` in `js/components.js`.
 - Voice respellings are keyed by entry id, or by `text:<sentence>` for sentences without an id.
+- A setting whose default changes needs a marker: saved settings hold every default, so an old
+  default cannot be told from a pick. Tea replaced indigo with `colours: 2` for that (store.js
+  `cleanSettings`); copy the pattern for the next default that changes.
+
+## Design and motion
+
+- Colour roles are tested (`tests/styles.test.js`): the tap colour (`--action`, Tea terracotta by
+  default since 26 November 2026) must stay 60 degrees of hue from `--bad`. That is why wrong
+  answers are magenta, not red. Changing either colour means checking the other.
+- Motion lives in the "Motion" section at the end of `css/styles.css`. `app.js` adds `.enter` to
+  a screen only when the route changes, so a rerender (a switch, a filter) stays still; gate new
+  entrance animations on `.view.enter`. Sessions (`.view.session`) animate on their own. The
+  global reduced-motion rule turns everything off, so every animation must only add to a layout
+  that is complete without it (`backwards` fill, never a final state that only the animation sets).
+- Store screenshots show the app's look: rerender them (`scripts/store-screenshots.cjs`) after a
+  visual change, and remember the Play listing keeps the old ones until someone uploads the new.
 
 ## Pitfalls already hit
 

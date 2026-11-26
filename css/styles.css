@@ -5,7 +5,8 @@
    screen, notification badges). --action is for everything you tap (buttons,
    links, selected choices, audio, focus). --progress fills meters, rings and
    charts on a --track; finished things are --done (green, with a ✓). --bad is
-   for wrong answers and errors only, so nothing that is going well is red.
+   for wrong answers and errors only. The tap colour is the terracotta of the
+   icon (Tea), so errors are magenta rather than red: the two never look alike.
    Sizes: type --fs-*, corner radii --r-*, spacing --sp-* (4px steps).
    tests/styles.test.js checks the contrast of these pairs and that no
    stylesheet sets a raw rem font size or px corner radius. */
@@ -19,10 +20,10 @@
   --accent: #c8102e;
   --accent-ink: #ffffff;
   --accent-soft: #fbe8eb;
-  --action: #4338ca;
-  --action-hover: #3730a3;
+  --action: #8a3a22;
+  --action-hover: #6e2c18;
   --action-ink: #ffffff;
-  --action-soft: #ecebfa;
+  --action-soft: #f3ebe9;
   --progress: #1f8a58;
   --track: color-mix(in srgb, var(--text) 15%, var(--surface));
   --good: #1d7a45;
@@ -30,8 +31,8 @@
   --done: var(--good);
   --warn: #8f5b00;
   --warn-soft: #fbf0d9;
-  --bad: #c0392b;
-  --bad-soft: #fde9e6;
+  --bad: #a71b9b;
+  --bad-soft: #fce9fa;
   --easy: #1d4ed8;
   --easy-soft: #e5edfd;
   --rose: #be185d;
@@ -1380,3 +1381,76 @@ body.bare main { padding-top: 0; padding-bottom: 0; }
 .voice-name b { overflow-wrap: anywhere; }
 .voice-name small { color: var(--muted); font-size: var(--fs-xs); }
 .voice-on { display: inline-flex; align-items: center; gap: .25rem; font-size: var(--fs-sm); font-weight: 700; color: var(--action); padding-inline: .4rem; }
+
+/* ---------- Motion ----------
+   Short, quiet movement that says where things came from: a new screen rises
+   in block by block (app.js marks it .enter; drawing the same screen again
+   stays still), rings and meters fill up to their value, and anything you tap
+   gives a little under your finger. "Reduce motion" on the device turns all
+   of it off (the rule further up), and every animation only adds to a layout
+   that is complete without it. */
+:root {
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+  --ease-spring: cubic-bezier(.3, 1.45, .5, 1);
+}
+/* The rings' value can be animated once the browser knows it is a number. */
+@property --pct { syntax: '<number>'; inherits: false; initial-value: 0; }
+
+/* A new screen: each block a moment after the one above it (sessions have their own). */
+.view.enter:not(.session) > * { animation: enter-up .38s var(--ease-out) backwards; }
+.view.enter:not(.session) > :nth-child(2) { animation-delay: .04s; }
+.view.enter:not(.session) > :nth-child(3) { animation-delay: .08s; }
+.view.enter:not(.session) > :nth-child(4) { animation-delay: .12s; }
+.view.enter:not(.session) > :nth-child(5) { animation-delay: .16s; }
+.view.enter:not(.session) > :nth-child(6) { animation-delay: .2s; }
+.view.enter:not(.session) > :nth-child(n+7) { animation-delay: .24s; }
+@keyframes enter-up { from { opacity: 0; transform: translateY(10px); } }
+/* Lists of cards inside a block (topics, tools, achievements) follow in a ripple. */
+.view.enter :is(.cat-grid, .topic-grid, .shortcuts, .badge-grid, .news-list) > * { animation: enter-up .34s var(--ease-out) backwards; }
+.view.enter :is(.cat-grid, .topic-grid, .shortcuts, .badge-grid, .news-list) > :nth-child(2) { animation-delay: .1s; }
+.view.enter :is(.cat-grid, .topic-grid, .shortcuts, .badge-grid, .news-list) > :nth-child(3) { animation-delay: .14s; }
+.view.enter :is(.cat-grid, .topic-grid, .shortcuts, .badge-grid, .news-list) > :nth-child(4) { animation-delay: .18s; }
+.view.enter :is(.cat-grid, .topic-grid, .shortcuts, .badge-grid, .news-list) > :nth-child(5) { animation-delay: .22s; }
+.view.enter :is(.cat-grid, .topic-grid, .shortcuts, .badge-grid, .news-list) > :nth-child(6) { animation-delay: .26s; }
+.view.enter :is(.cat-grid, .topic-grid, .shortcuts, .badge-grid, .news-list) > :nth-child(n+7) { animation-delay: .3s; }
+
+/* Rings fill from empty to their value; meters grow from the start. */
+.view.enter :is(.goal-ring, .medal-ring), .score-ring { animation: ring-fill .9s var(--ease-out) .15s backwards; }
+@keyframes ring-fill { from { --pct: 0; } }
+.view.enter .meter-fill { transform-origin: left center; animation: meter-grow .8s var(--ease-out) .2s backwards; }
+@keyframes meter-grow { from { transform: scaleX(0); } }
+/* The goal met: the tick lands with a bounce. */
+.goal-ring.done .icon { animation: pop-in .5s var(--ease-spring) .5s backwards; }
+@keyframes pop-in { from { opacity: 0; transform: scale(.3); } }
+
+/* Pressing gives a little; letting go springs back. */
+.btn, .cta, .pill, .chip, .option, .tile, .cat-card, .shortcut, .quick-link, .up-next, .me-row, .lang-card, .medal, .news-list a, .tabbar a .icon {
+  transition-property: background, border-color, color, box-shadow, transform;
+  transition-duration: .15s, .15s, .15s, .2s, .18s;
+  transition-timing-function: ease, ease, ease, ease, var(--ease-spring);
+}
+:is(.btn, .cta, .pill, .chip, .option, .tile, .cat-card, .shortcut, .quick-link, .up-next, .me-row, .lang-card, .medal, .news-list a):active:not(:disabled) {
+  transform: scale(.97); transition-duration: .1s, .1s, .1s, .1s, .06s;
+}
+/* Cards that open something lift a little under a mouse. */
+@media (hover: hover) {
+  :is(.cat-card, .shortcut, .quick-link, .lang-card, .cta):hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgb(31 27 22 / 10%); }
+}
+/* The arrow on a call to action leans the way it goes. */
+.cta > .icon:last-child { transition: transform .25s var(--ease-spring); }
+.cta:hover > .icon:last-child, .cta:focus-visible > .icon:last-child { transform: translateX(4px); }
+.view.enter .cta .cta-icon .icon { animation: spin-in .7s var(--ease-out) .2s backwards; }
+@keyframes spin-in { from { transform: rotate(-180deg); opacity: 0; } }
+
+/* The tab you are on: its icon hops once. */
+.tabbar a.active .icon { animation: tab-hop .42s var(--ease-spring); }
+@keyframes tab-hop { 40% { transform: translateY(-4px) scale(1.12); } }
+/* A new number of words to review. */
+.tab-badge:not([hidden]) { animation: pop-in .35s var(--ease-spring); }
+
+/* Choices in an exercise come in one after another. */
+.options > * { animation: enter-up .3s var(--ease-out) backwards; }
+.options > :nth-child(2) { animation-delay: .05s; }
+.options > :nth-child(3) { animation-delay: .1s; }
+.options > :nth-child(4) { animation-delay: .15s; }
+.options > :nth-child(n+5) { animation-delay: .2s; }
