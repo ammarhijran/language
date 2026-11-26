@@ -91,10 +91,35 @@ jobs:
           done
           [ "$(gh release view android-test-build --json isDraft --jq .isDraft)" = "false" ]
 
+      # Every Play bundle from main is uploaded to Play (the owner's rule since
+      # 26 November 2026), so a bundle is built only when the push changes the
+      # app itself: what scripts/build-web.js copies, the Android project, and
+      # the packages. Docs, tests, store art and release notes alone build only
+      # the test APK. A manual run, a pull request or a first push always counts.
+      - name: Does this push change the app?
+        id: changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          APP='^(index\.html|privacy\.html|manifest\.webmanifest|sw\.js|capacitor\.config\.json|package(-lock)?\.json|scripts/build-web\.js|(css|js|icons|android)/)'
+          if [ "$GITHUB_EVENT_NAME" != "push" ] || [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "app=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          if ! files=$(gh api "repos/$GITHUB_REPOSITORY/compare/$BEFORE...$GITHUB_SHA" --jq '.files[].filename'); then
+            echo "::warning::Could not list the changed files; building the Play bundle to be safe."
+            echo "app=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          echo "$files"
+          if echo "$files" | grep -qE "$APP"; then echo "app=true" >> "$GITHUB_OUTPUT"; else
+            echo "::notice::No app files changed: no Play bundle for this push."
+            echo "app=false" >> "$GITHUB_OUTPUT"
+          fi
+
       # Google Play bundle, signed with your private upload key — only when the
       # signing secrets are configured (see STORE.md).
       - name: Build Play Store bundle
-        if: env.HAS_UPLOAD_KEY == 'true'
+        if: env.HAS_UPLOAD_KEY == 'true' && steps.changed.outputs.app == 'true'
         env:
           KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           LISAN_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
@@ -105,8 +130,22 @@ jobs:
           echo "$KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/upload.keystore"
           LISAN_KEYSTORE_PATH="$RUNNER_TEMP/upload.keystore" ./gradlew bundleRelease --no-daemon
 
+      # The bundle travels with its release notes (play/release-notes.txt, in
+      # Play's <en-US> tags) and a build.txt naming its version and commit, so
+      # the uploader needs nothing else.
+      - name: Release notes and build info next to the bundle
+        if: env.HAS_UPLOAD_KEY == 'true' && steps.changed.outputs.app == 'true'
+        run: |
+          OUT=android/app/build/outputs/bundle/release
+          cp play/release-notes.txt "$OUT/release-notes.txt"
+          printf 'versionCode=%s\nversionName=%s\ncommit=%s\nbranch=%s\n' "$LISAN_VERSION_CODE" "$(node -p "require('./package.json').version")" "$GITHUB_SHA" "$GITHUB_REF_NAME" > "$OUT/build.txt"
+          cat "$OUT/build.txt" "$OUT/release-notes.txt"
+
       - uses: actions/upload-artifact@v4
-        if: env.HAS_UPLOAD_KEY == 'true'
+        if: env.HAS_UPLOAD_KEY == 'true' && steps.changed.outputs.app == 'true'
         with:
           name: lisan-play-store-bundle
-          path: android/app/build/outputs/bundle/release/*.aab
+          path: |
+            android/app/build/outputs/bundle/release/*.aab
+            android/app/build/outputs/bundle/release/release-notes.txt
+            android/app/build/outputs/bundle/release/build.txt

@@ -128,15 +128,21 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 - What is on Play lags the repository. Build 216 (the study modes, still indigo) was approved
   and published to the closed test on 25 November. Tea, magenta errors and the new motion
   (commit 21a0634, 26 November) are not on Play yet. The new listing screenshots show Tea; they
-  were sent to "app", and swapping them before a Tea build is on Play is the owner's call. A push
-  only makes a test APK and an `.aab` artifact on GitHub; the owner decides when a bundle is
-  uploaded to Play. Do not call a push a release. A new release does not restart the 14-day
-  tester clock (it counts opted-in testers, not releases).
-- Handing over a bundle: take the newest successful Android run, list its artifacts, and send the
-  run link and the artifact `lisan-play-store-bundle` (a zip holding the `.aab`, signed with the
-  upload key). Never `lisan-android-apk`: that is the sideload build. The versionCode is the run
-  number, so it always rises; versionName stays 1.0.0. Name what changed since the build on Play
-  (`git log` between the two commits) and give release notes without dashes.
+  were sent to "app", and swapping them before a Tea build is on Play is the owner's call.
+  Build 220 (Tea) was uploaded as closed-test release 3 on 26 November. A new release does not
+  restart the 14-day tester clock (it counts opted-in testers, not releases).
+- **Every Play bundle from `main` is uploaded** (the owner's rule since 26 November 2026; the
+  "app" session's uploader takes the newest main-branch `lisan-play-store-bundle`). So a push to
+  `main` that changes the app is on its way to testers: run the full checks first. The Android
+  workflow builds a Play bundle only when a push changes app files (what `scripts/build-web.js`
+  copies, `android/`, the packages); docs, tests, store art and notes alone make only the test
+  APK. Whether a release is sent for review is still the owner's word, given through "app".
+- Release notes: `play/release-notes.txt` (Play's `<en-US>` tags, 500 characters at most, no em
+  or en dashes; `tests/release-notes.test.js` checks it) says what changed since the last build
+  uploaded to Play. Update it in the same commit as any user-visible app change; the workflow puts
+  it in the bundle artifact with a `build.txt` (versionCode, versionName, commit, branch). The
+  artifact `lisan-android-apk` is the sideload build and never goes to Play. The versionCode is
+  the run number, so it always rises; versionName stays 1.0.0.
 - `main` exists and is kept equal to the working branch: GitHub Pages publishes from it
   (<https://ammarhijran.github.io/language/privacy.html>). Push both after a change the stores or
   the privacy page depend on. `github.io` is not reachable from the cloud container, so a
@@ -187,7 +193,7 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 4. Whether to try R8 code shrinking for the Android build.
 5. New long texts and speeches are on hold until reviewers are available.
 6. Store launch: twelve testers for 14 days on the closed test (1 opted in on 25 November);
-   when to upload a build with the Tea look, and whether to swap the listing screenshots first.
+   sending release 3 (build 220, Tea) for review, and whether to swap the listing screenshots.
 7. Whether the in-app text should lose its em and en dashes too, and whether the test APK's file
    name should change from `Lisan-…`.
 8. The branch `icons-2026-11-23` can be deleted on GitHub; its files are on `main`.
