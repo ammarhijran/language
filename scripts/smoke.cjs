@@ -101,7 +101,7 @@ async function walk(browser, lang, pack, texts) {
   await open('', { wait: 200 }); // Home in that look
   await open('settings', { selector: '#set-theme' });
   await page.selectOption('#set-theme', 'system');
-  await page.click('.swatch[aria-label="Indigo"]');
+  await page.click('.swatch[aria-label="Tea"]'); // the standard colour
   await page.click('.swatch[aria-label="Warm"]');
   if ((await look()) !== before) problems.push(`${lang} settings: the standard look did not come back (“${await look()}” for “${before}”)`);
 
