@@ -135,11 +135,10 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   `/about` link (it has the Join button); the plain group link tells outsiders they lack
   permission. Production needs 12 testers for 14 days (new personal account). The App Store is
   on hold (no budget for the programme yet).
-- On Play: build 216 (the study modes, still indigo) is live on the closed test since 25
-  November. Build 220 (Tea, magenta errors, the new motion; commit 21a0634) is closed-test
-  release 3, sent for review on 26 November; testers get it once Google approves. Build 228
-  (ready-made themes, headings, corners, Animations switch; commit e40903f) was uploaded by the
-  uploader on 28 November, the first in the new format, and waits for the owner's word. The new
+- On Play (28 November): build 220 (Tea, magenta errors, the new motion; commit 21a0634) is the
+  live closed-test release. Build 228 (ready-made themes, headings, corners, Animations switch;
+  commit e40903f), the first upload in the new format, was sent for review on the owner's word
+  on 28 November; testers get it once Google approves. "app" reports Google's result. The new
   listing screenshots show Tea; swapping them is the owner's call (asked through "app"). A new
   release does not restart the 14-day tester clock (it counts opted-in testers, not releases).
 - **Every Play bundle from `main` is uploaded** (the owner's rule since 26 November 2026; the
