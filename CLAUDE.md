@@ -138,8 +138,9 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 - On Play (28 November): build 220 (Tea, magenta errors, the new motion; commit 21a0634) is the
   live closed-test release. Build 228 (ready-made themes, headings, corners, Animations switch;
   commit e40903f), the first upload in the new format, was sent for review on the owner's word
-  on 28 November; testers get it once Google approves. "app" reports Google's result. The new
-  listing screenshots show Tea; swapping them is the owner's call (asked through "app"). A new
+  on 28 November; testers get it once Google approves. "app" reports Google's result. On 28
+  November the owner had "app" swap the listing's phone screenshots for the Tea ones in
+  `store/screenshots/android-phone/` (confirmation pending). A new
   release does not restart the 14-day tester clock (it counts opted-in testers, not releases).
 - **Every Play bundle from `main` is uploaded** (the owner's rule since 26 November 2026; the
   "app" session's uploader takes the newest main-branch `lisan-play-store-bundle`). So a push to
@@ -215,8 +216,7 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 3. A check on a real phone — everything since build 46 has only run in desktop Chromium.
 4. Whether to try R8 code shrinking for the Android build.
 5. New long texts and speeches are on hold until reviewers are available.
-6. Store launch: twelve testers for 14 days on the closed test (1 opted in on 25 November);
-   whether to swap the listing screenshots for the Tea ones.
+6. Store launch: twelve testers for 14 days on the closed test (1 opted in on 25 November).
 7. Whether the in-app text should lose its em and en dashes too, and whether the test APK's file
    name should change from `Lisan-…`.
 8. The branch `icons-2026-11-23` can be deleted on GitHub; its files are on `main`.
