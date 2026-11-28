@@ -3,6 +3,9 @@
 // - the web app's icons (icons/), including a maskable one
 // - Android launcher icons (adaptive foreground and themed monochrome at 108 dp, legacy and round at 48 dp)
 // - the sources Capacitor's asset tool reads (assets/icon-*.png) and the iOS app icon
+// - the start screen's mark (icons/splash-mark.svg) and Android's launch splash for
+//   versions before 12 (every res/drawable*/splash.png, at its own size): the tea glass
+//   at 288 dp on terracotta, where Android 12's system splash and index.html put it
 // The store graphics (Play icon, feature graphic) are made by scripts/store-screenshots.cjs.
 // Needs Playwright (the SVGs are plain paths, so no fonts are involved).
 const fs = require('fs');
@@ -48,6 +51,22 @@ const sized = (svg, px) => svg.replace(/<svg ([^>]*?)width="\d+" height="\d+"/, 
     // Before Android 8 (and where a launcher asks for it): a plain square and a round icon.
     await render(`${dir}/ic_launcher.png`, full, Math.round(48 * scale), { background: BACKGROUND });
     await render(`${dir}/ic_launcher_round.png`, foreground.replace('scale(0.76)', 'scale(0.9)'), Math.round(48 * scale), { background: BACKGROUND, round: true });
+  }
+
+  // The start screen (index.html) and the launch splash before Android 12.
+  fs.writeFileSync(path.join(ROOT, 'icons', 'splash-mark.svg'), foreground);
+  const DENSITY = { ldpi: 0.75, mdpi: 1, hdpi: 1.5, xhdpi: 2, xxhdpi: 3, xxxhdpi: 4 };
+  for (const dir of fs.readdirSync(path.join(ROOT, res)).filter((d) => d.startsWith('drawable'))) {
+    const file = path.join(ROOT, res, dir, 'splash.png');
+    if (!fs.existsSync(file)) continue;
+    const png = fs.readFileSync(file);
+    const [w, h] = [png.readUInt32BE(16), png.readUInt32BE(20)];
+    const scale = DENSITY[(dir.match(/(l|m|h|xh|xxh|xxxh)dpi/) || [])[0]?.replace('dpi', '') + 'dpi'] || 1;
+    const mark = Math.round(288 * scale);
+    const page = await browser.newPage({ viewport: { width: w, height: h } });
+    await page.setContent(`<body style="margin:0;width:${w}px;height:${h}px;background:${BACKGROUND};display:grid;place-items:center">${sized(foreground, mark)}</body>`);
+    await page.screenshot({ path: file });
+    await page.close();
   }
 
   // Sources for Capacitor's asset tool, and the iOS icon (no transparency)

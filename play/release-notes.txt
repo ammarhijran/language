@@ -1,3 +1,3 @@
 <en-US>
-New look: buttons now use the terracotta of the app icon, and wrong answers are magenta so they never look like something to tap. Eight ready-made themes (Me, Looks) set light or dark, colour and background in one tap, and you can pick serif headings, square corners, or turn animations off. Screens open with gentle motion and progress bars fill up.
+Settings now open in a side panel from the gear at the top, over the screen you are on, in groups that fold and show what is set. A short start screen with the tea glass greets you each time the app opens, and Android's launch splash now matches it. Tap to skip it; reminders and links open their screen straight away.
 </en-US>

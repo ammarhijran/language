@@ -182,7 +182,7 @@ export default function journey(ctx) {
     // With game features off this page is only about goals, and says so.
     h('h1', null, on ? 'Journey' : 'Goals'),
     repairBanner(ctx),
-    on ? levelCard(ctx) : h('div', { class: 'banner' }, 'Game features (XP, levels, challenges and achievements) are turned off. ', h('a', { href: '#/settings' }, 'Turn them on in Settings.')),
+    on ? levelCard(ctx) : h('div', { class: 'banner' }, 'Game features (XP, levels, challenges and achievements) are turned off. ', h('a', { href: '#/settings/game' }, 'Turn them on in Settings.')),
     on && Object.keys(xpBy).length > 1
       ? h('div', { class: 'chip-row' }, Object.entries(xpBy).map(([code, xp]) =>
         h('span', { class: 'chip static' }, meta[code]?.flag, ' ', h('b', null, xp.toLocaleString()), ' XP')))

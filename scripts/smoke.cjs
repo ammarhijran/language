@@ -85,7 +85,7 @@ async function walk(browser, lang, pack, texts) {
   await page.waitForSelector('.drill-card', { timeout: 8000 }).catch(() => problems.push(`${lang}: the sound drill did not open`));
 
   // Settings → Display: dark theme, another colour and background apply at once, and go back.
-  await open('settings', { selector: '#set-theme' });
+  await open('settings/display', { selector: '#set-theme' });
   const look = () => page.evaluate(() => {
     const cs = getComputedStyle(document.documentElement);
     return [document.getElementById('dark-css').media, cs.getPropertyValue('--bg').trim(), cs.getPropertyValue('--action').trim(), getComputedStyle(document.body).backgroundColor].join(' ');
@@ -99,7 +99,7 @@ async function walk(browser, lang, pack, texts) {
   await page.click('.swatch[aria-label="Your own colour"]');
   if (!(await page.isVisible('#set-accentHue'))) problems.push(`${lang} settings: no slider for your own colour`);
   await open('', { wait: 200 }); // Home in that look
-  await open('settings', { selector: '#set-theme' });
+  await open('settings/display', { selector: '#set-theme' });
   await page.selectOption('#set-theme', 'system');
   await page.click('.swatch[aria-label="Tea"]'); // the standard colour
   await page.click('.swatch[aria-label="Warm"]');

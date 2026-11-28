@@ -85,6 +85,18 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
 - Ready-made themes are `PRESETS` in `js/themes.js`; a test keeps each one's colour 60 degrees of
   hue from the wrong-answer magenta, which is why Rose and Purple are swatches but not presets.
   Me → Looks opens `#/settings/display`.
+- Settings are a side panel (`js/panel.js`), not a page. `#/settings[/<group>]` means "panel
+  open over the screen that was showing": `render()` in `app.js` opens it without touching the
+  view, any other address closes it and redraws that screen where it was scrolled. Closing goes
+  back in history. Groups are `<details data-group>` in `js/views/settings.js` (language, audio,
+  game, display, reminder, lessons, data, delete, about); link to a group, not to the bare panel.
+  Me holds progress and profile only. A cold start at `#/settings` draws Home underneath first.
+- The start screen is the loading screen in `index.html` with class `intro`: the icon's
+  foreground (`icons/splash-mark.svg`, written by `scripts/icons.cjs`) at 288 px on `#7A2F1F`,
+  matching Android 12's system splash (styles.xml `windowSplashScreen*`) and the pre-12
+  `splash.png` files, which `icons.cjs` re-renders at their own sizes. The page hides the native
+  splash once it has painted. `js/boot.js` `introWait` keeps it about a second, no wait for a
+  deep link or a tap; the fade-out uses Web Animations so it still runs with motion off.
 - Store screenshots show the app's look: rerender them (`scripts/store-screenshots.cjs`) after a
   visual change, and remember the Play listing keeps the old ones until someone uploads the new.
 
@@ -105,9 +117,10 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   without a result. Smoke for four languages, the 320 px pass and the monkey run chained together
   overran it. Start each long check as its own background command with a generous timeout, and
   do not chain "wait for the previous log" loops on a check that may never finish.
-- The smoke run once flagged the Ukrainian я ю є quiz (`/speak/alphabet/iotated`) as scrolling
-  sideways at 360 px; twelve direct loads and two more Ukrainian runs did not repeat it. If it
-  comes back, look at what the screen before it in the run leaves on the page.
+- A check that fails now and then on a screen that picks something at random is usually one
+  rare pick, not a timing problem: the я ю є quiz scrolled sideways only when it chose
+  сором’язливий. Reload the screen many times and log the pick. Words over ten letters in the
+  rule quizzes now get the `long` prompt size.
 - `git push` can fail for minutes with 503 "credential service temporarily unavailable". It is
   the session's GitHub sign-in, not the commits: retry in a background loop (every 30 s) and
   check both branches with `git ls-remote` afterwards.

@@ -97,14 +97,14 @@ The words, phrases, grammar lessons and texts were written and checked with AI a
 ```
 
 ## App Review notes (App Store Connect → App Review Information)
-_912 / 4000 characters_
+_927 / 4000 characters_
 
 ```
 No sign-in is required; all features are available immediately. The app teaches four languages; the first screen asks which one (it can be changed later from the language button in the top bar).
 
 To try pronunciation scoring: Practice tab → Speak, or open any word and tap the microphone; allow microphone and speech recognition access, and say the word shown. On iPhone, tap the microphone again when finished. Audio uses the device's text-to-speech voice for the chosen language; if none is installed the app explains how to add one (iOS: Settings → Accessibility → Spoken Content → Voices).
 
-The optional daily reminder (Me → Settings → Daily reminder) is a local notification scheduled on the device; notification permission is requested only when the user switches it on.
+The optional daily reminder (the Settings gear at the top → Daily reminder) is a local notification scheduled on the device; notification permission is requested only when the user switches it on.
 
 All learning content ships inside the app and works offline; speech recognition may need a network connection depending on the device.
 ```

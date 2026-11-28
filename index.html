@@ -56,6 +56,23 @@
     .boot-btn.primary { background: var(--boot-accent); border-color: var(--boot-accent); color: var(--boot-accent-ink); }
     .boot-btn:focus-visible { outline: 3px solid var(--boot-accent); outline-offset: 2px; }
     .boot.failed .boot-spinner { display: none; }
+    /* The start screen ("intro"), every cold start: the icon's tea glass on its
+       terracotta, centred at 288 px like Android 12's system splash (same
+       colour, same place), so the two read as one; then the name rises in and
+       js/boot.js hands over to the app. A tap skips it. Under "reduce motion"
+       or Animations off it stands still (css/styles.css turns animations off).
+       If starting fails, the class becomes "boot failed" and the normal
+       colours return for the message. */
+    .boot.intro { background: #7A2F1F; color: #FBEFDC; --boot-text: #FBEFDC; --boot-muted: rgba(251, 239, 220, .82); --boot-border: rgba(251, 239, 220, .3); --boot-accent: #FBEFDC; cursor: pointer; }
+    .boot-mark { display: none; }
+    .boot.intro .boot-mark { display: block; position: absolute; top: 50%; left: 50%; width: 288px; height: 288px; margin: -144px 0 0 -144px; }
+    .boot.intro .boot-brand { position: absolute; top: calc(50% + 116px); left: 0; right: 0; justify-content: center; font-size: 1.9rem; animation: boot-rise .45s cubic-bezier(.2, .8, .2, 1) .12s backwards; }
+    .boot.intro .boot-icon { display: none; }
+    .boot.intro .boot-spinner, .boot.intro .boot-text { position: absolute; top: calc(50% + 176px); opacity: 0; animation: boot-later .3s ease 1.6s forwards; }
+    .boot.intro .boot-text { top: calc(50% + 214px); left: 16px; right: 16px; margin: 0 auto; }
+    .boot.intro .boot-spinner { animation: boot-spin .9s linear infinite, boot-later .3s ease 1.6s forwards; }
+    @keyframes boot-rise { from { opacity: 0; transform: translateY(14px); } }
+    @keyframes boot-later { to { opacity: 1; } }
   </style>
   <style id="boot-dark" media="(prefers-color-scheme: dark)">
     .boot {
@@ -95,8 +112,9 @@
   <noscript><style>#boot { display: none; }</style></noscript>
 </head>
 <body>
-  <div id="boot" class="boot" role="status" aria-live="polite">
-    <p class="boot-brand"><img src="icons/icon.svg" alt="" width="40" height="40">Four Tongues</p>
+  <div id="boot" class="boot intro" role="status" aria-live="polite">
+    <img class="boot-mark" src="icons/splash-mark.svg" alt="" width="288" height="288">
+    <p class="boot-brand"><img class="boot-icon" src="icons/icon.svg" alt="" width="40" height="40">Four Tongues</p>
     <div class="boot-spinner" aria-hidden="true"></div>
     <p class="boot-text" id="boot-text">Loading…</p>
     <div class="boot-actions" id="boot-actions" hidden>
@@ -104,6 +122,19 @@
       <button type="button" class="boot-btn" id="boot-repair" hidden>Repair offline files</button>
     </div>
   </div>
+  <script>
+    // In the Android and iOS apps the system splash shows the same picture as
+    // the start screen above: take it away as soon as the page has painted it,
+    // so the hand-over can't be seen (capacitor.config.json lets it go by
+    // itself after 3 seconds if this never runs).
+    (function () {
+      try {
+        var C = window.Capacitor;
+        if (!C || !C.isNativePlatform || !C.isNativePlatform() || !(C.PluginHeaders || []).some(function (p) { return p.name === 'SplashScreen'; })) return;
+        requestAnimationFrame(function () { requestAnimationFrame(function () { C.nativePromise('SplashScreen', 'hide', { fadeOutDuration: 0 }); }); });
+      } catch (e) { /* the splash goes by itself */ }
+    })();
+  </script>
   <script>
     // Start-up watchdog. A classic script, so it runs even when the app's
     // modules can't: if a file fails to load, or starting throws, the loading

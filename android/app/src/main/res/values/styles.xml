@@ -16,7 +16,14 @@
     </style>
 
 
+    <!-- The launch splash: the icon's tea glass on terracotta, the same picture
+         the web start screen (index.html) begins with, so they read as one.
+         Android 12 and later draw it from the three windowSplashScreen items;
+         older versions show @drawable/splash (rendered by scripts/icons.cjs). -->
     <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
         <item name="android:background">@drawable/splash</item>
     </style>
 </resources>

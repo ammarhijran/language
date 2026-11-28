@@ -13,6 +13,18 @@ import { MODES, ACCENTS, BACKGROUNDS, PRESETS, CUSTOM_ACCENT, DARK_QUERY, resolv
 export default function settings(ctx, section = '') {
   const { lang, store } = ctx;
   const s = store.getSettings();
+  // Settings come in groups that fold (<details>), each showing its current
+  // value on the folded line, so the panel reads as a list of answers. The
+  // values are worked out again after any change inside the panel.
+  const values = new Map();
+  const group = (id, title, value, ...children) => {
+    const out = h('small', { class: 'set-group-value' });
+    if (value) values.set(out, value);
+    return h('details', { class: 'set-group', id: `set-group-${id}`, dataset: { group: id }, open: section === id },
+      h('summary', null, h('span', { class: 'set-group-title' }, title), out, icon('arrow', 16)),
+      h('div', { class: 'set-group-body form' }, children));
+  };
+  const showValues = () => { for (const [el, fn] of values) { try { el.textContent = fn(); } catch { el.textContent = ''; } } };
 
   const voiceSelect = h('select', {
     class: 'select', id: 'voice',
@@ -155,8 +167,7 @@ export default function settings(ctx, section = '') {
       ctx.planReminders?.();
     },
   });
-  const reminderCard = h('section', { class: 'card form' },
-    h('h2', { class: 'card-title' }, 'Daily reminder'),
+  const reminderCard = group('reminder', 'Daily reminder', () => (store.getSettings().reminder ? `On at ${store.getSettings().reminderTime}` : 'Off'),
     remindersSupported()
       ? [
         h('label', { class: 'field inline' }, reminderOn, h('span', null, `Remind me to practise ${lang.name}`)),
@@ -274,8 +285,12 @@ export default function settings(ctx, section = '') {
     h('div', { class: 'field' }, h('span', { id: 'set-background-label' }, 'Background: ', bgName), bgRow),
     h('p', { class: 'hint' }, 'The colour is used for buttons, links and highlights. Every combination keeps text easy to read; right answers stay green and wrong ones magenta.'),
   ];
-  const displayCard = h('section', { class: 'card form', id: 'display', 'aria-labelledby': 'display-title' },
-    h('h2', { class: 'card-title', id: 'display-title' }, 'Display'),
+  const displayCard = group('display', 'Display', () => {
+    const now = store.getSettings();
+    const preset = PRESETS.find((p) => p.id === presetOf(now));
+    const size = { l: 'large text', xl: 'extra large text' }[now.textSize];
+    return [preset ? preset.name : 'Your own mix', size].filter(Boolean).join(' · ');
+  },
     themeFields,
     h('label', { class: 'field', for: 'set-textSize' }, h('span', null, 'Text size'),
       pick('textSize', [['m', 'Normal'], ['l', 'Large'], ['xl', 'Extra large']])),
@@ -288,17 +303,16 @@ export default function settings(ctx, section = '') {
     aidField,
     speakerField);
 
-  // #/settings/display (Me → Looks): open at the Display card.
-  if (section === 'display') requestAnimationFrame(() => displayCard.scrollIntoView({ block: 'start' }));
-  return h('div', { class: 'view' },
-    h('h1', null, 'Settings'),
+  const GOAL_NAME = (n) => GOALS.find((g) => g.value === n)?.name || `${n} a day`;
+  const root = h('div', { class: 'settings-body' },
     storageBanner(ctx),
     voiceBanner(ctx),
-    h('section', { class: 'card form' },
-      h('h2', { class: 'card-title' }, 'Language'),
+    group('language', 'Language', () => `${lang.flag} ${lang.name}`,
       languageCards(ctx, { path: '/settings' })),
-    h('section', { class: 'card form' },
-      h('h2', { class: 'card-title' }, 'Audio'),
+    group('audio', 'Audio', () => {
+      const now = store.getSettings();
+      return [`Speed ${Number(now.rate).toFixed(1)}×`, now.autoplay ? 'words play by themselves' : null].filter(Boolean).join(' · ');
+    },
       h('label', { class: 'field', for: 'voice' }, h('span', null, `${lang.name} voice`), voiceSelect),
       voiceList,
       h('label', { class: 'field', for: 'rate' }, h('span', null, 'Speaking speed ', rateOut), rate),
@@ -338,14 +352,15 @@ export default function settings(ctx, section = '') {
       h('p', { class: 'hint' }, 'Speech recognition: ', speech.recognitionSupported()
         ? 'available ✓ (it may send your audio to an online service — Google, Apple or your browser maker — to transcribe it).'
         : 'not available in this browser — try Chrome, Edge or Safari to get pronunciation scores.')),
-    h('section', { class: 'card form' },
-      h('h2', { class: 'card-title' }, 'Motivation'),
+    group('game', 'Motivation', () => (store.getSettings().gameOn ? 'Game features on' : 'Game features off'),
       h('label', { class: 'field inline' }, gameOn, h('span', null, 'Game features — XP, levels, weekly challenges, achievements and celebrations')),
       h('p', { class: 'hint' }, 'Daily goal, streaks and personal goals stay on either way.')),
     displayCard,
     reminderCard,
-    h('section', { class: 'card form' },
-      h('h2', { class: 'card-title' }, 'Lessons'),
+    group('lessons', 'Lessons', () => {
+      const now = store.getSettings();
+      return [`${GOAL_NAME(now.dailyGoal)} goal`, STUDY_MODES.find((m) => m.id === studyMode(now)).name].join(' · ');
+    },
       h('label', { class: 'field' }, h('span', null, 'Daily goal'),
         h('select', { class: 'select', onchange: (e) => store.updateSettings({ dailyGoal: Number(e.target.value) }) },
           GOALS.map((g) => h('option', { value: String(g.value), selected: g.value === s.dailyGoal }, `${g.name} — ${g.value} exercises (${g.time})`)))),
@@ -366,8 +381,7 @@ export default function settings(ctx, section = '') {
         h('select', { class: 'select', id: 'set-cardFront', onchange: (e) => store.updateSettings({ cardFront: e.target.value }) },
           h('option', { value: 'en', selected: s.cardFront !== 'word' }, 'The meaning — recall the word'),
           h('option', { value: 'word', selected: s.cardFront === 'word' }, `The ${lang.name} word — recall what it means`)))),
-    h('section', { class: 'card form' },
-      h('h2', { class: 'card-title' }, 'Your data'),
+    group('data', 'Your data', () => `Last backup: ${agoText(store.lastBackup())}`,
       h('a', { class: 'btn primary', href: '#/sync' }, icon('repeat', 16), 'Sync between devices'),
       h('p', { class: 'hint' }, 'Copy your progress to another phone, tablet or computer — no account or server needed.'),
       h('p', { class: 'hint' }, 'Progress is saved on this device and never sent to us. Export a backup, or use Sync, to move it to another device.'),
@@ -380,13 +394,16 @@ export default function settings(ctx, section = '') {
       h('p', { class: 'hint' }, `“Export my words” saves the ${lang.name} words you have started as a spreadsheet file (word, reading, meaning, example) — for printing or a flashcard program.`),
       h('p', { class: 'hint' }, `Reset clears only your ${lang.name} words and daily history; XP, achievements and other languages stay.`),
       fileInput),
-    h('section', { class: 'card form danger-zone', 'aria-labelledby': 'delete-all-title' },
-      h('h2', { class: 'card-title', id: 'delete-all-title' }, 'Delete all my data'),
+    group('delete', 'Delete all my data', null,
       h('p', { class: 'hint' }, 'Removes everything Four Tongues has stored on this device: all languages, XP, achievements, goals, settings, the device id and the sync log — including the copy the app keeps in the phone’s own storage. Backups or sync codes you saved elsewhere aren’t touched.'),
       h('button', { type: 'button', class: 'btn danger', onclick: deleteAll }, 'Delete all my data')),
-    h('section', { class: 'card form' },
-      h('h2', { class: 'card-title' }, 'About the lessons'),
+    group('about', 'About the lessons', null,
       h('p', { class: 'hint' }, 'Four Tongues’ words, phrases, grammar notes and texts were written and checked with AI help and automated tests. They haven’t been reviewed by native speakers yet — if a native speaker tells you something different, trust them.')),
     h('p', { class: 'hint center' }, 'Four Tongues · ', h('a', { href: 'privacy.html' }, 'Privacy policy')),
   );
+  showValues();
+  for (const type of ['change', 'input', 'click']) root.addEventListener(type, () => setTimeout(showValues, 0));
+  // #/settings/<group> opens that group and brings it into view.
+  if (section) requestAnimationFrame(() => root.querySelector(`[data-group="${CSS.escape(section)}"]`)?.scrollIntoView({ block: 'start' }));
+  return root;
 }

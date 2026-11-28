@@ -193,7 +193,9 @@ button, input, select { font: inherit; color: inherit; }
 .lang-pill:hover { box-shadow: inset 0 0 0 1px var(--action); }
 /* A long language name with large text on a narrow phone (Українська at 320px):
    the name is cut with an ellipsis instead of pushing Search off the screen. */
-.topbar .brand, .topbar .top-search { flex: none; }
+.topbar .brand, .topbar .top-search, .topbar .top-settings { flex: none; }
+/* On a narrow phone the brand keeps its mark and drops its name, to leave room for Search and Settings. */
+@media (max-width: 400px) { .topbar .brand-name { display: none; } }
 .lang-pill { min-width: 0; }
 .lang-pill > span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--sp-2); }
@@ -813,7 +815,10 @@ input[type="range"] { accent-color: var(--action); width: 100%; }
 .letter-quiz-links { margin: 0; gap: var(--sp-2); }
 .letter-quiz-links .pill { display: inline-flex; align-items: center; text-decoration: none; color: var(--text); font-weight: 600; }
 .letter-quiz-links .pill:hover { border-color: var(--action); }
-.letter-quiz-prompt { margin: var(--sp-3) 0 0; text-align: center; font-size: var(--fs-hero); font-weight: 700; line-height: 1.3; }
+/* Long words (сором’язливий) fit a narrow phone: the size follows the screen's width, and a word
+   breaks only as a last resort, rather than the page scrolling sideways. */
+.letter-quiz-prompt { margin: var(--sp-3) 0 0; text-align: center; font-size: clamp(var(--fs-2xl), 12vw, var(--fs-hero)); font-weight: 700; line-height: 1.3; overflow-wrap: anywhere; }
+.letter-quiz-prompt.long { font-size: clamp(var(--fs-xl), 8.5vw, var(--fs-3xl)); }
 .letter-quiz-prompt.as-label { font-size: var(--fs-3xl); overflow-wrap: anywhere; }
 .letter-quiz-ask { margin: 0 0 var(--sp-4); text-align: center; }
 .letter-quiz .letter-option { font-size: var(--fs-2xl); font-weight: 700; line-height: 1.3; white-space: nowrap; }
@@ -1486,4 +1491,50 @@ html[data-headings="serif"] {
 .tc-button { position: absolute; left: 8px; right: 8px; bottom: 8px; height: 14px; border-radius: var(--r-xs); background: var(--tc-action); }
 .theme-card-name { font-weight: 700; font-size: var(--fs-sm); line-height: 1.25; }
 .theme-card small { color: var(--muted); font-size: var(--fs-2xs); line-height: 1.25; }
-#display { scroll-margin-top: 72px; }
+
+
+/* ---------- Settings panel (js/panel.js) ----------
+   Slides in from the end side over the dimmed screen; never wider than a
+   phone, so on a tablet the screen stays in view beside it. */
+html.panel-open { overflow: hidden; }
+.panel-wrap { position: fixed; inset: 0; z-index: 48; }
+.panel-backdrop { position: absolute; inset: 0; background: rgb(20 16 12 / 45%); animation: fade .22s ease; }
+.panel {
+  position: absolute; inset-block: 0; inset-inline-end: 0; width: min(420px, 88vw);
+  display: flex; flex-direction: column; background: var(--bg); color: var(--text);
+  border-inline-start: 1px solid var(--border); box-shadow: -12px 0 40px rgb(20 16 12 / 22%);
+  padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);
+  animation: panel-in .3s var(--ease-out);
+}
+.panel-head { display: flex; align-items: center; gap: var(--sp-2); padding: var(--sp-3) var(--sp-3) var(--sp-2) var(--sp-4); border-bottom: 1px solid var(--border); }
+.panel-title { flex: 1; margin: 0; font: 800 var(--fs-xl) var(--font-display); outline: none; }
+.panel-body { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: var(--sp-3) var(--sp-3) var(--sp-5); }
+.panel.leaving { animation: panel-out .22s ease-in forwards; }
+.panel-wrap.leaving { pointer-events: none; }
+.panel-wrap.leaving .panel-backdrop { animation: fade .22s ease reverse forwards; }
+@keyframes panel-in { from { transform: translateX(100%); } }
+@keyframes panel-out { to { transform: translateX(100%); } }
+[dir="rtl"] .panel { box-shadow: 12px 0 40px rgb(20 16 12 / 22%); }
+@keyframes panel-in-rtl { from { transform: translateX(-100%); } }
+@keyframes panel-out-rtl { to { transform: translateX(-100%); } }
+[dir="rtl"] .panel { animation-name: panel-in-rtl; }
+[dir="rtl"] .panel.leaving { animation-name: panel-out-rtl; }
+
+/* Groups that fold, each showing its current value. */
+.settings-body > * + * { margin-top: var(--sp-2); }
+.set-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); scroll-margin-top: var(--sp-2); }
+.set-group > summary {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title icon" "value icon"; align-items: center; column-gap: var(--sp-2);
+  min-height: 56px; padding: var(--sp-2) var(--sp-3); cursor: pointer; list-style: none; border-radius: inherit;
+}
+.set-group > summary::-webkit-details-marker { display: none; }
+.set-group-title { grid-area: title; font-weight: 700; }
+.set-group-value { grid-area: value; color: var(--muted); font-size: var(--fs-xs); overflow-wrap: anywhere; }
+.set-group-value:empty { display: none; }
+.set-group > summary .icon { grid-area: icon; color: var(--muted); transform: rotate(90deg); transition: transform .2s var(--ease-out); }
+.set-group[open] > summary .icon { transform: rotate(-90deg); }
+.set-group[open] > summary { border-bottom: 1px solid var(--border); border-radius: var(--r-md) var(--r-md) 0 0; }
+.set-group-body { padding: var(--sp-3); }
+.set-group-body > :first-child { margin-top: 0; }
+.set-group[data-group="delete"] .set-group-title { color: var(--bad); }
+.settings-body .theme-cards { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }

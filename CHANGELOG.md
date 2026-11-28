@@ -3,6 +3,8 @@
 ## Unreleased
 
 ### Changed
+- **Settings are a side panel now:** the gear at the top right opens them over the screen you are on, which stays dimmed behind. Groups fold and show their current value (Display: Tea house; Lessons: Regular goal…), changes apply at once, and the back gesture, a tap outside or ✕ closes the panel where you were. Me keeps your progress and profile. Links to Settings elsewhere in the app open the right group.
+- **A start screen:** every time the app opens, the tea glass of the icon on its terracotta, then the name, for about a second before the app appears (a tap skips it). On Android it continues the system splash, which now shows the same picture instead of the old red one. Opening the app from a reminder or a link goes straight to that screen. With Animations off or reduce motion, it stands still and fades.
 - **More motion, kept quiet:** a screen you open comes in block by block, the daily goal ring, achievement rings and progress bars fill up to their value, the tab you open gives a small hop, choices in an exercise appear one after another, and buttons and cards give a little when pressed (and lift under a mouse). Drawing the same screen again (a switch, a filter) stays still, and the device's "reduce motion" setting turns all of it off.
 - **Home: shorter "New in Four Tongues" card:** it shows the three newest things, and a button for the rest.
 - **Tea is the new standard colour:** buttons, links and highlights take the terracotta of the app icon instead of indigo. If you had the old standard colour you move to Tea once; any other colour you picked stays, and Indigo is still in Settings → Display → Colour.
@@ -203,6 +205,7 @@
 - **Daily goal** ring on the home screen, a "goal reached" celebration, and a daily-goal setting.
 
 ### Fixed
+- **Rule quizzes on a narrow phone:** a long word (сором’язливий, національність) no longer pushes the я ю є or vowel harmony quiz sideways or breaks in the middle; it gets a smaller size instead.
 - **Small phones with large text:** with Ukrainian, Extra-large text and a 320 px wide screen, the language name in the top bar pushed the Search button off the edge and every screen scrolled sideways by a few pixels. The name is now shortened with an ellipsis. The browser smoke test can walk the app as a small phone with large text (`SMOKE_WIDTH=320 SMOKE_TEXT=xl npm run smoke`); all four languages pass.
 - **Random-click test for developers** (`npm run monkey`): presses buttons, links, options and tiles at random in the real app — a few hundred times per language, with some progress and a word of the learner’s own — and fails on any script error. The first runs (about 1,150 clicks over the four languages) found none.
 - **Screen stays on while audio plays by itself** (hands-free listening, Play all and shadowing in Read & Listen) in the Android and iOS apps too: the browser’s wake lock used so far does not exist inside an Android app, so the phone would dim and lock mid-round. The apps now use the keep-awake plugin (no permission needed); the website keeps using the wake lock.

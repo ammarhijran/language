@@ -2,7 +2,7 @@
   "appId": "com.ammarmahdi.lisan",
   "appName": "Four Tongues",
   "webDir": "www",
-  "backgroundColor": "#faf7f2",
+  "backgroundColor": "#7A2F1F",
   "android": {
     "allowMixedContent": false
   },
@@ -11,14 +11,15 @@
   },
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 600,
+      "launchShowDuration": 3000,
       "launchAutoHide": true,
-      "backgroundColor": "#c8102e",
+      "launchFadeOutDuration": 0,
+      "backgroundColor": "#7A2F1F",
       "showSpinner": false
     },
     "LocalNotifications": {
       "smallIcon": "ic_stat_lisan",
-      "iconColor": "#c8102e"
+      "iconColor": "#7A2F1F"
     }
   }
 }

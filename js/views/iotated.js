@@ -96,7 +96,7 @@ export default function iotated(ctx) {
       backLink(ctx, '#/speak/alphabet', 'Alphabet'),
       h('div', { class: 'exercise' },
         h('p', { class: 'kicker' }, `я, ю, є · ${i + 1} of ${qs.length}`),
-        h('p', { class: 'letter-quiz-prompt', lang: lang.code }, marked(q)),
+        h('p', { class: `letter-quiz-prompt${q.word.tr.length > 10 ? ' long' : ''}`, lang: lang.code }, marked(q)),
         h('p', { class: 'muted letter-quiz-ask' }, `${q.word.en} — how is the marked ${q.letter} read?`),
         h('div', { class: 'options' }, buttons),
         feedback));

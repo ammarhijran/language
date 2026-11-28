@@ -2,6 +2,7 @@ import { loadLanguage } from './languages/index.js';
 import * as store from './store.js';
 import * as speech from './speech.js';
 import { h, icon, toast, set, applyLooks } from './ui.js';
+import { showPanel, hidePanel, panelOpen } from './panel.js';
 import { dueWords } from './stats.js';
 import { glyph } from './components.js';
 import { onBackButton, backAction, leaveApp, systemBars } from './native.js';
@@ -161,9 +162,10 @@ function shell() {
     }, 'Skip to content'),
     h('header', { class: 'topbar' },
       h('a', { href: '#/', class: 'brand', 'aria-label': 'Four Tongues home' },
-        h('img', { src: 'icons/icon.svg', alt: '', width: 28, height: 28 }), 'Four Tongues'),
+        h('img', { src: 'icons/icon.svg', alt: '', width: 28, height: 28 }), h('span', { class: 'brand-name' }, 'Four Tongues')),
       h('a', { class: 'lang-pill', href: '#/language', title: `Learning ${lang.name} — change language` }, h('span', { 'aria-hidden': 'true' }, lang.flag), ' ', h('span', { lang: lang.code }, lang.nativeName)),
-      h('a', { href: '#/search', class: 'icon-btn top-search', 'aria-label': 'Search words, phrases and lessons' }, icon('search'))),
+      h('a', { href: '#/search', class: 'icon-btn top-search', 'aria-label': 'Search words, phrases and lessons' }, icon('search')),
+      h('a', { href: '#/settings', class: 'icon-btn top-settings', 'aria-label': 'Settings' }, icon('settings'))),
     h('main', { id: 'view', tabindex: '-1' }),
     // Tells screen readers which screen they're on when no heading is read out.
     h('p', { id: 'announcer', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true', style: VISUALLY_HIDDEN }),
@@ -314,9 +316,48 @@ function titleOf(name, params) {
   }
 }
 
+// ---------- Settings: a side panel over the current screen ----------
+// #/settings[/<group>] opens the panel (js/panel.js) over whatever screen was
+// showing; any other address closes it and shows that screen. On a fresh start
+// at #/settings, Home is drawn underneath first.
+let returnFocus = null;
+function leaveSettings() {
+  if (parse().name !== 'settings') { hidePanel(); return; }
+  if (stack[here - 1]) history.back();
+  else location.replace('#/');
+}
+function openSettings(params) {
+  enter();
+  const tab = document.querySelector('.tabbar a.active')?.dataset.tab ?? null;
+  track('settings', params, 'Settings', tab);
+  showPanel({ title: 'Settings', build: () => settingsView(ctx, params[0] || ''), onClose: leaveSettings });
+  const settingsBtn = document.querySelector('.top-settings');
+  if (settingsBtn) settingsBtn.setAttribute('aria-expanded', 'true');
+}
+
 function render() {
   const main = document.getElementById('view');
   const { name, params } = parse();
+  if (name === 'settings') {
+    if (lastView === null) {
+      // Nothing underneath yet: Home first, then the panel as the next entry.
+      const path = currentPath();
+      history.replaceState(null, '', '#/');
+      render();
+      location.hash = `#/${path}`;
+      return;
+    }
+    openSettings(params);
+    return;
+  }
+  // Leaving the panel for the screen it covered: draw that screen again (a
+  // setting may have changed it) where it was scrolled, and give focus back.
+  let keepScroll = null;
+  if (panelOpen()) {
+    if (name === lastView) keepScroll = window.scrollY;
+    returnFocus = hidePanel();
+    document.querySelector('.top-settings')?.removeAttribute('aria-expanded');
+  }
   // The screen this one was opened from, and this entry's record if it was shown before.
   const from = stack[here]?.lang === lang.code ? stack[here] : null;
   const before = enter();
@@ -364,9 +405,11 @@ function render() {
   const title = titleOf(name, params);
   track(name, params, title || 'Four Tongues', tab);
   document.title = title ? `${title} · Four Tongues ${lang.name}` : `Four Tongues · ${lang.name}`;
-  window.scrollTo(0, 0);
+  window.scrollTo(0, keepScroll ?? 0);
   // On first load the browser (or screen reader) starts at the top by itself.
   if (lastView !== null) focusView(main, { restoreKey, title: title || 'Four Tongues' });
+  if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+  returnFocus = null;
   lastView = name;
 }
 

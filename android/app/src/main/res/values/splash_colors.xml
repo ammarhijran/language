@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The launch splash's background: the icon's terracotta (index.html's start screen uses the same). -->
+    <color name="splash_background">#7A2F1F</color>
+</resources>

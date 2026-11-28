@@ -98,7 +98,7 @@ export default function harmony(ctx) {
       backLink(ctx, '#/speak/alphabet', 'Alphabet'),
       h('div', { class: 'exercise' },
         h('p', { class: 'kicker' }, `Vowel harmony · ${i + 1} of ${qs.length}`),
-        h('p', { class: 'letter-quiz-prompt', lang: lang.code }, q.word.tr),
+        h('p', { class: `letter-quiz-prompt${q.word.tr.length > 10 ? ' long' : ''}`, lang: lang.code }, q.word.tr),
         h('p', { class: 'muted letter-quiz-ask' }, q.kind === 'plural' ? `${q.word.en} — more than one?` : q.kind === 'place' ? `${q.word.en} — “in / at / on it”?` : `${q.word.en} — “Is it a …?”`),
         h('div', { class: 'options two' }, buttons),
         feedback));

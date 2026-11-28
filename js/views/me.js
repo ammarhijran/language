@@ -53,7 +53,7 @@ export default function me(ctx) {
       : `Your last backup or sync code was ${agoText(ctx.store.lastBackup())}. `,
     'A backup file or a sync code keeps it safe if the phone is lost or the app is removed.',
     h('div', { class: 'button-row' },
-      h('a', { class: 'btn small', href: '#/settings' }, 'Export a backup'),
+      h('a', { class: 'btn small', href: '#/settings/data' }, 'Export a backup'),
       h('a', { class: 'btn small', href: '#/sync' }, 'Make a sync code'),
       h('button', { type: 'button', class: 'link-btn', onclick: () => { setDevicePref('backupSnooze', Date.now()); backupBanner.remove(); } }, 'Not now'))) : null;
 
@@ -80,8 +80,6 @@ export default function me(ctx) {
       row('#/known', icon('check', 22), 'Already learned', 'Tick words you already know so lessons skip them'),
       row('#/language', h('span', { class: 'me-flag' }, lang.flag), 'Language', `Learning ${lang.name} · switch to another`),
       row('#/sync', icon('repeat', 22), 'Sync between devices', 'Move your progress to another phone or computer'),
-      row('#/settings/display', h('span', { class: 'me-flag' }, '🎨'), 'Looks', 'Themes, light or dark, colours, text size'),
-      row('#/settings', icon('settings', 22), 'Settings', 'Audio, lessons, game features, backup'),
       row('#/help', h('span', { class: 'me-flag' }, '💡'), 'Tips', 'What Four Tongues can do, and where each thing is')),
   );
 }

@@ -141,7 +141,7 @@ export function storageBanner(ctx, { link = false } = {}) {
         ? 'Its storage for Four Tongues is full. Free up some space. '
         : 'This browser is blocking storage for Four Tongues (private browsing or a privacy setting). Allow site data for Four Tongues. ',
       'Until then, what you learn is lost when Four Tongues closes — export a backup or make a sync code to keep it.',
-      link ? h('div', null, h('a', { class: 'btn small', href: '#/settings' }, 'Back up in Settings')) : null);
+      link ? h('div', null, h('a', { class: 'btn small', href: '#/settings/data' }, 'Back up in Settings')) : null);
   };
   update();
   window.addEventListener('lisan:storage', update);

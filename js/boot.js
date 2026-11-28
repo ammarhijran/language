@@ -6,10 +6,51 @@ import { isNative } from './native.js';
 
 const idle = (fn) => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 3000 }) : setTimeout(fn, 1500));
 
-/** The first screen is on: remove the loading screen and start the background work. */
+// ---------- The start screen ----------
+// The loading screen in index.html is also the start screen ("intro"): the
+// icon's tea glass on terracotta, then the name. Once the first screen is on
+// it hands over after a short beat, so a fast start still shows the whole
+// moment (about a second from launch, never more than loading plus that
+// beat). An app opened at a particular screen (a reminder, a shortcut, a
+// link) goes straight there. A tap skips the wait.
+export const INTRO_MS = 700; // from the start of the page: the entrance plays out
+export const INTRO_BEAT_MS = 150; // at least this long after the app is ready
+
+/** How long to keep the start screen once the app is ready, `now` ms after the page started. */
+export function introWait(now, { deepLink = false, skipped = false } = {}) {
+  if (deepLink || skipped) return 0;
+  return Math.max(INTRO_BEAT_MS, INTRO_MS - now);
+}
+
+/** An address that asks for a particular screen, not the app's own start. */
+export const isDeepLink = (hash) => !!hash && !/^#?\/?(welcome)?$/.test(hash);
+
+let skipped = false;
+const bootEl = typeof document !== 'undefined' ? document.getElementById('boot') : null;
+bootEl?.addEventListener('click', (e) => { if (!e.target.closest?.('button')) { skipped = true; if (window.__lisanBooted) leaveIntro(bootEl); } });
+
+/** Hand over: the start screen fades (and, with motion on, its mark lifts a little), then goes. */
+function leaveIntro(el) {
+  if (!el?.isConnected || el.dataset.leaving) return;
+  el.dataset.leaving = '1';
+  el.style.pointerEvents = 'none';
+  const still = document.documentElement.dataset.motion === 'off' || matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const gone = () => el.remove();
+  if (!el.animate) { gone(); return; }
+  // Web Animations, not CSS: a fade still runs when movement is turned off.
+  el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: still ? 220 : 320, easing: 'ease-out', fill: 'forwards' }).finished.then(gone, gone);
+  if (!still) el.querySelector('.boot-mark')?.animate([{ transform: 'none' }, { transform: 'translateY(-12px) scale(1.04)' }], { duration: 320, easing: 'ease-out', fill: 'forwards' });
+  setTimeout(gone, 600);
+}
+
+/** The first screen is on: hand over from the start screen and start the background work. */
 export function bootDone(ctx) {
   window.__lisanBooted = true;
-  document.getElementById('boot')?.remove();
+  const el = document.getElementById('boot');
+  if (el && el.classList.contains('intro')) {
+    const wait = introWait(performance.now(), { deepLink: isDeepLink(location.hash), skipped });
+    setTimeout(() => leaveIntro(el), wait);
+  } else el?.remove();
   watchStorage(ctx);
   if (isNative()) return;
   // After the page has loaded, so the worker's downloads don't compete with it.
