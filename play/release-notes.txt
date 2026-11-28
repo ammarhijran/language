@@ -1,3 +1,3 @@
 <en-US>
-A new look: buttons and highlights now use the terracotta of the app icon, and wrong answers are magenta, so they never look like something to tap. Screens open with gentle motion, the daily goal ring and progress bars fill up, and buttons respond when pressed. Turn on Reduce motion on your device to switch it off. The What's new card on Home is shorter.
+New look: buttons now use the terracotta of the app icon, and wrong answers are magenta so they never look like something to tap. Eight ready-made themes (Me, Looks) set light or dark, colour and background in one tap, and you can pick serif headings, square corners, or turn animations off. Screens open with gentle motion and progress bars fill up.
 </en-US>

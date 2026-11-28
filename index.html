@@ -75,6 +75,11 @@
       var d = m ? m === 'all' : !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
       var v = (JSON.parse(localStorage.getItem('lisan:theme') || '{}') || {})[d ? 'dark' : 'light'] || {};
       for (var n in v) if (/^--[a-z0-9-]+$/.test(n) && /^#[0-9a-f]{6}$/.test(v[n])) document.documentElement.style.setProperty(n, v[n]);
+      // Corners and headings too (js/ui.js applyLooks does the same once the app runs).
+      var r = document.documentElement;
+      if (s.corners === 'square') r.dataset.corners = 'square';
+      if (s.headings === 'serif') r.dataset.headings = 'serif';
+      if (s.motion === 'off') r.dataset.motion = 'off';
       var l = s.lang;
       if (!/^(tr|uk|ja|ar)$/.test(l)) l = 'tr';
       ['index', 'vocab', 'more', 'grammar', 'examples', 'sounds'].forEach(function (f) {

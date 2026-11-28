@@ -204,3 +204,18 @@ export function platform() {
   if (/Windows/.test(ua)) return 'windows';
   return 'other';
 }
+
+// ---------- Looks beyond the theme ----------
+
+/** Animations, corners and headings (Settings → Display) as attributes on <html> that css/styles.css reads. */
+export function applyLooks(s = {}) {
+  const root = document.documentElement;
+  const put = (name, value) => { if (value) root.dataset[name] = value; else delete root.dataset[name]; };
+  put('motion', s.motion === 'off' ? 'off' : '');
+  put('corners', s.corners === 'square' ? 'square' : '');
+  put('headings', s.headings === 'serif' ? 'serif' : '');
+}
+
+/** True when movement should be left out: the app's Animations setting is Off, or the device asks for less motion. */
+export const motionOff = () => (typeof document !== 'undefined' && document.documentElement?.dataset?.motion === 'off')
+  || (typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches);

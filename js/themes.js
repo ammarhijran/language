@@ -48,6 +48,28 @@ export const BACKGROUNDS = {
 };
 export const DEFAULT_BACKGROUND = 'warm';
 
+/**
+ * Ready-made themes: a mode, a colour and a background picked to go together,
+ * set with one tap (Settings → Display). The first is the standard look. Each
+ * colour stays well away from the magenta of wrong answers in its mode
+ * (tests/themes.test.js), so rose and purple are left to the single swatches.
+ */
+export const PRESETS = [
+  { id: 'tea', name: 'Tea house', theme: 'system', accent: 'tea', background: 'warm' },
+  { id: 'night-tea', name: 'Night tea', theme: 'dark', accent: 'tea', background: 'warm' },
+  { id: 'library', name: 'Library', theme: 'light', accent: 'teal', background: 'paper' },
+  { id: 'sea', name: 'Sea breeze', theme: 'light', accent: 'blue', background: 'cool' },
+  { id: 'garden', name: 'Garden', theme: 'light', accent: 'green', background: 'neutral' },
+  { id: 'orange', name: 'Orange grove', theme: 'light', accent: 'orange', background: 'plain' },
+  { id: 'deep-sea', name: 'Deep sea', theme: 'dark', accent: 'teal', background: 'cool' },
+  { id: 'midnight', name: 'Midnight', theme: 'dark', accent: 'indigo', background: 'plain' },
+];
+/** The ready-made theme the settings amount to, or null when they are a mix of one's own. */
+export function presetOf(settings = {}) {
+  const theme = modeOf(settings.theme);
+  return PRESETS.find((p) => p.theme === theme && p.accent === accentKey(settings) && p.background === backgroundKey(settings))?.id ?? null;
+}
+
 const ACCENT_VARS = ['--action', '--action-hover', '--action-ink'];
 const BACKGROUND_VARS = ['--bg', '--surface', '--surface-2', '--border'];
 /** Every custom property a theme may set on <html>. */

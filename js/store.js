@@ -45,6 +45,9 @@ const DEFAULTS = {
   cardFront: 'en', // flashcards show first: 'en' (the meaning) or 'word' (the word itself)
   autoNext: false, // after a right multiple-choice answer, go on to the next question by itself
   textSize: 'm', // 'm', 'l' or 'xl'
+  motion: 'system', // 'system' (follow the device's reduce-motion setting) or 'off'
+  corners: 'round', // 'round' or 'square'
+  headings: 'rounded', // 'rounded' or 'serif': the face of titles and big words
   theme: 'system', // 'system' (follow the device), 'light' or 'dark' — see js/themes.js
   accent: 'tea', // a key of ACCENTS, or 'custom' (then accentHue, 0–359, is the colour)
   colours: 2, // 2 since Tea became the default colour (see cleanSettings)

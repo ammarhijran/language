@@ -80,6 +80,7 @@ export default function me(ctx) {
       row('#/known', icon('check', 22), 'Already learned', 'Tick words you already know so lessons skip them'),
       row('#/language', h('span', { class: 'me-flag' }, lang.flag), 'Language', `Learning ${lang.name} · switch to another`),
       row('#/sync', icon('repeat', 22), 'Sync between devices', 'Move your progress to another phone or computer'),
+      row('#/settings/display', h('span', { class: 'me-flag' }, '🎨'), 'Looks', 'Themes, light or dark, colours, text size'),
       row('#/settings', icon('settings', 22), 'Settings', 'Audio, lessons, game features, backup'),
       row('#/help', h('span', { class: 'me-flag' }, '💡'), 'Tips', 'What Four Tongues can do, and where each thing is')),
   );

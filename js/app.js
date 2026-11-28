@@ -1,7 +1,7 @@
 import { loadLanguage } from './languages/index.js';
 import * as store from './store.js';
 import * as speech from './speech.js';
-import { h, icon, toast, set } from './ui.js';
+import { h, icon, toast, set, applyLooks } from './ui.js';
 import { dueWords } from './stats.js';
 import { glyph } from './components.js';
 import { onBackButton, backAction, leaveApp, systemBars } from './native.js';
@@ -55,6 +55,7 @@ function applyDisplaySettings() {
   // A pack's own voice switch (Ukrainian stress marks, Japanese kana): see its voiceOption.
   lang.voiceOption?.set(s[lang.voiceOption.setting] === true);
   document.documentElement.dataset.textSize = ['l', 'xl'].includes(s.textSize) ? s.textSize : 'm';
+  applyLooks(s);
   applyTheme(s);
   systemBars(s.theme); // the phone's clock and battery icons, when the app's theme differs from the phone's
 }

@@ -6,7 +6,7 @@
 //   #/read/<id>/roleplay/<n>       dialogues: play one of the speakers
 // Texts load on demand (js/reader.js), so the first visit renders a short
 // loading state and fills in; later visits render straight away.
-import { h, icon, set, bindKeys, meter } from '../ui.js';
+import { h, icon, set, bindKeys, meter, motionOff } from '../ui.js';
 import { voiceBanner, diffLine, praiseLine, cleanupScope, backLink, readingText, devicePref, setDevicePref, bottomSheet } from '../components.js';
 import { voiceFix } from './word.js';
 import { rich } from './grammar.js';
@@ -45,7 +45,7 @@ function glyph(name, size = 20) {
   return span;
 }
 
-const reduceMotion = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion = motionOff;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const href = (...parts) => `#/read/${parts.map((p) => encodeURIComponent(p)).join('/')}`;
 const pct = (x) => `${Math.round(x * 100)}%`;

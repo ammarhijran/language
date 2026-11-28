@@ -8,9 +8,9 @@ import { remindersSupported, askPermission, parseTime, DEFAULT_TIME } from '../r
 import { saveTextFile } from '../native.js';
 import { wordsCsv } from '../wordlist.js';
 import { agoText } from './me.js';
-import { MODES, ACCENTS, BACKGROUNDS, CUSTOM_ACCENT, DARK_QUERY, resolveMode, accentKey, backgroundKey, backgroundName, hueOf, palette } from '../themes.js';
+import { MODES, ACCENTS, BACKGROUNDS, PRESETS, CUSTOM_ACCENT, DARK_QUERY, resolveMode, accentKey, backgroundKey, backgroundName, hueOf, palette, presetOf } from '../themes.js';
 
-export default function settings(ctx) {
+export default function settings(ctx, section = '') {
   const { lang, store } = ctx;
   const s = store.getSettings();
 
@@ -218,9 +218,35 @@ export default function settings(ctx) {
     onchange: () => drawTheme(),
   });
   const hueField = h('label', { class: 'field', for: 'set-accentHue' }, h('span', null, 'Your own colour'), hue);
+  // Ready-made themes: each card is a small picture of the look it sets.
+  const presetRow = h('div', { class: 'theme-cards', role: 'group', 'aria-labelledby': 'set-presets-label' });
+  const themeSelect = h('select', { class: 'select', id: 'set-theme', onchange: (e) => setTheme({ theme: e.target.value }) },
+    MODES.map(([value, label]) => h('option', { value }, label)));
+  const deviceDark = () => !!window.matchMedia?.(DARK_QUERY).matches;
+  function drawPresets(now) {
+    const current = presetOf(now);
+    set(presetRow, PRESETS.map((p) => {
+      const mode = resolveMode(p.theme, deviceDark());
+      const [bg, surface, , border] = BACKGROUNDS[p.background][mode];
+      const [action, , ink] = ACCENTS[p.accent][mode];
+      const text = mode === 'dark' ? '#f3eee6' : '#1f1b16';
+      return h('button', {
+        type: 'button', class: 'theme-card', 'aria-pressed': String(current === p.id), 'data-preset': p.id,
+        style: { '--tc-bg': bg, '--tc-card': surface, '--tc-line': border, '--tc-action': action, '--tc-ink': ink, '--tc-text': text },
+        onclick: () => setTheme({ theme: p.theme, accent: p.accent, background: p.background }),
+      },
+      h('span', { class: 'theme-card-art', 'aria-hidden': 'true' },
+        h('span', { class: 'tc-card' }, h('span', { class: 'tc-line' }), h('span', { class: 'tc-line short' })),
+        h('span', { class: 'tc-button' })),
+      h('span', { class: 'theme-card-name' }, p.name),
+      h('small', null, p.theme === 'system' ? 'Light or dark, as the device' : p.theme === 'dark' ? 'Dark' : 'Light'));
+    }));
+  }
   function drawTheme() {
     const now = store.getSettings();
     const mode = modeNow();
+    themeSelect.value = MODES.some(([m]) => m === now.theme) ? now.theme : 'system';
+    drawPresets(now);
     const accent = accentKey(now);
     const background = backgroundKey(now);
     accentName.textContent = accent === CUSTOM_ACCENT ? 'Your own' : ACCENTS[accent].name;
@@ -240,22 +266,30 @@ export default function settings(ctx) {
   }
   drawTheme();
   const themeFields = [
-    h('label', { class: 'field', for: 'set-theme' }, h('span', null, 'Theme'),
-      h('select', { class: 'select', id: 'set-theme', onchange: (e) => setTheme({ theme: e.target.value }) },
-        MODES.map(([value, label]) => h('option', { value, selected: (MODES.some(([m]) => m === s.theme) ? s.theme : 'system') === value }, label)))),
+    h('div', { class: 'field' }, h('span', { id: 'set-presets-label' }, 'Themes'), presetRow),
+    h('p', { class: 'hint' }, 'One tap sets light or dark, the colour and the background together. Change any of them below to make your own.'),
+    h('label', { class: 'field', for: 'set-theme' }, h('span', null, 'Light or dark'), themeSelect),
     h('div', { class: 'field' }, h('span', { id: 'set-accent-label' }, 'Colour: ', accentName), accentRow),
     hueField,
     h('div', { class: 'field' }, h('span', { id: 'set-background-label' }, 'Background: ', bgName), bgRow),
-    h('p', { class: 'hint' }, 'The colour is used for buttons, links and highlights. Every combination keeps text easy to read; right and wrong answers stay green and red.'),
+    h('p', { class: 'hint' }, 'The colour is used for buttons, links and highlights. Every combination keeps text easy to read; right answers stay green and wrong ones magenta.'),
   ];
-  const displayCard = h('section', { class: 'card form' },
-    h('h2', { class: 'card-title' }, 'Display'),
+  const displayCard = h('section', { class: 'card form', id: 'display', 'aria-labelledby': 'display-title' },
+    h('h2', { class: 'card-title', id: 'display-title' }, 'Display'),
     themeFields,
     h('label', { class: 'field', for: 'set-textSize' }, h('span', null, 'Text size'),
       pick('textSize', [['m', 'Normal'], ['l', 'Large'], ['xl', 'Extra large']])),
+    h('label', { class: 'field', for: 'set-headings' }, h('span', null, 'Headings'),
+      pick('headings', [['rounded', 'Rounded'], ['serif', 'Classic (serif)']])),
+    h('label', { class: 'field', for: 'set-corners' }, h('span', null, 'Corners'),
+      pick('corners', [['round', 'Round'], ['square', 'Square']])),
+    h('label', { class: 'field', for: 'set-motion' }, h('span', null, 'Animations'),
+      pick('motion', [['system', 'On (less if the device asks for it)'], ['off', 'Off']])),
     aidField,
     speakerField);
 
+  // #/settings/display (Me → Looks): open at the Display card.
+  if (section === 'display') requestAnimationFrame(() => displayCard.scrollIntoView({ block: 'start' }));
   return h('div', { class: 'view' },
     h('h1', null, 'Settings'),
     storageBanner(ctx),

@@ -10,7 +10,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import {
-  ACCENTS, BACKGROUNDS, MODES, THEME_VARS, THEME_KEY, DARK_QUERY, CTA_TINT, CUSTOM_ACCENT, DEFAULT_ACCENT, DEFAULT_BACKGROUND,
+  ACCENTS, BACKGROUNDS, MODES, PRESETS, presetOf, THEME_VARS, THEME_KEY, DARK_QUERY, CTA_TINT, CUSTOM_ACCENT, DEFAULT_ACCENT, DEFAULT_BACKGROUND,
   resolveMode, darkMedia, accentKey, backgroundKey, backgroundName, hueOf, accentFromHue, palette, themeVars, applyTheme,
   contrast, luminance, mix,
 } from '../js/themes.js';
@@ -280,4 +280,38 @@ test('the page applies the theme before the first paint', () => {
 test('the loading screen shows a chosen background', () => {
   const boot = read('index.html').match(/<style>([\s\S]*?)<\/style>/)[1];
   assert.match(boot, /background: var\(--bg, var\(--boot-bg\)\)/, 'the page colour, or the built-in one if no stylesheet loaded');
+});
+
+test('ready-made themes: real choices, the standard one first, and every colour far from the wrong-answer magenta', () => {
+  const hue = (hex) => {
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+    const max = Math.max(r, g, b), d = max - Math.min(r, g, b);
+    if (!d) return 0;
+    const x = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    return (x * 60 + 360) % 360;
+  };
+  const gap = (a, b) => { const d = Math.abs(hue(a) - hue(b)) % 360; return Math.min(d, 360 - d); };
+  assert.deepEqual([PRESETS[0].theme, PRESETS[0].accent, PRESETS[0].background], ['system', DEFAULT_ACCENT, DEFAULT_BACKGROUND], 'the first is the standard look');
+  assert.equal(new Set(PRESETS.map((p) => p.id)).size, PRESETS.length);
+  assert.equal(new Set(PRESETS.map((p) => p.name)).size, PRESETS.length);
+  for (const p of PRESETS) {
+    assert.ok(MODES.some(([m]) => m === p.theme) && Object.hasOwn(ACCENTS, p.accent) && Object.hasOwn(BACKGROUNDS, p.background), p.id);
+    assert.equal(presetOf(p), p.id, `${p.id} is recognised`);
+    for (const mode of p.theme === 'system' ? ['light', 'dark'] : [p.theme]) {
+      assert.ok(gap(ACCENTS[p.accent][mode][0], TOKENS[mode]['--bad']) >= 60, `${p.id} (${mode}): the colour does not look like a wrong answer`);
+    }
+  }
+  assert.equal(presetOf({}), 'tea', 'nothing chosen is the standard theme');
+  assert.equal(presetOf({ theme: 'light', accent: 'rose', background: 'warm' }), null, 'a mix of one\'s own is no preset');
+});
+
+test('corners, headings and animations reach the page before the first paint', () => {
+  const p = page({ stored: { 'lisan:v1': JSON.stringify({ settings: { corners: 'square', headings: 'serif', motion: 'off' } }) } });
+  firstPaint(p);
+  assert.deepEqual({ ...p.document.documentElement.dataset }, { corners: 'square', headings: 'serif', motion: 'off' });
+  const q = page({ stored: { 'lisan:v1': JSON.stringify({ settings: { corners: 'round', headings: 'nope' } }) } });
+  firstPaint(q);
+  assert.deepEqual({ ...q.document.documentElement.dataset }, {}, 'the standard looks set nothing');
+  const css = read('css/styles.css');
+  for (const sel of ['html[data-motion="off"]', 'html[data-corners="square"]', 'html[data-headings="serif"]']) assert.ok(css.includes(sel), sel);
 });

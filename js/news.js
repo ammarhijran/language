@@ -1,8 +1,9 @@
 // "What's new": shown once on Home to people who already use the app, so new
 // features are not only found by accident. Bump `id` when the list changes.
 export const NEWS = {
-  id: '2026-11-s',
+  id: '2026-11-t',
   items: [
+    { emoji: '🎨', text: 'Ready-made themes, corners, headings, animations', where: 'Me → Looks', href: '#/settings/display' },
     { emoji: '🎧', text: 'Listening only · speaking only', where: 'Practice', href: '#/practice' },
     { emoji: '🎶', text: 'Rule quizzes: harmony · sun letters · я ю є · は', where: 'Practice → Speak → Alphabet', href: '#/speak/alphabet' },
     { emoji: '⏱', text: 'Reader: speed control and sleep timer', where: 'Read & Listen', href: '#/read' },
@@ -13,7 +14,6 @@ export const NEWS = {
     { emoji: '💡', text: 'Tips: everything Four Tongues can do', where: 'Me → Tips', href: '#/help' },
     { emoji: '📝', text: 'My words: add your own vocabulary', where: 'Learn → Words', href: '#/mywords' },
     { emoji: '🗒️', text: 'Your own note on any word', where: 'A word’s page', href: '#/progress' },
-    { emoji: '🎨', text: 'Themes: dark mode, colours, backgrounds', where: 'Settings → Display', href: '#/settings' },
   ],
 };
 

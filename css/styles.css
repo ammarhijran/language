@@ -1424,12 +1424,12 @@ body.bare main { padding-top: 0; padding-bottom: 0; }
 @keyframes pop-in { from { opacity: 0; transform: scale(.3); } }
 
 /* Pressing gives a little; letting go springs back. */
-.btn, .cta, .pill, .chip, .option, .tile, .cat-card, .shortcut, .quick-link, .up-next, .me-row, .lang-card, .medal, .news-list a, .tabbar a .icon {
+.btn, .cta, .pill, .chip, .option, .tile, .theme-card, .cat-card, .shortcut, .quick-link, .up-next, .me-row, .lang-card, .medal, .news-list a, .tabbar a .icon {
   transition-property: background, border-color, color, box-shadow, transform;
   transition-duration: .15s, .15s, .15s, .2s, .18s;
   transition-timing-function: ease, ease, ease, ease, var(--ease-spring);
 }
-:is(.btn, .cta, .pill, .chip, .option, .tile, .cat-card, .shortcut, .quick-link, .up-next, .me-row, .lang-card, .medal, .news-list a):active:not(:disabled) {
+:is(.btn, .cta, .pill, .chip, .option, .tile, .theme-card, .cat-card, .shortcut, .quick-link, .up-next, .me-row, .lang-card, .medal, .news-list a):active:not(:disabled) {
   transform: scale(.97); transition-duration: .1s, .1s, .1s, .1s, .06s;
 }
 /* Cards that open something lift a little under a mouse. */
@@ -1454,3 +1454,36 @@ body.bare main { padding-top: 0; padding-bottom: 0; }
 .options > :nth-child(3) { animation-delay: .1s; }
 .options > :nth-child(4) { animation-delay: .15s; }
 .options > :nth-child(n+5) { animation-delay: .2s; }
+
+/* ---------- Looks (Settings → Display) ----------
+   Set on <html> by js/ui.js applyLooks (and by the first-paint script in index.html). */
+/* Animations: Off, whatever the device says. */
+html[data-motion="off"] *, html[data-motion="off"] *::before, html[data-motion="off"] *::after { animation: none !important; transition: none !important; }
+html[data-motion="off"] .confetti { display: none; }
+/* Squarer corners: the same scale, tighter. */
+html[data-corners="square"] { --r-xs: 2px; --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 10px; --r-pill: 8px; }
+/* Classic headings: a serif face for titles and big words; the script faces stay. */
+html[data-headings="serif"] {
+  --font-display: ui-serif, "New York", Georgia, "Noto Serif", "Droid Serif", "Times New Roman", "Hiragino Mincho ProN", "Noto Serif JP", "Noto Serif CJK JP", "Yu Mincho", "Noto Naskh Arabic", "Geeza Pro", serif;
+}
+/* Ready-made themes: a small picture of each look (Settings → Display). */
+.theme-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: var(--sp-2); }
+.theme-card {
+  display: grid; gap: 2px; padding: var(--sp-2); text-align: start; cursor: pointer; color: var(--text);
+  background: var(--surface); border: 2px solid var(--border); border-radius: var(--r-md); font: inherit;
+}
+.theme-card[aria-pressed="true"] { border-color: var(--action); box-shadow: 0 0 0 2px var(--action-soft); }
+.theme-card-art {
+  position: relative; display: block; height: 64px; margin-bottom: var(--sp-1); overflow: hidden;
+  background: var(--tc-bg); border: 1px solid var(--tc-line); border-radius: var(--r-sm);
+}
+.tc-card {
+  position: absolute; inset: 8px 8px auto; height: 26px; padding: 6px; display: grid; gap: 4px;
+  background: var(--tc-card); border: 1px solid var(--tc-line); border-radius: var(--r-xs);
+}
+.tc-line { display: block; height: 4px; width: 80%; border-radius: var(--r-pill); background: var(--tc-text); opacity: .7; }
+.tc-line.short { width: 45%; opacity: .35; }
+.tc-button { position: absolute; left: 8px; right: 8px; bottom: 8px; height: 14px; border-radius: var(--r-xs); background: var(--tc-action); }
+.theme-card-name { font-weight: 700; font-size: var(--fs-sm); line-height: 1.25; }
+.theme-card small { color: var(--muted); font-size: var(--fs-2xs); line-height: 1.25; }
+#display { scroll-margin-top: 72px; }

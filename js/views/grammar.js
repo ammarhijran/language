@@ -1,6 +1,6 @@
 // Grammar guide: a list of short lessons per language, each with explanations,
 // tables, audio examples and a 4-question quiz.
-import { h, icon, set, bindKeys, shuffle } from '../ui.js';
+import { h, icon, set, bindKeys, shuffle, motionOff } from '../ui.js';
 import { playButton, backLink, readingText } from '../components.js';
 import { sentencesFor, MIN_SENTENCES } from '../sentences.js';
 
@@ -236,7 +236,7 @@ function lessonNav(ctx, view, parts) {
   const chips = parts.map((p, i) => h('button', {
     type: 'button', 'aria-controls': p.el.id,
     onclick: () => {
-      p.el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      p.el.scrollIntoView({ behavior: motionOff() ? 'auto' : 'smooth', block: 'start' });
       const heading = p.el.querySelector('h2');
       if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }); }
       mark(i);

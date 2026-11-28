@@ -78,6 +78,13 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   entrance animations on `.view.enter`. Sessions (`.view.session`) animate on their own. The
   global reduced-motion rule turns everything off, so every animation must only add to a layout
   that is complete without it (`backwards` fill, never a final state that only the animation sets).
+- Looks beyond the theme (Headings, Corners, Animations) are `data-*` attributes on `<html>`, set by
+  `applyLooks` in `js/ui.js` and, before the first paint, by the inline script in `index.html`;
+  keep the two in step (`tests/themes.test.js` runs the inline script). JS that scrolls smoothly
+  asks `motionOff()` from `js/ui.js`, which covers the app's setting and the device's.
+- Ready-made themes are `PRESETS` in `js/themes.js`; a test keeps each one's colour 60 degrees of
+  hue from the wrong-answer magenta, which is why Rose and Purple are swatches but not presets.
+  Me → Looks opens `#/settings/display`.
 - Store screenshots show the app's look: rerender them (`scripts/store-screenshots.cjs`) after a
   visual change, and remember the Play listing keeps the old ones until someone uploads the new.
 

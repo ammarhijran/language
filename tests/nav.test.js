@@ -592,7 +592,9 @@ test('search finds what the app can do', async () => {
   const { searchTips } = await import('../js/views/help.js');
   const tr = languages.tr;
   const names = (q) => searchTips(tr, q).map((x) => x.name);
-  assert.ok(names('dark').includes('Themes and text size'));
+  assert.ok(names('dark').includes('Themes and looks'));
+  assert.ok(names('animations').includes('Themes and looks'));
+  assert.ok(names('serif').includes('Themes and looks'));
   assert.ok(names('BACKUP').includes('Back up'));
   assert.ok(names('sync code').includes('Sync between devices'));
   assert.ok(names('tricky').includes('Tricky letters'));

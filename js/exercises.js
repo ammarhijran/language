@@ -1,7 +1,7 @@
 // Exercise types. Each takes (ctx, word, onDone, meta) and returns an element.
 // onDone receives { correct, rating } (rating uses the SRS scale) or { skipped: true }.
 // 'build' (the sentence builder) takes its sentence from meta.sentence, or builds one from the phrase.
-import { h, icon, bindKeys, shuffle, pick, set } from './ui.js';
+import { h, icon, bindKeys, shuffle, pick, set, motionOff } from './ui.js';
 import {
   playButton, audioControls, pronunciationPanel, speakPractice, exampleBlock, readingLine, registerBlock, regBadge,
   praiseLine, diffLine, sayLater, readingText, scriptLang,
@@ -26,7 +26,7 @@ function once(fn) {
 // takes the focus. The session is padded by the sheet's height (--sheet-h) so
 // the end of the card can always scroll clear of it.
 
-const reducedMotion = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reducedMotion = motionOff;
 
 /** A very short buzz on a wrong answer where the device can (Android); a no-op elsewhere. */
 export function buzzWrong() {
