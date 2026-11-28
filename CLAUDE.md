@@ -105,6 +105,9 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   without a result. Smoke for four languages, the 320 px pass and the monkey run chained together
   overran it. Start each long check as its own background command with a generous timeout, and
   do not chain "wait for the previous log" loops on a check that may never finish.
+- The smoke run once flagged the Ukrainian я ю є quiz (`/speak/alphabet/iotated`) as scrolling
+  sideways at 360 px; twelve direct loads and two more Ukrainian runs did not repeat it. If it
+  comes back, look at what the screen before it in the run leaves on the page.
 - `git push` can fail for minutes with 503 "credential service temporarily unavailable". It is
   the session's GitHub sign-in, not the commits: retry in a background loop (every 30 s) and
   check both branches with `git ls-remote` afterwards.
@@ -134,7 +137,9 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   on hold (no budget for the programme yet).
 - On Play: build 216 (the study modes, still indigo) is live on the closed test since 25
   November. Build 220 (Tea, magenta errors, the new motion; commit 21a0634) is closed-test
-  release 3, sent for review on 26 November; testers get it once Google approves. The new
+  release 3, sent for review on 26 November; testers get it once Google approves. Build 228
+  (ready-made themes, headings, corners, Animations switch; commit e40903f) was uploaded by the
+  uploader on 28 November, the first in the new format, and waits for the owner's word. The new
   listing screenshots show Tea; swapping them is the owner's call (asked through "app"). A new
   release does not restart the 14-day tester clock (it counts opted-in testers, not releases).
 - **Every Play bundle from `main` is uploaded** (the owner's rule since 26 November 2026; the
@@ -150,7 +155,8 @@ the next commit is the way forward (a stuck run cannot be re-run while it shows 
   instead, as the release notes are.
 - Release notes: `play/release-notes.txt` (Play's `<en-US>` tags, 500 characters at most, no em
   or en dashes; `tests/release-notes.test.js` checks it) says what changed since the last build
-  uploaded to Play. Update it in the same commit as any user-visible app change; the workflow puts
+  uploaded to Play: after an upload, the next app change replaces the text rather than adding to
+  it (228's notes covered 220 and 228). Update it in the same commit as any user-visible app change; the workflow puts
   it in the bundle artifact with a `build.txt` (versionCode, versionName, commit, branch). The
   artifact `lisan-android-apk` is the sideload build and never goes to Play. The versionCode is
   the run number, so it always rises; versionName stays 1.0.0.
